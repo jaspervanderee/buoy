@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spending Wallets</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+</head>
+<body>
+  <div class="container">
+<header>
+	  <div class="container">
+		<div id="logo"><a href="index.html"><img src="images/buoy-logo-horizontal.svg" alt="buoy"></a></div>
+		<button class="hamburger" aria-label="Toggle Menu">
+		  <span></span>
+		  <span></span>
+		  <span></span>
+		</button>
+	  </div>
+	<nav class="menu">
+	  <div class="menu-content">
+		<!-- Search bar -->
+		<div class="search-bar">
+  <div class="search-wrapper">
+    <input type="text" placeholder="Search..." id="menu-search" />
+    <div id="search-suggestions" class="search-suggestions"></div>
+  </div>
+  <button id="search-btn">Search</button>
+</div>
+
+		<!-- Menu sections -->
+		<section class="menu-section">
+      <ul>
+		<div class="custom-dropdown">
+  <div class="dropdown-label">
+    <img src="images/global-white.svg" alt="Your Location" class="availability-icon" />Your location
+  </div>
+  <ul class="dropdown-list"></ul> <!-- Now empty, will be filled dynamically -->
+</div>
+
+			<li>
+			  <a href="about.html">
+				<img src="images/about.svg" alt="About Icon" />
+				About
+			  </a>
+			</li>
+			<li>
+			  <a href="faq.html">
+				<img src="images/faq.svg" alt="FAQ Icon" />
+				FAQ
+			  </a>
+			</li>
+			<li>
+			  <a id="contact-link" href="mailto:support&#64;buoybitcoin.com">
+        <img src="images/contact.svg" alt="Contact Icon"/>
+        Contact
+        </a>
+			</li>
+		  </ul>
+		</section>
+	  </div>
+	</nav>
+</header>
+  <main>
+    <!-- Purchase Bitcoin Section -->
+    <section class="category">
+     <div class="category-header">
+  		<h2>Spending Wallets</h2>
+  		<button id="compare-btn" class="compare-btn" disabled>compare</button>
+	 </div>
+      <div class="grid-container">
+        <div class="card"><img src="images/breez.svg" alt="breez" class="svg-icon"><span></span></div>
+        <div class="card"><img src="images/aqua.svg" alt="aqua" class="svg-icon"><span></span></div>
+        <div class="card"><img src="images/muun.svg" alt="muun" class="svg-icon"><span></span></div>
+		    <div class="card"><img src="images/phoenix.svg" alt="phoenix" class="svg-icon"><span></span></div>
+	  </div>
+    </section>
+  </main>
+</div>  <!-- container -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-column">
+      <h3>Social</h3>
+      <ul>
+        <li><a href="#">Nostr</a></li>
+		<li><a href="#">X</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Learn</h3>
+      <ul>
+        <li><a href="what-is-bitcoin.html">Bitcoin</a></li>
+        <li><a href="what-is-lightning.html">Lightning</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>Support</h3>
+      <ul>
+        <li><a href="mailto:support&#64;buoybitcoin.com">Contact</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+      </ul>
+    </div>
+    <!-- Add more columns here if needed -->
+  </div>
+</footer>
+
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+
