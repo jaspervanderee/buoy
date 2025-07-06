@@ -825,6 +825,18 @@ p, li, a {
   margin-bottom: 20px;
 }
 
+.platform-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.platform-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 
 
 

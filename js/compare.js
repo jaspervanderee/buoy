@@ -71,13 +71,13 @@ try {
 
 const categoryFeaturesMap = {
   "Buy Bitcoin": [
-    "description", "type_of_platform", "fees", "payment_methods", "app_ratings", "website", "availability"
+    "description", "type_of_platform", "fees", "payment_methods", "platform_availability", "app_ratings", "website", "availability"
   ],
   "Spending Wallets": [
-    "description", "custody_model", "open_source", "lightning_support", "withdraw_options", "app_ratings", "website", "availability"
+    "description", "custody_model", "open_source", "lightning_support", "withdraw_options", "platform_availability", "app_ratings", "website", "availability"
   ],
   "Storage Wallets": [
-    "description", "custody_model", "open_source", "multisig_support", "platform_availability", "backup_options", "app_ratings", "website", "availability"
+    "description", "custody_model", "open_source", "multisig_support", "backup_options", "platform_availability", "app_ratings", "website", "availability"
   ],
   "Financial Tools": [
     "description", "custody_model", "platform_availability", "app_ratings", "website", "availability"
@@ -100,7 +100,34 @@ const categoryFeaturesMap = {
   { key: "multisig_support", label: "Multisig Support" },
   { key: "backup_options", label: "Backup & Recovery" },
   { key: "open_source", label: "Open Source", render: val => val ? "Yes" : "No" },
-  { key: "platform_availability", label: "Mobile/Desktop" },
+  { key: "platform_availability",
+    label: "Mobile/Desktop",
+    render: (val) => {
+      if (!val) return "N/A";
+  
+      // Normalize string or array to unified array
+      const platforms = Array.isArray(val) ? val : [val];
+  
+      const icons = platforms.map(p => {
+        const lower = p.toLowerCase();
+        if (lower.includes("mobile")) {
+          return `<div class="platform-icon-row">
+            <img src="images/mobile.svg" class="availability-icon" alt="Mobile" />
+            <span>${p}</span>
+          </div>`;
+        }
+        if (lower.includes("desktop")) {
+          return `<div class="platform-icon-row">
+            <img src="images/desktop.svg" class="availability-icon" alt="Desktop" />
+            <span>${p}</span>
+          </div>`;
+        }
+        return `<span>${p}</span>`; // fallback if unrecognized
+      });
+  
+      return `<div class="platform-wrapper">${icons.join("")}</div>`;
+    }
+  },
   { key: "app_ratings", label: "App Ratings", render: renderAppRatings },
   { key: "website", label: "Website", render: (val) => val ? `<a href="${val}" target="_blank">${val.replace(/https?:\/\/(www\.)?/, "")}</a>` : "N/A" },
   { key: "availability", label: "Availability", render: getAvailabilityText }
