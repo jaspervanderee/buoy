@@ -90,7 +90,7 @@ const categoryFeaturesMap = {
     // ✅ Generate the comparison cards only once
     const comparisonContainer = document.getElementById("comparison-container");
     const features = [
-  { key: "description", label: "Description", render: (val) => val.split("\\n\\n").map(p => `<p>${p}</p>`).join("") },
+  { key: "description", label: "Description", render: renderCollapsibleDescription },
   { key: "type_of_platform", label: "Platform" },
   { key: "custody_model", label: "Custody" },
   { key: "fees", label: "Fees", render: renderFees },
@@ -149,10 +149,8 @@ document.getElementById("comparison-table-wrapper").innerHTML = `
   </div>
 `;
 
-
-
-
-
+// Initialize collapsible descriptions
+initializeCollapsibleDescriptions();
 
 document.querySelectorAll(".card").forEach(card => card.style.display = "none");
 
@@ -317,15 +315,65 @@ function renderFees(fees) {
   return `<div class="fee-structure">Not available</div>`;
 }
 
+// Add this new function for rendering collapsible descriptions
+function renderCollapsibleDescription(description) {
+  if (!description) return "";
+  
+  const paragraphs = description.split("\\n\\n");
+  const previewText = paragraphs[0]; // First paragraph as preview
+  const fullText = paragraphs.map(p => `<p>${p}</p>`).join("");
+  
+  // If description is short (less than 200 characters), don't make it collapsible
+  if (description.length < 200) {
+    return fullText;
+  }
+  
+  return `
+    <div class="collapsible-description">
+      <div class="description-preview">
+        <p>${previewText}</p>
+      </div>
+      <div class="description-full" style="display: none;">
+        ${fullText}
+      </div>
+      <button class="expand-btn" aria-expanded="false">
+        <span class="expand-text">Read more</span>
+        <span class="expand-icon">▼</span>
+      </button>
+    </div>
+  `;
+}
 
-
-
-
-
-
-
-
-
+// Add this new function
+function initializeCollapsibleDescriptions() {
+  document.querySelectorAll('.expand-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      const container = this.closest('.collapsible-description');
+      const preview = container.querySelector('.description-preview');
+      const full = container.querySelector('.description-full');
+      const expandText = this.querySelector('.expand-text');
+      const expandIcon = this.querySelector('.expand-icon');
+      
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      
+      if (isExpanded) {
+        // Collapse
+        preview.style.display = 'block';
+        full.style.display = 'none';
+        expandText.textContent = 'Read more';
+        expandIcon.textContent = '▼';
+        this.setAttribute('aria-expanded', 'false');
+      } else {
+        // Expand
+        preview.style.display = 'none';
+        full.style.display = 'block';
+        expandText.textContent = 'Show less';
+        expandIcon.textContent = '▼';
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+}
 
 window.addEventListener("load", () => {
     const modal = document.getElementById("rating-modal");

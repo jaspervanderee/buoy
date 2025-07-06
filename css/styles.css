@@ -358,7 +358,7 @@ header .container {
 .no-scroll {
   overflow: hidden; /* Disable scrolling */
   position: fixed; /* Prevent any shifting due to scrollbars */
-  width: 100%; /* Ensure the layout doesn’t shrink */
+  width: 100%; /* Ensure the layout doesn't shrink */
   touch-action: none; /* Disable touch scrolling */
   -webkit-overflow-scrolling: none; /* Disable momentum scrolling on iOS */
 }
@@ -966,7 +966,92 @@ p, li, a {
   transition: all 0.3s ease;
 }
 
+/* Collapsible Description Styles */
+.collapsible-description {
+  position: relative;
+}
 
+.description-preview {
+  margin-bottom: 0;
+}
+
+.description-full {
+  margin-bottom: 1em;
+}
+
+.expand-btn {
+  background: none;
+  border: none;
+  color: #ff603b;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9em;
+  padding: 0.5em 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  border-radius: 4px;
+}
+
+.expand-btn:hover {
+  color: #e55a35;
+}
+
+.expand-btn:focus {
+  outline: none;
+  background-color: rgba(255, 96, 59, 0.1);
+  color: #e55a35;
+}
+
+.expand-btn:focus:not(:focus-visible) {
+  background-color: transparent;
+}
+
+.expand-btn:focus-visible {
+  background-color: rgba(255, 96, 59, 0.1);
+  color: #e55a35;
+}
+
+.expand-icon {
+  font-size: 0.8em;
+  transition: transform 0.2s ease;
+}
+
+.expand-btn[aria-expanded="true"] .expand-icon {
+  transform: rotate(180deg);
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .expand-btn {
+    font-size: 0.85em;
+    padding: 0.75em 0;
+  }
+  
+  .description-preview p {
+    margin-bottom: 0.5em;
+  }
+  
+  .description-full p {
+    margin-bottom: 1em;
+  }
+}
+
+/* Ensure proper spacing in feature rows */
+.feature-value .collapsible-description {
+  width: 100%;
+}
+
+.feature-value .collapsible-description p {
+  margin-bottom: 1em;
+}
+
+.feature-value .collapsible-description p:last-child {
+  margin-bottom: 0;
+}
 
 
 
@@ -1011,7 +1096,7 @@ p, li, a {
   .card {
     flex: 0 0 calc((100% - 10px) / 2); /* Adjust card width for mobile */
     width: 100%; /* Full width for smaller screens */
-    max-width: 100%; /* Ensure it doesn’t exceed container width */
+    max-width: 100%; /* Ensure it doesn't exceed container width */
     display: flex; /* Flex layout to control alignment */
     flex-direction: column; /* Stack content vertically */
     align-items: center; /* Center content horizontally */
@@ -1066,3 +1151,5 @@ p, li, a {
 	
 	
 }
+
+

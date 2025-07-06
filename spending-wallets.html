@@ -33,12 +33,14 @@
 		<!-- Menu sections -->
 		<section class="menu-section">
       <ul>
-		<div class="custom-dropdown">
-  <div class="dropdown-label">
-    <img src="images/global-white.svg" alt="Your Location" class="availability-icon" />Your location
-  </div>
-  <ul class="dropdown-list"></ul> <!-- Now empty, will be filled dynamically -->
-</div>
+        <div class="custom-dropdown">
+          <div class="dropdown-label" id="dropdown-label">
+            <img src="images/global-white.svg" alt="Your Location" class="availability-icon" />
+            <span>Your location</span>
+          </div>
+          <input type="text" id="country-search" placeholder="Type your country..." style="display:none;" />
+          <ul class="dropdown-list"></ul>
+        </div>
 
 			<li>
 			  <a href="about.html">
