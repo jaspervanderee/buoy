@@ -347,18 +347,22 @@ function renderCollapsibleDescription(description) {
   if (!description) return "";
   
   const paragraphs = description.split("\\n\\n");
-  const previewText = paragraphs[0]; // First paragraph as preview
   const fullText = paragraphs.map(p => `<p>${p}</p>`).join("");
   
-  // If description is short (less than 200 characters), don't make it collapsible
+  // For desktop or short descriptions, return full text without collapsible behavior
   if (description.length < 200) {
     return fullText;
   }
   
+  // Create preview text - first 200 chars for mobile, first paragraph for desktop
+  const mobilePreviewText = description.substring(0, 200) + "...";
+  const desktopPreviewText = paragraphs[0];
+  
   return `
     <div class="collapsible-description">
       <div class="description-preview">
-        <p>${previewText}</p>
+        <p class="mobile-preview">${mobilePreviewText}</p>
+        <p class="desktop-preview">${desktopPreviewText}</p>
       </div>
       <div class="description-full" style="display: none;">
         ${fullText}

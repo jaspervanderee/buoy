@@ -78,10 +78,6 @@ header .container {
 }
 
 
-/* Change hamburger icon color when menu is active */
-.menu.active ~ .container .hamburger span {
-  background-color: white; /* Change to white for visibility */
-}
 
 /* Hamburger icon on dark overlay (menu active) */
 .hamburger.active span {
@@ -387,6 +383,45 @@ header .container {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Donate Widget */
+#donate-widget-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#donate-widget-overlay.show {
+  display: flex;
+}
+
+#donate-widget {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.close-widget {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.lightning-address {
+  font-weight: bold;
+  margin: 10px 0;
 }
 
 
@@ -987,6 +1022,15 @@ p, li, a {
   margin-bottom: 0;
 }
 
+/* Desktop-first styles for collapsible descriptions */
+.mobile-preview {
+  display: none;
+}
+
+.desktop-preview {
+  display: block;
+}
+
 .description-full {
   margin-bottom: 1em;
 }
@@ -1049,6 +1093,15 @@ p, li, a {
   
   .description-full p {
     margin-bottom: 1em;
+  }
+
+  /* Mobile preview visibility */
+  .mobile-preview {
+    display: block;
+  }
+  
+  .desktop-preview {
+    display: none;
   }
 }
 
@@ -1163,5 +1216,7 @@ p, li, a {
 	
 	
 }
+
+
 
 

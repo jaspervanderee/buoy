@@ -381,20 +381,23 @@ document.querySelectorAll(".card").forEach(card => {
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("menu-search");
   const searchBtn = document.getElementById("search-btn");
-const suggestionsBox = document.getElementById("search-suggestions");
+  const suggestionsBox = document.getElementById("search-suggestions");
+  let servicesCache = null; // cache services.json to avoid repeated fetches
 
-searchInput.addEventListener("input", async () => {
-  const query = searchInput.value.trim().toLowerCase();
-  if (!query) {
-    suggestionsBox.style.display = "none";
-    return;
-  }
+  searchInput.addEventListener("input", async () => {
+    const query = searchInput.value.trim().toLowerCase();
+    if (!query) {
+      suggestionsBox.style.display = "none";
+      return;
+    }
 
-  const res = await fetch("data/services.json");
-  const services = await res.json();
-  const matches = services
-    .map(s => s.name)
-    .filter(name => name.toLowerCase().includes(query));
+    if (!servicesCache) {
+      const res = await fetch("data/services.json");
+      servicesCache = await res.json();
+    }
+    const matches = servicesCache
+      .map(s => s.name)
+      .filter(name => name.toLowerCase().includes(query));
 
   if (matches.length === 0) {
     suggestionsBox.style.display = "none";
@@ -421,23 +424,23 @@ suggestionsBox.addEventListener("click", (e) => {
    if (e.key === "Enter") searchBtn.click();
    });
 
-  searchBtn.addEventListener("click", () => {
+   searchBtn.addEventListener("click", async () => {
     const query = searchInput.value.trim().toLowerCase();
     if (!query) return;
 
-    // Try to match service from services.json
-    fetch("data/services.json")
-      .then(res => res.json())
-      .then(services => {
-        const match = services.find(s => s.name.toLowerCase().includes(query));
-        if (match) {
-          // Redirect to service.html with service and dummy category
-          const url = `service.html?services=${encodeURIComponent(match.name)}&category=Search`;
-          window.location.href = url;
-        } else {
-          alert("Service not found. Please try another name.");
-        }
-      });
+    if (!servicesCache) {
+      const res = await fetch("data/services.json");
+      servicesCache = await res.json();
+    }
+
+    const match = servicesCache.find(s => s.name.toLowerCase().includes(query));
+    if (match) {
+      // Redirect to service.html with service and dummy category
+      const url = `service.html?services=${encodeURIComponent(match.name)}&category=Search`;
+      window.location.href = url;
+    } else {
+      alert("Service not found. Please try another name.");
+    }
   });
 });
 
@@ -456,6 +459,39 @@ window.addEventListener("pageshow", () => {
   }
 });
 
+// ------------------------------
+// Donate Button / Lightning Widget
+// ------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const donateLink = document.getElementById("donate-link");
+  if (!donateLink) return;
+
+  // Create the overlay and widget elements
+  const overlay = document.createElement("div");
+  overlay.id = "donate-widget-overlay";
+  overlay.innerHTML = `
+    <div id="donate-widget">
+      <span class="close-widget">&times;</span>
+      <p>Send sats to</p>
+      <p class="lightning-address">quasarcolumba@strike.me</p>
+      <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=lightning:quasarcolumba@strike.me" alt="Lightning QR" />
+      <p><a href="lightning:quasarcolumba@strike.me">Open in wallet</a></p>
+    </div>`;
+  document.body.appendChild(overlay);
+
+  // Open widget on donate click
+  donateLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    overlay.classList.add("show");
+  });
+
+  // Close handlers
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay || e.target.classList.contains("close-widget")) {
+      overlay.classList.remove("show");
+    }
+  });
+});
 
 
 
