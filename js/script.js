@@ -466,18 +466,57 @@ document.addEventListener("DOMContentLoaded", () => {
   const donateLink = document.getElementById("donate-link");
   if (!donateLink) return;
 
+  const isDesktop = window.innerWidth >= 1024;
+  const lightningAddress = "quasarcolumba@strike.me";
+  const encodedAddress = encodeURIComponent(`lightning:${lightningAddress}`);
+  
   // Create the overlay and widget elements
   const overlay = document.createElement("div");
   overlay.id = "donate-widget-overlay";
   overlay.innerHTML = `
     <div id="donate-widget">
       <span class="close-widget">&times;</span>
-      <p>Send sats to</p>
-      <p class="lightning-address">quasarcolumba@strike.me</p>
-      <img src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=lightning:quasarcolumba@strike.me" alt="Lightning QR" />
-      <p><a href="lightning:quasarcolumba@strike.me">Open in wallet</a></p>
+      ${isDesktop ? `
+        <p>Send sats to</p>
+        <p class="lightning-address">${lightningAddress}</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodedAddress}" alt="Lightning QR" />
+        <p><a href="lightning:${lightningAddress}" class="wallet-link">Open in wallet</a></p>
+      ` : `
+        <p>Support this project</p>
+        <a href="lightning:${lightningAddress}" class="mobile-donate-btn wallet-link">Open Lightning Wallet</a>
+      `}
     </div>`;
   document.body.appendChild(overlay);
+
+  // Create thank you notification element
+  const notification = document.createElement("div");
+  notification.className = "thank-you-notification";
+  notification.textContent = "Thank you for your support! ⚡️";
+  document.body.appendChild(notification);
+
+  // Handle wallet link clicks
+  document.querySelectorAll('.wallet-link').forEach(link => {
+    link.addEventListener('click', () => {
+      // Store timestamp when user left to wallet
+      sessionStorage.setItem('donationAttempted', Date.now());
+      overlay.classList.remove('show');
+    });
+  });
+
+  // Check if user is returning from wallet
+  if (document.visibilityState === 'visible' && sessionStorage.getItem('donationAttempted')) {
+    const attemptTime = parseInt(sessionStorage.getItem('donationAttempted'));
+    const timeElapsed = Date.now() - attemptTime;
+    
+    // Only show thank you if returning within 5 minutes
+    if (timeElapsed < 300000) { // 5 minutes in milliseconds
+      notification.classList.add('show');
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000); // Hide after 3 seconds
+    }
+    sessionStorage.removeItem('donationAttempted');
+  }
 
   // Open widget on donate click
   donateLink.addEventListener("click", (e) => {
@@ -489,6 +528,23 @@ document.addEventListener("DOMContentLoaded", () => {
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay || e.target.classList.contains("close-widget")) {
       overlay.classList.remove("show");
+    }
+  });
+
+  // Listen for page visibility changes
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && sessionStorage.getItem('donationAttempted')) {
+      const attemptTime = parseInt(sessionStorage.getItem('donationAttempted'));
+      const timeElapsed = Date.now() - attemptTime;
+      
+      // Only show thank you if returning within 5 minutes
+      if (timeElapsed < 300000) { // 5 minutes in milliseconds
+        notification.classList.add('show');
+        setTimeout(() => {
+          notification.classList.remove('show');
+        }, 3000); // Hide after 3 seconds
+      }
+      sessionStorage.removeItem('donationAttempted');
     }
   });
 });

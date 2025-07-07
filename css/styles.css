@@ -409,6 +409,8 @@ header .container {
   padding: 20px;
   border-radius: 10px;
   text-align: center;
+  width: 90%;
+  max-width: 350px;
 }
 
 .close-widget {
@@ -422,8 +424,39 @@ header .container {
 .lightning-address {
   font-weight: bold;
   margin: 10px 0;
+  word-break: break-all;
 }
 
+/* Mobile donate button styling */
+.mobile-donate-btn {
+  display: inline-block;
+  background: #ff603b;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mobile-donate-btn:hover {
+  background: #e55532;
+}
+
+/* Desktop-specific styles */
+@media (min-width: 1024px) {
+  #donate-widget {
+    padding: 30px;
+  }
+  
+  #donate-widget img {
+    max-width: 250px;
+    height: auto;
+    margin: 20px 0;
+  }
+}
 
 /* Main container: Horizontally center content */
 main {
@@ -1080,30 +1113,6 @@ p, li, a {
   transform: rotate(180deg);
 }
 
-/* Mobile-specific adjustments */
-@media (max-width: 768px) {
-  .expand-btn {
-    font-size: 0.85em;
-    padding: 0.75em 0;
-  }
-  
-  .description-preview p {
-    margin-bottom: 0.5em;
-  }
-  
-  .description-full p {
-    margin-bottom: 1em;
-  }
-
-  /* Mobile preview visibility */
-  .mobile-preview {
-    display: block;
-  }
-  
-  .desktop-preview {
-    display: none;
-  }
-}
 
 /* Ensure proper spacing in feature rows */
 .feature-value .collapsible-description {
@@ -1181,6 +1190,28 @@ p, li, a {
     flex: 0 0 calc((100% - 20px) / 2); /* 2 cards per row on mobile */
   }
 
+  .expand-btn {
+    font-size: 0.85em;
+    padding: 0.75em 0;
+  }
+  
+  .description-preview p {
+    margin-bottom: 0.5em;
+  }
+  
+  .description-full p {
+    margin-bottom: 1em;
+  }
+
+  /* Mobile preview visibility */
+  .mobile-preview {
+    display: block;
+  }
+  
+  .desktop-preview {
+    display: none;
+  }
+
 }
 
 
@@ -1215,6 +1246,27 @@ p, li, a {
 
 	
 	
+}
+
+/* Thank you notification */
+.thank-you-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.9em;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9998;
+}
+
+.thank-you-notification.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 
