@@ -137,7 +137,10 @@ const categoryFeaturesMap = {
  document.getElementById("logo-row-container").innerHTML = `
   ${servicesToCompare.map(service => `
     <div class="feature-value logo-cell">
-      <img src="${getLogoFilename(service.name)}" alt="${service.name} logo" class="svg-icon sticky-logo" />
+      <a href="${service.website}" target="_blank" class="service-link">
+        <img src="${getLogoFilename(service.name)}" alt="${service.name} logo" class="svg-icon sticky-logo" />
+        <button class="cta-button">visit</button>
+      </a>
     </div>
   `).join("")}
 `;
