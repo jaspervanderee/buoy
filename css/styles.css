@@ -361,22 +361,30 @@ header .container {
 
 .hero-headline {
   text-align: center;
-  padding: 40px 20px 40px;
+  padding: 60px 24px 40px; /* Tighter padding for mobile */
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .hero-headline h1 {
-  font-size: 2.2em;
+  font-size: 2.5em; /* Smaller base size for mobile */
   font-family: "Inter", sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   color: #000;
-  margin: 0;
+  margin: 0 0 12px 0; /* Tighter margin for mobile */
+  line-height: 1.15; /* Slightly tighter line height */
 }
 
-.animated-headline {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeSlideUp 1s ease-out forwards;
+.hero-subheadline {
+  font-size: 1.1em; /* Slightly smaller for mobile */
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: #666;
+  margin: 0;
+  line-height: 1.4; /* Slightly tighter line height */
+  padding: 0 12px; /* Add some padding to control line length */
 }
+
 
 @keyframes fadeSlideUp {
   to {
@@ -513,6 +521,19 @@ h2 {
   font-family: "Inter", sans-serif;
   font-weight: 600; /* Bold for emphasis */
   color: #000; /* Default text color */
+}
+
+/* Category headers */
+.category-header h2 {
+  font-size: 1.4em; /* Smaller on mobile */
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .category-header h2 {
+    font-size: 1.6em; /* Larger on desktop */
+  }
 }
 
 
@@ -714,22 +735,29 @@ p, li, a {
 .compare-btn {
   padding: 8px 16px;
   font-size: 1em;
-  border: none;
-  border-radius: 5px;
-  background: lightgrey;
-  color: white;
+  border: 1.5px solid #d1d5db; /* Subtle grey border */
+  border-radius: 6px;
+  background: white;
+  color: #9ca3af; /* Softer grey text */
   cursor: not-allowed;
   text-align: center;
-  height: 40px; /* Matches h2 height */
+  height: 40px;
   display: flex;
   align-items: center;
+  transition: all 0.2s ease; /* Smooth transition for all changes */
 }
 
 .compare-btn.active {
   color: white;
   background: #ff603b;
-  border:none;
+  border-color: #ff603b;
   cursor: pointer;
+  box-shadow: 0 1px 2px rgba(255, 96, 59, 0.1); /* Subtle shadow for depth */
+}
+
+.compare-btn.active:hover {
+  background: #e55532; /* Slightly darker on hover */
+  border-color: #e55532;
 }
 
 
@@ -1161,6 +1189,23 @@ p, li, a {
 }
 
 
+/* Larger sizes for desktop */
+@media (min-width: 768px) {
+  .hero-headline {
+    padding: 100px 20px 80px;
+  }
+
+  .hero-headline h1 {
+    font-size: 3.5em;
+    margin: 0 0 20px 0;
+  }
+
+  .hero-subheadline {
+    font-size: 1.2em;
+    padding: 0;
+  }
+}
+
 
 /* Responsive layout for smaller screens */
 @media (max-width: 768px) {
@@ -1245,6 +1290,7 @@ p, li, a {
     display: none;
   }
 
+
 }
 
 
@@ -1300,6 +1346,96 @@ p, li, a {
 .thank-you-notification.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Action Grid Styles */
+.action-grid {
+  max-width: 900px;
+  margin: 0 auto 80px;
+  padding: 0 24px;
+}
+
+.action-grid h2 {
+  font-size: 2.4em;
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.action-buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  perspective: 1000px;
+}
+
+.action-button {
+  background: white;
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  padding: 28px 32px;
+  font-size: 1.15em;
+  color: #1a1a1a;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: "Inter", sans-serif;
+  width: 100%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 
+              0 4px 6px rgba(0, 0, 0, 0.02);
+  position: relative;
+  overflow: hidden;
+}
+
+.action-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+  transform: translateX(-100%);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.action-button:hover {
+  border-color: #ff603b;
+  background: rgba(255, 96, 59, 0.02);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 96, 59, 0.1),
+              0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.action-button:hover::after {
+  transform: translateX(100%);
+}
+
+@media (max-width: 768px) {
+  .action-grid h2 {
+    font-size: 2em;
+    margin-bottom: 32px;
+  }
+  
+  .action-button {
+    padding: 24px 28px;
+    font-size: 1.1em;
+  }
+}
+
+/* Desktop layout */
+@media (min-width: 768px) {
+  .action-buttons {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .action-grid {
+    margin: 0 auto 80px;
+  }
 }
 
 

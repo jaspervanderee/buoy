@@ -549,6 +549,30 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// Action buttons smooth scroll
+document.querySelectorAll('.action-button').forEach(button => {
+  button.addEventListener('click', () => {
+    const targetId = button.getAttribute('data-target');
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+      // Get the h2 element within the target section
+      const targetHeader = targetSection.closest('.category').querySelector('.category-header');
+      
+      // Calculate position accounting for fixed header
+      const headerHeight = document.querySelector('header').offsetHeight;
+      const buffer = 20; // Additional space above the title
+      
+      const elementPosition = targetHeader.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerHeight - buffer;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
 
 
 
