@@ -385,6 +385,102 @@ header .container {
   padding: 0 12px; /* Add some padding to control line length */
 }
 
+/* Main Search Section */
+.main-search {
+  max-width: 900px;
+  margin: 0 auto 80px;
+  padding: 0 24px;
+}
+
+.search-wrapper-main {
+  position: relative;
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.search-wrapper-main input {
+  width: 100%;
+  padding: 20px 56px 20px 24px;
+  font-size: 1.1em;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: transparent;
+  font-family: "Inter", sans-serif;
+  color: #1a1a1a;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.search-wrapper-main input:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.1);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+
+#main-search-btn {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 8px;
+  color: #9ca3af;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+#main-search-btn:hover {
+  color: #ff603b;
+}
+
+#main-search-suggestions {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: none;
+}
+
+#main-search-suggestions div {
+  padding: 12px 24px;
+  font-family: "Inter", sans-serif;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+
+@media (max-width: 768px) {
+  .main-search {
+    margin-bottom: 32px;
+    padding: 0 16px;
+  }
+
+  .search-wrapper-main input {
+    padding: 16px 48px 16px 20px;
+    font-size: 1em;
+  }
+}
+
 
 @keyframes fadeSlideUp {
   to {
@@ -735,7 +831,7 @@ p, li, a {
 .compare-btn {
   padding: 8px 16px;
   font-size: 1em;
-  border: 1.5px solid #d1d5db; /* Subtle grey border */
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 6px;
   background: white;
   color: #9ca3af; /* Softer grey text */
@@ -1375,7 +1471,7 @@ p, li, a {
 .action-button {
   background: white;
   border: 1.5px solid transparent;
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 28px 32px;
   font-size: 1.15em;
   color: #1a1a1a;

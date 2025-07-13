@@ -580,3 +580,95 @@ document.querySelectorAll('.action-button').forEach(button => {
 
 
 
+
+// Main search functionality
+const mainSearchInput = document.getElementById('main-search');
+const mainSearchBtn = document.getElementById('main-search-btn');
+const mainSearchSuggestions = document.getElementById('main-search-suggestions');
+let servicesCache = null; // Reuse the same cache as menu search
+
+if (mainSearchInput && mainSearchBtn && mainSearchSuggestions) {
+  mainSearchInput.addEventListener('input', async function(e) {
+    const query = e.target.value.trim().toLowerCase();
+    if (!query) {
+      mainSearchSuggestions.style.display = 'none';
+      return;
+    }
+
+    if (!servicesCache) {
+      const res = await fetch("data/services.json");
+      servicesCache = await res.json();
+    }
+
+    const suggestions = servicesCache
+      .filter(service => 
+        service.name.toLowerCase().includes(query)
+      )
+      .sort((a, b) => {
+        // If one name starts with query and the other doesn't, prioritize the one that does
+        const aStartsWith = a.name.toLowerCase().startsWith(query);
+        const bStartsWith = b.name.toLowerCase().startsWith(query);
+        if (aStartsWith && !bStartsWith) return -1;
+        if (!aStartsWith && bStartsWith) return 1;
+        return a.name.localeCompare(b.name); // Alphabetical order for equal priority
+      })
+      .slice(0, 2); // Limit to 2 suggestions
+
+    mainSearchSuggestions.innerHTML = '';
+    if (suggestions.length > 0) {
+      suggestions.forEach(service => {
+        const div = document.createElement('div');
+        div.textContent = service.name;
+        div.addEventListener('click', () => {
+          const url = `service.html?services=${encodeURIComponent(service.name)}&category=Search`;
+          window.location.href = url;
+        });
+        mainSearchSuggestions.appendChild(div);
+      });
+      mainSearchSuggestions.style.display = 'block';
+    } else {
+      mainSearchSuggestions.style.display = 'none';
+    }
+  });
+
+  mainSearchBtn.addEventListener('click', async function() {
+    const query = mainSearchInput.value.trim().toLowerCase();
+    if (!query) return;
+
+    if (!servicesCache) {
+      const res = await fetch("data/services.json");
+      servicesCache = await res.json();
+    }
+
+    const match = servicesCache.find(s => s.name.toLowerCase().includes(query));
+    if (match) {
+      const url = `service.html?services=${encodeURIComponent(match.name)}&category=Search`;
+      window.location.href = url;
+    }
+  });
+
+  // Close suggestions when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!mainSearchInput.contains(e.target) && !mainSearchBtn.contains(e.target)) {
+      mainSearchSuggestions.style.display = 'none';
+    }
+  });
+
+  // Handle keyboard navigation
+  mainSearchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      const firstSuggestion = mainSearchSuggestions.firstChild;
+      if (firstSuggestion) {
+        firstSuggestion.click();
+      }
+    }
+  });
+}
+
+
+
+
+
+
+
+
