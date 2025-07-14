@@ -71,61 +71,63 @@ try {
 
 const categoryFeaturesMap = {
   "Buy Bitcoin": [
-    "description", "type_of_platform", "fees", "payment_methods", "platform_availability", "app_ratings", "website", "availability"
+    "description", "type_of_platform", "fees", "dca", "payment_methods", "interface", "app_ratings", "website", "availability"
   ],
   "Spending Wallets": [
-    "description", "custody_model", "open_source", "lightning_support", "withdraw_options", "platform_availability", "app_ratings", "website", "availability"
+    "description", "custody_model", "open_source", "lightning_support", "withdraw_options", "interface", "app_ratings", "website", "availability"
   ],
   "Storage Wallets": [
-    "description", "custody_model", "open_source", "multisig_support", "backup_options", "platform_availability", "app_ratings", "website", "availability"
+    "description", "custody_model", "open_source", "multisig_support", "backup_options", "interface", "app_ratings", "website", "availability"
   ],
   "Financial Tools": [
-    "description", "custody_model", "platform_availability", "app_ratings", "website", "availability"
+    "description", "custody_model", "interface", "app_ratings", "website", "availability"
   ],
   "Merchant Tools": [
-    "description", "custody_model", "lightning_support", "platform_availability", "app_ratings", "website", "availability"
+    "description", "custody_model", "lightning_support", "interface", "app_ratings", "website", "availability"
   ]
 };
 
     // ✅ Generate the comparison cards only once
     const comparisonContainer = document.getElementById("comparison-container");
     const features = [
-  { key: "description", label: "Description", render: renderCollapsibleDescription },
   { key: "type_of_platform", label: "Platform" },
-  { key: "custody_model", label: "Custody" },
   { key: "fees", label: "Fees", render: renderFees },
+  { key: "dca", label: "DCA (Dollar Cost Averaging)" },
   { key: "payment_methods", label: "Payment Methods", render: (val) => val?.join(", ") || "Not available" },
+  { key: "description", label: "Description", render: renderCollapsibleDescription },
+  { key: "custody_model", label: "Custody" },
   { key: "lightning_support", label: "Lightning / Liquid Support" },
   { key: "withdraw_options", label: "Withdraw to On-chain" },
   { key: "multisig_support", label: "Multisig Support" },
   { key: "backup_options", label: "Backup & Recovery" },
   { key: "open_source", label: "Open Source", render: val => val ? "Yes" : "No" },
-  { key: "platform_availability",
-    label: "Mobile/Desktop",
+  { key: "interface",
+    label: "Interface",
     render: (val) => {
       if (!val) return "N/A";
   
-      // Normalize string or array to unified array
-      const platforms = Array.isArray(val) ? val : [val];
-  
-      const icons = platforms.map(p => {
-        const lower = p.toLowerCase();
-        if (lower.includes("mobile")) {
-          return `<div class="platform-icon-row">
-            <img src="images/mobile.svg" class="availability-icon" alt="Mobile" />
-            <span>${p}</span>
-          </div>`;
-        }
-        if (lower.includes("desktop")) {
-          return `<div class="platform-icon-row">
-            <img src="images/desktop.svg" class="availability-icon" alt="Desktop" />
-            <span>${p}</span>
-          </div>`;
-        }
-        return `<span>${p}</span>`; // fallback if unrecognized
-      });
-  
-      return `<div class="platform-wrapper">${icons.join("")}</div>`;
+      const lower = val.toLowerCase();
+      let iconSrc = '';
+      let altText = '';
+      if (lower.includes("mobile & desktop")) {
+        iconSrc = "images/mobile-desktop.svg";
+        altText = "Mobile & Desktop";
+      } else if (lower.includes("mobile")) {
+        iconSrc = "images/mobile.svg";
+        altText = "Mobile";
+      } else if (lower.includes("desktop")) {
+        iconSrc = "images/desktop.svg";
+        altText = "Desktop";
+      }
+      if (iconSrc) {
+        return `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+          <img src="${iconSrc}" class="platform-icon" alt="${altText}" style="margin-bottom: 8px;" />
+          <span>${val}</span>
+        </div>`;
+      }
+      return `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+        <span>${val}</span>
+      </div>`; // fallback if unrecognized
     }
   },
   { key: "app_ratings", label: "App Ratings", render: renderAppRatings },
@@ -164,7 +166,7 @@ const featureRows = await Promise.all(
 const hasVisibleContent = values.some(v => !v.includes(`feature-value"></div>`));
 return hasVisibleContent ? `
   <div class="feature-row">
-    <div class="feature-label">${feature.label}</div>
+        <div class="feature-label${feature.key === 'dca' || feature.key === 'interface' ? ' sublabel' : ''}">${feature.label}</div>
     <div class="feature-values">
       ${values.join("")}
     </div>
