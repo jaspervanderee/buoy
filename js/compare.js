@@ -24,10 +24,10 @@ if (categoryTitle === "Search") {
 
  const categoryMap = {
   "Buy Bitcoin": ["strike", "river", "swan", "relai", "hodlhodl", "bitonic", "peach", "bull bitcoin", "pocket"],
-  "Spend Bitcoin": ["breez", "aqua", "btc pay", "phoenix", "muun"],
-  "Store it safely": ["bitkey", "mutiny", "sparrow", "wasabi"],
-  "Run my own node": ["fold", "unchained", "anchorwatch", "geyser", "hoseki"],
-  "Merchant Tools": ["opennode", "lightspark"]
+  "Spend Bitcoin": ["breez", "aqua", "phoenix", "muun", "fold"],
+  "Store it safely": ["bitkey", "sparrow", "wasabi", "anchorwatch", "unchained"],
+  "Run my own node": ["umbrel", "mynode", "start9"],
+  "Merchant Tools": ["btc pay", "opennode", "lightspark"]
 };
 
     for (const [label, services] of Object.entries(categoryMap)) {
