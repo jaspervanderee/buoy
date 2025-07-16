@@ -144,19 +144,19 @@ if (!countryCode) {
 
 const categoryFeaturesMap = {
   "Buy Bitcoin": [
-    "type_of_platform", "fees", "dca", "payment_methods", "user_experience", "interface", "app_ratings", "features", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "features", "fees", "dca", "payment_methods", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Spending Wallets": [
-    "custody_model", "open_source", "lightning_support", "withdraw_options", "user_experience", "interface", "app_ratings", "features", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "features", "custody_model", "open_source", "lightning_support", "withdraw_options", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Storage Wallets": [
-    "custody_model", "open_source", "multisig_support", "backup_options", "user_experience", "interface", "app_ratings", "features", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "features", "custody_model", "open_source", "multisig_support", "backup_options", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Financial Tools": [
-    "custody_model", "user_experience", "interface", "app_ratings", "features", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "features", "custody_model", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Merchant Tools": [
-    "custody_model", "lightning_support", "user_experience", "interface", "app_ratings", "features", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "features", "custody_model", "lightning_support", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ]
 };
 
@@ -167,9 +167,13 @@ function renderFeatures(service) {
               <img src="images/cross.svg" alt="Cross" class="checkmark-icon" /> No specific features available
             </div>`;
   }
-  return featuresList.map(f => {
+  return featuresList.map((f, index) => {
     const icon = f.status === 'positive' ? 'checkmark.svg' : 'cross.svg';
-    return `<div class="feature-item">
+    let extraClass = '';
+    if (f.status === 'negative' && (index === 0 || featuresList[index - 1].status === 'positive')) {
+      extraClass = ' negative-group-start';
+    }
+    return `<div class="feature-item${extraClass}">
               <img src="images/${icon}" alt="${f.status} icon" class="checkmark-icon" /> ${f.text}
             </div>`;
   }).join("");
@@ -247,42 +251,37 @@ function renderFeatures(service) {
 
 
 const allowedKeys = categoryFeaturesMap[categoryTitle] ?? features.map(f => f.key);
-
 const featureRows = await Promise.all(
-  features
-    .filter(feature => allowedKeys.includes(feature.key))
+  allowedKeys.map(key => features.find(f => f.key === key))
+    .filter(Boolean)
     .map(async (feature) => {
       const values = await Promise.all(servicesToCompare.map(async (service) => {
         const val = (feature.key === "availability" || feature.key === "features") ? service : service[feature.key];
         const content = (val === undefined || val === null || val === "") ? "" :
        (feature.render ? await feature.render(val) : val);
-
         return `<div class="feature-value">${content}</div>`;
       }));
-
       // ✅ Hide feature row if all values are empty
-const hasVisibleContent = values.some(v => !v.includes(`feature-value"></div>`));
-
-let labelHtml = '';
-if (typeof feature.label === 'object' && feature.label.main && feature.label.sub) {
-  labelHtml = `
-    <div class="label-container">
-      <div class="feature-label">${feature.label.main}</div>
-      <div class="feature-label sublabel">${feature.label.sub}</div>
-    </div>
-  `;
-} else {
-  labelHtml = `<div class="feature-label${feature.key === 'dca' || feature.key === 'interface' || feature.key === 'app_ratings' || feature.key === 'founded_in' || feature.key === 'website' || feature.key === 'description' ? ' sublabel' : ''}">${feature.label}</div>`;
-}
-
-return hasVisibleContent ? `
-  <div class="feature-row ${feature.key}">
-    ${labelHtml}
-    <div class="feature-values">
-      ${values.join("")}
-    </div>
-  </div>
-` : "";
+      const hasVisibleContent = values.some(v => !v.includes(`feature-value"></div>`));
+      let labelHtml = '';
+      if (typeof feature.label === 'object' && feature.label.main && feature.label.sub) {
+        labelHtml = `
+          <div class="label-container">
+            <div class="feature-label">${feature.label.main}</div>
+            <div class="feature-label sublabel">${feature.label.sub}</div>
+          </div>
+        `;
+      } else {
+        labelHtml = `<div class="feature-label${feature.key === 'dca' || feature.key === 'interface' || feature.key === 'app_ratings' || feature.key === 'founded_in' || feature.key === 'website' || feature.key === 'description' ? ' sublabel' : ''}">${feature.label}</div>`;
+      }
+      return hasVisibleContent ? `
+        <div class="feature-row ${feature.key}">
+          ${labelHtml}
+          <div class="feature-values">
+            ${values.join("")}
+          </div>
+        </div>
+      ` : "";
     })
 );
 

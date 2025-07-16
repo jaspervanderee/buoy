@@ -12,9 +12,9 @@
     "features": {
 		"WW": [
         { "text": "Built-in estate planning", "status": "positive" },
-	    { "text": "US only", "status": "negative" },
         { "text": "1:1 Insurance Coverage", "status": "positive" },
         { "text": "Collaborative security", "status": "positive" },
+        { "text": "US only", "status": "negative" },
         { "text": "Limited international access", "status": "negative" },
         { "text": "Custodial elements", "status": "negative" }
       ],
@@ -31,6 +31,7 @@
   {
     "name": "Aqua",
     "countries": ["WW"],
+  "type_of_platform": "Hot Wallet",
 	"description": "Aqua Wallet, originally launched by Blockstream, later taken over by Jan3, is a mobile app designed for easy saving and spending in Bitcoin. It's a non-custodial, open-source wallet using a 12-word seed phrase for user control, and a unified balance across on-chain Bitcoin, Lightning, and Liquid Network transactions, defaulting to Liquid for low-fee, private payments. It offers sending, receiving, and swapping Bitcoin (on-chain to Liquid or vice versa) but for Lightning payments they rely on Boltz, a third party which can occur higher swap fees.\\n\\nThe app has an intuitive interface - although the design could use some work - and offers seamless swaps between on-chain Bitcoin and Lightning or Liquid.\\n\\nJAN3’s mission is to onboard billions to Bitcoin, with a vision to expand Aqua with debit card integration, credit/loans, and global on/off-ramps. Beginners love its simple setup and versatility, but some find stablecoin options and swap fees confusing.",
 	"custody_model": "Non-custodial",
 	"lightning_support": "Bitcoin + Lightning + Liquid",
@@ -45,7 +46,11 @@
     "features": {
       "WW": [
         { "text": "Bitcoin, Lightning & Liquid wallet", "status": "positive" },
-        { "text": "Higher Lightning fees", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Higher Lightning fees", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -66,7 +71,11 @@
     "features": {
       "WW": [
         { "text": "No seed phrase memorization", "status": "positive" },
-        { "text": "No screen on device", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "No screen on device", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -92,17 +101,26 @@
     "features": {
 	  "WW": [
       { "text": "iDeal", "status": "positive" },
-	    { "text": "EU only", "status": "negative" }
+      { "text": "Text", "status": "positive" },
+      { "text": "Text", "status": "positive" },
+	    { "text": "EU only", "status": "negative" },
+      { "text": "Text", "status": "negative" },
+      { "text": "Text", "status": "negative" }
       ],
       "EU": [
         { "text": "iDeal", "status": "positive" },
-        { "text": "Limited free recurring buys", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Limited free recurring buys", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
 	{
     "name": "Breez",
     "countries": ["WW"],
+  "type_of_platform": "Hot Wallet",
 	"description": "Breez (Misty Breez) focuses on making Lightning Network payments fast and easy. It stands out with its non-custodial mobile app, letting users control their Bitcoin, and a unique Point-of-Sale mode for merchants to accept instant payments. It offers sending, receiving, and storing Bitcoin via Lightning, plus a podcast player to support creators with Bitcoin tips.\\n\\nThe app has a simple interface and no-setup payments, though some users report issues with cloud backups and wallet restoration.\\n\\nBreez’s mission is to drive Bitcoin adoption for everyday use, with a vision to expand Lightning payments across apps using its Breez SDK, a free developer tool. Beginners love its ease and merchant tools, but some find technical issues frustrating.",
     "custody_model": "Non-custodial",
 	"lightning_support": "Yes",
@@ -117,7 +135,11 @@
 	"features": {
       "WW": [
         { "text": "Self-custodial", "status": "positive" },
-        { "text": "In beta", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "In beta", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -137,7 +159,11 @@
     "features": {
       "WW": [
         { "text": "Decentralized payment processor", "status": "positive" },
-        { "text": "Technical setup", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Technical setup", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -163,11 +189,19 @@
     "features": {
 	  "WW": [
       { "text": "Non-custodial", "status": "positive" },
-	    { "text": "Mobile app in beta", "status": "negative" }
+      { "text": "Text", "status": "positive" },
+      { "text": "Text", "status": "positive" },
+	    { "text": "Mobile app in beta", "status": "negative" },
+      { "text": "Text", "status": "negative" },
+      { "text": "Text", "status": "negative" }
       ],
       "CA": [
         { "text": "Non-custodial", "status": "positive" },
-        { "text": "External wallet required", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "External wallet required", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -185,11 +219,19 @@
   "features": {
     "WW": [
       { "text": "Bitcoin rewards on everyday spending", "status": "positive" },
-      { "text": "Most features US only", "status": "negative" }
+      { "text": "Text", "status": "positive" },
+      { "text": "Text", "status": "positive" },
+      { "text": "Most features US only", "status": "negative" },
+      { "text": "Text", "status": "negative" },
+      { "text": "Text", "status": "negative" }
     ],
     "US": [
       { "text": "Live on Bitcoin standard", "status": "positive" },
-      { "text": "Custodial", "status": "negative" }
+      { "text": "Text", "status": "positive" },
+      { "text": "Text", "status": "positive" },
+      { "text": "Custodial", "status": "negative" },
+      { "text": "Text", "status": "negative" },
+      { "text": "Text", "status": "negative" }
     ]
   }
 },
@@ -210,7 +252,11 @@
     "features": {
       "WW": [
         { "text": "No KYC", "status": "positive" },
-        { "text": "High premium without reputation", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "High premium without reputation", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -227,7 +273,11 @@
     "features": {
       "WW": [
         { "text": "Enterprise-grade Lightning solutions", "status": "positive" },
-        { "text": "Possible complaince uncertainty", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Possible complaince uncertainty", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -249,7 +299,11 @@
     "features": {
       "WW": [
         { "text": "Auto chooses Lighting or on-chain", "status": "positive" },
-        { "text": "No Lightning address support", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "No Lightning address support", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -268,7 +322,11 @@
     "features": {
       "WW": [
         { "text": "Full-featured node with many apps", "status": "positive" },
-        { "text": "Premium license for some features", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Premium license for some features", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -286,7 +344,11 @@
   "features": {
     "WW": [
       { "text": "Turnkey payment processor", "status": "positive" },
-      { "text": "Custodial until funds are withdrawn", "status": "negative" }
+      { "text": "Text", "status": "positive" },
+      { "text": "Text", "status": "positive" },
+      { "text": "Custodial until funds are withdrawn", "status": "negative" },
+      { "text": "Text", "status": "negative" },
+      { "text": "Text", "status": "negative" }
     ]
   }
 },
@@ -308,7 +370,11 @@
     "features": {
       "WW": [
         { "text": "No KYC", "status": "positive" },
-        { "text": "Mobile only", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Mobile only", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -329,7 +395,11 @@
     "features": {
       "WW": [
         { "text": "Seamless Lightning experience", "status": "positive" },
-        { "text": "High on-chain fees for channel creation", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "High on-chain fees for channel creation", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -351,11 +421,19 @@
     "features": {
 	  "WW": [
       { "text": "Non-custodial", "status": "positive" },
-	    { "text": "EU only", "status": "negative" }
+      { "text": "Text", "status": "positive" },
+      { "text": "Text", "status": "positive" },
+	    { "text": "EU only", "status": "negative" },
+      { "text": "Text", "status": "negative" },
+      { "text": "Text", "status": "negative" }
       ],
       "EU": [
         { "text": "Non-custodial", "status": "positive" },
-        { "text": "Supports select hardware wallets", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Supports select hardware wallets", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -380,11 +458,19 @@
     "features": {
 	  "WW": [
       { "text": "Self-custodial wallet included", "status": "positive" },
-	    { "text": "EU only", "status": "negative" }
+      { "text": "Text", "status": "positive" },
+      { "text": "Text", "status": "positive" },
+	    { "text": "EU only", "status": "negative" },
+      { "text": "Text", "status": "negative" },
+      { "text": "Text", "status": "negative" }
       ],
       "EU": [
         { "text": "Self-custodial wallet included", "status": "positive" },
-        { "text": "Higher fees", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Higher fees", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -413,11 +499,19 @@
   "features": {
 	"WW": [
       { "text": "Free recurring orders", "status": "positive" },
-	    { "text": "US only", "status": "negative" }
+      { "text": "Text", "status": "positive" },
+      { "text": "Text", "status": "positive" },
+	    { "text": "US only", "status": "negative" },
+      { "text": "Text", "status": "negative" },
+      { "text": "Text", "status": "negative" }
       ],
       "US": [
         { "text": "Free recurring orders", "status": "positive" },
-        { "text": "Incentivizes custodial saving", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Incentivizes custodial saving", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -437,7 +531,11 @@
     "features": {
       "WW": [
         { "text": "Full control", "status": "positive" },
-        { "text": "Learning curve", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Learning curve", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -456,7 +554,11 @@
     "features": {
       "WW": [
         { "text": "Plug-and-play home server", "status": "positive" },
-        { "text": "Hardware can be costly", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Hardware can be costly", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -492,15 +594,19 @@
   "features": {
       "WW": [
         { "text": "Payment focused", "status": "positive" },
-        { "text": "Limited utility non-US users", "status": "negative" }
-      ],
-      "NL": [
-		{ "text": "Free recurring orders", "status": "positive"},
-        { "text": "No iDeal", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Limited utility non-US users", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ],
       "US": [
         { "text": "Bill Payment in Bitcoin", "status": "positive" },
-        { "text": "Slow account verification", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Slow account verification", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -527,11 +633,19 @@
   "features": {
 	  "WW": [
       { "text": "Education focused", "status": "positive" },
-	    { "text": "US only", "status": "negative" }
+      { "text": "Text", "status": "positive" },
+      { "text": "Text", "status": "positive" },
+	    { "text": "US only", "status": "negative" },
+      { "text": "Text", "status": "negative" },
+      { "text": "Text", "status": "negative" }
       ],
       "US": [
         { "text": "First $10.000 no fees", "status": "positive" },
-        { "text": "Withdrawals may take longer", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Withdrawals may take longer", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -550,7 +664,11 @@
     "features": {
       "WW": [
         { "text": "Simple self-hosted node OS", "status": "positive" },
-        { "text": "Requires dedicated hardware", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Requires dedicated hardware", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -568,11 +686,19 @@
     "features": {
 	  "WW": [
         { "text": "Recovery-friendly", "status": "positive" },
-        { "text": "US only", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "US only", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ],
       "US": [
         { "text": "Recovery-friendly", "status": "positive" },
-        { "text": "KYC required", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "KYC required", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   },
@@ -592,7 +718,11 @@
     "features": {
       "WW": [
         { "text": "Enhanced privacy with CoinJoin", "status": "positive" },
-        { "text": "Desktop only", "status": "negative" }
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Desktop only", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ]
     }
   }

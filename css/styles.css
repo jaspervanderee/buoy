@@ -805,6 +805,10 @@ p, li, a {
     margin-top: 0px; /* No margin for the first feature */
 }
 
+.feature-item.negative-group-start {
+  margin-top: 24px;
+}
+
 
 /* Compare button */
 .category-header {
