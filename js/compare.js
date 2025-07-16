@@ -24,9 +24,9 @@ if (categoryTitle === "Search") {
 
  const categoryMap = {
   "Buy Bitcoin": ["strike", "river", "swan", "relai", "hodlhodl", "bitonic", "peach", "bull bitcoin", "pocket"],
-  "Spending Wallets": ["breez", "aqua", "btc pay", "phoenix", "muun"],
-  "Storage Wallets": ["bitkey", "mutiny", "sparrow", "wasabi"],
-  "Financial Tools": ["fold", "unchained", "anchorwatch", "geyser", "hoseki"],
+  "Spend Bitcoin": ["breez", "aqua", "btc pay", "phoenix", "muun"],
+  "Store it safely": ["bitkey", "mutiny", "sparrow", "wasabi"],
+  "Run my own node": ["fold", "unchained", "anchorwatch", "geyser", "hoseki"],
   "Merchant Tools": ["opennode", "lightspark"]
 };
 
@@ -146,13 +146,13 @@ const categoryFeaturesMap = {
   "Buy Bitcoin": [
     "type_of_platform", "features", "fees", "dca", "payment_methods", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
-  "Spending Wallets": [
+  "Spend Bitcoin": [
     "type_of_platform", "features", "custody_model", "open_source", "lightning_support", "withdraw_options", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
-  "Storage Wallets": [
+  "Store it safely": [
     "type_of_platform", "features", "custody_model", "open_source", "multisig_support", "backup_options", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
-  "Financial Tools": [
+  "Run my own node": [
     "type_of_platform", "features", "custody_model", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Merchant Tools": [
@@ -183,6 +183,7 @@ function renderFeatures(service) {
     const comparisonContainer = document.getElementById("comparison-container");
     const features = [
   { key: "type_of_platform", label: "Platform" },
+  { key: "features", label: "Features", render: renderFeatures },
   { key: "fees", label: "Fees", render: renderFees },
   { key: "dca", label: "DCA (Dollar Cost Averaging)" },
   { key: "payment_methods", label: "Payment Methods", render: (val) => val?.join(", ") || "Not available" },
@@ -223,7 +224,6 @@ function renderFeatures(service) {
     }
   },
   { key: "app_ratings", label: "App Ratings", render: renderAppRatings },
-  { key: "features", label: "Features", render: renderFeatures },
   { key: "profile", label: { main: "Profile", sub: "Founder" },
     render: (val) => {
       if (!val) return "N/A";
