@@ -1172,6 +1172,12 @@ p, li, a {
   margin-top: -30px; /* Decreased top margin to bring it closer to the row above */
 }
 
+.label-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
 .feature-values, .logo-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -1542,6 +1548,7 @@ p, li, a {
     margin: 0 auto 80px;
   }
 }
+
 
 
 

@@ -71,19 +71,19 @@ try {
 
 const categoryFeaturesMap = {
   "Buy Bitcoin": [
-    "description", "type_of_platform", "fees", "dca", "payment_methods", "interface", "app_ratings", "website", "availability"
+    "type_of_platform", "fees", "dca", "payment_methods", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Spending Wallets": [
-    "description", "custody_model", "open_source", "lightning_support", "withdraw_options", "interface", "app_ratings", "website", "availability"
+    "custody_model", "open_source", "lightning_support", "withdraw_options", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Storage Wallets": [
-    "description", "custody_model", "open_source", "multisig_support", "backup_options", "interface", "app_ratings", "website", "availability"
+    "custody_model", "open_source", "multisig_support", "backup_options", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Financial Tools": [
-    "description", "custody_model", "interface", "app_ratings", "website", "availability"
+    "custody_model", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Merchant Tools": [
-    "description", "custody_model", "lightning_support", "interface", "app_ratings", "website", "availability"
+    "custody_model", "lightning_support", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ]
 };
 
@@ -94,13 +94,13 @@ const categoryFeaturesMap = {
   { key: "fees", label: "Fees", render: renderFees },
   { key: "dca", label: "DCA (Dollar Cost Averaging)" },
   { key: "payment_methods", label: "Payment Methods", render: (val) => val?.join(", ") || "Not available" },
-  { key: "description", label: "Description", render: renderCollapsibleDescription },
   { key: "custody_model", label: "Custody" },
   { key: "lightning_support", label: "Lightning / Liquid Support" },
   { key: "withdraw_options", label: "Withdraw to On-chain" },
   { key: "multisig_support", label: "Multisig Support" },
   { key: "backup_options", label: "Backup & Recovery" },
   { key: "open_source", label: "Open Source", render: val => val ? "Yes" : "No" },
+  { key: "user_experience", label: "User Experience" },
   { key: "interface",
     label: "Interface",
     render: (val) => {
@@ -131,6 +131,9 @@ const categoryFeaturesMap = {
     }
   },
   { key: "app_ratings", label: "App Ratings", render: renderAppRatings },
+  { key: "profile", label: { main: "Profile", sub: "Founder" } },
+  { key: "description", label: "Company description", render: renderCollapsibleDescription },
+  { key: "founded_in", label: "Founded in" },
   { key: "website", label: "Website", render: (val) => val ? `<a href="${val}" target="_blank">${val.replace(/https?:\/\/(www\.)?/, "")}</a>` : "N/A" },
   { key: "availability", label: "Availability", render: getAvailabilityText }
 ];
@@ -164,9 +167,22 @@ const featureRows = await Promise.all(
 
       // ✅ Hide feature row if all values are empty
 const hasVisibleContent = values.some(v => !v.includes(`feature-value"></div>`));
+
+let labelHtml = '';
+if (typeof feature.label === 'object' && feature.label.main && feature.label.sub) {
+  labelHtml = `
+    <div class="label-container">
+      <div class="feature-label">${feature.label.main}</div>
+      <div class="feature-label sublabel">${feature.label.sub}</div>
+    </div>
+  `;
+} else {
+  labelHtml = `<div class="feature-label${feature.key === 'dca' || feature.key === 'interface' || feature.key === 'app_ratings' || feature.key === 'founded_in' || feature.key === 'website' || feature.key === 'description' ? ' sublabel' : ''}">${feature.label}</div>`;
+}
+
 return hasVisibleContent ? `
   <div class="feature-row">
-        <div class="feature-label${feature.key === 'dca' || feature.key === 'interface' ? ' sublabel' : ''}">${feature.label}</div>
+    ${labelHtml}
     <div class="feature-values">
       ${values.join("")}
     </div>

@@ -455,14 +455,7 @@
     {
     "name": "Strike",
     "countries": ["NA", "EU"],
-	"description": "Strike’s goal is to make worldwide payments in Bitcoin as easy as possible, it offers free on‑chain and Lightning withdrawals, making it flexible and cost‑effective to hold your Bitcoin in self-custody. Its recurring buy feature at no fee costs after the initial setup, makes DCA (dollar‑cost averaging) simple and efficient. Strike also functions as a Lightning wallet, enabling quick micropayments with features like unique payment links and cash-to-Bitcoin transfers, and offers responsive customer support praised by users.\\n\\nStrike’s vision goes beyond being merely another payment app. It aims to democratize financial access, reduce dependency on traditional banks, and promote financial sovereignty by empowering individuals to manage their money independently. Their user-friendly app interface, available on both iOS and Android, highlights simplicity and accessibility with a minimalistic design.\\n\\nIn the US, Strike now offers a powerful Bill Pay feature aiming to reduce reliance on fiat currency and combat inflation by leveraging Bitcoin’s appreciating value, with automated tax reporting to simplify the process.\\n\\nAnother Strike feature is the Bitcoin‑backed loan that lets users pledge Bitcoin as collateral and borrow USD with no origination or early repayment fees. Loans can be repaid anytime without penalties.",
   "type_of_platform": "Exchange",
-    "website": "https://strike.me",
-    "interface": "Mobile only",
-    "app_ratings": {
-  		"ios": 4.8,
-  		"android": 4.5
-	},
 	"fees": {
 		"intro": "based on monthly trading volume",
 		"tiers": [
@@ -478,7 +471,17 @@
 			},
 	"dca": "Yes: Recurring orders are free",
 	"payment_methods": ["Bank Transfer", "Debit Card", "Cash App"],
-    "features": {
+	"user_experience": "4.8",
+    "interface": "Mobile only",
+    "app_ratings": {
+  		"ios": 4.8,
+  		"android": 4.5
+	  },
+  "profile": "Jack Mallers",
+    "description": "Strike’s goal is to make worldwide payments in Bitcoin as easy as possible, it offers free on‑chain and Lightning withdrawals, making it flexible and cost‑effective to hold your Bitcoin in self-custody. Its recurring buy feature at no fee costs after the initial setup, makes DCA (dollar‑cost averaging) simple and efficient. Strike also functions as a Lightning wallet, enabling quick micropayments with features like unique payment links and cash-to-Bitcoin transfers, and offers responsive customer support praised by users.\\n\\nStrike’s vision goes beyond being merely another payment app. It aims to democratize financial access, reduce dependency on traditional banks, and promote financial sovereignty by empowering individuals to manage their money independently. Their user-friendly app interface, available on both iOS and Android, highlights simplicity and accessibility with a minimalistic design.\\n\\nIn the US, Strike now offers a powerful Bill Pay feature aiming to reduce reliance on fiat currency and combat inflation by leveraging Bitcoin’s appreciating value, with automated tax reporting to simplify the process.\\n\\nAnother Strike feature is the Bitcoin‑backed loan that lets users pledge Bitcoin as collateral and borrow USD with no origination or early repayment fees. Loans can be repaid anytime without penalties.",
+    "founded_in": "2020",
+    "website": "https://strike.me",
+  "features": {
       "WW": [
         { "text": "Payment focused", "status": "positive" },
         { "text": "Limited utility non-US users", "status": "negative" }
