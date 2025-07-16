@@ -113,6 +113,9 @@ async function updateServiceSpans(selectedCountryCode = null) {
           span.innerHTML = "";
 
           let featuresList = getFeaturesForCountry(service, countryCode);
+          const positive = featuresList.filter(f => f.status === 'positive')[0]; // First positive
+          const negative = featuresList.filter(f => f.status === 'negative')[0]; // First negative
+          featuresList = [positive, negative].filter(Boolean); // Combine and remove any undefined
 
           if (featuresList.length > 0) {
             span.innerHTML = featuresList.map(f => {
@@ -291,6 +294,9 @@ async function showAllServices() {
 
                 const span = card.querySelector("span");
                 let featuresList = getFeaturesForCountry(service, "WW"); // Fetch WW features
+                const positive = featuresList.filter(f => f.status === 'positive')[0];
+                const negative = featuresList.filter(f => f.status === 'negative')[0];
+                featuresList = [positive, negative].filter(Boolean);
 
                 // Display WW features or fallback message
                 span.innerHTML = featuresList.length > 0 

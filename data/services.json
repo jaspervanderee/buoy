@@ -12,11 +12,19 @@
     "features": {
 		"WW": [
         { "text": "Built-in estate planning", "status": "positive" },
-	    { "text": "US only", "status": "negative" }
+	    { "text": "US only", "status": "negative" },
+        { "text": "1:1 Insurance Coverage", "status": "positive" },
+        { "text": "Collaborative security", "status": "positive" },
+        { "text": "Limited international access", "status": "negative" },
+        { "text": "Custodial elements", "status": "negative" }
       ],
       "US": [
         { "text": "1:1 Insurance Coverage", "status": "positive" },
-        { "text": "Custodial", "status": "negative" }
+        { "text": "Estate planning tools", "status": "positive" },
+        { "text": "Regulated custody", "status": "positive" },
+        { "text": "Custodial", "status": "negative" },
+        { "text": "KYC required", "status": "negative" },
+        { "text": "Higher fees possible", "status": "negative" }
       ]
     }
   },
@@ -499,7 +507,6 @@
      {
   "name": "Swan",
   "countries": ["US"],
-	"description": "Swan Bitcoin, launched by Cory Klippsten and based in California, is a platform focused on making it easy for beginners to buy and save Bitcoin.\\n\\nWhat makes Swan distinct is its focus on self-custody support and education. It automatically withdraws BTC weekly to your own address and provides guides for self-custody, while also offering Swan Guard with fraud protection and identity verification tools. Swan prioritizes teaching users about Bitcoin’s value for financial freedom. Swan also targets long-term savers by offering IRA products making Bitcoin tax-advantaged retirement savings easier.\\n\\nSwan offers zero-fee purchases on the first $10,000, a low 0.99% fee for recurring buys, and free withdrawals to personal wallets, encouraging self-custody. Its app is praised for its clean design and simple setup. However, some users report slow customer support and issues with account restrictions.\\n\\nIts vision is to onboard 10 million Bitcoin users by promoting Bitcoin as better money for a decentralized future.",
 	"type_of_platform": "Exchange",
     "website": "https://www.swanbitcoin.com",
     "interface": "Mobile only",
@@ -513,6 +520,9 @@
 			{ "range": "$10,000 and up", "fee": "0.99%" }
 				]
 			},
+  "profile": "Cory Klippsten",
+  "description": "Swan Bitcoin, launched by Cory Klippsten and based in California, is a platform focused on making it easy for beginners to buy and save Bitcoin.\\n\\nWhat makes Swan distinct is its focus on self-custody support and education. It automatically withdraws BTC weekly to your own address and provides guides for self-custody, while also offering Swan Guard with fraud protection and identity verification tools. Swan prioritizes teaching users about Bitcoin’s value for financial freedom. Swan also targets long-term savers by offering IRA products making Bitcoin tax-advantaged retirement savings easier.\\n\\nSwan offers zero-fee purchases on the first $10,000, a low 0.99% fee for recurring buys, and free withdrawals to personal wallets, encouraging self-custody. Its app is praised for its clean design and simple setup. However, some users report slow customer support and issues with account restrictions.\\n\\nIts vision is to onboard 10 million Bitcoin users by promoting Bitcoin as better money for a decentralized future.",
+  "founded_in": "2019",
   "payment_methods": ["Bank Transfer", "Wire Transfer"],
   "features": {
 	  "WW": [

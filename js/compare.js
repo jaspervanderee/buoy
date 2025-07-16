@@ -69,23 +69,111 @@ try {
       return;
     }
 
+const regionMappings = {
+  "WW": [], // Worldwide availability
+  "NA": [ // North America + Caribbean + Central America
+    "US", "CA", "MX", "BZ", "CR", "SV", "GT", "HN", "NI", "PA",  // Central America
+    "AI", "AG", "AW", "BS", "BB", "BQ", "CU", "CW", "DM", "DO", "GD", "GP", "HT", "JM", "MQ",
+    "MS", "PR", "BL", "KN", "LC", "MF", "VC", "SX", "TT", "TC", "VG", "VI"  // Caribbean
+  ],
+  "SA": ["AR", "BO", "BR", "CL", "CO", "EC", "GY", "PY", "PE", "SR", "UY", "VE"], // South America
+  "EU": [
+    "AL", "AD", "AT", "BY", "BE", "BA", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", 
+    "GR", "HU", "IS", "IE", "IT", "XK", "LV", "LI", "LT", "LU", "MT", "MD", "MC", "ME", "NL", 
+    "MK", "NO", "PL", "PT", "RO", "RU", "SM", "RS", "SK", "SI", "ES", "SE", "CH", "UA", "GB", "VA"
+  ], // Europe
+  "AF": [
+    "DZ", "AO", "BJ", "BW", "BF", "BI", "CM", "CV", "CF", "TD", "KM", "CD", "CG", "CI", "DJ", 
+    "EG", "GQ", "ER", "SZ", "ET", "GA", "GM", "GH", "GN", "GW", "KE", "LS", "LR", "LY", "MG", 
+    "MW", "ML", "MR", "MU", "MA", "MZ", "NA", "NE", "NG", "RW", "ST", "SN", "SC", "SL", "SO", 
+    "ZA", "SS", "SD", "TZ", "TG", "TN", "UG", "ZM", "ZW"
+  ], // Africa
+  "AS": [
+    "AF", "AM", "AZ", "BH", "BD", "BT", "BN", "KH", "CN", "GE", "IN", "ID", "IR", "IQ", "IL", 
+    "JP", "JO", "KZ", "KW", "KG", "LA", "LB", "MY", "MV", "MN", "MM", "NP", "KP", "OM", "PK", 
+    "PH", "QA", "SA", "SG", "KR", "LK", "SY", "TW", "TJ", "TH", "TL", "TR", "TM", "AE", "UZ", 
+    "VN", "YE"
+  ], // Asia
+  "OC": ["AU", "FJ", "KI", "MH", "FM", "NR", "NZ", "PW", "PG", "WS", "SB", "TO", "TV", "VU"], // Oceania
+};
+
+async function getUserLocation() {
+  try {
+    const response = await fetch('https://ipapi.co/json/');
+    const data = await response.json();
+    return data.country_code;
+  } catch (error) {
+    console.error("Geolocation failed:", error);
+    return null;
+  }
+}
+
+function getFeaturesForCountry(service, userCountry) {
+  if (!service.features) return [];
+
+  // Step 1: Check for exact country-specific features
+  const countryFeatures = service.features[userCountry];
+  if (countryFeatures && countryFeatures.length > 0) {
+    return countryFeatures;
+  }
+
+  // Step 2: Check for region-specific features if no direct match
+  for (const [regionCode, countries] of Object.entries(regionMappings)) {
+    if (countries.includes(userCountry)) {
+      const regionFeatures = service.features[regionCode];
+      if (regionFeatures && regionFeatures.length > 0) {
+        return regionFeatures;
+      }
+    }
+  }
+
+  // Step 3: Fallback to worldwide features
+  const worldwideFeatures = service.features["WW"];
+  return worldwideFeatures || [];
+}
+
+let countryCode = localStorage.getItem("userCountry");
+if (!countryCode) {
+  countryCode = await getUserLocation();
+  if (countryCode) {
+    localStorage.setItem("userCountry", countryCode);
+  } else {
+    countryCode = "WW"; // Fallback
+  }
+}
+
 const categoryFeaturesMap = {
   "Buy Bitcoin": [
-    "type_of_platform", "fees", "dca", "payment_methods", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "fees", "dca", "payment_methods", "user_experience", "interface", "app_ratings", "features", "profile", "description", "founded_in", "website", "availability"
   ],
   "Spending Wallets": [
-    "custody_model", "open_source", "lightning_support", "withdraw_options", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
+    "custody_model", "open_source", "lightning_support", "withdraw_options", "user_experience", "interface", "app_ratings", "features", "profile", "description", "founded_in", "website", "availability"
   ],
   "Storage Wallets": [
-    "custody_model", "open_source", "multisig_support", "backup_options", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
+    "custody_model", "open_source", "multisig_support", "backup_options", "user_experience", "interface", "app_ratings", "features", "profile", "description", "founded_in", "website", "availability"
   ],
   "Financial Tools": [
-    "custody_model", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
+    "custody_model", "user_experience", "interface", "app_ratings", "features", "profile", "description", "founded_in", "website", "availability"
   ],
   "Merchant Tools": [
-    "custody_model", "lightning_support", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
+    "custody_model", "lightning_support", "user_experience", "interface", "app_ratings", "features", "profile", "description", "founded_in", "website", "availability"
   ]
 };
+
+function renderFeatures(service) {
+  const featuresList = getFeaturesForCountry(service, countryCode);
+  if (featuresList.length === 0) {
+    return `<div class="feature-item">
+              <img src="images/cross.svg" alt="Cross" class="checkmark-icon" /> No specific features available
+            </div>`;
+  }
+  return featuresList.map(f => {
+    const icon = f.status === 'positive' ? 'checkmark.svg' : 'cross.svg';
+    return `<div class="feature-item">
+              <img src="images/${icon}" alt="${f.status} icon" class="checkmark-icon" /> ${f.text}
+            </div>`;
+  }).join("");
+}
 
     // ✅ Generate the comparison cards only once
     const comparisonContainer = document.getElementById("comparison-container");
@@ -131,11 +219,18 @@ const categoryFeaturesMap = {
     }
   },
   { key: "app_ratings", label: "App Ratings", render: renderAppRatings },
-  { key: "profile", label: { main: "Profile", sub: "Founder" } },
+  { key: "features", label: "Features", render: renderFeatures },
+  { key: "profile", label: { main: "Profile", sub: "Founder" },
+    render: (val) => {
+      if (!val) return "N/A";
+      const filename = val.toLowerCase().replace(/\s+/g, "-") + ".jpg";
+      return `<img src="images/founders/${filename}" alt="${val}" style="width:100px; height:100px; border-radius:50%; display:block; margin:0 auto 10px auto;"> <div style="text-align:center;">${val}</div>`;
+    }
+  },
   { key: "description", label: "Company description", render: renderCollapsibleDescription },
   { key: "founded_in", label: "Founded in" },
   { key: "website", label: "Website", render: (val) => val ? `<a href="${val}" target="_blank">${val.replace(/https?:\/\/(www\.)?/, "")}</a>` : "N/A" },
-  { key: "availability", label: "Availability", render: getAvailabilityText }
+  { key: "availability", label: "Availability", render: getAvailabilityText },
 ];
 
 					
@@ -158,7 +253,7 @@ const featureRows = await Promise.all(
     .filter(feature => allowedKeys.includes(feature.key))
     .map(async (feature) => {
       const values = await Promise.all(servicesToCompare.map(async (service) => {
-        const val = feature.key === "availability" ? service : service[feature.key];
+        const val = (feature.key === "availability" || feature.key === "features") ? service : service[feature.key];
         const content = (val === undefined || val === null || val === "") ? "" :
        (feature.render ? await feature.render(val) : val);
 
@@ -181,7 +276,7 @@ if (typeof feature.label === 'object' && feature.label.main && feature.label.sub
 }
 
 return hasVisibleContent ? `
-  <div class="feature-row">
+  <div class="feature-row ${feature.key}">
     ${labelHtml}
     <div class="feature-values">
       ${values.join("")}
@@ -375,8 +470,8 @@ function renderCollapsibleDescription(description) {
     return fullText;
   }
   
-  // Create preview text - first 200 chars for mobile, first paragraph for desktop
-  const mobilePreviewText = description.substring(0, 200) + "...";
+  // Create preview text - first paragraph capped at 200 chars for mobile, full first paragraph for desktop
+  const mobilePreviewText = paragraphs[0].length > 200 ? paragraphs[0].substring(0, 200) + "..." : paragraphs[0];
   const desktopPreviewText = paragraphs[0];
   
   return `

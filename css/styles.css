@@ -1178,6 +1178,7 @@ p, li, a {
   gap: 24px;
 }
 
+
 .feature-values, .logo-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -1196,6 +1197,10 @@ p, li, a {
 
 .feature-value p:first-of-type {
   margin-top: 0;
+}
+
+.feature-row.profile .feature-value {
+  text-align: center;
 }
 
 
@@ -1548,7 +1553,6 @@ p, li, a {
     margin: 0 auto 80px;
   }
 }
-
 
 
 
