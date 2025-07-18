@@ -438,31 +438,16 @@
     }
   },
   {
-    "name": "Relai",
-    "countries": ["EU"],
-	"description": "Relai, founded in 2020 in Zürich, Switzerland, is an app designed for beginners to buy and save Bitcoin easily. It stands out from competitors with its non-custodial wallet, meaning users control their Bitcoin via a 12-word seed phrase. After purchasing Bitcoin, it will be directly sent to your wallet.\\n\\nRelai offers purchases starting at €50 | 54,205 sats, one free buy up to €100 | 108,409 sats monthly, until you hit €1200. After that you pay a 1% fee for any transaction. For businesses and wealthy individuals Relai offers personal service and expert guidance.\\n\\nIts app, rated 4.5 stars on iOS, is praised by users for simple onboarding and smooth navigation, though some users report verification delays or high card fees. Relai focuses on privacy and self-custody, with optional KYC for small transactions.\\n\\nIts vision is to make Bitcoin saving accessible across Europe, with plans to add Lightning Network support for faster payments. Beginners love its straightforward design and security, but it’s limited to Europe and lacks advanced savings features.",
-	"type_of_platform": "Exchange",
-    "website": "https://relai.app",
-    "interface": "Mobile only",
-	"app_ratings": {
-  		"ios": 4.6,
-  		"android": 4.1
-	},
-	"fees": {
-      "tiers": [
-        { "range": "€50 - €100 per month", "fee": "free up to €1,200" },
-        { "range": "€1200 and above", "fee": "1%" }
-      ]
-    },
-	"payment_methods": ["SEPA", "Credit Card", "Apple Pay", "Google Pay"],
+"name": "Relai",
+  "type_of_platform": "Exchange",
     "features": {
-	  "WW": [
-      { "text": "Self-custodial wallet included", "status": "positive" },
-      { "text": "Text", "status": "positive" },
-      { "text": "Text", "status": "positive" },
-	    { "text": "EU only", "status": "negative" },
-      { "text": "Text", "status": "negative" },
-      { "text": "Text", "status": "negative" }
+      "WW": [
+        { "text": "Self-custodial wallet included", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "Text", "status": "positive" },
+        { "text": "EU only", "status": "negative" },
+        { "text": "Text", "status": "negative" },
+        { "text": "Text", "status": "negative" }
       ],
       "EU": [
         { "text": "Self-custodial wallet included", "status": "positive" },
@@ -472,48 +457,69 @@
         { "text": "Text", "status": "negative" },
         { "text": "Text", "status": "negative" }
       ]
-    }
+    },
+    "fees": {
+      "tiers": [
+        { "range": "€50 - €100 per month", "fee": "free up to €1,200" },
+        { "range": "€1200 and above", "fee": "1%" }
+      ]
+    },
+      "dca": "Yes: Recurring orders are free",
+    "payment_methods": ["SEPA", "Credit Card", "Apple Pay", "Google Pay"],
+    "user_experience": "0.0",
+      "interface": "Mobile only",
+      "app_ratings": {
+      "ios": 4.6,
+      "android": 4.1
+    },
+    "profile": "Julian Liniger & Adem Bilican", 
+    "description": "Relai, founded in 2020 in Zürich, Switzerland, is an app designed for beginners to buy and save Bitcoin easily. It stands out from competitors with its non-custodial wallet, meaning users control their Bitcoin via a 12-word seed phrase. After purchasing Bitcoin, it will be directly sent to your wallet.\\n\\nRelai offers purchases starting at €50 | 54,205 sats, one free buy up to €100 | 108,409 sats monthly, until you hit €1200. After that you pay a 1% fee for any transaction. For businesses and wealthy individuals Relai offers personal service and expert guidance.\\n\\nIts app, rated 4.5 stars on iOS, is praised by users for simple onboarding and smooth navigation, though some users report verification delays or high card fees. Relai focuses on privacy and self-custody, with optional KYC for small transactions.\\n\\nIts vision is to make Bitcoin saving accessible across Europe, with plans to add Lightning Network support for faster payments. Beginners love its straightforward design and security, but it’s limited to Europe and lacks advanced savings features.",
+    "founded_in": "2020",
+    "website": "https://relai.app",
+    "countries": ["EU"]
   },
   {
-    "name": "River",
-    "countries": ["US"],
-	"description": "River helps U.S. based customers invest in Bitcoin simply and securely with a focus on long-term saving. Unlike many platforms, River holds all Bitcoin in full-reserve cold storage with multi-signature security and gives users transparency through real-time proof of reserves. This might sound inviting to people who don't want to hold Bitcoin in self-custody but it also means more centralization within Bitcoin.\\n\\nIt supports things like inheritance planning, business accounts, and joint accounts, making it attractive for people who want to treat Bitcoin like serious money. Users can buy Bitcoin instantly, set up automated savings, and send Bitcoin via on-chain or Lightning payments. On top of that, you can earn 3.8% Bitcoin interest on your cash. The app has a clean interface and is designed to be easy to use, earning high ratings on both iOS and Android.\\n\\nRiver’s mission is to provide a trusted, high-quality experience for people who want to build wealth in Bitcoin without distractions. It aims to give users full control and transparency. While some users note strict ID verification and limited availability outside the U.S., River is praised for its reliability, personal customer service, and focus on security.",
+"name": "River",
 	"type_of_platform": "Exchange",
-    "website": "https://river.com",
-    "interface": "Mobile only",
-	"app_ratings": {
-  		"ios": 4.9,
-  		"android": 4.8
-	},
-    "fees": {
-		"intro": "based on monthly trading volume",
-		"tiers": [
-			{ "range": "up to $1,000,000", "fee": "1%" },
-			{ "range": "$1,000,000 - $5,000,000", "fee": "0.70%" },
-			{ "range": "$5,000,000 - $15,000,000", "fee": "0.40%" },
-			{ "range": "$15,000,000 and up", "fee": "0.25%" }
-			]
-		},
-      "dca": "Yes: Recurring orders are free",
-	"payment_methods": ["Bank Transfer", "Wire Transfer"],
-  "features": {
-	"WW": [
-      { "text": "Free recurring orders", "status": "positive" },
-      { "text": "Text", "status": "positive" },
-      { "text": "Text", "status": "positive" },
-	    { "text": "US only", "status": "negative" },
-      { "text": "Text", "status": "negative" },
-      { "text": "Text", "status": "negative" }
+    "features": {
+	   "WW": [
+    { "text": "Free recurring orders", "status": "positive" },
+    { "text": "Text", "status": "positive" },
+    { "text": "Text", "status": "positive" },
+	  { "text": "US only", "status": "negative" },
+    { "text": "Text", "status": "negative" },
+    { "text": "Text", "status": "negative" }
       ],
-      "US": [
-        { "text": "Free recurring orders", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Incentivizes custodial saving", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+     "US": [
+    { "text": "Free recurring orders", "status": "positive" },
+    { "text": "Text", "status": "positive" },
+    { "text": "Text", "status": "positive" },
+    { "text": "Incentivizes custodial saving", "status": "negative" },
+    { "text": "Text", "status": "negative" },
+    { "text": "Text", "status": "negative" }
       ]
-    }
+    },
+  "fees": {
+    "intro": "based on monthly trading volume",
+    "tiers": [
+    { "range": "up to $1,000,000", "fee": "1%" },
+    { "range": "$1,000,000 - $5,000,000", "fee": "0.70%" },
+    { "range": "$5,000,000 - $15,000,000", "fee": "0.40%" },
+    { "range": "$15,000,000 and up", "fee": "0.25%" }
+        ]
+      },
+    "dca": "Yes: Recurring orders are free",
+  "payment_methods": ["Bank Transfer", "Wire Transfer"],
+  "user_experience": "4.8",
+    "interface": "Mobile only",
+    "app_ratings": {
+  		"ios": 4.9,
+  		"android": 4.8},
+	"profile": "Alex Leishman",       
+	  "description": "River helps U.S. based customers invest in Bitcoin simply and securely with a focus on long-term saving. Unlike many platforms, River holds all Bitcoin in full-reserve cold storage with multi-signature security and gives users transparency through real-time proof of reserves. This might sound inviting to people who don't want to hold Bitcoin in self-custody but it also means more centralization within Bitcoin.\\n\\nIt supports things like inheritance planning, business accounts, and joint accounts, making it attractive for people who want to treat Bitcoin like serious money. Users can buy Bitcoin instantly, set up automated savings, and send Bitcoin via on-chain or Lightning payments. On top of that, you can earn 3.8% Bitcoin interest on your cash. The app has a clean interface and is designed to be easy to use, earning high ratings on both iOS and Android.\\n\\nRiver’s mission is to provide a trusted, high-quality experience for people who want to build wealth in Bitcoin without distractions. It aims to give users full control and transparency. While some users note strict ID verification and limited availability outside the U.S., River is praised for its reliability, personal customer service, and focus on security.",
+	  "founded_in": "2019",
+    "website": "https://river.com",
+  "countries": ["US"]
   },
 	{
     "name": "Sparrow",
@@ -581,7 +587,7 @@
 			},
 	"dca": "Yes: Recurring orders are free",
 	"payment_methods": ["Bank Transfer", "Debit Card", "Cash App"],
-	"user_experience": "4.8",
+	"user_experience": "4.9",
     "interface": "Mobile only",
     "app_ratings": {
   		"ios": 4.8,
@@ -612,25 +618,8 @@
   },
      {
   "name": "Swan",
-  "countries": ["US"],
 	"type_of_platform": "Exchange",
-    "website": "https://www.swanbitcoin.com",
-    "interface": "Mobile only",
-	"app_ratings": {
-  		"ios": 4.8,
-  		"android": 4.6
-	},
-  "fees": {
-		"tiers": [
-			{ "range": "up to $10,000", "fee": "0%" },
-			{ "range": "$10,000 and up", "fee": "0.99%" }
-				]
-			},
-  "profile": "Cory Klippsten",
-  "description": "Swan Bitcoin, launched by Cory Klippsten and based in California, is a platform focused on making it easy for beginners to buy and save Bitcoin.\\n\\nWhat makes Swan distinct is its focus on self-custody support and education. It automatically withdraws BTC weekly to your own address and provides guides for self-custody, while also offering Swan Guard with fraud protection and identity verification tools. Swan prioritizes teaching users about Bitcoin’s value for financial freedom. Swan also targets long-term savers by offering IRA products making Bitcoin tax-advantaged retirement savings easier.\\n\\nSwan offers zero-fee purchases on the first $10,000, a low 0.99% fee for recurring buys, and free withdrawals to personal wallets, encouraging self-custody. Its app is praised for its clean design and simple setup. However, some users report slow customer support and issues with account restrictions.\\n\\nIts vision is to onboard 10 million Bitcoin users by promoting Bitcoin as better money for a decentralized future.",
-  "founded_in": "2019",
-  "payment_methods": ["Bank Transfer", "Wire Transfer"],
-  "features": {
+   "features": {
 	  "WW": [
       { "text": "Education focused", "status": "positive" },
       { "text": "Text", "status": "positive" },
@@ -647,7 +636,26 @@
         { "text": "Text", "status": "negative" },
         { "text": "Text", "status": "negative" }
       ]
-    }
+    },
+  "fees": {
+		"tiers": [
+			{ "range": "up to $10,000", "fee": "0%" },
+			{ "range": "$10,000 and up", "fee": "0.99%" }
+				]
+			},
+  "dca": "text",
+  "payment_methods": ["Bank Transfer", "Wire Transfer"],
+  "user_experience": "0.0",
+    "interface": "Mobile only",
+	"app_ratings": {
+  		"ios": 4.8,
+  		"android": 4.6
+	},
+  "profile": "Cory Klippsten",
+    "description": "Swan Bitcoin, launched by Cory Klippsten and based in California, is a platform focused on making it easy for beginners to buy and save Bitcoin.\\n\\nWhat makes Swan distinct is its focus on self-custody support and education. It automatically withdraws BTC weekly to your own address and provides guides for self-custody, while also offering Swan Guard with fraud protection and identity verification tools. Swan prioritizes teaching users about Bitcoin’s value for financial freedom. Swan also targets long-term savers by offering IRA products making Bitcoin tax-advantaged retirement savings easier.\\n\\nSwan offers zero-fee purchases on the first $10,000, a low 0.99% fee for recurring buys, and free withdrawals to personal wallets, encouraging self-custody. Its app is praised for its clean design and simple setup. However, some users report slow customer support and issues with account restrictions.\\n\\nIts vision is to onboard 10 million Bitcoin users by promoting Bitcoin as better money for a decentralized future.",
+    "founded_in": "2019",
+    "website": "https://www.swanbitcoin.com",
+  "countries": ["US"]
   },
   {
     "name": "Umbrel",

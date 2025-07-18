@@ -1155,6 +1155,7 @@ p, li, a {
   flex-direction: column;
   gap: 50px;
   padding-bottom: 40px;
+  margin-top: 50px;
 }
 
 #comparison-table-wrapper {
@@ -1205,6 +1206,29 @@ p, li, a {
 
 .feature-row.profile .feature-value {
   text-align: center;
+}
+
+
+/* User Experience Rating Styles */
+.ux-rating {
+  font-family: "Inter", sans-serif;
+  font-size: 3em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ux-outof {
+  font-size: 0.8em;
+  vertical-align: super;
+  margin-left: 0.2em;
+}
+
+.feature-row.user_experience .feature-value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
 }
 
 
@@ -1557,6 +1581,8 @@ p, li, a {
     margin: 0 auto 80px;
   }
 }
+
+
 
 
 

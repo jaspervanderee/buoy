@@ -193,7 +193,7 @@ function renderFeatures(service) {
   { key: "multisig_support", label: "Multisig Support" },
   { key: "backup_options", label: "Backup & Recovery" },
   { key: "open_source", label: "Open Source", render: val => val ? "Yes" : "No" },
-  { key: "user_experience", label: "User Experience" },
+  { key: "user_experience", label: "User Experience", render: (val) => val ? `<span class="ux-rating">${val}</span><span class="ux-outof"> out of 5</span>` : "N/A" },
   { key: "interface",
     label: "Interface",
     render: (val) => {
@@ -224,7 +224,7 @@ function renderFeatures(service) {
     }
   },
   { key: "app_ratings", label: "App Ratings", render: renderAppRatings },
-  { key: "profile", label: { main: "Profile", sub: "Founder" },
+  { key: "profile", label: { main: "Profile", sub: "Founder(s)" },
     render: (val) => {
       if (!val) return "N/A";
       const filename = val.toLowerCase().replace(/\s+/g, "-") + ".jpg";
@@ -272,7 +272,7 @@ const featureRows = await Promise.all(
           </div>
         `;
       } else {
-        labelHtml = `<div class="feature-label${feature.key === 'dca' || feature.key === 'interface' || feature.key === 'app_ratings' || feature.key === 'founded_in' || feature.key === 'website' || feature.key === 'description' ? ' sublabel' : ''}">${feature.label}</div>`;
+        labelHtml = `<div class="feature-label${feature.key === 'features' || feature.key === 'dca' || feature.key === 'interface' || feature.key === 'app_ratings' || feature.key === 'founded_in' || feature.key === 'website' || feature.key === 'description' ? ' sublabel' : ''}">${feature.label}</div>`;
       }
       return hasVisibleContent ? `
         <div class="feature-row ${feature.key}">
