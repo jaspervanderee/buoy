@@ -147,16 +147,16 @@ const categoryFeaturesMap = {
     "type_of_platform", "features", "fees", "dca", "payment_methods", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Spend Bitcoin": [
-    "type_of_platform", "features", "custody_model", "open_source", "lightning_support", "withdraw_options", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "supported_network", "features", "custody_control", "kyc_required", "recovery_method", "open_source", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Store it safely": [
-    "type_of_platform", "features", "custody_model", "open_source", "multisig_support", "backup_options", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "supported_network", "features", "price", "custody_control", "multisig_support", "recovery_method", "open_source", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Run my own node": [
-    "type_of_platform", "features", "custody_model", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "features", "custody_control", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Merchant Tools": [
-    "type_of_platform", "features", "custody_model", "lightning_support", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "features", "custody_control", "supported_network", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ]
 };
 
@@ -184,15 +184,16 @@ function renderFeatures(service) {
     const features = [
   { key: "type_of_platform", label: "Platform" },
   { key: "features", label: "Features", render: renderFeatures },
+  { key: "price", label: "Price" },
   { key: "fees", label: "Fees", render: renderFees },
   { key: "dca", label: "DCA (Dollar Cost Averaging)" },
   { key: "payment_methods", label: "Payment Methods", render: (val) => val?.join(", ") || "Not available" },
-  { key: "custody_model", label: "Custody" },
-  { key: "lightning_support", label: "Lightning / Liquid Support" },
-  { key: "withdraw_options", label: "Withdraw to On-chain" },
+  { key: "supported_network", label: "Supported Networks" },
+  { key: "custody_control", label: "Custody & Control" },
+  { key: "kyc_required", label: "KYC Required" },
+  { key: "recovery_method", label: "Recovery Method" },
   { key: "multisig_support", label: "Multisig Support" },
-  { key: "backup_options", label: "Backup & Recovery" },
-  { key: "open_source", label: "Open Source", render: val => val ? "Yes" : "No" },
+  { key: "open_source", label: "Open Source" },
   { key: "user_experience", label: "User Experience", render: (val) => val ? `<span class="ux-rating">${val}</span><span class="ux-outof"> out of 5</span>` : "N/A" },
   { key: "interface",
     label: "Interface",
@@ -272,7 +273,7 @@ const featureRows = await Promise.all(
           </div>
         `;
       } else {
-        labelHtml = `<div class="feature-label${feature.key === 'features' || feature.key === 'dca' || feature.key === 'interface' || feature.key === 'app_ratings' || feature.key === 'founded_in' || feature.key === 'website' || feature.key === 'description' ? ' sublabel' : ''}">${feature.label}</div>`;
+        labelHtml = `<div class="feature-label${feature.key === 'features' || feature.key === 'supported_network' || feature.key === 'price' || feature.key === 'kyc_required' || feature.key === 'recovery_method' || feature.key === 'open_source' || feature.key === 'dca' || feature.key === 'interface' || feature.key === 'app_ratings' || feature.key === 'founded_in' || feature.key === 'website' || feature.key === 'description' ? ' sublabel' : ''}">${feature.label}</div>`;
       }
       return hasVisibleContent ? `
         <div class="feature-row ${feature.key}">
