@@ -1,8 +1,8 @@
 [
 	{
 "name": "AnchorWatch",
-	"type_of_platform": "text",
-    "supported_network": "text",
+	"type_of_platform": "Collaborative custody",
+    "supported_network": "Bitcoin",
     "features": {
 		"WW": [
         { "text": "Built-in estate planning", "status": "positive" },
@@ -21,11 +21,11 @@
         { "text": "Higher fees possible", "status": "negative" }
       ]
     },
-    "price": "text",
+    "price": "Custom pricing",
   "custody_control": "Collaborative custody (insurance multisig)",
-    "recovery_method": "text",
-    "open_source": "text",
-    "node_connect": "text",
+    "recovery_method": "Time-locked multisig recovery",
+    "open_source": "No",
+    "node_connect": "No",
   "user_experience": "0.0",
     "interface": "Desktop only",
 	"app_ratings": {
@@ -44,15 +44,13 @@
     "features": {
       "WW": [
         { "text": "Bitcoin, Lightning & Liquid wallet", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
+        { "text": "Built-in swap between on-chain and Liquid", "status": "positive" },
         { "text": "Higher Lightning fees", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Relies on Boltz for Lightning swaps", "status": "negative" }
       ]
     },
   "custody_control": "Non-custodial",
-    "kyc_required": "Yes",
+    "kyc_required": "No",
     "recovery_method": "12-word seed + optional passphrase",
     "open_source": "Yes",
     "user_experience": "0.0",
@@ -74,16 +72,14 @@
     "features": {
       "WW": [
         { "text": "No seed phrase memorization", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "No screen on device", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Two-of-three key security model", "status": "positive" },
+        { "text": "Easy to setup and use", "status": "positive" },
+        { "text": "No screen on device", "status": "negative" }
       ]
     },
     "price": "$149 for device",
   "custody_control": "Shared custody: you hold two out of three keys",
-    "kyc_required": "Yes",
+    "kyc_required": "No",
     "recovery_method": "Cloud + device pairing",
     "open_source": "No",
     "node_connect": "Yes",
@@ -105,19 +101,13 @@
     "features": {
 	  "WW": [
       { "text": "iDeal", "status": "positive" },
-      { "text": "Text", "status": "positive" },
-      { "text": "Text", "status": "positive" },
-	    { "text": "EU only", "status": "negative" },
-      { "text": "Text", "status": "negative" },
-      { "text": "Text", "status": "negative" }
+      { "text": "Bitcoin will automatically be sent to your wallet", "status": "positive" },
+	    { "text": "EU only", "status": "negative" }
       ],
       "EU": [
         { "text": "iDeal", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Limited free recurring buys", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Bitcoin will automatically be sent to your wallet", "status": "positive" },
+        { "text": "Limited free recurring buys", "status": "negative" }
       ]
     },
   "fees": {
@@ -127,8 +117,11 @@
 			{ "range": "€250 and up", "fee": "0.89%" }
 				]
 			},
-    "dca": "text",
+    "dca": "Yes: but free only on the first €250 with every purchase",
   "payment_methods": ["iDEAL", "Bancontact, SEPA"], 
+  "custody_control": "Custodial",
+    "kyc_required": "Yes",
+    "open_source": "No",
   "user_experience": "0.0",
     "interface": "Mobile only",
 	  "app_ratings": {
@@ -148,17 +141,17 @@
     "features": {
       "WW": [
         { "text": "Self-custodial", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
+        { "text": "Podcast player with streaming sats", "status": "positive" },
+        { "text": "Point-of-Sale mode for merchants", "status": "positive" },
         { "text": "In beta", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Cloud backup required for recovery", "status": "negative" },
+        { "text": "No on-chain receiving", "status": "negative" }
       ]
     },
   "custody_control": "Non-custodial: you hold your own keys",
-      "kyc_required": "Yes",
+      "kyc_required": "No",
       "open_source": "Yes",
-      "recovery_method": "text",
+      "recovery_method": "Seed phrase + cloud backup",
   "user_experience": "0.0",
      "interface": "Mobile only",
      "app_ratings": {
@@ -209,20 +202,16 @@
     "type_of_platform": "Non-custodial",
       "features": {
 	      "WW": [
+      { "text": "Live on Bitcoin standard", "status": "positive" },
       { "text": "Non-custodial", "status": "positive" },
-      { "text": "Text", "status": "positive" },
-      { "text": "Text", "status": "positive" },
 	    { "text": "Mobile app in beta", "status": "negative" },
-      { "text": "Text", "status": "negative" },
-      { "text": "Text", "status": "negative" }
+      { "text": "Not a direct payment service", "status": "negative" }
       ],
           "CA": [
+        { "text": "Live on Bitcoin standard", "status": "positive" },
         { "text": "Non-custodial", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
         { "text": "External wallet required", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Not a direct payment service", "status": "negative" }
       ]
     },
     "fees": {
@@ -232,16 +221,19 @@
 			{ "range": "$100,000 and up", "fee": "discount" }
 				]
 			},
-     "dca": "text",
+     "dca": "Yes",
     "payment_methods": ["Interac e-Transfer", "Wire Transfer", "Bill Payment"],	
+    "custody_control": "Non-custodial",
+    "kyc_required": "No",
+    "open_source": "Yes",
     "user_experience": "0.0",
       "interface": "Mobile & Desktop",
 	    "app_ratings": {
   		  "ios": "No app available",
-  		  "android": "No app available"
+  		  "android": "In beta"
 	    },
     "profile": "Francis Pouliot",
-	    "description": "Bull Bitcoin is a Canadian Bitcoin exchange that stands out by being entirely non-custodial, meaning users must provide their own wallet and take full ownership of their Bitcoin. It allows users to buy Bitcoin directly to their own wallets, sell Bitcoin instantly without waiting for confirmations, and even pay bills, rent, and credit cards in Canada by converting Bitcoin to fiat without relying on traditional banks. This approach positions Bitcoin as a tool for everyday exchange, not just long-term saving.\\n\\nThe platform (yes, so no mobile app) is self-funded, Bitcoin-only, and deeply ideological, rejecting external investors. Its team identifies as cypherpunks, building open-source tools and promoting financial sovereignty. Bull Bitcoin’s mission is to create sovereign individuals through uncompromising adherence to Bitcoin principles, making it attractive to users who want to align their actions with their values.\\n\\nBeginners find the platform easy to use, with a clean interface and responsive support, while advanced users appreciate its strong privacy stance and no-compromise philosophy. It’s ideal for Canadians and expanding internationally for those who want full control over their Bitcoin without depending on custodians or legacy finance systems.",
+	    "description": "Bull Bitcoin is a Canadian Bitcoin exchange that stands out by being entirely non-custodial, meaning users must provide their own wallet and take full ownership of their Bitcoin. It allows users to buy Bitcoin directly to their own wallets, sell Bitcoin instantly without waiting for confirmations, and even pay bills, rent, and credit cards in Canada by converting Bitcoin to fiat without relying on traditional banks. This approach positions Bitcoin as a tool for everyday exchange, not just long-term saving.\\n\\nThe platform (the mobile app is in beta) is self-funded, Bitcoin-only, and deeply ideological, rejecting external investors. Its team identifies as cypherpunks, building open-source tools and promoting financial sovereignty. Bull Bitcoin’s mission is to create sovereign individuals through uncompromising adherence to Bitcoin principles, making it attractive to users who want to align their actions with their values.\\n\\nBeginners find the platform easy to use, with a clean interface and responsive support, while advanced users appreciate its strong privacy stance and no-compromise philosophy. It’s ideal for Canadians and expanding internationally for those who want full control over their Bitcoin without depending on custodians or legacy finance systems.",
       "founded_in": "2013",
     "website": "https://www.bullbitcoin.com",
     
@@ -272,9 +264,9 @@
     ]
   },
     "custody_control": "Custodial (until withdrawn)",
-        "kyc_required": "text",
-        "recovery_method": "text",
-        "open_source": "text",
+        "kyc_required": "Yes",
+        "recovery_method": "Custodial account",
+        "open_source": "No",
     "user_experience": "0.0",
         "interface": "Mobile only",
         "app_ratings": {
@@ -293,18 +285,21 @@
         "features": {
           "WW": [
         { "text": "No KYC", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
+        { "text": "Non-custodial", "status": "positive" },
+        { "text": "Many payment methods", "status": "positive" },
+        { "text": "Required to build reputation on closed platform", "status": "negative" },
         { "text": "High premium without reputation", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "No recurring buys", "status": "negative" }
       ]
     },
     "fees": {
         "intro": "<strong>0.5%</strong>"
     },
-      "dca": "text",
+      "dca": "No",
     "payment_methods": ["Bank Transfer", "Revolut", "Cash in Person", "Wise", "SEPA", "PayPal"],
+    "custody_control": "Non-custodial",
+    "kyc_required": "No",
+    "open_source": "No",
     "user_experience": "0.0",
       "interface": "Desktop only",
 	    "app_ratings": {"text": "No app available"},
@@ -348,20 +343,19 @@
 	{
 "name": "Muun",
     "type_of_platform": "Hot Wallet",
-    "supported_network": "text",
+    "supported_network": "Bitcoin + Lightning",
     "features": {
       "WW": [
         { "text": "Auto chooses Lighting or on-chain", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
+        { "text": "Simple user interface", "status": "positive" },
+        { "text": "Emergency kit for recovery", "status": "positive" },
         { "text": "No Lightning address support", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Email required for backup", "status": "negative" }
       ]
     },
     "custody_control": "Non-custodial",
-	    "kyc_required": "Yes",
-      "recovery_method": "text",
+	    "kyc_required": "No",
+      "recovery_method": "Emergency kit with email and recovery code",
       "open_source": "Yes",
   "user_experience": "0.0",
       "interface": "Mobile only",
@@ -435,23 +429,26 @@
       "features": {
       "WW": [
         { "text": "No KYC", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
+        { "text": "Non-custodial", "status": "positive" },
+        { "text": "Many payment methods", "status": "positive" },
         { "text": "Mobile only", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "No recurring buys", "status": "negative" },
+        { "text": "Required to build reputation on closed platform", "status": "negative" }
       ]
     },
   "fees": {
       "intro": "<strong>2%</strong>"
     },
-    "dca": "text",
+    "dca": "No",
   "payment_methods": ["Bank Transfer", "Cash in Person", "SEPA", "Wise", "Revolut", "Twint"],
+  "custody_control": "Non-custodial",
+    "kyc_required": "No",
+    "open_source": "Yes",
   "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
       "ios": "In development",
-      "android": "?"
+      "android": "N/A"
     },
   "profile": "Stephanie",
 	  "description": "Peach Bitcoin is a mobile-only peer-to-peer platform for buying and selling Bitcoin. It stands out with its non-custodial model, using multi-signature escrow to secure trades without holding user funds, shifting trust to individual traders, and offering KYC-free (Know Your Customer) transactions up to 1,000 CHF daily, emphasizing privacy.\\n\\nUsers must build trust through reviews and completed trades to unlock higher transaction limits. It supports over 100 payment methods, including cash and gift cards, with a 2% fee for buyers and free selling.\\n\\nPeach’s mission is to make peer-to-peer Bitcoin trading the standard, promoting financial freedom, with plans to enhance Lightning Network support and expand globally, especially in Latin America and Africa. The vision is to offer a private, on‑the‑go way to trade Bitcoin without heavy identity requirements, making it attractive to beginners who want control and privacy without overcomplicating the process. Beginners love its privacy and ease, but some find the mobile-only platform limiting.",
@@ -462,20 +459,18 @@
 	{
 "name": "Phoenix",
   "type_of_platform":"Hot Wallet",
-    "supported_network": "text",
+    "supported_network": "Lightning only",
     "features": {
       "WW": [
         { "text": "Seamless Lightning experience", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "High on-chain fees for channel creation", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Runs Lightning node on device", "status": "positive" },
+        { "text": "Option to connect your own node", "status": "positive" },
+        { "text": "High on-chain fees for channel creation", "status": "negative" }
       ]
     },
-  "custody_control": "text",
-	  "kyc_required": "text",
-    "recovery_method": "text",
+  "custody_control": "Non-custodial (runs Lightning node)",
+	  "kyc_required": "No",
+    "recovery_method": "Seed phrase + static channel backup",
     "open_source": "Yes",
   "user_experience": "0.0",
     "interface": "Mobile only",
@@ -495,26 +490,27 @@
     "features": {
 	  "WW": [
       { "text": "Non-custodial", "status": "positive" },
-      { "text": "Text", "status": "positive" },
-      { "text": "Text", "status": "positive" },
+      { "text": "Bitcoin will automatically be sent to your wallet", "status": "positive" },
+      { "text": "KYC-light", "status": "positive" },
 	    { "text": "EU only", "status": "negative" },
-      { "text": "Text", "status": "negative" },
-      { "text": "Text", "status": "negative" }
+      { "text": "Bitcoin is purchased through Kraken", "status": "negative" }
       ],
       "EU": [
         { "text": "Non-custodial", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
+        { "text": "Bitcoin will automatically be sent to your wallet", "status": "positive" },
+        { "text": "KYC-light", "status": "positive" },
         { "text": "Supports select hardware wallets", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Bitcoin is purchased through Kraken", "status": "negative" }
       ]
     },
   "fees": {
       "intro": "<strong>1.5%</strong>"
     },
-    "dca": "text",
+    "dca": "Yes",
   "payment_methods": ["SEPA", "Bank Transfer"],
+  "custody_control": "Non-custodial",
+    "kyc_required": "Yes, but only for purchases over €1.000",
+    "open_source": "No",
   "user_experience": "0.0",
     "interface": "Mobile only",
 	  "app_ratings": {
@@ -533,29 +529,29 @@
     "features": {
       "WW": [
         { "text": "Self-custodial wallet included", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "EU only", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Bitcoin will automatically be sent to your wallet", "status": "positive" },
+        { "text": "Fees on recurring buys", "status": "negative" },
+        { "text": "Minimum buy amount", "status": "negative" },
+        { "text": "EU only", "status": "negative" }
       ],
       "EU": [
         { "text": "Self-custodial wallet included", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Higher fees", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Bitcoin will automatically be sent to your wallet", "status": "positive" },
+        { "text": "Fees on recurring buys", "status": "negative" },
+        { "text": "Minimum buy amount", "status": "negative" }
       ]
     },
     "fees": {
       "tiers": [
-        { "range": "€50 - €100 per month", "fee": "free up to €1,200" },
+        { "range": "€50 - €100 per month", "fee": "free up to €1.200" },
         { "range": "€1200 and above", "fee": "1%" }
       ]
     },
-      "dca": "Yes: Recurring orders are free",
+      "dca": "Yes: but free only on the first €1.200",
     "payment_methods": ["SEPA", "Credit Card", "Apple Pay", "Google Pay"],
+    "custody_control": "Custodial",
+    "kyc_required": "Yes",
+    "open_source": "No",
     "user_experience": "0.0",
       "interface": "Mobile only",
       "app_ratings": {
@@ -574,19 +570,16 @@
     "features": {
 	   "WW": [
     { "text": "Free recurring orders", "status": "positive" },
-    { "text": "Text", "status": "positive" },
-    { "text": "Text", "status": "positive" },
+    { "text": "Earn interest on cash", "status": "positive" },
 	  { "text": "US only", "status": "negative" },
-    { "text": "Text", "status": "negative" },
-    { "text": "Text", "status": "negative" }
+    { "text": "Incentivizes custodial saving", "status": "negative" },
+    { "text": "KYC required", "status": "negative" }
       ],
      "US": [
     { "text": "Free recurring orders", "status": "positive" },
-    { "text": "Text", "status": "positive" },
-    { "text": "Text", "status": "positive" },
+    { "text": "Earn interest on cash", "status": "positive" },
     { "text": "Incentivizes custodial saving", "status": "negative" },
-    { "text": "Text", "status": "negative" },
-    { "text": "Text", "status": "negative" }
+    { "text": "KYC required", "status": "negative" }
       ]
     },
   "fees": {
@@ -600,7 +593,10 @@
       },
     "dca": "Yes: Recurring orders are free",
   "payment_methods": ["Bank Transfer", "Wire Transfer"],
-  "user_experience": "4.8",
+  "custody_control": "Custodial",
+    "kyc_required": "Yes",
+    "open_source": "No",
+  "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
   		"ios": 4.9,
@@ -618,7 +614,7 @@
     "features": {
       "WW": [
         { "text": "Full control", "status": "positive" },
-        { "text": "Text", "status": "positive" },
+        { "text": "UTXO management", "status": "positive" },
         { "text": "Text", "status": "positive" },
         { "text": "Learning curve", "status": "negative" },
         { "text": "Text", "status": "negative" },
@@ -665,8 +661,7 @@
     "countries": ["WW"]
   },
     {
-    "name": "Strike",
-    "countries": ["NA", "EU"],
+"name": "Strike",
   "type_of_platform": "Exchange",
 	"fees": {
 		"intro": "based on monthly trading volume",
@@ -681,9 +676,12 @@
 			{ "range": "$15,000,000 and over", "fee": "0.39%" }
 				]
 			},
-	"dca": "Yes: Recurring orders are free",
+	  "dca": "Yes: Recurring orders are free",
 	"payment_methods": ["Bank Transfer", "Debit Card", "Cash App"],
-	"user_experience": "4.9",
+  "custody_control": "Custodial",
+    "kyc_required": "Yes",
+    "open_source": "No",
+	"user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
   		"ios": 4.8,
@@ -695,42 +693,38 @@
     "website": "https://strike.me",
   "features": {
       "WW": [
-        { "text": "Payment focused", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
+        { "text": "Free recurring buys", "status": "positive" },
+        { "text": "Free withdrawals to self-custody", "status": "positive" },
         { "text": "Limited utility non-US users", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "KYC required", "status": "negative" }
       ],
       "US": [
         { "text": "Bill Payment in Bitcoin", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
+        { "text": "Free recurring buys", "status": "positive" },
+        { "text": "Free withdrawals to self-custody", "status": "positive" },
         { "text": "Slow account verification", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "KYC required", "status": "negative" }
       ]
-    }
+    },
+    "countries": ["WW"]
   },
      {
   "name": "Swan",
 	"type_of_platform": "Exchange",
    "features": {
 	  "WW": [
+      { "text": "First $10.000 no fees", "status": "positive" },
       { "text": "Education focused", "status": "positive" },
-      { "text": "Text", "status": "positive" },
-      { "text": "Text", "status": "positive" },
+      { "text": "Bitcoin retirement products", "status": "positive" },
 	    { "text": "US only", "status": "negative" },
-      { "text": "Text", "status": "negative" },
-      { "text": "Text", "status": "negative" }
+      { "text": "Fees on recurring buys", "status": "negative" },
+      { "text": "KYC required", "status": "negative" }
       ],
       "US": [
         { "text": "First $10.000 no fees", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Withdrawals may take longer", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Bitcoin retirement products", "status": "positive" },
+        { "text": "Education focused", "status": "positive" },
+        { "text": "Fees on recurring buys", "status": "negative" }
       ]
     },
   "fees": {
@@ -739,8 +733,11 @@
 			{ "range": "$10,000 and up", "fee": "0.99%" }
 				]
 			},
-  "dca": "text",
+  "dca": "Yes: but with fees after the first $10.000",
   "payment_methods": ["Bank Transfer", "Wire Transfer"],
+  "custody_control": "Custodial",
+    "kyc_required": "Yes",
+    "open_source": "No",
   "user_experience": "0.0",
     "interface": "Mobile only",
 	"app_ratings": {
@@ -821,11 +818,10 @@
     "features": {
       "WW": [
         { "text": "Enhanced privacy with CoinJoin", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
+        { "text": "Open-source code", "status": "positive" },
         { "text": "Desktop only", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Can be complex for beginners", "status": "negative" },
+        { "text": "Coinjoin fees apply", "status": "negative" }
       ]
     },
     "price": "Free",

@@ -162,7 +162,7 @@ if (!countryCode) {
 
 const categoryFeaturesMap = {
   "Buy Bitcoin": [
-    "type_of_platform", "features", "fees", "dca", "payment_methods", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "features", "fees", "dca", "payment_methods", "custody_control", "kyc_required", "open_source", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Spend Bitcoin": [
     "type_of_platform", "supported_network", "features", "custody_control", "kyc_required", "recovery_method", "open_source", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
