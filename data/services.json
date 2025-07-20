@@ -1,14 +1,8 @@
 [
 	{
-    "name": "AnchorWatch",
-	"countries": ["US"],
-	"description": "AnchorWatch is a U.S.-based bitcoin custody and insurance provider trying to bridge traditional insurance with Bitcoin-native custody, delivering peace of mind by offering an elegant, turnkey solution for long‑term bitcoin holders and corporate treasuries seeking secure, insured, and inheritance‑ready custody.\\n\\nWhat separates AnchorWatch is their unique integration of protocol-level multisig vaults with time-locked recovery and insurance. Users hold a multi-signature key set alongside AnchorWatch; both are required to sign transactions, and over time additional recovery mechanisms activate to handle key-loss, death, or coercion scenarios.\\n\\nUser reviews and discussions (e.g. from the Build With Bitcoin transcript) emphasize AnchorWatch’s layered approach: the combination of vault tech and insurance addresses both technical and human vulnerabilities. The service also supports inheritance planning—time-locked access for heirs without cumbersome “treasure maps”. This focus on estate continuity is cited as a major differentiator, especially for non‑technical beneficiaries.\\n\\nTheir future vision includes expanding beyond U.S. customers, offering bespoke large-value enterprise policies, and exploring Bitcoin-denominated insurance.",
-	"custody_control": "Collaborative custody (insurance multisig)",
-    "website": "https://anchorwatch.com",
-    "interface": "Desktop only",
-    "app_ratings": {
-  		"text": "No app available"
-	},
+"name": "AnchorWatch",
+	"type_of_platform": "text",
+    "supported_network": "text",
     "features": {
 		"WW": [
         { "text": "Built-in estate planning", "status": "positive" },
@@ -26,7 +20,22 @@
         { "text": "KYC required", "status": "negative" },
         { "text": "Higher fees possible", "status": "negative" }
       ]
-    }
+    },
+    "price": "text",
+  "custody_control": "Collaborative custody (insurance multisig)",
+    "recovery_method": "text",
+    "open_source": "text",
+    "node_connect": "text",
+  "user_experience": "0.0",
+    "interface": "Desktop only",
+	"app_ratings": {
+  		"text": "No app available"
+	},
+  "profile": "Robert Hamilton & Becca Rubenfeld",
+	   "description": "AnchorWatch is a U.S.-based bitcoin custody and insurance provider trying to bridge traditional insurance with Bitcoin-native custody, delivering peace of mind by offering an elegant, turnkey solution for long‑term bitcoin holders and corporate treasuries seeking secure, insured, and inheritance‑ready custody.\\n\\nWhat separates AnchorWatch is their unique integration of protocol-level multisig vaults with time-locked recovery and insurance. Users hold a multi-signature key set alongside AnchorWatch; both are required to sign transactions, and over time additional recovery mechanisms activate to handle key-loss, death, or coercion scenarios.\\n\\nUser reviews and discussions (e.g. from the Build With Bitcoin transcript) emphasize AnchorWatch’s layered approach: the combination of vault tech and insurance addresses both technical and human vulnerabilities. The service also supports inheritance planning—time-locked access for heirs without cumbersome “treasure maps”. This focus on estate continuity is cited as a major differentiator, especially for non‑technical beneficiaries.\\n\\nTheir future vision includes expanding beyond U.S. customers, offering bespoke large-value enterprise policies, and exploring Bitcoin-denominated insurance.",
+     "founded_in": "2022",
+     "website": "https://anchorwatch.com",
+  "countries": ["US"]
   },
   {
  "name": "Aqua",
@@ -60,8 +69,8 @@
   },
 	 {
 "name": "Bitkey",
-    "type_of_platform": "Hot Wallet",
-    "supported_network": "Bitcoin + Lightning",
+    "type_of_platform": "Physical device (hardware wallet) + mobile app",
+    "supported_network": "Bitcoin",
     "features": {
       "WW": [
         { "text": "No seed phrase memorization", "status": "positive" },
@@ -72,21 +81,23 @@
         { "text": "Text", "status": "negative" }
       ]
     },
-    "price": "text",
-  "custody_control": "Collaborative custody (2-of-3 multisig)",
-
-	"description": "Bitkey is a mobile and hardware wallet developed by Block and designed for people new to Bitcoin who want simple, secure self-custody. The system combines a phone app with a wireless hardware device and an encrypted cloud backup, using a 2-of-3 multisig model to keep users in control of their funds. This structure allows users to recover access even if they lose their phone or the device, adding safety without relying on seed phrases.\\n\\nThe hardware, a sleek hexagonal device with a fingerprint sensor and NFC for phone pairing, eliminates the need for complex seed phrases, making it user-friendly. Sending Bitcoin requires both your phone and the Bitkey device, while smaller transactions can be approved using just your phone and Bitkey’s server key if you've set spending limits. This balance appeals to people who want more security than just a phone wallet but don’t want the complexity of most hardware wallets.\\n\\nUsers can set daily spending limits for app-only transactions, adding flexibility. The setup is quick, often taking just 5 minutes, and the app’s clean interface is intuitive. The app allows Bitcoin purchases, shows balance in both sats and fiat, and offers recovery through trusted contacts in case of loss. It also lacks a screen, meaning you can’t visually verify addresses on the hardware itself.\\n\\nBitkey’s mission is to bring secure Bitcoin ownership to a global audience, especially those new to Bitcoin, by removing friction and avoiding the pitfalls of traditional backups. Their future vision includes broader international support, expanded wallet functionality, and continued emphasis on open-source development and user control. For beginners, Bitkey offers a straightforward, secure way to own Bitcoin with a polished user experience, though advanced users may want more flexibility.",
-	"multisig_support": "Yes",
+    "price": "$149 for device",
+  "custody_control": "Shared custody: you hold two out of three keys",
+    "kyc_required": "Yes",
     "recovery_method": "Cloud + device pairing",
     "open_source": "No",
-    "website": "https://bitkey.world",
+    "node_connect": "Yes",
+  "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
-  		"ios": 4.6,
-  		"android": 4.2
-	},
-   
-    "countries": ["WW"]
+    "ios": 4.6,
+    "android": 4.2
+    },
+  "profile": "Jack Dorsey",
+	  "description": "Bitkey is a mobile and hardware wallet developed by Block and designed for people new to Bitcoin who want simple, secure self-custody. The system combines a phone app with a wireless hardware device and an encrypted cloud backup, using a 2-of-3 multisig model to keep users in control of their funds. This structure allows users to recover access even if they lose their phone or the device, adding safety without relying on seed phrases.\\n\\nThe hardware, a sleek hexagonal device with a fingerprint sensor and NFC for phone pairing, eliminates the need for complex seed phrases, making it user-friendly. Sending Bitcoin requires both your phone and the Bitkey device, while smaller transactions can be approved using just your phone and Bitkey’s server key if you've set spending limits. This balance appeals to people who want more security than just a phone wallet but don’t want the complexity of most hardware wallets.\\n\\nUsers can set daily spending limits for app-only transactions, adding flexibility. The setup is quick, often taking just 5 minutes, and the app’s clean interface is intuitive. The app allows Bitcoin purchases, shows balance in both sats and fiat, and offers recovery through trusted contacts in case of loss. It also lacks a screen, meaning you can’t visually verify addresses on the hardware itself.\\n\\nBitkey’s mission is to bring secure Bitcoin ownership to a global audience, especially those new to Bitcoin, by removing friction and avoiding the pitfalls of traditional backups. Their future vision includes broader international support, expanded wallet functionality, and continued emphasis on open-source development and user control. For beginners, Bitkey offers a straightforward, secure way to own Bitcoin with a polished user experience, though advanced users may want more flexibility.",
+    "founded_in": "2024",
+    "website": "https://bitkey.world",
+  "countries": ["WW"]
   },
   {
 "name": "Bitonic",
@@ -162,28 +173,36 @@
     "countries": ["WW"]
   },
 	 {
-    "name": "BTC Pay",
-    "countries": ["WW"],
-	"description": "BTC Pay Server, developed by a community-driven open-source project, is a self-hosted Bitcoin payment processor designed to empower merchants and individuals to accept Bitcoin payments securely and privately without intermediaries. All payments go directly to the user’s own wallet—private keys stay under user control, greatly enhancing privacy and censorship resistance.\\n\\nUnlike other payment solutions, users can create online stores, point‑of‑sale systems, tipping buttons, crowdfunding campaigns, or invoice links—all within a single interface. It avoids KYC, middleman fees, and personal data collection, appealing to anyone seeking financial sovereignty with seamless integration to hardware wallets or custodial services.\\n\\nUsers highlight its open‑source, self‑hosted nature and flexibility, commenting on how easy it is to connect a cloud‑hosted or home server, link a Bitcoin wallet, and enable Lightning payments—empowering them to accept Bitcoin anywhere, anytime, though some note the initial setup complexity for beginners.\\n\\nBTCPay Server’s mission is to democratize Bitcoin payments—removing fees, intermediaries, and technical barriers. Their vision for the future includes releasing a mobile app to enable non‑custodial Lightning payments for merchants, refining multisig and fee‑acceleration tools, and expanding e‑commerce integrations.",
-	"custody_control": "Non-custodial",
-	"supported_network": "Lightning only",
-    "kyc_required": "Yes",
-    "open_source": "Yes",
-    "website": "https://btcpayserver.org",
-    "interface": "Desktop only",
-    "app_ratings": {
-  		"text": "No app available"
-	},
-    "features": {
-      "WW": [
-        { "text": "Decentralized payment processor", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Technical setup", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
-      ]
-    }
+"name": "BTC Pay",
+    "type_of_platform": "Hosted payment gateway",
+       "supported_network": "Bitcoin + Lightning",
+       "features": {
+        "WW": [
+          { "text": "Decentralized payment processor", "status": "positive" },
+          { "text": "0% fees & no third-party", "status": "positive" },
+          { "text": "Lightning Network support", "status": "positive" },
+          { "text": "Technical setup", "status": "negative" },
+          { "text": "Self-hosted maintenance", "status": "negative" },
+          { "text": "Steeper learning curve", "status": "negative" }
+        ]
+      },
+      "fees": {
+        "intro": "No fees"
+    },
+        "subscription_fees": "No fees",
+        "conversion_fees": "No fees",
+        "settlement_time": "Blockchain confirmation time",
+    "compatibility": "Big Commerce, Drupal, Ecwid, GiveWP, Grandnode, Invoice Ninja, Magento, Nopcommerce, Odoo, OpenCart, PhocaCart, PrestaShop, Pretix, Shopify V2, Shopware, Ghost, Smartstore, VirtueMart, Wix, WooCommerce, Xenforo, Zapier, Custom Integration",
+        "pos_compatibility": "Yes",
+    "custody_control": "Non-custodial",
+        "kyc_required": "No",
+        "open_source": "Yes",
+    "user_experience": "0.0",
+    "profile": "Nicolas Dorier",
+	      "description": "BTC Pay Server, developed by a community-driven open-source project, is a self-hosted Bitcoin payment processor designed to empower merchants and individuals to accept Bitcoin payments securely and privately without intermediaries. All payments go directly to the user’s own wallet—private keys stay under user control, greatly enhancing privacy and censorship resistance.\\n\\nUnlike other payment solutions, users can create online stores, point‑of‑sale systems, tipping buttons, crowdfunding campaigns, or invoice links—all within a single interface. It avoids KYC, middleman fees, and personal data collection, appealing to anyone seeking financial sovereignty with seamless integration to hardware wallets or custodial services.\\n\\nUsers highlight its open‑source, self‑hosted nature and flexibility, commenting on how easy it is to connect a cloud‑hosted or home server, link a Bitcoin wallet, and enable Lightning payments—empowering them to accept Bitcoin anywhere, anytime, though some note the initial setup complexity for beginners.\\n\\nBTCPay Server’s mission is to democratize Bitcoin payments—removing fees, intermediaries, and technical barriers. Their vision for the future includes releasing a mobile app to enable non‑custodial Lightning payments for merchants, refining multisig and fee‑acceleration tools, and expanding e‑commerce integrations.",
+        "founded_in": "2017",
+        "website": "https://btcpayserver.org",
+    "countries": ["WW"]
   },
 	{
 "name": "Bull Bitcoin",
@@ -296,16 +315,10 @@
     "countries": ["SA", "EU", "AF", "AS", "OC"]
   },
 	 {
-    "name": "Lightspark",
-    "countries": ["WW"],
-	"description": "Lightspark is a payments infrastructure company founded by David Marcus (formerly of PayPal, Meta, and Diem) in 2022. They aim to build what they call the “Money Grid,” a global, open payment network using Bitcoin as a neutral settlement layer and leveraging Lightning for high-speed transfers.\\n\\nTheir target audience includes enterprises—digital banks, fintechs, wallets, exchanges—that need to move money across currencies and jurisdictions instantly and cheaply, as well as developers building Bitcoin-native payment applications or self-custodial wallets that need scalable infrastructure.\\n\\nWhat sets Lightspark apart is their end-to-end product integration, combining seamless liquidity management, intelligent routing, compliance-ready infrastructure, and human-friendly Universal Money Address (UMA) tech. This abstraction lets banks, wallets, exchanges, and businesses effortlessly send and receive fiat or crypto globally without having to manage Lightning channels, cross-border FX, or complex on-chain details. These tools have already seen traction with big partners.\\n\\nLooking forward, Lightspark’s vision is to scale the Money Grid globally—connecting all real-time payment systems and making Bitcoin native rails for everything from everyday consumer transfers to B2B fiat-fiat flows. Spark aims to resolve key Lightning limitations like self-custody economic scalability and lacks native token support. By building Spark open-source and fully backward compatible with Lightning, they hope to decentralize stablecoin issuance on Bitcoin and finally realize high-velocity, global Bitcoin-based payment settlement.",
-	"custody_control": "Custodial (managed Lightning nodes)",
-    "supported_network": "Lightning only",
-    "website": "https://www.lightspark.com",
-	 "app_ratings": {
-  		"text": "No app available"
-	},
-    "features": {
+"name": "Lightspark",
+    "type_of_platform": "Payment Infrastructure",
+       "supported_network": "Lightning only",
+       "features": {
       "WW": [
         { "text": "Enterprise-grade Lightning solutions", "status": "positive" },
         { "text": "Text", "status": "positive" },
@@ -314,7 +327,23 @@
         { "text": "Text", "status": "negative" },
         { "text": "Text", "status": "negative" }
       ]
-    }
+    },
+    "fees": {
+      "intro": "1% fees"},
+      "subscription_fees": "1%",
+      "conversion_fees": "1%",
+      "settlement_time": "1-2 days",
+    "compatibility": "text",
+      "pos_compatibility": "text",
+    "custody_control": "Custodial (managed Lightning nodes)",
+      "kyc_required": "Yes",
+      "open_source": "Yes",
+    "user_experience": "0.0",
+    "profile": "David Marcus",
+	    "description": "Lightspark is a payments infrastructure company founded by David Marcus (formerly of PayPal, Meta, and Diem) in 2022. They aim to build what they call the “Money Grid,” a global, open payment network using Bitcoin as a neutral settlement layer and leveraging Lightning for high-speed transfers.\\n\\nTheir target audience includes enterprises—digital banks, fintechs, wallets, exchanges—that need to move money across currencies and jurisdictions instantly and cheaply, as well as developers building Bitcoin-native payment applications or self-custodial wallets that need scalable infrastructure.\\n\\nWhat sets Lightspark apart is their end-to-end product integration, combining seamless liquidity management, intelligent routing, compliance-ready infrastructure, and human-friendly Universal Money Address (UMA) tech. This abstraction lets banks, wallets, exchanges, and businesses effortlessly send and receive fiat or crypto globally without having to manage Lightning channels, cross-border FX, or complex on-chain details. These tools have already seen traction with big partners.\\n\\nLooking forward, Lightspark’s vision is to scale the Money Grid globally—connecting all real-time payment systems and making Bitcoin native rails for everything from everyday consumer transfers to B2B fiat-fiat flows. Spark aims to resolve key Lightning limitations like self-custody economic scalability and lacks native token support. By building Spark open-source and fully backward compatible with Lightning, they hope to decentralize stablecoin issuance on Bitcoin and finally realize high-velocity, global Bitcoin-based payment settlement.",
+      "founded_in": "2022",
+      "website": "https://www.lightspark.com",
+    "countries": ["WW"]
   },
 	{
 "name": "Muun",
@@ -347,18 +376,9 @@
     "countries": ["WW"]
   },
   {
-    "name": "myNode",
-    "countries": ["WW"],
-    "description": "MyNode is a turnkey Bitcoin and Lightning node platform that combines open‑source software with a polished, full‑featured web interface, making it accessible to both novices and advanced users.\\n\\nWhat sets MyNode apart is its integration of a wide array of Bitcoin tools all in one place—your own full node, Lightning (via LND), Electrum server, block explorers, wallet pairing tools and more—coordinated through an intuitive UI.\\n\\nThe target audience ranges from beginners who can get started with simple, plug‑and‑play hardware builds or prebuilt units, to seasoned users. The Premium+ hardware options (Model One/Two) bundle top‑spec hardware with built‑in support and warranty, while DIYers can start with the free software and chosen hardware.\\n\\nLooking ahead, MyNode continues to expand its ecosystem with new beta apps and features plus consistent rapid updates and community‑driven development. Their vision is clear: empower individuals to run a sovereign, private, and all‑in‑one Bitcoin infrastructure at home, easily and robustly, with ongoing innovation and support.",
-    "custody_control": "Non-custodial",
-    "supported_network": "Yes",
-    "open_source": "Yes",
-    "website": "https://mynodebtc.com",
-    "interface": "Desktop only",
-    "app_ratings": {
-                "text": "No app available"
-    },
-    "features": {
+"name": "myNode",
+    "type_of_platform": "Software and / or hardware",
+       "features": {
       "WW": [
         { "text": "Full-featured node with many apps", "status": "positive" },
         { "text": "Text", "status": "positive" },
@@ -367,29 +387,47 @@
         { "text": "Text", "status": "negative" },
         { "text": "Text", "status": "negative" }
       ]
-    }
+    },
+        "price": "Free software<br>$79 for premium software<br>$399 Model One hardware device<br>$599 Model Two hardware device",
+    "user_experience": "0.0",
+        "interface": "Desktop only",
+        "support": "Community forums and Premium support",
+    "profile": "Taylor Helsper",
+        "description": "MyNode is a turnkey Bitcoin and Lightning node platform that combines open‑source software with a polished, full‑featured web interface, making it accessible to both novices and advanced users.\\n\\nWhat sets MyNode apart is its integration of a wide array of Bitcoin tools all in one place—your own full node, Lightning (via LND), Electrum server, block explorers, wallet pairing tools and more—coordinated through an intuitive UI.\\n\\nThe target audience ranges from beginners who can get started with simple, plug‑and‑play hardware builds or prebuilt units, to seasoned users. The Premium+ hardware options (Model One/Two) bundle top‑spec hardware with built‑in support and warranty, while DIYers can start with the free software and chosen hardware.\\n\\nLooking ahead, MyNode continues to expand its ecosystem with new beta apps and features plus consistent rapid updates and community‑driven development. Their vision is clear: empower individuals to run a sovereign, private, and all‑in‑one Bitcoin infrastructure at home, easily and robustly, with ongoing innovation and support.",
+        "founded_in": "2019",
+        "website": "https://mynodebtc.com",
+    "countries": ["WW"]
   },
 	{
-  "name": "OpenNode",
-  "countries": ["WW"],
-  "description": "OpenNode is a Bitcoin-first payment processor that empowers businesses to accept and send Bitcoin—either on-chain or via Lightning—using simple plugins, hosted checkouts, or its developer-friendly API. Organisations that want a turnkey, compliant solution—especially mid-sized to large enterprises—can onboard easily with KYC and achieve global scale without building complex node infrastructure.\\n\\nIt offers instant, low-cost microtransactions with a focus on liquidity management, channel operations, and protocol support. For merchants, this means accessing Bitcoin payments both instantly and economically, alongside automatic settlement options in fiat or BTC. By abstracting away technical complexities like node handling, liquidity, and channel balance, OpenNode allows businesses to plug-and-play and scale efficiently.\\n\\nIt holds US regulatory licenses, manages KYC requirements, and maintains automated fiat conversions and payouts. This makes it ideal for businesses—especially blue-chip and enterprise-level—that require solid legal and financial backstops.\\n\\nTheir long-term vision is to see global businesses and platforms integrate Bitcoin payments as seamlessly as credit cards—secure, censorship-resistant, and frictionless—while pushing forward broader adoption of Bitcoin as a unit of exchange across borders and cultures.",
-  "custody_control": "Custodial (until withdrawal or automatic settlement)",
-  "interface": "Web + API",
-  "supported_network": "Bitcoin + Lightning",
-  "website": "https://opennode.com",
-  "app_ratings": {
-    "text": "No app available"
-  },
-  "features": {
-    "WW": [
-      { "text": "Turnkey payment processor", "status": "positive" },
-      { "text": "Text", "status": "positive" },
-      { "text": "Text", "status": "positive" },
-      { "text": "Custodial until funds are withdrawn", "status": "negative" },
-      { "text": "Text", "status": "negative" },
-      { "text": "Text", "status": "negative" }
-    ]
-  }
+"name": "OpenNode",
+    "type_of_platform": "Payment Processor",
+       "supported_network": "Bitcoin + Lightning",
+       "features": {
+        "WW": [
+        { "text": "Turnkey payment processor", "status": "positive" },
+        { "text": "text", "status": "positive" },
+        { "text": "text", "status": "positive" },
+        { "text": "Custodial until funds are withdrawn", "status": "negative" },
+        { "text": "Limited payment methods", "status": "negative" },
+        { "text": "No self-custody", "status": "negative" }
+        ]
+        },
+    "fees": {
+      "intro": "1% fees"},
+      "subscription_fees": "1%",
+      "conversion_fees": "1%",
+      "settlement_time": "1-2 days",
+    "compatibility": "text",
+      "pos_compatibility": "text",
+    "custody_control": "Custodial (until withdrawal or automatic settlement)",
+      "kyc_required": "Yes",
+      "open_source": "Yes",
+    "user_experience": "0.0",
+    "profile": "Joao Almeida & Afnan Rahman",
+      "description": "OpenNode is a Bitcoin-first payment processor that empowers businesses to accept and send Bitcoin—either on-chain or via Lightning—using simple plugins, hosted checkouts, or its developer-friendly API. Organisations that want a turnkey, compliant solution—especially mid-sized to large enterprises—can onboard easily with KYC and achieve global scale without building complex node infrastructure.\\n\\nIt offers instant, low-cost microtransactions with a focus on liquidity management, channel operations, and protocol support. For merchants, this means accessing Bitcoin payments both instantly and economically, alongside automatic settlement options in fiat or BTC. By abstracting away technical complexities like node handling, liquidity, and channel balance, OpenNode allows businesses to plug-and-play and scale efficiently.\\n\\nIt holds US regulatory licenses, manages KYC requirements, and maintains automated fiat conversions and payouts. This makes it ideal for businesses—especially blue-chip and enterprise-level—that require solid legal and financial backstops.\\n\\nTheir long-term vision is to see global businesses and platforms integrate Bitcoin payments as seamlessly as credit cards—secure, censorship-resistant, and frictionless—while pushing forward broader adoption of Bitcoin as a unit of exchange across borders and cultures.",
+      "founded_in": "2018",
+      "website": "https://opennode.com",
+    "countries": ["WW"]
 },
   {
   "name": "Peach",
@@ -574,18 +612,9 @@
   "countries": ["US"]
   },
 	{
-    "name": "Sparrow",
-    "countries": ["WW"],
-	"description": "Sparrow Wallet is a desktop Bitcoin wallet designed to give users full control over their bitcoin. It was created by developer Craig Raw and is open-source, privacy-focused, and ideal for both beginners and advanced users. The wallet works on Windows, macOS, and Linux.\\n\\nWhat separates Sparrow from other wallets is its balance between simplicity and advanced features. Beginners can start with a basic hot wallet setup and gradually explore more complex features like hardware wallet integration, multisig vaults, and UTXO control—all within the same interface. It gives users direct visibility into how Bitcoin works, showing transaction details, input and output flows, and allowing for precise control over fees and coin selection. This level of transparency helps users understand and manage their funds more deliberately.\\n\\nUser reviews highlight how Sparrow scales with you as you learn. It is refered to as the most powerful and versatile Bitcoin wallet, and users praise its clean layout, customizable setup, and educational value. Despite its many features, the app’s interface is considered clear and organized once users get past the initial learning curve.\\n\\nSparrow’s vision is to offer users complete sovereignty over their bitcoin. It avoids mobile compromises and instead focuses on a desktop experience that can integrate with cold storage, your own node, and advanced privacy tools. For beginners who want to grow into more advanced use cases without switching wallets, Sparrow offers a flexible and educational path to full control.",
-	"custody_control": "Non-custodial",
-    "multisig_support": "Custom multisig setups",
-    "recovery_method": "Manual seed backup",
-    "open_source": "Yes",
-    "website": "https://sparrowwallet.com",
-    "interface": "Desktop only",
-	"app_ratings": {
-  		"text": "No app available"
-	},
+"name": "Sparrow",
+    "type_of_platform": "Desktop wallet",
+    "supported_network": "Bitcoin",
     "features": {
       "WW": [
         { "text": "Full control", "status": "positive" },
@@ -595,30 +624,45 @@
         { "text": "Text", "status": "negative" },
         { "text": "Text", "status": "negative" }
       ]
-    }
+    },
+    "price": "Free",
+  "custody_control": "Non-custodial",
+    "recovery_method": "Manual seed backup",
+    "open_source": "Yes",
+    "node_connect": "Custom multisig setups",
+  "user_experience": "0.0",
+    "interface": "Desktop only",
+	"app_ratings": {
+  		"text": "No app available"
+	},
+  "profile": "Craig Raw",
+	  "description": "Sparrow Wallet is a desktop Bitcoin wallet designed to give users full control over their bitcoin. It was created by developer Craig Raw and is open-source, privacy-focused, and ideal for both beginners and advanced users. The wallet works on Windows, macOS, and Linux.\\n\\nWhat separates Sparrow from other wallets is its balance between simplicity and advanced features. Beginners can start with a basic hot wallet setup and gradually explore more complex features like hardware wallet integration, multisig vaults, and UTXO control—all within the same interface. It gives users direct visibility into how Bitcoin works, showing transaction details, input and output flows, and allowing for precise control over fees and coin selection. This level of transparency helps users understand and manage their funds more deliberately.\\n\\nUser reviews highlight how Sparrow scales with you as you learn. It is refered to as the most powerful and versatile Bitcoin wallet, and users praise its clean layout, customizable setup, and educational value. Despite its many features, the app’s interface is considered clear and organized once users get past the initial learning curve.\\n\\nSparrow’s vision is to offer users complete sovereignty over their bitcoin. It avoids mobile compromises and instead focuses on a desktop experience that can integrate with cold storage, your own node, and advanced privacy tools. For beginners who want to grow into more advanced use cases without switching wallets, Sparrow offers a flexible and educational path to full control.",
+    "founded_in": "2020",
+    "website": "https://sparrowwallet.com",
+  "countries": ["WW"]
   },
   {
-    "name": "Start9",
-    "countries": ["WW"],
-    "description": "Start9 (Start9 Labs) is the creator of the Embassy—a turnkey, self-hosted personal server and Bitcoin stack powered by their open-source StartOS. Their mission is to eliminate reliance on centralized third parties, placing privacy, decentralization, and individual autonomy at the forefront. Unlike other DIY solutions, Start9 aims to \"level the playing field,\" offering plug-and-play hardware kits (like Embassy One and Embassy Pro) or a do-it-yourself image for Raspberry Pi or x86, all fully supported by their first-class community and expert support team.\\n\\nStart9’s target users are privacy-conscious individuals, Bitcoiners, and anyone seeking digital autonomy without sacrificing usability. They prioritize delivering polished self-sovereign computing with high-quality hardware, intuitive interfaces, and expert support (via Matrix) to onboard less technical users while remaining fully transparent and open-source. Users appreciate its robust foundation, modular update system (allowing single-service patching), backup ease, and strong headless health checking—compared to alternatives like Umbrel.\\n\\nLooking forward, Start9 envisions a world where personal servers become the backbone of a sovereign internet and smart homes, enabling blockchain-native apps, decentralized messaging, password managers, file storage, and more. Their open hardware and software philosophy ensures that even if the company disappears, the ecosystem lives on—fully community-driven and censorship-resistant.",
-    "custody_control": "Non-custodial",
-    "supported_network": "Yes",
-    "open_source": "Yes",
-    "website": "https://start9.com",
-    "interface": "Desktop only",
-    "app_ratings": {
-                "text": "No app available"
-    },
-    "features": {
-      "WW": [
+"name": "Start9",
+    "type_of_platform": "Software and / or hardware",
+        "features": {
+          "WW": [
         { "text": "Plug-and-play home server", "status": "positive" },
         { "text": "Text", "status": "positive" },
         { "text": "Text", "status": "positive" },
         { "text": "Hardware can be costly", "status": "negative" },
         { "text": "Text", "status": "negative" },
         { "text": "Text", "status": "negative" }
-      ]
-    }
+         ]
+         },
+        "price": "$619: Server One<br>$899: Server Pure",
+    "user_experience": "0.0",
+        "interface": "Desktop only",
+        "support": "Community forums and Premium support (Free with device)",
+    "profile": "Matt Hill",
+        "description": "Start9 (Start9 Labs) is the creator of the Embassy—a turnkey, self-hosted personal server and Bitcoin stack powered by their open-source StartOS. Their mission is to eliminate reliance on centralized third parties, placing privacy, decentralization, and individual autonomy at the forefront. Unlike other DIY solutions, Start9 aims to \"level the playing field,\" offering plug-and-play hardware kits (like Embassy One and Embassy Pro) or a do-it-yourself image for Raspberry Pi or x86, all fully supported by their first-class community and expert support team.\\n\\nStart9’s target users are privacy-conscious individuals, Bitcoiners, and anyone seeking digital autonomy without sacrificing usability. They prioritize delivering polished self-sovereign computing with high-quality hardware, intuitive interfaces, and expert support (via Matrix) to onboard less technical users while remaining fully transparent and open-source. Users appreciate its robust foundation, modular update system (allowing single-service patching), backup ease, and strong headless health checking—compared to alternatives like Umbrel.\\n\\nLooking forward, Start9 envisions a world where personal servers become the backbone of a sovereign internet and smart homes, enabling blockchain-native apps, decentralized messaging, password managers, file storage, and more. Their open hardware and software philosophy ensures that even if the company disappears, the ecosystem lives on—fully community-driven and censorship-resistant.",
+        "founded_in": "2020",
+        "website": "https://start9.com",
+    "countries": ["WW"]
   },
     {
     "name": "Strike",
@@ -710,40 +754,33 @@
   "countries": ["US"]
   },
   {
-    "name": "Umbrel",
-    "countries": ["WW"],
-    "description": "Umbrel is a user-friendly, plug‑and‑play home server OS primarily designed to run Bitcoin and Lightning nodes. It supports the official Umbrel Home hardware and installation on Raspberry Pi or x86 machines. What sets it apart is its polished, macOS‑style interface with a one‑click App Store for installing things like Bitcoin Core, LND, Electrum Rust Server, mempool explorer, and various self‑hosted apps like Nextcloud, Plex, Pi‑Hole, Home Assistant, and AI models. The setup process is straightforward—just plug in, set a password, install apps, and sync—which makes it accessible for non‑technical users.\\n\\nWhat truly distinguishes Umbrel is its elegant design and focus on broad self‑hosting beyond just Bitcoin. The dashboard offers real‑time system stats, customizable widgets, seamless updates, and integrations for VPN access via Tailscale or TOR. The App Store’s curated ecosystem of over 100 vetted, containerized apps makes complex tasks like running blockchain explorers or home automation easy—without requiring command‑line work. This polished UX lowers the bar for users who want to self‑host smartly.\\n\\nIn terms of community and support, Umbrel has an active user base and support channels via chat and forums. However, discussions also mention that Umbrel uses unencrypted HTTP by default and lacks HTTPS, which could pose risks on exposed LANs. More privacy‑focused alternatives like Citadel and StartOS offer full HTTPS and fully open‑source licensing.\\n\\nUmbrel is aimed at users seeking a seamless, beautiful entry point into self‑sovereign Bitcoin and home‑server use. Its vision is to expand the personal server experience by enabling anyone to host their own apps, AI, media, and nodes with minimal friction. But it trades off some transparency and technical control—its source‑available license, lack of HTTPS out of the box, and centralized update model may concern advanced or privacy‑focused users. In sum, Umbrel offers a delightful, low‑barrier way to participate in Bitcoin sovereignty and self‑hosting, though some might prefer more open or secure setups if they prioritize full technical autonomy.",
-    "custody_control": "Non-custodial",
-    "supported_network": "Yes",
-    "open_source": "Yes",
-    "website": "https://umbrel.com",
-    "interface": "Desktop only",
-    "app_ratings": {
-                "text": "No app available"
-    },
-    "features": {
+"name": "Umbrel",
+    "type_of_platform": "Software and / or hardware",
+        "features": {
       "WW": [
         { "text": "Simple self-hosted node OS", "status": "positive" },
+        { "text": "Umbrel device not required to run Umbrel software", "status": "positive" },
         { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Requires dedicated hardware", "status": "negative" },
+        { "text": "Text", "status": "negative" },
         { "text": "Text", "status": "negative" },
         { "text": "Text", "status": "negative" }
       ]
-    }
+      },
+        "price": "$299 for hardware device",
+    "user_experience": "0.0",
+        "interface": "Desktop only",
+        "support": "Community forums",
+    "profile": "Luke Childs & Mayank Chhabra",
+      "description": "Umbrel is a user-friendly, plug‑and‑play home server OS primarily designed to run Bitcoin and Lightning nodes. It supports the official Umbrel Home hardware and installation on Raspberry Pi or x86 machines. What sets it apart is its polished, macOS‑style interface with a one‑click App Store for installing things like Bitcoin Core, LND, Electrum Rust Server, mempool explorer, and various self‑hosted apps like Nextcloud, Plex, Pi‑Hole, Home Assistant, and AI models. The setup process is straightforward—just plug in, set a password, install apps, and sync—which makes it accessible for non‑technical users.\\n\\nWhat truly distinguishes Umbrel is its elegant design and focus on broad self‑hosting beyond just Bitcoin. The dashboard offers real‑time system stats, customizable widgets, seamless updates, and integrations for VPN access via Tailscale or TOR. The App Store’s curated ecosystem of over 100 vetted, containerized apps makes complex tasks like running blockchain explorers or home automation easy—without requiring command‑line work. This polished UX lowers the bar for users who want to self‑host smartly.\\n\\nIn terms of community and support, Umbrel has an active user base and support channels via chat and forums. However, discussions also mention that Umbrel uses unencrypted HTTP by default and lacks HTTPS, which could pose risks on exposed LANs. More privacy‑focused alternatives like Citadel and StartOS offer full HTTPS and fully open‑source licensing.\\n\\nUmbrel is aimed at users seeking a seamless, beautiful entry point into self‑sovereign Bitcoin and home‑server use. Its vision is to expand the personal server experience by enabling anyone to host their own apps, AI, media, and nodes with minimal friction. But it trades off some transparency and technical control—its source‑available license, lack of HTTPS out of the box, and centralized update model may concern advanced or privacy‑focused users. In sum, Umbrel offers a delightful, low‑barrier way to participate in Bitcoin sovereignty and self‑hosting, though some might prefer more open or secure setups if they prioritize full technical autonomy.",
+      "founded_in": "2019",
+      "website": "https://umbrel.com",
+    "countries": ["WW"]
   },
 	{
-    "name": "Unchained",
-    "countries": ["US"],
-	"description": "Unchained is a Bitcoin financial services company focused on helping individuals and businesses secure their Bitcoin through collaborative custody. Their main product is a multisig vault that uses a 2-of-3 key setup, where the user holds two keys and Unchained holds the third. This setup allows users to maintain full control over their Bitcoin while enabling Unchained to assist in recovery if needed, without ever having unilateral access to the funds.\\n\\nWhat makes Unchained unique is its emphasis on combining technical security with user support. Unlike standard hardware wallet setups that rely on a single point of failure, Unchained's model is resistant to user error and device loss. Even if you lose 75% of your devices or backups, you can still recover your funds with Unchained’s help. Their system also facilitates inheritance by allowing next of kin to recover funds with proper documentation, making it especially appealing for those thinking about long-term wealth protection.\\n\\nUnchained users appreciate the guided onboarding, live support, and optional concierge services that simplify the complex process of setting up multisig. The platform integrates with popular hardware wallets, and allows users to manage their funds through Unchained’s dashboard or export and interact with their vault using open-source tools. The ability to spend from your vault without relying on the Unchained website gives users additional peace of mind.\\n\\nThe company’s long-term vision is to build a robust financial ecosystem based on Bitcoin-native tools, including multisig-secured lending, inheritance planning, and business services. While the setup requires ID verification and Unchained knows the vault balances, many users view this trade-off as acceptable in exchange for improved recovery options and strong operational security.\\n\\nUnchained is best suited for those seeking to remove single points of failure in their Bitcoin custody, want professional assistance when needed, and value redundancy and inheritance planning—all while retaining full self-custody.",
-	"custody_control": "Collaborative custody (2-of-3 multisig)",
-    "website": "https://unchained.com",
-    "interface": "Mobile & Desktop",
-	"app_ratings": {
-  		"ios": 4.9,
-  		"android": "Not available"
-	},
-    "features": {
+"name": "Unchained",
+  "type_of_platform": "text",
+      "supported_network": "text",
+      "features": {
 	  "WW": [
         { "text": "Recovery-friendly", "status": "positive" },
         { "text": "Text", "status": "positive" },
@@ -760,21 +797,27 @@
         { "text": "Text", "status": "negative" },
         { "text": "Text", "status": "negative" }
       ]
-    }
+    },
+  "custody_control": "Collaborative custody (2-of-3 multisig)",
+      "recovery_method": "text",
+      "open_source": "text",
+      "node_connect": "text",
+  "user_experience": "0.0",
+     "interface": "Mobile & Desktop",
+	   "app_ratings": {
+  		"ios": 4.9,
+  		"android": "Not available"
+	},
+  "profile": "Dhruv Bansal & Joe Kelly",
+	    "description": "Unchained is a Bitcoin financial services company focused on helping individuals and businesses secure their Bitcoin through collaborative custody. Their main product is a multisig vault that uses a 2-of-3 key setup, where the user holds two keys and Unchained holds the third. This setup allows users to maintain full control over their Bitcoin while enabling Unchained to assist in recovery if needed, without ever having unilateral access to the funds.\\n\\nWhat makes Unchained unique is its emphasis on combining technical security with user support. Unlike standard hardware wallet setups that rely on a single point of failure, Unchained's model is resistant to user error and device loss. Even if you lose 75% of your devices or backups, you can still recover your funds with Unchained’s help. Their system also facilitates inheritance by allowing next of kin to recover funds with proper documentation, making it especially appealing for those thinking about long-term wealth protection.\\n\\nUnchained users appreciate the guided onboarding, live support, and optional concierge services that simplify the complex process of setting up multisig. The platform integrates with popular hardware wallets, and allows users to manage their funds through Unchained’s dashboard or export and interact with their vault using open-source tools. The ability to spend from your vault without relying on the Unchained website gives users additional peace of mind.\\n\\nThe company’s long-term vision is to build a robust financial ecosystem based on Bitcoin-native tools, including multisig-secured lending, inheritance planning, and business services. While the setup requires ID verification and Unchained knows the vault balances, many users view this trade-off as acceptable in exchange for improved recovery options and strong operational security.\\n\\nUnchained is best suited for those seeking to remove single points of failure in their Bitcoin custody, want professional assistance when needed, and value redundancy and inheritance planning—all while retaining full self-custody.",
+      "founded_in": "2016",
+      "website": "https://unchained.com",
+  "countries": ["US"]
   },
 	{
-    "name": "Wasabi",
-    "countries": ["WW"],
-	"description": "Wasabi Wallet is a privacy-focused, open-source, non‑custodial Bitcoin desktop wallet launched by zkSNACKs. It routes all traffic through Tor and uses compact blockchain filters, keeping your IP and balance private. Its standout feature is built-in CoinJoin, a process that mixes your Bitcoin with others’ to make it harder for anyone to trace your transactions, enhancing privacy without relying on third parties.\\n\\nThe user interface is straightforward but functional, with a dashboard showing your balance, privacy progress, and transaction history, though it may feel technical for complete beginners. Setup involves writing down a 12-word seed phrase and an optional passphrase, which adds security but requires careful storage.\\n\\nWhat sets Wasabi apart is its strong focus on privacy through CoinJoin, which is seamlessly integrated and doesn’t require manual setup, making it accessible for newcomers. It also allows advanced users to connect to custom coordinators via platforms like Nostr, ensuring privacy even if default services are unavailable.\\n\\nWasabi is for people who want to own their Bitcoin without having to trust big companies. It hides your transactions by mixing them with others, runs silently in the background over Tor, and gives you full control—all on your own computer. Its goal is to make privacy easy and powerful, while building toward a future where you don’t rely on any single server.",
-	"custody_control": "Non-custodial",
-    "multisig_support": "Yes (via hardware wallets)",
-    "recovery_method": "12-word seed + optional passphrase",
-    "open_source": "Yes",
-    "website": "https://wasabiwallet.io",
-    "interface": "Desktop only",
-	"app_ratings": {
-  		"text": "No app available"
-	},
+"name": "Wasabi",
+    "type_of_platform": "Desktop wallet",
+    "supported_network": "Bitcoin",
     "features": {
       "WW": [
         { "text": "Enhanced privacy with CoinJoin", "status": "positive" },
@@ -784,6 +827,21 @@
         { "text": "Text", "status": "negative" },
         { "text": "Text", "status": "negative" }
       ]
-    }
+    },
+    "price": "Free",
+  "custody_control": "Non-custodial",
+    "recovery_method": "12-word seed + optional passphrase",
+    "open_source": "Yes",
+    "node_connect": "Yes (via hardware wallets)",
+  "user_experience": "0.0",
+    "interface": "Desktop only",
+	  "app_ratings": {
+  		"text": "No app available"
+	  },
+  "profile": "Balint Harmat, Adam Ficsor & Gergely Hajdu",
+	  "description": "Wasabi Wallet is a privacy-focused, open-source, non‑custodial Bitcoin desktop wallet launched by zkSNACKs. It routes all traffic through Tor and uses compact blockchain filters, keeping your IP and balance private. Its standout feature is built-in CoinJoin, a process that mixes your Bitcoin with others’ to make it harder for anyone to trace your transactions, enhancing privacy without relying on third parties.\\n\\nThe user interface is straightforward but functional, with a dashboard showing your balance, privacy progress, and transaction history, though it may feel technical for complete beginners. Setup involves writing down a 12-word seed phrase and an optional passphrase, which adds security but requires careful storage.\\n\\nWhat sets Wasabi apart is its strong focus on privacy through CoinJoin, which is seamlessly integrated and doesn’t require manual setup, making it accessible for newcomers. It also allows advanced users to connect to custom coordinators via platforms like Nostr, ensuring privacy even if default services are unavailable.\\n\\nWasabi is for people who want to own their Bitcoin without having to trust big companies. It hides your transactions by mixing them with others, runs silently in the background over Tor, and gives you full control—all on your own computer. Its goal is to make privacy easy and powerful, while building toward a future where you don’t rely on any single server.",
+    "founded_in": "2018",
+    "website": "https://wasabiwallet.io",
+  "countries": ["WW"]
   }
 ]

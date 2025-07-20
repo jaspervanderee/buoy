@@ -17,18 +17,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   let categoryTitle = urlParams.get("category") ?? "Compare Services";
 
 // ✅ Override "Search" category with correct section if matched
-if (categoryTitle === "Search") {
-  const serviceName = urlParams.get("services");
-  if (serviceName) {
-    const name = serviceName.toLowerCase();
-
- const categoryMap = {
+const categoryMap = {
   "Buy Bitcoin": ["strike", "river", "swan", "relai", "hodlhodl", "bitonic", "peach", "bull bitcoin", "pocket"],
   "Spend Bitcoin": ["breez", "aqua", "phoenix", "muun", "fold"],
   "Store it safely": ["bitkey", "sparrow", "wasabi", "anchorwatch", "unchained"],
   "Run my own node": ["umbrel", "mynode", "start9"],
   "Merchant Tools": ["btc pay", "opennode", "lightspark"]
 };
+
+if (categoryTitle === "Search") {
+  const serviceName = urlParams.get("services");
+  if (serviceName) {
+    const name = serviceName.toLowerCase();
 
     for (const [label, services] of Object.entries(categoryMap)) {
       if (services.includes(name)) {
@@ -67,6 +67,24 @@ try {
     if (servicesToCompare.length === 0) {
       document.getElementById("comparison-container").innerHTML = "<p>No matching services found.</p>";
       return;
+    }
+
+// NEW: For single service view, determine the category based on the service name for consistent feature ordering
+    if (isSingleServiceView && servicesToCompare.length === 1) {
+      const serviceName = servicesToCompare[0].name.toLowerCase();
+      let foundCategory = null;
+      for (const [label, services] of Object.entries(categoryMap)) {
+        if (services.includes(serviceName)) {
+          foundCategory = label;
+          break;
+        }
+      }
+      if (foundCategory) {
+        categoryTitle = foundCategory;
+      } else {
+        categoryTitle = "Service Details"; // Fallback for services not in any category
+      }
+      document.getElementById("category-title").textContent = categoryTitle;
     }
 
 const regionMappings = {
@@ -150,13 +168,13 @@ const categoryFeaturesMap = {
     "type_of_platform", "supported_network", "features", "custody_control", "kyc_required", "recovery_method", "open_source", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Store it safely": [
-    "type_of_platform", "supported_network", "features", "price", "custody_control", "multisig_support", "recovery_method", "open_source", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "supported_network", "features", "price", "custody_control", "recovery_method", "open_source", "node_connect", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Run my own node": [
-    "type_of_platform", "features", "custody_control", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "features", "price", "custody_control", "user_experience", "interface", "app_ratings", "support", "profile", "description", "founded_in", "website", "availability"
   ],
   "Merchant Tools": [
-    "type_of_platform", "features", "custody_control", "supported_network", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "supported_network", "features", "fees", "subscription_fees", "conversion_fees", "settlement_time", "compatibility", "pos_compatibility", "custody_control", "kyc_required",  "open_source", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ]
 };
 
@@ -183,16 +201,21 @@ function renderFeatures(service) {
     const comparisonContainer = document.getElementById("comparison-container");
     const features = [
   { key: "type_of_platform", label: "Platform" },
+  { key: "supported_network", label: "Supported Networks" },
   { key: "features", label: "Features", render: renderFeatures },
   { key: "price", label: "Price" },
-  { key: "fees", label: "Fees", render: renderFees },
+  { key: "fees", label: { main: "Fees", sub: "Processing fees" }, render: renderFees },
+  { key: "subscription_fees", label: "Subscription Fees" },
+  { key: "conversion_fees", label: "Conversion Fees" },
+  { key: "settlement_time", label: "Settlement Time" },
   { key: "dca", label: "DCA (Dollar Cost Averaging)" },
   { key: "payment_methods", label: "Payment Methods", render: (val) => val?.join(", ") || "Not available" },
-  { key: "supported_network", label: "Supported Networks" },
+  { key: "compatibility", label: "Integration & Compatibility" },
+  { key: "pos_compatibility", label: "POS integration" },
   { key: "custody_control", label: "Custody & Control" },
   { key: "kyc_required", label: "KYC Required" },
   { key: "recovery_method", label: "Recovery Method" },
-  { key: "multisig_support", label: "Multisig Support" },
+  { key: "node_connect", label: "Does it connect to your own node?" },
   { key: "open_source", label: "Open Source" },
   { key: "user_experience", label: "User Experience", render: (val) => val ? `<span class="ux-rating">${val}</span><span class="ux-outof"> out of 5</span>` : "N/A" },
   { key: "interface",
@@ -225,6 +248,7 @@ function renderFeatures(service) {
     }
   },
   { key: "app_ratings", label: "App Ratings", render: renderAppRatings },
+  { key: "support", label: "Support" },
   { key: "profile", label: { main: "Profile", sub: "Founder(s)" },
     render: (val) => {
       if (!val) return "N/A";
@@ -238,8 +262,7 @@ function renderFeatures(service) {
   { key: "availability", label: "Availability", render: getAvailabilityText },
 ];
 
-					
- document.getElementById("logo-row-container").innerHTML = `
+document.getElementById("logo-row-container").innerHTML = `
   ${servicesToCompare.map(service => `
     <div class="feature-value logo-cell">
       <a href="${service.website}" target="_blank" class="service-link">
@@ -273,7 +296,7 @@ const featureRows = await Promise.all(
           </div>
         `;
       } else {
-        labelHtml = `<div class="feature-label${feature.key === 'features' || feature.key === 'supported_network' || feature.key === 'price' || feature.key === 'kyc_required' || feature.key === 'recovery_method' || feature.key === 'open_source' || feature.key === 'dca' || feature.key === 'interface' || feature.key === 'app_ratings' || feature.key === 'founded_in' || feature.key === 'website' || feature.key === 'description' ? ' sublabel' : ''}">${feature.label}</div>`;
+        labelHtml = `<div class="feature-label${feature.key === 'features' || feature.key === 'supported_network' || feature.key === 'price' || feature.key === 'subscription_fees' || feature.key === 'conversion_fees' || feature.key === 'settlement_time' || feature.key === 'kyc_required' || feature.key === 'recovery_method' || feature.key === 'open_source' || feature.key === 'node_connect' || feature.key === 'dca' || feature.key === 'pos_compatibility' || feature.key === 'interface' || feature.key === 'app_ratings' || feature.key === 'support' || feature.key === 'founded_in' || feature.key === 'website' || feature.key === 'description' ? ' sublabel' : ''}">${feature.label}</div>`;
       }
       return hasVisibleContent ? `
         <div class="feature-row ${feature.key}">
@@ -297,7 +320,7 @@ initializeCollapsibleDescriptions();
 
 document.querySelectorAll(".card").forEach(card => card.style.display = "none");
 
-	  
+	 
 
     function updateCardVisibility() {
       let isSmallScreen = window.innerWidth < 900; // Hide third card below 900px
@@ -421,7 +444,7 @@ function getCountryName(code) {
     };
     return countryNames[code.toUpperCase()] || code.toUpperCase();
 }
-
+// Complete renderFees function
 function renderFees(fees) {
   if (!fees) return "N/A";
 
@@ -458,7 +481,7 @@ function renderFees(fees) {
   return `<div class="fee-structure">Not available</div>`;
 }
 
-// Add this new function for rendering collapsible descriptions
+// renderCollapsibleDescription function
 function renderCollapsibleDescription(description) {
   if (!description) return "";
   
@@ -491,7 +514,7 @@ function renderCollapsibleDescription(description) {
   `;
 }
 
-// Add this new function
+// initializeCollapsibleDescriptions function
 function initializeCollapsibleDescriptions() {
   document.querySelectorAll('.expand-btn').forEach(button => {
     button.addEventListener('click', function() {
@@ -522,6 +545,7 @@ function initializeCollapsibleDescriptions() {
   });
 }
 
+// Rating modal logic
 window.addEventListener("load", () => {
     const modal = document.getElementById("rating-modal");
 
@@ -583,6 +607,7 @@ window.addEventListener("load", () => {
 });
 
 
+// equalizeFeatureRowHeights function
 function equalizeFeatureRowHeights() {
     const cards = document.querySelectorAll("#comparison-container .card");
 
