@@ -44,6 +44,7 @@
     "features": {
       "WW": [
         { "text": "Bitcoin, Lightning & Liquid wallet", "status": "positive" },
+        { "text": "Privacy benefits with confidential transactions on Liquid", "status": "positive" },
         { "text": "Built-in swap between on-chain and Liquid", "status": "positive" },
         { "text": "Higher Lightning fees", "status": "negative" },
         { "text": "Relies on Boltz for Lightning swaps", "status": "negative" }
@@ -137,7 +138,7 @@
 	{
 "name": "Breez",
   "type_of_platform": "Hot Wallet",
-    "supported_network": "Lightning only",
+    "supported_network": "Bitcoin + Lightning",
     "features": {
       "WW": [
         { "text": "Self-custodial", "status": "positive" },
@@ -145,7 +146,7 @@
         { "text": "Point-of-Sale mode for merchants", "status": "positive" },
         { "text": "In beta", "status": "negative" },
         { "text": "Cloud backup required for recovery", "status": "negative" },
-        { "text": "No on-chain receiving", "status": "negative" }
+        { "text": "Not ideal for micro payments (<100 sats)", "status": "negative" }
       ]
     },
   "custody_control": "Non-custodial: you hold your own keys",
@@ -156,10 +157,10 @@
      "interface": "Mobile only",
      "app_ratings": {
   		"ios": 3.7,
-  		"android": "?"
+  		"android": "N/A"
 	},
   "profile": "Roy Sheinfeld",
-	"description": "Breez (Misty Breez) focuses on making Lightning Network payments fast and easy. It stands out with its non-custodial mobile app, letting users control their Bitcoin, and a unique Point-of-Sale mode for merchants to accept instant payments. It offers sending, receiving, and storing Bitcoin via Lightning, plus a podcast player to support creators with Bitcoin tips.\\n\\nThe app has a simple interface and no-setup payments, though some users report issues with cloud backups and wallet restoration.\\n\\nBreez’s mission is to drive Bitcoin adoption for everyday use, with a vision to expand Lightning payments across apps using its Breez SDK, a free developer tool. Beginners love its ease and merchant tools, but some find technical issues frustrating.",
+	"description": "Breez (Misty Breez) focuses on making Lightning Network payments fast and easy. It stands out with its non-custodial mobile app, letting users control their Bitcoin, and a unique Point-of-Sale mode for merchants to accept instant payments. It offers sending, receiving, and storing Bitcoin via Lightning, plus a podcast player to support creators with Bitcoin tips.\\n\\nThe app has a simple interface and no-setup payments, though some users report issues with cloud backups and wallet restoration.\\n\\nBreez’s mission is to drive Bitcoin adoption for everyday use, with a vision to expand Lightning payments across apps using its Breez SDK, a free developer tool. The app currently suits everyday payments rather than very small transactions. Beginners love its ease and merchant tools, but some find technical issues frustrating.",
 	"founded_in": "2018",
   "website": "https://breez.technology",
   
@@ -175,8 +176,7 @@
           { "text": "0% fees & no third-party", "status": "positive" },
           { "text": "Lightning Network support", "status": "positive" },
           { "text": "Technical setup", "status": "negative" },
-          { "text": "Self-hosted maintenance", "status": "negative" },
-          { "text": "Steeper learning curve", "status": "negative" }
+          { "text": "Self-hosted maintenance", "status": "negative" }
         ]
       },
       "fees": {
@@ -215,7 +215,7 @@
       ]
     },
     "fees": {
-		  "intro": "based on total trading volume",
+		  "intro": "Based on monthly trading volume",
 		  "tiers": [
 			{ "range": "up to $100,000", "fee": "around 2%" },
 			{ "range": "$100,000 and up", "fee": "discount" }
@@ -243,24 +243,21 @@
   },
 	{
   "name": "Fold",
-      "type_of_platform": "text",
-          "supported_network": "Visa, Giftcards",
+      "type_of_platform": "Bitcoin rewards card",
+          "supported_network": "Visa Debit Card, Credit Card, Giftcards",
           "features": {
     "WW": [
       { "text": "Bitcoin rewards on everyday spending", "status": "positive" },
-      { "text": "Text", "status": "positive" },
-      { "text": "Text", "status": "positive" },
+      { "text": "Seamless integration of Bitcoin into traditional finance", "status": "positive" },
       { "text": "Most features US only", "status": "negative" },
-      { "text": "Text", "status": "negative" },
-      { "text": "Text", "status": "negative" }
+      { "text": "Custodial until withdrawn", "status": "negative" },
+      { "text": "High fees possible on some services", "status": "negative" }
     ],
     "US": [
       { "text": "Live on Bitcoin standard", "status": "positive" },
-      { "text": "Text", "status": "positive" },
-      { "text": "Text", "status": "positive" },
+      { "text": "2% unlimited Bitcoin rewards on credit card", "status": "positive" },
       { "text": "Custodial", "status": "negative" },
-      { "text": "Text", "status": "negative" },
-      { "text": "Text", "status": "negative" }
+      { "text": "KYC required", "status": "negative" }
     ]
   },
     "custody_control": "Custodial (until withdrawn)",
@@ -316,23 +313,27 @@
        "features": {
       "WW": [
         { "text": "Enterprise-grade Lightning solutions", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Possible complaince uncertainty", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Instant, low-cost global payments and fiat interoperability", "status": "positive" },
+        { "text": "Compliance-ready tools for regulated entities", "status": "positive" },
+        { "text": "Enterprise-focused, may require custom setup for small users", "status": "negative" },
+        { "text": "Managed nodes introduce some custodial elements", "status": "negative" }
       ]
     },
     "fees": {
-      "intro": "1% fees"},
-      "subscription_fees": "1%",
-      "conversion_fees": "1%",
-      "settlement_time": "1-2 days",
-    "compatibility": "text",
-      "pos_compatibility": "text",
-    "custody_control": "Custodial (managed Lightning nodes)",
+      "intro": "Based on monthly trading volume",
+      "tiers": [
+    { "range": "Starter ($300,000)", "fee": "0.50%" },
+    { "range": "Enterprise ($3,000,000 - $15,000,000)", "fee": "0.15% - 0.30%" }
+               ]
+            },
+      "subscription_fees": "Starter: $0<br>Enterprise: $9,000 - $15,000/month",
+      "conversion_fees": "Included in transaction fees",
+      "settlement_time": "Instant via Lightning",
+    "compatibility": "SDKs and APIs for wallets, exchanges, digital banks; Integrates with fiat rails (e.g., RTP) and Lightning Network",
+      "pos_compatibility": "Yes",
+    "custody_control": "Flexible: Supports self-custodial wallets via Spark; Managed nodes for enterprises",
       "kyc_required": "Yes",
-      "open_source": "Yes",
+      "open_source": "Yes (Spark protocol and SDKs)",
     "user_experience": "0.0",
     "profile": "David Marcus",
 	    "description": "Lightspark is a payments infrastructure company founded by David Marcus (formerly of PayPal, Meta, and Diem) in 2022. They aim to build what they call the “Money Grid,” a global, open payment network using Bitcoin as a neutral settlement layer and leveraging Lightning for high-speed transfers.\\n\\nTheir target audience includes enterprises—digital banks, fintechs, wallets, exchanges—that need to move money across currencies and jurisdictions instantly and cheaply, as well as developers building Bitcoin-native payment applications or self-custodial wallets that need scalable infrastructure.\\n\\nWhat sets Lightspark apart is their end-to-end product integration, combining seamless liquidity management, intelligent routing, compliance-ready infrastructure, and human-friendly Universal Money Address (UMA) tech. This abstraction lets banks, wallets, exchanges, and businesses effortlessly send and receive fiat or crypto globally without having to manage Lightning channels, cross-border FX, or complex on-chain details. These tools have already seen traction with big partners.\\n\\nLooking forward, Lightspark’s vision is to scale the Money Grid globally—connecting all real-time payment systems and making Bitcoin native rails for everything from everyday consumer transfers to B2B fiat-fiat flows. Spark aims to resolve key Lightning limitations like self-custody economic scalability and lacks native token support. By building Spark open-source and fully backward compatible with Lightning, they hope to decentralize stablecoin issuance on Bitcoin and finally realize high-velocity, global Bitcoin-based payment settlement.",
@@ -371,15 +372,14 @@
   },
   {
 "name": "myNode",
-    "type_of_platform": "Software and / or hardware",
+    "type_of_platform": "Home server as software and / or hardware",
        "features": {
       "WW": [
         { "text": "Full-featured node with many apps", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
+        { "text": "Supports Raspberry Pi", "status": "positive" },
         { "text": "Premium license for some features", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "App store not as expansive", "status": "negative" },
+        { "text": "Non-commercial license", "status": "negative" }
       ]
     },
         "price": "Free software<br>$79 for premium software<br>$399 Model One hardware device<br>$599 Model Two hardware device",
@@ -399,10 +399,9 @@
        "features": {
         "WW": [
         { "text": "Turnkey payment processor", "status": "positive" },
-        { "text": "text", "status": "positive" },
-        { "text": "text", "status": "positive" },
+        { "text": "Fraud protection", "status": "positive" },
         { "text": "Custodial until funds are withdrawn", "status": "negative" },
-        { "text": "Limited payment methods", "status": "negative" },
+        { "text": "Fees can add up for high-volume businesses", "status": "negative" },
         { "text": "No self-custody", "status": "negative" }
         ]
         },
@@ -415,7 +414,7 @@
       "pos_compatibility": "text",
     "custody_control": "Custodial (until withdrawal or automatic settlement)",
       "kyc_required": "Yes",
-      "open_source": "Yes",
+      "open_source": "No",
     "user_experience": "0.0",
     "profile": "Joao Almeida & Afnan Rahman",
       "description": "OpenNode is a Bitcoin-first payment processor that empowers businesses to accept and send Bitcoin—either on-chain or via Lightning—using simple plugins, hosted checkouts, or its developer-friendly API. Organisations that want a turnkey, compliant solution—especially mid-sized to large enterprises—can onboard easily with KYC and achieve global scale without building complex node infrastructure.\\n\\nIt offers instant, low-cost microtransactions with a focus on liquidity management, channel operations, and protocol support. For merchants, this means accessing Bitcoin payments both instantly and economically, alongside automatic settlement options in fiat or BTC. By abstracting away technical complexities like node handling, liquidity, and channel balance, OpenNode allows businesses to plug-and-play and scale efficiently.\\n\\nIt holds US regulatory licenses, manages KYC requirements, and maintains automated fiat conversions and payouts. This makes it ideal for businesses—especially blue-chip and enterprise-level—that require solid legal and financial backstops.\\n\\nTheir long-term vision is to see global businesses and platforms integrate Bitcoin payments as seamlessly as credit cards—secure, censorship-resistant, and frictionless—while pushing forward broader adoption of Bitcoin as a unit of exchange across borders and cultures.",
@@ -459,7 +458,7 @@
 	{
 "name": "Phoenix",
   "type_of_platform":"Hot Wallet",
-    "supported_network": "Lightning only",
+    "supported_network": "Lightning only, but you can receive and send on-chain using swaps",
     "features": {
       "WW": [
         { "text": "Seamless Lightning experience", "status": "positive" },
@@ -583,7 +582,7 @@
       ]
     },
   "fees": {
-    "intro": "based on monthly trading volume",
+    "intro": "Based on monthly trading volume",
     "tiers": [
     { "range": "up to $1,000,000", "fee": "1%" },
     { "range": "$1,000,000 - $5,000,000", "fee": "0.70%" },
@@ -614,18 +613,18 @@
     "features": {
       "WW": [
         { "text": "Full control", "status": "positive" },
-        { "text": "UTXO management", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Learning curve", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Detailed UTXO/coin control", "status": "positive" },
+        { "text": "Integration with your own node", "status": "positive" },
+        { "text": "Steeper learning curve", "status": "negative" },
+        { "text": "Desktop only", "status": "negative" },
+        { "text": "No Lightning support", "status": "negative" }
       ]
     },
     "price": "Free",
   "custody_control": "Non-custodial",
     "recovery_method": "Manual seed backup",
     "open_source": "Yes",
-    "node_connect": "Custom multisig setups",
+    "node_connect": "Yes – Bitcoin Core or Electrum server (Tor supported)",
   "user_experience": "0.0",
     "interface": "Desktop only",
 	"app_ratings": {
@@ -639,15 +638,13 @@
   },
   {
 "name": "Start9",
-    "type_of_platform": "Software and / or hardware",
+    "type_of_platform": "Home server as software and / or hardware",
         "features": {
           "WW": [
         { "text": "Plug-and-play home server", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
+        { "text": "Excellent app marketplace", "status": "positive" },
         { "text": "Hardware can be costly", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Source-available license (not fully open-source)", "status": "negative" }
          ]
          },
         "price": "$619: Server One<br>$899: Server Pure",
@@ -664,7 +661,7 @@
 "name": "Strike",
   "type_of_platform": "Exchange",
 	"fees": {
-		"intro": "based on monthly trading volume",
+		"intro": "Based on monthly trading volume",
 		"tiers": [
 			{ "range": "up to $250", "fee": "0.99%" },
 			{ "range": "$250 - $2,000", "fee": "0.95%" },
@@ -752,15 +749,14 @@
   },
   {
 "name": "Umbrel",
-    "type_of_platform": "Software and / or hardware",
+    "type_of_platform": "Home server as software and / or hardware",
         "features": {
       "WW": [
         { "text": "Simple self-hosted node OS", "status": "positive" },
-        { "text": "Umbrel device not required to run Umbrel software", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Polished macOS-style interface", "status": "positive" },
+        { "text": "Remote access via Tor or Tailscale VPN", "status": "positive" },
+        { "text": "Source-available license (not fully open-source)", "status": "negative" },
+        { "text": "No HTTPS by default", "status": "negative" }
       ]
       },
         "price": "$299 for hardware device",
@@ -775,30 +771,29 @@
   },
 	{
 "name": "Unchained",
-  "type_of_platform": "text",
-      "supported_network": "text",
+  "type_of_platform": "Collaborative custody",
+      "supported_network": "Bitcoin",
       "features": {
 	  "WW": [
         { "text": "Recovery-friendly", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
+        { "text": "Concierge & inheritance support", "status": "positive" },
+        { "text": "Works with hardware wallets", "status": "positive" },
         { "text": "US only", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Balances visible to company", "status": "negative" },
+        { "text": "KYC required", "status": "negative" }
       ],
       "US": [
         { "text": "Recovery-friendly", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "Text", "status": "positive" },
-        { "text": "KYC required", "status": "negative" },
-        { "text": "Text", "status": "negative" },
-        { "text": "Text", "status": "negative" }
+        { "text": "Concierge & inheritance support", "status": "positive" },
+        { "text": "Works with hardware wallets", "status": "positive" },
+        { "text": "Balances visible to company", "status": "negative" },
+        { "text": "KYC required", "status": "negative" }
       ]
     },
   "custody_control": "Collaborative custody (2-of-3 multisig)",
-      "recovery_method": "text",
-      "open_source": "text",
-      "node_connect": "text",
+      "recovery_method": "Unchained can co-sign if a key is lost",
+      "open_source": "Partial (Caravan OSS)",
+      "node_connect": "No",
   "user_experience": "0.0",
      "interface": "Mobile & Desktop",
 	   "app_ratings": {
