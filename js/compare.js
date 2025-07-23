@@ -217,7 +217,19 @@ function renderFeatures(service) {
   { key: "recovery_method", label: "Recovery Method" },
   { key: "node_connect", label: "Does it connect to your own node?" },
   { key: "open_source", label: "Open Source" },
-  { key: "user_experience", label: "User Experience", render: (val) => val ? `<span class="ux-rating">${val}</span><span class="ux-outof"> out of 5</span>` : "N/A" },
+  { key: "user_experience", label: "User Experience", render: (service) => {
+    const localRating = localStorage.getItem(`rating_${service.name.toLowerCase()}`);
+    let rating = localRating ? parseFloat(localRating) : parseFloat(service.user_experience);
+    if (isNaN(rating)) return "N/A";
+    return `
+      <div class="ux-container">
+        <div class="ux-rating-wrapper">
+          <span class="ux-rating">${rating.toFixed(1)}</span><span class="ux-outof"> out of 5</span>
+        </div>
+        <a href="#" class="review-link" data-service="${service.name.toLowerCase()}">rate</a>
+      </div>
+    `; 
+  } },
   { key: "interface",
     label: "Interface",
     render: (val) => {
@@ -280,10 +292,10 @@ const featureRows = await Promise.all(
     .filter(Boolean)
     .map(async (feature) => {
       const values = await Promise.all(servicesToCompare.map(async (service) => {
-        const val = (feature.key === "availability" || feature.key === "features") ? service : service[feature.key];
+        const val = (feature.key === "availability" || feature.key === "features" || feature.key === "user_experience") ? service : service[feature.key];
         const content = (val === undefined || val === null || val === "") ? "" :
        (feature.render ? await feature.render(val) : val);
-        return `<div class="feature-value">${content}</div>`;
+        return `<div class="feature-value" data-service="${service.name.toLowerCase()}">${content}</div>`;
       }));
       // ✅ Hide feature row if all values are empty
       const hasVisibleContent = values.some(v => !v.includes(`feature-value"></div>`));
@@ -317,6 +329,123 @@ document.getElementById("comparison-table-wrapper").innerHTML = `
 
 // Initialize collapsible descriptions
 initializeCollapsibleDescriptions();
+
+
+// Rating modal logic (improved version)
+// Rating modal logic (updated for backend)
+const modal = document.getElementById("rating-modal");
+
+if (!modal) {
+    alert("Error: Rating modal not found in your HTML. Add <div id='rating-modal'>...</div> to your page.");
+    return;
+}
+
+const stars = modal.querySelectorAll(".star-rating span");
+const closeBtn = modal.querySelector(".close-btn");
+let currentService = null;
+let selectedRating = 0;
+
+// Backend URL (your DigitalOcean Droplet IP)
+const backendUrl = 'http://209.38.105.127';
+
+// Add click event to all "Review" links
+document.querySelectorAll(".review-link").forEach(link => {
+    link.addEventListener("click", (e) => {
+        e.preventDefault();
+        currentService = link.dataset.service;
+        const currentRating = parseInt(localStorage.getItem(`rating_${currentService}`)) || 0;
+        selectedRating = currentRating;
+        highlightStars(currentRating); // Prefill stars
+        modal.style.display = "flex";
+        modal.classList.add("show");
+    });
+});
+
+// Star rating logic (simplified)
+stars.forEach((star, index) => {
+    star.addEventListener("mouseover", () => highlightStars(index + 1)); // Hover highlight
+    star.addEventListener("mouseout", () => highlightStars(selectedRating)); // Reset on mouse out
+    star.addEventListener("click", async () => {
+        selectedRating = index + 1; // Save rating (1-5)
+        highlightStars(selectedRating);
+        await submitRating(currentService, selectedRating); // Send to backend
+        modal.classList.remove("show"); // Close modal
+        setTimeout(() => { modal.style.display = "none"; }, 300); // Fade out
+    });
+});
+
+// Function to highlight stars up to a certain number
+function highlightStars(rating) {
+    stars.forEach((star, i) => {
+        star.style.color = (i < rating) ? "gold" : "lightgray";
+    });
+}
+
+// Function to submit rating to backend
+async function submitRating(service, rating) {
+    try {
+        const response = await fetch(`${backendUrl}/rate.php`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ service, rating })
+        });
+        if (!response.ok) throw new Error('Submission failed');
+        const data = await response.json();
+        alert(data.message); // Feedback
+
+        // Refresh displayed average
+        await loadRatings([service]);
+    } catch (error) {
+        alert(`Error submitting rating: ${error.message}. Using local fallback.`);
+        localStorage.setItem(`rating_${service}`, rating);
+        document.querySelectorAll(`.feature-value[data-service="${service}"] .ux-rating`).forEach(el => {
+            el.textContent = rating.toFixed(1);
+        });
+    }
+}
+
+// Function to load and display averages from backend
+async function loadRatings(services) {
+    for (const service of services) {
+        try {
+            const response = await fetch(`${backendUrl}/rating.php?service=${service}`);
+            if (!response.ok) throw new Error('Fetch failed');
+            const data = await response.json();
+            const avg = data.average || 0;
+            document.querySelectorAll(`.feature-value[data-service="${service}"] .ux-rating`).forEach(el => {
+                el.textContent = parseFloat(avg).toFixed(1);
+            });
+        } catch (error) {
+            console.error(`Error loading rating for ${service}: ${error}`);
+            // Fallback to localStorage or services.json
+            const local = localStorage.getItem(`rating_${service}`);
+            const fallback = local ? parseFloat(local).toFixed(1) : '0.0';
+            document.querySelectorAll(`.feature-value[data-service="${service}"] .ux-rating`).forEach(el => {
+                el.textContent = fallback;
+            });
+        }
+    }
+}
+
+// Load initial averages after table render (add this line right after document.getElementById("comparison-table-wrapper").innerHTML = ... in your code)
+const allServices = servicesToCompare.map(s => s.name.toLowerCase());
+loadRatings(allServices);
+
+// Close button
+closeBtn.addEventListener("click", () => {
+    modal.classList.remove("show");
+    setTimeout(() => { modal.style.display = "none"; }, 300);
+});
+
+// Close if clicking outside modal
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        modal.classList.remove("show");
+        setTimeout(() => { modal.style.display = "none"; }, 300);
+    }
+});
+
+
 
 document.querySelectorAll(".card").forEach(card => card.style.display = "none");
 
@@ -545,66 +674,8 @@ function initializeCollapsibleDescriptions() {
   });
 }
 
-// Rating modal logic
-window.addEventListener("load", () => {
-    const modal = document.getElementById("rating-modal");
 
-    if (!modal) {
-        console.error("❌ Error: Rating modal not found in DOM.");
-        return;
-    }
 
-    const stars = modal.querySelectorAll(".star-rating span");
-    const closeBtn = modal.querySelector(".close-btn");
-    let currentService = null;
-
-    document.querySelectorAll(".review-link").forEach(link => {
-        link.style.cursor = "pointer";
-        link.addEventListener("click", (e) => {
-            e.stopPropagation();
-            currentService = link.dataset.service;
-
-            console.log("✅ Opening modal for service:", currentService);
-            modal.classList.add("show");
-            modal.style.display = "flex"; // ✅ Ensure it becomes visible
-            modal.style.opacity = "1";  // ✅ Ensure full visibility
-        });
-    });
-
-    stars.forEach(star => {
-        star.addEventListener("click", (e) => {
-            const rating = e.target.dataset.value;
-            localStorage.setItem(`rating_${currentService}`, rating);
-            const ratingDisplay = document.querySelector(`.rating-display[data-service="${currentService}"]`);
-            ratingDisplay.innerHTML = `<span class="rating-large">${rating}</span> out of 5`;
-            modal.classList.remove("show");
-            setTimeout(() => { 
-                modal.style.display = "none"; 
-                modal.style.opacity = "0"; 
-            }, 300);
-        });
-    });
-
-    closeBtn.addEventListener("click", () => {
-        console.log("❌ Closing modal...");
-        modal.classList.remove("show");
-        setTimeout(() => { 
-            modal.style.display = "none"; 
-            modal.style.opacity = "0"; 
-        }, 300);
-    });
-
-    modal.addEventListener("click", (e) => {
-        if (e.target === modal) {
-            console.log("❌ Clicked outside, closing modal...");
-            modal.classList.remove("show");
-            setTimeout(() => { 
-                modal.style.display = "none"; 
-                modal.style.opacity = "0"; 
-            }, 300);
-        }
-    });
-});
 
 
 // equalizeFeatureRowHeights function

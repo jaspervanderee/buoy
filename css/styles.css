@@ -1088,9 +1088,6 @@ p, li, a {
 }
 
 
-
-
-
 .star-rating span {
   font-size: 2rem;
   cursor: pointer;
@@ -1119,22 +1116,24 @@ p, li, a {
     line-height: 1.2;
 }
 
-.rating-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px; /* Reduce space between rating and "User Review" */
-}
 
 .review-link {
-    font-size: 1em; /* Match other text */
-    color: blue;
-    cursor: pointer;
-    text-decoration: underline;
-    text-align: center;
+  display: block;
+  margin-top: 4px; /* Small margin for spacing */
+  font-size: 0.9em;
+  color: #000000; /* Black link color */
+  text-decoration: underline;
 }
+
 .review-link:hover {
-    color: darkblue;
+  color: #333333; /* Darker shade for hover */
+}
+
+/* Media query for larger screens if needed */
+@media (min-width: 768px) {
+  .review-link {
+    font-size: 1em;
+  }
 }
 
 /* END Rating */
@@ -1581,6 +1580,13 @@ p, li, a {
     margin: 0 auto 80px;
   }
 }
+
+
+
+
+
+
+
 
 
 
