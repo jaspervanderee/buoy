@@ -141,17 +141,10 @@ header .container {
 /* Menu list items */
 .menu-section ul li {
   margin: 10px 0; /* Space between items */
-  background-color: #121212; /* Dark gray background for items */
-  padding: 15px;
-  border-radius: 10px; /* Rounded corners */
   display: flex; /* Align icon and text */
   align-items: center; /* Center vertically */
   gap: 15px; /* Space between icon and text */
   transition: background-color 0.3s ease;
-}
-
-.menu-section ul li:hover {
-  background-color: #1e1e1e; /* Slightly lighter gray on hover */
 }
 
 /* Links inside menu items */
@@ -162,6 +155,15 @@ header .container {
   display: flex; /* Align icon and text */
   align-items: center; /* Center icon and text */
   gap: 10px; /* Space between icon and text */
+  background-color: #121212; /* Dark gray background for items */
+  padding: 15px;
+  border-radius: 10px; /* Rounded corners */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.menu-section ul li a:hover {
+  background-color: #1e1e1e; /* Slightly lighter gray on hover */
 }
 
 /* Icons inside menu items */
@@ -353,8 +355,6 @@ header .container {
 
 .no-scroll {
   overflow: hidden; /* Disable scrolling */
-  position: fixed; /* Prevent any shifting due to scrollbars */
-  width: 100%; /* Ensure the layout doesn't shrink */
   touch-action: none; /* Disable touch scrolling */
   -webkit-overflow-scrolling: none; /* Disable momentum scrolling on iOS */
 }
