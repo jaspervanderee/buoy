@@ -580,6 +580,19 @@ document.querySelectorAll('.action-button').forEach(button => {
 });
 
 
+// Feedback Bubble Creation
+document.addEventListener('DOMContentLoaded', function() {
+  const bubble = document.createElement('div');
+  bubble.className = 'feedback-bubble';
+  bubble.setAttribute('data-feedback-fish', '');
+
+  const img = document.createElement('img');
+  img.src = 'images/feedback.svg';
+  img.alt = 'Give Feedback';
+
+  bubble.appendChild(img);
+  document.body.appendChild(bubble);
+});
 
 
 
@@ -670,6 +683,15 @@ if (mainSearchInput && mainSearchBtn && mainSearchSuggestions) {
     }
   });
 }
+
+
+
+
+
+
+
+
+
 
 
 
