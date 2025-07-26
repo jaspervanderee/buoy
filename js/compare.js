@@ -226,7 +226,9 @@ function renderFeatures(service) {
         <div class="ux-rating-wrapper">
           <span class="ux-rating">${rating.toFixed(1)}</span><span class="ux-outof"> out of 5</span>
         </div>
-        <a href="#" class="review-link" data-service="${service.name.toLowerCase()}">rate</a>
+        <a href="#" class="review-link" data-service="${service.name.toLowerCase()}">
+          rate <span class="rating-count">(0)</span>
+        </a>
       </div>
     `; 
   } },
@@ -346,7 +348,7 @@ let currentService = null;
 let selectedRating = 0;
 
 // Backend URL (your DigitalOcean Droplet IP)
-const backendUrl = 'http://209.38.105.127';
+const backendUrl = 'https://api.buoybitcoin.com';
 
 // Add click event to all "Review" links
 document.querySelectorAll(".review-link").forEach(link => {
@@ -383,25 +385,31 @@ function highlightStars(rating) {
 
 // Function to submit rating to backend
 async function submitRating(service, rating) {
-    try {
-        const response = await fetch(`${backendUrl}/rate.php`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ service, rating })
-        });
-        if (!response.ok) throw new Error('Submission failed');
-        const data = await response.json();
-        alert(data.message); // Feedback
+  try {
+      const response = await fetch(`${backendUrl}/rate.php`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ service, rating })
+      });
+      if (response.status === 409) { // Duplicate rating
+          const data = await response.json();
+          alert(`Error: ${data.error}`); // Shows "You have already rated this service"
+          return; // Don't refresh or fallback
+      }
+      if (!response.ok) {
+          throw new Error('Submission failed');
+      }
+      const data = await response.json();
+      alert(data.message); // "Rating saved!"
 
-        // Refresh displayed average
-        await loadRatings([service]);
-    } catch (error) {
-        alert(`Error submitting rating: ${error.message}. Using local fallback.`);
-        localStorage.setItem(`rating_${service}`, rating);
-        document.querySelectorAll(`.feature-value[data-service="${service}"] .ux-rating`).forEach(el => {
-            el.textContent = rating.toFixed(1);
-        });
-    }
+      await loadRatings([service]);
+  } catch (error) {
+      alert(`Error submitting rating: ${error.message}. Using local fallback.`);
+      localStorage.setItem(`rating_${service}`, rating);
+      document.querySelectorAll(`.feature-value[data-service="${service}"] .ux-rating`).forEach(el => {
+          el.textContent = rating.toFixed(1);
+      });
+  }
 }
 
 // Function to load and display averages from backend
@@ -412,8 +420,12 @@ async function loadRatings(services) {
             if (!response.ok) throw new Error('Fetch failed');
             const data = await response.json();
             const avg = data.average || 0;
+            const count = data.count || 0;
             document.querySelectorAll(`.feature-value[data-service="${service}"] .ux-rating`).forEach(el => {
                 el.textContent = parseFloat(avg).toFixed(1);
+            });
+            document.querySelectorAll(`.feature-value[data-service="${service}"] .rating-count`).forEach(el => {
+                el.textContent = `(${count})`;
             });
         } catch (error) {
             console.error(`Error loading rating for ${service}: ${error}`);
@@ -422,6 +434,9 @@ async function loadRatings(services) {
             const fallback = local ? parseFloat(local).toFixed(1) : '0.0';
             document.querySelectorAll(`.feature-value[data-service="${service}"] .ux-rating`).forEach(el => {
                 el.textContent = fallback;
+            });
+            document.querySelectorAll(`.feature-value[data-service="${service}"] .rating-count`).forEach(el => {
+                el.textContent = '(0)';
             });
         }
     }
