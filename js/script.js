@@ -76,6 +76,8 @@ function addSelected(serviceName, searchType) {
   if (selected.length >= max) {
     if (window.innerWidth < 768) {
       alert('On mobile, you can compare up to 2 services');
+    } else {
+      alert('You can compare up to 3 services');
     }
     return;
   }
@@ -123,7 +125,8 @@ function updateSelectedUI(searchType) {
     <div class="selected-chip">${s}<span class="remove">×</span></div>
   `).join('');
   container.querySelectorAll('.remove').forEach(el => {
-    el.addEventListener('click', () => {
+    el.addEventListener('click', (event) => {
+      event.stopPropagation();
       const chip = el.parentElement;
       const name = chip.textContent.replace('×', '').trim();
       removeSelected(name, searchType);
@@ -522,8 +525,13 @@ suggestionsBox.addEventListener("click", (e) => {
   const serviceName = item.querySelector(".suggestion-name").textContent;
   const circle = item.querySelector('.select-circle');
   if (e.target.closest('.select-circle')) {
-    circle.classList.add('selected');
-    addSelected(serviceName, 'menu');
+    if (circle.classList.contains('selected')) {
+      circle.classList.remove('selected');
+      removeSelected(serviceName, 'menu');
+    } else {
+      circle.classList.add('selected');
+      addSelected(serviceName, 'menu');
+    }
     searchInput.value = '';
     setTimeout(() => { suggestionsBox.style.display = 'none'; }, 300);
   } else {

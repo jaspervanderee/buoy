@@ -269,14 +269,15 @@ header .container {
 /* Search bar container */
 .search-bar {
   display: flex;
+  flex-direction: column;
   width: 100%; /* Match width of menu content */
   gap: 10px; /* Space between input and button */
-  margin-bottom: 20px; /* Space below the search bar */
+  margin-bottom: 5px; /* Space below the search bar */
 }
 
 /* Search input styling */
 .search-bar input {
-  flex: 1; /* Take up available width */
+  width: 100%;
   padding: 10px 15px;
   border: none;
   border-radius: 8px; /* Rounded corners */
@@ -284,6 +285,7 @@ header .container {
   background-color: #121212; /* Match item background */
   color: white; /* White text */
   outline: none; /* Remove default outline */
+  box-sizing: border-box; /* Ensure padding is included in width */
 }
 
 /* Placeholder color */
@@ -321,22 +323,6 @@ header .container {
   background: #1e1e1e;
 }
 
-/* Search button styling */
-.search-bar button {
-  padding: 10px 15px;
-  background-color: #ff603b; /* Dark gray button */
-  color: white; /* White text */
-  border: none;
-  border-radius: 8px; /* Rounded corners */
-  font-size: 1em;
-  cursor: pointer; /* Pointer cursor */
-  transition: background-color 0.3s ease;
-}
-
-/* Button hover effect */
-.search-bar button:hover {
-  background-color: #555; /* Lighter gray on hover */
-}
 
 .menu ul {
   list-style: none;
@@ -388,7 +374,7 @@ header .container {
 /* Main Search Section */
 .main-search {
   max-width: 900px;
-  margin: 0 auto 80px;
+  margin: 0 auto 20px; /* Further reduce bottom margin */
   padding: 0 24px;
 }
 
@@ -474,7 +460,7 @@ header .container {
 
 @media (max-width: 768px) {
   .main-search {
-    margin-bottom: 32px;
+    margin-bottom: 8px; /* Even smaller on mobile */
     padding: 0 16px;
   }
 
@@ -1367,15 +1353,6 @@ p, li, a {
 	 padding: 15px; /* Add more padding for smaller screens */
   }
 
-  .search-bar {
-    flex-direction: column; /* Stack search bar vertically */
-    gap: 5px;
-  }
-
-  .search-bar input {
-    width: 90%; /* Full width for input */
-  }
-	
   .scrollable-container {
     gap: 10px; /* Reduce gap for smaller screens */
 	display: flex !important;
@@ -1630,6 +1607,16 @@ p, li, a {
     width: 20px;
     height: 20px;
   }
+
+  #main-selected-services {
+    min-height: 30px; /* Reduce reserved space on mobile */
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  #main-compare-btn {
+    margin-top: 0; /* Eliminate space above button for closer positioning */
+  }
 }
 
 .selected-services {
@@ -1640,8 +1627,9 @@ p, li, a {
 }
 
 .selected-chip {
-  background: #eee;
-  padding: 4px 8px;
+  background: #eee; /* Light for main */
+  color: #000; /* Dark text for main */
+  padding: 4px 8px; /* Consistent padding */
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -1652,20 +1640,40 @@ p, li, a {
   margin-left: 8px;
   cursor: pointer;
   font-weight: bold;
+  color: #000; /* Dark for main */
 }
 
 .menu .selected-services {
-  margin-top: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  min-height: 40px; /* Reserve space for selected chips to prevent menu shift */
 }
 
 .menu .selected-chip {
-  background: #333;
-  color: white;
+  background: #333; /* Restore dark for menu */
+  color: white; /* White text for menu */
+  padding: 4px 8px; /* Consistent padding */
+}
+
+.menu .selected-chip .remove {
+  color: white; /* White remove for menu */
 }
 
 .menu .compare-btn {
   margin-top: 10px;
   width: 100%;
+}
+
+#main-selected-services {
+  margin-top: 5px;
+  margin-bottom: 0;
+  min-height: 10px; /* Minimal height to prevent layout jumps */
+  align-content: flex-start;
+}
+
+#main-compare-btn {
+  margin-top: 0;
+  margin-bottom: 20px; /* Add a bit of space below the button */
 }
 
 .suggestion-item {
