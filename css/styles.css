@@ -467,6 +467,9 @@ header .container {
   transition: background-color 0.3s ease;
 }
 
+#main-search-suggestions div:hover {
+  background: #f5f5f5;
+}
 
 
 @media (max-width: 768px) {
@@ -1629,15 +1632,75 @@ p, li, a {
   }
 }
 
+.selected-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
 
+.selected-chip {
+  background: #eee;
+  padding: 4px 8px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+}
 
+.selected-chip .remove {
+  margin-left: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
+.menu .selected-services {
+  margin-top: 10px;
+}
 
+.menu .selected-chip {
+  background: #333;
+  color: white;
+}
 
+.menu .compare-btn {
+  margin-top: 10px;
+  width: 100%;
+}
 
+.suggestion-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
 
+.suggestion-name {
+  flex: 1;
+}
 
+.suggestion-item .select-circle {
+  cursor: pointer;
+  margin-left: 10px;
+  flex-shrink: 0;
+}
 
+.suggestion-item .select-circle.selected circle {
+  fill: #ff603b;
+  stroke: #ff603b;
+  stroke-width: 0;
+}
 
+#main-compare-btn,
+.menu #menu-compare-btn {
+  display: block;
+  margin: 5px auto 0;
+}
 
+#main-compare-btn {
+  width: fit-content;
+}
 
+.menu #menu-compare-btn {
+  width: 100%;
+}

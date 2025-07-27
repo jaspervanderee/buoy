@@ -50,6 +50,102 @@ const regionMappings = {
   "OC": ["AU", "FJ", "KI", "MH", "FM", "NR", "NZ", "PW", "PG", "WS", "SB", "TO", "TV", "VU"], // Oceania
 };
 
+let selectedServicesMain = [];
+let selectedServicesMenu = [];
+
+function getCategoryForService(name) {
+  const categoryMap = {
+    "Buy Bitcoin": ["strike", "river", "swan", "relai", "hodlhodl", "bitonic", "peach", "bull bitcoin", "pocket"],
+    "Spend Bitcoin": ["breez", "aqua", "phoenix", "muun", "fold"],
+    "Store it safely": ["bitkey", "sparrow", "wasabi", "unchained", "anchorwatch"],
+    "Run my own node": ["umbrel", "mynode", "start9"],
+    "Accept Bitcoin as a merchant": ["btc pay", "opennode", "lightspark"]
+  };
+  const lowerName = name.toLowerCase();
+  for (const [cat, svcs] of Object.entries(categoryMap)) {
+    if (svcs.some(svc => svc.toLowerCase() === lowerName)) {
+      return cat;
+    }
+  }
+  return null;
+}
+
+function addSelected(serviceName, searchType) {
+  const selected = searchType === 'main' ? selectedServicesMain : selectedServicesMenu;
+  const max = window.innerWidth < 768 ? 2 : 3;
+  if (selected.length >= max) {
+    if (window.innerWidth < 768) {
+      alert('On mobile, you can compare up to 2 services');
+    }
+    return;
+  }
+  if (selected.length === 0) {
+    selected.push(serviceName);
+  } else {
+    const currentCat = getCategoryForService(selected[0]);
+    const newCat = getCategoryForService(serviceName);
+    if (currentCat === newCat && currentCat !== null) {
+      selected.push(serviceName);
+    } else {
+      alert('Sorry, you can only compare services from the same category!');
+      return;
+    }
+  }
+  updateSelectedUI(searchType);
+  const btn = document.getElementById(`${searchType}-compare-btn`);
+  if (selected.length >= 2) {
+    btn.classList.add('active');
+    btn.removeAttribute('disabled');
+  } else {
+    btn.classList.remove('active');
+    btn.setAttribute('disabled', 'true');
+  }
+}
+
+function removeSelected(serviceName, searchType) {
+  const selected = searchType === 'main' ? selectedServicesMain : selectedServicesMenu;
+  const index = selected.indexOf(serviceName);
+  if (index > -1) selected.splice(index, 1);
+  updateSelectedUI(searchType);
+  const btn = document.getElementById(`${searchType}-compare-btn`);
+  if (selected.length >= 2) {
+    btn.classList.add('active');
+    btn.removeAttribute('disabled');
+  } else {
+    btn.classList.remove('active');
+    btn.setAttribute('disabled', 'true');
+  }
+}
+
+function updateSelectedUI(searchType) {
+  const container = document.getElementById(`${searchType}-selected-services`);
+  container.innerHTML = (searchType === 'main' ? selectedServicesMain : selectedServicesMenu).map(s => `
+    <div class="selected-chip">${s}<span class="remove">×</span></div>
+  `).join('');
+  container.querySelectorAll('.remove').forEach(el => {
+    el.addEventListener('click', () => {
+      const chip = el.parentElement;
+      const name = chip.textContent.replace('×', '').trim();
+      removeSelected(name, searchType);
+    });
+  });
+}
+
+function getCategory(selected) {
+  const categoryMap = {
+    "Buy Bitcoin": ["strike", "river", "swan", "relai", "hodlhodl", "bitonic", "peach", "bull bitcoin", "pocket"],
+    "Spend Bitcoin": ["breez", "aqua", "phoenix", "muun", "fold"],
+    "Store it safely": ["bitkey", "sparrow", "wasabi", "unchained", "anchorwatch"],
+    "Run my own node": ["umbrel", "mynode", "start9"],
+    "Accept Bitcoin as a merchant": ["btc pay", "opennode", "lightspark"]
+  };
+  for (const [cat, svcs] of Object.entries(categoryMap)) {
+    if (selected.every(s => svcs.some(svc => svc.toLowerCase() === s.toLowerCase()))) {
+      return cat;
+    }
+  }
+  return "Compare Services";
+}
 
 
 // Function to check if a service is available in a country or region
@@ -410,14 +506,27 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  suggestionsBox.innerHTML = matches.map(name => `<div>${name}</div>`).join("");
+  suggestionsBox.innerHTML = matches.map(name => `
+    <div class="suggestion-item">
+      <span class="suggestion-name">${name}</span>
+      <svg class="select-circle ${selectedServicesMenu.includes(name) ? 'selected' : ''}" width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" stroke="lightgrey" stroke-width="2" fill="white"/></svg>
+    </div>
+  `).join("");
   suggestionsBox.style.display = "block";
 });
 
 // Navigate on click
 suggestionsBox.addEventListener("click", (e) => {
-  if (e.target.tagName === "DIV") {
-    const serviceName = e.target.textContent;
+  const item = e.target.closest(".suggestion-item");
+  if (!item) return;
+  const serviceName = item.querySelector(".suggestion-name").textContent;
+  const circle = item.querySelector('.select-circle');
+  if (e.target.closest('.select-circle')) {
+    circle.classList.add('selected');
+    addSelected(serviceName, 'menu');
+    searchInput.value = '';
+    setTimeout(() => { suggestionsBox.style.display = 'none'; }, 300);
+  } else {
     const url = `service.html?services=${encodeURIComponent(serviceName)}&category=Search`;
     window.location.href = url;
   }
@@ -441,7 +550,6 @@ suggestionsBox.addEventListener("click", (e) => {
 
     const match = servicesCache.find(s => s.name.toLowerCase().includes(query));
     if (match) {
-      // Redirect to service.html with service and dummy category
       const url = `service.html?services=${encodeURIComponent(match.name)}&category=Search`;
       window.location.href = url;
     } else {
@@ -637,10 +745,27 @@ if (mainSearchInput && mainSearchBtn && mainSearchSuggestions) {
     if (suggestions.length > 0) {
       suggestions.forEach(service => {
         const div = document.createElement('div');
-        div.textContent = service.name;
-        div.addEventListener('click', () => {
-          const url = `service.html?services=${encodeURIComponent(service.name)}&category=Search`;
-          window.location.href = url;
+        div.className = 'suggestion-item';
+        div.innerHTML = `
+          <span class="suggestion-name">${service.name}</span>
+          <svg class="select-circle ${selectedServicesMain.includes(service.name) ? 'selected' : ''}" width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" stroke="lightgrey" stroke-width="2" fill="white"/></svg>
+        `;
+        div.addEventListener('click', (e) => {
+          const circle = div.querySelector('.select-circle');
+          if (e.target.closest('.select-circle')) {
+            if (circle.classList.contains('selected')) {
+              circle.classList.remove('selected');
+              removeSelected(service.name, 'main');
+            } else {
+              circle.classList.add('selected');
+              addSelected(service.name, 'main');
+            }
+            mainSearchInput.value = '';
+            setTimeout(() => { mainSearchSuggestions.style.display = 'none'; }, 300);
+          } else {
+            const url = `service.html?services=${encodeURIComponent(service.name)}&category=Search`;
+            window.location.href = url;
+          }
         });
         mainSearchSuggestions.appendChild(div);
       });
@@ -663,6 +788,8 @@ if (mainSearchInput && mainSearchBtn && mainSearchSuggestions) {
     if (match) {
       const url = `service.html?services=${encodeURIComponent(match.name)}&category=Search`;
       window.location.href = url;
+    } else {
+      alert("Service not found.");
     }
   });
 
@@ -683,6 +810,31 @@ if (mainSearchInput && mainSearchBtn && mainSearchSuggestions) {
     }
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const mainBtn = document.getElementById('main-compare-btn');
+  if (mainBtn) {
+    mainBtn.addEventListener('click', () => {
+      if (selectedServicesMain.length < 2) return;
+      const category = getCategory(selectedServicesMain);
+      const url = `compare.html?services=${selectedServicesMain.join(",")}&category=${encodeURIComponent(category)}`;
+      window.location.href = url;
+      selectedServicesMain = [];
+      updateSelectedUI('main');
+    });
+  }
+  const menuBtn = document.getElementById('menu-compare-btn');
+  if (menuBtn) {
+    menuBtn.addEventListener('click', () => {
+      if (selectedServicesMenu.length < 2) return;
+      const category = getCategory(selectedServicesMenu);
+      const url = `compare.html?services=${selectedServicesMenu.join(",")}&category=${encodeURIComponent(category)}`;
+      window.location.href = url;
+      selectedServicesMenu = [];
+      updateSelectedUI('menu');
+    });
+  }
+});
 
 
 
