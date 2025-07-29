@@ -63,7 +63,9 @@ header .container {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  position: relative;
+  position: fixed;
+  top: 30px;
+  right: 20px;
   z-index: 2000; /* Place it above the overlay */
 }
 
@@ -1768,5 +1770,30 @@ p, li, a {
 
   .newsletter-signup button {
     margin-top: 10px;
+  }
+}
+
+/* Autofill overrides */
+.newsletter-signup input:-webkit-autofill,
+.newsletter-signup input:-webkit-autofill:hover,
+.newsletter-signup input:-webkit-autofill:focus,
+.newsletter-signup input:-webkit-autofill:active {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+  background: transparent !important;
+  border-bottom: 1px solid #666;
+  caret-color: white;
+}
+
+@media (min-width: 1240px) { /* Assuming some padding */
+  .hamburger {
+    right: calc((100% - 1200px) / 2);
+  }
+}
+
+@media (max-width: 1239px) {
+  .hamburger {
+    right: calc(5% / 2);
   }
 }
