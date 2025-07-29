@@ -845,6 +845,46 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+  // Newsletter Form Email Submission
+const newsletterForm = document.getElementById('newsletter-form');
+if (newsletterForm) {
+  newsletterForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('newsletter-email').value;
+    const message = document.getElementById('newsletter-message');
+    const sending = document.getElementById('newsletter-sending');
+    sending.style.display = 'block';
+    message.style.display = 'none';
+
+    try {
+      // Replace with actual Formspree or email service URL
+      const response = await fetch('https://formspree.io/f/xqalbjgg', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
+
+      if (response.ok) {
+        sending.style.display = 'none';
+        message.textContent = 'Subscribed!';
+        message.style.display = 'block';
+        newsletterForm.reset();
+        setTimeout(() => { message.style.display = 'none'; }, 3000);
+      } else {
+        throw new Error('Subscription failed');
+      }
+    } catch (error) {
+      sending.style.display = 'none';
+      message.textContent = 'Error subscribing. Please try again.';
+      message.style.display = 'block';
+      setTimeout(() => { message.style.display = 'none'; }, 3000);
+    }
+  });
+}
+
+
 
 
 
