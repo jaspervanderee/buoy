@@ -1717,8 +1717,8 @@ p, li, a {
 
 /* Newsletter Signup */
 .newsletter-signup {
-  padding: 10px 20px 80px;
-  text-align: left;
+  padding: 40px 20px 80px;
+  text-align: center;
   color: white;
 }
 
@@ -1765,7 +1765,7 @@ p, li, a {
 @media (max-width: 768px) {
   .newsletter-signup form {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .newsletter-signup button {
