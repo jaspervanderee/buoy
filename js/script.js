@@ -672,6 +672,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Action buttons smooth scroll
+/*
 document.querySelectorAll('.action-button').forEach(button => {
   button.addEventListener('click', () => {
     const targetId = button.getAttribute('data-target');
@@ -694,6 +695,7 @@ document.querySelectorAll('.action-button').forEach(button => {
     }
   });
 });
+*/
 
 
 // Feedback Bubble Creation
@@ -883,21 +885,3 @@ if (newsletterForm) {
     }
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

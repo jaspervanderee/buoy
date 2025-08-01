@@ -616,7 +616,7 @@ footer {
   background-color: #000; /* Black background */
   color: white; /* White text */
   padding: 40px 0; /* Space around the footer */
-  margin-top: 40px; /* Space above the footer */
+  margin-top: 60px; /* Space above the footer */
 }
 
 footer h3 {
@@ -724,11 +724,8 @@ p, li, a {
   font-size: 0.8em;
 }
 
-.card .select-circle {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 28px; /* Larger for better UX */
+.select-circle {
+  width: 28px;
   height: 28px;
   border-radius: 50%;
   border: 2px solid lightgrey;
@@ -740,18 +737,28 @@ p, li, a {
   transition: background 0.3s ease, border 0.3s ease;
 }
 
-
-.card .select-circle::after {
-  content: "";
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: transparent;
+.card .select-circle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .card.selected .select-circle {
   background: #ff603b;
   border-color: #ff603b;
+}
+
+.select-circle.selected {
+  background: #ff603b;
+  border-color: #ff603b;
+}
+
+.select-circle::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: transparent;
 }
 
 .card .category-divider {
@@ -814,7 +821,7 @@ p, li, a {
   padding: 8px 16px;
   font-size: 1em;
   border: 1px solid #ddd; /* Light border to show disabled state */
-  border-radius: 6px;
+  border-radius: 20px;
   background: #f0f0f0; /* Grey background when inactive */
   color: #b0b0b0; /* Lighter grey text */
   cursor: not-allowed;
@@ -1796,4 +1803,131 @@ p, li, a {
   .hamburger {
     right: calc(5% / 2);
   }
+}
+
+/* Inline Questionnaire - Mobile-first */
+.questionnaire {
+  display: block;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.question {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  padding-left: 32px;
+  padding-bottom: 50px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  position: relative; /* For absolute positioning of back */
+}
+
+.back {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #666;
+}
+
+.question label {
+  display: block;
+  margin-bottom: 32px;
+}
+
+.question .option {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.question .option:last-child {
+  margin-bottom: 55px;
+}
+
+.question .option label {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  margin: 0;
+}
+
+/* Questionnaire Navigation Arrows */
+.left-arrow,
+.right-arrow {
+  font-size: 24px;
+  position: absolute;
+  bottom: 5px;
+  cursor: pointer;
+  color: lightgrey;
+}
+
+.left-arrow {
+  left: 10px;
+}
+
+.right-arrow {
+  right: 10px;
+}
+
+/* See More Services Link */
+.see-more-services {
+  text-align: center;
+  margin: 40px 0 20px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.see-more-services.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.see-more-services a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #000;
+  text-decoration: none;
+  font-size: 0.8em;
+  font-family: "Inter", sans-serif;
+  transition: color 0.2s ease;
+}
+
+.see-more-services a:hover {
+  color: #ff603b;
+}
+
+.see-more-services .arrow-down {
+  font-size: 1.2em;
+  transition: transform 0.2s ease;
+}
+
+.see-more-services a:hover .arrow-down {
+  transform: translateY(2px);
+}
+
+/* Questionnaire Reset Link */
+.questionnaire-reset {
+  text-align: center;
+  margin-top: 0;
+  padding-top: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 5px;
+  width: 60px;
+}
+
+.questionnaire-reset a {
+  text-decoration: none;
+  color: #000;
+  font-size: 0.8em;
+  font-family: "Inter", sans-serif;
+  transition: color 0.2s ease;
+  cursor: pointer;
 }

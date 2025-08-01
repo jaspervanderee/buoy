@@ -87,6 +87,26 @@ try {
       document.getElementById("category-title").textContent = categoryTitle;
     }
 
+// NEW: For multi-service view, determine common category if all services share one
+    if (!isSingleServiceView && servicesToCompare.length > 1) {
+      let commonCategory = null;
+      const selectedNames = servicesToCompare.map(s => s.name.toLowerCase());
+      for (const [label, services] of Object.entries(categoryMap)) {
+        if (selectedNames.every(name => services.includes(name))) {
+          commonCategory = label;
+          break;
+        }
+      }
+      if (commonCategory) {
+        categoryTitle = commonCategory;
+        document.getElementById("category-title").textContent = categoryTitle;
+      } else {
+        // NEW: Handle mixed categories by showing an error
+        document.getElementById("comparison-container").innerHTML = "<p>Cannot compare services from different categories. Please select services from the same category.</p>";
+        return;
+      }
+    }
+
 const regionMappings = {
   "WW": [], // Worldwide availability
   "NA": [ // North America + Caribbean + Central America
@@ -171,10 +191,10 @@ const categoryFeaturesMap = {
     "type_of_platform", "supported_network", "features", "price", "custody_control", "recovery_method", "open_source", "node_connect", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
   ],
   "Run my own node": [
-    "type_of_platform", "features", "price", "custody_control", "user_experience", "interface", "app_ratings", "support", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "features", "price", "user_experience", "interface", "support", "profile", "description", "founded_in", "website", "availability"
   ],
   "Merchant Tools": [
-    "type_of_platform", "supported_network", "features", "fees", "subscription_fees", "conversion_fees", "settlement_time", "compatibility", "pos_compatibility", "custody_control", "kyc_required",  "open_source", "user_experience", "interface", "app_ratings", "profile", "description", "founded_in", "website", "availability"
+    "type_of_platform", "supported_network", "features", "fees", "subscription_fees", "conversion_fees", "settlement_time", "compatibility", "pos_compatibility", "custody_control", "kyc_required",  "open_source", "user_experience", "profile", "description", "founded_in", "website", "availability"
   ]
 };
 
