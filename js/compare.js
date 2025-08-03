@@ -672,7 +672,7 @@ function renderCollapsibleDescription(description) {
       </div>
       <button class="expand-btn" aria-expanded="false">
         <span class="expand-text">Read more</span>
-        <span class="expand-icon">▼</span>
+        <span class="expand-icon"><span class="arrow-down">↓</span></span>
       </button>
     </div>
   `;
@@ -695,14 +695,14 @@ function initializeCollapsibleDescriptions() {
         preview.style.display = 'block';
         full.style.display = 'none';
         expandText.textContent = 'Read more';
-        expandIcon.textContent = '▼';
+        expandIcon.innerHTML = '<span class="arrow-down">↓</span>';
         this.setAttribute('aria-expanded', 'false');
       } else {
         // Expand
         preview.style.display = 'none';
         full.style.display = 'block';
         expandText.textContent = 'Show less';
-        expandIcon.textContent = '▼';
+        expandIcon.innerHTML = '<span class="arrow-down">↓</span>';
         this.setAttribute('aria-expanded', 'true');
       }
     });

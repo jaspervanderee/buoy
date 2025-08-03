@@ -10,29 +10,146 @@ document.addEventListener("DOMContentLoaded", () => {
     "purchase-bitcoin": {
       title: "Buy Bitcoin",
       questions: [
-        { id: "kyc", text: "Do you prefer a privacy-focused purchase without identity verification (no KYC), or are you okay with standard verification for easier access?", options: ["No KYC", "With KYC"] },
-        { id: "recurring", text: "Do you want to set up automatic recurring buys?", options: ["Yes", "No"] }
+        { 
+          id: "kyc", 
+          text: "Do you prefer no KYC for privacy or KYC for easier access?", 
+          options: ["No KYC", "With KYC", "No preference"],
+          explanation: "KYC (Know Your Customer) is a legal obligation required by governments, where a service asks for your personal info, like your name and ID, to verify who you are."
+        },
+        { 
+          id: "interface", 
+          text: "Do you prefer mobile or desktop?", 
+          options: ["Mobile", "Desktop", "No preference"],
+          explanation: "Mobile apps are convenient for on-the-go use, while desktop platforms offer more features and control."
+        }
       ],
       filter: (service, answers) => {
-        if (answers.kyc !== undefined) {
+        if (answers.kyc !== undefined && answers.kyc !== "2") {
           if (answers.kyc === "0" && service.kyc_required !== "No") return false;
           if (answers.kyc === "1" && service.kyc_required === "No") return false;
         }
-        if (answers.recurring !== undefined && answers.recurring === "0" && service.dca !== "Yes") return false;
+        if (answers.interface !== undefined && answers.interface !== "2") {
+          if (answers.interface === "0" && !service.interface.includes("Mobile")) return false;
+          if (answers.interface === "1" && !service.interface.includes("Desktop")) return false;
+        }
         return true;
       }
     },
     "pay-receive-bitcoin": {
       title: "Spend Bitcoin",
       questions: [
-        { id: "lightning", text: "Do you need Lightning support?", options: ["Yes", "No"] },
-        { id: "custody", text: "Full self-custody or managed?", options: ["Self-custody", "Managed"] },
-        { id: "spending", text: "Direct or indirect spending?", options: ["Direct", "Indirect"] }
+        { 
+          id: "network", 
+          text: "Which network do you prefer to spend with?", 
+          options: ["Bitcoin", "Lightning", "No preference"],
+          explanation: "Bitcoin on-chain transactions are more secure but slower and more expensive. Lightning transactions are instant and cheap but require channel setup."
+        },
+        { 
+          id: "automation", 
+          text: "Do you want automatic network selection?", 
+          options: ["Yes", "No", "No preference"],
+          explanation: "Some wallets automatically choose the best network (Lightning or on-chain) for your transaction. Others require manual selection."
+        }
       ],
       filter: (service, answers) => {
-        if (answers.lightning !== undefined && answers.lightning === "0" && !service.supported_network.includes("Lightning")) return false;
-        if (answers.custody !== undefined && answers.custody === "0" && service.custody_control !== "Non-custodial") return false;
-        if (answers.spending !== undefined && answers.spending === "0" && service.name === "Fold") return false;
+        if (answers.network !== undefined && answers.network !== "2") {
+          if (answers.network === "0" && !service.supported_network.includes("Bitcoin")) return false;
+          if (answers.network === "1" && !service.supported_network.includes("Lightning")) return false;
+        }
+        if (answers.automation !== undefined && answers.automation !== "2") {
+          const hasAutoSelection = service.features?.WW?.some(f => 
+            f.text.toLowerCase().includes("auto") || 
+            f.text.toLowerCase().includes("automatic") ||
+            service.description?.toLowerCase().includes("automatically")
+          );
+          if (answers.automation === "0" && !hasAutoSelection) return false;
+          if (answers.automation === "1" && hasAutoSelection) return false;
+        }
+        return true;
+      }
+    },
+    "store-bitcoin": {
+      title: "Store Bitcoin Safely",
+      questions: [
+        { 
+          id: "support_level", 
+          text: "Do you want professional support or self-service?", 
+          options: ["Professional support", "Self-service", "No preference"],
+          explanation: "Professional services offer concierge support, insurance, and expert guidance. Self-service options give you full control but require more technical knowledge."
+        },
+        { 
+          id: "experience", 
+          text: "Are you a beginner or advanced user?", 
+          options: ["Beginner", "Advanced", "No preference"],
+          explanation: "Beginner-friendly wallets are easier to use but may have fewer features. Advanced wallets offer more control but require more technical knowledge."
+        }
+      ],
+      filter: (service, answers) => {
+        if (answers.support_level !== undefined && answers.support_level !== "2") {
+          // Check for professional service indicators
+          const isProfessionalService = service.description?.toLowerCase().includes("concierge") ||
+                                      service.description?.toLowerCase().includes("professional") ||
+                                      service.description?.toLowerCase().includes("insurance") ||
+                                      service.custody_control?.includes("Collaborative custody") ||
+                                      service.type_of_platform?.includes("Collaborative custody");
+          
+          if (answers.support_level === "0" && !isProfessionalService) return false;
+          if (answers.support_level === "1" && isProfessionalService) return false;
+        }
+        if (answers.experience !== undefined && answers.experience !== "2") {
+          // For self-service options, automatically categorize based on complexity
+          const isBitkey = service.name === "Bitkey";
+          const isAdvancedWallet = service.name === "Wasabi" || service.name === "Sparrow";
+          
+          if (answers.experience === "0" && !isBitkey) return false; // Beginner: only Bitkey
+          if (answers.experience === "1" && !isAdvancedWallet) return false; // Advanced: only Wasabi/Sparrow
+        }
+        return true;
+      }
+    },
+    "node-section": {
+      title: "Run Your Own Node",
+      questions: [
+        { 
+          id: "approach", 
+          text: "What's your priority for running a node?", 
+          options: ["Ease of use", "Privacy & security", "Full control", "No preference"],
+          explanation: "Ease of use focuses on user-friendly interfaces. Privacy & security prioritizes open-source and privacy features. Full control offers maximum customization and technical autonomy."
+        }
+      ],
+      filter: (service, answers) => {
+        if (answers.approach !== undefined && answers.approach !== "3") {
+          // Umbrel: Ease of use - polished interface, app store, user-friendly
+          // myNode: Full control - open-source, many apps, technical features
+          // Start9: Privacy & security - open-source, privacy-focused, community-driven
+          
+          if (answers.approach === "0" && service.name !== "Umbrel") return false; // Ease of use: Umbrel
+          if (answers.approach === "1" && service.name !== "Start9") return false; // Privacy & security: Start9
+          if (answers.approach === "2" && service.name !== "myNode") return false; // Full control: myNode
+        }
+        return true;
+      }
+    },
+    "merchant-section": {
+      title: "Accept Bitcoin as a Merchant",
+      questions: [
+        { 
+          id: "business_size", 
+          text: "What size is your business?", 
+          options: ["Small business/Individual", "Medium to large business", "Enterprise", "No preference"],
+          explanation: "Small businesses prefer self-hosted solutions. Medium businesses need turnkey services. Enterprises require compliance-ready infrastructure with high transaction volumes."
+        }
+      ],
+      filter: (service, answers) => {
+        if (answers.business_size !== undefined && answers.business_size !== "3") {
+          // BTC Pay: Small business/Individual - self-hosted, open-source, DIY
+          // OpenNode: Medium to large business - turnkey, mid-sized enterprises
+          // Lightspark: Enterprise - enterprise-grade, $300k+ minimum, compliance-ready
+          
+          if (answers.business_size === "0" && service.name !== "BTC Pay") return false; // Small: BTC Pay
+          if (answers.business_size === "1" && service.name !== "OpenNode") return false; // Medium: OpenNode
+          if (answers.business_size === "2" && service.name !== "Lightspark") return false; // Enterprise: Lightspark
+        }
         return true;
       }
     }
@@ -123,6 +240,12 @@ document.addEventListener("DOMContentLoaded", () => {
     seeMoreLink.addEventListener("click", (e) => {
       e.preventDefault();
       resetQuestionnaire();
+      
+      // Scroll to the Buy Bitcoin category header to position it at the top
+      const buyBitcoinHeader = document.querySelector('.category-header h2 a[href="buy-bitcoin.html"]');
+      if (buyBitcoinHeader) {
+        buyBitcoinHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
     
     // Show the element with animation
@@ -144,23 +267,67 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log('showCurrentQuestion called, currentQuestionIndex:', currentQuestionIndex);
       questionnaireDiv.innerHTML = "";
 
+      // Check if only one service is left after current filtering
+      const visibleServices = countVisibleServices(categoryId);
+      if (visibleServices <= 2) {
+        // Skip remaining questions and complete questionnaire
+        currentQuestionIndex = qData.questions.length;
+      }
+
       if (currentQuestionIndex >= qData.questions.length) {
+        // Update h2 tag when questionnaire is completed
+        const actionGridH2 = document.querySelector(".action-grid h2");
+        if (actionGridH2) {
+          actionGridH2.textContent = "These options might be worth exploring:";
+        }
+        
+        // Add reset button for completed questionnaire
+        const resetDiv = document.createElement("div");
+        resetDiv.className = "questionnaire-reset";
+        resetDiv.innerHTML = `<a href="javascript:void(0)">reset</a>`;
+        questionnaireDiv.appendChild(resetDiv);
+        console.log('Created reset button for completed questionnaire');
+        
+        // Add reset handler
+        const resetLink = resetDiv.querySelector("a");
+        resetLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          resetQuestionnaire();
+        });
+        
         return;
       }
 
       const q = qData.questions[currentQuestionIndex];
+      
+      // Update the h2 tag with the current question
+      const actionGridH2 = document.querySelector(".action-grid h2");
+      if (actionGridH2) {
+        actionGridH2.textContent = q.text;
+      }
+      
       const qDiv = document.createElement("div");
       qDiv.className = "question";
       qDiv.innerHTML = `
-        <label>${q.text}</label>
         ${q.options.map((opt, i) => `<div class="option" data-value="${i}"><div class="select-circle ${userAnswers[q.id] == i ? 'selected' : ''}"></div><label>${opt}</label></div>`).join("")}
         <span class="left-arrow">←</span>
         <span class="right-arrow">→</span>
-        <div class="questionnaire-reset">
-          <a href="javascript:void(0)">reset</a>
-        </div>
       `;
       questionnaireDiv.appendChild(qDiv);
+
+      // Add explanatory text outside the questionnaire field
+      if (q.explanation) {
+        const explanationDiv = document.createElement("div");
+        explanationDiv.className = "questionnaire-explanation";
+        explanationDiv.textContent = q.explanation;
+        questionnaireDiv.appendChild(explanationDiv);
+      }
+
+      // Add reset button outside the questionnaire field
+      const resetDiv = document.createElement("div");
+      resetDiv.className = "questionnaire-reset";
+      resetDiv.innerHTML = `<a href="javascript:void(0)">reset</a>`;
+      questionnaireDiv.appendChild(resetDiv);
 
       // Left arrow handler
       const leftArrow = qDiv.querySelector(".left-arrow");
@@ -179,6 +346,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const rightArrow = qDiv.querySelector(".right-arrow");
       rightArrow.addEventListener("click", () => {
         if (currentQuestionIndex < qData.questions.length - 1) {
+          currentQuestionIndex++;
+          showCurrentQuestion();
+          filterCards(categoryId);
+        } else {
+          // On the last question, finish the questionnaire regardless of input
           currentQuestionIndex++;
           showCurrentQuestion();
           filterCards(categoryId);
@@ -211,18 +383,31 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       // Add reset handler
-      const resetLink = qDiv.querySelector(".questionnaire-reset a");
+      const resetLink = resetDiv.querySelector("a");
       resetLink.addEventListener("click", (e) => {
         e.preventDefault();
         resetQuestionnaire();
       });
-
-      if (currentQuestionIndex >= qData.questions.length) {
-        questionnaireDiv.innerHTML = '';
-      }
     }
 
     showCurrentQuestion();
+  }
+
+  // Function to count visible services in a category
+  function countVisibleServices(categoryId) {
+    const container = document.getElementById(categoryId);
+    if (!container) return 0;
+    
+    const cards = container.querySelectorAll(".card");
+    let visibleCount = 0;
+    
+    cards.forEach(card => {
+      if (card.style.display !== "none") {
+        visibleCount++;
+      }
+    });
+    
+    return visibleCount;
   }
  
   function filterCards(categoryId) {
@@ -251,6 +436,12 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         seeMoreElement.remove();
       }, 300);
+    }
+    
+    // Restore the original h2 text
+    const actionGridH2 = document.querySelector(".action-grid h2");
+    if (actionGridH2) {
+      actionGridH2.textContent = "What do you want to do with Bitcoin?";
     }
     
     document.querySelector(".action-buttons").style.display = "grid";

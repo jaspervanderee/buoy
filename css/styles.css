@@ -822,7 +822,6 @@ p, li, a {
   font-size: 1em;
   border: 1px solid #ddd; /* Light border to show disabled state */
   border-radius: 20px;
-  background: #f0f0f0; /* Grey background when inactive */
   color: #b0b0b0; /* Lighter grey text */
   cursor: not-allowed;
   text-align: center;
@@ -1271,8 +1270,8 @@ p, li, a {
   border: none;
   color: #ff603b;
   cursor: pointer;
-  font-family: inherit;
-  font-size: 1em;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
   padding: 0.5em 0;
   display: flex;
   align-items: center;
@@ -1342,6 +1341,7 @@ p, li, a {
     font-size: 1.2em;
     padding: 0;
   }
+
 }
 
 
@@ -1418,6 +1418,7 @@ p, li, a {
   .desktop-preview {
     display: none;
   }
+
 
 
 }
@@ -1716,6 +1717,7 @@ p, li, a {
 
 #main-compare-btn {
   width: fit-content;
+  background: none;
 }
 
 .menu #menu-compare-btn {
@@ -1817,7 +1819,7 @@ p, li, a {
   border-radius: 8px;
   padding: 16px;
   padding-left: 32px;
-  padding-bottom: 50px;
+  padding-bottom: 55px; 
   box-shadow: 0 1px 2px rgba(0,0,0,0.05);
   position: relative; /* For absolute positioning of back */
 }
@@ -1841,11 +1843,11 @@ p, li, a {
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
-  margin: 8px 0;
+  margin: 16px 0;
 }
 
 .question .option:last-child {
-  margin-bottom: 55px;
+  margin-bottom: 85px; /* Mobile-first: increased to match new padding */
 }
 
 .question .option label {
@@ -1876,7 +1878,7 @@ p, li, a {
 /* See More Services Link */
 .see-more-services {
   text-align: center;
-  margin: 40px 0 20px 0;
+  margin: 40px 0 0px 0;
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.3s ease;
@@ -1914,13 +1916,17 @@ p, li, a {
 /* Questionnaire Reset Link */
 .questionnaire-reset {
   text-align: center;
-  margin-top: 0;
-  padding-top: 0;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 5px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 8px 16px;
   width: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  color: #000;
+  font-family: "Inter", sans-serif;
 }
 
 .questionnaire-reset a {
@@ -1930,4 +1936,19 @@ p, li, a {
   font-family: "Inter", sans-serif;
   transition: color 0.2s ease;
   cursor: pointer;
+}
+
+.questionnaire-reset:hover {
+  background-color: white;
+}
+
+/* Questionnaire Explanatory Text */
+.questionnaire-explanation {
+  text-align: center;
+  margin-top: 20px;
+  color: #adadad;
+  font-size: 0.8em;
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+  max-width: 100%;
 }

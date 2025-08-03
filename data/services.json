@@ -124,7 +124,7 @@
     "kyc_required": "Yes",
     "open_source": "No",
   "user_experience": "0.0",
-    "interface": "Mobile only",
+    "interface": "Mobile & Desktop",
 	  "app_ratings": {
   		"ios": 4.5,
   		"android": 4.4
@@ -736,7 +736,7 @@
     "kyc_required": "Yes",
     "open_source": "No",
   "user_experience": "0.0",
-    "interface": "Mobile only",
+    "interface": "Mobile & Desktop",
 	"app_ratings": {
   		"ios": 4.8,
   		"android": 4.6
