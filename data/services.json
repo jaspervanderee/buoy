@@ -222,7 +222,7 @@
 				]
 			},
      "dca": "Yes",
-    "payment_methods": ["Interac e-Transfer", "Wire Transfer", "Bill Payment"],	
+    "payment_methods": ["Interac e-Transfer", "Wire Transfer", "Bill Payment, SEPA bank transfer"],	
     "custody_control": "Non-custodial",
     "kyc_required": "No",
     "open_source": "Yes",

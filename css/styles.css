@@ -75,7 +75,6 @@ header .container {
   height: 3px;
   background-color: #000;
   border-radius: 3px;
-  transition: 0.3s;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -133,8 +132,9 @@ header .container {
 }
 
 
-/* Menu list */
-.menu-section ul {
+/* Menu list - consolidated */
+.menu-section ul,
+.menu ul {
   list-style: none; /* Remove bullets */
   padding: 0; /* Remove padding */
   margin: 0; /* Remove margin */
@@ -209,12 +209,16 @@ header .container {
   border-radius: 5px; /* Optional: match other icons' rounded corners */
 }
 
+/* Flag styling - consolidated */
+.flag-icon {
+  width: 20px;
+  height: 15px;
+  border-radius: 3px; /* Consistent rounded corners for flags */
+}
+
 /* Flag inside the dropdown label */
 .dropdown-label .flag-icon {
   display: inline-block;
-  width: 20px;
-  height: 15px;
-  border-radius: 3px; /* Optional: rounded corners for flags */
 }
 
 /* Dropdown list styling */
@@ -247,19 +251,6 @@ header .container {
 
 .dropdown-list li:hover {
   background-color: #1e1e1e; /* Hover effect */
-}
-
-
-/* Show dropdown when active */
-.custom-dropdown.active .dropdown-list {
-  display: block;
-}
-
-/* Flag styling */
-.flag-icon {
-  width: 20px;
-  height: 15px;
-  border-radius: 2px; /* Optional: rounded flags */
 }
 
 
@@ -325,11 +316,6 @@ header .container {
   background: #1e1e1e;
 }
 
-
-.menu ul {
-  list-style: none;
-  padding: 0;
-}
 
 .menu li {
   margin: 10px 0;
@@ -407,9 +393,6 @@ header .container {
 .search-wrapper-main input:focus {
   outline: none;
   border-color: rgba(0, 0, 0, 0.1);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
 }
 
 
@@ -743,11 +726,7 @@ p, li, a {
   right: 10px;
 }
 
-.card.selected .select-circle {
-  background: #ff603b;
-  border-color: #ff603b;
-}
-
+.card.selected .select-circle,
 .select-circle.selected {
   background: #ff603b;
   border-color: #ff603b;
@@ -862,7 +841,6 @@ p, li, a {
   max-width: 220px;
 }
 
-
 /* Remove hover enlarging */
 #comparison-container .card:hover {
   transform: none;
@@ -877,8 +855,11 @@ p, li, a {
 
 .logo-cell {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 8px;
+  padding: 12px;
 }
 
 .service-link {
@@ -905,41 +886,23 @@ p, li, a {
   background-color: #e5e5e5;
 }
 
-/* Ensure logo cell has proper spacing */
-.logo-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 12px;
-}
-
 
 .service-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  align-items: flex-start; /* Ensure full left alignment */
+  text-align: left;
   gap: 6px;
   min-height: 40px;
   font-size: 1em;
   font-weight: 400;
   line-height: 1.5;
   margin-bottom: 2em;
+  width: 100%;
 }
 
 .service-info strong {
   font-weight: bold;
-}
-
-
-.service-info {
-  width: 100%;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Ensure full left alignment */
 }
 
 
@@ -1103,13 +1066,7 @@ p, li, a {
   cursor: pointer;
 }
 
-.rating-large {
-    font-size: 2.5rem !important; /* Make it much larger */
-    font-weight: bold;
-    display: block;
-    text-align: center;
-    line-height: 1.2;
-}
+
 
 .rating-count {
   font-size: 0.8em;
@@ -1682,8 +1639,34 @@ p, li, a {
 }
 
 #main-compare-btn {
-  margin-top: 0;
+  margin: 5px auto 0;
   margin-bottom: 20px; /* Add a bit of space below the button */
+  width: fit-content;
+  background: none;
+  display: block;
+  color: #b0b0b0; /* Light gray text for inactive state */
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 1em;
+  cursor: not-allowed;
+  text-align: center;
+  height: 40px;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+#main-compare-btn.active {
+  color: white;
+  background: #ff603b;
+  border-color: #ff603b;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(255, 96, 59, 0.1);
+}
+
+#main-compare-btn.active:hover {
+  background: #e55532;
+  border-color: #e55532;
 }
 
 .suggestion-item {
@@ -1709,18 +1692,9 @@ p, li, a {
   stroke-width: 0;
 }
 
-#main-compare-btn,
 .menu #menu-compare-btn {
   display: block;
   margin: 5px auto 0;
-}
-
-#main-compare-btn {
-  width: fit-content;
-  background: none;
-}
-
-.menu #menu-compare-btn {
   width: 100%;
 }
 
