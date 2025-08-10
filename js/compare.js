@@ -1,3 +1,15 @@
+// Buoy static-page fallback: ensure single-service param exists
+(function(){
+  try {
+    var p = new URLSearchParams(location.search);
+    if (!p.get('services') && !p.get('service') && window.__BUOY_SERVICE__) {
+      p.set('service', window.__BUOY_SERVICE__);
+      history.replaceState(null, '', location.pathname + '?' + p.toString());
+    }
+  } catch(e){}
+})();
+
+
 function renderAppRatings(rating) {
   if (!rating) return "N/A";
   if (rating.text) return rating.text;
@@ -40,9 +52,15 @@ if (categoryTitle === "Search") {
 }
 
 document.getElementById("category-title").textContent = categoryTitle;
-const selectedServices = urlParams.get("services") ? urlParams.get("services").split(",") : [];
+const selectedServices = urlParams.get("services")
+  ? urlParams.get("services").split(",")
+  : (window.__BUOY_SERVICE__ ? [window.__BUOY_SERVICE__] : []);
 
-const isSingleServiceView = window.location.pathname.includes("service.html");
+
+const isSingleServiceView =
+  window.location.pathname.includes("service.html") ||
+  (!!window.__BUOY_SERVICE__ && !window.location.pathname.includes("compare.html"));
+
 
 if (!isSingleServiceView && selectedServices.length < 2) {
   document.getElementById("comparison-container").innerHTML = "<p>Please select at least two services.</p>";

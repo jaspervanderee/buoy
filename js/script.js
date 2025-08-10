@@ -1,3 +1,11 @@
+const slugify = s => s.toLowerCase().replace(/&/g," and ").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
+const canonicalVsSlug = (aName, bName) => {
+  const [a, b] = [slugify(aName), slugify(bName)];
+  return [a, b].sort().join("-vs-"); // canonical path slug
+};
+
+
+
 // Hamburger menu logic
 const hamburger = document.querySelector('.hamburger');
 const menu = document.querySelector('.menu');
@@ -455,17 +463,25 @@ document.querySelectorAll(".category").forEach(category => {
     }
   }
 
- compareButton.addEventListener("click", () => {
-  if (selectedCards.length < 2) return;
-
-  const categoryTitle = category.querySelector("h2")?.innerText ?? "Compare Services";
-  const compareURL = `compare.html?services=${selectedCards.join(",")}&category=${encodeURIComponent(categoryTitle)}`;
-
-  // Save selected services in sessionStorage to clear them later
-  sessionStorage.setItem("clearSelectedAfterCompare", "true");
-
-  window.location.href = compareURL;
-});
+  compareButton.addEventListener("click", () => {
+    if (selectedCards.length < 2) return;
+  
+    const categoryTitle = category.querySelector("h2")?.innerText ?? "Compare Services";
+  
+    if (selectedCards.length === 2) {
+      const [aName, bName] = selectedCards;
+      const [p0, p1] = [slugify(aName), slugify(bName)].sort(); // canonical path
+      const url = `/${p0}-vs-${p1}.html?services=${encodeURIComponent(aName)},${encodeURIComponent(bName)}&category=${encodeURIComponent(categoryTitle)}`;
+      sessionStorage.setItem("clearSelectedAfterCompare", "true");
+      window.location.href = url; // ✅ static pair page
+      return;
+    }
+  
+    // 3 selected → keep dynamic
+const compareURL = `compare.html?services=${selectedCards.join(",")}&category=${encodeURIComponent(categoryTitle)}`;
+sessionStorage.setItem("clearSelectedAfterCompare", "true");
+window.location.href = compareURL; 
+  });  
 });
 
 // ✅ Handle clicking on a card to go to the service detail view
@@ -475,9 +491,8 @@ document.querySelectorAll(".card").forEach(card => {
     if (e.target.closest(".select-circle")) return;
 
     const serviceName = card.querySelector("img").alt;
-    const category = card.closest(".category")?.querySelector("h2")?.innerText ?? "Service Overview";
-    const url = `service.html?services=${encodeURIComponent(serviceName)}&category=${encodeURIComponent(category)}`;
-    window.location.href = url;
+    const slug = slugify(serviceName);
+    window.location.href = `/${slug}.html`;    
   });
 });
 
@@ -535,8 +550,8 @@ suggestionsBox.addEventListener("click", (e) => {
     searchInput.value = '';
     setTimeout(() => { suggestionsBox.style.display = 'none'; }, 300);
   } else {
-    const url = `service.html?services=${encodeURIComponent(serviceName)}&category=Search`;
-    window.location.href = url;
+    const slug = slugify(serviceName);
+window.location.href = `/${slug}.html`;
   }
 });
 
@@ -558,8 +573,8 @@ suggestionsBox.addEventListener("click", (e) => {
 
     const match = servicesCache.find(s => s.name.toLowerCase().includes(query));
     if (match) {
-      const url = `service.html?services=${encodeURIComponent(match.name)}&category=Search`;
-      window.location.href = url;
+      const slug = slugify(match.name);
+window.location.href = `/${slug}.html`;
     } else {
       alert("Service not found. Please try another name.");
     }
@@ -773,8 +788,8 @@ if (mainSearchInput && mainSearchBtn && mainSearchSuggestions) {
             mainSearchInput.value = '';
             setTimeout(() => { mainSearchSuggestions.style.display = 'none'; }, 300);
           } else {
-            const url = `service.html?services=${encodeURIComponent(service.name)}&category=Search`;
-            window.location.href = url;
+            const slug = slugify(service.name);
+window.location.href = `/${slug}.html`;
           }
         });
         mainSearchSuggestions.appendChild(div);
@@ -796,8 +811,8 @@ if (mainSearchInput && mainSearchBtn && mainSearchSuggestions) {
 
     const match = servicesCache.find(s => s.name.toLowerCase().includes(query));
     if (match) {
-      const url = `service.html?services=${encodeURIComponent(match.name)}&category=Search`;
-      window.location.href = url;
+      const slug = slugify(match.name);
+window.location.href = `/${slug}.html`;
     } else {
       alert("Service not found.");
     }
@@ -827,22 +842,45 @@ document.addEventListener("DOMContentLoaded", () => {
     mainBtn.addEventListener('click', () => {
       if (selectedServicesMain.length < 2) return;
       const category = getCategory(selectedServicesMain);
-      const url = `compare.html?services=${selectedServicesMain.join(",")}&category=${encodeURIComponent(category)}`;
-      window.location.href = url;
-      selectedServicesMain = [];
-      updateSelectedUI('main');
+    
+      if (selectedServicesMain.length === 2) {
+        const [left, right] = selectedServicesMain;
+        const vsSlug = canonicalVsSlug(left, right);
+        const url =
+  `/${vsSlug}.html?services=${encodeURIComponent(left)},${encodeURIComponent(right)}&category=${encodeURIComponent(category)}`;
+
+        sessionStorage.setItem("clearSelectedAfterCompare", "true");
+        window.location.href = url; // static 2-up
+      } else {
+        const url = `compare.html?services=${selectedServicesMain.join(",")}&category=${encodeURIComponent(category)}`;
+        sessionStorage.setItem("clearSelectedAfterCompare", "true");
+        window.location.href = url; // dynamic 3-up
+      }
     });
+    
+    
   }
   const menuBtn = document.getElementById('menu-compare-btn');
   if (menuBtn) {
     menuBtn.addEventListener('click', () => {
       if (selectedServicesMenu.length < 2) return;
       const category = getCategory(selectedServicesMenu);
-      const url = `compare.html?services=${selectedServicesMenu.join(",")}&category=${encodeURIComponent(category)}`;
-      window.location.href = url;
-      selectedServicesMenu = [];
-      updateSelectedUI('menu');
-    });
+    
+      if (selectedServicesMenu.length === 2) {
+        const [left, right] = selectedServicesMenu;
+        const vsSlug = canonicalVsSlug(left, right);
+        const url =
+  `/${vsSlug}.html?services=${encodeURIComponent(left)},${encodeURIComponent(right)}&category=${encodeURIComponent(category)}`;
+
+        sessionStorage.setItem("clearSelectedAfterCompare", "true");
+        window.location.href = url; // static 2-up
+      } else {
+        const url = `compare.html?services=${selectedServicesMenu.join(",")}&category=${encodeURIComponent(category)}`;
+        sessionStorage.setItem("clearSelectedAfterCompare", "true");
+        window.location.href = url; // dynamic 3-up
+      }
+    });    
+    
   }
 });
 

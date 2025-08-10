@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compare Bitcoin Services</title>
-  <meta name="description" content="Side-by-side comparison of Bitcoin services with key features and costs."/>
-  <link rel="canonical" href="https://buoybitcoin.com/compare.html"/>
+  <title>myNode vs Start9 — Which is better? | Buoy Bitcoin</title>
+  <meta name="description" content="Compare myNode and Start9 (Home server as software and / or hardware): fees, custody, features, and more."/>
+  <link rel="canonical" href="https://buoybitcoin.com/mynode-vs-start9.html"/>
   <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://buoybitcoin.com/compare.html"/>
-  <meta property="og:title" content="Compare Bitcoin Services"/>
-  <meta property="og:description" content="Side-by-side comparison of Bitcoin services with key features and costs."/>
+  <meta property="og:url" content="https://buoybitcoin.com/mynode-vs-start9.html"/>
+  <meta property="og:title" content="myNode vs Start9 — Which is better? | Buoy Bitcoin"/>
+  <meta property="og:description" content="Compare myNode and Start9 (Home server as software and / or hardware): fees, custody, features, and more."/>
   <meta property="og:image" content="https://buoybitcoin.com/android-chrome-512x512.png"/>
-  <meta name="robots" content="noindex,follow">
+  <meta name="robots" content="index,follow">
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Compare Bitcoin Services"/>
-  <meta name="twitter:description" content="Side-by-side comparison of Bitcoin services with key features and costs."/>
+  <meta name="twitter:title" content="myNode vs Start9 — Which is better? | Buoy Bitcoin"/>
+  <meta name="twitter:description" content="Compare myNode and Start9 (Home server as software and / or hardware): fees, custody, features, and more."/>
   <meta name="twitter:image" content="https://buoybitcoin.com/android-chrome-512x512.png"/>
   <meta name="twitter:site" content="@jaspervanderee"/>
   <link rel="stylesheet" href="css/styles.css">
@@ -22,7 +22,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
   <script defer src="https://feedback.fish/ff.js?pid=17f299e6843396" crossorigin="anonymous"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="0895676a-bb0e-488d-9381-a27cf9cf5888"></script>
-</head>
+
+<script>
+(function(){
+  try {
+    var a = "myNode";
+    var b = "Start9";
+    var cat = "Home server as software and / or hardware";
+    var p = new URLSearchParams(location.search);
+    if (!p.get('services')) p.set('services', a + ',' + b);
+    if (!p.get('category')) p.set('category', cat);
+    history.replaceState(null, '', location.pathname + '?' + p.toString());
+    window.__BUOY_COMPARE__ = [a,b];
+  } catch(e){}
+})();
+</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"myNode vs Start9 — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/mynode-vs-start9.html","description":"Compare myNode and Start9 (Home server as software and / or hardware): fees, custody, features, and more.","about":[{"@type":"Organization","name":"myNode","url":"https://mynodebtc.com"},{"@type":"Organization","name":"Start9","url":"https://start9.com"}]}</script></head>
 <body>
   <div class="container">
  <header>
@@ -98,15 +112,17 @@
 </header>
  <main>
   <div class="category-header">
-    <h2 id="category-title">Compare Services</h2>
+    <h2 id="category-title">myNode vs Start9</h2>
   </div>
 <!-- BUILD:START -->
+
 <div id="comparison-container">
   <div class="logo-row-sticky">
     <div class="feature-values logo-row" id="logo-row-container"></div>
   </div>
   <div id="comparison-table-wrapper"></div>
 </div>
+
 <!-- BUILD:END -->
 
 

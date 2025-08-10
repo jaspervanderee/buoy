@@ -1,0 +1,22 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "**Find your way into Bitcoin – Fast.** Simple comparisons with no crypto noise.",
+  "main": "index.js",
+"scripts": {
+  "build:services": "node scripts/build-static.mjs",
+  "build:compare": "node scripts/build-compare.mjs",
+  "build": "npm run build:services && npm run build:compare"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaspervanderee/buoy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaspervanderee/buoy/issues"
+  },
+  "homepage": "https://github.com/jaspervanderee/buoy#readme"
+}

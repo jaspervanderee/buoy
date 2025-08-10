@@ -1,9 +1,44 @@
+# ==== Buoy canonical redirects (static compare/service) ====
+RewriteEngine On
+
+
+# BEGIN buoy compare redirects
+RewriteRule ^unchained-vs-anchorwatch\.html$ /anchorwatch-vs-unchained.html [R=301,L]
+RewriteRule ^breez-vs-aqua\.html$ /aqua-vs-breez.html [R=301,L]
+RewriteRule ^muun-vs-aqua\.html$ /aqua-vs-muun.html [R=301,L]
+RewriteRule ^phoenix-vs-aqua\.html$ /aqua-vs-phoenix.html [R=301,L]
+RewriteRule ^muun-vs-breez\.html$ /breez-vs-muun.html [R=301,L]
+RewriteRule ^phoenix-vs-breez\.html$ /breez-vs-phoenix.html [R=301,L]
+RewriteRule ^phoenix-vs-muun\.html$ /muun-vs-phoenix.html [R=301,L]
+RewriteRule ^relai-vs-bitonic\.html$ /bitonic-vs-relai.html [R=301,L]
+RewriteRule ^river-vs-bitonic\.html$ /bitonic-vs-river.html [R=301,L]
+RewriteRule ^strike-vs-bitonic\.html$ /bitonic-vs-strike.html [R=301,L]
+RewriteRule ^swan-vs-bitonic\.html$ /bitonic-vs-swan.html [R=301,L]
+RewriteRule ^river-vs-relai\.html$ /relai-vs-river.html [R=301,L]
+RewriteRule ^strike-vs-relai\.html$ /relai-vs-strike.html [R=301,L]
+RewriteRule ^swan-vs-relai\.html$ /relai-vs-swan.html [R=301,L]
+RewriteRule ^strike-vs-river\.html$ /river-vs-strike.html [R=301,L]
+RewriteRule ^swan-vs-river\.html$ /river-vs-swan.html [R=301,L]
+RewriteRule ^swan-vs-strike\.html$ /strike-vs-swan.html [R=301,L]
+RewriteRule ^peach-vs-hodlhodl\.html$ /hodlhodl-vs-peach.html [R=301,L]
+RewriteRule ^pocket-vs-hodlhodl\.html$ /hodlhodl-vs-pocket.html [R=301,L]
+RewriteRule ^pocket-vs-peach\.html$ /peach-vs-pocket.html [R=301,L]
+RewriteRule ^start9-vs-mynode\.html$ /mynode-vs-start9.html [R=301,L]
+RewriteRule ^umbrel-vs-mynode\.html$ /mynode-vs-umbrel.html [R=301,L]
+RewriteRule ^umbrel-vs-start9\.html$ /start9-vs-umbrel.html [R=301,L]
+RewriteRule ^wasabi-vs-sparrow\.html$ /sparrow-vs-wasabi.html [R=301,L]
+# END buoy compare redirects
+
+# --- optional: paste generated-service-redirects.htaccess here if you created it ---
+# BEGIN buoy service redirects
+# (lines that 301 /service.html?services=Strike → /strike.html)
+# END buoy service redirects
+
+# ==== end Buoy canonical redirects ====
+
+
 # Soft Launch Clean Redirects for Buoy
 # Created: 2025-08-09
-
-# Make sure mod_alias is enabled in Apache
-# Each Redirect is a temporary (302) redirect to preserve SEO
-
 Redirect 302 /wix /?utm_source=wix&utm_medium=forum&utm_campaign=softlaunch
 Redirect 302 /reddit /?utm_source=reddit&utm_medium=forum&utm_campaign=softlaunch
 Redirect 302 /nostr /?utm_source=nostr&utm_medium=social&utm_campaign=softlaunch
@@ -19,3 +54,8 @@ Redirect 302 /bitco_in /?utm_source=bitco_in&utm_medium=forum&utm_campaign=softl
 Redirect 302 /cryptotalk /?utm_source=cryptocurrencytalk&utm_medium=forum&utm_campaign=softlaunch
 Redirect 302 /bitcoingarden /?utm_source=bitcoingarden&utm_medium=forum&utm_campaign=softlaunch
 Redirect 302 /altcoinstalks /?utm_source=altcoinstalks&utm_medium=forum&utm_campaign=softlaunch
+
+# Make sure mod_alias is enabled in Apache
+# Each Redirect is a temporary (302) redirect to preserve SEO
+
+
