@@ -1,0 +1,21 @@
+# Soft Launch Clean Redirects for Buoy
+# Created: 2025-08-09
+
+# Make sure mod_alias is enabled in Apache
+# Each Redirect is a temporary (302) redirect to preserve SEO
+
+Redirect 302 /wix /?utm_source=wix&utm_medium=forum&utm_campaign=softlaunch
+Redirect 302 /reddit /?utm_source=reddit&utm_medium=forum&utm_campaign=softlaunch
+Redirect 302 /nostr /?utm_source=nostr&utm_medium=social&utm_campaign=softlaunch
+Redirect 302 /x /?utm_source=twitter&utm_medium=social&utm_campaign=softlaunch
+Redirect 302 /planb /?utm_source=planbnetwork&utm_medium=network&utm_campaign=softlaunch
+Redirect 302 /producthunt /?utm_source=producthunt&utm_medium=launch&utm_campaign=softlaunch
+Redirect 302 /hn /?utm_source=hackernews&utm_medium=forum&utm_campaign=softlaunch
+Redirect 302 /stacker /?utm_source=stackernews&utm_medium=forum&utm_campaign=softlaunch
+Redirect 302 /bitcointalk /?utm_source=bitcointalk&utm_medium=forum&utm_campaign=softlaunch
+Redirect 302 /bitcoincom /?utm_source=bitcoincom&utm_medium=forum&utm_campaign=softlaunch
+Redirect 302 /bitcoinse /?utm_source=bitcoinse&utm_medium=forum&utm_campaign=softlaunch
+Redirect 302 /bitco_in /?utm_source=bitco_in&utm_medium=forum&utm_campaign=softlaunch
+Redirect 302 /cryptotalk /?utm_source=cryptocurrencytalk&utm_medium=forum&utm_campaign=softlaunch
+Redirect 302 /bitcoingarden /?utm_source=bitcoingarden&utm_medium=forum&utm_campaign=softlaunch
+Redirect 302 /altcoinstalks /?utm_source=altcoinstalks&utm_medium=forum&utm_campaign=softlaunch
