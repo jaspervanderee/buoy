@@ -229,11 +229,17 @@ document.addEventListener("DOMContentLoaded", () => {
       </a>
     `;
     
-    // Insert before footer
-    const footer = document.querySelector("footer");
-    if (footer) {
-      footer.parentNode.insertBefore(seeMoreDiv, footer);
-    }
+// Insert above the SEO copy if present; else fall back to before footer
+const seoCopy = document.querySelector(".seo-copy.space");
+if (seoCopy && seoCopy.parentNode) {
+  seoCopy.parentNode.insertBefore(seeMoreDiv, seoCopy);
+} else {
+  const footer = document.querySelector("footer");
+  if (footer && footer.parentNode) {
+    footer.parentNode.insertBefore(seeMoreDiv, footer);
+  }
+}
+
     
     // Add click handler to reset questionnaire
     const seeMoreLink = seeMoreDiv.querySelector("a");
