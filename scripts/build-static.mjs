@@ -5,6 +5,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
+import { injectAlternatives } from "./lib/alternatives.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -128,6 +129,13 @@ html = html.replace('</head>', urlShim + '</head>');
       "about": { "@type": "Organization", "name": svc.name, "url": svc.website || url }
     };
     html = html.replace("</head>", `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script></head>`);
+
+    // Inject Alternatives block under comparison area
+    try {
+      html = injectAlternatives(html, svc, services);
+    } catch (e) {
+      // fail-safe: if anything goes wrong, keep the page without alternatives
+    }
 
     // NOTE: Do NOT add data-static yet. Let the current JS render the body so design stays identical.
     await fs.writeFile(path.join(OUT_SERVICES, `${slug}.html`), html, "utf8");

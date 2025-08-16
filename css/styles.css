@@ -2116,5 +2116,42 @@ p, li, a {
 
   /* Three USP columns on desktop */
   .seo-copy.space .usps{ grid-template-columns:repeat(3,1fr); gap:24px; }
+
+  .alt-block h2 { font-size: 1.6em; }
 }
 
+
+/* Alternatives block (build-time) */
+.alt-block { 
+  margin-top: 24px;
+  margin-bottom: 48px;
+}
+
+.alt-block h2 {
+  font-size: 1.4em;
+  margin: 0 0 10px;
+}
+
+.alt-block .muted {
+  opacity: .6; font-weight: 400;
+}
+
+.alt-grid {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px; 
+}
+
+.alt-item { background: #fff; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,.05); padding: 8px; }
+/* Reuses .logo-cell, .service-link, .cta-button from existing styles */
+.alt-item .logo-cell { padding: 8px; }
+
+/* Accessible, visually hidden utility */
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important;}
+
+/* Ensure CTA links are not underlined */
+.cta-button{ text-decoration: none; }
+.cta-button:hover{ text-decoration: none; }

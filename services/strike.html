@@ -148,6 +148,125 @@
   </div>
 </div>
 
+
+<section class="alt-block" aria-labelledby="alt-heading">
+  <h2 id="alt-heading">Alternatives to Strike</h2>
+  <ul class="alt-grid">
+      <li class="alt-item">
+        <div class="logo-cell">
+          <a class="service-link" href="/services/bitonic.html" aria-label="Bitonic">
+            <img src="/images/bitonic.svg" alt="Bitonic" class="svg-icon" />
+            <span class="visually-hidden">Bitonic</span>
+          </a>
+          <a class="cta-button" href="/compare.html?services=Strike,Bitonic">Compare with Strike</a>
+        </div>
+      </li>
+      <li class="alt-item">
+        <div class="logo-cell">
+          <a class="service-link" href="/services/bull-bitcoin.html" aria-label="Bull Bitcoin">
+            <img src="/images/bull-bitcoin.svg" alt="Bull Bitcoin" class="svg-icon" />
+            <span class="visually-hidden">Bull Bitcoin</span>
+          </a>
+          <a class="cta-button" href="/compare.html?services=Strike,Bull%20Bitcoin">Compare with Strike</a>
+        </div>
+      </li>
+      <li class="alt-item">
+        <div class="logo-cell">
+          <a class="service-link" href="/services/hodlhodl.html" aria-label="Hodlhodl">
+            <img src="/images/hodlhodl.svg" alt="Hodlhodl" class="svg-icon" />
+            <span class="visually-hidden">Hodlhodl</span>
+          </a>
+          <a class="cta-button" href="/compare.html?services=Strike,Hodlhodl">Compare with Strike</a>
+        </div>
+      </li>
+      <li class="alt-item">
+        <div class="logo-cell">
+          <a class="service-link" href="/services/peach.html" aria-label="Peach">
+            <img src="/images/peach.svg" alt="Peach" class="svg-icon" />
+            <span class="visually-hidden">Peach</span>
+          </a>
+          <a class="cta-button" href="/compare.html?services=Strike,Peach">Compare with Strike</a>
+        </div>
+      </li>
+      <li class="alt-item">
+        <div class="logo-cell">
+          <a class="service-link" href="/services/pocket.html" aria-label="Pocket">
+            <img src="/images/pocket.svg" alt="Pocket" class="svg-icon" />
+            <span class="visually-hidden">Pocket</span>
+          </a>
+          <a class="cta-button" href="/compare.html?services=Strike,Pocket">Compare with Strike</a>
+        </div>
+      </li>
+      <li class="alt-item">
+        <div class="logo-cell">
+          <a class="service-link" href="/services/relai.html" aria-label="Relai">
+            <img src="/images/relai.svg" alt="Relai" class="svg-icon" />
+            <span class="visually-hidden">Relai</span>
+          </a>
+          <a class="cta-button" href="/compare.html?services=Strike,Relai">Compare with Strike</a>
+        </div>
+      </li>
+      <li class="alt-item">
+        <div class="logo-cell">
+          <a class="service-link" href="/services/river.html" aria-label="River">
+            <img src="/images/river.svg" alt="River" class="svg-icon" />
+            <span class="visually-hidden">River</span>
+          </a>
+          <a class="cta-button" href="/compare.html?services=Strike,River">Compare with Strike</a>
+        </div>
+      </li>
+      <li class="alt-item">
+        <div class="logo-cell">
+          <a class="service-link" href="/services/swan.html" aria-label="Swan">
+            <img src="/images/swan.svg" alt="Swan" class="svg-icon" />
+            <span class="visually-hidden">Swan</span>
+          </a>
+          <a class="cta-button" href="/compare.html?services=Strike,Swan">Compare with Strike</a>
+        </div>
+      </li></ul>
+</section>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Alternatives to Strike","itemListElement":[{"@type":"Service","name":"Bitonic","url":"/services/bitonic.html","position":1},{"@type":"Service","name":"Bull Bitcoin","url":"/services/bull-bitcoin.html","position":2},{"@type":"Service","name":"Hodlhodl","url":"/services/hodlhodl.html","position":3},{"@type":"Service","name":"Peach","url":"/services/peach.html","position":4},{"@type":"Service","name":"Pocket","url":"/services/pocket.html","position":5},{"@type":"Service","name":"Relai","url":"/services/relai.html","position":6},{"@type":"Service","name":"River","url":"/services/river.html","position":7},{"@type":"Service","name":"Swan","url":"/services/swan.html","position":8}]}</script>
+<script>
+(function(){
+  try {
+    const grid = document.querySelector('.alt-grid');
+    if (!grid) return;
+    const userCountry = localStorage.getItem('userCountry') || 'ALL';
+    fetch('/data/services.json').then(r => r.json()).then(list => {
+      const regionMappings = {
+        "WW": [],
+        "NA": ["US","CA","MX","BZ","CR","SV","GT","HN","NI","PA","AI","AG","AW","BS","BB","BQ","CU","CW","DM","DO","GD","GP","HT","JM","MQ","MS","PR","BL","KN","LC","MF","VC","SX","TT","TC","VG","VI"],
+        "SA": ["AR","BO","BR","CL","CO","EC","GY","PY","PE","SR","UY","VE"],
+        "EU": ["AL","AD","AT","BY","BE","BA","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IS","IE","IT","XK","LV","LI","LT","LU","MT","MD","MC","ME","NL","MK","NO","PL","PT","RO","RU","SM","RS","SK","SI","ES","SE","CH","UA","GB","VA"],
+        "AF": ["DZ","AO","BJ","BW","BF","BI","CM","CV","CF","TD","KM","CD","CG","CI","DJ","EG","GQ","ER","SZ","ET","GA","GM","GH","GN","GW","KE","LS","LR","LY","MG","MW","ML","MR","MU","MA","MZ","NA","NE","NG","RW","ST","SN","SC","SL","SO","ZA","SS","SD","TZ","TG","TN","UG","ZM","ZW"],
+        "AS": ["AF","AM","AZ","BH","BD","BT","BN","KH","CN","GE","IN","ID","IR","IQ","IL","JP","JO","KZ","KW","KG","LA","LB","MY","MV","MN","MM","NP","KP","OM","PK","PH","QA","SA","SG","KR","LK","SY","TW","TJ","TH","TL","TR","TM","AE","UZ","VN","YE"],
+        "OC": ["AU","FJ","KI","MH","FM","NR","NZ","PW","PG","WS","SB","TO","TV","VU"]
+      };
+      function isServiceAvailable(service, country) {
+        if (country === 'ALL') return true;
+        const countries = service.countries || [];
+        return countries.includes('WW') || countries.includes(country) || countries.some(code => (regionMappings[code] || []).includes(country));
+      }
+      function toNum(x){ const n = (typeof x === 'number') ? x : parseFloat(x); return Number.isFinite(n) ? n : NaN; }
+      function ratingScore(svc){ if (!svc || !svc.app_ratings) return 0; const ios = toNum(svc.app_ratings.ios); const android = toNum(svc.app_ratings.android); const vals = [ios, android].filter(v => Number.isFinite(v)); if (vals.length === 0) return 0; return vals.reduce((a,b)=>a+b,0)/vals.length; }
+      const nameToSvc = new Map((list || []).map(s => [String(s.name), s]));
+      const items = Array.from(grid.querySelectorAll('li')).map(li => {
+        const a = li.querySelector('.service-link');
+        const name = a?.getAttribute('aria-label') || a?.textContent?.trim() || '';
+        const svc = nameToSvc.get(name) || null;
+        const r = ratingScore(svc);
+        const avail = svc ? isServiceAvailable(svc, userCountry) : false;
+        const score = (avail ? 2 : 0) + (r / 5);
+        return { li, score };
+      });
+      items.sort((a,b) => b.score - a.score);
+      items.forEach(it => grid.appendChild(it.li));
+      items.slice(5).forEach(it => { it.li.style.display = 'none'; });
+    }).catch(() => {});
+  } catch (_) {}
+})();
+</script>
+
 </main>
 
 </div>  <!-- container -->
