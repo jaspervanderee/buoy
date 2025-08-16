@@ -1,6 +1,7 @@
 [
 	{
 "name": "AnchorWatch",
+	"category": "Store it safely",
 	"type_of_platform": "Collaborative custody",
     "supported_network": "Bitcoin",
     "features": {
@@ -39,6 +40,7 @@
   },
   {
  "name": "Aqua",
+   "category": "Spend Bitcoin",
   "type_of_platform": "Hot Wallet",
     "supported_network": "Bitcoin + Lightning + Liquid",
     "features": {
@@ -68,6 +70,7 @@
   },
 	 {
 "name": "Bitkey",
+    "category": "Store it safely",
     "type_of_platform": "Physical device (hardware wallet) + mobile app",
     "supported_network": "Bitcoin",
     "features": {
@@ -98,6 +101,7 @@
   },
   {
 "name": "Bitonic",
+  "category": "Buy Bitcoin",
   "type_of_platform": "Exchange",
     "features": {
 	  "WW": [
@@ -137,6 +141,7 @@
   },
 	{
 "name": "Breez",
+  "category": "Spend Bitcoin",
   "type_of_platform": "Hot Wallet",
     "supported_network": "Bitcoin + Lightning",
     "features": {
@@ -168,6 +173,7 @@
   },
 	 {
 "name": "BTC Pay",
+    "category": "Accept Bitcoin as a merchant",
     "type_of_platform": "Hosted payment gateway",
        "supported_network": "Bitcoin + Lightning",
        "features": {
@@ -199,6 +205,7 @@
   },
 	{
 "name": "Bull Bitcoin",
+    "category": "Buy Bitcoin",
     "type_of_platform": "Non-custodial",
       "features": {
 	      "WW": [
@@ -243,6 +250,7 @@
   },
 	{
   "name": "Fold",
+       "category": "Spend Bitcoin",
       "type_of_platform": "Bitcoin rewards card",
           "supported_network": "Visa Debit Card, Credit Card, Giftcards",
           "features": {
@@ -278,6 +286,7 @@
 },
   {
 "name": "Hodlhodl",
+    "category": "Buy Bitcoin",
     "type_of_platform": "P2P",
         "features": {
           "WW": [
@@ -308,6 +317,7 @@
   },
 	 {
 "name": "Lightspark",
+    "category": "Accept Bitcoin as a merchant",
     "type_of_platform": "Payment Infrastructure",
        "supported_network": "Lightning only",
        "features": {
@@ -343,6 +353,7 @@
   },
 	{
 "name": "Muun",
+    "category": "Spend Bitcoin",
     "type_of_platform": "Hot Wallet",
     "supported_network": "Bitcoin + Lightning",
     "features": {
@@ -372,6 +383,7 @@
   },
   {
 "name": "myNode",
+    "category": "Run my own node",
     "type_of_platform": "Home server as software and / or hardware",
        "features": {
       "WW": [
@@ -394,6 +406,7 @@
   },
 	{
 "name": "OpenNode",
+    "category": "Accept Bitcoin as a merchant",
     "type_of_platform": "Payment Processor",
        "supported_network": "Bitcoin + Lightning",
        "features": {
@@ -424,6 +437,7 @@
 },
   {
   "name": "Peach",
+    "category": "Buy Bitcoin",
     "type_of_platform": "P2P",
       "features": {
       "WW": [
@@ -457,6 +471,7 @@
   },
 	{
 "name": "Phoenix",
+   "category": "Spend Bitcoin",
   "type_of_platform":"Hot Wallet",
     "supported_network": "Lightning only, but you can receive and send on-chain using swaps",
     "features": {
@@ -485,6 +500,7 @@
   },
   {
 "name": "Pocket",
+   "category": "Buy Bitcoin",
   "type_of_platform": "P2P",
     "features": {
 	  "WW": [
@@ -524,6 +540,7 @@
   },
   {
 "name": "Relai",
+  "category": "Buy Bitcoin",
   "type_of_platform": "Exchange",
     "features": {
       "WW": [
@@ -565,6 +582,7 @@
   },
   {
 "name": "River",
+	"category": "Buy Bitcoin",
 	"type_of_platform": "Exchange",
     "features": {
 	   "WW": [
@@ -608,6 +626,7 @@
   },
 	{
 "name": "Sparrow",
+    "category": "Store it safely",
     "type_of_platform": "Desktop wallet",
     "supported_network": "Bitcoin",
     "features": {
@@ -638,6 +657,7 @@
   },
   {
 "name": "Start9",
+    "category": "Run my own node",
     "type_of_platform": "Home server as software and / or hardware",
         "features": {
           "WW": [
@@ -659,6 +679,7 @@
   },
     {
 "name": "Strike",
+  "category": "Buy Bitcoin",
   "type_of_platform": "Exchange",
 	"fees": {
 		"intro": "Based on monthly trading volume",
@@ -707,6 +728,7 @@
   },
      {
   "name": "Swan",
+	"category": "Buy Bitcoin",
 	"type_of_platform": "Exchange",
    "features": {
 	  "WW": [
@@ -749,6 +771,7 @@
   },
   {
 "name": "Umbrel",
+    "category": "Run my own node",
     "type_of_platform": "Home server as software and / or hardware",
         "features": {
       "WW": [
@@ -771,6 +794,7 @@
   },
 	{
 "name": "Unchained",
+  "category": "Store it safely",
   "type_of_platform": "Collaborative custody",
       "supported_network": "Bitcoin",
       "features": {
@@ -808,6 +832,7 @@
   },
 	{
 "name": "Wasabi",
+    "category": "Store it safely",
     "type_of_platform": "Desktop wallet",
     "supported_network": "Bitcoin",
     "features": {

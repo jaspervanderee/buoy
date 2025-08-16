@@ -19,8 +19,8 @@ function renderAppRatings(rating) {
   `;
 }
 
-function getLogoFilename(serviceName) {
-  return `images/${serviceName.toLowerCase().replace(/\s+/g, "-")}.svg`;
+function getLogoFilename(name) {
+  return `/images/${name.toLowerCase().replace(/\s+/g, '-')}.svg`;
 }
 
 
@@ -28,28 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const urlParams = new URLSearchParams(window.location.search);
   let categoryTitle = urlParams.get("category") ?? "Compare Services";
 
-// ✅ Override "Search" category with correct section if matched
-const categoryMap = {
-  "Buy Bitcoin": ["strike", "river", "swan", "relai", "hodlhodl", "bitonic", "peach", "bull bitcoin", "pocket"],
-  "Spend Bitcoin": ["breez", "aqua", "phoenix", "muun", "fold"],
-  "Store it safely": ["bitkey", "sparrow", "wasabi", "anchorwatch", "unchained"],
-  "Run my own node": ["umbrel", "mynode", "start9"],
-  "Merchant Tools": ["btc pay", "opennode", "lightspark"]
-};
-
-if (categoryTitle === "Search") {
-  const serviceName = urlParams.get("services");
-  if (serviceName) {
-    const name = serviceName.toLowerCase();
-
-    for (const [label, services] of Object.entries(categoryMap)) {
-      if (services.includes(name)) {
-        categoryTitle = label;
-        break;
-      }
-    }
-  }
-}
+// Category title will be refined after loading services.json using service.category
 
 document.getElementById("category-title").textContent = categoryTitle;
 const selectedServices = urlParams.get("services")
@@ -59,7 +38,9 @@ const selectedServices = urlParams.get("services")
 
 const isSingleServiceView =
   window.location.pathname.includes("service.html") ||
-  (!!window.__BUOY_SERVICE__ && !window.location.pathname.includes("compare.html"));
+  (!!window.__BUOY_SERVICE__ && !window.location.pathname.includes("compare.html")) ||
+  (typeof window.__BUOY_SINGLE__ !== 'undefined' && window.__BUOY_SINGLE__ === true) ||
+  (typeof window.location.pathname === 'string' && window.location.pathname.startsWith("/services/"));
 
 
 if (!isSingleServiceView && selectedServices.length < 2) {
@@ -72,10 +53,16 @@ if (isSingleServiceView && selectedServices.length !== 1) {
   return;
 }
 try {
-    const response = await fetch("data/services.json");
+    const response = await fetch("/data/services.json");
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
     const servicesData = await response.json();
+
+    // Helper to find a service object by name (case-insensitive)
+    const findService = (name) => {
+      if (!name) return null;
+      return servicesData.find(s => s.name.toLowerCase() === String(name).toLowerCase()) || null;
+    };
 
     // Match selected services in the order they were chosen
     let servicesToCompare = selectedServices.map(selectedName =>
@@ -87,39 +74,32 @@ try {
       return;
     }
 
-// NEW: For single service view, determine the category based on the service name for consistent feature ordering
+    // Update category title for Search views using the service.category from services.json
+    if (categoryTitle === "Search") {
+      const firstSelected = selectedServices[0];
+      const svc = findService(firstSelected);
+      if (svc && svc.category) {
+        categoryTitle = svc.category;
+        document.getElementById("category-title").textContent = categoryTitle;
+      }
+    }
+
+    // For single service view, set title from service.category
     if (isSingleServiceView && servicesToCompare.length === 1) {
-      const serviceName = servicesToCompare[0].name.toLowerCase();
-      let foundCategory = null;
-      for (const [label, services] of Object.entries(categoryMap)) {
-        if (services.includes(serviceName)) {
-          foundCategory = label;
-          break;
-        }
-      }
-      if (foundCategory) {
-        categoryTitle = foundCategory;
-      } else {
-        categoryTitle = "Service Details"; // Fallback for services not in any category
-      }
+      const svc = servicesToCompare[0];
+      categoryTitle = svc.category || "Service Details";
       document.getElementById("category-title").textContent = categoryTitle;
     }
 
-// NEW: For multi-service view, determine common category if all services share one
+    // For multi-service view, require all selected services to share the same service.category
     if (!isSingleServiceView && servicesToCompare.length > 1) {
-      let commonCategory = null;
-      const selectedNames = servicesToCompare.map(s => s.name.toLowerCase());
-      for (const [label, services] of Object.entries(categoryMap)) {
-        if (selectedNames.every(name => services.includes(name))) {
-          commonCategory = label;
-          break;
-        }
-      }
-      if (commonCategory) {
-        categoryTitle = commonCategory;
+      const categories = servicesToCompare.map(s => s.category).filter(Boolean);
+      const allHaveCategory = categories.length === servicesToCompare.length;
+      const allSame = allHaveCategory && categories.every(c => c === categories[0]);
+      if (allSame) {
+        categoryTitle = categories[0];
         document.getElementById("category-title").textContent = categoryTitle;
       } else {
-        // NEW: Handle mixed categories by showing an error
         document.getElementById("comparison-container").innerHTML = "<p>Cannot compare services from different categories. Please select services from the same category.</p>";
         return;
       }
@@ -211,7 +191,7 @@ const categoryFeaturesMap = {
   "Run my own node": [
     "type_of_platform", "features", "price", "user_experience", "interface", "support", "profile", "description", "founded_in", "website", "availability"
   ],
-  "Merchant Tools": [
+  "Accept Bitcoin as a merchant": [
     "type_of_platform", "supported_network", "features", "fees", "subscription_fees", "conversion_fees", "settlement_time", "compatibility", "pos_compatibility", "custody_control", "kyc_required",  "open_source", "user_experience", "profile", "description", "founded_in", "website", "availability"
   ]
 };
@@ -220,7 +200,7 @@ function renderFeatures(service) {
   const featuresList = getFeaturesForCountry(service, countryCode);
   if (featuresList.length === 0) {
     return `<div class="feature-item">
-              <img src="images/cross.svg" alt="Cross" class="checkmark-icon" /> No specific features available
+              <img src="/images/cross.svg" alt="Cross" class="checkmark-icon" /> No specific features available
             </div>`;
   }
   return featuresList.map((f, index) => {
@@ -230,7 +210,7 @@ function renderFeatures(service) {
       extraClass = ' negative-group-start';
     }
     return `<div class="feature-item${extraClass}">
-              <img src="images/${icon}" alt="${f.status} icon" class="checkmark-icon" /> ${f.text}
+              <img src="/images/${icon}" alt="${f.status} icon" class="checkmark-icon" /> ${f.text}
             </div>`;
   }).join("");
 }
@@ -279,13 +259,13 @@ function renderFeatures(service) {
       let iconSrc = '';
       let altText = '';
       if (lower.includes("mobile & desktop")) {
-        iconSrc = "images/mobile-desktop.svg";
+        iconSrc = "/images/mobile-desktop.svg";
         altText = "Mobile & Desktop";
       } else if (lower.includes("mobile")) {
-        iconSrc = "images/mobile.svg";
+        iconSrc = "/images/mobile.svg";
         altText = "Mobile";
       } else if (lower.includes("desktop")) {
-        iconSrc = "images/desktop.svg";
+        iconSrc = "/images/desktop.svg";
         altText = "Desktop";
       }
       if (iconSrc) {
@@ -305,7 +285,7 @@ function renderFeatures(service) {
     render: (val) => {
       if (!val) return "N/A";
       const filename = val.toLowerCase().replace(/\s+/g, "-") + ".jpg";
-      return `<img src="images/founders/${filename}" alt="${val}" style="width:100px; height:100px; border-radius:50%; display:block; margin:0 auto 10px auto;"> <div style="text-align:center;">${val}</div>`;
+      return `<img src="/images/founders/${filename}" alt="${val}" style="width:100px; height:100px; border-radius:50%; display:block; margin:0 auto 10px auto;"> <div style="text-align:center;">${val}</div>`;
     }
   },
   { key: "description", label: "Company description", render: renderCollapsibleDescription },
@@ -339,6 +319,10 @@ const featureRows = await Promise.all(
       }));
       // ✅ Hide feature row if all values are empty
       const hasVisibleContent = values.some(v => !v.includes(`feature-value"></div>`));
+      // ✅ Build anchor id from main label (or string label) for single service pages only
+      const rawLabel = (typeof feature.label === 'object' && feature.label.main) ? feature.label.main : (typeof feature.label === 'string' ? feature.label : '');
+      const anchorId = (isSingleServiceView && rawLabel) ? rawLabel.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
+      const rowIdAttr = anchorId ? ' id="' + anchorId + '"' : '';
       let labelHtml = '';
       if (typeof feature.label === 'object' && feature.label.main && feature.label.sub) {
         labelHtml = `
@@ -351,7 +335,7 @@ const featureRows = await Promise.all(
         labelHtml = `<div class="feature-label${feature.key === 'features' || feature.key === 'supported_network' || feature.key === 'price' || feature.key === 'subscription_fees' || feature.key === 'conversion_fees' || feature.key === 'settlement_time' || feature.key === 'kyc_required' || feature.key === 'recovery_method' || feature.key === 'open_source' || feature.key === 'node_connect' || feature.key === 'dca' || feature.key === 'pos_compatibility' || feature.key === 'interface' || feature.key === 'app_ratings' || feature.key === 'support' || feature.key === 'founded_in' || feature.key === 'website' || feature.key === 'description' ? ' sublabel' : ''}">${feature.label}</div>`;
       }
       return hasVisibleContent ? `
-        <div class="feature-row ${feature.key}">
+        <div class="feature-row ${feature.key}"${rowIdAttr}>
           ${labelHtml}
           <div class="feature-values">
             ${values.join("")}
@@ -551,7 +535,7 @@ let countryMapCache = null;
 async function loadCountryNames() {
   if (countryMapCache) return countryMapCache; // ✅ use cached version
 
-  const response = await fetch('data/countries.json');
+  const response = await fetch('/data/countries.json');
   if (!response.ok) throw new Error('Failed to load countries.json');
   const countries = await response.json();
 
@@ -566,7 +550,7 @@ async function getAvailabilityText(service) {
 
     if (service.countries.includes("WW")) {
     return `<div class="availability-container">
-      <img src="images/global.svg" alt="Availability" class="availability-icon" />
+      <img src="/images/global.svg" alt="Availability" class="availability-icon" />
       <span>Available globally</span>
     </div>`;
   }
@@ -602,7 +586,7 @@ async function getAvailabilityText(service) {
 
   const flagImage = (service.countries.length === 1 && !regionNames[service.countries[0]])
   ? `<span class="flag-icon flag-icon-${service.countries[0].toLowerCase()} availability-icon"></span>`
-  : `<img src="images/global.svg" alt="Availability" class="availability-icon" />`;
+  : `<img src="/images/global.svg" alt="Availability" class="availability-icon" />`;
 
 return `<div class="availability-container">
   ${flagImage}

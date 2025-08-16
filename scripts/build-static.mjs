@@ -8,7 +8,8 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
-const OUT = ROOT; // write *.html in site root
+const OUT = ROOT; // site root
+const OUT_SERVICES = path.join(OUT, "services"); // write service pages under /services
 const DATA = path.join(ROOT, "data", "services.json");
 const SERVICE_BASE = path.join(ROOT, "service.html");
 
@@ -57,10 +58,12 @@ const between = (str, start, end) => {
     fs.readFile(SERVICE_BASE, "utf8"),
   ]);
   const services = JSON.parse(dataRaw);
+  await fs.mkdir(OUT_SERVICES, { recursive: true });
+  const serviceUrls = [];
 
   for (const svc of services) {
     const slug = slugify(svc.name);
-    const url = `https://buoybitcoin.com/${slug}.html`;
+    const url = `https://buoybitcoin.com/services/${slug}.html`;
     const title = `${svc.name} — Review, fees & features | Buoy Bitcoin`;
     const desc = clamp(svc.description || `Learn about ${svc.name} on Buoy Bitcoin.`);
 
@@ -94,6 +97,7 @@ const urlShim = `
     history.replaceState(null, '', location.pathname + '?' + p.toString());
     window.__BUOY_SERVICE__ = svc;
     window.__BUOY_SLUG__ = slug;
+    window.__BUOY_SINGLE__ = true;
   } catch (e) {}
 })();
 </script>
@@ -101,8 +105,8 @@ const urlShim = `
 html = html.replace('</head>', urlShim + '</head>');
 
 
-    // Update H2 (category header)
-    html = setCategoryTitle(html, svc.name);
+    // Update H2 (category header) → use service category
+    html = setCategoryTitle(html, svc.category);
 
     // Keep existing container markup (your JS will populate it)
     // Make sure service.html has:
@@ -126,7 +130,18 @@ html = html.replace('</head>', urlShim + '</head>');
     html = html.replace("</head>", `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script></head>`);
 
     // NOTE: Do NOT add data-static yet. Let the current JS render the body so design stays identical.
-    await fs.writeFile(path.join(OUT, `${slug}.html`), html, "utf8");
-    console.log("Wrote", `${slug}.html`);
+    await fs.writeFile(path.join(OUT_SERVICES, `${slug}.html`), html, "utf8");
+    serviceUrls.push(url);
+    console.log("Wrote", `services/${slug}.html`);
   }
+
+  // Write a dedicated services sitemap without touching the main sitemap.xml
+  const sitemapXml = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...serviceUrls.map(u => `  <url><loc>${u}</loc></url>`),
+    '</urlset>'
+  ].join('\n');
+  await fs.writeFile(path.join(OUT, 'sitemap-services.xml'), sitemapXml, 'utf8');
+  console.log('Wrote sitemap-services.xml with', serviceUrls.length, 'URLs');
 })();

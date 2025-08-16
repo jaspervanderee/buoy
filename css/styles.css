@@ -557,6 +557,19 @@ h2 {
   text-align: left; /* Center category titles */
 }
 
+/* Utility: visually hide but keep accessible */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 1px 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .space h2 {
   margin-top: 50px; /* Space above main headings */
 }
@@ -595,9 +608,19 @@ h2 {
   padding: 0;
 }
 
+/* Ensure h1 in category header matches previous h2 styling to preserve design */
+.category-header h1 {
+  font-size: 1.4em; /* Same as h2 */
+  margin: 0;
+  padding: 0;
+}
+
 @media (min-width: 768px) {
   .category-header h2 {
     font-size: 1.6em; /* Larger on desktop */
+  }
+  .category-header h1 {
+    font-size: 1.6em; /* Match h2 size on desktop */
   }
 }
 
@@ -1293,6 +1316,24 @@ p, li, a {
 
 .feature-value .collapsible-description p:last-child {
   margin-bottom: 0;
+}
+
+/* Brand FAQ (scoped, minimal impact) */
+.brand-faq {
+  margin-top: 20px;
+}
+
+.brand-faq details {
+  margin: 0.75rem 0;
+}
+
+.brand-faq summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.brand-faq details > div {
+  margin-top: 0.5rem;
 }
 
 
@@ -2076,5 +2117,4 @@ p, li, a {
   /* Three USP columns on desktop */
   .seo-copy.space .usps{ grid-template-columns:repeat(3,1fr); gap:24px; }
 }
-
 

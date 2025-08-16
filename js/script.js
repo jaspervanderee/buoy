@@ -4,6 +4,8 @@ const canonicalVsSlug = (aName, bName) => {
   return [a, b].sort().join("-vs-"); // canonical path slug
 };
 
+const SERVICE_BASE = "/services"; // set to "" if brand pages live at site root
+
 
 
 // Hamburger menu logic
@@ -61,16 +63,37 @@ const regionMappings = {
 let selectedServicesMain = [];
 let selectedServicesMenu = [];
 
+// Legacy fallback map (used only if services.json isn't loaded yet)
+const legacyCategoryMap = {
+  "Buy Bitcoin": ["strike", "river", "swan", "relai", "hodlhodl", "bitonic", "peach", "bull bitcoin", "pocket"],
+  "Spend Bitcoin": ["breez", "aqua", "phoenix", "muun", "fold"],
+  "Store it safely": ["bitkey", "sparrow", "wasabi", "unchained", "anchorwatch"],
+  "Run my own node": ["umbrel", "mynode", "start9"],
+  "Accept Bitcoin as a merchant": ["btc pay", "opennode", "lightspark"]
+};
+
+// Runtime mapping from services.json
+let nameToCategory = new Map();
+fetch("/data/services.json")
+  .then(r => r.json())
+  .then(list => {
+    nameToCategory = new Map(
+      (list || [])
+        .filter(s => s && s.name && s.category)
+        .map(s => [String(s.name).toLowerCase(), String(s.category)])
+    );
+  })
+  .catch(() => {});
+
 function getCategoryForService(name) {
-  const categoryMap = {
-    "Buy Bitcoin": ["strike", "river", "swan", "relai", "hodlhodl", "bitonic", "peach", "bull bitcoin", "pocket"],
-    "Spend Bitcoin": ["breez", "aqua", "phoenix", "muun", "fold"],
-    "Store it safely": ["bitkey", "sparrow", "wasabi", "unchained", "anchorwatch"],
-    "Run my own node": ["umbrel", "mynode", "start9"],
-    "Accept Bitcoin as a merchant": ["btc pay", "opennode", "lightspark"]
-  };
-  const lowerName = name.toLowerCase();
-  for (const [cat, svcs] of Object.entries(categoryMap)) {
+  const lowerName = String(name).toLowerCase();
+  // Prefer authoritative category from services.json
+  if (nameToCategory && typeof nameToCategory.get === 'function') {
+    const category = nameToCategory.get(lowerName);
+    if (category) return category;
+  }
+  // Fallback to legacy map
+  for (const [cat, svcs] of Object.entries(legacyCategoryMap)) {
     if (svcs.some(svc => svc.toLowerCase() === lowerName)) {
       return cat;
     }
@@ -143,19 +166,10 @@ function updateSelectedUI(searchType) {
 }
 
 function getCategory(selected) {
-  const categoryMap = {
-    "Buy Bitcoin": ["strike", "river", "swan", "relai", "hodlhodl", "bitonic", "peach", "bull bitcoin", "pocket"],
-    "Spend Bitcoin": ["breez", "aqua", "phoenix", "muun", "fold"],
-    "Store it safely": ["bitkey", "sparrow", "wasabi", "unchained", "anchorwatch"],
-    "Run my own node": ["umbrel", "mynode", "start9"],
-    "Accept Bitcoin as a merchant": ["btc pay", "opennode", "lightspark"]
-  };
-  for (const [cat, svcs] of Object.entries(categoryMap)) {
-    if (selected.every(s => svcs.some(svc => svc.toLowerCase() === s.toLowerCase()))) {
-      return cat;
-    }
-  }
-  return "Compare Services";
+  if (!selected || selected.length === 0) return "Compare Services";
+  const first = getCategoryForService(selected[0]);
+  if (!first) return "Compare Services";
+  return selected.every(s => getCategoryForService(s) === first) ? first : "Compare Services";
 }
 
 
@@ -202,7 +216,7 @@ async function updateServiceSpans(selectedCountryCode = null) {
 
   // Existing logic below:
   try {
-    const response = await fetch("data/services.json");
+    const response = await fetch("/data/services.json");
     if (!response.ok) throw new Error(`Failed to load services.json (Status: ${response.status})`);
 
     const services = await response.json();
@@ -228,12 +242,12 @@ async function updateServiceSpans(selectedCountryCode = null) {
             span.innerHTML = featuresList.map(f => {
               const icon = f.status === 'positive' ? 'checkmark.svg' : 'cross.svg';
               return `<div class="feature-item">
-                        <img src="images/${icon}" alt="Feature Icon" class="checkmark-icon" /> ${f.text}
+                        <img src="/images/${icon}" alt="Feature Icon" class="checkmark-icon" /> ${f.text}
                       </div>`;
             }).join("");
           } else {
             span.innerHTML = `<div class="feature-item">
-                                <img src="images/cross.svg" alt="Cross" class="checkmark-icon" /> No specific features available
+                                <img src="/images/cross.svg" alt="Cross" class="checkmark-icon" /> No specific features available
                               </div>`;
           }
         } else {
@@ -387,7 +401,7 @@ searchInput.value = "";
 
 async function showAllServices() {
     try {
-        const response = await fetch("data/services.json");
+        const response = await fetch("/data/services.json");
         if (!response.ok) throw new Error(`Failed to load services.json (Status: ${response.status})`);
 
         const services = await response.json();
@@ -408,10 +422,10 @@ async function showAllServices() {
                 // Display WW features or fallback message
                 span.innerHTML = featuresList.length > 0 
                     ? featuresList.map(f => `<div class="feature-item">
-                        <img src="images/${f.status === 'positive' ? 'checkmark.svg' : 'cross.svg'}" alt="Feature Icon" class="checkmark-icon" /> ${f.text}
+                        <img src="/images/${f.status === 'positive' ? 'checkmark.svg' : 'cross.svg'}" alt="Feature Icon" class="checkmark-icon" /> ${f.text}
                       </div>`).join("")
                     : `<div class="feature-item">
-                        <img src="images/cross.svg" alt="Cross" class="checkmark-icon" /> No worldwide features available
+                        <img src="/images/cross.svg" alt="Cross" class="checkmark-icon" /> No worldwide features available
                       </div>`;
             }
         });
@@ -469,11 +483,9 @@ document.querySelectorAll(".category").forEach(category => {
     const categoryTitle = category.querySelector("h2")?.innerText ?? "Compare Services";
   
     if (selectedCards.length === 2) {
-      const [aName, bName] = selectedCards;
-      const [p0, p1] = [slugify(aName), slugify(bName)].sort(); // canonical path
-      const url = `/${p0}-vs-${p1}.html?services=${encodeURIComponent(aName)},${encodeURIComponent(bName)}&category=${encodeURIComponent(categoryTitle)}`;
+      const compareURL = `compare.html?services=${selectedCards.join(",")}&category=${encodeURIComponent(getCategory(selectedCards))}`;
       sessionStorage.setItem("clearSelectedAfterCompare", "true");
-      window.location.href = url; // ✅ static pair page
+      window.location.href = compareURL; // dynamic 2-up
       return;
     }
   
@@ -492,7 +504,7 @@ document.querySelectorAll(".card").forEach(card => {
 
     const serviceName = card.querySelector("img").alt;
     const slug = slugify(serviceName);
-    window.location.href = `/${slug}.html`;    
+    window.location.href = `${SERVICE_BASE}/${slug}.html`;    
   });
 });
 
@@ -512,7 +524,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (!servicesCache) {
-      const res = await fetch("data/services.json");
+      const res = await fetch("/data/services.json");
       servicesCache = await res.json();
     }
     const matches = servicesCache
@@ -551,7 +563,7 @@ suggestionsBox.addEventListener("click", (e) => {
     setTimeout(() => { suggestionsBox.style.display = 'none'; }, 300);
   } else {
     const slug = slugify(serviceName);
-window.location.href = `/${slug}.html`;
+window.location.href = `${SERVICE_BASE}/${slug}.html`;
   }
 });
 
@@ -567,14 +579,14 @@ window.location.href = `/${slug}.html`;
     if (!query) return;
 
     if (!servicesCache) {
-      const res = await fetch("data/services.json");
+      const res = await fetch("/data/services.json");
       servicesCache = await res.json();
     }
 
     const match = servicesCache.find(s => s.name.toLowerCase().includes(query));
     if (match) {
       const slug = slugify(match.name);
-window.location.href = `/${slug}.html`;
+window.location.href = `${SERVICE_BASE}/${slug}.html`;
     } else {
       alert("Service not found. Please try another name.");
     }
@@ -720,7 +732,7 @@ document.addEventListener('DOMContentLoaded', function() {
   bubble.setAttribute('data-feedback-fish', '');
 
   const img = document.createElement('img');
-  img.src = 'images/feedback.svg';
+  img.src = '/images/feedback.svg';
   img.alt = 'Give Feedback';
 
   bubble.appendChild(img);
@@ -748,7 +760,7 @@ if (mainSearchInput && mainSearchBtn && mainSearchSuggestions) {
     }
 
     if (!servicesCache) {
-      const res = await fetch("data/services.json");
+      const res = await fetch("/data/services.json");
       servicesCache = await res.json();
     }
 
@@ -789,7 +801,7 @@ if (mainSearchInput && mainSearchBtn && mainSearchSuggestions) {
             setTimeout(() => { mainSearchSuggestions.style.display = 'none'; }, 300);
           } else {
             const slug = slugify(service.name);
-window.location.href = `/${slug}.html`;
+            window.location.href = `${SERVICE_BASE}/${slug}.html`;
           }
         });
         mainSearchSuggestions.appendChild(div);
@@ -812,7 +824,7 @@ window.location.href = `/${slug}.html`;
     const match = servicesCache.find(s => s.name.toLowerCase().includes(query));
     if (match) {
       const slug = slugify(match.name);
-window.location.href = `/${slug}.html`;
+      window.location.href = `${SERVICE_BASE}/${slug}.html`;
     } else {
       alert("Service not found.");
     }
@@ -843,19 +855,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (selectedServicesMain.length < 2) return;
       const category = getCategory(selectedServicesMain);
     
-      if (selectedServicesMain.length === 2) {
-        const [left, right] = selectedServicesMain;
-        const vsSlug = canonicalVsSlug(left, right);
-        const url =
-  `/${vsSlug}.html?services=${encodeURIComponent(left)},${encodeURIComponent(right)}&category=${encodeURIComponent(category)}`;
-
-        sessionStorage.setItem("clearSelectedAfterCompare", "true");
-        window.location.href = url; // static 2-up
-      } else {
-        const url = `compare.html?services=${selectedServicesMain.join(",")}&category=${encodeURIComponent(category)}`;
-        sessionStorage.setItem("clearSelectedAfterCompare", "true");
-        window.location.href = url; // dynamic 3-up
-      }
+      const url = `compare.html?services=${selectedServicesMain.join(",")}&category=${encodeURIComponent(category)}`;
+      sessionStorage.setItem("clearSelectedAfterCompare", "true");
+      window.location.href = url; // dynamic compare (2 or 3)
     });
     
     
@@ -866,19 +868,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (selectedServicesMenu.length < 2) return;
       const category = getCategory(selectedServicesMenu);
     
-      if (selectedServicesMenu.length === 2) {
-        const [left, right] = selectedServicesMenu;
-        const vsSlug = canonicalVsSlug(left, right);
-        const url =
-  `/${vsSlug}.html?services=${encodeURIComponent(left)},${encodeURIComponent(right)}&category=${encodeURIComponent(category)}`;
-
-        sessionStorage.setItem("clearSelectedAfterCompare", "true");
-        window.location.href = url; // static 2-up
-      } else {
-        const url = `compare.html?services=${selectedServicesMenu.join(",")}&category=${encodeURIComponent(category)}`;
-        sessionStorage.setItem("clearSelectedAfterCompare", "true");
-        window.location.href = url; // dynamic 3-up
-      }
+      const url = `compare.html?services=${selectedServicesMenu.join(",")}&category=${encodeURIComponent(category)}`;
+      sessionStorage.setItem("clearSelectedAfterCompare", "true");
+      window.location.href = url; // dynamic compare (2 or 3)
     });    
     
   }

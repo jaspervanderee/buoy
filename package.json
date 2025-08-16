@@ -6,7 +6,8 @@
 "scripts": {
   "build:services": "node scripts/build-static.mjs",
   "build:compare": "node scripts/build-compare.mjs",
-  "build": "npm run build:services && npm run build:compare"
+  "build:redirects": "node scripts/build-redirects.mjs",
+  "build": "npm run build:services && npm run build:compare && npm run build:redirects"
 },
   "repository": {
     "type": "git",

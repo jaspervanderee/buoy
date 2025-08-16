@@ -29,9 +29,39 @@ RewriteRule ^umbrel-vs-start9\.html$ /start9-vs-umbrel.html [R=301,L]
 RewriteRule ^wasabi-vs-sparrow\.html$ /sparrow-vs-wasabi.html [R=301,L]
 # END buoy compare redirects
 
+# Fallback for any X-vs-Y page → dynamic compare (only if file doesn't exist)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-z0-9-]+)-vs-([a-z0-9-]+)\.html$ /compare.html?services=$1,$2 [QSA,R=301,L]
+
+
 # --- optional: paste generated-service-redirects.htaccess here if you created it ---
 # BEGIN buoy service redirects
-# (lines that 301 /service.html?services=Strike → /strike.html)
+Redirect 301 /anchorwatch.html /services/anchorwatch.html
+Redirect 301 /aqua.html /services/aqua.html
+Redirect 301 /bitkey.html /services/bitkey.html
+Redirect 301 /bitonic.html /services/bitonic.html
+Redirect 301 /breez.html /services/breez.html
+Redirect 301 /btc-pay.html /services/btc-pay.html
+Redirect 301 /bull-bitcoin.html /services/bull-bitcoin.html
+Redirect 301 /fold.html /services/fold.html
+Redirect 301 /hodlhodl.html /services/hodlhodl.html
+Redirect 301 /lightspark.html /services/lightspark.html
+Redirect 301 /muun.html /services/muun.html
+Redirect 301 /mynode.html /services/mynode.html
+Redirect 301 /opennode.html /services/opennode.html
+Redirect 301 /peach.html /services/peach.html
+Redirect 301 /phoenix.html /services/phoenix.html
+Redirect 301 /pocket.html /services/pocket.html
+Redirect 301 /relai.html /services/relai.html
+Redirect 301 /river.html /services/river.html
+Redirect 301 /sparrow.html /services/sparrow.html
+Redirect 301 /start9.html /services/start9.html
+Redirect 301 /strike.html /services/strike.html
+Redirect 301 /swan.html /services/swan.html
+Redirect 301 /umbrel.html /services/umbrel.html
+Redirect 301 /unchained.html /services/unchained.html
+Redirect 301 /wasabi.html /services/wasabi.html
 # END buoy service redirects
 
 # ==== end Buoy canonical redirects ====
