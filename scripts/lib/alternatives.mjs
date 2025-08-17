@@ -56,8 +56,21 @@ function renderHTML(current, alts) {
   try {
     const grid = document.querySelector('.alt-grid');
     if (!grid) return;
-    const userCountry = localStorage.getItem('userCountry') || 'ALL';
-    fetch('/data/services.json').then(r => r.json()).then(list => {
+    function fetchUserCountry(){
+      const cached = localStorage.getItem('userCountry');
+      if (cached && cached !== 'ALL') return Promise.resolve(cached);
+      return fetch('https://ipapi.co/json/').then(r=>r.json()).then(j=>{
+        if (j && j.country_code) {
+          localStorage.setItem('userCountry', j.country_code);
+          return j.country_code;
+        }
+        return 'ALL';
+      }).catch(()=> 'ALL');
+    }
+
+    fetchUserCountry().then(function(userCountry){
+      return fetch('/data/services.json').then(r => r.json()).then(list => ({ list, userCountry }));
+    }).then(({ list, userCountry }) => {
       const regionMappings = {
         "WW": [],
         "NA": ["US","CA","MX","BZ","CR","SV","GT","HN","NI","PA","AI","AG","AW","BS","BB","BQ","CU","CW","DM","DO","GD","GP","HT","JM","MQ","MS","PR","BL","KN","LC","MF","VC","SX","TT","TC","VG","VI"],
@@ -75,18 +88,27 @@ function renderHTML(current, alts) {
       function toNum(x){ const n = (typeof x === 'number') ? x : parseFloat(x); return Number.isFinite(n) ? n : NaN; }
       function ratingScore(svc){ if (!svc || !svc.app_ratings) return 0; const ios = toNum(svc.app_ratings.ios); const android = toNum(svc.app_ratings.android); const vals = [ios, android].filter(v => Number.isFinite(v)); if (vals.length === 0) return 0; return vals.reduce((a,b)=>a+b,0)/vals.length; }
       const nameToSvc = new Map((list || []).map(s => [String(s.name), s]));
-      const items = Array.from(grid.querySelectorAll('li')).map(li => {
+      let items = Array.from(grid.querySelectorAll('li')).map(li => {
         const a = li.querySelector('.service-link');
         const name = a?.getAttribute('aria-label') || a?.textContent?.trim() || '';
         const svc = nameToSvc.get(name) || null;
         const r = ratingScore(svc);
         const avail = svc ? isServiceAvailable(svc, userCountry) : false;
-        const score = (avail ? 2 : 0) + (r / 5);
-        return { li, score };
+        return { li, score: r, avail };
       });
+      // Filter to available only (unless userCountry is ALL)
+      if (userCountry !== 'ALL') {
+        items = items.filter(it => it.avail);
+      }
+      // Sort by highest rating score
       items.sort((a,b) => b.score - a.score);
-      items.forEach(it => grid.appendChild(it.li));
-      items.slice(5).forEach(it => { it.li.style.display = 'none'; });
+      // Rebuild list with top 5 only to guarantee hard cap
+      const top = items.slice(0, 5);
+      const frag = document.createDocumentFragment();
+      top.forEach(it => { it.li.style.display = ''; frag.appendChild(it.li); });
+      // Remove everything and append only top 5
+      while (grid.firstChild) grid.removeChild(grid.firstChild);
+      grid.appendChild(frag);
     }).catch(() => {});
   } catch (_) {}
 })();

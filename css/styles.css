@@ -2155,3 +2155,49 @@ p, li, a {
 /* Ensure CTA links are not underlined */
 .cta-button{ text-decoration: none; }
 .cta-button:hover{ text-decoration: none; }
+
+/* === Single-service baked table normalization === */
+#comparison-table-wrapper table.comparison-table {
+  /* Override flex container on table instances only */
+  display: block;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+#comparison-table-wrapper table.comparison-table tbody {
+  display: block;
+}
+
+#comparison-table-wrapper table.comparison-table tr.feature-row {
+  display: block;
+  margin: 0 0 50px 0; /* mimic .comparison-table gap */
+}
+
+#comparison-table-wrapper table.comparison-table tr.feature-row:last-child {
+  margin-bottom: 0;
+}
+
+#comparison-table-wrapper table.comparison-table td {
+  display: block; /* stack label then value, same as div layout */
+  border: 0;
+  background: transparent;
+  padding: 0; /* spacing handled by inner elements */
+}
+
+/* Ensure baked table inner grid matches compare layout */
+#comparison-table-wrapper table.comparison-table .feature-values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+#comparison-table-wrapper table.comparison-table .feature-value {
+  font-size: 1em;
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 300;
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: left;
+}

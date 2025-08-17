@@ -42,6 +42,9 @@ const isSingleServiceView =
   (typeof window.__BUOY_SINGLE__ !== 'undefined' && window.__BUOY_SINGLE__ === true) ||
   (typeof window.location.pathname === 'string' && window.location.pathname.startsWith("/services/"));
 
+// Detect baked table (static HTML injected at build time)
+const baked = document.querySelector('#comparison-table-wrapper table');
+const hasBaked = !!baked;
 
 if (!isSingleServiceView && selectedServices.length < 2) {
   document.getElementById("comparison-container").innerHTML = "<p>Please select at least two services.</p>";
@@ -215,7 +218,7 @@ function renderFeatures(service) {
   }).join("");
 }
 
-    // ✅ Generate the comparison cards only once
+    // ✅ Generate the comparison table or hydrate baked one
     const comparisonContainer = document.getElementById("comparison-container");
     const features = [
   { key: "type_of_platform", label: "Platform" },
@@ -307,49 +310,59 @@ document.getElementById("logo-row-container").innerHTML = `
 
 
 const allowedKeys = categoryFeaturesMap[categoryTitle] ?? features.map(f => f.key);
-const featureRows = await Promise.all(
-  allowedKeys.map(key => features.find(f => f.key === key))
-    .filter(Boolean)
-    .map(async (feature) => {
-      const values = await Promise.all(servicesToCompare.map(async (service) => {
-        const val = (feature.key === "availability" || feature.key === "features" || feature.key === "user_experience") ? service : service[feature.key];
-        const content = (val === undefined || val === null || val === "") ? "" :
-       (feature.render ? await feature.render(val) : val);
-        return `<div class="feature-value" data-service="${service.name.toLowerCase()}">${content}</div>`;
-      }));
-      // ✅ Hide feature row if all values are empty
-      const hasVisibleContent = values.some(v => !v.includes(`feature-value"></div>`));
-      // ✅ Build anchor id from main label (or string label) for single service pages only
-      const rawLabel = (typeof feature.label === 'object' && feature.label.main) ? feature.label.main : (typeof feature.label === 'string' ? feature.label : '');
-      const anchorId = (isSingleServiceView && rawLabel) ? rawLabel.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
-      const rowIdAttr = anchorId ? ' id="' + anchorId + '"' : '';
-      let labelHtml = '';
-      if (typeof feature.label === 'object' && feature.label.main && feature.label.sub) {
-        labelHtml = `
-          <div class="label-container">
-            <div class="feature-label">${feature.label.main}</div>
-            <div class="feature-label sublabel">${feature.label.sub}</div>
+if (!(hasBaked && isSingleServiceView)) {
+  const featureRows = await Promise.all(
+    allowedKeys.map(key => features.find(f => f.key === key))
+      .filter(Boolean)
+      .map(async (feature) => {
+        const values = await Promise.all(servicesToCompare.map(async (service) => {
+          const val = (feature.key === "availability" || feature.key === "features" || feature.key === "user_experience") ? service : service[feature.key];
+          const content = (val === undefined || val === null || val === "") ? "" :
+         (feature.render ? await feature.render(val) : val);
+          return `<div class="feature-value" data-service="${service.name.toLowerCase()}">${content}</div>`;
+        }));
+        const hasVisibleContent = values.some(v => !v.includes(`feature-value"></div>`));
+        const rawLabel = (typeof feature.label === 'object' && feature.label.main) ? feature.label.main : (typeof feature.label === 'string' ? feature.label : '');
+        const anchorId = (isSingleServiceView && rawLabel) ? rawLabel.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
+        const rowIdAttr = anchorId ? ' id="' + anchorId + '"' : '';
+        let labelHtml = '';
+        if (typeof feature.label === 'object' && feature.label.main && feature.label.sub) {
+          labelHtml = `
+            <div class="label-container">
+              <div class="feature-label">${feature.label.main}</div>
+              <div class="feature-label sublabel">${feature.label.sub}</div>
+            </div>
+          `;
+        } else {
+          labelHtml = `<div class="feature-label${feature.key === 'features' || feature.key === 'supported_network' || feature.key === 'price' || feature.key === 'subscription_fees' || feature.key === 'conversion_fees' || feature.key === 'settlement_time' || feature.key === 'kyc_required' || feature.key === 'recovery_method' || feature.key === 'open_source' || feature.key === 'node_connect' || feature.key === 'dca' || feature.key === 'pos_compatibility' || feature.key === 'interface' || feature.key === 'app_ratings' || feature.key === 'support' || feature.key === 'founded_in' || feature.key === 'website' || feature.key === 'description' ? ' sublabel' : ''}">${feature.label}</div>`;
+        }
+        return hasVisibleContent ? `
+          <div class="feature-row ${feature.key}"${rowIdAttr}>
+            ${labelHtml}
+            <div class="feature-values">
+              ${values.join("")}
+            </div>
           </div>
-        `;
-      } else {
-        labelHtml = `<div class="feature-label${feature.key === 'features' || feature.key === 'supported_network' || feature.key === 'price' || feature.key === 'subscription_fees' || feature.key === 'conversion_fees' || feature.key === 'settlement_time' || feature.key === 'kyc_required' || feature.key === 'recovery_method' || feature.key === 'open_source' || feature.key === 'node_connect' || feature.key === 'dca' || feature.key === 'pos_compatibility' || feature.key === 'interface' || feature.key === 'app_ratings' || feature.key === 'support' || feature.key === 'founded_in' || feature.key === 'website' || feature.key === 'description' ? ' sublabel' : ''}">${feature.label}</div>`;
-      }
-      return hasVisibleContent ? `
-        <div class="feature-row ${feature.key}"${rowIdAttr}>
-          ${labelHtml}
-          <div class="feature-values">
-            ${values.join("")}
-          </div>
-        </div>
-      ` : "";
-    })
-);
+        ` : "";
+      })
+  );
 
-document.getElementById("comparison-table-wrapper").innerHTML = `
-  <div class="comparison-table">
-    ${featureRows.join("")}
-  </div>
-`;
+  document.getElementById("comparison-table-wrapper").innerHTML = `
+    <div class="comparison-table">
+      ${featureRows.join("")}
+    </div>
+  `;
+} else {
+  // Hydrate baked table: if country != WW, replace features cell with localized features
+  const svc = servicesToCompare[0];
+  if (countryCode !== "WW") {
+    const root = document.querySelector('#comparison-table-wrapper');
+    const cell = root && root.querySelector(`.feature-row.features .feature-value[data-service="${svc.name.toLowerCase()}"]`);
+    if (cell) {
+      cell.innerHTML = renderFeatures(svc);
+    }
+  }
+}
 
 // Initialize collapsible descriptions
 initializeCollapsibleDescriptions();
@@ -369,8 +382,9 @@ const closeBtn = modal.querySelector(".close-btn");
 let currentService = null;
 let selectedRating = 0;
 
-// Backend URL (your DigitalOcean Droplet IP)
-const backendUrl = 'https://api.buoybitcoin.com';
+// Backend URL (root-absolute). In production use the API domain; in dev use a local placeholder and skip network.
+const isProd = window.location.origin === 'https://buoybitcoin.com';
+const backendUrl = isProd ? 'https://api.buoybitcoin.com' : '/api';
 
 // Add click event to all "Review" links
 document.querySelectorAll(".review-link").forEach(link => {
@@ -408,6 +422,14 @@ function highlightStars(rating) {
 // Function to submit rating to backend
 async function submitRating(service, rating) {
   try {
+      if (!isProd) {
+          // Dev fallback: no network, persist locally
+          localStorage.setItem(`rating_${service}`, rating);
+          document.querySelectorAll(`.feature-value[data-service="${service}"] .ux-rating`).forEach(el => {
+              el.textContent = rating.toFixed(1);
+          });
+          return;
+      }
       const response = await fetch(`${backendUrl}/rate.php`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -438,6 +460,17 @@ async function submitRating(service, rating) {
 async function loadRatings(services) {
     for (const service of services) {
         try {
+            if (!isProd) {
+                const local = localStorage.getItem(`rating_${service}`);
+                const fallback = local ? parseFloat(local).toFixed(1) : '0.0';
+                document.querySelectorAll(`.feature-value[data-service="${service}"] .ux-rating`).forEach(el => {
+                    el.textContent = fallback;
+                });
+                document.querySelectorAll(`.feature-value[data-service="${service}"] .rating-count`).forEach(el => {
+                    el.textContent = '(0)';
+                });
+                continue;
+            }
             const response = await fetch(`${backendUrl}/rating.php?service=${service}`);
             if (!response.ok) throw new Error('Fetch failed');
             const data = await response.json();

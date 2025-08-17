@@ -6,6 +6,7 @@ import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import { injectAlternatives } from "./lib/alternatives.mjs";
+import { renderTableHTML } from "../shared/renderTable.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -113,10 +114,20 @@ html = html.replace('</head>', urlShim + '</head>');
     // Make sure service.html has:
     // <!-- BUILD:START --> ... #comparison-container ... <!-- BUILD:END -->
     try {
-      const { before, inside, after } = between(html, "<!-- BUILD:START -->", "<!-- BUILD:END -->");
-      html = `${before}\n${inside}\n${after}`;
-    } catch {
-      // If you haven't added BUILD markers yet, we still write the page unchanged.
+      const tableHtml = await renderTableHTML(svc, svc.category);
+      const bakedBlock = `
+<div id="comparison-container">
+  <div class="logo-row-sticky">
+    <div class="feature-values logo-row" id="logo-row-container"></div>
+  </div>
+  <div id="comparison-table-wrapper">
+    ${tableHtml}
+  </div>
+</div>`;
+      const { before, after } = between(html, "<!-- BUILD:START -->", "<!-- BUILD:END -->");
+      html = `${before}\n${bakedBlock}\n${after}`;
+    } catch (e) {
+      // If BUILD markers are missing or renderer failed, keep the page unchanged.
     }
 
     // OPTIONAL: add JSON-LD
