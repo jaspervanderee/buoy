@@ -279,29 +279,15 @@
 </section>
 
 
-<script type="application/ld+json">
-{
+<script type="application/ld+json">{
   "@context":"https://schema.org",
   "@type":"FAQPage",
   "mainEntity":[
-    {
-      "@type":"Question",
-      "name":"How many services can I compare?",
-      "acceptedAnswer":{"@type":"Answer","text":"You can compare up to 2 services on mobile and up to 3 on desktop."}
-    },
-    {
-      "@type":"Question",
-      "name":"How do you decide what to show?",
-      "acceptedAnswer":{"@type":"Answer","text":"We auto-detect your country to show services available in your jurisdiction and prioritize Bitcoin-only tools with clear custody models and Lightning support."}
-    },
-    {
-      "@type":"Question",
-      "name":"Are you independent?",
-      "acceptedAnswer":{"@type":"Answer","text":"Yes. We do not sell rankings. If a link supports us via referral, we disclose it."}
-    }
+    {"@type":"Question","name":"How many services can I compare?","acceptedAnswer":{"@type":"Answer","text":"You can compare up to 2 services on mobile and up to 3 on desktop."}},
+    {"@type":"Question","name":"How do you decide what to show?","acceptedAnswer":{"@type":"Answer","text":"We auto-detect your country to show services available in your jurisdiction and prioritize Bitcoin-only tools with clear custody models and Lightning support."}},
+    {"@type":"Question","name":"Are you independent?","acceptedAnswer":{"@type":"Answer","text":"Yes. We do not sell rankings. If a link supports us via referral, we disclose it."}}
   ]
-}
-</script>
+}</script>
 
 
 <footer>
@@ -343,16 +329,32 @@
   </div>
 </footer>
 
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Buoy Bitcoin",
-    "url": "https://buoybitcoin.com/",
-    "logo": "https://buoybitcoin.com/android-chrome-512x512.png",
-    "description": "Buoy Bitcoin helps you compare reliable Bitcoin-only services quickly and easily. Find the best options for wallets, exchanges, and more."
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://buoybitcoin.com/#organization",
+  "name": "Buoy Bitcoin",
+  "url": "https://buoybitcoin.com/",
+  "logo": { "@type": "ImageObject", "url": "https://buoybitcoin.com/android-chrome-512x512.png", "width": 512, "height": 512 },
+  "description": "Buoy Bitcoin helps you compare reliable Bitcoin-only services quickly and easily. Find the best options for wallets, exchanges, and more.",
+  "sameAs": [
+    "https://x.com/jaspervanderee",
+    "https://github.com/jaspervanderee/buoy"
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://buoybitcoin.com/#website",
+  "url": "https://buoybitcoin.com/",
+  "name": "Buoy Bitcoin",
+  "inLanguage": "en",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://buoybitcoin.com/search.html?q={search_term_string}",
+    "query-input": "required name=search_term_string"
   }
-  </script>
+}</script>
   <script src="js/questionnaire.js"></script>
   <script src="js/script.js?v=8"></script>
 </body>

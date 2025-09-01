@@ -7,6 +7,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { injectAlternatives } from "./lib/alternatives.mjs";
 import { renderTableHTML } from "../shared/renderTable.mjs";
+import { renderFAQBlock, renderFAQJsonLD } from "./lib/faqs.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -130,16 +131,103 @@ html = html.replace('</head>', urlShim + '</head>');
       // If BUILD markers are missing or renderer failed, keep the page unchanged.
     }
 
-    // OPTIONAL: add JSON-LD
+    // OPTIONAL: add JSON-LD for page (enriched)
+    const ORG_ID = "https://buoybitcoin.com/#organization";
+    const WEBSITE_ID = "https://buoybitcoin.com/#website";
     const jsonLd = {
       "@context": "https://schema.org",
       "@type": "WebPage",
+      "@id": url + "#webpage",
       "name": title,
       "url": url,
+      "inLanguage": "en",
       "description": desc,
-      "about": { "@type": "Organization", "name": svc.name, "url": svc.website || url }
+      "isPartOf": { "@id": WEBSITE_ID },
+      "publisher": { "@id": ORG_ID },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://buoybitcoin.com/android-chrome-512x512.png",
+        "width": 512,
+        "height": 512
+      },
+      "mainEntity": { "@id": url + "#service" }
     };
-    html = html.replace("</head>", `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script></head>`);
+    html = html.replace("</head>", `<script type=\"application/ld+json\">${JSON.stringify(jsonLd)}</script></head>`);
+
+    // Define the Service as its own node with our @id and point back to this page's WebPage
+    const serviceJson = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": url + "#service",
+      "name": svc.name,
+      "url": svc.website || url,
+      "mainEntityOfPage": url + "#webpage",
+      "provider": {
+        "@type": "Organization",
+        "name": svc.name,
+        "url": svc.website || url
+      }
+    };
+    html = html.replace("</head>", `<script type=\"application/ld+json\">${JSON.stringify(serviceJson)}</script></head>`);
+
+    // Inject Organization and WebSite JSON-LD so references by @id resolve on this page
+    const orgJson = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": ORG_ID,
+      "name": "Buoy Bitcoin",
+      "url": "https://buoybitcoin.com/",
+      "logo": { "@type": "ImageObject", "url": "https://buoybitcoin.com/android-chrome-512x512.png", "width": 512, "height": 512 },
+      "sameAs": [
+        "https://x.com/jaspervanderee",
+        "https://github.com/jaspervanderee/buoy"
+      ]
+    };
+    const siteJson = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": WEBSITE_ID,
+      "url": "https://buoybitcoin.com/",
+      "name": "Buoy Bitcoin",
+      "inLanguage": "en",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://buoybitcoin.com/search.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    };
+    html = html.replace("</head>", `<script type=\"application/ld+json\">${JSON.stringify(orgJson)}</script>\n<script type=\"application/ld+json\">${JSON.stringify(siteJson)}</script></head>`);
+
+    // Add BreadcrumbList JSON-LD
+    const categoryUrlMap = new Map([
+      ["Buy Bitcoin", "https://buoybitcoin.com/buy-bitcoin.html"],
+      ["Spend Bitcoin", "https://buoybitcoin.com/spend-bitcoin.html"],
+      ["Store it safely", "https://buoybitcoin.com/store-it-safely.html"],
+      ["Run my own node", "https://buoybitcoin.com/run-my-own-node.html"],
+      ["Accept Bitcoin as a merchant", "https://buoybitcoin.com/accept-bitcoin-as-a-merchant.html"]
+    ]);
+    const categoryName = svc.category || "Services";
+    const categoryUrl = categoryUrlMap.get(categoryName) || "https://buoybitcoin.com/";
+    const breadcrumbs = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://buoybitcoin.com/" },
+        { "@type": "ListItem", "position": 2, "name": categoryName, "item": categoryUrl },
+        { "@type": "ListItem", "position": 3, "name": svc.name, "item": url }
+      ]
+    };
+    html = html.replace("</head>", `<script type=\"application/ld+json\">${JSON.stringify(breadcrumbs)}</script></head>`);
+
+    // Inject FAQ block (HTML + JSON-LD) right after baked table and before alternatives
+    try {
+      const faqHtml = renderFAQBlock(svc);
+      const faqJson = renderFAQJsonLD(svc);
+      const faqBundle = faqHtml ? `${faqHtml}\n${faqJson}` : '';
+      html = html.replace("<!-- FAQ_BLOCK -->", faqBundle);
+    } catch (e) {
+      // fail-safe: skip FAQ injection on error
+    }
 
     // Inject Alternatives block under comparison area
     try {

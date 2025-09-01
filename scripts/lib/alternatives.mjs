@@ -38,10 +38,14 @@ function renderHTML(current, alts) {
     "@type": "ItemList",
     "name": `Alternatives to ${current.name}`,
     "itemListElement": alts.map((alt, i) => ({
-      "@type": "Service",
-      "name": alt.name,
-      "url": `/services/${slugify(alt.name)}.html`,
-      "position": i + 1
+      "@type": "ListItem",
+      "position": i + 1,
+      "item": {
+        "@type": "Service",
+        "@id": `https://buoybitcoin.com/services/${slugify(alt.name)}.html#service`,
+        "name": alt.name,
+        "url": `https://buoybitcoin.com/services/${slugify(alt.name)}.html`
+      }
     }))
   };
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search results</title>
+  <meta name="robots" content="noindex,follow">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="container">
+        <div id="logo"><a href="/"><img src="/images/buoy-logo-horizontal.svg" alt="Buoy Bitcoin logo"></a></div>
+        <button class="hamburger" aria-label="Toggle Menu"><span></span><span></span><span></span></button>
+      </div>
+    </header>
+
+    <main class="space">
+      <h1 id="search-title">Search results</h1>
+      <div id="search-results"></div>
+    </main>
+  </div>
+
+  <script>
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const q = (params.get('q') || '').trim();
+      const title = document.getElementById('search-title');
+      title.textContent = q ? `Search results for “${q}”` : 'Search results';
+      const container = document.getElementById('search-results');
+      container.innerHTML = '';
+      if (q) {
+        const a = document.createElement('a');
+        a.href = `/compare.html?services=${encodeURIComponent(q)}`;
+        a.textContent = `Compare services matching “${q}”`;
+        container.appendChild(a);
+      }
+    })();
+  </script>
+</body>
+</html>

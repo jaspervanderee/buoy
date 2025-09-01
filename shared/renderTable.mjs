@@ -73,9 +73,10 @@ function renderFounderProfile(val) {
 
 function renderCollapsibleDescription(description) {
   if (!description) return "";
-  const paragraphs = String(description).split("\n\n");
+  const normalized = String(description).replace(/\\n\\n/g, "\n\n");
+  const paragraphs = normalized.split("\n\n");
   const fullText = paragraphs.map(p => `<p>${escapeHtml(p)}</p>`).join("");
-  if (description.length < 200) return fullText;
+  if (normalized.length < 200) return fullText;
   const mobilePreviewText = paragraphs[0].length > 200 ? paragraphs[0].substring(0, 200) + "..." : paragraphs[0];
   const desktopPreviewText = paragraphs[0];
   return `

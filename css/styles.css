@@ -674,6 +674,37 @@ footer h3 {
   gap: 10px; /* Space between columns */
 }
 
+/* Pull-quote (Jeff Booth) - mobile-first */
+.pull-quote {
+  margin: 24px 0;
+  padding: 16px 16px 12px;
+  background: #ffffff;
+  border-left: 4px solid #ff603b;
+  border-radius: 6px;
+}
+
+.pull-quote p {
+  margin: 0 0 10px 0;
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.pull-quote cite {
+  display: block;
+  font-style: normal;
+  font-family: "Inter", sans-serif;
+  color: #666;
+  font-size: 0.9em;
+}
+
+@media (min-width: 768px) {
+  .pull-quote {
+    padding: 20px 20px 14px;
+    margin: 28px 0;
+  }
+}
+
 /* Paragraphs and other text */
 p, li, a {
   font-family: "Ubuntu Mono", monospace;
@@ -1319,9 +1350,41 @@ p, li, a {
 }
 
 /* Brand FAQ (scoped, minimal impact) */
-.brand-faq {
-  margin-top: 20px;
+.brand-faq { margin-bottom: 48px; }
+
+.brand-faq h2 {
+  font-size: 1.4em; /* match .alt-block h2 */
+  margin: 0 0 10px;
 }
+
+/* Only the list (not the heading) gets the card-like background */
+.brand-faq .faq-list {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* Normalize <summary> text styling to match body text */
+.brand-faq summary {
+  font-weight: 400 !important; /* override UA default bold; Ubuntu Mono loaded at 400/700 */
+  font-family: "Ubuntu Mono", monospace;
+}
+
+/* Remove default triangle list marker spacing for cleaner look */
+.brand-faq details { margin: 8px 0; }
+
+/* Hide default disclosure triangle and use the same down-arrow feel as the Read more button */
+.brand-faq summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+.brand-faq summary::-webkit-details-marker { display: none; }
+.brand-faq details > summary::before {
+  content: "\2193"; /* down arrow */
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  color: #ff603b; /* match Read more arrow */
+}
+.brand-faq details[open] > summary::before { transform: rotate(180deg); }
 
 .brand-faq details {
   margin: 0.75rem 0;
