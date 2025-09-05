@@ -1,5 +1,37 @@
+:root {
+  /* Let UA style form controls appropriately */
+  color-scheme: light dark;
+
+  /* Brand */
+  --accent: #ff603b;
+
+  /* Light theme (default) */
+  --bg: #f5f5f5;
+  --panel: #ffffff;
+  --text: #111827;        /* near-black for readability */
+  --text-muted: #4b5563;
+  --border: #e5e7eb;
+  --link: var(--accent);
+  --shadow: 0 1px 2px rgba(0,0,0,0.08);
+  --logo-filter: none;    /* can be overridden in dark if needed */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0f14;
+    --panel: #121417;
+    --text: #e5e7eb;
+    --text-muted: #9aa4b2;
+    --border: #232b33;
+    --link: var(--accent);
+    --shadow: 0 1px 2px rgba(0,0,0,0.4);
+    --logo-filter: none; /* if the header logo looks too dark, try: invert(1) hue-rotate(180deg) */
+  }
+}
+
 html {
   font-size: 1em;
+  background: var(--bg);
 }
 
 
@@ -11,7 +43,8 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "Ubuntu Mono", monospace;
-  background-color: #f5f5f5; /* Light gray background */
+  background: var(--bg);
+  color: var(--text);
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
@@ -20,8 +53,19 @@ p {
 }
 
 ::selection {
-  background-color: #ff603b; /* your brand orange */
-  color: white; /* text color when selected */
+  background-color: var(--accent);
+  color: #fff;
+}
+
+a {
+  color: var(--link);
+}
+
+/* Default form control styling outside the dark menu overlay */
+input, select, textarea, button {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
 }
 
 
@@ -30,11 +74,16 @@ p {
 /* Full-width header background */
 header {
   width: 100%; /* Full width spans the viewport */
-  background-color: white; /* Full-width background */
+  background-color: var(--panel); /* Full-width background */
   padding: 30px 0px;
   position: relative;
   z-index: 1000;
+  box-shadow: var(--shadow);
 }
+
+/* uncomment if needed
+header #logo img { filter: var(--logo-filter); }
+*/
 
 /* Centered content inside the header */
 header .container {
@@ -52,6 +101,7 @@ header .container {
 
 .container {
   flex: 1;
+  color: var(--text);
 }
 
 
@@ -67,13 +117,14 @@ header .container {
   top: 30px;
   right: 20px;
   z-index: 2000; /* Place it above the overlay */
+  color: var(--text);
 }
 
 .hamburger span {
   display: block;
   width: 25px;
   height: 3px;
-  background-color: #000;
+  background-color: currentColor;
   border-radius: 3px;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -349,7 +400,7 @@ header .container {
   font-size: 2.5em; /* Smaller base size for mobile */
   font-family: "Inter", sans-serif;
   font-weight: 500;
-  color: #000;
+  color: var(--text);
   margin: 0 0 12px 0; /* Tighter margin for mobile */
   line-height: 1.15; /* Slightly tighter line height */
 }
@@ -358,7 +409,7 @@ header .container {
   font-size: 1.1em; /* Slightly smaller for mobile */
   font-family: "Inter", sans-serif;
   font-weight: 400;
-  color: #666;
+  color: var(--text-muted);
   margin: 0;
   line-height: 1.4; /* Slightly tighter line height */
   padding: 0 12px; /* Add some padding to control line length */
@@ -374,7 +425,7 @@ header .container {
 .search-wrapper-main {
   position: relative;
   width: 100%;
-  background: white;
+  background: var(--panel);
   border-radius: 8px;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -384,11 +435,11 @@ header .container {
   width: 100%;
   padding: 20px 56px 20px 24px;
   font-size: 1.1em;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
   border-radius: 8px;
   background: transparent;
   font-family: "Inter", sans-serif;
-  color: #1a1a1a;
+  color: var(--text);
   box-sizing: border-box;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -397,7 +448,7 @@ header .container {
 
 .search-wrapper-main input:focus {
   outline: none;
-  border-color: rgba(0, 0, 0, 0.1);
+  border-color: var(--border);
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -429,9 +480,9 @@ header .container {
   top: calc(100% + 8px);
   left: 0;
   right: 0;
-  background: white;
+  background: var(--panel);
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
   max-height: 300px;
   overflow-y: auto;
   z-index: 1000;
@@ -441,14 +492,12 @@ header .container {
 #main-search-suggestions div {
   padding: 12px 24px;
   font-family: "Inter", sans-serif;
-  color: #1a1a1a;
+  color: var(--text);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-#main-search-suggestions div:hover {
-  background: #f5f5f5;
-}
+#main-search-suggestions div:hover { background: var(--bg); }
 
 
 @media (max-width: 768px) {
@@ -548,7 +597,7 @@ main {
 h1, h2, h3, h4, h5, h6 {
   font-family: "Inter", sans-serif;
   font-weight: 600; /* Bold for emphasis */
-  color: #000; /* Strong black for emphasis */
+  color: var(--text); /* Strong for emphasis */
 }
 
 h2 {
@@ -579,7 +628,7 @@ h2 {
 .category h2 a {
   font-family: "Inter", sans-serif;
   font-weight: 600; /* Bold for emphasis */
-  color: #000; /* Default text color */
+  color: var(--text); /* Default text color */
   transition: color 0.3s ease; /* Smooth color transition on hover */
 }
 
@@ -598,7 +647,7 @@ h2 {
 .category-header h2 a {
   font-family: "Inter", sans-serif;
   font-weight: 600; /* Bold for emphasis */
-  color: #000; /* Default text color */
+  color: var(--text); /* Default text color */
 }
 
 /* Category headers */
@@ -678,7 +727,7 @@ footer h3 {
 .pull-quote {
   margin: 24px 0;
   padding: 16px 16px 12px;
-  background: #ffffff;
+  background: var(--panel);
   border-left: 4px solid #ff603b;
   border-radius: 6px;
 }
@@ -694,7 +743,7 @@ footer h3 {
   display: block;
   font-style: normal;
   font-family: "Inter", sans-serif;
-  color: #666;
+  color: var(--text-muted);
   font-size: 0.9em;
 }
 
@@ -752,7 +801,7 @@ p, li, a {
 .card {
   flex: 0 0 auto; /* Prevent cards from shrinking */
   aspect-ratio: 1 / 1; /* Maintain a square shape */
-  background: #fff;
+  background: var(--panel);
   border-radius: 8px;
   padding: 10px;
   text-align: center;
@@ -761,6 +810,10 @@ p, li, a {
   position: relative;
   cursor: pointer;
   z-index: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card { background: #1a1f26; }
 }
 
 .card span {
@@ -772,8 +825,8 @@ p, li, a {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 2px solid lightgrey;
-  background: white;
+  border: 2px solid var(--border);
+  background: var(--panel);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -804,7 +857,7 @@ p, li, a {
 .card .category-divider {
   width: 100%;
   height: 2px;
-  background-color: #f5f5f5; /* Light grey line */
+  background-color: var(--bg); /* Light grey line */
   margin: 8px 0; /* Adds spacing before and after the divider */
 }
 
@@ -835,7 +888,7 @@ p, li, a {
     align-items: center; /* Align icon and text vertically */
     gap: 5px; /* Reduce space between icon and text */
     font-size: 1em;
-    color: #000;
+    color: var(--text);
     margin-top: 3px; /* Reduce space between feature lines */
 }
 
@@ -860,7 +913,7 @@ p, li, a {
 .compare-btn {
   padding: 8px 16px;
   font-size: 1em;
-  border: 1px solid #ddd; /* Light border to show disabled state */
+  border: 1px solid var(--border); /* Light border to show disabled state */
   border-radius: 20px;
   color: #b0b0b0; /* Lighter grey text */
   cursor: not-allowed;
@@ -932,9 +985,9 @@ p, li, a {
 }
 
 .cta-button {
-  background-color: #f5f5f5;
+  background-color: var(--bg);
   font-family: "Inter", sans-serif;
-  color: #000;
+  color: var(--text);
   border: none;
   border-radius: 4px;
   padding: 6px 16px;
@@ -944,7 +997,7 @@ p, li, a {
 }
 
 .cta-button:hover {
-  background-color: #e5e5e5;
+  background-color: var(--border);
 }
 
 
@@ -991,7 +1044,7 @@ p, li, a {
 }
 
 #comparison-container .card .website-name a {
-  color: black;
+  color: var(--text);
   font-weight: bold;
 }
 
@@ -1061,7 +1114,7 @@ p, li, a {
 
 .fee-percentage, .fee-value {
   font-weight: bold;
-  color: #000;
+  color: var(--text);
 }
 
 .fee-intro {
@@ -1092,7 +1145,7 @@ p, li, a {
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 320px;
-  background: #ffffff;
+  background: var(--panel);
   border-radius: 12px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
   padding: 2rem;
@@ -1137,7 +1190,7 @@ p, li, a {
 
 .rating-count {
   font-size: 0.8em;
-  color: #666;
+  color: var(--text-muted);
   margin-left: 2px;
 }
 
@@ -1147,13 +1200,11 @@ p, li, a {
   display: block;
   margin-top: 4px; /* Small margin for spacing */
   font-size: 0.9em;
-  color: #000000; /* Black link color */
+  color: var(--link); /* Link color */
   text-decoration: underline;
 }
 
-.review-link:hover {
-  color: #333333; /* Darker shade for hover */
-}
+.review-link:hover { color: var(--accent); }
 
 /* Media query for larger screens if needed */
 @media (min-width: 768px) {
@@ -1197,7 +1248,7 @@ p, li, a {
 
 .feature-label.sublabel {
   font-size: 0.8em; /* Smaller than main labels */
-  color: #666; /* Gray color */
+  color: var(--text-muted); /* Gray color */
   font-weight: 600; /* Less bold to differentiate */
   margin-top: -30px; /* Decreased top margin to bring it closer to the row above */
 }
@@ -1219,7 +1270,7 @@ p, li, a {
   font-size: 1em;
   font-family: "Ubuntu Mono", monospace;
   font-weight: 300;
-  background: #fff;
+  background: var(--panel);
   padding: 10px;
   border-radius: 8px;
   text-align: left;
@@ -1262,7 +1313,7 @@ p, li, a {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: #f5f5f5; /* Match page bg */
+  background-color: var(--bg); /* Match page bg */
   padding: 10px 0;
   transition: all 0.3s ease;
 }
@@ -1359,7 +1410,7 @@ p, li, a {
 
 /* Only the list (not the heading) gets the card-like background */
 .brand-faq .faq-list {
-  background: #fff;
+  background: var(--panel);
   border-radius: 8px;
   padding: 10px;
 }
@@ -1573,7 +1624,7 @@ p, li, a {
   margin-bottom: 40px;
   font-weight: 500;
   font-family: "Inter", sans-serif;
-  color: #1a1a1a;
+  color: var(--text);
   line-height: 1.2;
 }
 
@@ -1585,19 +1636,18 @@ p, li, a {
 }
 
 .action-button {
-  background: white;
+  background: var(--panel);
   border: 1.5px solid transparent;
   border-radius: 8px;
   padding: 28px 32px;
   font-size: 1.15em;
-  color: #1a1a1a;
+  color: var(--text);
   text-align: left;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   font-family: "Inter", sans-serif;
   width: 100%;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 
-              0 4px 6px rgba(0, 0, 0, 0.02);
+  box-shadow: var(--shadow);
   position: relative;
   overflow: hidden;
 }
@@ -1712,7 +1762,7 @@ p, li, a {
 
 .selected-chip {
   background: #eee; /* Light for main */
-  color: #000; /* Dark text for main */
+  color: var(--text); /* Dark text for main */
   padding: 4px 8px; /* Consistent padding */
   border-radius: 16px;
   display: flex;
@@ -1724,7 +1774,7 @@ p, li, a {
   margin-left: 8px;
   cursor: pointer;
   font-weight: bold;
-  color: #000; /* Dark for main */
+  color: var(--text); /* Dark for main */
 }
 
 .menu .selected-services {
@@ -1900,12 +1950,12 @@ p, li, a {
 }
 
 .question {
-  background: white;
+  background: var(--panel);
   border-radius: 8px;
   padding: 16px;
   padding-left: 32px;
   padding-bottom: 55px; 
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow);
   position: relative; /* For absolute positioning of back */
 }
 
@@ -1915,7 +1965,7 @@ p, li, a {
   top: 16px;
   font-size: 1.5em;
   cursor: pointer;
-  color: #666;
+  color: var(--text-muted);
 }
 
 .question label {
@@ -1978,7 +2028,7 @@ p, li, a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #000;
+  color: var(--text);
   text-decoration: none;
   font-size: 0.8em;
   font-family: "Inter", sans-serif;
@@ -2002,7 +2052,7 @@ p, li, a {
 .questionnaire-reset {
   text-align: center;
   margin-top: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   border-radius: 20px;
   padding: 8px 16px;
   width: 60px;
@@ -2010,13 +2060,13 @@ p, li, a {
   margin-right: auto;
   transition: background-color 0.2s ease;
   cursor: pointer;
-  color: #000;
+  color: var(--text);
   font-family: "Inter", sans-serif;
 }
 
 .questionnaire-reset a {
   text-decoration: none;
-  color: #000;
+  color: var(--text);
   font-size: 0.8em;
   font-family: "Inter", sans-serif;
   transition: color 0.2s ease;
@@ -2024,14 +2074,14 @@ p, li, a {
 }
 
 .questionnaire-reset:hover {
-  background-color: white;
+  background-color: var(--panel);
 }
 
 /* Questionnaire Explanatory Text */
 .questionnaire-explanation {
   text-align: center;
   margin-top: 20px;
-  color: #adadad;
+  color: var(--text-muted);
   font-size: 0.8em;
   font-family: "Inter", sans-serif;
   line-height: 1.5;
@@ -2053,7 +2103,7 @@ p, li, a {
   background:var(--seo-bg);
   box-shadow:0 0 0 100vmax var(--seo-bg); /* full-bleed bg */
   clip-path:inset(0 -100vmax);
-  color:#0b0b0b;
+  color: var(--text);
 }
 
 /* Headings & base text */
@@ -2183,6 +2233,15 @@ p, li, a {
   .alt-block h2 { font-size: 1.6em; }
 }
 
+/* Dark-mode overrides for SEO block slabs */
+@media (prefers-color-scheme: dark){
+  .seo-copy.space{
+    --seo-bg:#0f1318;
+    --seo-why:#12161b;
+    --seo-faq:#151a20;
+  }
+}
+
 
 /* Alternatives block (build-time) */
 .alt-block { 
@@ -2208,7 +2267,7 @@ p, li, a {
   gap: 12px; 
 }
 
-.alt-item { background: #fff; border-radius: 8px; box-shadow: 0 1px 2px rgba(0,0,0,.05); padding: 8px; }
+.alt-item { background: var(--panel); border-radius: 8px; box-shadow: var(--shadow); padding: 8px; }
 /* Reuses .logo-cell, .service-link, .cta-button from existing styles */
 .alt-item .logo-cell { padding: 8px; }
 
@@ -2259,7 +2318,7 @@ p, li, a {
   font-size: 1em;
   font-family: "Ubuntu Mono", monospace;
   font-weight: 300;
-  background: #fff;
+  background: var(--panel);
   padding: 10px;
   border-radius: 8px;
   text-align: left;

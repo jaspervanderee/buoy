@@ -76,14 +76,16 @@ Redirect 302 /x /?utm_source=twitter&utm_medium=social&utm_campaign=softlaunch
 Redirect 302 /planb /?utm_source=planbnetwork&utm_medium=network&utm_campaign=softlaunch
 Redirect 302 /producthunt /?utm_source=producthunt&utm_medium=launch&utm_campaign=softlaunch
 Redirect 302 /hn /?utm_source=hackernews&utm_medium=forum&utm_campaign=softlaunch
-Redirect 302 /stacker /?utm_source=stackernews&utm_medium=forum&utm_campaign=softlaunch
 Redirect 302 /bitcointalk /?utm_source=bitcointalk&utm_medium=forum&utm_campaign=softlaunch
 Redirect 302 /bitcoincom /?utm_source=bitcoincom&utm_medium=forum&utm_campaign=softlaunch
 Redirect 302 /bitcoinse /?utm_source=bitcoinse&utm_medium=forum&utm_campaign=softlaunch
 Redirect 302 /bitco_in /?utm_source=bitco_in&utm_medium=forum&utm_campaign=softlaunch
 Redirect 302 /altcoinstalks /?utm_source=altcoinstalks&utm_medium=forum&utm_campaign=softlaunch
 
-# Make sure mod_alias is enabled in Apache
-# Each Redirect is a temporary (302) redirect to preserve SEO
+# Specific stacker rule with UTMs via mod_rewrite (allows optional trailing slash and preserves query)
+RewriteRule ^stacker/?$ /?utm_source=stackernews&utm_medium=post&utm_campaign=launch1 [R=302,L,QSA]
+
+# Ensure MP4 served with correct MIME type
+AddType video/mp4 .mp4
 
 

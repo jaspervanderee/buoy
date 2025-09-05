@@ -1,3 +1,96 @@
+// BUOY ANALYTICS
+(function() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const noAnalytics = params.get('noanalytics') === '1';
+    const dnt = (navigator.doNotTrack === '1' || window.doNotTrack === '1' || navigator.msDoNotTrack === '1');
+    const analyticsDisabled = noAnalytics || dnt;
+
+    // Persist session source from utm_source or path alias
+    const ALIAS_MAP = {
+      hn: 'hackernews',
+      producthunt: 'producthunt',
+      wip: 'wip',
+      x: 'twitter',
+      nostr: 'nostr',
+      planb: 'planb',
+      stacker: 'stackernews',
+      bitcointalk: 'bitcointalk',
+      bitcoinse: 'bitcoinse',
+      bitco_in: 'bitco.in'
+    };
+    let source = sessionStorage.getItem('buoy_source');
+    const utmSource = params.get('utm_source');
+    if (utmSource) {
+      sessionStorage.setItem('buoy_source', utmSource);
+    } else if (!source) {
+      const seg = (location.pathname.split('/')[1] || '').toLowerCase();
+      const alias = ALIAS_MAP[seg];
+      if (alias) sessionStorage.setItem('buoy_source', alias);
+    }
+
+    // Strip utm_* params from URL
+    if ([...params.keys()].some(k => k.toLowerCase().startsWith('utm_'))) {
+      const clean = new URL(window.location.href);
+      [...clean.searchParams.keys()].forEach(k => {
+        if (k.toLowerCase().startsWith('utm_')) clean.searchParams.delete(k);
+      });
+      const newSearch = clean.searchParams.toString();
+      window.history.replaceState({}, '', clean.pathname + (newSearch ? '?' + newSearch : '') + clean.hash);
+    }
+
+    // Expose buoyTrack
+    window.buoyTrack = function(name, props) {
+      try {
+        if (analyticsDisabled) return;
+        const trackFn = (window.umami && typeof window.umami.track === 'function') ? window.umami.track : null;
+        if (!trackFn) return;
+        let src = sessionStorage.getItem('buoy_source');
+        if (!src) {
+          try {
+            src = document.referrer ? new URL(document.referrer).host : 'direct';
+          } catch (_e) {
+            src = 'direct';
+          }
+        }
+        const payload = Object.assign({ source: src, path: window.location.pathname }, props || {});
+        trackFn(name, payload);
+      } catch (_e) { /* no-op */ }
+    };
+
+    // Outbound link tracking
+    if (!window.__buoyOutboundBound) {
+      window.__buoyOutboundBound = true;
+      document.addEventListener('click', function(e) {
+        const a = e.target && e.target.closest ? e.target.closest('a') : null;
+        if (!a) return;
+        if (a.classList && a.classList.contains('wallet-link')) return; // skip wallet links
+        const href = a.getAttribute('href') || '';
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        try {
+          const url = new URL(href, window.location.href);
+          if (url.host && url.host !== window.location.host) {
+            const text = (a.textContent || '').trim().slice(0, 120);
+            if (typeof window.buoyTrack === 'function') window.buoyTrack('outbound_to_service', { href: url.href, link_text: text });
+          }
+        } catch (_err) { /* ignore */ }
+      }, true);
+    }
+
+    // Compare pageview
+    document.addEventListener('DOMContentLoaded', function() {
+      try {
+        if (location.pathname.endsWith('compare.html')) {
+          if (typeof window.buoyTrack === 'function') window.buoyTrack('view_compare');
+        }
+      } catch (_e) { /* no-op */ }
+    });
+  } catch (_err) {
+    // Fallback no-op
+    window.buoyTrack = function() {};
+  }
+})();
+
 const slugify = s => s.toLowerCase().replace(/&/g," and ").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
 const canonicalVsSlug = (aName, bName) => {
   const [a, b] = [slugify(aName), slugify(bName)];
@@ -114,11 +207,27 @@ function addSelected(serviceName, searchType) {
   }
   if (selected.length === 0) {
     selected.push(serviceName);
+    // BUOY ANALYTICS
+    if (typeof window.buoyTrack === 'function') {
+      window.buoyTrack('select_service', {
+        service: serviceName,
+        category: getCategoryForService(serviceName) || 'unknown',
+        place: (searchType === 'main' ? 'hero' : 'menu')
+      });
+    }
   } else {
     const currentCat = getCategoryForService(selected[0]);
     const newCat = getCategoryForService(serviceName);
     if (currentCat === newCat && currentCat !== null) {
       selected.push(serviceName);
+      // BUOY ANALYTICS
+      if (typeof window.buoyTrack === 'function') {
+        window.buoyTrack('select_service', {
+          service: serviceName,
+          category: getCategoryForService(serviceName) || 'unknown',
+          place: (searchType === 'main' ? 'hero' : 'menu')
+        });
+      }
     } else {
       alert('Sorry, you can only compare services from the same category!');
       return;
@@ -460,6 +569,14 @@ document.querySelectorAll(".category").forEach(category => {
 
         selectedCards.push(serviceName);
         card.classList.add("selected");
+        // BUOY ANALYTICS
+        if (typeof window.buoyTrack === 'function') {
+          window.buoyTrack('select_service', {
+            service: serviceName,
+            category: getCategoryForService(serviceName) || 'unknown',
+            place: 'grid'
+          });
+        }
       }
 
       updateCompareButton();
@@ -510,11 +627,13 @@ document.querySelectorAll(".card").forEach(card => {
 
 
 // Search function in menu
+// BUOY ANALYTICS: shared servicesCache for searches
+let servicesCache = null; // shared across menu and main search
+
 document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("menu-search");
   const searchBtn = document.getElementById("search-btn");
   const suggestionsBox = document.getElementById("search-suggestions");
-  let servicesCache = null; // cache services.json to avoid repeated fetches
 
   searchInput.addEventListener("input", async () => {
     const query = searchInput.value.trim().toLowerCase();
@@ -563,6 +682,11 @@ suggestionsBox.addEventListener("click", (e) => {
     setTimeout(() => { suggestionsBox.style.display = 'none'; }, 300);
   } else {
     const slug = slugify(serviceName);
+    // BUOY ANALYTICS
+    if (typeof window.buoyTrack === 'function') {
+      const qLen = (searchInput && searchInput.value ? searchInput.value.length : 0);
+      window.buoyTrack('search_used', { q_len: qLen, place: 'menu' });
+    }
 window.location.href = `${SERVICE_BASE}/${slug}.html`;
   }
 });
@@ -585,6 +709,10 @@ window.location.href = `${SERVICE_BASE}/${slug}.html`;
 
     const match = servicesCache.find(s => s.name.toLowerCase().includes(query));
     if (match) {
+      // BUOY ANALYTICS
+      if (typeof window.buoyTrack === 'function') {
+        window.buoyTrack('search_used', { q_len: query.length, place: 'menu' });
+      }
       const slug = slugify(match.name);
 window.location.href = `${SERVICE_BASE}/${slug}.html`;
     } else {
@@ -649,6 +777,10 @@ document.addEventListener("DOMContentLoaded", () => {
       // Store timestamp when user left to wallet
       sessionStorage.setItem('donationAttempted', Date.now());
       overlay.classList.remove('show');
+      // BUOY ANALYTICS
+      if (typeof window.buoyTrack === 'function') {
+        window.buoyTrack('donate_click', { method: 'wallet_link' });
+      }
     });
   });
 
@@ -670,6 +802,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Open widget on donate click
   donateLink.addEventListener("click", (e) => {
     e.preventDefault();
+    // BUOY ANALYTICS
+    if (typeof window.buoyTrack === 'function') {
+      window.buoyTrack('donate_click', { method: 'open_widget' });
+    }
     overlay.classList.add("show");
   });
 
@@ -737,6 +873,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   bubble.appendChild(img);
   document.body.appendChild(bubble);
+
+  // BUOY ANALYTICS
+  bubble.addEventListener('click', function() {
+    if (typeof window.buoyTrack === 'function') {
+      window.buoyTrack('feedback_click');
+    }
+  });
 });
 
 
@@ -749,7 +892,6 @@ document.addEventListener('DOMContentLoaded', function() {
 const mainSearchInput = document.getElementById('main-search');
 const mainSearchBtn = document.getElementById('main-search-btn');
 const mainSearchSuggestions = document.getElementById('main-search-suggestions');
-let servicesCache = null; // Reuse the same cache as menu search
 
 if (mainSearchInput && mainSearchBtn && mainSearchSuggestions) {
   mainSearchInput.addEventListener('input', async function(e) {
@@ -801,6 +943,11 @@ if (mainSearchInput && mainSearchBtn && mainSearchSuggestions) {
             setTimeout(() => { mainSearchSuggestions.style.display = 'none'; }, 300);
           } else {
             const slug = slugify(service.name);
+            // BUOY ANALYTICS
+            if (typeof window.buoyTrack === 'function') {
+              const qLen = (mainSearchInput && mainSearchInput.value ? mainSearchInput.value.length : 0);
+              window.buoyTrack('search_used', { q_len: qLen, place: 'main' });
+            }
             window.location.href = `${SERVICE_BASE}/${slug}.html`;
           }
         });
@@ -817,12 +964,16 @@ if (mainSearchInput && mainSearchBtn && mainSearchSuggestions) {
     if (!query) return;
 
     if (!servicesCache) {
-      const res = await fetch("data/services.json");
+      const res = await fetch("/data/services.json");
       servicesCache = await res.json();
     }
 
     const match = servicesCache.find(s => s.name.toLowerCase().includes(query));
     if (match) {
+      // BUOY ANALYTICS
+      if (typeof window.buoyTrack === 'function') {
+        window.buoyTrack('search_used', { q_len: query.length, place: 'main' });
+      }
       const slug = slugify(match.name);
       window.location.href = `${SERVICE_BASE}/${slug}.html`;
     } else {

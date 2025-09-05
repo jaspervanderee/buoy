@@ -188,6 +188,10 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const categoryId = btn.dataset.target;
       activeCategory = categoryId;
+      // BUOY ANALYTICS
+      if (typeof window.buoyTrack === 'function') {
+        window.buoyTrack('questionnaire_start', { flow: activeCategory || 'unknown' });
+      }
       userAnswers = {};
       await loadServices();
       const actionButtons = document.querySelector(".action-buttons");
@@ -286,6 +290,16 @@ if (seoCopy && seoCopy.parentNode) {
         if (actionGridH2) {
           actionGridH2.textContent = "These options might be worth exploring:";
         }
+        // BUOY ANALYTICS finish
+        try {
+          const container = document.getElementById(categoryId);
+          const cards = container ? Array.from(container.querySelectorAll('.card')) : [];
+          const visible = cards.filter(c => c.style.display !== 'none');
+          const topPicks = visible.slice(0, 3).map(c => (c.querySelector('img')?.alt || '').trim()).filter(Boolean);
+          if (typeof window.buoyTrack === 'function') {
+            window.buoyTrack('questionnaire_finish', { flow: activeCategory || 'unknown', top_picks: (topPicks || []).slice(0,3).join('|') });
+          }
+        } catch (_e) { /* no-op */ }
         
         // Add reset button for completed questionnaire
         const resetDiv = document.createElement("div");
