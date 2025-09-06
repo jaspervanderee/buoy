@@ -600,9 +600,14 @@ document.querySelectorAll(".category").forEach(category => {
     const categoryTitle = category.querySelector("h2")?.innerText ?? "Compare Services";
   
     if (selectedCards.length === 2) {
-      const compareURL = `compare.html?services=${selectedCards.join(",")}&category=${encodeURIComponent(getCategory(selectedCards))}`;
+      const left = selectedCards[0];
+      const right = selectedCards[1];
+      const slugLeft = slugify(left);
+      const slugRight = slugify(right);
+      const canonical = [slugLeft, slugRight].sort().join("-vs-"); // path uses sorted slugs
+      const url = `/${canonical}.html?services=${encodeURIComponent(left)},${encodeURIComponent(right)}&category=${encodeURIComponent(getCategory(selectedCards))}`;
       sessionStorage.setItem("clearSelectedAfterCompare", "true");
-      window.location.href = compareURL; // dynamic 2-up
+      window.location.href = url; // static 2-up
       return;
     }
   
@@ -1006,9 +1011,21 @@ document.addEventListener("DOMContentLoaded", () => {
       if (selectedServicesMain.length < 2) return;
       const category = getCategory(selectedServicesMain);
     
+      if (selectedServicesMain.length === 2) {
+        const left = selectedServicesMain[0];
+        const right = selectedServicesMain[1];
+        const slugLeft = slugify(left);
+        const slugRight = slugify(right);
+        const canonical = [slugLeft, slugRight].sort().join('-vs-');
+        const url = `/${canonical}.html?services=${encodeURIComponent(left)},${encodeURIComponent(right)}&category=${encodeURIComponent(category)}`;
+        sessionStorage.setItem("clearSelectedAfterCompare", "true");
+        window.location.href = url; // static 2-up
+        return;
+      }
+
       const url = `compare.html?services=${selectedServicesMain.join(",")}&category=${encodeURIComponent(category)}`;
       sessionStorage.setItem("clearSelectedAfterCompare", "true");
-      window.location.href = url; // dynamic compare (2 or 3)
+      window.location.href = url; // dynamic compare (3)
     });
     
     
@@ -1019,9 +1036,21 @@ document.addEventListener("DOMContentLoaded", () => {
       if (selectedServicesMenu.length < 2) return;
       const category = getCategory(selectedServicesMenu);
     
+      if (selectedServicesMenu.length === 2) {
+        const left = selectedServicesMenu[0];
+        const right = selectedServicesMenu[1];
+        const slugLeft = slugify(left);
+        const slugRight = slugify(right);
+        const canonical = [slugLeft, slugRight].sort().join('-vs-');
+        const url = `/${canonical}.html?services=${encodeURIComponent(left)},${encodeURIComponent(right)}&category=${encodeURIComponent(category)}`;
+        sessionStorage.setItem("clearSelectedAfterCompare", "true");
+        window.location.href = url; // static 2-up
+        return;
+      }
+
       const url = `compare.html?services=${selectedServicesMenu.join(",")}&category=${encodeURIComponent(category)}`;
       sessionStorage.setItem("clearSelectedAfterCompare", "true");
-      window.location.href = url; // dynamic compare (2 or 3)
+      window.location.href = url; // dynamic compare (3)
     });    
     
   }

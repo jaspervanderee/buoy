@@ -20,7 +20,10 @@ function renderHTML(current, alts) {
     const altSlug = slugify(alt.name);
     const logo = `/images/${altSlug}.svg`;
     const brandUrl = `/services/${altSlug}.html`;
-    const compareUrl = `/compare.html?services=${encodeURIComponent(current.name)},${encodeURIComponent(alt.name)}`;
+    const a = slugify(current.name);
+    const b = slugify(alt.name);
+    const canonical = [a, b].sort().join("-vs-");
+    const compareUrl = `/${canonical}.html?services=${encodeURIComponent(current.name)},${encodeURIComponent(alt.name)}&category=${encodeURIComponent(current.category || '')}`;
     return `
       <li class="alt-item">
         <div class="logo-cell">
