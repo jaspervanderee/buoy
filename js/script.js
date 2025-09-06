@@ -566,6 +566,7 @@ async function showAllServices() {
 document.querySelectorAll(".category").forEach(category => {
   const compareButton = category.querySelector(".compare-btn");
   let selectedCards = [];
+  let previousCount = 0; // track previous selection count to debounce nudges
 
   category.querySelectorAll(".card").forEach(card => {
     const selectCircle = document.createElement("div");
@@ -596,6 +597,7 @@ document.querySelectorAll(".category").forEach(category => {
       }
 
       updateCompareButton();
+      handleNudge();
     });
   });
 
@@ -608,6 +610,27 @@ document.querySelectorAll(".category").forEach(category => {
       compareButton.classList.remove("active");
       compareButton.setAttribute("disabled", "true");
     }
+  }
+
+  // Pulse compare button and ripple other dots when entering single-selection state
+  function handleNudge() {
+    const count = selectedCards.length;
+    if (count === 1 && previousCount !== 1) {
+      compareButton.classList.add('hint');
+      const circles = category.querySelectorAll('.card .select-circle');
+      circles.forEach(circle => {
+        const parentCard = circle.closest('.card');
+        if (!parentCard.classList.contains('selected')) {
+          circle.classList.add('nudge');
+        }
+      });
+      setTimeout(() => {
+        circles.forEach(circle => circle.classList.remove('nudge'));
+      }, 1250);
+    } else if (count === 0 || count >= 2) {
+      compareButton.classList.remove('hint');
+    }
+    previousCount = count;
   }
 
   compareButton.addEventListener("click", () => {
@@ -753,6 +776,7 @@ window.addEventListener("pageshow", () => {
     document.querySelectorAll(".compare-btn").forEach(btn => {
       btn.classList.remove("active");
       btn.setAttribute("disabled", "true");
+      btn.classList.remove("hint");
     });
   }
 });
