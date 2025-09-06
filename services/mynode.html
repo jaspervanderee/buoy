@@ -339,8 +339,10 @@
     const grid = document.querySelector('.alt-grid');
     if (!grid) return;
     function fetchUserCountry(){
+      const manual = localStorage.getItem('userCountryManual') === 'true';
       const cached = localStorage.getItem('userCountry');
-      if (cached && cached !== 'ALL') return Promise.resolve(cached);
+      if (cached) return Promise.resolve(cached);
+      if (manual) return Promise.resolve('ALL');
       return fetch('https://ipapi.co/json/').then(r=>r.json()).then(j=>{
         if (j && j.country_code) {
           localStorage.setItem('userCountry', j.country_code);

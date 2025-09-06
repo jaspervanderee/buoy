@@ -306,10 +306,11 @@ async function getUserLocation() {
 }
 
 async function updateServiceSpans(selectedCountryCode = null) {
-  let countryCode = localStorage.getItem("userCountry");
+  const manual = localStorage.getItem("userCountryManual") === "true";
+  let countryCode = localStorage.getItem("userCountry") || selectedCountryCode;
 
-  if (!countryCode) {
-    countryCode = selectedCountryCode || await getUserLocation();
+  if (!manual && !countryCode) {
+    countryCode = await getUserLocation();
     if (countryCode) {
       localStorage.setItem("userCountry", countryCode);
     }
@@ -423,7 +424,13 @@ const searchInput = document.getElementById("country-search");
 
         const countries = await response.json();
 
-        // Add "Show All Services" at the top
+        // Add "Use my location" at the top
+        const useGeoItem = document.createElement("li");
+        useGeoItem.setAttribute("data-country", "__USE_GEO__");
+        useGeoItem.innerHTML = `<span class="flag-icon"></span> Use my location`;
+        dropdownList.appendChild(useGeoItem);
+
+        // Add "Show All Services" next
         const showAllItem = document.createElement("li");
         showAllItem.setAttribute("data-country", "ALL");
         showAllItem.innerHTML = `<span class="flag-icon"></span> Show All Services`;
@@ -480,6 +487,15 @@ searchInput.addEventListener("focus", () => {
     const countryCode = selectedItem.dataset.country;
     const countryName = selectedItem.textContent.trim();
     const flagIcon = selectedItem.querySelector('.flag-icon')?.outerHTML || '';
+
+    // Handle "Use my location"
+    if (countryCode === "__USE_GEO__") {
+      localStorage.removeItem("userCountryManual");
+      localStorage.removeItem("userCountry");
+      dropdown.classList.remove('active');
+      await updateServiceSpans();
+      return;
+    }
 
     // Update dropdown label
     dropdownLabel.innerHTML = `${flagIcon} ${countryName}`;

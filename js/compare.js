@@ -171,8 +171,9 @@ function getFeaturesForCountry(service, userCountry) {
   return worldwideFeatures || [];
 }
 
+const manualSelection = localStorage.getItem("userCountryManual") === "true";
 let countryCode = localStorage.getItem("userCountry");
-if (!countryCode) {
+if (!manualSelection && !countryCode) {
   countryCode = await getUserLocation();
   if (countryCode) {
     localStorage.setItem("userCountry", countryCode);
