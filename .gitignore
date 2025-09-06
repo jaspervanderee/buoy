@@ -22,4 +22,6 @@ build/
 out/
 
 # Or exclude all PHP files if you have more
-*.php
+*.php.cursor/
+.cursor-rules.md
+cursor-rules.md
