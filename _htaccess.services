@@ -7,6 +7,7 @@ Redirect 301 /btc-pay.html /services/btc-pay.html
 Redirect 301 /bull-bitcoin.html /services/bull-bitcoin.html
 Redirect 301 /fold.html /services/fold.html
 Redirect 301 /hodlhodl.html /services/hodlhodl.html
+Redirect 301 /bisq.html /services/bisq.html
 Redirect 301 /lightspark.html /services/lightspark.html
 Redirect 301 /muun.html /services/muun.html
 Redirect 301 /mynode.html /services/mynode.html

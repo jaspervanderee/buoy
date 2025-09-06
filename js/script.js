@@ -158,7 +158,7 @@ let selectedServicesMenu = [];
 
 // Legacy fallback map (used only if services.json isn't loaded yet)
 const legacyCategoryMap = {
-  "Buy Bitcoin": ["strike", "river", "swan", "relai", "hodlhodl", "bitonic", "peach", "bull bitcoin", "pocket"],
+  "Buy Bitcoin": ["strike", "river", "swan", "relai", "hodlhodl", "bitonic", "peach", "bull bitcoin", "pocket", "bisq"],
   "Spend Bitcoin": ["breez", "aqua", "phoenix", "muun", "fold"],
   "Store it safely": ["bitkey", "sparrow", "wasabi", "unchained", "anchorwatch"],
   "Run my own node": ["umbrel", "mynode", "start9"],

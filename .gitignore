@@ -4,6 +4,8 @@
 # Editor settings
 .vscode/
 cursor-cache/
+.cursor-rules.md
+cursor-rules.md
 
 # Logs and temp
 *.log
