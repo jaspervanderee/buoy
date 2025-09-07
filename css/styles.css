@@ -19,7 +19,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #0b0f14;
-    --panel: #121417;
+    --panel: #404040;
     --text: #e5e7eb;
     --text-muted: #9aa4b2;
     --border: #232b33;
@@ -813,7 +813,7 @@ p, li, a {
 }
 
 @media (prefers-color-scheme: dark) {
-  .card { background: #1a1f26; }
+  .card { background: #404040; }
 }
 
 .card span {
@@ -2236,9 +2236,9 @@ p, li, a {
 /* Dark-mode overrides for SEO block slabs */
 @media (prefers-color-scheme: dark){
   .seo-copy.space{
-    --seo-bg:#0f1318;
-    --seo-why:#12161b;
-    --seo-faq:#151a20;
+    --seo-bg:#1a1a1a;
+    --seo-why:#202020;
+    --seo-faq:#1a1a1a;
   }
 }
 
