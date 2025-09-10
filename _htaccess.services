@@ -1,4 +1,5 @@
 Redirect 301 /anchorwatch.html /services/anchorwatch.html
+Redirect 301 /robosats.html /services/robosats.html
 Redirect 301 /aqua.html /services/aqua.html
 Redirect 301 /bitkey.html /services/bitkey.html
 Redirect 301 /bitonic.html /services/bitonic.html
