@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://buoybitcoin.com/services/anchorwatch.html</loc></url>
-  <url><loc>https://buoybitcoin.com/services/robosats.html</loc></url>
   <url><loc>https://buoybitcoin.com/services/aqua.html</loc></url>
+  <url><loc>https://buoybitcoin.com/services/bisq.html</loc></url>
   <url><loc>https://buoybitcoin.com/services/bitkey.html</loc></url>
   <url><loc>https://buoybitcoin.com/services/bitonic.html</loc></url>
   <url><loc>https://buoybitcoin.com/services/breez.html</loc></url>
@@ -10,7 +10,6 @@
   <url><loc>https://buoybitcoin.com/services/bull-bitcoin.html</loc></url>
   <url><loc>https://buoybitcoin.com/services/fold.html</loc></url>
   <url><loc>https://buoybitcoin.com/services/hodlhodl.html</loc></url>
-  <url><loc>https://buoybitcoin.com/services/bisq.html</loc></url>
   <url><loc>https://buoybitcoin.com/services/lightspark.html</loc></url>
   <url><loc>https://buoybitcoin.com/services/muun.html</loc></url>
   <url><loc>https://buoybitcoin.com/services/mynode.html</loc></url>
@@ -20,6 +19,7 @@
   <url><loc>https://buoybitcoin.com/services/pocket.html</loc></url>
   <url><loc>https://buoybitcoin.com/services/relai.html</loc></url>
   <url><loc>https://buoybitcoin.com/services/river.html</loc></url>
+  <url><loc>https://buoybitcoin.com/services/robosats.html</loc></url>
   <url><loc>https://buoybitcoin.com/services/sparrow.html</loc></url>
   <url><loc>https://buoybitcoin.com/services/start9.html</loc></url>
   <url><loc>https://buoybitcoin.com/services/strike.html</loc></url>
