@@ -182,6 +182,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const res = await fetch("data/services.json");
     servicesData = await res.json();
   }
+
+  function pushQState() {
+    try {
+      if (!activeCategory) return;
+      history.pushState({ qFlow: activeCategory, qIndex: currentQuestionIndex }, "");
+    } catch (_e) { /* no-op */ }
+  }
  
   document.querySelectorAll(".action-button").forEach(btn => {
     btn.addEventListener("click", async (e) => {
@@ -205,10 +212,12 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       injectQuestionnaire(categoryId);
       filterCards(categoryId);
+      // Initial state at step 0
+      pushQState();
     });
   });
  
-  function injectQuestionnaire(categoryId) {
+  function injectQuestionnaire(categoryId, startIndex, suppressAutoComplete) {
     console.log('injectQuestionnaire called for categoryId:', categoryId);
     
     // Check if questionnaire already exists
@@ -270,8 +279,8 @@ if (seoCopy && seoCopy.parentNode) {
     grid.appendChild(questionnaireDiv);
 
     const qData = questionnaires[categoryId];
-    currentQuestionIndex = 0;
-    console.log('Reset currentQuestionIndex to 0 for new questionnaire');
+    currentQuestionIndex = (typeof startIndex === 'number') ? startIndex : 0;
+    console.log('Reset currentQuestionIndex to', currentQuestionIndex, 'for new questionnaire');
 
     function showCurrentQuestion() {
       console.log('showCurrentQuestion called, currentQuestionIndex:', currentQuestionIndex);
@@ -279,7 +288,7 @@ if (seoCopy && seoCopy.parentNode) {
 
       // Check if only one service is left after current filtering
       const visibleServices = countVisibleServices(categoryId);
-      if (visibleServices <= 2) {
+      if (!suppressAutoComplete && visibleServices <= 2) {
         // Skip remaining questions and complete questionnaire
         currentQuestionIndex = qData.questions.length;
       }
@@ -367,11 +376,13 @@ if (seoCopy && seoCopy.parentNode) {
       rightArrow.addEventListener("click", () => {
         if (currentQuestionIndex < qData.questions.length - 1) {
           currentQuestionIndex++;
+          pushQState();
           showCurrentQuestion();
           filterCards(categoryId);
         } else {
           // On the last question, finish the questionnaire regardless of input
           currentQuestionIndex++;
+          pushQState();
           showCurrentQuestion();
           filterCards(categoryId);
         }
@@ -396,6 +407,7 @@ if (seoCopy && seoCopy.parentNode) {
           filterCards(categoryId);
           console.log('Select circle clicked, incrementing from:', currentQuestionIndex);
           currentQuestionIndex++;
+          pushQState();
           console.log('New currentQuestionIndex:', currentQuestionIndex);
           showCurrentQuestion();
           setTimeout(() => { isProcessingSelection = false; }, 100);
@@ -481,4 +493,26 @@ if (seoCopy && seoCopy.parentNode) {
       updateServiceSpans(localStorage.getItem("userCountry"));
     }
   }
+
+  // Browser back/forward navigates questionnaire steps
+  window.addEventListener("popstate", (event) => {
+    const s = event.state;
+    if (s && s.qFlow) {
+      activeCategory = s.qFlow;
+      // Hide action buttons and other categories, show only the active one
+      const actionButtons = document.querySelector(".action-buttons");
+      if (actionButtons) actionButtons.style.display = "none";
+      document.querySelectorAll(".category").forEach(cat => {
+        const container = cat.querySelector(".scrollable-container");
+        const show = container && container.id === activeCategory;
+        cat.style.transition = "opacity 0.3s";
+        cat.style.opacity = show ? "1" : "0";
+        setTimeout(() => { cat.style.display = show ? "block" : "none"; }, 300);
+      });
+      injectQuestionnaire(activeCategory, s.qIndex || 0, true);
+      filterCards(activeCategory);
+    } else {
+      resetQuestionnaire();
+    }
+  });
 }); 

@@ -58,6 +58,26 @@
       } catch (_e) { /* no-op */ }
     };
 
+    // Helper: compute and sanitize channel source label for mirrored event names
+    function __buoyComputeSource() {
+      try {
+        let src = sessionStorage.getItem('buoy_source');
+        if (!src) {
+          try {
+            src = document.referrer ? new URL(document.referrer).host : 'direct';
+          } catch (_e) {
+            src = 'direct';
+          }
+        }
+        return src || 'direct';
+      } catch (_e) { return 'direct'; }
+    }
+    function __buoySanitizeLabel(label) {
+      try {
+        return String(label || 'direct').toLowerCase().replace(/[^a-z0-9._-]+/g, '');
+      } catch (_e) { return 'direct'; }
+    }
+
     // Outbound link tracking
     if (!window.__buoyOutboundBound) {
       window.__buoyOutboundBound = true;
@@ -72,6 +92,14 @@
           if (url.host && url.host !== window.location.host) {
             const text = (a.textContent || '').trim().slice(0, 120);
             if (typeof window.buoyTrack === 'function') window.buoyTrack('outbound_to_service', { href: url.href, link_text: text });
+            // Mirrored outbound event by channel (minimal props)
+            try {
+              const src = __buoyComputeSource();
+              const chan = __buoySanitizeLabel(src);
+              if (chan && typeof window.buoyTrack === 'function') {
+                window.buoyTrack('outbound_to_service__' + chan, { href: url.href });
+              }
+            } catch (_e) { /* no-op */ }
           }
         } catch (_err) { /* ignore */ }
       }, true);
@@ -82,6 +110,18 @@
       try {
         if (location.pathname.endsWith('compare.html')) {
           if (typeof window.buoyTrack === 'function') window.buoyTrack('view_compare');
+        }
+        // Pageview + mirrored by channel (once per load)
+        if (!window.__buoyPageviewTracked) {
+          window.__buoyPageviewTracked = true;
+          if (typeof window.buoyTrack === 'function') {
+            window.buoyTrack('view_page');
+            try {
+              const src = __buoyComputeSource();
+              const chan = __buoySanitizeLabel(src);
+              if (chan) window.buoyTrack('view_page__' + chan);
+            } catch (_e) { /* no-op */ }
+          }
         }
       } catch (_e) { /* no-op */ }
     });
