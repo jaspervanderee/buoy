@@ -26,7 +26,8 @@ function htmlForPair(a, b, categoryLabel) {
   const bName = b.name;
   const title = `${aName} vs ${bName} — Which is better? | Buoy Bitcoin`;
   const desc = `Compare ${aName} and ${bName} (${categoryLabel}): fees, custody, features, and more.`;
-  const canonical = `https://buoybitcoin.com/${canonicalPairSlug(aName, bName)}.html`;
+  const canonicalPath = `/compare/${canonicalPairSlug(aName, bName)}.html`;
+  const canonical = `https://buoybitcoin.com${canonicalPath}`;
   // Tiny head shim: if no query, set services=A,B and category
   const shim = `\n<script>\n(function(){\n  try {\n    var a = ${JSON.stringify(aName)};\n    var b = ${JSON.stringify(bName)};\n    var cat = ${JSON.stringify(categoryLabel)};\n    var p = new URLSearchParams(location.search);\n    if (!p.get('services')) p.set('services', a + ',' + b);\n    if (!p.get('category')) p.set('category', cat);\n    history.replaceState(null, '', location.pathname + '?' + p.toString());\n    window.__BUOY_COMPARE__ = [a,b];\n  } catch(e){}\n})();\n</script>`;
 
@@ -49,7 +50,7 @@ function htmlForPair(a, b, categoryLabel) {
   <meta name="twitter:description" content="${desc}"/>
   <meta name="twitter:image" content="https://buoybitcoin.com/android-chrome-512x512.png"/>
   <meta name="twitter:site" content="@jaspervanderee"/>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
   <script defer src="https://feedback.fish/ff.js?pid=17f299e6843396" crossorigin="anonymous"></script>
@@ -69,7 +70,7 @@ ${shim}<script type="application/ld+json">${JSON.stringify({
   <div class="container">
  <header>
   <div class="container">
-    <div id="logo"><a href="/"><img src="images/buoy-logo-horizontal.svg" alt="Buoy Bitcoin logo"></a></div>
+    <div id="logo"><a href="/"><img src="/images/buoy-logo-horizontal.svg" alt="Buoy Bitcoin logo"></a></div>
     <button class="hamburger" aria-label="Toggle Menu">
       <span></span>
       <span></span>
@@ -93,7 +94,7 @@ ${shim}<script type="application/ld+json">${JSON.stringify({
       <ul>
         <div class="custom-dropdown">
           <div class="dropdown-label" id="dropdown-label">
-            <img src="images/global-white.svg" alt="Your Location" class="availability-icon" />
+            <img src="/images/global-white.svg" alt="Your Location" class="availability-icon" />
             <span>Your location</span>
           </div>
           <input type="text" id="country-search" placeholder="Type your country..." style="display:none;" />
@@ -101,32 +102,32 @@ ${shim}<script type="application/ld+json">${JSON.stringify({
         </div>
 
         <li>
-          <a href="about.html">
-            <img src="images/about.svg" alt="About Icon" />
+          <a href="/about.html">
+            <img src="/images/about.svg" alt="About Icon" />
             About
           </a>
         </li>
         <li>
-  <a href="faq.html">
-    <img src="images/faq.svg" alt="FAQ Icon" />
+  <a href="/faq.html">
+    <img src="/images/faq.svg" alt="FAQ Icon" />
     FAQ
   </a>
 </li>
 <li>
   <a href="#donate" id="donate-link">
-    <img src="images/lightning.svg" alt="Donate Icon" />
+    <img src="/images/lightning.svg" alt="Donate Icon" />
     Donate
   </a>
 </li>
 <li>
   <a data-feedback-fish href="javascript:void(0)">
-    <img src="images/feedback.svg" alt="Feedback Icon" />
+    <img src="/images/feedback.svg" alt="Feedback Icon" />
     Give us feedback
   </a>
 </li>
 <li>
   <a id="contact-link" href="mailto:support&#64;buoybitcoin.com">
-    <img src="images/contact.svg" alt="Contact Icon"/>
+    <img src="/images/contact.svg" alt="Contact Icon"/>
     Contact
   </a>
 </li>
@@ -185,25 +186,25 @@ ${shim}<script type="application/ld+json">${JSON.stringify({
     <div class="footer-column">
       <h3>Learn</h3>
       <ul>
-        <li><a href="what-is-bitcoin.html">Bitcoin</a></li>
-        <li><a href="what-is-lightning.html">Lightning</a></li>
+        <li><a href="/what-is-bitcoin.html">Bitcoin</a></li>
+        <li><a href="/what-is-lightning.html">Lightning</a></li>
       </ul>
     </div>
     <div class="footer-column">
       <h3>Support</h3>
       <ul>
         <li><a href="mailto:support&#64;buoybitcoin.com">Contact</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
-        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="/faq.html">FAQ</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms of Service</a></li>
       </ul>
     </div>
     <!-- Add more columns here if needed -->
   </div>
 </footer>
 
-  <script src="js/script.js"></script>
-  <script src="js/compare.js"></script>
+  <script src="/js/script.js"></script>
+  <script src="/js/compare.js"></script>
 </body>
 </html>`;
 }
@@ -223,6 +224,7 @@ ${shim}<script type="application/ld+json">${JSON.stringify({
 
   const outFiles = [];
   const redirectLines = [];
+  await fs.mkdir(path.join(ROOT, "compare"), { recursive: true });
 
   for (const [cat, list] of byCat.entries()) {
     // Sort by name for stable output
@@ -231,26 +233,49 @@ ${shim}<script type="application/ld+json">${JSON.stringify({
       for (let j = i + 1; j < sorted.length; j++) {
         const a = sorted[i];
         const b = sorted[j];
-        const canonical = canonicalPairSlug(a.name, b.name);
+        const slug = canonicalPairSlug(a.name, b.name);
         const html = htmlForPair(a, b, cat);
-        await fs.writeFile(path.join(ROOT, `${canonical}.html`), html, "utf8");
-        outFiles.push(`${canonical}.html`);
-        // reverse rule b-vs-a (unsorted) -> a-vs-b (sorted canonical)
+        await fs.writeFile(path.join(ROOT, "compare", `${slug}.html`), html, "utf8");
+        outFiles.push(`compare/${slug}.html`);
+        // Redirect rules: root canonical and reversed -> /compare/canonical
+        redirectLines.push(`RewriteRule ^${slug}\.html$ /compare/${slug}.html [R=301,L]`);
         const rev = `${slugify(b.name)}-vs-${slugify(a.name)}`;
-        if (rev !== canonical) {
-          redirectLines.push(`RewriteRule ^${rev}\.html$ /${canonical}.html [R=301,L]`);
+        if (rev !== slug) {
+          redirectLines.push(`RewriteRule ^${rev}\.html$ /compare/${slug}.html [R=301,L]`);
+          redirectLines.push(`RewriteRule ^compare/${rev}\.html$ /compare/${slug}.html [R=301,L]`);
         }
       }
     }
   }
 
-  // Write redirects file
-  const header = [
-    "",
-    "# BEGIN buoy compare redirects",
-  ].join("\n");
-  const footer = "\n# END buoy compare redirects\n";
-  await fs.writeFile(OUT_REDIRECTS, header + redirectLines.join("\n") + footer, "utf8");
+  // Write redirects block into .htaccess between markers
+  const htaccessPath = path.join(ROOT, ".htaccess");
+  const blockHeader = "# BEGIN compare-redirects (auto)";
+  const blockFooter = "# END compare-redirects (auto)";
+  const block = `${blockHeader}\n${redirectLines.join("\n")}\n${blockFooter}`;
+  let ht = "";
+  try {
+    ht = await fs.readFile(htaccessPath, "utf8");
+  } catch (_e) {
+    // no existing .htaccess, create new
+  }
+  if (ht.includes(blockHeader)) {
+    const re = new RegExp(`${blockHeader}[\n\r\s\S]*?${blockFooter}`);
+    ht = ht.replace(re, block);
+  } else {
+    // Insert after RewriteEngine On if present, else append
+    const marker = "RewriteEngine On";
+    const idx = ht.indexOf(marker);
+    if (idx !== -1) {
+      const endOfLine = ht.indexOf("\n", idx);
+      const before = ht.slice(0, endOfLine + 1);
+      const after = ht.slice(endOfLine + 1);
+      ht = `${before}\n${block}\n${after}`;
+    } else {
+      ht = `${block}\n\n${ht}`;
+    }
+  }
+  await fs.writeFile(htaccessPath, ht, "utf8");
 
-  console.log(`Built ${outFiles.length} compare pages`);
+  console.log(`Built ${outFiles.length} compare pages and updated .htaccess redirects`);
 })();
