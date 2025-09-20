@@ -677,37 +677,75 @@ h2 {
   flex-direction: column; /* stack vertically */
   align-items: flex-start; /* left align */
   justify-content: flex-start; /* neutralize space-between */
-  gap: 6px; /* small vertical spacing using existing scale */
 }
 
-.category-header--vs .breadcrumbs { margin-top: 6px; }
+.category-header--vs .breadcrumbs { margin-top: 0; }
 
 /* Breadcrumbs (inline, under H1) */
-.breadcrumbs {
-  margin-top: 6px;
-  margin-bottom: 10px;
+.breadcrumb-back { 
+  display: block;
+  margin-top: -4px;
+  margin-bottom: 4px; /* tighter to adjacent content */
+  font-size: 0.8em; /* smaller on mobile */
+}
+
+.breadcrumb-back, .breadcrumb-back * {
   font-family: "Inter", sans-serif;
-  font-size: 0.9em;
-  color: var(--text-muted);
 }
 
-.breadcrumbs a {
-  color: var(--text-muted);
-  text-decoration: none;
+.breadcrumbs {
+  margin-bottom: 4px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em; color: var(--text-muted);
 }
 
-.breadcrumbs a:hover {
-  color: var(--link);
-  text-decoration: underline;
+/* Force Inter inside breadcrumbs despite global monospace for anchors/lists */
+.breadcrumbs, .breadcrumbs * {
+  font-family: "Inter", sans-serif;
 }
 
-/* Defensive: remove numbering if any legacy ol/ul slips in */
-.breadcrumbs ol,
-.breadcrumbs ul {
+/* Breadcrumb link styles: orange, no underline in all states; keep focus outline */
+.breadcrumbs a,
+.breadcrumbs a:link,
+.breadcrumbs a:visited,
+.breadcrumbs a:hover,
+.breadcrumbs a:active,
+.breadcrumbs a:focus { color: var(--link); text-decoration: none; }
+
+/* Back link styles: same as breadcrumb links */
+.breadcrumb-back a,
+.breadcrumb-back a:link,
+.breadcrumb-back a:visited,
+.breadcrumb-back a:hover,
+.breadcrumb-back a:active,
+.breadcrumb-back a:focus { color: var(--link); text-decoration: none; }
+
+/* Reset list styles; mobile-first hides the trail (<ol>) by default */
+.breadcrumbs ol, .breadcrumbs ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
+
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Mobile-first: hide the trail content by default */
+.breadcrumbs ol {
+  display: none;
+}
+
+.breadcrumbs li + li::before {
+  content: ">";
+  font-family: "Inter", sans-serif;
+  display: inline-block;
+  margin: 0 4px 0 0; /* tight spacing before crumb */
+}
+/* RTL support: flip separator direction when parent or element is RTL */
+[dir="rtl"] .breadcrumbs li + li::before,
+.breadcrumbs[dir="rtl"] li + li::before { content: "<"; }
 
 @media (min-width: 768px) {
   .category-header h2 {
@@ -716,6 +754,14 @@ h2 {
   .category-header h1 {
     font-size: 1.6em; /* Match h2 size on desktop */
   }
+}
+
+/* Responsive toggle: show back link on small screens, full trail on >=640px */
+@media (min-width: 640px) {
+  .breadcrumb-back { display: none; }
+  .breadcrumbs ol { display: flex; align-items: center; gap: 8px; }
+  /* Pull breadcrumbs closer to H1 on desktop */
+  .category-header--vs .breadcrumbs { margin-top: -6px; }
 }
 
 
@@ -962,7 +1008,7 @@ p, li, a {
   justify-content: flex-start;
   gap: 6px;
 }
-.category-header.category-header--vs .breadcrumbs { margin-top: 6px; }
+
 
 /* Adjust Compare Button to match h2 alignment */
 .compare-btn {

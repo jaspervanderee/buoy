@@ -41,9 +41,13 @@ function htmlForPair(a, b, categoryLabel) {
   // Tiny head shim: if no query, set services=A,B and category
   const shim = `\n<script>\n(function(){\n  try {\n    var a = ${JSON.stringify(aName)};\n    var b = ${JSON.stringify(bName)};\n    var cat = ${JSON.stringify(categoryLabel)};\n    var p = new URLSearchParams(location.search);\n    if (!p.get('services')) p.set('services', a + ',' + b);\n    if (!p.get('category')) p.set('category', cat);\n    history.replaceState(null, '', location.pathname + '?' + p.toString());\n    window.__BUOY_COMPARE__ = [a,b];\n  } catch(e){}\n})();\n</script>`;
 
-  const breadcrumbHtml = `\n<nav class="breadcrumbs" aria-label="Breadcrumb">\n  <a href="/">Home</a> \u203A ` + (categoryUrl
+  const breadcrumbBack = categoryUrl
+    ? `\n<div class="breadcrumb-back"><a href="${categoryUrl}">< Back to ${categoryLabel}</a></div>`
+    : `\n<div class="breadcrumb-back"><a href="/">< Back to Home</a></div>`;
+
+  const breadcrumbHtml = `\n<nav class="breadcrumbs" aria-label="Breadcrumb">\n  <ol>\n    <li><a href="/">Home</a></li>\n    <li>` + (categoryUrl
       ? `<a href="${categoryUrl}"><span id="breadcrumb-category-label">${categoryLabel}</span></a>`
-      : `<span id="breadcrumb-category-label">${categoryLabel}</span>`) + ` \u203A <span id="breadcrumb-current" aria-current="page">${aName} vs ${bName}</span>\n</nav>`;
+      : `<span id="breadcrumb-category-label">${categoryLabel}</span>`) + `</li>\n    <li><span id="breadcrumb-current" aria-current="page">${aName} vs ${bName}</span></li>\n  </ol>\n</nav>`;
 
   const breadcrumbLd = {
     "@context": "https://schema.org",
@@ -169,6 +173,7 @@ ${shim}<script type="application/ld+json">${JSON.stringify({
  <main>
   <div class="category-header category-header--vs">
     <h1 id="page-title">${aName} vs ${bName}</h1>
+    ${breadcrumbBack}
     ${breadcrumbHtml}
   </div>
 <!-- BUILD:START -->

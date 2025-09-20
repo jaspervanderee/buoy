@@ -1,6 +1,6 @@
 Redirect 301 /anchorwatch.html /services/anchorwatch.html
-Redirect 301 /robosats.html /services/robosats.html
 Redirect 301 /aqua.html /services/aqua.html
+Redirect 301 /bisq.html /services/bisq.html
 Redirect 301 /bitkey.html /services/bitkey.html
 Redirect 301 /bitonic.html /services/bitonic.html
 Redirect 301 /breez.html /services/breez.html
@@ -8,7 +8,6 @@ Redirect 301 /btc-pay.html /services/btc-pay.html
 Redirect 301 /bull-bitcoin.html /services/bull-bitcoin.html
 Redirect 301 /fold.html /services/fold.html
 Redirect 301 /hodlhodl.html /services/hodlhodl.html
-Redirect 301 /bisq.html /services/bisq.html
 Redirect 301 /lightspark.html /services/lightspark.html
 Redirect 301 /muun.html /services/muun.html
 Redirect 301 /mynode.html /services/mynode.html
@@ -18,6 +17,7 @@ Redirect 301 /phoenix.html /services/phoenix.html
 Redirect 301 /pocket.html /services/pocket.html
 Redirect 301 /relai.html /services/relai.html
 Redirect 301 /river.html /services/river.html
+Redirect 301 /robosats.html /services/robosats.html
 Redirect 301 /sparrow.html /services/sparrow.html
 Redirect 301 /start9.html /services/start9.html
 Redirect 301 /strike.html /services/strike.html

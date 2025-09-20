@@ -37,9 +37,9 @@ const setProp = (html, prop, content) =>
 const setCanonical = (html, href) =>
   html.replace(/(<link[^>]+rel=["']canonical["'][^>]+href=["'])[^\"]*(")/i, `$1${href}$2`);
 
-// ✅ single version
-const setCategoryTitle = (html, title) =>
-    html.replace(/<h2 id="category-title">[\s\S]*?<\/h2>/i, `<h2 id="category-title">${title}</h2>`);
+// Replace the template heading with a single H1 for the service name
+const setPageTitle = (html, title) =>
+    html.replace(/<h1 id="page-title">[\s\S]*?<\/h1>/i, `<h1 id="page-title">${title}</h1>`);
   
   
 
@@ -108,8 +108,26 @@ const urlShim = `
 html = html.replace('</head>', urlShim + '</head>');
 
 
-    // Update H2 (category header) → use service category
-    html = setCategoryTitle(html, svc.category);
+    // Update H1 (page title) → use service name
+    html = setPageTitle(html, svc.name);
+
+    // Inject Breadcrumb (back link + full trail) under the category header
+    try {
+      const categoryUrlMap = new Map([
+        ["Buy Bitcoin", "/buy-bitcoin.html"],
+        ["Spend Bitcoin", "/spend-bitcoin.html"],
+        ["Store it safely", "/store-it-safely.html"],
+        ["Run my own node", "/run-my-own-node.html"],
+        ["Accept Bitcoin as a merchant", "/accept-bitcoin-as-a-merchant.html"],
+      ]);
+      const categoryName = svc.category || "Services";
+      const categoryPath = categoryUrlMap.get(categoryName) || "/";
+      const breadcrumbBack = `\n<div class=\"breadcrumb-back\"><a href=\"${categoryPath}\">< Back to ${categoryName}</a></div>`;
+      const breadcrumbHtml = `\n<nav class=\"breadcrumbs\" aria-label=\"Breadcrumb\">\n  <ol>\n    <li><a href=\"/\">Home</a></li>\n    <li><a href=\"${categoryPath}\">${categoryName}</a></li>\n    <li><span aria-current=\"page\">${svc.name}</span></li>\n  </ol>\n</nav>`;
+      html = html.replace(/<div class=\"category-header\">[\s\S]*?<\/div>/i, (m) => `${m}${breadcrumbBack}${breadcrumbHtml}`);
+    } catch (_) {
+      // fail-safe: skip breadcrumb injection on error
+    }
 
     // Keep existing container markup (your JS will populate it)
     // Make sure service.html has:
