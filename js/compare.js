@@ -27,10 +27,18 @@ function getLogoFilename(name) {
 document.addEventListener("DOMContentLoaded", async () => {
   const urlParams = new URLSearchParams(window.location.search);
   let categoryTitle = urlParams.get("category") ?? "Compare Services";
+  // Helper: update category text in breadcrumbs (if present) or fallback H2 on compare.html
+  function setCategoryTitle(text) {
+    try {
+      var crumb = document.getElementById("breadcrumb-category-label");
+      if (crumb) { crumb.textContent = text; return; }
+      var h2 = document.getElementById("category-title");
+      if (h2) { h2.textContent = text; }
+    } catch(e) {}
+  }
 
-// Category title will be refined after loading services.json using service.category
-
-document.getElementById("category-title").textContent = categoryTitle;
+  // Category title will be refined after loading services.json using service.category
+  setCategoryTitle(categoryTitle);
 const selectedServices = urlParams.get("services")
   ? urlParams.get("services").split(",")
   : (window.__BUOY_SERVICE__ ? [window.__BUOY_SERVICE__] : []);
@@ -72,6 +80,19 @@ try {
       servicesData.find(service => service.name.toLowerCase() === selectedName.toLowerCase())
     ).filter(Boolean); // Remove undefined entries
 
+    // If on VS page (has #page-title), set H1 and breadcrumb-current to left→right order
+    const h1 = document.getElementById('page-title');
+    if (h1 && servicesToCompare.length >= 2) {
+      const left = servicesToCompare[0]?.name || '';
+      const right = servicesToCompare[1]?.name || '';
+      const vsText = left && right ? `${left} vs ${right}` : h1.textContent;
+      if (vsText) {
+        h1.textContent = vsText;
+        const bc = document.getElementById('breadcrumb-current');
+        if (bc) bc.textContent = vsText;
+      }
+    }
+
     if (servicesToCompare.length === 0) {
       document.getElementById("comparison-container").innerHTML = "<p>No matching services found.</p>";
       return;
@@ -83,7 +104,7 @@ try {
       const svc = findService(firstSelected);
       if (svc && svc.category) {
         categoryTitle = svc.category;
-        document.getElementById("category-title").textContent = categoryTitle;
+        setCategoryTitle(categoryTitle);
       }
     }
 
@@ -91,7 +112,7 @@ try {
     if (isSingleServiceView && servicesToCompare.length === 1) {
       const svc = servicesToCompare[0];
       categoryTitle = svc.category || "Service Details";
-      document.getElementById("category-title").textContent = categoryTitle;
+      setCategoryTitle(categoryTitle);
     }
 
     // For multi-service view, require all selected services to share the same service.category
@@ -101,7 +122,7 @@ try {
       const allSame = allHaveCategory && categories.every(c => c === categories[0]);
       if (allSame) {
         categoryTitle = categories[0];
-        document.getElementById("category-title").textContent = categoryTitle;
+        setCategoryTitle(categoryTitle);
       } else {
         document.getElementById("comparison-container").innerHTML = "<p>Cannot compare services from different categories. Please select services from the same category.</p>";
         return;

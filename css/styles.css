@@ -671,6 +671,44 @@ h2 {
   padding: 0;
 }
 
+/* VS modifier: stack H1 and breadcrumbs vertically and align left */
+.category-header--vs {
+  display: flex; /* ensure flex context remains */
+  flex-direction: column; /* stack vertically */
+  align-items: flex-start; /* left align */
+  justify-content: flex-start; /* neutralize space-between */
+  gap: 6px; /* small vertical spacing using existing scale */
+}
+
+.category-header--vs .breadcrumbs { margin-top: 6px; }
+
+/* Breadcrumbs (inline, under H1) */
+.breadcrumbs {
+  margin-top: 6px;
+  margin-bottom: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9em;
+  color: var(--text-muted);
+}
+
+.breadcrumbs a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+/* Defensive: remove numbering if any legacy ol/ul slips in */
+.breadcrumbs ol,
+.breadcrumbs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 @media (min-width: 768px) {
   .category-header h2 {
     font-size: 1.6em; /* Larger on desktop */
@@ -915,6 +953,16 @@ p, li, a {
   align-items: center; /* Aligns vertically */
   margin-bottom: 15px; /* Keeps spacing consistent */
 }
+
+/* VS override: ensure vertical stack and left alignment on VS pages */
+.category-header.category-header--vs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 6px;
+}
+.category-header.category-header--vs .breadcrumbs { margin-top: 6px; }
 
 /* Adjust Compare Button to match h2 alignment */
 .compare-btn {

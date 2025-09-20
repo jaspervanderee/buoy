@@ -9,6 +9,15 @@ const ROOT = path.resolve(__dirname, "..");
 const DATA = path.join(ROOT, "data", "services.json");
 const OUT_REDIRECTS = path.join(ROOT, "generated-compare-redirects.htaccess");
 
+// Known category hubs used for breadcrumb linking (if present)
+const CATEGORY_HUBS = {
+  "Buy Bitcoin": "/buy-bitcoin.html",
+  "Spend Bitcoin": "/spend-bitcoin.html",
+  "Store it safely": "/store-it-safely.html",
+  "Run my own node": "/run-my-own-node.html",
+  "Accept Bitcoin as a merchant": "/accept-bitcoin-as-a-merchant.html"
+};
+
 const slugify = s => String(s || "")
   .toLowerCase()
   .replace(/&/g, " and ")
@@ -28,8 +37,25 @@ function htmlForPair(a, b, categoryLabel) {
   const desc = `Compare ${aName} and ${bName} (${categoryLabel}): fees, custody, features, and more.`;
   const canonicalPath = `/compare/${canonicalPairSlug(aName, bName)}.html`;
   const canonical = `https://buoybitcoin.com${canonicalPath}`;
+  const categoryUrl = CATEGORY_HUBS[categoryLabel];
   // Tiny head shim: if no query, set services=A,B and category
   const shim = `\n<script>\n(function(){\n  try {\n    var a = ${JSON.stringify(aName)};\n    var b = ${JSON.stringify(bName)};\n    var cat = ${JSON.stringify(categoryLabel)};\n    var p = new URLSearchParams(location.search);\n    if (!p.get('services')) p.set('services', a + ',' + b);\n    if (!p.get('category')) p.set('category', cat);\n    history.replaceState(null, '', location.pathname + '?' + p.toString());\n    window.__BUOY_COMPARE__ = [a,b];\n  } catch(e){}\n})();\n</script>`;
+
+  const breadcrumbHtml = `\n<nav class="breadcrumbs" aria-label="Breadcrumb">\n  <a href="/">Home</a> \u203A ` + (categoryUrl
+      ? `<a href="${categoryUrl}"><span id="breadcrumb-category-label">${categoryLabel}</span></a>`
+      : `<span id="breadcrumb-category-label">${categoryLabel}</span>`) + ` \u203A <span id="breadcrumb-current" aria-current="page">${aName} vs ${bName}</span>\n</nav>`;
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, item: { "@type": "WebPage", "@id": "https://buoybitcoin.com/", name: "Home" } },
+      categoryUrl
+        ? { "@type": "ListItem", position: 2, item: { "@type": "WebPage", "@id": `https://buoybitcoin.com${categoryUrl}`, name: categoryLabel } }
+        : { "@type": "ListItem", position: 2, item: { "@type": "Thing", name: categoryLabel } },
+      { "@type": "ListItem", position: 3, item: { "@type": "WebPage", "@id": canonical, name: `${aName} vs ${bName}` } }
+    ]
+  };
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -65,7 +91,9 @@ ${shim}<script type="application/ld+json">${JSON.stringify({
       { "@type":"Organization", name: aName, url: a.website || undefined },
       { "@type":"Organization", name: bName, url: b.website || undefined }
     ]
-  })}</script></head>
+  })}</script>
+  <script type="application/ld+json">${JSON.stringify(breadcrumbLd)}</script>
+</head>
 <body>
   <div class="container">
  <header>
@@ -139,8 +167,9 @@ ${shim}<script type="application/ld+json">${JSON.stringify({
 
 </header>
  <main>
-  <div class="category-header">
-    <h2 id="category-title">${aName} vs ${bName}</h2>
+  <div class="category-header category-header--vs">
+    <h1 id="page-title">${aName} vs ${bName}</h1>
+    ${breadcrumbHtml}
   </div>
 <!-- BUILD:START -->
 
