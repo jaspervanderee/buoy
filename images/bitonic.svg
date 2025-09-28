@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
-  <!-- Generator: Adobe Illustrator 29.2.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 116)  -->
+<defs>
+  <style><![CDATA[
+    @media (prefers-color-scheme: dark) {
+      /* Force every filled shape to white in dark mode */
+      path, polygon, rect, circle, ellipse {
+        fill: #fff !important;
+        stroke: none !important; /* prevent stray outlines from staying colored */
+      }
+    }
+  ]]></style>
+</defs>
+
   <defs>
     <style>
       .st0 {
@@ -8,6 +19,7 @@
       }
     </style>
   </defs>
+
   <g>
     <path d="M42.7,72.6c-1.3-1.5-2.4-3.5-3.4-5.3-4.6-7.8-9.6-16-13.9-23.9-1.1-2.2-2-3.5-1.4-6.1.2-.9,4-7.4,4.7-8.2s2.4-1.8,2.8-1.8h11.9l-5.2,9.1c-.8,2.1-.9,3.3,0,5.3,4,7,8.2,13.9,12.2,20.8,0,.2,0,.5.2.8,1.8,3.1,3.6,6.3,5.6,9.3h-13.5Z"/>
     <path class="st0" d="M50.4,62.5h13.5s-5.9,10.1-5.9,10.1h-1.8c-2-3-3.8-6.2-5.6-9.3s-.1-.7-.2-.8Z"/>

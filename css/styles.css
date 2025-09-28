@@ -13,7 +13,6 @@
   --border: #e5e7eb;
   --link: var(--accent);
   --shadow: 0 1px 2px rgba(0,0,0,0.08);
-  --logo-filter: none;    /* can be overridden in dark if needed */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,7 +24,6 @@
     --border: #5f5f5f;
     --link: var(--accent);
     --shadow: 0 1px 2px rgba(0,0,0,0.4);
-    --logo-filter: none; /* if the header logo looks too dark, try: invert(1) hue-rotate(180deg) */
   }
 }
 
@@ -81,9 +79,6 @@ header {
   box-shadow: var(--shadow);
 }
 
-/* uncomment if needed
-header #logo img { filter: var(--logo-filter); }
-*/
 
 /* Centered content inside the header */
 header .container {
@@ -1925,6 +1920,29 @@ p, li, a {
 .menu .selected-chip .remove {
   color: white; /* White remove for menu */
 }
+
+/* Better contrast for selected chips */
+.selected-chip {
+  background: #eee;             /* light mode chip */
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+/* Dark mode override */
+@media (prefers-color-scheme: dark) {
+  .selected-chip {
+    background: #2a2a2a;        /* darker pill */
+    color: #fff;                /* readable label */
+    border-color: #3a3a3a;
+  }
+  .selected-chip .remove {
+    color: #bbb;                /* visible “×” */
+    margin-left: 6px;
+    cursor: pointer;
+  }
+  .selected-chip .remove:hover { color: #fff; }
+}
+
 
 .menu .compare-btn {
   margin-top: 10px;

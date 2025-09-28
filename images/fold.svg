@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100">
   <!-- Generator: Adobe Illustrator 29.5.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 137)  -->
-  <defs>
-    <style>
-      .st0 {
-        fill-rule: evenodd;
-      }
-    </style>
-  </defs>
+ <defs>
+   <style>
+     :where(path, polygon, rect, circle, ellipse) { fill: #000; }
+     @media (prefers-color-scheme: dark) {
+       :where(path, polygon, rect, circle, ellipse) { fill: #fff; }
+     }
+   </style>
+ </defs>
   <g>
     <path d="M22.5,92v-13.5h8.5v2.5h-5.9v3.3h5.2v2.4h-5.2v5.3h-2.7Z"/>
     <path class="st0" d="M48.8,85.3c0-4.4-3.3-7-6.9-7s-6.8,2.7-6.8,7,3.2,7,6.8,7,6.9-2.7,6.9-7ZM46.1,85.3c0,3-2.1,4.5-4.2,4.5s-4.1-1.5-4.2-4.5c0-3,2.2-4.5,4.2-4.5s4.2,1.5,4.2,4.5Z"/>
