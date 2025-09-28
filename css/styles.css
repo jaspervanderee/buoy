@@ -18,11 +18,11 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0b0f14;
-    --panel: #404040;
-    --text: #e5e7eb;
-    --text-muted: #9aa4b2;
-    --border: #232b33;
+    --bg: #000000;
+    --panel: #303030;
+    --text: #ebebeb;
+    --text-muted: #808080;
+    --border: #5f5f5f;
     --link: var(--accent);
     --shadow: 0 1px 2px rgba(0,0,0,0.4);
     --logo-filter: none; /* if the header logo looks too dark, try: invert(1) hue-rotate(180deg) */
@@ -684,7 +684,7 @@ h2 {
 /* Breadcrumbs (inline, under H1) */
 .breadcrumb-back { 
   display: block;
-  margin-top: -4px;
+  margin-top: 2px;
   margin-bottom: 4px; /* tighter to adjacent content */
   font-size: 0.8em; /* smaller on mobile */
 }
@@ -694,7 +694,6 @@ h2 {
 }
 
 .breadcrumbs {
-  margin-bottom: 4px;
   font-family: "Inter", sans-serif;
   font-size: 0.8em; color: var(--text-muted);
 }
@@ -741,7 +740,7 @@ h2 {
   content: ">";
   font-family: "Inter", sans-serif;
   display: inline-block;
-  margin: 0 4px 0 0; /* tight spacing before crumb */
+  margin: 0 6px 0 0; /* tight spacing before crumb */
 }
 /* RTL support: flip separator direction when parent or element is RTL */
 [dir="rtl"] .breadcrumbs li + li::before,
@@ -761,8 +760,32 @@ h2 {
   .breadcrumb-back { display: none; }
   .breadcrumbs ol { display: flex; align-items: center; gap: 8px; }
   /* Pull breadcrumbs closer to H1 on desktop */
-  .category-header--vs .breadcrumbs { margin-top: -6px; }
+  .category-header--vs .breadcrumbs { margin-top: -2px; }
 }
+
+/* Desktop: two-column grid: H1 left, freshness right; crumbs on next row */
+@media (min-width: 768px) {
+  .category-header.category-header--vs {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 12px;
+  }
+  .category-header.category-header--vs #page-title { grid-column: 1; }
+  .category-header.category-header--vs .page-updated {
+    grid-column: 2;
+    justify-self: end;
+    white-space: nowrap;
+  }
+  .category-header.category-header--vs .breadcrumb-back,
+  .category-header.category-header--vs .breadcrumbs { grid-column: 1 / -1; }
+}
+
+/* VS verdict paragraph */
+#vs-verdict { width: 100%; margin: 8px 0 12px 0; }
+.feature-label.verdict-title { margin-bottom: 6px; }
+.vs-verdict-p { margin: 0; line-height: 1.6; }
+
 
 
 /* Footer-specific heading styles */
@@ -904,7 +927,7 @@ p, li, a {
 }
 
 @media (prefers-color-scheme: dark) {
-  .card { background: #505050; }
+  .card { background: #303030; }
 }
 
 .card span {
@@ -1001,12 +1024,21 @@ p, li, a {
 }
 
 /* VS override: ensure vertical stack and left alignment on VS pages */
-.category-header.category-header--vs {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 6px;
+@media (max-width: 767.98px) {
+  .category-header.category-header--vs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 2px;
+  }
+}
+
+/* Freshness label */
+.page-updated {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  color: var(--text-muted);
 }
 
 
@@ -2337,9 +2369,9 @@ p, li, a {
 /* Dark-mode overrides for SEO block slabs */
 @media (prefers-color-scheme: dark){
   .seo-copy.space{
-    --seo-bg:#1a1a1a;
-    --seo-why:#202020;
-    --seo-faq:#1a1a1a;
+    --seo-bg:#212121;
+    --seo-why:#303030;
+    --seo-faq:#212121;
   }
 }
 

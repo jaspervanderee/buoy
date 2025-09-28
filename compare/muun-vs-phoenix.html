@@ -36,8 +36,9 @@
     window.__BUOY_COMPARE__ = [a,b];
   } catch(e){}
 })();
-</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Muun vs Phoenix — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/compare/muun-vs-phoenix.html","description":"Compare Muun and Phoenix (Spend Bitcoin): fees, custody, features, and more.","about":[{"@type":"Organization","name":"Muun","url":"https://muun.com"},{"@type":"Organization","name":"Phoenix","url":"https://phoenix.acinq.co"}]}</script>
+</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Muun vs Phoenix — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/compare/muun-vs-phoenix.html","description":"Compare Muun and Phoenix (Spend Bitcoin): fees, custody, features, and more.","dateModified":"2025-09-28T15:45:29.421Z","about":[{"@type":"Organization","name":"Muun","url":"https://muun.com"},{"@type":"Organization","name":"Phoenix","url":"https://phoenix.acinq.co"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/spend-bitcoin.html","name":"Spend Bitcoin"}},{"@type":"ListItem","position":3,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/compare/muun-vs-phoenix.html","name":"Muun vs Phoenix"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Muun a “real” Lightning wallet?","acceptedAnswer":{"@type":"Answer","text":"Muun is non-custodial with one on-chain balance and routes many Lightning payments via swaps. You don’t manage channels, which is simpler, but Lightning fees can be less predictable than native LN wallets."}},{"@type":"Question","name":"How does Phoenix handle Lightning—and is it self-custody?","acceptedAnswer":{"@type":"Answer","text":"Phoenix runs a Lightning node on your phone for native LN sends and receives. It’s self-custodial and may use on-chain transactions when channels are created or resized, aiming for a seamless everyday payments experience."}},{"@type":"Question","name":"Can I recover funds if the app/vendor goes down?","acceptedAnswer":{"@type":"Answer","text":"Phoenix restores with a 12-word seed and peer-backed channel state. Muun’s Emergency Kit (keys + descriptors) with a recovery code is designed to let you spend independently if the app is unavailable."}}]}</script>
 </head>
 <body>
   <div class="container">
@@ -114,6 +115,7 @@
  <main>
   <div class="category-header category-header--vs">
     <h1 id="page-title">Muun vs Phoenix</h1>
+    <div class="page-updated" data-updated="2025-09-28T15:45:29.421Z">Updated: September 2025</div>
     
 <div class="breadcrumb-back"><a href="/spend-bitcoin.html">< Back to Spend Bitcoin</a></div>
     
@@ -131,8 +133,21 @@
   <div class="logo-row-sticky">
     <div class="feature-values logo-row" id="logo-row-container"></div>
   </div>
+  <section id="vs-verdict" aria-live="polite" data-p="{B} is best if you want a fully self-custodied Lightning wallet with on-device keys and predictable LN send fees. {A} fits if you prefer one on-chain balance that seamlessly bridges to Lightning with easy recovery. Compare custody, Lightning behavior, backups, and typical fees below.">
+    <h2 class="feature-label verdict-title">Quick take</h2>
+  </section>
   <div id="comparison-table-wrapper"></div>
 </div>
+
+
+<section class="brand-faq" aria-labelledby="faq-heading" data-pair="muun-vs-phoenix">
+  <h2 id="faq-heading">FAQs</h2>
+  <div class="faq-list">
+    <details><summary>Is Muun a “real” Lightning wallet?</summary><div><p>Muun is non-custodial with one on-chain balance and routes many Lightning payments via swaps. You don’t manage channels, which is simpler, but Lightning fees can be less predictable than native LN wallets.</p></div></details>
+    <details><summary>How does Phoenix handle Lightning—and is it self-custody?</summary><div><p>Phoenix runs a Lightning node on your phone for native LN sends and receives. It’s self-custodial and may use on-chain transactions when channels are created or resized, aiming for a seamless everyday payments experience.</p></div></details>
+    <details><summary>Can I recover funds if the app/vendor goes down?</summary><div><p>Phoenix restores with a 12-word seed and peer-backed channel state. Muun’s Emergency Kit (keys + descriptors) with a recovery code is designed to let you spend independently if the app is unavailable.</p></div></details>
+  </div>
+</section>
 
 <!-- BUILD:END -->
 

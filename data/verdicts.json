@@ -1,0 +1,251 @@
+{
+  "_BUY_BITCOIN": "── Buy Bitcoin ──",
+  "bisq-vs-bitonic": {
+    "p": "{A} offers non‑custodial, Tor‑routed desktop trades across many payment rails. {B} is a brokerage with app/desktop access and automatic delivery to your wallet. Compare custody expectations, KYC requirements, recurring buys, payment methods, and whether a marketplace or guided purchase flow fits your needs."
+  },
+  "bisq-vs-bull-bitcoin": {
+    "p": "{A} suits privacy‑focused P2P trading over Tor with non‑custodial escrow and varied payment rails. {B} supports direct, non‑custodial buys sent to your wallet with bank transfers. Compare custody approach, KYC posture, recurring buys, payment rails, and whether desktop marketplace or streamlined purchases fit best."
+  },
+  "bisq-vs-hodlhodl": {
+    "p": "{A} provides Tor‑routed desktop trades with non‑custodial escrow and clear dispute flows. {B} offers non‑custodial multisig escrow with many payment methods on desktop. Compare privacy model, reputation limits, dispute handling, and fiat rails to match your comfort and availability."
+  },
+  "bisq-vs-peach": {
+    "p": "{A} suits desktop P2P over Tor with non‑custodial escrow and reputation‑based limits. {B} fits mobile‑only P2P trading with flexible payment options. Compare platform (desktop vs mobile), privacy approach, reputation/limits, and which fiat rails align with your everyday usage."
+  },
+  "bisq-vs-pocket": {
+    "p": "{A} provides marketplace‑style P2P over Tor with non‑custodial escrow and manual trade flows. {B} enables non‑custodial recurring bank transfers sent directly to your wallet. Compare custody approach, KYC‑light posture, DCA support, payment rails, and whether you prefer manual trades or automated orders."
+  },
+  "bisq-vs-relai": {
+    "p": "{A} suits non‑custodial P2P with privacy emphasis and varied fiat rails. {B} offers a mobile app with recurring buys and automatic withdrawals to your address. Compare custody expectations, KYC, DCA support, payment methods, and whether desktop or mobile fits best."
+  },
+  "bisq-vs-river": {
+    "p": "{A} fits privacy‑minded, non‑custodial P2P over Tor with broad fiat rails. {B} is a custodial mobile app with recurring orders and Lightning support. Compare custody, KYC posture, recurring features, supported networks, and whether marketplace trading or an app experience suits you."
+  },
+  "bisq-vs-robosats": {
+    "p": "{A} suits desktop P2P over Tor using on‑chain escrow and security deposits. {B} favors Lightning‑native P2P with hold‑invoice escrow and privacy tooling. Compare network choice (on‑chain vs Lightning), trade speed, platform usage, and privacy expectations for frequent buys."
+  },
+  "bisq-vs-strike": {
+    "p": "{A} enables non‑custodial P2P with many fiat rails and no accounts. {B} is a custodial mobile app with recurring buys and Lightning withdrawals. Compare custody, KYC requirements, recurring options, and whether privacy or integrated convenience matters more for you."
+  },
+  "bisq-vs-swan": {
+    "p": "{A} suits privacy‑first, non‑custodial P2P trading on desktop. {B} is a savings‑focused custodial platform with recurring buys and education, encouraging withdrawals. Compare custody expectations, KYC posture, recurring features, and whether marketplace trading or guided purchasing fits your routine."
+  },
+  "bitonic-vs-bull-bitcoin": {
+    "p": "{A} is a brokerage with automatic delivery to your wallet and app/desktop access. {B} supports non‑custodial buying sent directly to your wallet with bank transfers. Compare custody posture, KYC expectations, recurring buys, payment methods, and whether brokerage or direct purchase flow works better."
+  },
+  "bitonic-vs-hodlhodl": {
+    "p": "{A} favors a brokerage experience with automatic withdrawals and straightforward onboarding. {B} suits non‑custodial P2P with multisig escrow and many fiat methods. Compare custody expectations, KYC posture, recurring buys, payment rails, and whether marketplace trading or brokerage fits you."
+  },
+  "bitonic-vs-peach": {
+    "p": "{A} offers a brokerage flow with automatic delivery to your wallet and app/desktop access. {B} is mobile‑only P2P trading with flexible payment options. Compare custody posture, KYC, recurring buys, and whether guided purchase flows or peer trades suit your preferences."
+  },
+  "bitonic-vs-pocket": {
+    "p": "{A} suits straightforward brokerage with automatic withdrawals to your wallet. {B} favors non‑custodial recurring bank transfers that send directly to your address. Compare custody model, KYC‑light stance, DCA support, and whether scheduled buys or ad‑hoc purchases work best."
+  },
+  "bitonic-vs-relai": {
+    "p": "{A} provides brokerage simplicity and automatic delivery to your wallet. {B} offers a mobile app with recurring buys and a built‑in wallet flow, including automatic withdrawals. Compare recurring options, KYC posture, withdrawal behavior, and mobile vs desktop preferences."
+  },
+  "bitonic-vs-river": {
+    "p": "{A} fits users who want brokerage with automatic delivery to their wallet. {B} suits those seeking a custodial mobile app with recurring orders and Lightning support. Compare recurring buys, withdrawal behavior, KYC posture, and whether brokerage or an all‑in‑one app experience fits better."
+  },
+  "bitonic-vs-robosats": {
+    "p": "{A} offers a guided broker experience with automatic delivery to your wallet. {B} is privacy‑first P2P over Tor with Lightning hold‑invoice escrow. Compare custody expectations, KYC posture, payment rails, and whether marketplace privacy or brokerage convenience matters more for you."
+  },
+  "bitonic-vs-strike": {
+    "p": "{A} favors brokerage with automatic withdrawals to your wallet. {B} is a custodial mobile app focused on recurring buys and Lightning payments. Compare custody, KYC posture, recurring options, and network support to match your usage."
+  },
+  "bitonic-vs-swan": {
+    "p": "{A} offers a brokerage experience with automatic delivery to your wallet. {B} is a savings‑oriented custodial platform with recurring buys and education, encouraging withdrawals. Compare KYC posture, recurring features, withdrawal behavior, and whether guided purchases or a savings app suits you."
+  },
+  "bull-bitcoin-vs-hodlhodl": {
+    "p": "{A} supports non‑custodial buys sent directly to your wallet with bank transfer options. {B} offers non‑custodial P2P with multisig escrow and many payment rails. Compare trade flow (direct buy vs marketplace), KYC posture, and which interface fits your process."
+  },
+  "bull-bitcoin-vs-peach": {
+    "p": "{A} suits direct, non‑custodial buys to your wallet with recurring options and bank transfers. {B} is mobile‑only P2P trading with diverse payment methods. Compare buy flow vs marketplace, DCA support, KYC posture, and whether mobile trading or scheduled bank transfers fit better."
+  },
+  "bull-bitcoin-vs-pocket": {
+    "p": "{A} supports non‑custodial purchasing delivered to your wallet with bank transfers and bill‑pay features where available. {B} focuses on non‑custodial recurring bank transfers sent to your address. Compare DCA support, bank transfer flows, availability, and interface expectations."
+  },
+  "bull-bitcoin-vs-relai": {
+    "p": "{A} favors non‑custodial purchasing that delivers to your wallet with bank transfers. {B} offers a mobile app with recurring buys and automatic withdrawals to your address. Compare custody posture, KYC expectations, payment methods, and whether direct purchases or app convenience fits best."
+  },
+  "bull-bitcoin-vs-river": {
+    "p": "{A} supports non‑custodial buying sent directly to your wallet via bank transfers. {B} is a custodial mobile app with recurring orders and Lightning support. Compare custody, KYC posture, recurring features, network support, and whether direct delivery or an integrated app experience suits you."
+  },
+  "bull-bitcoin-vs-robosats": {
+    "p": "{A} suits direct non‑custodial purchasing to your wallet using bank transfers. {B} favors privacy‑first, Lightning‑native P2P with Tor access and hold‑invoice escrow. Compare buy flow vs marketplace trades, payment rails, and whether app/web or Tor‑based usage fits best."
+  },
+  "bull-bitcoin-vs-strike": {
+    "p": "{A} supports non‑custodial purchases delivered to your wallet via bank transfers. {B} is a custodial mobile app with recurring buys and Lightning payments. Compare custody model, KYC posture, recurring options, and whether you prioritize direct delivery or integrated payments."
+  },
+  "bull-bitcoin-vs-swan": {
+    "p": "{A} favors non‑custodial buying to your wallet with bank transfers and recurring options. {B} is a savings‑focused custodial platform with recurring buys and education. Compare KYC posture, recurring features, withdrawal behavior, and whether app or web flows fit your routine."
+  },
+  "hodlhodl-vs-peach": {
+    "p": "{A} offers desktop P2P with non‑custodial multisig escrow and many payment methods. {B} provides mobile‑only P2P with broad payment options and simple flows. Compare platform (desktop vs mobile), reputation/limits, and trade workflows to match your comfort and availability."
+  },
+  "hodlhodl-vs-pocket": {
+    "p": "{A} suits marketplace P2P with multisig escrow and wide fiat rails on desktop. {B} favors non‑custodial recurring bank transfers sent to your wallet. Compare manual trading vs scheduled DCA, KYC‑light posture, and interface preferences."
+  },
+  "hodlhodl-vs-relai": {
+    "p": "{A} provides non‑custodial P2P trades with many payment methods. {B} offers a mobile app with recurring buys and automatic withdrawals to your address. Compare custody expectations, KYC posture, payment rails, and whether desktop marketplace or a mobile app suits you."
+  },
+  "hodlhodl-vs-river": {
+    "p": "{A} favors non‑custodial P2P trading with multisig escrow and many fiat options. {B} suits a custodial mobile app with recurring orders and Lightning support. Compare custody, KYC posture, recurring features, and everyday usability."
+  },
+  "hodlhodl-vs-robosats": {
+    "p": "{A} offers non‑custodial P2P with multisig escrow and many fiat rails. {B} provides Lightning‑native P2P with Tor access and hold‑invoice escrow. Compare network choice, privacy expectations, platform usage, and dispute flows to match your comfort."
+  },
+  "hodlhodl-vs-strike": {
+    "p": "{A} suits non‑custodial P2P without accounts and with multisig escrow. {B} favors a custodial mobile app with recurring buys and Lightning withdrawals. Compare custody, KYC posture, payment methods, and whether marketplace privacy or app convenience fits you."
+  },
+  "hodlhodl-vs-swan": {
+    "p": "{A} is non‑custodial P2P with privacy‑leaning trades and multisig escrow. {B} is a custodial broker focused on recurring buys and education, encouraging withdrawals. Compare custody expectations, KYC posture, recurring features, and which interface you’ll use most."
+  },
+  "peach-vs-pocket": {
+    "p": "{A} is mobile‑only P2P trading with flexible regional payment options and reputation‑based limits. {B} provides non‑custodial recurring bank transfers sent to your wallet. Compare marketplace trading vs scheduled DCA, KYC posture, and whether mobile‑first or bank‑transfer flows fit best."
+  },
+  "peach-vs-relai": {
+    "p": "{A} suits mobile‑only P2P with diverse payment rails and simple trade flows. {B} favors an app with recurring buys and automatic withdrawals to your address. Compare custody expectations, KYC posture, fiat rails, and whether ad‑hoc peer trades or app‑guided buys fit better."
+  },
+  "peach-vs-river": {
+    "p": "{A} provides mobile P2P trading across flexible payment rails with non‑custodial escrow. {B} is a custodial app with recurring orders and Lightning support. Compare KYC posture, recurring features, payment rails, and which mobile experience fits your daily usage."
+  },
+  "peach-vs-robosats": {
+    "p": "{A} favors mobile‑only P2P with many payment options and non‑custodial escrow. {B} suits Lightning‑native, privacy‑first P2P with Tor access and hold‑invoice escrow. Compare platform fit, network choice, and whether mobile convenience or Tor‑based flows matter more."
+  },
+  "peach-vs-strike": {
+    "p": "{A} supports non‑custodial mobile P2P trading with flexible payment options. {B} is a custodial mobile app with recurring buys and Lightning payments. Compare custody, KYC posture, and whether peer trades or integrated payment features fit your use case."
+  },
+  "peach-vs-swan": {
+    "p": "{A} suits mobile‑only P2P for flexible fiat rails and simple trade flows. {B} favors a savings‑oriented custodial platform with recurring buys and education. Compare custody, KYC posture, recurring features, and interface expectations."
+  },
+  "pocket-vs-relai": {
+    "p": "{A} offers non‑custodial recurring bank transfers that deliver to your wallet with simple setup. {B} provides a mobile app with recurring buys and automatic withdrawals. Compare custody model, KYC stance, DCA flows, and whether scheduled transfers or app‑guided purchases fit best."
+  },
+  "pocket-vs-river": {
+    "p": "{A} suits non‑custodial recurring bank transfers sent to your wallet with minimal setup. {B} fits a custodial mobile app with recurring orders and Lightning support. Compare custody, KYC posture, recurring workflows, and whether scheduled transfers or integrated app buys match your needs."
+  },
+  "pocket-vs-robosats": {
+    "p": "{A} enables non‑custodial recurring bank transfers with straightforward setup and no withdrawal fees. {B} favors privacy‑first P2P over Tor with Lightning escrow and one‑trade identities. Compare scheduled DCA versus marketplace trades, payment rails, and preferred platform usage."
+  },
+  "pocket-vs-strike": {
+    "p": "{A} favors non‑custodial recurring bank transfers sent to your wallet with message‑signing support. {B} suits a custodial mobile app with recurring buys and Lightning withdrawals. Compare custody, KYC posture, DCA patterns, and whether bank transfers or an app wallet fit better."
+  },
+  "pocket-vs-swan": {
+    "p": "{A} supports non‑custodial recurring transfers sent directly to your address with minimal setup. {B} fits a savings‑oriented custodial platform with recurring buys and education. Compare custody model, KYC posture, recurring features, and preferred interface."
+  },
+  "relai-vs-river": {
+    "p": "{A} offers a mobile app with recurring buys and automatic withdrawals to your address. {B} is a custodial app with recurring orders and Lightning support. Compare KYC posture, recurring features, withdrawal behavior, and which app experience fits your habits."
+  },
+  "relai-vs-robosats": {
+    "p": "{A} suits an app‑guided buy flow with recurring options and automatic withdrawals. {B} favors privacy‑first P2P over Tor with Lightning escrow and one‑trade identities. Compare custody expectations, KYC posture, payment rails, and whether app convenience or privacy tooling matters more."
+  },
+  "relai-vs-strike": {
+    "p": "{A} supports recurring buys and automatic withdrawals in a mobile app with a self‑custodial wallet. {B} fits a custodial mobile app with Lightning payments and recurring orders. Compare KYC posture, recurring features, and which app flow you prefer for daily usage."
+  },
+  "relai-vs-swan": {
+    "p": "{A} suits a mobile app with recurring buys and automatic withdrawals to your address. {B} favors a savings‑oriented platform with recurring buys, education, and desktop support in a custodial flow. Compare KYC posture, recurring features, and which interface you prefer."
+  },
+  "river-vs-robosats": {
+    "p": "{A} offers a custodial mobile app with recurring buys and Lightning support. {B} provides privacy‑first P2P over Tor with Lightning hold‑invoice escrow. Compare custody, KYC posture, network choice, and whether app convenience or marketplace privacy fits you."
+  },
+  "river-vs-strike": {
+    "p": "{B} focuses more on self-custody and offers to live fully on Bitcoin. {A} is more focused on long-term investing and offers a more traditional savings experience. Compare app experience, KYC posture, recurring features, and supported payments."
+  },
+  "river-vs-swan": {
+    "p": "Both lean heavily towards long term savings and investing in Bitcoin while focusing on the US market. {B} prioritizes education and it incurs fees after the first $10.000 while {A} offers a more traditional savings experience without recurring fees. Compare KYC posture, recurring features, and which platform fits your habits."
+  },
+  "robosats-vs-strike": {
+    "p": "{A} offers privacy‑first, Lightning‑native P2P over Tor with hold‑invoice escrow and low overhead. {B} is a custodial mobile app with recurring buys and Lightning withdrawals. Compare custody, KYC posture, payment flows, and whether marketplace privacy or integrated app features suit you."
+  },
+  "robosats-vs-swan": {
+    "p": "{A} suits privacy‑minded buyers using Tor with Lightning escrow and one‑trade identities. {B} favors a savings‑oriented custodial platform with recurring buys and education. Compare custody expectations, KYC posture, recurring features, and preferred interface."
+  },
+  "strike-vs-swan": {
+    "p": "{A} focuses more on self-custody and offers to live fully on Bitcoin. {B} is more focused on long-term investing while offering education and IRA products. Compare KYC posture, recurring features, Lightning usage, and app vs desktop needs."
+  },
+  "_SPEND_BITCOIN": "── Spend Bitcoin ──",
+  "muun-vs-phoenix": {
+    "p": "{B} is best if you want a fully self-custodied Lightning wallet with on-device keys and predictable LN send fees. {A} fits if you prefer one on-chain balance that seamlessly bridges to Lightning with easy recovery. Compare custody, Lightning behavior, backups, and typical fees below."
+  },
+  "aqua-vs-breez": {
+    "p": "{B} is best if you want a Lightning‑first wallet with point‑of‑sale mode and streaming sats, using a cloud backup for recovery. {A} fits if you prefer multi‑network flexibility (Bitcoin, Lightning, and Liquid) with privacy benefits on Liquid and a 12‑word seed backup. Compare custody, Lightning behavior, recovery, and mobile features below."
+  },
+  "aqua-vs-fold": {
+    "p": "{B} is best if you want a custodial rewards card to earn sats on everyday spending, with account‑based recovery and KYC. {A} fits if you prefer self‑custody for sending and receiving, Liquid privacy features, and a 12‑word seed backup. Compare custody, KYC, supported networks, and mobile experience below."
+  },
+  "aqua-vs-muun": {
+    "p": "{B} is best if you want a simple, hybrid wallet that automatically chooses on‑chain or Lightning and uses an email‑based recovery kit. {A} fits if you prefer open‑source, self‑custody with Liquid support and a standard 12‑word seed. Compare custody, Lightning via swaps, backup model, fees implications, and mobile experience below."
+  },
+  "aqua-vs-phoenix": {
+    "p": "{B} is best if you want a Lightning‑native wallet running a node on‑device, with native channels and the option to connect your own node, accepting on‑chain costs for channel setup. {A} fits if you prefer Liquid support and swap‑based Lightning with a seed backup. Compare networks, recovery, node options, and fee trade‑offs."
+  },
+  "breez-vs-fold": {
+    "p": "Choose {B} if you want Bitcoin-back rewards and a debit card; Lightning use is mainly for gift cards and in-app spends. Pick {A} for self-custody Lightning with automatic channels and a POS mode. Many users will earn on Fold and self-custody/pay via Breez for lower-friction Lightning payments. Compare more below."
+  },
+  "breez-vs-muun": {
+    "p": "{B} is best if you want a hybrid wallet that picks on‑chain or Lightning automatically and uses an email‑based recovery kit. {A} fits if you prefer a Lightning‑first app with point‑of‑sale mode, streaming sats, and a cloud backup. Compare custody, Lightning model, backups, fees expectations, and mobile features."
+  },
+  "breez-vs-phoenix": {
+    "p": "{B} is best if you want Lightning‑native operation with an on‑device node and optional connection to your own node, accepting on‑chain channel costs. {A} fits if you prefer a Lightning wallet with point‑of‑sale mode, streaming sats, and cloud‑backed recovery. Compare custody, Lightning behavior, recovery approach, and fee considerations."
+  },
+  "fold-vs-muun": {
+    "p": "{A} is best if you want a custodial rewards card for everyday purchases, with account-based recovery and KYC. {B} fits if you prefer self-custody with an email-based recovery kit and automatic routing between on-chain and Lightning. Compare custody, KYC, Lightning behavior via swaps, recovery approach, and mobile experience."
+  },
+  "fold-vs-phoenix": {
+    "p": "{B} is best if you want a custodial rewards card for spending and saving sats, with account‑based recovery and KYC. {A} fits if you prefer Lightning‑native self‑custody with an on‑device node and seed‑based recovery, accepting on‑chain costs for channels. Compare custody, KYC, recovery, Lightning behavior, and fee trade‑offs."
+  },
+  "_STORE_IT_SAFELY": "── Store it safely ──",
+  "anchorwatch-vs-bitkey": {
+    "p": "{A} offers insured collaborative custody with time‑locked recovery and desktop oversight. {B} provides a mobile 2‑of‑3 model pairing a hardware device with cloud‑assisted recovery and no seed memorization. Compare custody design, recovery flow, supported network, and how each coordinates devices and approvals for long‑term storage."
+  },
+  "anchorwatch-vs-sparrow": {
+    "p": "{A} provides collaborative custody with insurance‑backed vaults and time‑based recovery. {B} is a non‑custodial desktop wallet with manual seed backups, detailed coin control, and strong node connectivity. Compare custody structure, recovery method, open‑source posture, and desktop workflow for long‑term storage."
+  },
+  "anchorwatch-vs-wasabi": {
+    "p": "{A} suits users seeking collaborative custody with insurance and time‑locked recovery safeguards. {B} favors non‑custodial desktop privacy with built‑in CoinJoin, Tor routing, and a standard seed backup. Compare custody model, recovery method, privacy emphasis, and whether you want managed safeguards or self‑directed controls."
+  },
+  "anchorwatch-vs-unchained": {
+    "p": "{A} fits when you want insured collaborative custody with protocol‑level vaults and time‑locked recovery. {B} provides a 2‑of‑3 collaborative vault with concierge assistance and hardware wallet workflows. Compare custody structure, recovery support, node connectivity, and how each coordinates keys and approvals."
+  },
+  "bitkey-vs-sparrow": {
+    "p": "{A} offers a mobile‑first 2‑of‑3 setup with device pairing, cloud‑assisted recovery, and no seed memorization. {B} is a non‑custodial desktop wallet with manual seed backups, advanced coin control, and robust node connectivity. Compare recovery approach, device model, node options, and everyday usability."
+  },
+  "bitkey-vs-wasabi": {
+    "p": "{A} suits a simplified, mobile‑driven multisig experience with cloud‑assisted recovery and a hardware device. {B} favors non‑custodial desktop privacy with built‑in CoinJoin over Tor and a traditional seed backup. Compare recovery methods, privacy features, and whether mobile simplicity or desktop control matters most."
+  },
+  "bitkey-vs-unchained": {
+    "p": "{A} suits those wanting a consumer‑friendly 2‑of‑3 with a mobile app, hardware device, and cloud‑assisted recovery. {B} offers a 2‑of‑3 collaborative custody vault with professional guidance and inheritance‑ready workflows. Compare key distribution, recovery support, node options, and signing coordination."
+  },
+  "sparrow-vs-wasabi": {
+    "p": "{A} offers non‑custodial desktop control with detailed UTXO management and strong node connectivity. {B} emphasizes desktop privacy with built‑in CoinJoin over Tor and a simple seed‑based model. Compare recovery approach, privacy tooling, node usage, and desktop workflows for long‑term holding."
+  },
+  "sparrow-vs-unchained": {
+    "p": "{A} is suited to self‑custody on desktop with manual seed backups and full node connectivity. {B} fits users preferring a 2‑of‑3 collaborative custody vault with guided recovery and hardware wallet support. Compare custody design, recovery process, node integration, and day‑to‑day control."
+  },
+  "unchained-vs-wasabi": {
+    "p": "{A} provides a collaborative 2‑of‑3 vault with recovery assistance and inheritance‑friendly workflows. {B} suits privacy‑focused holders who prefer non‑custodial desktop control with CoinJoin and a seed backup. Compare custody structure, recovery approach, privacy tooling, and interface expectations."
+  },
+  "_RUN_MY_OWN_NODE": "── Run my own node ──",
+  "mynode-vs-start9": {
+    "p": "{A} offers a full‑featured node with many integrated apps and DIY‑friendly hardware options, including Raspberry Pi. {B} provides polished personal servers and a strong app marketplace with guided setup. Compare install paths, maintenance expectations, available apps, support choices, and pricing approaches."
+  },
+  "mynode-vs-umbrel": {
+    "p": "{A} suits users who want broad app integration and DIY flexibility across devices. {B} favors a polished, one‑click App Store and a streamlined, desktop‑style interface. Compare setup effort, maintenance, app availability, remote access options, and how each fits a home server workflow."
+  },
+  "start9-vs-umbrel": {
+    "p": "{A} provides plug‑and‑play personal servers focused on self‑hosting sovereignty with a curated marketplace. {B} offers an elegant UI and a large one‑click App Store for Bitcoin and beyond. Compare setup paths, app ecosystems, hardware choices, and support experiences."
+  },
+  "_ACCEPT_BITCOIN_AS_A_MERCHANT": "── Accept Bitcoin as a merchant ──",
+  "btc-pay-vs-lightspark": {
+    "p": "{A} suits merchants who want self-hosted, non-custodial Bitcoin/Lightning acceptance with no processor fees or KYC, but requires setup and no native fiat settlement. {B} targets platforms needing managed Lightning rails, routing, and liquidity with enterprise compliance. More comparisons below."
+  },
+  "btc-pay-vs-opennode": {
+    "p": "{A} supports self‑hosted payments that settle to your own wallet without platform intermediaries. {B} suits teams preferring custodial, turnkey checkouts, plugins, and managed payouts. Compare custody expectations, KYC posture, supported networks, settlement behavior, and ecommerce integrations."
+  },
+  "lightspark-vs-opennode": {
+    "p": "{A} provides enterprise Lightning infrastructure with APIs and managed routing for global transfers. {B} favors a processor experience with hosted checkouts, plugins, and custodial settlement options. Compare integration style, custody model, supported networks, and target use cases."
+  }
+}
+

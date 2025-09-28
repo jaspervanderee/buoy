@@ -91,6 +91,47 @@ try {
         const bc = document.getElementById('breadcrumb-current');
         if (bc) bc.textContent = vsText;
       }
+      // Render single verdict paragraph just after determining left/right
+      try {
+        const verdictEl = document.getElementById('vs-verdict');
+        if (verdictEl) {
+          const dataP = verdictEl.getAttribute('data-p');
+          const aSlug = left.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+          const bSlug = right.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+          async function ensureTexts() {
+            if (dataP) return { p: dataP };
+            try {
+              const resp = await fetch('/data/verdicts.json');
+              if (!resp.ok) return { p: null };
+              const json = await resp.json();
+              const canonical = [aSlug, bSlug].sort().join('-vs-');
+              const entry = json[canonical] || {};
+              return { p: entry.p || null };
+            } catch(_e) {
+              return { p: null };
+            }
+          }
+
+          const { p } = await ensureTexts();
+          if (p) {
+            const leftIsA = aSlug <= bSlug; // alphabetical mapping
+            const alphaAName = leftIsA ? left : right;
+            const alphaBName = leftIsA ? right : left;
+            const canonicalSlug = [aSlug, bSlug].sort().join('-vs-');
+            if (p.indexOf('{LEFT}') !== -1 || p.indexOf('{RIGHT}') !== -1) {
+              try { console.warn('Verdict uses LEFT/RIGHT; use A/B:', canonicalSlug); } catch(_w) {}
+            }
+            // Order of ops: first LEFT/RIGHT using visual order, then A/B using alphabetical mapping
+            const text = p
+              .replaceAll('{LEFT}', left)
+              .replaceAll('{RIGHT}', right)
+              .replaceAll('{A}', alphaAName)
+              .replaceAll('{B}', alphaBName);
+            verdictEl.insertAdjacentHTML('beforeend', `<p class="vs-verdict-p">${text}</p>`);
+          }
+        }
+      } catch(_e) {}
     }
 
     if (servicesToCompare.length === 0) {
@@ -374,6 +415,40 @@ if (!(hasBaked && isSingleServiceView)) {
       ${featureRows.join("")}
     </div>
   `;
+  // After table render, ensure FAQs section exists for known pairs if builder didn't bake it
+  try {
+    const pageTitle = document.getElementById('page-title');
+    const bakedFaq = document.querySelector('section.brand-faq');
+    if (!bakedFaq && pageTitle && servicesToCompare.length >= 2) {
+      const left = servicesToCompare[0]?.name || '';
+      const right = servicesToCompare[1]?.name || '';
+      const aSlug = left.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      const bSlug = right.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+      const pair = [aSlug, bSlug].sort().join('-vs-');
+      const res = await fetch('/data/faqs.json');
+      if (res.ok) {
+        const json = await res.json();
+        const faqs = json && json[pair];
+        if (Array.isArray(faqs) && faqs.length > 0) {
+          const faqHtml = `
+<section class="brand-faq" aria-labelledby="faq-heading" data-pair="${pair}">
+  <h2 id="faq-heading">FAQs</h2>
+  <div class="faq-list">
+    ${faqs.map(item => {
+            const q = String(item.q || '');
+            const a = String(item.a || '');
+            return `<details><summary>${q}</summary><div><p>${a}</p></div></details>`;
+          }).join('\n    ')}
+  </div>
+</section>`;
+          const anchor = document.getElementById('comparison-table-wrapper');
+          if (anchor && anchor.parentNode) {
+            anchor.insertAdjacentHTML('afterend', faqHtml);
+          }
+        }
+      }
+    }
+  } catch(_e) {}
 } else {
   // Hydrate baked table: if country != WW, replace features cell with localized features
   const svc = servicesToCompare[0];

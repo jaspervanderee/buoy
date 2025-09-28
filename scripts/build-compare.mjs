@@ -8,6 +8,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const DATA = path.join(ROOT, "data", "services.json");
 const OUT_REDIRECTS = path.join(ROOT, "generated-compare-redirects.htaccess");
+const VERDICTS_PATH = path.join(ROOT, "data", "verdicts.json");
+let VERDICTS = {};
+const FAQS_PATH = path.join(ROOT, "data", "faqs.json");
+let FAQS = {};
+const SELF_PATH = path.join(__dirname, "build-compare.mjs");
 
 // Known category hubs used for breadcrumb linking (if present)
 const CATEGORY_HUBS = {
@@ -30,7 +35,33 @@ function canonicalPairSlug(aName, bName) {
   return [a, b].sort().join("-vs-");
 }
 
-function htmlForPair(a, b, categoryLabel) {
+function escapeAttr(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+async function computeDateModified() {
+  const inputs = [DATA, VERDICTS_PATH, FAQS_PATH, SELF_PATH];
+  try {
+    const stats = await Promise.all(inputs.map(p => fs.stat(p).catch(() => null)));
+    let maxMs = 0;
+    for (const st of stats) {
+      if (st && typeof st.mtimeMs === "number" && st.mtimeMs > maxMs) maxMs = st.mtimeMs;
+    }
+    if (!maxMs) return null;
+    const d = new Date(maxMs);
+    const iso = d.toISOString();
+    const human = d.toLocaleString("en-US", { month: "long", year: "numeric" });
+    return { iso, human };
+  } catch (_e) {
+    return null;
+  }
+}
+
+function htmlForPair(a, b, categoryLabel, updated) {
   const aName = a.name;
   const bName = b.name;
   const title = `${aName} vs ${bName} — Which is better? | Buoy Bitcoin`;
@@ -38,6 +69,7 @@ function htmlForPair(a, b, categoryLabel) {
   const canonicalPath = `/compare/${canonicalPairSlug(aName, bName)}.html`;
   const canonical = `https://buoybitcoin.com${canonicalPath}`;
   const categoryUrl = CATEGORY_HUBS[categoryLabel];
+  const pairSlug = canonicalPairSlug(aName, bName);
   // Tiny head shim: if no query, set services=A,B and category
   const shim = `\n<script>\n(function(){\n  try {\n    var a = ${JSON.stringify(aName)};\n    var b = ${JSON.stringify(bName)};\n    var cat = ${JSON.stringify(categoryLabel)};\n    var p = new URLSearchParams(location.search);\n    if (!p.get('services')) p.set('services', a + ',' + b);\n    if (!p.get('category')) p.set('category', cat);\n    history.replaceState(null, '', location.pathname + '?' + p.toString());\n    window.__BUOY_COMPARE__ = [a,b];\n  } catch(e){}\n})();\n</script>`;
 
@@ -60,6 +92,32 @@ function htmlForPair(a, b, categoryLabel) {
       { "@type": "ListItem", position: 3, item: { "@type": "WebPage", "@id": canonical, name: `${aName} vs ${bName}` } }
     ]
   };
+
+  const v = (VERDICTS && VERDICTS[pairSlug]) || null;
+  let verdictAttrs = "";
+  if (v && v.p) {
+    verdictAttrs += ` data-p="${escapeAttr(v.p)}"`;
+  }
+
+  // Optional FAQ block for specific compare pages (e.g., muun-vs-phoenix)
+  const faqs = (FAQS && FAQS[pairSlug]) || null;
+  const faqSectionHtml = Array.isArray(faqs) && faqs.length > 0
+    ? `\n<section class="brand-faq" aria-labelledby="faq-heading" data-pair="${pairSlug}">\n  <h2 id="faq-heading">FAQs</h2>\n  <div class="faq-list">\n    ${faqs.map(item => {
+        const q = escapeAttr(item.q);
+        const a = escapeAttr(item.a);
+        return `<details><summary>${q}</summary><div><p>${a}</p></div></details>`;
+      }).join("\n    ")}\n  </div>\n</section>`
+    : "";
+
+  const faqLd = Array.isArray(faqs) && faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(item => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a }
+    }))
+  } : null;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -91,12 +149,14 @@ ${shim}<script type="application/ld+json">${JSON.stringify({
     name: title,
     url: canonical,
     description: desc,
+    dateModified: updated && updated.iso || undefined,
     about: [
       { "@type":"Organization", name: aName, url: a.website || undefined },
       { "@type":"Organization", name: bName, url: b.website || undefined }
     ]
   })}</script>
   <script type="application/ld+json">${JSON.stringify(breadcrumbLd)}</script>
+  ${faqLd ? `<script type="application/ld+json">${JSON.stringify(faqLd)}</script>` : ""}
 </head>
 <body>
   <div class="container">
@@ -173,6 +233,7 @@ ${shim}<script type="application/ld+json">${JSON.stringify({
  <main>
   <div class="category-header category-header--vs">
     <h1 id="page-title">${aName} vs ${bName}</h1>
+    ${updated && updated.iso ? `<div class="page-updated" data-updated="${updated.iso}">Updated: ${updated.human}</div>` : ""}
     ${breadcrumbBack}
     ${breadcrumbHtml}
   </div>
@@ -182,8 +243,13 @@ ${shim}<script type="application/ld+json">${JSON.stringify({
   <div class="logo-row-sticky">
     <div class="feature-values logo-row" id="logo-row-container"></div>
   </div>
+  <section id="vs-verdict" aria-live="polite"${verdictAttrs}>
+    <h2 class="feature-label verdict-title">Quick take</h2>
+  </section>
   <div id="comparison-table-wrapper"></div>
 </div>
+
+${faqSectionHtml}
 
 <!-- BUILD:END -->
 
@@ -244,6 +310,22 @@ ${shim}<script type="application/ld+json">${JSON.stringify({
 }
 
 (async () => {
+  // Load verdicts once
+  try {
+    const vr = await fs.readFile(VERDICTS_PATH, "utf8");
+    VERDICTS = JSON.parse(vr);
+  } catch (_e) {
+    VERDICTS = {};
+  }
+
+  // Load FAQs once
+  try {
+    const fq = await fs.readFile(FAQS_PATH, "utf8");
+    FAQS = JSON.parse(fq);
+  } catch (_e) {
+    FAQS = {};
+  }
+
   const raw = await fs.readFile(DATA, "utf8");
   const all = JSON.parse(raw).filter(s => s && s.name);
 
@@ -268,7 +350,8 @@ ${shim}<script type="application/ld+json">${JSON.stringify({
         const a = sorted[i];
         const b = sorted[j];
         const slug = canonicalPairSlug(a.name, b.name);
-        const html = htmlForPair(a, b, cat);
+        const updated = await computeDateModified();
+        const html = htmlForPair(a, b, cat, updated);
         await fs.writeFile(path.join(ROOT, "compare", `${slug}.html`), html, "utf8");
         outFiles.push(`compare/${slug}.html`);
         // Redirect rules: root canonical and reversed -> /compare/canonical

@@ -1,0 +1,1128 @@
+{
+  "_BUY_BITCOIN": "── Buy Bitcoin ──",
+    "bisq-vs-bitonic": [
+      {
+        "q": "Does Bisq require KYC?",
+        "a": "No. Bisq has no accounts or sign-ups and does not require KYC; trades are peer-to-peer with refundable security deposits in multisig escrow."
+      },
+      {
+        "q": "Does Bitonic require KYC in the Netherlands?",
+        "a": "Yes. Bitonic operates as a broker and requires identity verification (KYC) for customers in its supported region."
+      },
+      {
+        "q": "Which supports recurring DCA?",
+        "a": "Bitonic supports recurring buys via Auto Invest (with a limited free tier); Bisq does not list DCA/recurring purchases."
+      }
+    ],
+    "bisq-vs-bull-bitcoin": [
+      {
+        "q": "Can Bull Bitcoin send coins directly to my wallet?",
+        "a": "Yes. Bull Bitcoin is non-custodial and delivers purchases straight to your own wallet."
+      },
+      {
+        "q": "Does Bisq support bank-transfer rails like SEPA or Wise?",
+        "a": "Yes. Bisq supports many fiat payment methods including SEPA, Wise, Revolut, bank transfers, and even cash-in-person (availability varies by counterparty)."
+      },
+      {
+        "q": "Which one—Bull Bitcoin or Bisq—supports recurring DCA?",
+        "a": "Bull Bitcoin offers DCA/recurring buys; Bisq does not list recurring DCA."
+      }
+    ],
+    "bisq-vs-hodlhodl": [
+      {
+        "q": "Which one runs in a browser?",
+        "a": "Hodl Hodl runs in a web browser; Bisq is a desktop application."
+      },
+      {
+        "q": "Do both avoid KYC by default?",
+        "a": "Yes. Both Bisq and Hodl Hodl can be used without mandatory KYC by default."
+      },
+      {
+        "q": "Do Bisq or Hodl Hodl support recurring DCA?",
+        "a": "Neither Bisq nor Hodl Hodl lists recurring DCA buys."
+      }
+    ],
+      "bisq-vs-peach": [
+        {
+          "q": "Is Peach available outside Europe?",
+          "a": "Yes. Peach is available globally with exceptions to the US, China and some OFAC/EU restricted countries."
+        },
+        {
+          "q": "Does Peach require ID?",
+          "a": "No. Peach is KYC-free by default; trades are non-custodial with multisig escrow."
+        },
+        {
+          "q": "How do trade limits compare between Bisq and Peach?",
+          "a": "Peach allows KYC-free buys up to ~1,000 CHF daily with higher limits as reputation grows; Bisq starts modest and increases with account-age rules and security-deposit based incentives."
+        }
+      ],
+      "bisq-vs-pocket": [
+        {
+          "q": "Can Pocket auto-buy (DCA)?",
+          "a": "Yes. Pocket supports recurring bank-transfer DCA that delivers directly to your wallet."
+        },
+        {
+          "q": "Does Bisq support recurring buys?",
+          "a": "No. Bisq does not list built-in DCA/recurring orders; it’s for ad-hoc P2P trades."
+        },
+        {
+          "q": "Which works without custody?",
+          "a": "Both. Bisq is non-custodial with on-chain multisig escrow; Pocket is non-custodial and sends purchases straight to your address."
+        }
+      ],
+      "bisq-vs-relai": [
+        {
+          "q": "Is Relai custodial?",
+          "a": "Yes. Relai is listed as custodial in our dataset."
+        },
+        {
+          "q": "Does Relai require KYC?",
+          "a": "Yes. Relai requires KYC; the larger-limit nuance isn’t specified in our data."
+        },
+        {
+          "q": "Which supports bank cards?",
+          "a": "Relai supports cards and mobile wallets (Credit Card, Apple Pay, Google Pay). Bisq lists transfers like SEPA, Revolut, Wise and cash—not bank cards."
+        }
+      ],
+      "bisq-vs-river": [
+        {
+          "q": "Does River require KYC?",
+          "a": "Yes. River is custodial with KYC and recurring orders."
+        },
+        {
+          "q": "Does Bisq have a mobile app?",
+          "a": "Bisq does have a mobile app but mainly for alerts and notifications."
+        },
+        {
+          "q": "Which offers customer support?",
+          "a": "River provides customer support and is noted for personal service; Bisq is a community-run P2P marketplace with a dispute process rather than a centralized help desk. "
+        }
+      ],
+      "bisq-vs-robosats": [
+        {
+          "q": "Do I need Tor for Bisq or RoboSats?",
+          "a": "Both emphasize Tor. Bisq routes traffic over Tor; RoboSats is Tor-first (with I2P and Android options)."
+        },
+        {
+          "q": "On-chain vs Lightning—what’s different between Bisq and RoboSats?",
+          "a": "Bisq uses on-chain multisig escrow with refundable security deposits; RoboSats is Lightning-native with hold-invoice escrow and small Lightning bonds."
+        },
+        {
+          "q": "Which has more fiat options?",
+          "a": "Bisq lists many fiat rails (SEPA, Wise, Revolut, cash, etc.). RoboSats supports several common rails but centers on Lightning and privacy. Bisq generally shows broader fiat variety."
+        }
+      ],
+      "bisq-vs-strike": [
+        {
+          "q": "Does Strike require KYC?",
+          "a": "Yes. Strike is custodial and requires KYC."
+        },
+        {
+          "q": "Are Strike’s auto-withdrawals free?",
+          "a": "Yes. Our data notes free on-chain and Lightning withdrawals to your own wallet."
+        },
+        {
+          "q": "Is Bisq mobile-friendly?",
+          "a": "Not really. Bisq is a desktop-only application with mobile notifications. You can't trade directly from the mobile app."
+        }
+      ],
+      "bisq-vs-swan": [
+        {
+          "q": "Can Swan be used outside the U.S.?",
+          "a": "Swan is currently not available to residents outside of the United States. They hope to serve international clients again in the future."
+        },
+        {
+          "q": "Does Swan allow recurring buys?",
+          "a": "Yes. Swan supports recurring DCA but with fees after a threshold."
+        },
+        {
+          "q": "Which platform is better for privacy?",
+          "a": "Bisq—non-custodial, no KYC, Tor-routed. Swan is custodial with KYC, so Bisq is the stronger privacy choice."
+        }
+      ],
+      "bitonic-vs-bull-bitcoin": [
+        {
+            "q": "Does Bull Bitcoin send directly to my wallet?",
+            "a": "Yes. Bull Bitcoin is non-custodial and delivers purchases straight to your own wallet."
+          },
+          {
+            "q": "Does Bitonic require identity verification?",
+            "a": "Yes. Bitonic requires KYC in its supported region."
+          },
+          {
+            "q": "Which supports Lightning withdrawals?",
+            "a": "Both Bitonic and Bull Bitcoin do not support Lightning withdrawals."
+          }
+        ],
+        "bitonic-vs-hodlhodl": [
+          {
+            "q": "Does HodlHodl require KYC?",
+            "a": "No. HodlHodl is a non-custodial P2P marketplace with no mandatory KYC."
+          },
+          {
+            "q": "Can I use SEPA or Wise on HodlHodl?",
+            "a": "Yes. HodlHodl supports many rails, including SEPA and Wise (availability depends on the counterparty)."
+          },
+          {
+            "q": "Which is faster for first purchase?",
+            "a": "Bitonic sells from its own stock with automatic delivery after payment, making it typically faster than a P2P trade on HodlHodl that depends on finding and completing a trade with a counterparty."
+          }
+        ],
+        "bitonic-vs-peach": [
+          {
+            "q": "Is Peach available outside Europe?",
+            "a": "Yes. Peach is available globally with exceptions to the US, China and some OFAC/EU restricted countries."
+          },
+          {
+            "q": "Does Peach have trade limits?",
+            "a": "Yes. Peach is KYC-free for smaller amounts; limits and verification can apply based on region and payment method."
+          },
+          {
+            "q": "Does Bitonic support recurring DCA?",
+            "a": "Yes. Bitonic’s Auto Invest supports recurring buys, with a limited free tier."
+          }
+        ],
+        "bitonic-vs-pocket": [
+          {
+            "q": "Does Pocket auto-withdraw to self-custody?",
+            "a": "Yes. Pocket is non-custodial and sends purchases directly to your own wallet."
+          },
+          {
+            "q": "Can Bitonic do recurring buys?",
+            "a": "Yes. Bitonic supports recurring DCA via Auto Invest (free on the first €250 per purchase; fees apply above that)."
+          },
+          {
+            "q": "Is Bitonic safe?",
+            "a": "Yes. Bitonic is a trusted broker with a good reputation and a secure platform. However, it is advised to store funds in a self-custodial wallet."
+          }
+        ],
+        "bitonic-vs-relai": [
+          {
+            "q": "Is Relai self-custodial?",
+            "a": "Relai is a custodial app, with an in-app wallet and automatic withdrawals to your address."
+          },
+          {
+            "q": "Minimum buy amounts with Relai?",
+            "a": "Relai offers purchases starting at €50 | 54,205 sats, one free buy up to €100 | 108,409 sats monthly, until you hit €1200. After that you pay a 1% fee for any transaction."
+          },
+          {
+            "q": "Does Bitonic have phone support?",
+            "a": "Yes. Bitonic offers phone support for its customers."
+          }
+        ],
+        "bitonic-vs-river": [
+          {
+            "q": "Does River require KYC?",
+            "a": "Yes. River is custodial and requires KYC."
+          },
+          {
+            "q": "Does Bitonic support Bancontact?",
+            "a": "Yes. Bitonic lists iDEAL, Bancontact, and SEPA."
+          },
+          {
+            "q": "Which offers instant buys?",
+            "a": "Both Bitonic and River offer instant buys."
+          }
+        ],
+        "bitonic-vs-robosats": [
+          {
+            "q": "Does RoboSats require Tor?",
+            "a": "RoboSats is Tor-first, with I2P and an Android option; Bitonic is a regular web/mobile service."
+          },
+          {
+            "q": "Is settlement via Lightning only?",
+            "a": "RoboSats is Lightning-native with hold-invoice escrow and small fidelity bonds."
+          },
+          {
+            "q": "Which has broader fiat methods?",
+            "a": "RoboSats lists many fiat rails (e.g., Bank Transfer, SEPA, Wise, Revolut, cash-in-person). Bitonic focuses on iDEAL/Bancontact/SEPA. For sheer variety, RoboSats is broader."
+          }
+        ],
+        "bitonic-vs-strike": [
+          {
+            "q": "Is Strike available in my country?",
+            "a": "Strike is available globally with limitations for non-U.S. users."
+          },
+          {
+            "q": "Does Strike support free recurring buys?",
+            "a": "Yes. Strike supports free recurring buys with fees on the first transaction only."
+          },
+          {
+            "q": "Does Bitonic have a web platform?",
+            "a": "Yes. Bitonic supports Mobile & Desktop access."
+          }
+        ],
+        "bitonic-vs-swan": [
+          {
+            "q": "Does Swan operate outside the U.S.?",
+            "a": "Swan is currently not available to residents outside of the United States. They hope to serve international clients again in the future."
+          },
+          {
+            "q": "Does Swan support IRAs?",
+            "a": "Yes. Swan offers Bitcoin retirement products (IRAs) alongside savings features."
+          },
+          {
+            "q": "Which is better for recurring buys?",
+            "a": "Both support DCA. Bitonic offers a free tier on the first €250 per purchase; Swan has 0% up to $10,000 and fees thereafter. Choose based on your country and fee tier."
+          }
+        ],
+          "bull-bitcoin-vs-hodlhodl": [
+            {
+              "q": "Can Bull Bitcoin fund via Interac?",
+              "a": "Yes. Bull Bitcoin lists Interac e-Transfer among its payment methods (along with wire and bill pay/SEPA)."
+            },
+            {
+              "q": "Does HodlHodl support many payment methods?",
+              "a": "Yes. HodlHodl is a P2P marketplace with broad fiat options such as bank transfer, SEPA, Wise, Revolut and even cash-in-person; availability depends on the counterparty."
+            },
+            {
+              "q": "Which is faster for settlement?",
+              "a": "Bull Bitcoin typically settles faster because it’s a direct buy that delivers to your own wallet after bank payment clears. HodlHodl settlement speed varies by counterparty and escrow release on the P2P trade. "
+            }
+          ],
+          "bull-bitcoin-vs-peach": [
+            {
+              "q": "Does Peach have daily limits?",
+              "a": "Yes. Peach supports KYC-free buys up to roughly 1,000 CHF daily, with higher limits unlocked as reputation grows."
+            },
+            {
+              "q": "Can Bull Bitcoin auto-withdraw to my wallet?",
+              "a": "Yes. Bull Bitcoin is non-custodial and sends purchases straight to your own wallet, including for recurring (DCA) buys."
+            },
+            {
+              "q": "Which supports Wise or Revolut payments?",
+              "a": "Peach. It emphasizes flexible P2P rails like Wise and Revolut (plus local bank methods), whereas Bull Bitcoin focuses on bank transfer, Interac and bill pay."
+            }
+          ],
+          "bull-bitcoin-vs-pocket": [
+            {
+              "q": "Is Pocket non-custodial with auto-withdraw to your wallet?",
+              "a": "Yes. Pocket is non-custodial and delivers recurring bank-transfer purchases directly to your address."
+            },
+            {
+              "q": "Does Bull Bitcoin support bill payments?",
+              "a": "Yes. In Canada, Bull Bitcoin lets you pay bills (rent, credit cards, etc.) by converting BTC to fiat via its bill-pay feature."
+            },
+            {
+              "q": "Which supports recurring buys?",
+              "a": "Both. Bull Bitcoin and Pocket support DCA/recurring purchases to self-custody. "
+            }
+          ],
+          "bull-bitcoin-vs-relai": [
+            {
+              "q": "Is Relai custodial?",
+              "a": "Yes. Relai is listed as custodial in our dataset, with automatic withdrawals to your address."
+            },
+            {
+              "q": "Does Bull Bitcoin require KYC?",
+              "a": "No. Bull Bitcoin is non-custodial with no mandatory KYC at the platform level; identity checks can apply by jurisdiction when buying/selling."
+            },
+            {
+              "q": "Which supports bank cards?",
+              "a": "Relai supports credit/debit cards and mobile wallets; Bull Bitcoin focuses on bank rails (Interac, wire, SEPA, bill pay). "
+            }
+          ],
+          "bull-bitcoin-vs-river": [
+            {
+              "q": "Does River require KYC?",
+              "a": "Yes. River is custodial with KYC meaning you need to provide your personal information to buy Bitcoin."
+            },
+            {
+              "q": "Does Bull Bitcoin have Lightning withdrawals?",
+              "a": "No. Bull Bitcoin does not support Lightning withdrawals. Withdrawals are only available on the Bitcoin blockchain."
+            },
+            {
+              "q": "Which offers recurring buys?",
+              "a": "Both. Bull Bitcoin and River support recurring DCA."
+            }
+          ],
+          "bull-bitcoin-vs-robosats": [
+            {
+              "q": "Do I need Tor for RoboSats?",
+              "a": "Yes. RoboSats is Tor-first (I2P and an Android option also exist)"
+            },
+            {
+              "q": "Does Bull Bitcoin support bill pay?",
+              "a": "Yes. Bill payments are supported in Canada."
+            },
+            {
+              "q": "Which has broader payment methods?",
+              "a": "RoboSats. It lists many P2P rails (bank transfer, SEPA, Wise, Revolut, cash-in-person), while Bull Bitcoin centers on bank transfers, Interac and bill pay. "
+            }
+          ],
+          "bull-bitcoin-vs-strike": [
+            {
+              "q": "Does Strike require KYC?",
+              "a": "Yes. Strike is custodial and requires KYC."
+            },
+            {
+              "q": "Does Bull Bitcoin require KYC?",
+              "a": "No. Bull Bitcoin is non-custodial with no mandatory KYC at the platform level; identity checks can apply by jurisdiction when buying/selling."
+            },
+            {
+              "q": "Which supports free recurring buys?",
+              "a": "Strike. It supports free recurring buys with fees on the first transaction only. Bull Bitcoin supports recurring buys as well but not marked as free."
+            }
+          ],
+          "bull-bitcoin-vs-swan": [
+            {
+              "q": "Does Swan offer IRAs?",
+              "a": "Yes. Swan provides Bitcoin IRA products for U.S. users."
+            },
+            {
+              "q": "Does Bull Bitcoin support Lightning withdrawals?",
+              "a": "No. Bull Bitcoin does not support Lightning withdrawals. Withdrawals are only available on the Bitcoin blockchain."
+            },
+            {
+              "q": "Which supports recurring buys?",
+              "a": "Both. Bull Bitcoin supports DCA, and Swan supports recurring buys (fees apply after the initial free threshold)."
+            }
+          ],
+            "hodlhodl-vs-peach": [
+              {
+                "q": "Which supports more payment methods in my country—HodlHodl or Peach?",
+                "a": "Both list many local rails. HodlHodl commonly supports bank transfer, SEPA, Wise, Revolut and even cash-in-person. Peach offers bank transfer, SEPA, Wise, Revolut, Twint and cash-in-person."
+              },
+              {
+                "q": "Do HodlHodl or Peach use escrow for disputes?",
+                "a": "Yes. Both are non-custodial P2P platforms that use multisig escrow for trades. Funds are locked in escrow until payment is confirmed."
+              },
+              {
+                "q": "Do either require ID for higher limits?",
+                "a": "Peach is KYC-free for smaller trades but notes that limits and verification can apply based on region and payment method. HodlHodl is non-custodial and KYC-free by default."
+              }
+            ],
+            "hodlhodl-vs-pocket": [
+              {
+                "q": "Can Pocket set up automatic bank-transfer DCA to my wallet?",
+                "a": "Yes. Pocket is built for recurring bank-transfer DCA and delivers every purchase straight to your own wallet."
+              },
+              {
+                "q": "Which supports recurring buys?",
+                "a": "Pocket supports recurring DCA out of the box. HodlHodl does not list built-in recurring buys—it’s geared toward ad-hoc P2P trades."
+              },
+              {
+                "q": "Are HodlHodl trades on-chain?",
+                "a": "Yes. HodlHodl uses on-chain multisig escrow with refundable security deposits. Settlement occurs on the Bitcoin blockchain once the trade conditions are met."
+              }
+            ],
+            "hodlhodl-vs-relai": [
+              {
+                "q": "Does HodlHodl require KYC?",
+                "a": "No. HodlHodl can be used without mandatory KYC; it’s a non-custodial P2P marketplace with multisig escrow."
+              },
+              {
+                "q": "Can Relai do weekly or monthly DCA?",
+                "a": "Yes. Relai supports recurring buys (DCA) in its mobile app and automatically withdraws to your address, with fees that kick in after the free threshold."
+              },
+              {
+                "q": "Which offers higher fiat limits?",
+                "a": "They handle limits differently. HodlHodl limits depend on counterparties, account age and reputation. Relai sets app-defined tiers and fee thresholds."
+              }
+            ],
+            "hodlhodl-vs-river": [
+              {
+                "q": "Does River require KYC?",
+                "a": "Yes. River is a custodial exchange with full KYC."
+              },
+              {
+                "q": "Does HodlHodl support many payment methods?",
+                "a": "Yes. As a P2P marketplace it lists many rails like bank transfer, SEPA, Wise, Revolut and cash-in-person—availability depends on your counterparty."
+              },
+              {
+                "q": "Which has recurring buys?",
+                "a": "River supports recurring buys. HodlHodl does not support recurring DCA as it is a P2P marketplace."
+              }
+            ],
+            "hodlhodl-vs-robosats": [
+              {
+                "q": "Do I need Tor for RoboSats?",
+                "a": "RoboSats is Tor-first (with I2P and an Android option). HodlHodl is a regular web platform accessible via your browser."
+              },
+              {
+                "q": "Lightning vs on-chain—what’s different?",
+                "a": "HodlHodl uses on-chain multisig escrow with refundable security deposits. RoboSats is Lightning-native and uses hold-invoice escrow with small Lightning fidelity bonds."
+              },
+              {
+                "q": "Which has more fiat methods?",
+                "a": "HodlHodl generally shows broader fiat variety (bank transfer, SEPA, Wise, Revolut, cash, etc.). RoboSats supports several common rails but centers on Lightning and privacy."
+              }
+            ],
+            "hodlhodl-vs-strike": [
+              {
+                "q": "Is Strike available in my country?",
+                "a": "Strike has global availability with limitations for non-U.S. users. HodlHodl is P2P and is available globally as well."
+              },
+              {
+                "q": "Does Strike have no-fee recurring buys?",
+                "a": "Strike supports free recurring buys, with fees applied to the first transaction only. HodlHodl doesn’t list recurring buys."
+              },
+              {
+                "q": "Are HodlHodl trades custodial?",
+                "a": "No. HodlHodl is non-custodial. Trades are secured by on-chain multisig escrow; the platform doesn’t hold your Bitcoin."
+              }
+            ],
+            "hodlhodl-vs-swan": [
+              {
+                "q": "Does Swan support IRAs?",
+                "a": "Yes. Swan offers Bitcoin retirement products (IRAs) alongside its savings features."
+              },
+              {
+                "q": "Is Swan U.S.-only?",
+                "a": "Yes. Swan currently serves U.S. residents; international availability is limited."
+              },
+              {
+                "q": "How are HodlHodl disputes handled?",
+                "a": "HodlHodl uses non-custodial multisig escrow. If there’s a dispute, the escrow flow and contract rules govern release of funds without the platform taking custody."
+              }
+            ],
+              "peach-vs-pocket": [
+                {
+                  "q": "Does Peach cap daily/yearly buys?",
+                  "a": "Yes—Peach is KYC-free for smaller trades, and higher limits can require additional checks depending on your region and payment method."
+                },
+                {
+                  "q": "Does Pocket support recurring buys?",
+                  "a": "Yes. Pocket is built for DCA—set a schedule and each buy is sent straight to your own wallet."
+                },
+                {
+                  "q": "Can Pocket sell back to bank?",
+                  "a": "Yes. Pocket supports selling back to bank in euros and Swiss Francs."
+                }
+              ],
+              "peach-vs-relai": [
+                {
+                  "q": "Is Peach available outside EU?",
+                  "a": "Yes. Peach is available globally with exceptions to the US, China and some OFAC/EU restricted countries."
+                },
+                {
+                  "q": "Does Relai allow credit cards?",
+                  "a": "Yes. Relai supports card payments and mobile wallets (Credit Card, Apple Pay, Google Pay) alongside SEPA."
+                },
+                {
+                  "q": "Which has higher limits?",
+                  "a": "It depends. Peach limits vary by counterparty, region, and your reputation on the platform. Relai uses app-defined tiers with a noted minimum buy amount."
+                }
+              ],
+              "peach-vs-river": [
+                {
+                  "q": "Does River require KYC?",
+                  "a": "Yes. River is a custodial exchange and requires full KYC."
+                },
+                {
+                  "q": "Does Peach support bank transfers/Revolut?",
+                  "a": "Yes. Peach supports bank transfer, SEPA, Wise, Revolut, Twint, and cash-in-person (availability depends on the counterparty)."
+                },
+                {
+                  "q": "Which has Lightning features?",
+                  "a": "River. River supports Lightning and recurring orders; Peach is a P2P marketplace using non-custodial escrow and does not list Lightning features."
+                }
+              ],
+              "peach-vs-robosats": [
+                {
+                  "q": "Do I need Tor?",
+                  "a": "RoboSats is Tor-first (with I2P and an Android option). Peach is a mobile app and doesn’t require Tor."
+                },
+                {
+                  "q": "Are trades Lightning-only on RoboSats?",
+                  "a": "RoboSats is Lightning-native with hold-invoice escrow and small fidelity bonds. Peach uses on-chain multisig escrow."
+                },
+                {
+                  "q": "Does Peach require KYC?",
+                  "a": "Not for smaller trades. For higher amounts, additional verification can apply depending on region and payment method."
+                }
+              ],
+              "peach-vs-strike": [
+                {
+                  "q": "Is Strike available in my country?",
+                  "a": "Strike has global availability with limitations for non-U.S. users."
+                },
+                {
+                  "q": "Does Peach escrow funds?",
+                  "a": "Yes. Peach is non-custodial and uses multisig escrow so neither party nor the platform holds your bitcoin during the trade."
+                },
+                {
+                  "q": "Which supports recurring buys?",
+                  "a": "Strike. It supports free recurring buys with fees on the first transaction only. Peach does not support recurring buys."
+                }
+              ],
+              "peach-vs-swan": [
+                {
+                  "q": "Is Swan U.S.-centric?",
+                  "a": "Yes, Swan offers services only to U.S. residents currently."
+                },
+                {
+                  "q": "Does Swan offer IRAs?",
+                  "a": "Yes. Swan provides Bitcoin retirement (IRA) products alongside its savings features."
+                },
+                {
+                  "q": "Does Peach require ID?",
+                  "a": "Peach is KYC-free for smaller trades. For larger limits, verification can apply depending on your region and the payment method you choose."
+                }
+              ],
+                "pocket-vs-river": [
+                  {
+                    "q": "Does River require KYC?",
+                    "a": "Yes. River is a custodial platform and requires KYC before you can buy Bitcoin."
+                  },
+                  {
+                    "q": "Can Pocket auto-DCA?",
+                    "a": "Yes. Pocket supports recurring bank-transfer buys that auto-deliver straight to your own wallet."
+                  },
+                  {
+                    "q": "Which supports selling back to bank?",
+                    "a": "Both can. Pocket lets you sell back to your bank account in supported regions, and River supports selling back to your bank as a standard exchange feature."
+                  }
+                ],
+                "pocket-vs-robosats": [
+                  {
+                    "q": "Do I need Tor?",
+                    "a": "RoboSats is Tor-first (with I2P and an Android option). Pocket does not require Tor—you buy via regular web/app flows."
+                  },
+                  {
+                    "q": "Does Pocket require KYC?",
+                    "a": "Yes. Pocket requires KYC for transactions above €1,000."
+                  },
+                  {
+                    "q": "Can Pocket sell BTC?",
+                    "a": "Yes. Pocket supports selling back to your bank in supported countries. RoboSats also supports selling, but it’s P2P—availability depends on finding a matching offer."
+                  }
+                ],
+                "pocket-vs-strike": [
+                  {
+                    "q": "Are Strike recurring buys fee-free?",
+                    "a": "Yes. Strike supports free recurring buys with fees on the first transaction only."
+                  },
+                  {
+                    "q": "Does Pocket support selling?",
+                    "a": "Yes. Pocket supports selling back to the bank in euros and Swiss Francs."
+                  },
+                  {
+                    "q": "Which supports Lightning?",
+                    "a": "Strike supports Lightning for payments and withdrawals. Pocket focuses on bank-transfer buys that settle to your on-chain address."
+                  }
+                ],
+                "pocket-vs-swan": [
+                  {
+                    "q": "Does Swan offer IRAs?",
+                    "a": "Yes. Swan offers Bitcoin IRA products for U.S. users."
+                  },
+                  {
+                    "q": "Can Pocket auto-withdraw to my wallet?",
+                    "a": "Yes. Pocket is non-custodial and delivers each purchase directly to your own wallet."
+                  },
+                  {
+                    "q": "Which supports bank cards?",
+                    "a": "Neither Pocket nor Swan support bank cards for purchases or opening an account."
+                  }
+                ],
+                "relai-vs-river": [
+                  {
+                    "q": "Does Relai support credit cards?",
+                    "a": "Yes. Relai supports credit/debit cards and Apple Pay/Google Pay, alongside SEPA."
+                  },
+                  {
+                    "q": "River recurring buys fee-free?",
+                    "a": "Yes. River supports recurring orders and after the initial transaction, there are no fees."
+                  },
+                  {
+                    "q": "Which offers proof of reserves?",
+                    "a": "River has a proof of reserves program. Relai does not hold users funds."
+                  }
+                ],
+                "relai-vs-robosats": [
+                  {
+                    "q": "Do I need Tor?",
+                    "a": "RoboSats is Tor-first. Relai is a standard mobile app and doesn’t require Tor."
+                  },
+                  {
+                    "q": "Does Relai require KYC for higher limits?",
+                    "a": "Yes. Relai requires KYC; smaller amounts may be lighter-touch, but higher limits above 1.01 BTC per yearinvolve verification."
+                  },
+                  {
+                    "q": "Which supports Lightning?",
+                    "a": "RoboSats is Lightning-native with hold-invoice escrow. Relai added Lightning support recently so you can convert your funds to Lightning."
+                  }
+                ],
+                "relai-vs-strike": [
+                  {
+                    "q": "Is Strike available in my country?",
+                    "a": "Strike has global availability with limitations for non-U.S. users. Relai is available in Europe only."
+                  },
+                  {
+                    "q": "Does Relai support bank cards and Apple/Google Pay?",
+                    "a": "Yes. Relai supports cards plus Apple Pay and Google Pay."
+                  },
+                  {
+                    "q": "Which allows recurring buys?",
+                    "a": "Both. Relai and Strike support recurring DCA but Strike offers no fees after the first transaction. Relai charges a 1% fee after the first 1.200 EUR."
+                  }
+                ],
+                "relai-vs-swan": [
+                  {
+                    "q": "Do both support recurring buys?",
+                    "a": "Yes, both support recurring buys but Swan offers no fees up to $10.000. Relai charges a 1% fee after the first 1.200 EUR."
+                  },
+                  {
+                    "q": "Is Relai an exchange?",
+                    "a": "Yes, Relai is an exchange where you can buy and sell Bitcoin."
+                  },
+                  {
+                    "q": "Does Swan offer IRAs?",
+                    "a": "Yes. Swan offers Bitcoin IRA products for U.S. users."
+                  }
+                ],
+                  "river-vs-robosats": [
+                    {
+                      "q": "Do I need KYC with River?",
+                      "a": "Yes. River is a custodial platform and requires identity verification before you can buy or sell."
+                    },
+                    {
+                      "q": "Lightning vs on-chain?",
+                      "a": "RoboSats is Lightning-native and uses Lightning hold-invoice escrow with small fidelity bonds. River focuses on bank/wire funding with on-chain delivery."
+                    },
+                    {
+                      "q": "Which supports recurring buys?",
+                      "a": "River supports recurring buys and without fees after the first transaction. RoboSats does not offer built-in recurring DCA."
+                    }
+                  ],
+                  "river-vs-strike": [
+                    {
+                      "q": "Which is better, River or Strike?",
+                      "a": "Strike focuses more on self-custody and offers to live fully on Bitcoin. River is more focused on long-term investing and offers a more traditional savings experience."
+                    },
+                    {
+                      "q": "Are recurring buys free?",
+                      "a": "Both Strike and River offer free recurring buys after the first transaction."
+                    },
+                    {
+                      "q": "Which supports Lightning?",
+                      "a": "Strike and River support Lightning for payments."
+                    }
+                  ],
+                  "river-vs-swan": [
+                    {
+                      "q": "Which is better, River or Swan?",
+                      "a": "Both lean heavily towards long term savings and investing in Bitcoin while focusing on the US market. Swan prioritizes education and it incurs fees after the first $10.000 while River offers a more traditional savings experience without recurring fees."
+                    },
+                    {
+                      "q": "Does Swan offer IRAs?",
+                      "a": "Yes. Swan offers Bitcoin retirement (IRA) products."
+                    },
+                    {
+                      "q": "Which supports business accounts?",
+                      "a": "Both River and Swan support business accounts as well as a concierge service for larger amounts."
+                    }
+                  ],
+                  "robosats-vs-strike": [
+                    {
+                      "q": "Do I need Tor for RoboSats?",
+                      "a": "Yes. RoboSats is Tor-first (it also offers I2P and an Android option)."
+                    },
+                    {
+                      "q": "Are Strike recurring buys fee-free?",
+                      "a": "Yes. Strike supports free recurring buys with fees on the first transaction only."
+                    },
+                    {
+                      "q": "Which is faster?",
+                      "a": "Strike is typically faster for a first purchase because you buy directly and withdraw to self-custody. RoboSats is P2P, so timing depends on finding a counterparty and completing the Lightning escrow flow."
+                    }
+                  ],
+                  "robosats-vs-swan": [
+                    {
+                      "q": "Does Swan require KYC?",
+                      "a": "Yes. Swan is custodial and requires KYC."
+                    },
+                    {
+                      "q": "Does RoboSats work without Lightning?",
+                      "a": "RoboSats is Lightning-native."
+                    },
+                    {
+                      "q": "Which is better for long-term saving?",
+                      "a": "Swan is built for set-and-forget saving with recurring buys (and IRAs for U.S. users). RoboSats is best for privacy-focused, ad-hoc P2P trades rather than long-term automated saving."
+                    }
+                  ],
+                  "strike-vs-swan": [
+                    {
+                      "q": "Which is better, Strike or Swan?",
+                      "a": "Strike focuses more on self-custody and offers to live fully on Bitcoin. Swan is more focused on long-term investing while offering education and IRA products."
+                    },
+                    {
+                      "q": "Are recurring buys free on both?",
+                      "a": "Strike lists free recurring buys. Swan supports recurring buys with fees after the initial free threshold (first $10,000)."
+                    },
+                    {
+                      "q": "Which supports more countries?",
+                      "a": "Strike. Our data lists Strike with worldwide availability, while Swan is U.S.-focused."
+                    }
+                  ],
+  "_SPEND_BITCOIN": "── Spend Bitcoin ──",
+  "muun-vs-phoenix": [
+    {
+      "q": "Is Muun a “real” Lightning wallet?",
+      "a": "Muun is non-custodial with one on-chain balance and routes many Lightning payments via swaps. You don’t manage channels, which is simpler, but Lightning fees can be less predictable than native LN wallets."
+    },
+    {
+      "q": "How does Phoenix handle Lightning—and is it self-custody?",
+      "a": "Phoenix runs a Lightning node on your phone for native LN sends and receives. It’s self-custodial and may use on-chain transactions when channels are created or resized, aiming for a seamless everyday payments experience."
+    },
+    {
+      "q": "Can I recover funds if the app/vendor goes down?",
+      "a": "Phoenix restores with a 12-word seed and peer-backed channel state. Muun’s Emergency Kit (keys + descriptors) with a recovery code is designed to let you spend independently if the app is unavailable."
+    }
+  ],
+  "aqua-vs-breez": [
+    {
+      "q": "Is Aqua a Lightning wallet?",
+      "a": "Aqua is a non-custodial wallet focused on Bitcoin and Liquid. Lightning payments are supported via non-custodial Boltz swaps rather than native channels. That enables Liquid features and privacy benefits, with Lightning executed through swap transactions instead of on-device channel management."
+    },
+    {
+      "q": "Is Breez custodial?",
+      "a": "No. Breez is a self-custodial Lightning wallet. It automates channel management behind the scenes and uses a cloud backup to restore wallet and Lightning state. Some users appreciate the convenience; funds remain in your control with seed-based recovery and automated infrastructure support."
+    },
+    {
+      "q": "Which has lower fees for small payments?",
+      "a": "For pure Lightning, Breez’s native LN avoids swap steps. Aqua’s Lightning sends use Boltz swaps, which can add swap and on-chain components at times. Actual costs vary with network conditions and usage. Compare features, custody model, and recovery approach in the table."
+    }
+  ],
+  "aqua-vs-fold": [
+    {
+      "q": "Does Fold support Lightning and is it custodial?",
+      "a": "Fold is a custodial app focused on Bitcoin rewards through a card and gift cards. Funds are custodial until withdrawn to your own wallet. It is not a Lightning wallet, though you can move funds out to self-custody when desired."
+    },
+    {
+      "q": "Is Aqua non-custodial and how do Lightning sends work?",
+      "a": "Aqua is non-custodial and open-source. Lightning payments are handled via Boltz swaps rather than native channels. The app also integrates Liquid and on-chain Bitcoin, giving users privacy features and asset support while retaining control of keys."
+    },
+    {
+      "q": "Can I get a card from Aqua or only from Fold?",
+      "a": "Fold provides a rewards card and custodial account features, with gift card options. Aqua is a wallet for Bitcoin, Lightning via swaps, and Liquid; it does not issue a spending card. Choose Fold for rewards card features; Aqua for self-custodial wallet capabilities."
+    }
+  ],
+  "aqua-vs-muun": [
+    {
+      "q": "Does Muun open Lightning channels?",
+      "a": "No. Muun keeps funds on-chain and pays Lightning invoices via swaps under a single balance. You do not manage channels. Recovery uses an Emergency Kit with keys, descriptors, and a recovery code to regain access independently if the app becomes unavailable."
+    },
+    {
+      "q": "Is Aqua non-custodial and open source?",
+      "a": "Yes. Aqua is non-custodial and open-source. It supports Bitcoin, Lightning via non-custodial Boltz swaps, and the Liquid Network, offering privacy-oriented Liquid features. Users retain control of funds while leveraging Liquid assets alongside on-chain Bitcoin and swap-based Lightning."
+    },
+    {
+      "q": "Why do fees vary between the two?",
+      "a": "Both can involve on-chain steps at times, particularly when swaps occur, so network congestion can influence costs. Aqua emphasizes Liquid features and assets, while Muun keeps a single on-chain balance that routes Lightning via swaps, affecting predictability versus native Lightning channels."
+    }
+  ],
+  "aqua-vs-phoenix": [
+    {
+      "q": "Is Aqua a “Lightning wallet”?",
+      "a": "Aqua is primarily a Bitcoin and Liquid wallet, with Lightning supported through non-custodial Boltz swaps. It is open source and mobile-first, emphasizing Liquid privacy and asset features while enabling Lightning when needed via swaps rather than maintaining native Lightning channels."
+    },
+    {
+      "q": "How does Phoenix handle fees?",
+      "a": "Phoenix runs a Lightning node on-device for native Lightning payments. Opening or resizing channels can incur on-chain fees, while sends are standard LN payments. Exact fees depend on network conditions, liquidity events, and routing, aiming for a seamless everyday experience without manual channel management."
+    },
+    {
+      "q": "Which is better for USDT?",
+      "a": "If you need USDT on Liquid, Aqua supports Liquid assets, including stablecoins, within the app. Phoenix focuses on native Lightning payments and does not target Liquid assets like USDT. Choose based on whether Liquid features or purely Lightning payments are more important for you."
+    }
+  ],
+  "breez-vs-phoenix": [
+    {
+      "q": "Which has lower fees to start?",
+      "a": "Both use native Lightning. Costs can include channel creation or resizing events (on-chain) and the Lightning route itself. Phoenix emphasizes a streamlined node on your phone; Breez adds cloud backup conveniences. Actual totals vary with usage patterns, liquidity events, and broader network conditions."
+    },
+    {
+      "q": "Which is better for merchants?",
+      "a": "Breez includes a Point-of-Sale mode and creator tools like podcast streaming, making it attractive for merchant and tipping scenarios. Phoenix centers on a streamlined, on-device node for everyday Lightning payments. Choose based on POS needs versus a focused personal payments experience."
+    },
+    {
+      "q": "Which is faster or more reliable?",
+      "a": "Both aim for quick Lightning payments. Phoenix runs a node on your phone for direct LN; Breez also uses native LN with automated management. Reliability depends on your channels, liquidity, routes, and connectivity. Either can perform well when properly funded and connected."
+    }
+  ],
+  "breez-vs-muun": [
+    {
+      "q": "Is Muun a “real” Lightning wallet or swap-based?",
+      "a": "Muun is non-custodial with one on-chain balance, and many Lightning payments route via swaps. You do not manage channels. It favors simplicity and an Emergency Kit recovery instead of a traditional seed phrase, trading channel control for fewer moving parts."
+    },
+    {
+      "q": "Does Breez work as a POS?",
+      "a": "Yes. Breez offers a Point-of-Sale mode and a podcast player for streaming sats, alongside its self-custodial Lightning wallet. Recovery uses a seed with cloud backup to restore wallet and Lightning state, combining native LN with convenience-oriented management."
+    },
+    {
+      "q": "Which has lower fees for small vs large payments?",
+      "a": "Breez’s native Lightning can be efficient for small LN sends. Muun’s swap-based Lightning depends on on-chain conditions and swap steps. For larger or mixed payments, compare recovery approach, custody model, and features in the table to match your usage."
+    }
+  ],
+  "breez-vs-fold": [
+    {
+      "q": "Is Breez non-custodial and how do channels/liquidity work?",
+      "a": "Yes. Breez is self-custodial and automates Lightning channel management and liquidity for you. A cloud backup helps restore wallet and channel state. This combines native Lightning with convenience while keeping keys under your control via seed-based recovery."
+    },
+    {
+      "q": "Does Fold support Lightning and do I need KYC?",
+      "a": "Fold centers on custodial rewards and card features, with account KYC required. You can withdraw to your own wallet for self-custody. Fold itself is not a Lightning wallet; it focuses on earning and spending via its card and gift cards."
+    },
+    {
+      "q": "Can I get a card from Breez or only from Fold?",
+      "a": "Card and gift card rewards are a Fold feature. Breez is a Lightning wallet with POS tools and a creator ecosystem but does not issue a spending card. Choose Breez for native LN and tools; choose Fold for a rewards card experience."
+    }
+  ],
+  "fold-vs-phoenix": [
+    {
+      "q": "Is Phoenix non-custodial and how do its Lightning fees work?",
+      "a": "Phoenix is self-custodial and runs a Lightning node on your device. Channel creation or resizing may trigger on-chain fees, while payments are native LN. Exact amounts vary with liquidity events and network conditions, aiming for smooth day-to-day payments without manual channel tuning."
+    },
+    {
+      "q": "Does Fold support Lightning payments or only rewards?",
+      "a": "Fold focuses on rewards with a custodial account, card, and gift cards. You can withdraw to your own wallet, but Fold itself is not a Lightning wallet. Its emphasis is earning and spending through its app rather than native LN payments."
+    },
+    {
+      "q": "Can I get a physical card from Phoenix or only from Fold?",
+      "a": "Only Fold offers a payment card today. Phoenix is a self-custodial Lightning wallet for mobile that prioritizes native LN payments and simple recovery, not card issuance. Use Phoenix for direct Lightning; use Fold for a rewards card and custodial account features."
+    }
+  ],
+  "fold-vs-muun": [
+    {
+      "q": "Is Muun custodial?",
+      "a": "No. Muun is self-custodial, using an Emergency Kit with keys, descriptors, and a recovery code instead of a traditional seed phrase. Funds remain under your control, and the design emphasizes simplicity over user-managed Lightning channels."
+    },
+    {
+      "q": "Does Fold require KYC?",
+      "a": "Yes. Fold is a custodial finance app offering a rewards card and gift cards. Account features require KYC. You can withdraw to your own wallet for self-custody, but funds in-app are custodial while using Fold’s services and card program."
+    },
+    {
+      "q": "Does Muun really do Lightning?",
+      "a": "Yes. Muun supports Lightning via swaps while keeping a single on-chain balance. Fees and speed depend on network conditions and swap steps rather than channel management. It favors a simpler experience without users opening or maintaining Lightning channels."
+    }
+  ],
+"_STORE_IT_SAFELY": "── Store it safely ──",
+"anchorwatch-vs-bitkey": [
+  {
+    "q": "Does Bitkey include insurance?",
+    "a": "No insurance is listed for Bitkey in our data."
+  },
+  {
+    "q": "What does AnchorWatch’s insurance cover?",
+    "a": "AnchorWatch policies are designed to cover bitcoin in AnchorWatch vaults with 1:1 insurance."
+  },
+  {
+    "q": "Do both support inheritance planning?",
+    "a": "AnchorWatch includes estate/inheritance planning; Bitkey does not."
+  }
+],
+"anchorwatch-vs-sparrow": [
+  {
+    "q": "Is AnchorWatch a wallet app?",
+    "a": "No, AnchorWatch is an insured, collaborative-custody provider, not a typical wallet app."
+  },
+  {
+    "q": "Can Sparrow store funds without a third party?",
+    "a": "Yes, Sparrow is non-custodial; you hold your own keys."
+  },
+  {
+    "q": "Does AnchorWatch combine inheritance and insurance?",
+    "a": "Yes, estate planning plus 1:1 insurance are core features."
+  }
+],
+"anchorwatch-vs-unchained": [
+  {
+    "q": "Does AnchorWatch include insurance for its vaults?",
+    "a": "Yes—AnchorWatch offers 1:1 insurance coverage for bitcoin in its multisig vaults."
+  },
+  {
+    "q": "What multisig model does Unchained use?",
+    "a": "Unchained uses collaborative custody with a 2-of-3 multisig."
+  },
+  {
+    "q": "Do either offer inheritance/estate planning tools?",
+    "a": "Yes—both emphasize inheritance/estate planning in their offerings."
+  }
+],
+"anchorwatch-vs-wasabi": [
+  {
+    "q": "Is AnchorWatch a wallet like Wasabi?",
+    "a": "No, AnchorWatch is an insured, collaborative-custody provider, not a typical wallet app."
+  },
+  {
+    "q": "Does AnchorWatch require Trident vaults to be insured?",
+    "a": "No, AnchorWatch policies cover bitcoin in any AnchorWatch vault."
+  },
+  {
+    "q": "How private is the Wasabi wallet?",
+    "a": "Wasabi routes all traffic through Tor and uses compact blockchain filters, keeping your IP and balance private."
+  }
+],
+  "bitkey-vs-sparrow": [
+    {
+      "q": "Is Sparrow a hardware wallet?",
+      "a": "No. Sparrow is a desktop software wallet that can pair with hardware devices."
+    },
+    {
+      "q": "Does Bitkey require me to memorize a seed phrase?",
+      "a": "No. Bitkey replaces traditional seed phrases with device pairing and an encrypted cloud backup."
+    },
+    {
+      "q": "Can Sparrow work with hardware devices?",
+      "a": "Yes. Sparrow integrates with popular hardware wallets and can connect to your own node."
+    }
+  ],
+  "bitkey-vs-unchained": [
+    {
+      "q": "Who holds the keys with Bitkey?",
+      "a": "You hold two of three keys (phone + device), with a cloud key for recovery; KYC is not required."
+    },
+    {
+      "q": "Does Unchained offer inheritance support?",
+      "a": "Yes. Unchained provides concierge onboarding and inheritance support using a 2-of-3 collaborative custody vault."
+    },
+    {
+      "q": "Do Bitkey and Unchained require KYC?",
+      "a": "Bitkey: No. Unchained: Yes, identity verification is required."
+    }
+  ],
+    "bitkey-vs-wasabi": [
+      {
+        "q": "Does Bitkey use multisig by default?",
+        "a": "Yes. Bitkey uses a 2-of-3 multisig with a mobile app, hardware device, and a cloud key to simplify recovery while keeping you in control."
+      },
+      {
+        "q": "Is Wasabi self-custodial and open source?",
+        "a": "Yes. Wasabi is a non-custodial, open-source desktop wallet focused on privacy."
+      },
+      {
+        "q": "Does Bitkey offer CoinJoin like Wasabi?",
+        "a": "Wasabi includes built-in CoinJoin. Bitkey focuses on beginner-friendly 2-of-3 multisig and does not list CoinJoin among its features."
+      }
+    ],
+    "sparrow-vs-unchained": [
+      {
+        "q": "Does Sparrow support multisig and hardware wallets?",
+        "a": "Yes. Sparrow can create and manage multisig and works with hardware wallets, with deep coin control and your own node."
+      },
+      {
+        "q": "Is Unchained self-custody or custodial?",
+        "a": "Collaborative custody. Unchained uses 2-of-3 multisig where you hold two keys and Unchained can co-sign for recovery."
+      },
+      {
+        "q": "Can Sparrow connect to my own node?",
+        "a": "Yes. Sparrow connects to Bitcoin Knots or Core, or your own Electrum server (including over Tor)."
+      }
+    ],
+    "sparrow-vs-wasabi": [
+      {
+        "q": "Which wallet has native CoinJoin?",
+        "a": "Wasabi includes built-in CoinJoin for enhanced privacy."
+      },
+      {
+        "q": "Do these wallets work with hardware devices?",
+        "a": "Both support hardware wallets. Sparrow emphasizes deep hardware wallet and multisig workflows; Wasabi supports hardware wallets as well."
+      },
+      {
+        "q": "Can either wallet connect to my own node?",
+        "a": "Yes. Sparrow connects to Bitcoin Core or your own Electrum server (including over Tor). Wasabi can connect via supported setups with hardware wallets."
+      }
+    ],
+    "unchained-vs-wasabi": [
+      {
+        "q": "Is Wasabi custodial?",
+        "a": "No. Wasabi is non-custodial and open source."
+      },
+      {
+        "q": "What multisig model does Unchained use?",
+        "a": "Unchained uses collaborative custody with a 2-of-3 multisig vault."
+      },
+      {
+        "q": "Can I use Wasabi with a hardware wallet?",
+        "a": "Yes. Wasabi works with hardware wallets while routing traffic over Tor for privacy."
+      }
+    ],
+  "_RUN_A_NODE": "── Run a node ──",
+    "mynode-vs-umbrel": [
+      {
+        "q": "Does Umbrel install Bitcoin by default or through its App Store?",
+        "a": "Through the App Store—Umbrel lets you one-click install Bitcoin/Lightning and other apps from a curated store."
+      },
+      {
+        "q": "What Lightning implementation does myNode use?",
+        "a": "myNode uses LND and bundles many node tools behind a polished web UI."
+      },
+      {
+        "q": "Can I run Umbrel and myNode on Raspberry Pi or x86?",
+        "a": "Yes—both support Raspberry Pi and x86; Umbrel also offers Umbrel Home, and myNode sells prebuilt devices."
+      }
+    ],
+    "mynode-vs-start9": [
+      {
+        "q": "Is myNode free or do I need a license?",
+        "a": "Core software is free; premium features and official hardware are paid."
+      },
+      {
+        "q": "Do I need Start9 hardware, or can I install StartOS on my own device?",
+        "a": "You can DIY on x86/Raspberry Pi, or buy turnkey Server One/Pure hardware."
+      },
+      {
+        "q": "Which has the bigger app marketplace?",
+        "a": "Start9 emphasizes an excellent app marketplace; myNode notes its store isn’t as expansive."
+      }
+    ],
+    "start9-vs-umbrel": [
+      {
+        "q": "What is the alternative to Umbrel?",
+        "a": "Start9 (StartOS) and myNode—both let you run a self-hosted Bitcoin and Lightning node on Raspberry Pi or x86; Start9 offers an extensive app marketplace and optional servers, while myNode focuses on LND with bundled tools and optional premium features."
+      },
+      {
+        "q": "Is StartOS open source?",
+        "a": "StartOS is source-available; many bundled apps are open-source."
+      },
+      {
+        "q": "Do I need branded hardware to run Umbrel or Start9?",
+        "a": "No—both can run on your own Raspberry Pi or x86; Umbrel has Umbrel Home, and Start9 sells Server One/Pure."
+      }
+    ],
+    "_ACCEPT_BITCOIN_AS_A_MERCHANT": "── Accept Bitcoin as a merchant ──",
+    "btc-pay-vs-lightspark": [
+      {
+        "q": "Does BTCPay require KYC or hold funds?",
+        "a": "No. BTCPay is self-hosted and non-custodial, so you keep your keys and there’s no platform KYC."
+      },
+      {
+        "q": "Is Lightspark a merchant processor?",
+        "a": "Lightspark is enterprise Lightning infrastructure (nodes, liquidity, APIs). Merchants typically pair it with a processor or custom front-end."
+      },
+      {
+        "q": "Do BTCPay and Lightspark both support Lightning payments?",
+        "a": "Yes. BTCPay supports Bitcoin + Lightning that you manage; Lightspark abstracts node operations and routing for you."
+      }
+    ],
+      "btc-pay-vs-opennode": [
+        {
+          "q": "Is OpenNode custodial and does it require KYC?",
+          "a": "Yes. OpenNode is custodial until you withdraw or auto-settle, and onboarding requires KYC. "
+        },
+        {
+          "q": "Does BTCPay require KYC or hold my funds?",
+          "a": "No. BTCPay is self-hosted and non-custodial, so you control the keys and there’s no platform KYC."
+        },
+        {
+          "q": "Which is easier for a merchant to start with?",
+          "a": "OpenNode’s SaaS and plugins are quickest for most merchants. BTCPay is more hands-on because it’s self-hosted, trading setup time for control."
+        }
+      ],
+      "lightspark-vs-opennode": [
+        {
+          "q": "Is Lightspark a payment processor like OpenNode?",
+          "a": "Not exactly. Lightspark provides Lightning infrastructure and APIs for platforms, while OpenNode is a merchant payment processor with hosted checkouts and plugins."
+        },
+        {
+          "q": "Do both support Lightning?",
+          "a": "Yes. OpenNode supports Bitcoin + Lightning for merchants; Lightspark focuses on Lightning infrastructure (self-custodial via Spark or managed nodes) for enterprises."
+        },
+        {
+          "q": "Which is simpler to get live?",
+          "a": "For merchants, OpenNode’s turnkey SaaS is fastest. Lightspark fits teams building custom wallets or global payment rails."
+        }
+      ]
+}
+
