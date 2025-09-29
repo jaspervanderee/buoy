@@ -22,25 +22,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
   <script defer src="https://feedback.fish/ff.js?pid=17f299e6843396" crossorigin="anonymous"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="0895676a-bb0e-488d-9381-a27cf9cf5888"></script>
-
-<script>
-(function(){
-  try {
-    var a = "myNode";
-    var b = "Umbrel";
-    var cat = "Run my own node";
-    var p = new URLSearchParams(location.search);
-    if (!p.get('services')) p.set('services', a + ',' + b);
-    if (!p.get('category')) p.set('category', cat);
-    history.replaceState(null, '', location.pathname + '?' + p.toString());
-    window.__BUOY_COMPARE__ = [a,b];
-  } catch(e){}
-})();
-</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"myNode vs Umbrel — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/compare/mynode-vs-umbrel.html","description":"Compare myNode and Umbrel (Run my own node): fees, custody, features, and more.","dateModified":"2025-09-28T15:45:29.421Z","about":[{"@type":"Organization","name":"myNode","url":"https://mynodebtc.com"},{"@type":"Organization","name":"Umbrel","url":"https://umbrel.com"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"myNode vs Umbrel — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/compare/mynode-vs-umbrel.html","description":"Compare myNode and Umbrel (Run my own node): fees, custody, features, and more.","dateModified":"2025-09-29T18:45:37.989Z","about":[{"@type":"Organization","name":"myNode","url":"https://mynodebtc.com"},{"@type":"Organization","name":"Umbrel","url":"https://umbrel.com"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/run-my-own-node.html","name":"Run my own node"}},{"@type":"ListItem","position":3,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/compare/mynode-vs-umbrel.html","name":"myNode vs Umbrel"}}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Umbrel install Bitcoin by default or through its App Store?","acceptedAnswer":{"@type":"Answer","text":"Through the App Store—Umbrel lets you one-click install Bitcoin/Lightning and other apps from a curated store."}},{"@type":"Question","name":"What Lightning implementation does myNode use?","acceptedAnswer":{"@type":"Answer","text":"myNode uses LND and bundles many node tools behind a polished web UI."}},{"@type":"Question","name":"Can I run Umbrel and myNode on Raspberry Pi or x86?","acceptedAnswer":{"@type":"Answer","text":"Yes—both support Raspberry Pi and x86; Umbrel also offers Umbrel Home, and myNode sells prebuilt devices."}}]}</script>
 </head>
-<body>
+<body data-url-mutate="off">
   <div class="container">
  <header>
   <div class="container">
@@ -115,7 +101,7 @@
  <main>
   <div class="category-header category-header--vs">
     <h1 id="page-title">myNode vs Umbrel</h1>
-    <div class="page-updated" data-updated="2025-09-28T15:45:29.421Z">Updated: September 2025</div>
+    <div class="page-updated" data-updated="2025-09-29T18:45:37.989Z">Updated: September 2025</div>
     
 <div class="breadcrumb-back"><a href="/run-my-own-node.html">< Back to Run my own node</a></div>
     
@@ -131,12 +117,192 @@
 
 <div id="comparison-container">
   <div class="logo-row-sticky">
-    <div class="feature-values logo-row" id="logo-row-container"></div>
+    <div class="feature-values logo-row" id="logo-row-container">
+    <div class="feature-value logo-cell">
+      <a href="https://mynodebtc.com" target="_blank" class="service-link">
+        <img src="/images/mynode.svg" alt="myNode logo" class="svg-icon sticky-logo" />
+        <button class="cta-button">visit</button>
+      </a>
+    </div>
+    <div class="feature-value logo-cell">
+      <a href="https://umbrel.com" target="_blank" class="service-link">
+        <img src="/images/umbrel.svg" alt="Umbrel logo" class="svg-icon sticky-logo" />
+        <button class="cta-button">visit</button>
+      </a>
+    </div></div>
   </div>
   <section id="vs-verdict" aria-live="polite" data-p="{A} suits users who want broad app integration and DIY flexibility across devices. {B} favors a polished, one‑click App Store and a streamlined, desktop‑style interface. Compare setup effort, maintenance, app availability, remote access options, and how each fits a home server workflow.">
     <h2 class="feature-label verdict-title">Quick take</h2>
+    <p class="vs-verdict-p">myNode suits users who want broad app integration and DIY flexibility across devices. Umbrel favors a polished, one‑click App Store and a streamlined, desktop‑style interface. Compare setup effort, maintenance, app availability, remote access options, and how each fits a home server workflow.</p>
   </section>
-  <div id="comparison-table-wrapper"></div>
+  <div id="comparison-table-wrapper">
+    <table class="comparison-table"><tbody>
+      
+      <tr class="feature-row type_of_platform">
+        <td><div class="feature-label">Platform</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="mynode">Home server as software and / or hardware</div>
+            <div class="feature-value" data-service="umbrel">Home server as software and / or hardware</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row features">
+        <td><div class="feature-label sublabel">Features</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="mynode"><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Full-featured node with many apps</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Supports Raspberry Pi</div><div class="feature-item negative-group-start"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Premium license for some features</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> App store not as expansive</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Non-commercial license</div></div>
+            <div class="feature-value" data-service="umbrel"><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Simple self-hosted node OS</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Polished macOS-style interface</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Remote access via Tor or Tailscale VPN</div><div class="feature-item negative-group-start"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Source-available license (not fully open-source)</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> No HTTPS by default</div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row price">
+        <td><div class="feature-label sublabel">Price</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="mynode">Free software&lt;br&gt;$79 for premium software&lt;br&gt;$399 Model One hardware device&lt;br&gt;$599 Model Two hardware device</div>
+            <div class="feature-value" data-service="umbrel">$299 for hardware device</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row user_experience">
+        <td><div class="feature-label">User Experience</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="mynode">
+    <div class="ux-container">
+      <div class="ux-rating-wrapper">
+        <span class="ux-rating">0.0</span><span class="ux-outof"> out of 5</span>
+      </div>
+      <a href="#" class="review-link" data-service="mynode">rate <span class="rating-count">(0)</span></a>
+    </div>
+  </div>
+            <div class="feature-value" data-service="umbrel">
+    <div class="ux-container">
+      <div class="ux-rating-wrapper">
+        <span class="ux-rating">0.0</span><span class="ux-outof"> out of 5</span>
+      </div>
+      <a href="#" class="review-link" data-service="umbrel">rate <span class="rating-count">(0)</span></a>
+    </div>
+  </div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row interface">
+        <td><div class="feature-label sublabel">Interface</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="mynode"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%"><img src="/images/desktop.svg" class="platform-icon" alt="Desktop" style="margin-bottom:8px"/><span>Desktop only</span></div></div>
+            <div class="feature-value" data-service="umbrel"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%"><img src="/images/desktop.svg" class="platform-icon" alt="Desktop" style="margin-bottom:8px"/><span>Desktop only</span></div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row support">
+        <td><div class="feature-label sublabel">Support</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="mynode">Community forums and Premium support</div>
+            <div class="feature-value" data-service="umbrel">Community forums</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row profile">
+        <td>
+      <div class="label-container">
+        <div class="feature-label">Profile</div>
+        <div class="feature-label sublabel">Founder(s)</div>
+      </div>
+    </td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="mynode"><img src="/images/founders/taylor-helsper.jpg" alt="Taylor Helsper" style="width:100px;height:100px;border-radius:50%;display:block;margin:0 auto 10px auto"><div style="text-align:center">Taylor Helsper</div></div>
+            <div class="feature-value" data-service="umbrel"><img src="/images/founders/luke-childs-&-mayank-chhabra.jpg" alt="Luke Childs &amp; Mayank Chhabra" style="width:100px;height:100px;border-radius:50%;display:block;margin:0 auto 10px auto"><div style="text-align:center">Luke Childs &amp; Mayank Chhabra</div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row description">
+        <td><div class="feature-label sublabel">Company description</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="mynode">
+    <div class="collapsible-description">
+      <div class="description-preview">
+        <p class="mobile-preview">MyNode is a turnkey Bitcoin and Lightning node platform that combines open‑source software with a polished, full‑featured web interface, making it accessible to both novices and advanced users.</p>
+        <p class="desktop-preview">MyNode is a turnkey Bitcoin and Lightning node platform that combines open‑source software with a polished, full‑featured web interface, making it accessible to both novices and advanced users.</p>
+      </div>
+      <div class="description-full" style="display: none;"><p>MyNode is a turnkey Bitcoin and Lightning node platform that combines open‑source software with a polished, full‑featured web interface, making it accessible to both novices and advanced users.</p><p>What sets MyNode apart is its integration of a wide array of Bitcoin tools all in one place—your own full node, Lightning (via LND), Electrum server, block explorers, wallet pairing tools and more—coordinated through an intuitive UI.</p><p>The target audience ranges from beginners who can get started with simple, plug‑and‑play hardware builds or prebuilt units, to seasoned users. The Premium+ hardware options (Model One/Two) bundle top‑spec hardware with built‑in support and warranty, while DIYers can start with the free software and chosen hardware.</p><p>Looking ahead, MyNode continues to expand its ecosystem with new beta apps and features plus consistent rapid updates and community‑driven development. Their vision is clear: empower individuals to run a sovereign, private, and all‑in‑one Bitcoin infrastructure at home, easily and robustly, with ongoing innovation and support.</p></div>
+      <button class="expand-btn" aria-expanded="false">
+        <span class="expand-text">Read more</span>
+        <span class="expand-icon"><span class="arrow-down">↓</span></span>
+      </button>
+    </div>
+  </div>
+            <div class="feature-value" data-service="umbrel">
+    <div class="collapsible-description">
+      <div class="description-preview">
+        <p class="mobile-preview">Umbrel is a user-friendly, plug‑and‑play home server OS primarily designed to run Bitcoin and Lightning nodes. It supports the official Umbrel Home hardware and installation on Raspberry Pi or x86 mac...</p>
+        <p class="desktop-preview">Umbrel is a user-friendly, plug‑and‑play home server OS primarily designed to run Bitcoin and Lightning nodes. It supports the official Umbrel Home hardware and installation on Raspberry Pi or x86 machines. What sets it apart is its polished, macOS‑style interface with a one‑click App Store for installing things like Bitcoin Core, LND, Electrum Rust Server, mempool explorer, and various self‑hosted apps like Nextcloud, Plex, Pi‑Hole, Home Assistant, and AI models. The setup process is straightforward—just plug in, set a password, install apps, and sync—which makes it accessible for non‑technical users.</p>
+      </div>
+      <div class="description-full" style="display: none;"><p>Umbrel is a user-friendly, plug‑and‑play home server OS primarily designed to run Bitcoin and Lightning nodes. It supports the official Umbrel Home hardware and installation on Raspberry Pi or x86 machines. What sets it apart is its polished, macOS‑style interface with a one‑click App Store for installing things like Bitcoin Core, LND, Electrum Rust Server, mempool explorer, and various self‑hosted apps like Nextcloud, Plex, Pi‑Hole, Home Assistant, and AI models. The setup process is straightforward—just plug in, set a password, install apps, and sync—which makes it accessible for non‑technical users.</p><p>What truly distinguishes Umbrel is its elegant design and focus on broad self‑hosting beyond just Bitcoin. The dashboard offers real‑time system stats, customizable widgets, seamless updates, and integrations for VPN access via Tailscale or TOR. The App Store&#039;s curated ecosystem of over 100 vetted, containerized apps makes complex tasks like running blockchain explorers or home automation easy—without requiring command‑line work. This polished UX lowers the bar for users who want to self‑host smartly.</p><p>In terms of community and support, Umbrel has an active user base and support channels via chat and forums. However, discussions also mention that Umbrel uses unencrypted HTTP by default and lacks HTTPS, which could pose risks on exposed LANs. More privacy‑focused alternatives like Citadel and StartOS offer full HTTPS and fully open‑source licensing.</p><p>Umbrel is aimed at users seeking a seamless, beautiful entry point into self‑sovereign Bitcoin and home‑server use. Its vision is to expand the personal server experience by enabling anyone to host their own apps, AI, media, and nodes with minimal friction. But it trades off some transparency and technical control—its source‑available license, lack of HTTPS out of the box, and centralized update model may concern advanced or privacy‑focused users. In sum, Umbrel offers a delightful, low‑barrier way to participate in Bitcoin sovereignty and self‑hosting, though some might prefer more open or secure setups if they prioritize full technical autonomy.</p></div>
+      <button class="expand-btn" aria-expanded="false">
+        <span class="expand-text">Read more</span>
+        <span class="expand-icon"><span class="arrow-down">↓</span></span>
+      </button>
+    </div>
+  </div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row founded_in">
+        <td><div class="feature-label sublabel">Founded in</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="mynode">2019</div>
+            <div class="feature-value" data-service="umbrel">2019</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row website">
+        <td><div class="feature-label sublabel">Website</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="mynode"><a href="https://mynodebtc.com" target="_blank">mynodebtc.com</a></div>
+            <div class="feature-value" data-service="umbrel"><a href="https://umbrel.com" target="_blank">umbrel.com</a></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row availability">
+        <td><div class="feature-label">Availability</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="mynode"><div class="availability-container"><img src="/images/global.svg" alt="Availability" class="availability-icon"/><span>Available globally</span></div></div>
+            <div class="feature-value" data-service="umbrel"><div class="availability-container"><img src="/images/global.svg" alt="Availability" class="availability-icon"/><span>Available globally</span></div></div>
+          </div>
+        </td>
+      </tr>
+     
+    </tbody></table>
+  </div>
 </div>
 
 

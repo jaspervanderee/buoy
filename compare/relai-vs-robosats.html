@@ -22,25 +22,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
   <script defer src="https://feedback.fish/ff.js?pid=17f299e6843396" crossorigin="anonymous"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="0895676a-bb0e-488d-9381-a27cf9cf5888"></script>
-
-<script>
-(function(){
-  try {
-    var a = "Relai";
-    var b = "RoboSats";
-    var cat = "Buy Bitcoin";
-    var p = new URLSearchParams(location.search);
-    if (!p.get('services')) p.set('services', a + ',' + b);
-    if (!p.get('category')) p.set('category', cat);
-    history.replaceState(null, '', location.pathname + '?' + p.toString());
-    window.__BUOY_COMPARE__ = [a,b];
-  } catch(e){}
-})();
-</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Relai vs RoboSats — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/compare/relai-vs-robosats.html","description":"Compare Relai and RoboSats (Buy Bitcoin): fees, custody, features, and more.","dateModified":"2025-09-28T15:45:29.421Z","about":[{"@type":"Organization","name":"Relai","url":"https://relai.app"},{"@type":"Organization","name":"RoboSats","url":"https://robosats.com"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Relai vs RoboSats — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/compare/relai-vs-robosats.html","description":"Compare Relai and RoboSats (Buy Bitcoin): fees, custody, features, and more.","dateModified":"2025-09-29T18:45:37.989Z","about":[{"@type":"Organization","name":"Relai","url":"https://relai.app"},{"@type":"Organization","name":"RoboSats","url":"https://robosats.com"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/buy-bitcoin.html","name":"Buy Bitcoin"}},{"@type":"ListItem","position":3,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/compare/relai-vs-robosats.html","name":"Relai vs RoboSats"}}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need Tor?","acceptedAnswer":{"@type":"Answer","text":"RoboSats is Tor-first. Relai is a standard mobile app and doesn’t require Tor."}},{"@type":"Question","name":"Does Relai require KYC for higher limits?","acceptedAnswer":{"@type":"Answer","text":"Yes. Relai requires KYC; smaller amounts may be lighter-touch, but higher limits above 1.01 BTC per yearinvolve verification."}},{"@type":"Question","name":"Which supports Lightning?","acceptedAnswer":{"@type":"Answer","text":"RoboSats is Lightning-native with hold-invoice escrow. Relai added Lightning support recently so you can convert your funds to Lightning."}}]}</script>
 </head>
-<body>
+<body data-url-mutate="off">
   <div class="container">
  <header>
   <div class="container">
@@ -115,7 +101,7 @@
  <main>
   <div class="category-header category-header--vs">
     <h1 id="page-title">Relai vs RoboSats</h1>
-    <div class="page-updated" data-updated="2025-09-28T15:45:29.421Z">Updated: September 2025</div>
+    <div class="page-updated" data-updated="2025-09-29T18:45:37.989Z">Updated: September 2025</div>
     
 <div class="breadcrumb-back"><a href="/buy-bitcoin.html">< Back to Buy Bitcoin</a></div>
     
@@ -131,12 +117,252 @@
 
 <div id="comparison-container">
   <div class="logo-row-sticky">
-    <div class="feature-values logo-row" id="logo-row-container"></div>
+    <div class="feature-values logo-row" id="logo-row-container">
+    <div class="feature-value logo-cell">
+      <a href="https://relai.app" target="_blank" class="service-link">
+        <img src="/images/relai.svg" alt="Relai logo" class="svg-icon sticky-logo" />
+        <button class="cta-button">visit</button>
+      </a>
+    </div>
+    <div class="feature-value logo-cell">
+      <a href="https://robosats.com" target="_blank" class="service-link">
+        <img src="/images/robosats.svg" alt="RoboSats logo" class="svg-icon sticky-logo" />
+        <button class="cta-button">visit</button>
+      </a>
+    </div></div>
   </div>
   <section id="vs-verdict" aria-live="polite" data-p="{A} suits an app‑guided buy flow with recurring options and automatic withdrawals. {B} favors privacy‑first P2P over Tor with Lightning escrow and one‑trade identities. Compare custody expectations, KYC posture, payment rails, and whether app convenience or privacy tooling matters more.">
     <h2 class="feature-label verdict-title">Quick take</h2>
+    <p class="vs-verdict-p">Relai suits an app‑guided buy flow with recurring options and automatic withdrawals. RoboSats favors privacy‑first P2P over Tor with Lightning escrow and one‑trade identities. Compare custody expectations, KYC posture, payment rails, and whether app convenience or privacy tooling matters more.</p>
   </section>
-  <div id="comparison-table-wrapper"></div>
+  <div id="comparison-table-wrapper">
+    <table class="comparison-table"><tbody>
+      
+      <tr class="feature-row type_of_platform">
+        <td><div class="feature-label">Platform</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai">Exchange</div>
+            <div class="feature-value" data-service="robosats">P2P</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row features">
+        <td><div class="feature-label sublabel">Features</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai"><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Self-custodial wallet included</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Bitcoin will automatically be sent to your wallet</div><div class="feature-item negative-group-start"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Fees on recurring buys</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Minimum buy amount</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> EU only</div></div>
+            <div class="feature-value" data-service="robosats"><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> No accounts and no KYC</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Lightning hold‑invoice escrow + fidelity bonds</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Tor‑by‑default with PGP‑encrypted chat</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Low fees (~0.2% split maker/taker)</div><div class="feature-item negative-group-start"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Requires Tor/I2P or compatible Android app</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Trade size limited by Lightning liquidity</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> No recurring buys</div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row fees">
+        <td>
+      <div class="label-container">
+        <div class="feature-label">Fees</div>
+        <div class="feature-label sublabel">Processing fees</div>
+      </div>
+    </td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai"><div class="fee-structure"><div class="fee-tier">€50 - €100 per month: <strong>free up to €1.200</strong></div><div class="fee-tier">€1200 and above: <strong>1%</strong></div></div></div>
+            <div class="feature-value" data-service="robosats"><div class="fee-structure"><div class="fee-intro"><strong>0.2%</strong> split between maker and taker</div></div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row dca">
+        <td><div class="feature-label sublabel">DCA (Dollar Cost Averaging)</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai">Yes: but free only on the first €1.200</div>
+            <div class="feature-value" data-service="robosats">No</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row payment_methods">
+        <td><div class="feature-label">Payment Methods</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai">SEPA, Credit Card, Apple Pay, Google Pay</div>
+            <div class="feature-value" data-service="robosats">Bank Transfer, Revolut, Wise, SEPA, Cash in Person</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row custody_control">
+        <td><div class="feature-label">Custody &amp; Control</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai">Custodial</div>
+            <div class="feature-value" data-service="robosats">Non-custodial</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row kyc_required">
+        <td><div class="feature-label sublabel">KYC Required</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai">Yes</div>
+            <div class="feature-value" data-service="robosats">No</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row open_source">
+        <td><div class="feature-label sublabel">Open Source</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai">No</div>
+            <div class="feature-value" data-service="robosats">Yes</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row user_experience">
+        <td><div class="feature-label">User Experience</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai">
+    <div class="ux-container">
+      <div class="ux-rating-wrapper">
+        <span class="ux-rating">0.0</span><span class="ux-outof"> out of 5</span>
+      </div>
+      <a href="#" class="review-link" data-service="relai">rate <span class="rating-count">(0)</span></a>
+    </div>
+  </div>
+            <div class="feature-value" data-service="robosats">
+    <div class="ux-container">
+      <div class="ux-rating-wrapper">
+        <span class="ux-rating">0.0</span><span class="ux-outof"> out of 5</span>
+      </div>
+      <a href="#" class="review-link" data-service="robosats">rate <span class="rating-count">(0)</span></a>
+    </div>
+  </div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row interface">
+        <td><div class="feature-label sublabel">Interface</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%"><img src="/images/mobile.svg" class="platform-icon" alt="Mobile" style="margin-bottom:8px"/><span>Mobile only</span></div></div>
+            <div class="feature-value" data-service="robosats"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%"><img src="/images/mobile-desktop.svg" class="platform-icon" alt="Mobile &amp; Desktop" style="margin-bottom:8px"/><span>Mobile &amp; Desktop</span></div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row app_ratings">
+        <td><div class="feature-label sublabel">App Ratings</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai"><div>iOS: 4.6</div><div>Android: 4.1</div></div>
+            <div class="feature-value" data-service="robosats">N/A</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row profile">
+        <td>
+      <div class="label-container">
+        <div class="feature-label">Profile</div>
+        <div class="feature-label sublabel">Founder(s)</div>
+      </div>
+    </td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai"><img src="/images/founders/julian-liniger-&-adem-bilican.jpg" alt="Julian Liniger &amp; Adem Bilican" style="width:100px;height:100px;border-radius:50%;display:block;margin:0 auto 10px auto"><div style="text-align:center">Julian Liniger &amp; Adem Bilican</div></div>
+            <div class="feature-value" data-service="robosats"><img src="/images/founders/unknown.jpg" alt="Unknown" style="width:100px;height:100px;border-radius:50%;display:block;margin:0 auto 10px auto"><div style="text-align:center">Unknown</div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row description">
+        <td><div class="feature-label sublabel">Company description</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai">
+    <div class="collapsible-description">
+      <div class="description-preview">
+        <p class="mobile-preview">Relai, founded in 2020 in Zürich, Switzerland, is an app designed for beginners to buy and save Bitcoin easily. It stands out from competitors with its non-custodial wallet, meaning users control thei...</p>
+        <p class="desktop-preview">Relai, founded in 2020 in Zürich, Switzerland, is an app designed for beginners to buy and save Bitcoin easily. It stands out from competitors with its non-custodial wallet, meaning users control their Bitcoin via a 12-word seed phrase. After purchasing Bitcoin, it will be directly sent to your wallet.</p>
+      </div>
+      <div class="description-full" style="display: none;"><p>Relai, founded in 2020 in Zürich, Switzerland, is an app designed for beginners to buy and save Bitcoin easily. It stands out from competitors with its non-custodial wallet, meaning users control their Bitcoin via a 12-word seed phrase. After purchasing Bitcoin, it will be directly sent to your wallet.</p><p>Relai offers purchases starting at €50 | 54,205 sats, one free buy up to €100 | 108,409 sats monthly, until you hit €1200. After that you pay a 1% fee for any transaction. For businesses and wealthy individuals Relai offers personal service and expert guidance.</p><p>Its app, rated 4.5 stars on iOS, is praised by users for simple onboarding and smooth navigation, though some users report verification delays or high card fees. Relai focuses on privacy and self-custody, with optional KYC for small transactions.</p><p>Its vision is to make Bitcoin saving accessible across Europe, with plans to add Lightning Network support for faster payments. Beginners love its straightforward design and security, but it&#039;s limited to Europe and lacks advanced savings features.</p></div>
+      <button class="expand-btn" aria-expanded="false">
+        <span class="expand-text">Read more</span>
+        <span class="expand-icon"><span class="arrow-down">↓</span></span>
+      </button>
+    </div>
+  </div>
+            <div class="feature-value" data-service="robosats">
+    <div class="collapsible-description">
+      <div class="description-preview">
+        <p class="mobile-preview">RoboSats is a privacy‑first, Lightning‑native peer‑to‑peer exchange for buying and selling bitcoin with fiat. It is open‑source, requires no registration or KYC, and runs primarily over Tor (with I2P ...</p>
+        <p class="desktop-preview">RoboSats is a privacy‑first, Lightning‑native peer‑to‑peer exchange for buying and selling bitcoin with fiat. It is open‑source, requires no registration or KYC, and runs primarily over Tor (with I2P and an Android app available). Each trade uses a one‑time “robot” identity tied to a secret token you control, and all peer chat is end‑to‑end encrypted with PGP. The flow is simple: make or take an order, both sides lock small Lightning bonds, the seller locks a Lightning hold‑invoice escrow, fiat moves, then sats are released.</p>
+      </div>
+      <div class="description-full" style="display: none;"><p>RoboSats is a privacy‑first, Lightning‑native peer‑to‑peer exchange for buying and selling bitcoin with fiat. It is open‑source, requires no registration or KYC, and runs primarily over Tor (with I2P and an Android app available). Each trade uses a one‑time “robot” identity tied to a secret token you control, and all peer chat is end‑to‑end encrypted with PGP. The flow is simple: make or take an order, both sides lock small Lightning bonds, the seller locks a Lightning hold‑invoice escrow, fiat moves, then sats are released.</p><p>What separates RoboSats is how deeply privacy and safety are built into the mechanics rather than bolted on. One‑trade identities reduce linkability across orders, PGP‑sealed chat prevents metadata leakage, and Lightning hold invoices act as both escrow and fidelity bonds to discourage cancellations and fraud. Pricing is transparent and market‑relative, fees are low at 0.2% split between maker and taker, and optional on‑chain payouts are handled via swaps. Clear best‑practice guides help users pick lower‑risk fiat rails and avoid chargeback traps.</p><p>The ideal audience is anyone who wants fast, low‑fee, no‑KYC bitcoin for modest amounts and is comfortable using Tor and a compatible Lightning wallet. Trade sizes are tuned to what routes reliably on Lightning today, which suits frequent smaller buys and sells. The UI is straightforward once you learn the token/robot model, and the documentation walks through wallet compatibility, order timing, disputes, and payment‑method hygiene to keep trades quick and clean.</p><p>RoboSats’ vision is to keep P2P bitcoin simple, private, and resilient, with a path toward a federated network of coordinators sharing a unified order book to reduce single‑operator risk while preserving the familiar UX.</p></div>
+      <button class="expand-btn" aria-expanded="false">
+        <span class="expand-text">Read more</span>
+        <span class="expand-icon"><span class="arrow-down">↓</span></span>
+      </button>
+    </div>
+  </div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row founded_in">
+        <td><div class="feature-label sublabel">Founded in</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai">2020</div>
+            <div class="feature-value" data-service="robosats">2022</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row website">
+        <td><div class="feature-label sublabel">Website</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai"><a href="https://relai.app" target="_blank">relai.app</a></div>
+            <div class="feature-value" data-service="robosats"><a href="https://robosats.com" target="_blank">robosats.com</a></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row availability">
+        <td><div class="feature-label">Availability</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="relai"><div class="availability-container"><img src="/images/global.svg" alt="Availability" class="availability-icon"/><span>Available in Europe</span></div></div>
+            <div class="feature-value" data-service="robosats"><div class="availability-container"><img src="/images/global.svg" alt="Availability" class="availability-icon"/><span>Available globally</span></div></div>
+          </div>
+        </td>
+      </tr>
+     
+    </tbody></table>
+  </div>
 </div>
 
 

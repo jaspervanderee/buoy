@@ -22,25 +22,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
   <script defer src="https://feedback.fish/ff.js?pid=17f299e6843396" crossorigin="anonymous"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="0895676a-bb0e-488d-9381-a27cf9cf5888"></script>
-
-<script>
-(function(){
-  try {
-    var a = "Aqua";
-    var b = "Fold";
-    var cat = "Spend Bitcoin";
-    var p = new URLSearchParams(location.search);
-    if (!p.get('services')) p.set('services', a + ',' + b);
-    if (!p.get('category')) p.set('category', cat);
-    history.replaceState(null, '', location.pathname + '?' + p.toString());
-    window.__BUOY_COMPARE__ = [a,b];
-  } catch(e){}
-})();
-</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Aqua vs Fold — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/compare/aqua-vs-fold.html","description":"Compare Aqua and Fold (Spend Bitcoin): fees, custody, features, and more.","dateModified":"2025-09-28T15:45:29.421Z","about":[{"@type":"Organization","name":"Aqua","url":"https://aqua.net"},{"@type":"Organization","name":"Fold","url":"https://foldapp.com"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Aqua vs Fold — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/compare/aqua-vs-fold.html","description":"Compare Aqua and Fold (Spend Bitcoin): fees, custody, features, and more.","dateModified":"2025-09-29T18:45:37.989Z","about":[{"@type":"Organization","name":"Aqua","url":"https://aqua.net"},{"@type":"Organization","name":"Fold","url":"https://foldapp.com"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/spend-bitcoin.html","name":"Spend Bitcoin"}},{"@type":"ListItem","position":3,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/compare/aqua-vs-fold.html","name":"Aqua vs Fold"}}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does Fold support Lightning and is it custodial?","acceptedAnswer":{"@type":"Answer","text":"Fold is a custodial app focused on Bitcoin rewards through a card and gift cards. Funds are custodial until withdrawn to your own wallet. It is not a Lightning wallet, though you can move funds out to self-custody when desired."}},{"@type":"Question","name":"Is Aqua non-custodial and how do Lightning sends work?","acceptedAnswer":{"@type":"Answer","text":"Aqua is non-custodial and open-source. Lightning payments are handled via Boltz swaps rather than native channels. The app also integrates Liquid and on-chain Bitcoin, giving users privacy features and asset support while retaining control of keys."}},{"@type":"Question","name":"Can I get a card from Aqua or only from Fold?","acceptedAnswer":{"@type":"Answer","text":"Fold provides a rewards card and custodial account features, with gift card options. Aqua is a wallet for Bitcoin, Lightning via swaps, and Liquid; it does not issue a spending card. Choose Fold for rewards card features; Aqua for self-custodial wallet capabilities."}}]}</script>
 </head>
-<body>
+<body data-url-mutate="off">
   <div class="container">
  <header>
   <div class="container">
@@ -115,7 +101,7 @@
  <main>
   <div class="category-header category-header--vs">
     <h1 id="page-title">Aqua vs Fold</h1>
-    <div class="page-updated" data-updated="2025-09-28T15:45:29.421Z">Updated: September 2025</div>
+    <div class="page-updated" data-updated="2025-09-29T18:45:37.989Z">Updated: September 2025</div>
     
 <div class="breadcrumb-back"><a href="/spend-bitcoin.html">< Back to Spend Bitcoin</a></div>
     
@@ -131,12 +117,236 @@
 
 <div id="comparison-container">
   <div class="logo-row-sticky">
-    <div class="feature-values logo-row" id="logo-row-container"></div>
+    <div class="feature-values logo-row" id="logo-row-container">
+    <div class="feature-value logo-cell">
+      <a href="https://aqua.net" target="_blank" class="service-link">
+        <img src="/images/aqua.svg" alt="Aqua logo" class="svg-icon sticky-logo" />
+        <button class="cta-button">visit</button>
+      </a>
+    </div>
+    <div class="feature-value logo-cell">
+      <a href="https://foldapp.com" target="_blank" class="service-link">
+        <img src="/images/fold.svg" alt="Fold logo" class="svg-icon sticky-logo" />
+        <button class="cta-button">visit</button>
+      </a>
+    </div></div>
   </div>
   <section id="vs-verdict" aria-live="polite" data-p="{B} is best if you want a custodial rewards card to earn sats on everyday spending, with account‑based recovery and KYC. {A} fits if you prefer self‑custody for sending and receiving, Liquid privacy features, and a 12‑word seed backup. Compare custody, KYC, supported networks, and mobile experience below.">
     <h2 class="feature-label verdict-title">Quick take</h2>
+    <p class="vs-verdict-p">Fold is best if you want a custodial rewards card to earn sats on everyday spending, with account‑based recovery and KYC. Aqua fits if you prefer self‑custody for sending and receiving, Liquid privacy features, and a 12‑word seed backup. Compare custody, KYC, supported networks, and mobile experience below.</p>
   </section>
-  <div id="comparison-table-wrapper"></div>
+  <div id="comparison-table-wrapper">
+    <table class="comparison-table"><tbody>
+      
+      <tr class="feature-row type_of_platform">
+        <td><div class="feature-label">Platform</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua">Hot Wallet</div>
+            <div class="feature-value" data-service="fold">Bitcoin rewards card</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row supported_network">
+        <td><div class="feature-label sublabel">Supported Networks</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua">Bitcoin + Lightning + Liquid</div>
+            <div class="feature-value" data-service="fold">Visa Debit Card, Credit Card, Giftcards</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row features">
+        <td><div class="feature-label sublabel">Features</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua"><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Bitcoin, Lightning &amp; Liquid wallet</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Privacy benefits with confidential transactions on Liquid</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Built-in swap between on-chain and Liquid</div><div class="feature-item negative-group-start"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Higher Lightning fees</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Relies on Boltz for Lightning swaps</div></div>
+            <div class="feature-value" data-service="fold"><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Bitcoin rewards on everyday spending</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Seamless integration of Bitcoin into traditional finance</div><div class="feature-item negative-group-start"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Most features US only</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Custodial until withdrawn</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> High fees possible on some services</div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row custody_control">
+        <td><div class="feature-label">Custody &amp; Control</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua">Non-custodial</div>
+            <div class="feature-value" data-service="fold">Custodial (until withdrawn)</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row kyc_required">
+        <td><div class="feature-label sublabel">KYC Required</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua">No</div>
+            <div class="feature-value" data-service="fold">Yes</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row recovery_method">
+        <td><div class="feature-label sublabel">Recovery Method</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua">12-word seed + optional passphrase</div>
+            <div class="feature-value" data-service="fold">Custodial account</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row open_source">
+        <td><div class="feature-label sublabel">Open Source</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua">Yes</div>
+            <div class="feature-value" data-service="fold">No</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row user_experience">
+        <td><div class="feature-label">User Experience</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua">
+    <div class="ux-container">
+      <div class="ux-rating-wrapper">
+        <span class="ux-rating">0.0</span><span class="ux-outof"> out of 5</span>
+      </div>
+      <a href="#" class="review-link" data-service="aqua">rate <span class="rating-count">(0)</span></a>
+    </div>
+  </div>
+            <div class="feature-value" data-service="fold">
+    <div class="ux-container">
+      <div class="ux-rating-wrapper">
+        <span class="ux-rating">0.0</span><span class="ux-outof"> out of 5</span>
+      </div>
+      <a href="#" class="review-link" data-service="fold">rate <span class="rating-count">(0)</span></a>
+    </div>
+  </div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row interface">
+        <td><div class="feature-label sublabel">Interface</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%"><img src="/images/mobile.svg" class="platform-icon" alt="Mobile" style="margin-bottom:8px"/><span>Mobile only</span></div></div>
+            <div class="feature-value" data-service="fold"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%"><img src="/images/mobile.svg" class="platform-icon" alt="Mobile" style="margin-bottom:8px"/><span>Mobile only</span></div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row app_ratings">
+        <td><div class="feature-label sublabel">App Ratings</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua"><div>iOS: 4.3</div><div>Android: 4.4</div></div>
+            <div class="feature-value" data-service="fold"><div>iOS: 4.8</div><div>Android: 4.6</div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row profile">
+        <td>
+      <div class="label-container">
+        <div class="feature-label">Profile</div>
+        <div class="feature-label sublabel">Founder(s)</div>
+      </div>
+    </td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua"><img src="/images/founders/samson-mow.jpg" alt="Samson Mow" style="width:100px;height:100px;border-radius:50%;display:block;margin:0 auto 10px auto"><div style="text-align:center">Samson Mow</div></div>
+            <div class="feature-value" data-service="fold"><img src="/images/founders/will-reeves.jpg" alt="Will Reeves" style="width:100px;height:100px;border-radius:50%;display:block;margin:0 auto 10px auto"><div style="text-align:center">Will Reeves</div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row description">
+        <td><div class="feature-label sublabel">Company description</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua">
+    <div class="collapsible-description">
+      <div class="description-preview">
+        <p class="mobile-preview">Aqua Wallet, originally launched by Blockstream, later taken over by Jan3, is a mobile app designed for easy saving and spending in Bitcoin. It&#039;s a non-custodial, open-source wallet using a 12-word se...</p>
+        <p class="desktop-preview">Aqua Wallet, originally launched by Blockstream, later taken over by Jan3, is a mobile app designed for easy saving and spending in Bitcoin. It&#039;s a non-custodial, open-source wallet using a 12-word seed phrase for user control, and a unified balance across on-chain Bitcoin, Lightning, and Liquid Network transactions, defaulting to Liquid for low-fee, private payments. It offers sending, receiving, and swapping Bitcoin (on-chain to Liquid or vice versa) but for Lightning payments they rely on Boltz, a third party which can occur higher swap fees. This might affect daily usability for some users.</p>
+      </div>
+      <div class="description-full" style="display: none;"><p>Aqua Wallet, originally launched by Blockstream, later taken over by Jan3, is a mobile app designed for easy saving and spending in Bitcoin. It&#039;s a non-custodial, open-source wallet using a 12-word seed phrase for user control, and a unified balance across on-chain Bitcoin, Lightning, and Liquid Network transactions, defaulting to Liquid for low-fee, private payments. It offers sending, receiving, and swapping Bitcoin (on-chain to Liquid or vice versa) but for Lightning payments they rely on Boltz, a third party which can occur higher swap fees. This might affect daily usability for some users.</p><p>The app has an intuitive interface - although the design could use some work - and offers seamless swaps between on-chain Bitcoin and Lightning or Liquid.</p><p>JAN3&#039;s mission is to onboard billions to Bitcoin, with a vision to expand Aqua with debit card integration, credit/loans, and global on/off-ramps. Beginners love its simple setup and versatility, but some find stablecoin options and swap fees confusing.</p></div>
+      <button class="expand-btn" aria-expanded="false">
+        <span class="expand-text">Read more</span>
+        <span class="expand-icon"><span class="arrow-down">↓</span></span>
+      </button>
+    </div>
+  </div>
+            <div class="feature-value" data-service="fold">
+    <div class="collapsible-description">
+      <div class="description-preview">
+        <p class="mobile-preview">Fold aims to make Bitcoin accessible by integrating it into daily financial activities. It offers a Visa prepaid debit card, gift card purchases, and bill payments, all rewarding users with Bitcoin (s...</p>
+        <p class="desktop-preview">Fold aims to make Bitcoin accessible by integrating it into daily financial activities. It offers a Visa prepaid debit card, gift card purchases, and bill payments, all rewarding users with Bitcoin (sats). Users can also buy Bitcoin with low or no fees, depending on their plan, and deposit Bitcoin into their Fold account for insured custody.</p>
+      </div>
+      <div class="description-full" style="display: none;"><p>Fold aims to make Bitcoin accessible by integrating it into daily financial activities. It offers a Visa prepaid debit card, gift card purchases, and bill payments, all rewarding users with Bitcoin (sats). Users can also buy Bitcoin with low or no fees, depending on their plan, and deposit Bitcoin into their Fold account for insured custody.</p><p>What sets Fold apart is how it combines traditional finance functions like bill pay and debit card usage with Bitcoin rewards in one simple interface. Users don&#039;t need to juggle multiple apps or wallets. Rewards can be earned on nearly every transaction, from daily spending to mortgage payments, with bonus sats for gift card purchases. Fold also allows external Bitcoin deposits and provides low-fee conversions from paycheck to BTC, making it easy to live on a Bitcoin standard while minimizing taxable events.</p><p>Users praise the ease of use, the ability to stack Bitcoin passively, and the clear design of the app. Some power users run most of their household finances through Fold, using the gift card section for groceries and shopping, and setting up recurring buys with leftover balances at the end of each month. The ability to earn rewards even on ACH bill pay is seen as a unique benefit.</p><p>Fold&#039;s vision is to be the ultimate platform for living on a Bitcoin standard, making it easy to earn, spend, and save Bitcoin while navigating a fiat world, giving users control and flexibility without the complexity of traditional exchanges or wallets.</p></div>
+      <button class="expand-btn" aria-expanded="false">
+        <span class="expand-text">Read more</span>
+        <span class="expand-icon"><span class="arrow-down">↓</span></span>
+      </button>
+    </div>
+  </div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row founded_in">
+        <td><div class="feature-label sublabel">Founded in</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua">2024</div>
+            <div class="feature-value" data-service="fold">2019</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row website">
+        <td><div class="feature-label sublabel">Website</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua"><a href="https://aqua.net" target="_blank">aqua.net</a></div>
+            <div class="feature-value" data-service="fold"><a href="https://foldapp.com" target="_blank">foldapp.com</a></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row availability">
+        <td><div class="feature-label">Availability</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="aqua"><div class="availability-container"><img src="/images/global.svg" alt="Availability" class="availability-icon"/><span>Available globally</span></div></div>
+            <div class="feature-value" data-service="fold"><div class="availability-container"><img src="/images/global.svg" alt="Availability" class="availability-icon"/><span>Available in North America, Europe</span></div></div>
+          </div>
+        </td>
+      </tr>
+     
+    </tbody></table>
+  </div>
 </div>
 
 

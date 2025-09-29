@@ -22,25 +22,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
   <script defer src="https://feedback.fish/ff.js?pid=17f299e6843396" crossorigin="anonymous"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="0895676a-bb0e-488d-9381-a27cf9cf5888"></script>
-
-<script>
-(function(){
-  try {
-    var a = "Muun";
-    var b = "Phoenix";
-    var cat = "Spend Bitcoin";
-    var p = new URLSearchParams(location.search);
-    if (!p.get('services')) p.set('services', a + ',' + b);
-    if (!p.get('category')) p.set('category', cat);
-    history.replaceState(null, '', location.pathname + '?' + p.toString());
-    window.__BUOY_COMPARE__ = [a,b];
-  } catch(e){}
-})();
-</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Muun vs Phoenix — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/compare/muun-vs-phoenix.html","description":"Compare Muun and Phoenix (Spend Bitcoin): fees, custody, features, and more.","dateModified":"2025-09-28T15:45:29.421Z","about":[{"@type":"Organization","name":"Muun","url":"https://muun.com"},{"@type":"Organization","name":"Phoenix","url":"https://phoenix.acinq.co"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Muun vs Phoenix — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/compare/muun-vs-phoenix.html","description":"Compare Muun and Phoenix (Spend Bitcoin): fees, custody, features, and more.","dateModified":"2025-09-29T18:45:37.989Z","about":[{"@type":"Organization","name":"Muun","url":"https://muun.com"},{"@type":"Organization","name":"Phoenix","url":"https://phoenix.acinq.co"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/spend-bitcoin.html","name":"Spend Bitcoin"}},{"@type":"ListItem","position":3,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/compare/muun-vs-phoenix.html","name":"Muun vs Phoenix"}}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Muun a “real” Lightning wallet?","acceptedAnswer":{"@type":"Answer","text":"Muun is non-custodial with one on-chain balance and routes many Lightning payments via swaps. You don’t manage channels, which is simpler, but Lightning fees can be less predictable than native LN wallets."}},{"@type":"Question","name":"How does Phoenix handle Lightning—and is it self-custody?","acceptedAnswer":{"@type":"Answer","text":"Phoenix runs a Lightning node on your phone for native LN sends and receives. It’s self-custodial and may use on-chain transactions when channels are created or resized, aiming for a seamless everyday payments experience."}},{"@type":"Question","name":"Can I recover funds if the app/vendor goes down?","acceptedAnswer":{"@type":"Answer","text":"Phoenix restores with a 12-word seed and peer-backed channel state. Muun’s Emergency Kit (keys + descriptors) with a recovery code is designed to let you spend independently if the app is unavailable."}}]}</script>
 </head>
-<body>
+<body data-url-mutate="off">
   <div class="container">
  <header>
   <div class="container">
@@ -115,7 +101,7 @@
  <main>
   <div class="category-header category-header--vs">
     <h1 id="page-title">Muun vs Phoenix</h1>
-    <div class="page-updated" data-updated="2025-09-28T15:45:29.421Z">Updated: September 2025</div>
+    <div class="page-updated" data-updated="2025-09-29T18:45:37.989Z">Updated: September 2025</div>
     
 <div class="breadcrumb-back"><a href="/spend-bitcoin.html">< Back to Spend Bitcoin</a></div>
     
@@ -131,12 +117,236 @@
 
 <div id="comparison-container">
   <div class="logo-row-sticky">
-    <div class="feature-values logo-row" id="logo-row-container"></div>
+    <div class="feature-values logo-row" id="logo-row-container">
+    <div class="feature-value logo-cell">
+      <a href="https://muun.com" target="_blank" class="service-link">
+        <img src="/images/muun.svg" alt="Muun logo" class="svg-icon sticky-logo" />
+        <button class="cta-button">visit</button>
+      </a>
+    </div>
+    <div class="feature-value logo-cell">
+      <a href="https://phoenix.acinq.co" target="_blank" class="service-link">
+        <img src="/images/phoenix.svg" alt="Phoenix logo" class="svg-icon sticky-logo" />
+        <button class="cta-button">visit</button>
+      </a>
+    </div></div>
   </div>
   <section id="vs-verdict" aria-live="polite" data-p="{B} is best if you want a fully self-custodied Lightning wallet with on-device keys and predictable LN send fees. {A} fits if you prefer one on-chain balance that seamlessly bridges to Lightning with easy recovery. Compare custody, Lightning behavior, backups, and typical fees below.">
     <h2 class="feature-label verdict-title">Quick take</h2>
+    <p class="vs-verdict-p">Phoenix is best if you want a fully self-custodied Lightning wallet with on-device keys and predictable LN send fees. Muun fits if you prefer one on-chain balance that seamlessly bridges to Lightning with easy recovery. Compare custody, Lightning behavior, backups, and typical fees below.</p>
   </section>
-  <div id="comparison-table-wrapper"></div>
+  <div id="comparison-table-wrapper">
+    <table class="comparison-table"><tbody>
+      
+      <tr class="feature-row type_of_platform">
+        <td><div class="feature-label">Platform</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun">Hot Wallet</div>
+            <div class="feature-value" data-service="phoenix">Hot Wallet</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row supported_network">
+        <td><div class="feature-label sublabel">Supported Networks</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun">Bitcoin + Lightning</div>
+            <div class="feature-value" data-service="phoenix">Lightning only, but you can receive and send on-chain using swaps</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row features">
+        <td><div class="feature-label sublabel">Features</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun"><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Auto chooses Lighting or on-chain</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Simple user interface</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Emergency kit for recovery</div><div class="feature-item negative-group-start"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Not lightning native: higher fees</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> No Lightning address support</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Email required for backup</div></div>
+            <div class="feature-value" data-service="phoenix"><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Seamless Lightning experience</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Runs Lightning node on device</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Option to connect your own node</div><div class="feature-item negative-group-start"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> High on-chain fees for channel creation</div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row custody_control">
+        <td><div class="feature-label">Custody &amp; Control</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun">Non-custodial</div>
+            <div class="feature-value" data-service="phoenix">Non-custodial (runs Lightning node)</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row kyc_required">
+        <td><div class="feature-label sublabel">KYC Required</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun">No</div>
+            <div class="feature-value" data-service="phoenix">No</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row recovery_method">
+        <td><div class="feature-label sublabel">Recovery Method</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun">Emergency kit with email and recovery code</div>
+            <div class="feature-value" data-service="phoenix">Seed phrase + static channel backup</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row open_source">
+        <td><div class="feature-label sublabel">Open Source</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun">Yes</div>
+            <div class="feature-value" data-service="phoenix">Yes</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row user_experience">
+        <td><div class="feature-label">User Experience</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun">
+    <div class="ux-container">
+      <div class="ux-rating-wrapper">
+        <span class="ux-rating">0.0</span><span class="ux-outof"> out of 5</span>
+      </div>
+      <a href="#" class="review-link" data-service="muun">rate <span class="rating-count">(0)</span></a>
+    </div>
+  </div>
+            <div class="feature-value" data-service="phoenix">
+    <div class="ux-container">
+      <div class="ux-rating-wrapper">
+        <span class="ux-rating">0.0</span><span class="ux-outof"> out of 5</span>
+      </div>
+      <a href="#" class="review-link" data-service="phoenix">rate <span class="rating-count">(0)</span></a>
+    </div>
+  </div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row interface">
+        <td><div class="feature-label sublabel">Interface</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%"><img src="/images/mobile.svg" class="platform-icon" alt="Mobile" style="margin-bottom:8px"/><span>Mobile only</span></div></div>
+            <div class="feature-value" data-service="phoenix"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%"><img src="/images/mobile.svg" class="platform-icon" alt="Mobile" style="margin-bottom:8px"/><span>Mobile only</span></div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row app_ratings">
+        <td><div class="feature-label sublabel">App Ratings</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun"><div>iOS: 4.3</div><div>Android: 4</div></div>
+            <div class="feature-value" data-service="phoenix"><div>iOS: 4.2</div><div>Android: 4.3</div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row profile">
+        <td>
+      <div class="label-container">
+        <div class="feature-label">Profile</div>
+        <div class="feature-label sublabel">Founder(s)</div>
+      </div>
+    </td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun"><img src="/images/founders/dario-sneidermanis.jpg" alt="Dario Sneidermanis" style="width:100px;height:100px;border-radius:50%;display:block;margin:0 auto 10px auto"><div style="text-align:center">Dario Sneidermanis</div></div>
+            <div class="feature-value" data-service="phoenix"><img src="/images/founders/fabrice-drouin-&-pierre-marie-padiou.jpg" alt="Fabrice Drouin &amp; Pierre-Marie Padiou" style="width:100px;height:100px;border-radius:50%;display:block;margin:0 auto 10px auto"><div style="text-align:center">Fabrice Drouin &amp; Pierre-Marie Padiou</div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row description">
+        <td><div class="feature-label sublabel">Company description</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun">
+    <div class="collapsible-description">
+      <div class="description-preview">
+        <p class="mobile-preview">Muun is a non-custodial Bitcoin and Lightning wallet focused on giving users full control with minimal complexity. It separates itself from other wallets through its unique security and backup model: ...</p>
+        <p class="desktop-preview">Muun is a non-custodial Bitcoin and Lightning wallet focused on giving users full control with minimal complexity. It separates itself from other wallets through its unique security and backup model: users recover access using an email, password, and encrypted recovery code—removing the need to manage a traditional 12-word seed phrase. This makes onboarding easier for beginners without compromising self-custody.</p>
+      </div>
+      <div class="description-full" style="display: none;"><p>Muun is a non-custodial Bitcoin and Lightning wallet focused on giving users full control with minimal complexity. It separates itself from other wallets through its unique security and backup model: users recover access using an email, password, and encrypted recovery code—removing the need to manage a traditional 12-word seed phrase. This makes onboarding easier for beginners without compromising self-custody.</p><p>Muun&#039;s key differentiator is how it handles both Lightning and on-chain Bitcoin in one seamless balance. Users don&#039;t have to manage channels or worry about liquidity—Muun automates that behind the scenes. You can send or receive Bitcoin however you want, and the wallet figures out whether to use Lightning or regular Bitcoin based on speed, cost, and availability. This hybrid approach appeals to users who want convenience but still own their funds.</p><p>Users praise Muun for its simple design, clear recovery process, and solid privacy. It&#039;s especially recommended for first-time users who want a secure but low-friction experience. However, some note that Muun doesn&#039;t support Lightning addresses and that Lightning transactions may route via on-chain swaps. This means unpredictable fees, especially when onchain activity rises.</p><p>Muun&#039;s mission is to provide a simple, secure way to use Bitcoin daily without needing technical knowledge. It prioritizes non-custodial access, user control, and cross-platform consistency, helping new users enter Bitcoin while retaining ownership from day one.</p></div>
+      <button class="expand-btn" aria-expanded="false">
+        <span class="expand-text">Read more</span>
+        <span class="expand-icon"><span class="arrow-down">↓</span></span>
+      </button>
+    </div>
+  </div>
+            <div class="feature-value" data-service="phoenix">
+    <div class="collapsible-description">
+      <div class="description-preview">
+        <p class="mobile-preview">Phoenix is designed to provide a simple, self-custodial experience for fast, low-cost Lightning transactions directly on mobile devices, emphasizing ease of use for beginners.</p>
+        <p class="desktop-preview">Phoenix is designed to provide a simple, self-custodial experience for fast, low-cost Lightning transactions directly on mobile devices, emphasizing ease of use for beginners.</p>
+      </div>
+      <div class="description-full" style="display: none;"><p>Phoenix is designed to provide a simple, self-custodial experience for fast, low-cost Lightning transactions directly on mobile devices, emphasizing ease of use for beginners.</p><p>Phoenix runs a native Lightning node on the user&#039;s device, connecting to ACINQ&#039;s node for automated channel management, eliminating the need for swaps and reducing fees for direct Lightning payments. Additionally, Phoenix allows connections to a user&#039;s own Bitcoin node for enhanced privacy.</p><p>For beginners, Phoenix&#039;s intuitive UI, low-cost Lightning transactions, and self-custodial design make it ideal for those starting with Bitcoin, though channel size limitations may require occasional fee adjustments for frequent receivers. Compared to Breez&#039;s merchant-centric features or Aqua&#039;s Liquid-focused versatility, Phoenix excels in delivering a straightforward, cost-effective Lightning experience with robust privacy options.</p></div>
+      <button class="expand-btn" aria-expanded="false">
+        <span class="expand-text">Read more</span>
+        <span class="expand-icon"><span class="arrow-down">↓</span></span>
+      </button>
+    </div>
+  </div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row founded_in">
+        <td><div class="feature-label sublabel">Founded in</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun">2019</div>
+            <div class="feature-value" data-service="phoenix">2019</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row website">
+        <td><div class="feature-label sublabel">Website</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun"><a href="https://muun.com" target="_blank">muun.com</a></div>
+            <div class="feature-value" data-service="phoenix"><a href="https://phoenix.acinq.co" target="_blank">phoenix.acinq.co</a></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row availability">
+        <td><div class="feature-label">Availability</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="muun"><div class="availability-container"><img src="/images/global.svg" alt="Availability" class="availability-icon"/><span>Available globally</span></div></div>
+            <div class="feature-value" data-service="phoenix"><div class="availability-container"><img src="/images/global.svg" alt="Availability" class="availability-icon"/><span>Available globally</span></div></div>
+          </div>
+        </td>
+      </tr>
+     
+    </tbody></table>
+  </div>
 </div>
 
 

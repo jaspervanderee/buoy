@@ -22,25 +22,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
   <script defer src="https://feedback.fish/ff.js?pid=17f299e6843396" crossorigin="anonymous"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="0895676a-bb0e-488d-9381-a27cf9cf5888"></script>
-
-<script>
-(function(){
-  try {
-    var a = "Bisq";
-    var b = "Relai";
-    var cat = "Buy Bitcoin";
-    var p = new URLSearchParams(location.search);
-    if (!p.get('services')) p.set('services', a + ',' + b);
-    if (!p.get('category')) p.set('category', cat);
-    history.replaceState(null, '', location.pathname + '?' + p.toString());
-    window.__BUOY_COMPARE__ = [a,b];
-  } catch(e){}
-})();
-</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Bisq vs Relai — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/compare/bisq-vs-relai.html","description":"Compare Bisq and Relai (Buy Bitcoin): fees, custody, features, and more.","dateModified":"2025-09-28T15:45:29.421Z","about":[{"@type":"Organization","name":"Bisq","url":"https://bisq.network"},{"@type":"Organization","name":"Relai","url":"https://relai.app"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Bisq vs Relai — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/compare/bisq-vs-relai.html","description":"Compare Bisq and Relai (Buy Bitcoin): fees, custody, features, and more.","dateModified":"2025-09-29T18:45:37.989Z","about":[{"@type":"Organization","name":"Bisq","url":"https://bisq.network"},{"@type":"Organization","name":"Relai","url":"https://relai.app"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/buy-bitcoin.html","name":"Buy Bitcoin"}},{"@type":"ListItem","position":3,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/compare/bisq-vs-relai.html","name":"Bisq vs Relai"}}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Relai custodial?","acceptedAnswer":{"@type":"Answer","text":"Yes. Relai is listed as custodial in our dataset."}},{"@type":"Question","name":"Does Relai require KYC?","acceptedAnswer":{"@type":"Answer","text":"Yes. Relai requires KYC; the larger-limit nuance isn’t specified in our data."}},{"@type":"Question","name":"Which supports bank cards?","acceptedAnswer":{"@type":"Answer","text":"Relai supports cards and mobile wallets (Credit Card, Apple Pay, Google Pay). Bisq lists transfers like SEPA, Revolut, Wise and cash—not bank cards."}}]}</script>
 </head>
-<body>
+<body data-url-mutate="off">
   <div class="container">
  <header>
   <div class="container">
@@ -115,7 +101,7 @@
  <main>
   <div class="category-header category-header--vs">
     <h1 id="page-title">Bisq vs Relai</h1>
-    <div class="page-updated" data-updated="2025-09-28T15:45:29.421Z">Updated: September 2025</div>
+    <div class="page-updated" data-updated="2025-09-29T18:45:37.989Z">Updated: September 2025</div>
     
 <div class="breadcrumb-back"><a href="/buy-bitcoin.html">< Back to Buy Bitcoin</a></div>
     
@@ -131,12 +117,252 @@
 
 <div id="comparison-container">
   <div class="logo-row-sticky">
-    <div class="feature-values logo-row" id="logo-row-container"></div>
+    <div class="feature-values logo-row" id="logo-row-container">
+    <div class="feature-value logo-cell">
+      <a href="https://bisq.network" target="_blank" class="service-link">
+        <img src="/images/bisq.svg" alt="Bisq logo" class="svg-icon sticky-logo" />
+        <button class="cta-button">visit</button>
+      </a>
+    </div>
+    <div class="feature-value logo-cell">
+      <a href="https://relai.app" target="_blank" class="service-link">
+        <img src="/images/relai.svg" alt="Relai logo" class="svg-icon sticky-logo" />
+        <button class="cta-button">visit</button>
+      </a>
+    </div></div>
   </div>
   <section id="vs-verdict" aria-live="polite" data-p="{A} suits non‑custodial P2P with privacy emphasis and varied fiat rails. {B} offers a mobile app with recurring buys and automatic withdrawals to your address. Compare custody expectations, KYC, DCA support, payment methods, and whether desktop or mobile fits best.">
     <h2 class="feature-label verdict-title">Quick take</h2>
+    <p class="vs-verdict-p">Bisq suits non‑custodial P2P with privacy emphasis and varied fiat rails. Relai offers a mobile app with recurring buys and automatic withdrawals to your address. Compare custody expectations, KYC, DCA support, payment methods, and whether desktop or mobile fits best.</p>
   </section>
-  <div id="comparison-table-wrapper"></div>
+  <div id="comparison-table-wrapper">
+    <table class="comparison-table"><tbody>
+      
+      <tr class="feature-row type_of_platform">
+        <td><div class="feature-label">Platform</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq">P2P</div>
+            <div class="feature-value" data-service="relai">Exchange</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row features">
+        <td><div class="feature-label sublabel">Features</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq"><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> No KYC</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Non‑custodial with 2‑of‑2 multisig deposits</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> All traffic over Tor</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Many fiat payment methods</div><div class="feature-item negative-group-start"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Requires some BTC for fees/deposits</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Liquidity and spreads vary by region</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Desktop only; settlement depends on fiat method</div></div>
+            <div class="feature-value" data-service="relai"><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Self-custodial wallet included</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Bitcoin will automatically be sent to your wallet</div><div class="feature-item negative-group-start"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Fees on recurring buys</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Minimum buy amount</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> EU only</div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row fees">
+        <td>
+      <div class="label-container">
+        <div class="feature-label">Fees</div>
+        <div class="feature-label sublabel">Processing fees</div>
+      </div>
+    </td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq"><div class="fee-structure"><div class="fee-intro">Variable; lower if paid in BSQ</div></div></div>
+            <div class="feature-value" data-service="relai"><div class="fee-structure"><div class="fee-tier">€50 - €100 per month: <strong>free up to €1.200</strong></div><div class="fee-tier">€1200 and above: <strong>1%</strong></div></div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row dca">
+        <td><div class="feature-label sublabel">DCA (Dollar Cost Averaging)</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq">No</div>
+            <div class="feature-value" data-service="relai">Yes: but free only on the first €1.200</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row payment_methods">
+        <td><div class="feature-label">Payment Methods</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq">Bank Transfer, Revolut, Wise, Cash in Person, SEPA</div>
+            <div class="feature-value" data-service="relai">SEPA, Credit Card, Apple Pay, Google Pay</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row custody_control">
+        <td><div class="feature-label">Custody &amp; Control</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq">Non-custodial</div>
+            <div class="feature-value" data-service="relai">Custodial</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row kyc_required">
+        <td><div class="feature-label sublabel">KYC Required</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq">No</div>
+            <div class="feature-value" data-service="relai">Yes</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row open_source">
+        <td><div class="feature-label sublabel">Open Source</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq">Yes</div>
+            <div class="feature-value" data-service="relai">No</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row user_experience">
+        <td><div class="feature-label">User Experience</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq">
+    <div class="ux-container">
+      <div class="ux-rating-wrapper">
+        <span class="ux-rating">0.0</span><span class="ux-outof"> out of 5</span>
+      </div>
+      <a href="#" class="review-link" data-service="bisq">rate <span class="rating-count">(0)</span></a>
+    </div>
+  </div>
+            <div class="feature-value" data-service="relai">
+    <div class="ux-container">
+      <div class="ux-rating-wrapper">
+        <span class="ux-rating">0.0</span><span class="ux-outof"> out of 5</span>
+      </div>
+      <a href="#" class="review-link" data-service="relai">rate <span class="rating-count">(0)</span></a>
+    </div>
+  </div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row interface">
+        <td><div class="feature-label sublabel">Interface</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%"><img src="/images/desktop.svg" class="platform-icon" alt="Desktop" style="margin-bottom:8px"/><span>Desktop only</span></div></div>
+            <div class="feature-value" data-service="relai"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%"><img src="/images/mobile.svg" class="platform-icon" alt="Mobile" style="margin-bottom:8px"/><span>Mobile only</span></div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row app_ratings">
+        <td><div class="feature-label sublabel">App Ratings</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq">No app available</div>
+            <div class="feature-value" data-service="relai"><div>iOS: 4.6</div><div>Android: 4.1</div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row profile">
+        <td>
+      <div class="label-container">
+        <div class="feature-label">Profile</div>
+        <div class="feature-label sublabel">Founder(s)</div>
+      </div>
+    </td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq"><img src="/images/founders/manfred-karrer.jpg" alt="Manfred Karrer" style="width:100px;height:100px;border-radius:50%;display:block;margin:0 auto 10px auto"><div style="text-align:center">Manfred Karrer</div></div>
+            <div class="feature-value" data-service="relai"><img src="/images/founders/julian-liniger-&-adem-bilican.jpg" alt="Julian Liniger &amp; Adem Bilican" style="width:100px;height:100px;border-radius:50%;display:block;margin:0 auto 10px auto"><div style="text-align:center">Julian Liniger &amp; Adem Bilican</div></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row description">
+        <td><div class="feature-label sublabel">Company description</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq">
+    <div class="collapsible-description">
+      <div class="description-preview">
+        <p class="mobile-preview">Bisq is a decentralized, open‑source desktop app created by Manfred Karrer for buying and selling bitcoin directly with other people. It routes all traffic over Tor, uses a built‑in non‑custodial wall...</p>
+        <p class="desktop-preview">Bisq is a decentralized, open‑source desktop app created by Manfred Karrer for buying and selling bitcoin directly with other people. It routes all traffic over Tor, uses a built‑in non‑custodial wallet and has no sign‑ups or KYC. Trades span many national currencies and payment rails, and the project is funded and governed through a community DAO with the BSQ token rather than a company.</p>
+      </div>
+      <div class="description-full" style="display: none;"><p>Bisq is a decentralized, open‑source desktop app created by Manfred Karrer for buying and selling bitcoin directly with other people. It routes all traffic over Tor, uses a built‑in non‑custodial wallet and has no sign‑ups or KYC. Trades span many national currencies and payment rails, and the project is funded and governed through a community DAO with the BSQ token rather than a company.</p><p>What separates Bisq is its security and incentive design for fiat‑to‑BTC P2P. Each trade locks both sides’ refundable security deposits in a 2‑of‑2 multisig escrow. Account‑age and signing rules gradually raise per‑trade limits to reduce chargeback risk, and a small amount of bitcoin is required up front to cover fees and deposits. Trading fees are transparent and lower if paid in BSQ. It’s desktop‑first by design; the mobile app is for notifications.</p><p>User feedback highlights Bisq’s strengths in privacy, censorship resistance and self‑custody, along with clear, step‑by‑step trade flows and a multi‑stage dispute process if things go wrong.</p><p>The trade‑offs are thinner liquidity depending on region, wider spreads than convenience brokers, the need to already have a little bitcoin, and settlement times tied to the chosen fiat method and counterparties’ availability. Some users note that disputes can take time, and that desktop performance varies by setup.</p><p>Bisq’s target audience is privacy‑minded bitcoiners and anyone who needs a resilient, non‑custodial fiat ramp. The roadmap is to keep the marketplace permissionless while improving UX and resilience: Bisq 2 introduces a simpler “Bisq Easy” path alongside the familiar multisig protocol, support for multiple privacy networks, and optional use of Liquid for faster, lower‑fee settlement.</p></div>
+      <button class="expand-btn" aria-expanded="false">
+        <span class="expand-text">Read more</span>
+        <span class="expand-icon"><span class="arrow-down">↓</span></span>
+      </button>
+    </div>
+  </div>
+            <div class="feature-value" data-service="relai">
+    <div class="collapsible-description">
+      <div class="description-preview">
+        <p class="mobile-preview">Relai, founded in 2020 in Zürich, Switzerland, is an app designed for beginners to buy and save Bitcoin easily. It stands out from competitors with its non-custodial wallet, meaning users control thei...</p>
+        <p class="desktop-preview">Relai, founded in 2020 in Zürich, Switzerland, is an app designed for beginners to buy and save Bitcoin easily. It stands out from competitors with its non-custodial wallet, meaning users control their Bitcoin via a 12-word seed phrase. After purchasing Bitcoin, it will be directly sent to your wallet.</p>
+      </div>
+      <div class="description-full" style="display: none;"><p>Relai, founded in 2020 in Zürich, Switzerland, is an app designed for beginners to buy and save Bitcoin easily. It stands out from competitors with its non-custodial wallet, meaning users control their Bitcoin via a 12-word seed phrase. After purchasing Bitcoin, it will be directly sent to your wallet.</p><p>Relai offers purchases starting at €50 | 54,205 sats, one free buy up to €100 | 108,409 sats monthly, until you hit €1200. After that you pay a 1% fee for any transaction. For businesses and wealthy individuals Relai offers personal service and expert guidance.</p><p>Its app, rated 4.5 stars on iOS, is praised by users for simple onboarding and smooth navigation, though some users report verification delays or high card fees. Relai focuses on privacy and self-custody, with optional KYC for small transactions.</p><p>Its vision is to make Bitcoin saving accessible across Europe, with plans to add Lightning Network support for faster payments. Beginners love its straightforward design and security, but it&#039;s limited to Europe and lacks advanced savings features.</p></div>
+      <button class="expand-btn" aria-expanded="false">
+        <span class="expand-text">Read more</span>
+        <span class="expand-icon"><span class="arrow-down">↓</span></span>
+      </button>
+    </div>
+  </div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row founded_in">
+        <td><div class="feature-label sublabel">Founded in</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq">2014</div>
+            <div class="feature-value" data-service="relai">2020</div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row website">
+        <td><div class="feature-label sublabel">Website</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq"><a href="https://bisq.network" target="_blank">bisq.network</a></div>
+            <div class="feature-value" data-service="relai"><a href="https://relai.app" target="_blank">relai.app</a></div>
+          </div>
+        </td>
+      </tr>
+    
+
+      <tr class="feature-row availability">
+        <td><div class="feature-label">Availability</div></td>
+        <td>
+          <div class="feature-values">
+            <div class="feature-value" data-service="bisq"><div class="availability-container"><img src="/images/global.svg" alt="Availability" class="availability-icon"/><span>Available globally</span></div></div>
+            <div class="feature-value" data-service="relai"><div class="availability-container"><img src="/images/global.svg" alt="Availability" class="availability-icon"/><span>Available in Europe</span></div></div>
+          </div>
+        </td>
+      </tr>
+     
+    </tbody></table>
+  </div>
 </div>
 
 

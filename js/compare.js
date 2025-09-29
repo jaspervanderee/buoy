@@ -25,6 +25,79 @@ function getLogoFilename(name) {
 
 
 document.addEventListener("DOMContentLoaded", async () => {
+  // Defer or disable URL param mutation for compare pages based on body[data-url-mutate]
+  try {
+    const mode = (document.body && document.body.dataset && document.body.dataset.urlMutate) || 'off';
+    if (mode !== 'off') {
+      const doMutate = async () => {
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const hasServices = !!params.get('services');
+          const hasCategory = !!params.get('category');
+          if (hasServices && hasCategory) return; // nothing to do
+
+          // Derive canonical left/right from path
+          let canonicalLeft = null;
+          let canonicalRight = null;
+          try {
+            const m = window.location.pathname.match(/\/compare\/([^/]+)\.html$/);
+            if (m && m[1]) {
+              const parts = m[1].split('-vs-');
+              if (parts.length === 2) {
+                const toName = (slug) => slug.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
+                // Left/right in URL are alphabetical canonical; map back to names
+                canonicalLeft = toName(parts[0]);
+                canonicalRight = toName(parts[1]);
+              }
+            }
+          } catch(_e) {}
+
+          // Determine current visual left/right from H1 if possible
+          let leftName = null;
+          let rightName = null;
+          const h1 = document.getElementById('page-title');
+          if (h1 && h1.textContent && h1.textContent.includes(' vs ')) {
+            const parts = h1.textContent.split(' vs ');
+            if (parts.length >= 2) {
+              leftName = parts[0].trim();
+              rightName = parts[1].trim();
+            }
+          }
+
+          // If category missing, try derive from breadcrumb label or fallback to existing categoryTitle if set later
+          let derivedCategory = null;
+          const crumb = document.getElementById('breadcrumb-category-label');
+          if (crumb && crumb.textContent) {
+            derivedCategory = crumb.textContent.trim();
+          }
+
+          // Canonical guard: only add params if visual order differs from canonical
+          if (leftName && rightName && canonicalLeft && canonicalRight) {
+            const visualMatchesCanonical = (leftName.toLowerCase() === canonicalLeft.toLowerCase() && rightName.toLowerCase() === canonicalRight.toLowerCase());
+            if (!visualMatchesCanonical) {
+              if (!hasServices) params.set('services', `${leftName},${rightName}`);
+              if (!hasCategory && derivedCategory) params.set('category', derivedCategory);
+            }
+          }
+
+          // Final guard: only replace if we added something
+          const nowHasBoth = !!params.get('services') && !!params.get('category');
+          if ((params.toString() !== window.location.search.slice(1)) && (hasServices !== !!params.get('services') || hasCategory !== !!params.get('category') || nowHasBoth)) {
+            history.replaceState(null, '', window.location.pathname + '?' + params.toString());
+          }
+        } catch(_e) {}
+      };
+
+      if (mode === 'defer') {
+        // Defer until after first paint
+        requestAnimationFrame(() => {
+          setTimeout(doMutate, 0);
+        });
+      } else if (mode === 'immediate') {
+        doMutate();
+      }
+    }
+  } catch(_e) {}
   const urlParams = new URLSearchParams(window.location.search);
   let categoryTitle = urlParams.get("category") ?? "Compare Services";
   // Helper: update category text in breadcrumbs (if present) or fallback H2 on compare.html
@@ -39,7 +112,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Category title will be refined after loading services.json using service.category
   setCategoryTitle(categoryTitle);
-const selectedServices = urlParams.get("services")
+let selectedServices = urlParams.get("services")
   ? urlParams.get("services").split(",")
   : (window.__BUOY_SERVICE__ ? [window.__BUOY_SERVICE__] : []);
 
@@ -50,11 +123,11 @@ const isSingleServiceView =
   (typeof window.__BUOY_SINGLE__ !== 'undefined' && window.__BUOY_SINGLE__ === true) ||
   (typeof window.location.pathname === 'string' && window.location.pathname.startsWith("/services/"));
 
-// Detect baked table (static HTML injected at build time)
-const baked = document.querySelector('#comparison-table-wrapper table');
+// Detect baked table (static HTML injected at build time) by class to support both baked and dynamic
+const baked = document.querySelector('#comparison-table-wrapper .comparison-table');
 const hasBaked = !!baked;
 
-if (!isSingleServiceView && selectedServices.length < 2) {
+if (!isSingleServiceView && selectedServices.length < 2 && !hasBaked) {
   document.getElementById("comparison-container").innerHTML = "<p>Please select at least two services.</p>";
   return;
 }
@@ -62,6 +135,32 @@ if (!isSingleServiceView && selectedServices.length < 2) {
 if (isSingleServiceView && selectedServices.length !== 1) {
   document.getElementById("comparison-container").innerHTML = "<p>Invalid or missing service.</p>";
   return;
+}
+
+// Derive left/right names when baked table is present but URL lacks services
+if (!isSingleServiceView && selectedServices.length < 2 && hasBaked) {
+  try {
+    const h1 = document.getElementById('page-title');
+    let leftName = null;
+    let rightName = null;
+    if (h1 && h1.textContent && h1.textContent.includes(' vs ')) {
+      const parts = h1.textContent.split(' vs ');
+      if (parts.length >= 2) {
+        leftName = parts[0].trim();
+        rightName = parts[1].trim();
+      }
+    }
+    if (!leftName || !rightName) {
+      const cells = document.querySelectorAll('#comparison-table-wrapper .feature-values .feature-value[data-service]');
+      if (cells && cells.length >= 2) {
+        leftName = cells[0].getAttribute('data-service');
+        rightName = cells[1].getAttribute('data-service');
+      }
+    }
+    if (leftName && rightName) {
+      selectedServices = [leftName, rightName];
+    }
+  } catch(_e) {}
 }
 try {
     const response = await fetch("/data/services.json");
@@ -95,6 +194,12 @@ try {
       try {
         const verdictEl = document.getElementById('vs-verdict');
         if (verdictEl) {
+          // Early exit if a baked verdict paragraph exists
+          const alreadyBaked = verdictEl.querySelector('.vs-verdict-p');
+          if (alreadyBaked) {
+            // Verdict content already present in HTML; skip client hydration/fetching
+            // Keep fallbacks for when no baked content exists
+          } else {
           const dataP = verdictEl.getAttribute('data-p');
           const aSlug = left.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
           const bSlug = right.toLowerCase().replace(/&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -129,6 +234,7 @@ try {
               .replaceAll('{A}', alphaAName)
               .replaceAll('{B}', alphaBName);
             verdictEl.insertAdjacentHTML('beforeend', `<p class="vs-verdict-p">${text}</p>`);
+          }
           }
         }
       } catch(_e) {}
@@ -373,7 +479,8 @@ document.getElementById("logo-row-container").innerHTML = `
 
 
 const allowedKeys = categoryFeaturesMap[categoryTitle] ?? features.map(f => f.key);
-if (!(hasBaked && isSingleServiceView)) {
+// If table is baked, skip dynamic table generation entirely (still hydrate ratings below)
+if (!hasBaked) {
   const featureRows = await Promise.all(
     allowedKeys.map(key => features.find(f => f.key === key))
       .filter(Boolean)
@@ -411,9 +518,9 @@ if (!(hasBaked && isSingleServiceView)) {
   );
 
   document.getElementById("comparison-table-wrapper").innerHTML = `
-    <div class="comparison-table">
+    <table class="comparison-table" aria-label="Comparison table"><tbody>
       ${featureRows.join("")}
-    </div>
+    </tbody></table>
   `;
   // After table render, ensure FAQs section exists for known pairs if builder didn't bake it
   try {
@@ -450,13 +557,15 @@ if (!(hasBaked && isSingleServiceView)) {
     }
   } catch(_e) {}
 } else {
-  // Hydrate baked table: if country != WW, replace features cell with localized features
-  const svc = servicesToCompare[0];
-  if (countryCode !== "WW") {
-    const root = document.querySelector('#comparison-table-wrapper');
-    const cell = root && root.querySelector(`.feature-row.features .feature-value[data-service="${svc.name.toLowerCase()}"]`);
-    if (cell) {
-      cell.innerHTML = renderFeatures(svc);
+  // Only adjust baked single-service pages for localization; 2-up compare pages remain static
+  if (isSingleServiceView) {
+    const svc = servicesToCompare[0];
+    if (countryCode !== "WW") {
+      const root = document.querySelector('#comparison-table-wrapper');
+      const cell = root && root.querySelector(`.feature-row.features .feature-value[data-service="${svc.name.toLowerCase()}"]`);
+      if (cell) {
+        cell.innerHTML = renderFeatures(svc);
+      }
     }
   }
 }
