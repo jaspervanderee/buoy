@@ -140,6 +140,52 @@ function renderFeaturesWWCell(service) {
   }).join("");
 }
 
+// Build Product JSON-LD with positiveNotes/negativeNotes from visible Features bullets
+function sanitizeBulletText(text) {
+  const s = String(text || "").replace(/\s+/g, " ").trim();
+  return s.length > 160 ? s.slice(0, 160) : s;
+}
+
+function buildProductJsonLd(service, categoryLabel) {
+  if (!service || !service.name) return null;
+  const ww = (service.features && service.features.WW) || [];
+
+  function toItemList(wantPositive) {
+    const seen = new Set();
+    const items = [];
+    for (const feature of ww) {
+      if (!feature) continue;
+      const isPositive = feature.status === 'positive';
+      if (wantPositive ? !isPositive : isPositive) continue;
+      const clean = sanitizeBulletText(feature.text);
+      if (!clean) continue;
+      const key = clean.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      items.push(clean);
+      if (items.length === 6) break; // cap at 6 items
+    }
+    if (items.length === 0) return null;
+    return {
+      "@type": "ItemList",
+      itemListElement: items.map((name, index) => ({ "@type": "ListItem", position: index + 1, name }))
+    };
+  }
+
+  const product = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: service.name,
+    brand: { "@type": "Brand", name: service.name },
+    category: categoryLabel
+  };
+  const pos = toItemList(true);
+  const neg = toItemList(false);
+  if (pos) product.positiveNotes = pos;
+  if (neg) product.negativeNotes = neg;
+  return product;
+}
+
 function renderFeesCell(fees) {
   if (!fees) return "N/A";
   if (typeof fees === "string") {
@@ -452,6 +498,10 @@ async function htmlForPair(a, b, categoryLabel, updated) {
     }))
   } : null;
 
+  // Build Product JSON-LD blocks (one per service) using visible Features bullets
+  const productLdA = buildProductJsonLd(a, categoryLabel);
+  const productLdB = buildProductJsonLd(b, categoryLabel);
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -490,6 +540,8 @@ async function htmlForPair(a, b, categoryLabel, updated) {
   })}</script>
   <script type="application/ld+json">${JSON.stringify(breadcrumbLd)}</script>
   ${faqLd ? `<script type="application/ld+json">${JSON.stringify(faqLd)}</script>` : ""}
+  ${productLdA ? `<script type="application/ld+json">${JSON.stringify(productLdA)}</script>` : ""}
+  ${productLdB ? `<script type="application/ld+json">${JSON.stringify(productLdB)}</script>` : ""}
 </head>
 <body data-url-mutate="off">
   <div class="container">
