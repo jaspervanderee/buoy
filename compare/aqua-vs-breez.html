@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
   <script defer src="https://feedback.fish/ff.js?pid=17f299e6843396" crossorigin="anonymous"></script>
   <script defer src="https://cloud.umami.is/script.js" data-website-id="0895676a-bb0e-488d-9381-a27cf9cf5888"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Aqua vs Breez — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/compare/aqua-vs-breez.html","description":"Compare Aqua and Breez (Spend Bitcoin): fees, custody, features, and more.","dateModified":"2025-09-29T18:45:37.989Z","about":[{"@type":"Organization","name":"Aqua","url":"https://aqua.net"},{"@type":"Organization","name":"Breez","url":"https://breez.technology"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Aqua vs Breez — Which is better? | Buoy Bitcoin","url":"https://buoybitcoin.com/compare/aqua-vs-breez.html","description":"Compare Aqua and Breez (Spend Bitcoin): fees, custody, features, and more.","dateModified":"2025-09-30T15:52:19.198Z","about":[{"@type":"Organization","name":"Aqua","url":"https://aqua.net"},{"@type":"Organization","name":"Breez","url":"https://breez.technology"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/spend-bitcoin.html","name":"Spend Bitcoin"}},{"@type":"ListItem","position":3,"item":{"@type":"WebPage","@id":"https://buoybitcoin.com/compare/aqua-vs-breez.html","name":"Aqua vs Breez"}}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Aqua a Lightning wallet?","acceptedAnswer":{"@type":"Answer","text":"Aqua is a non-custodial wallet focused on Bitcoin and Liquid. Lightning payments are supported via non-custodial Boltz swaps rather than native channels. That enables Liquid features and privacy benefits, with Lightning executed through swap transactions instead of on-device channel management."}},{"@type":"Question","name":"Is Breez custodial?","acceptedAnswer":{"@type":"Answer","text":"No. Breez is a self-custodial Lightning wallet. It automates channel management behind the scenes and uses a cloud backup to restore wallet and Lightning state. Some users appreciate the convenience; funds remain in your control with seed-based recovery and automated infrastructure support."}},{"@type":"Question","name":"Which has lower fees for small payments?","acceptedAnswer":{"@type":"Answer","text":"For pure Lightning, Breez’s native LN avoids swap steps. Aqua’s Lightning sends use Boltz swaps, which can add swap and on-chain components at times. Actual costs vary with network conditions and usage. Compare features, custody model, and recovery approach in the table."}}]}</script>
 </head>
@@ -101,7 +101,7 @@
  <main>
   <div class="category-header category-header--vs">
     <h1 id="page-title">Aqua vs Breez</h1>
-    <div class="page-updated" data-updated="2025-09-29T18:45:37.989Z">Updated: September 2025</div>
+    <div class="page-updated" data-updated="2025-09-30T15:52:19.198Z">Updated: September 2025</div>
     
 <div class="breadcrumb-back"><a href="/spend-bitcoin.html">< Back to Spend Bitcoin</a></div>
     
@@ -138,7 +138,7 @@
   <div id="comparison-table-wrapper">
     <table class="comparison-table"><tbody>
       
-      <tr class="feature-row type_of_platform">
+      <tr class="feature-row type_of_platform" id="type-of-platform" tabindex="-1">
         <td><div class="feature-label">Platform</div></td>
         <td>
           <div class="feature-values">
@@ -149,7 +149,7 @@
       </tr>
     
 
-      <tr class="feature-row supported_network">
+      <tr class="feature-row supported_network" id="supported-network" tabindex="-1">
         <td><div class="feature-label sublabel">Supported Networks</div></td>
         <td>
           <div class="feature-values">
@@ -160,7 +160,7 @@
       </tr>
     
 
-      <tr class="feature-row features">
+      <tr class="feature-row features" id="features" tabindex="-1">
         <td><div class="feature-label sublabel">Features</div></td>
         <td>
           <div class="feature-values">
@@ -171,7 +171,7 @@
       </tr>
     
 
-      <tr class="feature-row custody_control">
+      <tr class="feature-row custody_control" id="custody-control" tabindex="-1">
         <td><div class="feature-label">Custody &amp; Control</div></td>
         <td>
           <div class="feature-values">
@@ -182,7 +182,7 @@
       </tr>
     
 
-      <tr class="feature-row kyc_required">
+      <tr class="feature-row kyc_required" id="kyc-required" tabindex="-1">
         <td><div class="feature-label sublabel">KYC Required</div></td>
         <td>
           <div class="feature-values">
@@ -193,7 +193,7 @@
       </tr>
     
 
-      <tr class="feature-row recovery_method">
+      <tr class="feature-row recovery_method" id="recovery-method" tabindex="-1">
         <td><div class="feature-label sublabel">Recovery Method</div></td>
         <td>
           <div class="feature-values">
@@ -204,7 +204,7 @@
       </tr>
     
 
-      <tr class="feature-row open_source">
+      <tr class="feature-row open_source" id="open-source" tabindex="-1">
         <td><div class="feature-label sublabel">Open Source</div></td>
         <td>
           <div class="feature-values">
@@ -215,7 +215,7 @@
       </tr>
     
 
-      <tr class="feature-row user_experience">
+      <tr class="feature-row user_experience" id="user-experience" tabindex="-1">
         <td><div class="feature-label">User Experience</div></td>
         <td>
           <div class="feature-values">
@@ -240,7 +240,7 @@
       </tr>
     
 
-      <tr class="feature-row interface">
+      <tr class="feature-row interface" id="interface" tabindex="-1">
         <td><div class="feature-label sublabel">Interface</div></td>
         <td>
           <div class="feature-values">
@@ -251,7 +251,7 @@
       </tr>
     
 
-      <tr class="feature-row app_ratings">
+      <tr class="feature-row app_ratings" id="app-ratings" tabindex="-1">
         <td><div class="feature-label sublabel">App Ratings</div></td>
         <td>
           <div class="feature-values">
@@ -262,7 +262,7 @@
       </tr>
     
 
-      <tr class="feature-row profile">
+      <tr class="feature-row profile" id="profile" tabindex="-1">
         <td>
       <div class="label-container">
         <div class="feature-label">Profile</div>
@@ -278,7 +278,7 @@
       </tr>
     
 
-      <tr class="feature-row description">
+      <tr class="feature-row description" id="description" tabindex="-1">
         <td><div class="feature-label sublabel">Company description</div></td>
         <td>
           <div class="feature-values">
@@ -313,7 +313,7 @@
       </tr>
     
 
-      <tr class="feature-row founded_in">
+      <tr class="feature-row founded_in" id="founded-in" tabindex="-1">
         <td><div class="feature-label sublabel">Founded in</div></td>
         <td>
           <div class="feature-values">
@@ -324,7 +324,7 @@
       </tr>
     
 
-      <tr class="feature-row website">
+      <tr class="feature-row website" id="website" tabindex="-1">
         <td><div class="feature-label sublabel">Website</div></td>
         <td>
           <div class="feature-values">
@@ -335,7 +335,7 @@
       </tr>
     
 
-      <tr class="feature-row availability">
+      <tr class="feature-row availability" id="availability" tabindex="-1">
         <td><div class="feature-label">Availability</div></td>
         <td>
           <div class="feature-values">

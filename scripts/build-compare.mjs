@@ -212,6 +212,25 @@ function userExperienceCell(service) {
 }
 
 async function renderCompareTableHTML(a, b, category) {
+  // Generate stable, de-duplicated kebab-case ids for each feature row
+  const usedRowIds = new Set();
+  const normalizeId = (input) => String(input || "")
+    .toLowerCase()
+    .trim()
+    .replace(/[ _]+/g, "-")
+    .replace(/[^a-z0-9-]/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  const uniqueId = (base) => {
+    let id = base || "section";
+    let attempt = id;
+    let n = 2;
+    while (usedRowIds.has(attempt)) {
+      attempt = `${id}-${n++}`;
+    }
+    usedRowIds.add(attempt);
+    return attempt;
+  };
   const features = [
     { key: "type_of_platform", label: "Platform" },
     { key: "supported_network", label: "Supported Networks" },
@@ -300,8 +319,10 @@ async function renderCompareTableHTML(a, b, category) {
 
     const leftVal = await valueFor(a);
     const rightVal = await valueFor(b);
+    const baseId = normalizeId(feature.key);
+    const rowId = uniqueId(baseId);
     rows.push(`
-      <tr class="feature-row ${feature.key}">
+      <tr class="feature-row ${feature.key}" id="${rowId}" tabindex="-1">
         <td>${labelCell}</td>
         <td>
           <div class="feature-values">

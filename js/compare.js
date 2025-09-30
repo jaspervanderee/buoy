@@ -481,6 +481,25 @@ document.getElementById("logo-row-container").innerHTML = `
 const allowedKeys = categoryFeaturesMap[categoryTitle] ?? features.map(f => f.key);
 // If table is baked, skip dynamic table generation entirely (still hydrate ratings below)
 if (!hasBaked) {
+  // Stable id generator for dynamic fallback rows
+  const usedRowIds = new Set();
+  const normalizeId = (input) => String(input || "")
+    .toLowerCase()
+    .trim()
+    .replace(/[ _]+/g, '-')
+    .replace(/[^a-z0-9-]/g, '')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  const uniqueId = (base) => {
+    const seed = base || 'section';
+    let attempt = seed;
+    let n = 2;
+    while (usedRowIds.has(attempt)) {
+      attempt = `${seed}-${n++}`;
+    }
+    usedRowIds.add(attempt);
+    return attempt;
+  };
   const featureRows = await Promise.all(
     allowedKeys.map(key => features.find(f => f.key === key))
       .filter(Boolean)
@@ -492,9 +511,9 @@ if (!hasBaked) {
           return `<div class="feature-value" data-service="${service.name.toLowerCase()}">${content}</div>`;
         }));
         const hasVisibleContent = values.some(v => !v.includes(`feature-value"></div>`));
-        const rawLabel = (typeof feature.label === 'object' && feature.label.main) ? feature.label.main : (typeof feature.label === 'string' ? feature.label : '');
-        const anchorId = (isSingleServiceView && rawLabel) ? rawLabel.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
-        const rowIdAttr = anchorId ? ' id="' + anchorId + '"' : '';
+        const baseId = normalizeId(feature.key);
+        const rowId = uniqueId(baseId);
+        const rowIdAttr = ' id="' + rowId + '" tabindex="-1"';
         let labelHtml = '';
         if (typeof feature.label === 'object' && feature.label.main && feature.label.sub) {
           labelHtml = `
@@ -507,12 +526,14 @@ if (!hasBaked) {
           labelHtml = `<div class="feature-label${feature.key === 'features' || feature.key === 'supported_network' || feature.key === 'price' || feature.key === 'subscription_fees' || feature.key === 'conversion_fees' || feature.key === 'settlement_time' || feature.key === 'kyc_required' || feature.key === 'recovery_method' || feature.key === 'open_source' || feature.key === 'node_connect' || feature.key === 'dca' || feature.key === 'pos_compatibility' || feature.key === 'interface' || feature.key === 'app_ratings' || feature.key === 'support' || feature.key === 'founded_in' || feature.key === 'website' || feature.key === 'description' ? ' sublabel' : ''}">${feature.label}</div>`;
         }
         return hasVisibleContent ? `
-          <div class="feature-row ${feature.key}"${rowIdAttr}>
-            ${labelHtml}
-            <div class="feature-values">
-              ${values.join("")}
-            </div>
-          </div>
+          <tr class="feature-row ${feature.key}"${rowIdAttr}>
+            <td>${labelHtml}</td>
+            <td>
+              <div class="feature-values">
+                ${values.join("")}
+              </div>
+            </td>
+          </tr>
         ` : "";
       })
   );
