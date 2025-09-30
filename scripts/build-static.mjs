@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 import { injectAlternatives } from "./lib/alternatives.mjs";
 import { renderTableHTML } from "../shared/renderTable.mjs";
 import { renderFAQBlock, renderFAQJsonLD } from "./lib/faqs.mjs";
+import { ensureRobotsMeta } from "./lib/head.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -81,6 +82,8 @@ const between = (str, start, end) => {
     html = setProp(html, "og:description", desc);
     html = setMeta(html, "twitter:title", title);
     html = setMeta(html, "twitter:description", desc);
+    // Ensure single, rich robots meta for indexable service pages
+    html = ensureRobotsMeta(html, { indexable: true });
 
     // --- Inject a tiny shim so runtime JS knows which service to load ---
 const urlShim = `

@@ -3,6 +3,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
+import { ensureRobotsMeta } from "./lib/head.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -502,7 +503,7 @@ async function htmlForPair(a, b, categoryLabel, updated) {
   const productLdA = buildProductJsonLd(a, categoryLabel);
   const productLdB = buildProductJsonLd(b, categoryLabel);
 
-  return `<!DOCTYPE html>
+  let page = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -515,7 +516,6 @@ async function htmlForPair(a, b, categoryLabel, updated) {
   <meta property="og:title" content="${title}"/>
   <meta property="og:description" content="${desc}"/>
   <meta property="og:image" content="https://buoybitcoin.com/android-chrome-512x512.png"/>
-  <meta name="robots" content="index,follow">
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="${title}"/>
   <meta name="twitter:description" content="${desc}"/>
@@ -693,6 +693,9 @@ ${faqSectionHtml}
   <script src="/js/compare.js"></script>
 </body>
 </html>`;
+  // Ensure single, rich robots meta for indexable compare pages
+  page = ensureRobotsMeta(page, { indexable: true });
+  return page;
 }
 
 (async () => {
