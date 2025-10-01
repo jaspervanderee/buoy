@@ -370,7 +370,7 @@ async function renderCompareTableHTML(a, b, category) {
     const rowId = uniqueId(baseId);
     rows.push(`
       <tr class="feature-row ${feature.key}" id="${rowId}" tabindex="-1">
-        <td>${labelCell}</td>
+        <th scope="row" class="feature-label">${labelCell}</th>
         <td>
           <div class="feature-values">
             <div class="feature-value" data-service="${leftSvcKey}">${leftVal}</div>
@@ -382,7 +382,7 @@ async function renderCompareTableHTML(a, b, category) {
   }
 
   return `
-    <table class="comparison-table"><tbody>
+    <table class="comparison-table"><caption class="sr-only">${escapeHtml(String(a.name))} vs ${escapeHtml(String(b.name))} — full comparison (${escapeHtml(String(category))})</caption><tbody>
       ${rows.join("\n")} 
     </tbody></table>
   `;

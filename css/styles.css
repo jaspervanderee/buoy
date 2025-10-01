@@ -737,6 +737,19 @@ h2 {
   display: inline-block;
   margin: 0 6px 0 0; /* tight spacing before crumb */
 }
+
+/* Screen-reader only utility (alias) */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
 /* RTL support: flip separator direction when parent or element is RTL */
 [dir="rtl"] .breadcrumbs li + li::before,
 .breadcrumbs[dir="rtl"] li + li::before { content: "<"; }
@@ -2456,6 +2469,21 @@ p, li, a {
   border: 0;
   background: transparent;
   padding: 0; /* spacing handled by inner elements */
+}
+
+/* Ensure header cells behave like label cells for stacked layout */
+#comparison-table-wrapper table.comparison-table th {
+  display: block;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+/* Prevent double margins/fonts when th also has .feature-label; inner label element carries styles */
+#comparison-table-wrapper table.comparison-table th.feature-label {
+  margin: 0;
+  font-weight: inherit;
+  font-size: inherit;
 }
 
 /* Ensure baked table inner grid matches compare layout */

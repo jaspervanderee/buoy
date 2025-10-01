@@ -527,7 +527,7 @@ if (!hasBaked) {
         }
         return hasVisibleContent ? `
           <tr class="feature-row ${feature.key}"${rowIdAttr}>
-            <td>${labelHtml}</td>
+            <th scope="row" class="feature-label">${labelHtml}</th>
             <td>
               <div class="feature-values">
                 ${values.join("")}
@@ -539,7 +539,7 @@ if (!hasBaked) {
   );
 
   document.getElementById("comparison-table-wrapper").innerHTML = `
-    <table class="comparison-table" aria-label="Comparison table"><tbody>
+    <table class="comparison-table" aria-label="Comparison table"><caption class="sr-only">${(servicesToCompare[0]?.name || '').replace(/&/g, '&amp;')} vs ${(servicesToCompare[1]?.name || '').replace(/&/g, '&amp;')} — full comparison (${(categoryTitle || '').replace(/&/g, '&amp;')})</caption><tbody>
       ${featureRows.join("")}
     </tbody></table>
   `;
