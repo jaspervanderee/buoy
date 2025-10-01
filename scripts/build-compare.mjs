@@ -26,6 +26,90 @@ const CATEGORY_HUBS = {
   "Accept Bitcoin as a merchant": "/accept-bitcoin-as-a-merchant.html"
 };
 
+// Absolute origin for building canonical asset URLs
+const SITE_ORIGIN = "https://buoybitcoin.com";
+
+function toAbsoluteUrl(input) {
+  const url = String(input || "").trim();
+  if (!url) return undefined;
+  if (/^https?:\/\//i.test(url)) return url;
+  if (url.startsWith("/")) return `${SITE_ORIGIN}${url}`;
+  // Treat bare domains/paths as HTTPS
+  return `https://${url}`;
+}
+
+function toAbsolutePath(pathOrUrl) {
+  if (!pathOrUrl) return undefined;
+  const s = String(pathOrUrl);
+  return toAbsoluteUrl(s.startsWith("/") ? s : `/${s}`);
+}
+
+function buildBuoyPublisher() {
+  // Use apple-touch-icon as compact square logo
+  const logo = {
+    "@type": "ImageObject",
+    url: `${SITE_ORIGIN}/apple-touch-icon.png`,
+    width: 112,
+    height: 112
+  };
+  // High-quality, verified profiles surfaced in the UI/footer
+  const sameAsRaw = [
+    "https://x.com/jaspervanderee",
+    "https://github.com/jaspervanderee/buoy",
+    "https://snort.social/p/npub165w944kqt29hrt90l2ssc0rvmhf0u77dgezskknfnczr7r030v0s2g6kae"
+  ];
+  const seen = new Set();
+  const sameAs = sameAsRaw
+    .map(toAbsoluteUrl)
+    .filter(u => !!u && !seen.has(u) && seen.add(u))
+    .slice(0, 6);
+  return {
+    "@type": "Organization",
+    name: "Buoy Bitcoin",
+    url: SITE_ORIGIN,
+    logo,
+    sameAs: sameAs.length ? sameAs : undefined
+  };
+}
+
+function buildServiceOrganizationJsonLd(service) {
+  if (!service || !service.name) return null;
+  const name = service.name;
+  const url = toAbsoluteUrl(service.website);
+  // Prefer explicit logo field when present; otherwise fall back to our known asset path
+  const logoPath = service.logo ? (String(service.logo).startsWith("/") ? service.logo : `/${service.logo}`) : getLogoFilename(name);
+  const logoUrl = toAbsolutePath(logoPath);
+
+  // Collect optional profile links from known keys if present in services.json
+  const candidateKeys = [
+    "twitter", "x", "github", "wikipedia", "wikidata", "linkedin", "facebook",
+    "instagram", "youtube", "app_store", "play_store", "docs", "nostr", "mastodon", "sameAs"
+  ];
+  const rawLinks = [];
+  for (const key of candidateKeys) {
+    const v = service[key];
+    if (!v) continue;
+    if (Array.isArray(v)) rawLinks.push(...v);
+    else rawLinks.push(v);
+  }
+  // Deduplicate and limit to 6
+  const seen = new Set();
+  const sameAs = rawLinks
+    .map(toAbsoluteUrl)
+    .filter(u => !!u && (!url || u !== url))
+    .filter(u => !seen.has(u) && seen.add(u))
+    .slice(0, 6);
+
+  const org = {
+    "@type": "Organization",
+    name
+  };
+  if (url) org.url = url;
+  if (logoUrl) org.logo = { "@type": "ImageObject", url: logoUrl };
+  if (sameAs.length) org.sameAs = sameAs;
+  return org;
+}
+
 const slugify = s => String(s || "")
   .toLowerCase()
   .replace(/&/g, " and ")
@@ -503,6 +587,11 @@ async function htmlForPair(a, b, categoryLabel, updated) {
   const productLdA = buildProductJsonLd(a, categoryLabel);
   const productLdB = buildProductJsonLd(b, categoryLabel);
 
+  // Build enriched Organization JSON-LD for the compared services and publisher
+  const orgA = buildServiceOrganizationJsonLd(a);
+  const orgB = buildServiceOrganizationJsonLd(b);
+  const publisher = buildBuoyPublisher();
+
   let page = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -533,10 +622,8 @@ async function htmlForPair(a, b, categoryLabel, updated) {
     url: canonical,
     description: desc,
     dateModified: updated && updated.iso || undefined,
-    about: [
-      { "@type":"Organization", name: aName, url: a.website || undefined },
-      { "@type":"Organization", name: bName, url: b.website || undefined }
-    ]
+    publisher,
+    about: [orgA, orgB].filter(Boolean)
   })}</script>
   <script type="application/ld+json">${JSON.stringify(breadcrumbLd)}</script>
   ${faqLd ? `<script type="application/ld+json">${JSON.stringify(faqLd)}</script>` : ""}
