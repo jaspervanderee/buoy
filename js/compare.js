@@ -23,8 +23,154 @@ function getLogoFilename(name) {
   return `/images/${name.toLowerCase().replace(/\s+/g, '-')}.svg`;
 }
 
+function slugToServiceName(slug) {
+  if (!slug) return null;
+  return slug
+    .split('-')
+    .map((part) => part ? part.charAt(0).toUpperCase() + part.slice(1) : part)
+    .join(' ');
+}
+
+function normalizeServiceSlug(input) {
+  if (!input) return null;
+  return String(input)
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function deriveCanonicalPairFromPath() {
+  try {
+    const match = window.location.pathname.match(/\/compare\/([^/]+)\.html$/);
+    if (match && match[1]) {
+      const parts = match[1].split('-vs-');
+      if (parts.length === 2) {
+        return {
+          left: slugToServiceName(parts[0]),
+          right: slugToServiceName(parts[1])
+        };
+      }
+    }
+  } catch (_e) {}
+  return { left: null, right: null };
+}
+
+function applyBakedServiceOrder(hasBakedTable, services, canonicalLeft, canonicalRight) {
+  if (!document.body) return;
+  document.body.classList.remove("swap-left-right");
+
+  if (!hasBakedTable || !Array.isArray(services) || services.length !== 2) {
+    return;
+  }
+
+  const desiredOrder = services.map((service) => {
+    const name = service && service.name ? service.name : null;
+    const slugSource = service && (service.slug || service.name) ? (service.slug || service.name) : null;
+    return {
+      serviceKey: name ? name.toLowerCase() : null,
+      slugKey: normalizeServiceSlug(slugSource)
+    };
+  });
+
+  if (desiredOrder.some(entry => !entry.serviceKey && !entry.slugKey)) {
+    return;
+  }
+
+  const canonicalOrder = [canonicalLeft, canonicalRight].map((value) => value ? value.toLowerCase() : null);
+
+  const updateA11yAttributes = (element, index) => {
+    if (!element || !element.dataset) return;
+    const visualPosition = index === 0 ? 'left' : 'right';
+    element.dataset.visualPosition = visualPosition;
+    element.setAttribute('data-column-position', visualPosition);
+
+    if (element instanceof HTMLElement && element.hasAttribute('aria-label')) {
+      const base = element.getAttribute('aria-label') || '';
+      if (/\b(left|right)\b/i.test(base)) {
+        element.setAttribute('aria-label', base.replace(/\b(left|right)\b/gi, visualPosition));
+      }
+    }
+  };
+
+  requestAnimationFrame(() => {
+    try {
+      const parents = new Set();
+
+      const registerParent = (element) => {
+        if (element instanceof Element) {
+          parents.add(element);
+        }
+      };
+
+      const logoContainer = document.getElementById('logo-row-container');
+      registerParent(logoContainer);
+
+      document.querySelectorAll('.logo-row .feature-values').forEach(registerParent);
+      document.querySelectorAll('.logo-row-sticky .feature-values').forEach(registerParent);
+      document.querySelectorAll('#comparison-table-wrapper .feature-values').forEach(registerParent);
+
+      const matchesCanonical = canonicalOrder.length === desiredOrder.length &&
+        canonicalOrder.every((key, index) => key && key === desiredOrder[index].serviceKey);
+
+      parents.forEach((parent) => {
+        if (!parent) return;
+        const childEntries = Array.from(parent.children)
+          .filter((child) => child instanceof Element)
+          .map((child) => {
+            const dataService = (child.getAttribute('data-service') || child.dataset?.service || '').toLowerCase();
+            const slugAttr = child.getAttribute('data-service-slug') || child.dataset?.serviceSlug || '';
+            return {
+              node: child,
+              serviceKey: dataService || null,
+              slugKey: normalizeServiceSlug(slugAttr || dataService)
+            };
+          });
+
+        if (childEntries.length !== desiredOrder.length) return;
+
+        const canMatchAll = desiredOrder.every((target) =>
+          childEntries.some((entry) =>
+            (target.serviceKey && entry.serviceKey === target.serviceKey) ||
+            (target.slugKey && entry.slugKey === target.slugKey)
+          )
+        );
+
+        if (!canMatchAll) return;
+
+        const workingEntries = childEntries.slice();
+
+        desiredOrder.forEach((target, index) => {
+          const matchIndex = workingEntries.findIndex((entry) =>
+            (target.serviceKey && entry.serviceKey === target.serviceKey) ||
+            (target.slugKey && entry.slugKey === target.slugKey)
+          );
+          if (matchIndex >= 0) {
+            const [match] = workingEntries.splice(matchIndex, 1);
+            if (match.node.parentNode === parent) {
+              parent.appendChild(match.node);
+              updateA11yAttributes(match.node, index);
+            }
+          }
+        });
+      });
+
+      if (matchesCanonical && logoContainer) {
+        Array.from(logoContainer.children)
+          .filter((node) => node instanceof Element)
+          .forEach((node, index) => {
+            updateA11yAttributes(node, index);
+          });
+      }
+    } catch (_e) {}
+  });
+}
+
 
 document.addEventListener("DOMContentLoaded", async () => {
+  const canonicalPair = deriveCanonicalPairFromPath();
+  const canonicalLeftName = canonicalPair.left;
+  const canonicalRightName = canonicalPair.right;
   // Defer or disable URL param mutation for compare pages based on body[data-url-mutate]
   try {
     const mode = (document.body && document.body.dataset && document.body.dataset.urlMutate) || 'off';
@@ -37,21 +183,6 @@ document.addEventListener("DOMContentLoaded", async () => {
           if (hasServices && hasCategory) return; // nothing to do
 
           // Derive canonical left/right from path
-          let canonicalLeft = null;
-          let canonicalRight = null;
-          try {
-            const m = window.location.pathname.match(/\/compare\/([^/]+)\.html$/);
-            if (m && m[1]) {
-              const parts = m[1].split('-vs-');
-              if (parts.length === 2) {
-                const toName = (slug) => slug.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' ');
-                // Left/right in URL are alphabetical canonical; map back to names
-                canonicalLeft = toName(parts[0]);
-                canonicalRight = toName(parts[1]);
-              }
-            }
-          } catch(_e) {}
-
           // Determine current visual left/right from H1 if possible
           let leftName = null;
           let rightName = null;
@@ -72,8 +203,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           }
 
           // Canonical guard: only add params if visual order differs from canonical
-          if (leftName && rightName && canonicalLeft && canonicalRight) {
-            const visualMatchesCanonical = (leftName.toLowerCase() === canonicalLeft.toLowerCase() && rightName.toLowerCase() === canonicalRight.toLowerCase());
+          if (leftName && rightName && canonicalLeftName && canonicalRightName) {
+            const visualMatchesCanonical = (leftName.toLowerCase() === canonicalLeftName.toLowerCase() && rightName.toLowerCase() === canonicalRightName.toLowerCase());
             if (!visualMatchesCanonical) {
               if (!hasServices) params.set('services', `${leftName},${rightName}`);
               if (!hasCategory && derivedCategory) params.set('category', derivedCategory);
@@ -467,15 +598,19 @@ function renderFeatures(service) {
 ];
 
 document.getElementById("logo-row-container").innerHTML = `
-  ${servicesToCompare.map(service => `
-    <div class="feature-value logo-cell">
+  ${servicesToCompare.map(service => {
+    const slug = normalizeServiceSlug(service.slug || service.name);
+    return `
+    <div class="feature-value logo-cell" data-service="${(service.name || '').toLowerCase()}"${slug ? ` data-service-slug="${slug}"` : ''}>
       <a href="${service.website}" target="_blank" class="service-link">
         <img src="${getLogoFilename(service.name)}" alt="${service.name} logo" class="svg-icon sticky-logo" />
         <button class="cta-button">visit</button>
       </a>
     </div>
-  `).join("")}
+  `;}).join("")}
 `;
+
+    applyBakedServiceOrder(hasBaked, servicesToCompare, canonicalLeftName, canonicalRightName);
 
 
 const allowedKeys = categoryFeaturesMap[categoryTitle] ?? features.map(f => f.key);
