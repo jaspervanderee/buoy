@@ -23,7 +23,7 @@ const slugify = s =>
 
 const clamp = (s, n=160) => {
   const txt = (s||"").replace(/\s+/g," ").trim();
-  return txt.length <= n ? txt : txt.slice(0, n-1).trimEnd() + "â€¦";
+  return txt.length <= n ? txt : txt.slice(0, n-1).trimEnd() + "…";
 };
 
 const setTag = (html, tag, content) =>
@@ -84,7 +84,7 @@ const between = (str, start, end) => {
   for (const svc of services) {
     const slug = slugify(svc.name);
     const url = `https://buoybitcoin.com/services/${slug}.html`;
-    const title = `${svc.name} â€” Review, fees & features | Buoy Bitcoin`;
+    const title = `${svc.name} — Review, fees & features | Buoy Bitcoin`;
     const desc = clamp(svc.description || `Learn about ${svc.name} on Buoy Bitcoin.`);
 
     let html = baseRaw;
@@ -131,7 +131,7 @@ const urlShim = `
 html = html.replace('</head>', urlShim + '</head>');
 
 
-    // Update H1 (page title) â†’ use service name
+    // Update H1 (page title) → use service name
     html = setPageTitle(html, svc.name);
     html = injectUpdatedChip(html, svc.updated);
 
@@ -244,7 +244,7 @@ html = html.replace('</head>', urlShim + '</head>');
 
         const pushChecklist = (label, value) => {
           if (!value) return;
-          checklist.push(`<li>${label} â€” ${value}</li>`);
+          checklist.push(`<li>${label} — ${value}</li>`);
         };
 
         if (interop.basic) {
@@ -311,7 +311,7 @@ html = html.replace('</head>', urlShim + '</head>');
         const sourceLabel = first.source || "Another wallet";
         flows.push(`
     <div>
-      <h3>From ${sourceLabel} â†’ ${svc.name}</h3>
+      <h3>From ${sourceLabel} → ${svc.name}</h3>
       <ol>${steps.map(step => `<li>${step}</li>`).join("")}</ol>
     </div>`);
         }
@@ -322,7 +322,7 @@ html = html.replace('</head>', urlShim + '</head>');
           const targetLabel = first.target || "Another wallet";
           flows.push(`
     <div>
-      <h3>From ${svc.name} â†’ ${targetLabel}</h3>
+      <h3>From ${svc.name} → ${targetLabel}</h3>
       <ol>${steps.map(step => `<li>${step}</li>`).join("")}</ol>
     </div>`);
         }
