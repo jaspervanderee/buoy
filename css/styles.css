@@ -1141,6 +1141,15 @@ p, li, a {
   background-color: var(--border);
 }
 
+.cta-buttons-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
 
 .service-info {
   display: flex;
@@ -1228,6 +1237,27 @@ p, li, a {
     width: 100px;  /* Larger size for platform icons */
     height: auto;
     vertical-align: middle;
+    margin-bottom: 8px;
+}
+
+.interface-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.founder-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+
+.founder-name {
+  text-align: center;
 }
 
 
@@ -1429,6 +1459,18 @@ p, li, a {
 
 
 /* User Experience Rating Styles */
+.ux-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.ux-rating-wrapper {
+  display: flex;
+  align-items: baseline;
+}
+
 .ux-rating {
   font-family: "Inter", sans-serif;
   font-size: 3em;

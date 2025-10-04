@@ -557,7 +557,7 @@ function renderFeatures(service) {
     label: "Interface",
     render: (val) => {
       if (!val) return "N/A";
-  
+
       const lower = val.toLowerCase();
       let iconSrc = '';
       let altText = '';
@@ -572,12 +572,12 @@ function renderFeatures(service) {
         altText = "Desktop";
       }
       if (iconSrc) {
-        return `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
-          <img src="${iconSrc}" class="platform-icon" alt="${altText}" style="margin-bottom: 8px;" />
+        return `<div class="interface-wrapper">
+          <img src="${iconSrc}" class="platform-icon" alt="${altText}" />
           <span>${val}</span>
         </div>`;
       }
-      return `<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+      return `<div class="interface-wrapper">
         <span>${val}</span>
       </div>`; // fallback if unrecognized
     }
@@ -588,7 +588,7 @@ function renderFeatures(service) {
     render: (val) => {
       if (!val) return "N/A";
       const filename = val.toLowerCase().replace(/\s+/g, "-") + ".jpg";
-      return `<img src="/images/founders/${filename}" alt="${val}" style="width:100px; height:100px; border-radius:50%; display:block; margin:0 auto 10px auto;"> <div style="text-align:center;">${val}</div>`;
+      return `<img src="/images/founders/${filename}" alt="${val}" class="founder-image"> <div class="founder-name">${val}</div>`;
     }
   },
   { key: "description", label: "Company description", render: renderCollapsibleDescription },
@@ -1087,7 +1087,7 @@ function renderCollapsibleDescription(description) {
         <p class="mobile-preview">${mobilePreviewText}</p>
         <p class="desktop-preview">${desktopPreviewText}</p>
       </div>
-      <div class="description-full" style="display: none;">
+      <div class="description-full">
         ${fullText}
       </div>
       <button class="expand-btn" aria-expanded="false">
