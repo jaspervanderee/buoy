@@ -2451,6 +2451,33 @@ p, li, a {
 }
 
 
+/* Trust chips (build-time) */
+.trust-chips {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 24px 0;
+  width: 100%;
+}
+
+.trust-chip {
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 1em;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+@media (min-width: 768px) {
+  .trust-chips {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 32px 0;
+  }
+}
+
 /* Alternatives block (build-time) */
 .alt-block { 
   margin-top: 24px;

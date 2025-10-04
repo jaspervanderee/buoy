@@ -159,12 +159,46 @@ html = html.replace('</head>', urlShim + '</head>');
     try {
       const tableHtml = await renderTableHTML(svc, svc.category);
 
-      const defaultOrder = ["setup", "fees", "privacy", "interop", "migration"];
+      const defaultOrder = ["tldr", "setup", "fees", "privacy", "interop", "migration"];
       const order = Array.isArray(svc.section_order) && svc.section_order.length
         ? svc.section_order.filter((key) => defaultOrder.includes(key))
         : defaultOrder;
 
       const sectionBlocks = [];
+
+      const renderTrustChips = () => {
+        const chips = Array.isArray(svc.trust_chips) ? svc.trust_chips.slice(0, 3) : [];
+        if (!chips.length) return "";
+        const chipItems = chips.map(chip => {
+          if (!chip || !chip.text) return "";
+          return `<div class="trust-chip">${chip.text}</div>`;
+        }).filter(Boolean).join("");
+        if (!chipItems) return "";
+        return `<div class="trust-chips">${chipItems}</div>`;
+      };
+
+      const renderTlDr = () => {
+        const tldr = svc.tl_dr;
+        if (!tldr || typeof tldr !== "object") return "";
+        const items = [];
+        if (tldr.best_for) {
+          items.push(`<p><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> <strong>Best for:</strong> ${tldr.best_for}</p>`);
+        }
+        if (tldr.consider_if) {
+          items.push(`<p><strong>Consider if:</strong> ${tldr.consider_if}</p>`);
+        }
+        if (tldr.not_ideal_when) {
+          items.push(`<p><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> <strong>Not ideal when:</strong> ${tldr.not_ideal_when}</p>`);
+        }
+        if (!items.length) return "";
+        return `
+<section id="tldr" class="service-section">
+  <h2 class="feature-label">TL;DR</h2>
+  <div class="feature-value">
+    ${items.join("\n    ")}
+  </div>
+</section>`;
+      };
 
       const renderSetup = () => {
         const howto = svc.howto;
@@ -338,6 +372,7 @@ html = html.replace('</head>', urlShim + '</head>');
       };
 
       const renderers = {
+        tldr: renderTlDr,
         setup: renderSetup,
         fees: renderFees,
         privacy: renderPrivacy,
@@ -351,6 +386,8 @@ html = html.replace('</head>', urlShim + '</head>');
         const block = renderer();
         if (block) sectionBlocks.push(block);
       }
+
+      const trustChipsHtml = renderTrustChips();
 
       const sectionsHtml = sectionBlocks.length
         ? `<div class="comparison-table">
@@ -393,6 +430,7 @@ ${sectionBlocks.join("\n")}
     ${tableHtml}
   </div>
 </div>
+${trustChipsHtml}
 ${sectionsHtml}`;
 
       const { before, after } = between(html, "<!-- BUILD:START -->", "<!-- BUILD:END -->");

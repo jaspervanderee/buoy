@@ -617,6 +617,11 @@
 		"android": "https://play.google.com/store/apps/details?id=fr.acinq.phoenix.mainnet"
 	},
 	"countries": ["WW"],
+	"trust_chips": [
+		{ "text": "Non-custodial Lightning node on your device" },
+		{ "text": "Automatic channel management" },
+		{ "text": "Connect to your own Bitcoin node" }
+	],
 	"tl_dr": {
 		"best_for": "Mobile-first Lightning payments with self-custody and automated channel care.",
 		"consider_if": "You expect to receive euro Lightning tips without running your own node.",
@@ -648,22 +653,22 @@
 	},
 	"fees_scenarios": [
 		{
-			"scenario": "Paying a â‚¬15 Lightning invoice in a cafÃ©",
+			"scenario": "Paying a €15 Lightning invoice in a café",
 			"expected_range": "0.4% of the amount + 4 sat",
 			"notes": "Outgoing Lightning payments include a fixed 4 sat charge plus 0.4% routing fee."
 		},
 		{
-			"scenario": "First â‚¬30 Lightning receive when no channel exists",
-			"expected_range": "â‰ˆ1,000 sat channel open fee + mining fee",
+			"scenario": "First €30 Lightning receive when no channel exists",
+			"expected_range": "≈1,000 sat channel open fee + mining fee",
 			"notes": "Phoenix opens a channel for you and charges the 1,000 sat creation fee along with the current mining fee."
 		},
 		{
-			"scenario": "Receiving a â‚¬200 payout after your channel fills up",
+			"scenario": "Receiving a €200 payout after your channel fills up",
 			"expected_range": "1% of the amount + mining fee",
 			"notes": "Insufficient inbound liquidity triggers a splice-in with a 1% fee plus mining costs."
 		},
 		{
-			"scenario": "Requesting â‚¬500 inbound liquidity before a Berlin market day",
+			"scenario": "Requesting €500 inbound liquidity before a Berlin market day",
 			"expected_range": "1% of the requested amount + mining fee",
 			"notes": "Phoenix lets you prepay for inbound liquidity; the fee credit covers future splice-ins."
 		},
@@ -673,7 +678,6 @@
 			"notes": "Swap-out transactions use the feerate you choose when sending to an on-chain address."
 		}
 	],
-	"fees_last_checked": "2025-10-04",
 	"privacy_notes": {
 		"data_flows": [
 			"Phoenix cooperates with the ACINQ peer, which currently sees payment destinations and amounts."
