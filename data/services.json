@@ -577,15 +577,17 @@
 	  "founded_in": "2022",
     "website": "https://peachbitcoin.com",
   "countries": ["WW"]
-  },
-	{
+},
+{
 "name": "Phoenix",
    "category": "Spend Bitcoin",
   "type_of_platform":"Hot Wallet",
 	"faqs": [
-	  { "q": "What is Phoenix Wallet?", "a": "Phoenix is a self‑custodial mobile wallet that runs a Lightning node on‑device for fast payments." },
-	  { "q": "Does Phoenix support on‑chain?", "a": "Yes. You can send and receive on‑chain using swaps; channel creation can incur higher on‑chain fees." },
-	  { "q": "Can Phoenix connect to my own node?", "a": "Yes. Phoenix can connect to your own node for improved privacy." }
+	  { "q": "What fees apply when I pay over Lightning?", "a": "Phoenix charges 0.4% plus 4 sat for every Lightning payment you send." },
+	  { "q": "What happens if I lack inbound liquidity when receiving?", "a": "Phoenix may open or splice a channel and charge 1% of the amount plus the mining fee when incoming liquidity is insufficient." },
+	  { "q": "How private are Phoenix payments today?", "a": "ACINQ sees the destination and amount of your payments for now, although privacy upgrades are planned." },
+	  { "q": "How do on-chain deposits work in Phoenix?", "a": "Phoenix gives you a Bitcoin address; after three confirmations the app swaps the funds to Lightning if fees are below your limit." },
+	  { "q": "How can I restore Phoenix after losing my phone?", "a": "Install Phoenix, choose Restore my wallet, enter the 12-word seed, and let channels resync; Android history will not migrate." }
 	],
     "supported_network": "Lightning only, but you can receive and send on-chain using swaps",
     "features": {
@@ -609,8 +611,136 @@
   "profile": "Fabrice Drouin & Pierre-Marie Padiou",
 	  "description": "Phoenix is designed to provide a simple, self-custodial experience for fast, low-cost Lightning transactions directly on mobile devices, emphasizing ease of use for beginners.\\n\\nPhoenix runs a native Lightning node on the user's device, connecting to ACINQ's node for automated channel management, eliminating the need for swaps and reducing fees for direct Lightning payments. Additionally, Phoenix allows connections to a user's own Bitcoin node for enhanced privacy.\\n\\nFor beginners, Phoenix's intuitive UI, low-cost Lightning transactions, and self-custodial design make it ideal for those starting with Bitcoin, though channel size limitations may require occasional fee adjustments for frequent receivers. Compared to Breez's merchant-centric features or Aqua's Liquid-focused versatility, Phoenix excels in delivering a straightforward, cost-effective Lightning experience with robust privacy options.",
     "founded_in": "2019",
-    "website": "https://phoenix.acinq.co",
-  "countries": ["WW"]
+	"website": "https://phoenix.acinq.co",
+	"countries": ["WW"],
+	"tl_dr": {
+		"best_for": "Mobile-first Lightning payments with self-custody and automated channel care.",
+		"consider_if": "You expect to receive euro Lightning tips without running your own node.",
+		"not_ideal_when": "You need desktop access or stronger payment privacy."
+	},
+	"howto": {
+		"title": "Getting started with Phoenix",
+		"steps": [
+			{
+				"title": "Install and secure your wallet",
+				"text": "Install Phoenix from the App Store or Google Play on a phone running iOS 16 or Android 8 or later. Open the app, accept the terms, and let it create the 12-word seed phrase. Write the words on paper, check the order twice, and store the copy away from your device. Enable your phoneâ€™s biometric lock so only you can open Phoenix. Never upload the seed to email, chat apps, or cloud drives.",
+				"image": null,
+				"alt": "Phoenix install and recovery phrase backup"
+			},
+			{
+				"title": "Receive your first sats",
+				"text": "Tap Receive to generate a Lightning invoice. Share the QR code with your payer and keep the app awake until it settles, because the first euro payment may open or splice a channel. If Phoenix warns about high fees, pause and explain that the Bitcoin network is busy before retrying with a smaller amount. After success, review inbound liquidity in the Channels screen.",
+				"image": null,
+				"alt": "Receiving a Lightning payment in Phoenix"
+			},
+			{
+				"title": "Make a payment",
+				"text": "Tap Send when you have a Lightning invoice to pay. Scan or paste it, read the amount and memo, then confirm. Phoenix routes the payment through its peer and shows a success banner once settled. If it hangs pending, keep the phone online because Phoenix will retry automatically. For larger euro invoices, adjust the maximum acceptable fee in Settings > Channel management before sending.",
+				"image": null,
+				"alt": "Sending a Lightning payment from Phoenix"
+			}
+		],
+		"totalTime": null
+	},
+	"fees_scenarios": [
+		{
+			"scenario": "Paying a â‚¬15 Lightning invoice in a cafÃ©",
+			"expected_range": "0.4% of the amount + 4 sat",
+			"notes": "Outgoing Lightning payments include a fixed 4 sat charge plus 0.4% routing fee."
+		},
+		{
+			"scenario": "First â‚¬30 Lightning receive when no channel exists",
+			"expected_range": "â‰ˆ1,000 sat channel open fee + mining fee",
+			"notes": "Phoenix opens a channel for you and charges the 1,000 sat creation fee along with the current mining fee."
+		},
+		{
+			"scenario": "Receiving a â‚¬200 payout after your channel fills up",
+			"expected_range": "1% of the amount + mining fee",
+			"notes": "Insufficient inbound liquidity triggers a splice-in with a 1% fee plus mining costs."
+		},
+		{
+			"scenario": "Requesting â‚¬500 inbound liquidity before a Berlin market day",
+			"expected_range": "1% of the requested amount + mining fee",
+			"notes": "Phoenix lets you prepay for inbound liquidity; the fee credit covers future splice-ins."
+		},
+		{
+			"scenario": "Withdrawing to an exchange through an on-chain swap-out",
+			"expected_range": "User-selected mining fee",
+			"notes": "Swap-out transactions use the feerate you choose when sending to an on-chain address."
+		}
+	],
+	"fees_last_checked": "2025-10-04",
+	"privacy_notes": {
+		"data_flows": [
+			"Phoenix cooperates with the ACINQ peer, which currently sees payment destinations and amounts."
+		],
+		"backups": [
+			"Channel states are encrypted and stored with the ACINQ peer so you can restore using your seed. ",
+			"The 12-word seed lives only on your device; ACINQ cannot recover it if you lose the words. "
+		],
+		"recovery_drill": [
+			"If ACINQ disappears, force close channels via Settings > Danger zone and wait roughly 720 blocks for funds.",
+			"Keep Phoenix installed until all forced-closed funds appear in the Final wallet view before sweeping them. "
+		],
+		"own_node": [
+			"Connect Phoenix to your own Electrum server to reduce third-party trust when monitoring channels. "
+		]
+	},
+	"interop": {
+		"lnurl_pay": "",
+		"lnurl_withdraw": "",
+		"lightning_address": "",
+		"bolt12": "",
+		"splicing": "yes",
+		"coin_control": "",
+		"own_node": "yes",
+		"swaps": [
+			"Swap-in loads confirmed on-chain deposits into Lightning once fees stay below your configured limit. ",
+			"Swap-out lets you send Lightning funds to a Bitcoin address using a feerate you pick. "
+		]
+	},
+	"migration": {
+		"from": [
+			{
+				"source": "Lost phone",
+				"steps": [
+					"Install Phoenix on a new iOS 16+ or Android 8+ device. ",
+					"Choose Restore my wallet, enter the 12-word seed, and wait for channels to resync. ",
+					"Remove Phoenix from the old device once the new install works; never run both simultaneously."
+				]
+			}
+		],
+		"to": [
+			{
+				"target": "On-chain wallet",
+				"steps": [
+					"Use Settings > Close channels for a cooperative close whenever you want funds on-chain. ",
+					"Wait for closing transactions to confirm before sweeping coins into your preferred wallet. ",
+					"Reserve force close for emergencies because it is slow and incurs higher mining fees. "
+				]
+			}
+		]
+	},
+	"anchors": {
+		"setup": "#setup",
+		"fees": "#fees",
+		"privacy": "#privacy",
+		"interop": "#interop",
+		"migration": "#migration",
+		"faq": "#faq"
+	},
+	"schema_flags": {
+		"hasHowTo": true,
+		"hasFAQ": true
+	},
+	"updated": "2025-10-03",
+	"needs_review": [
+		"interop.lnurl_pay",
+		"interop.lnurl_withdraw",
+		"interop.lightning_address",
+		"interop.bolt12",
+		"interop.coin_control"
+	]
   },
   {
 "name": "Pocket",

@@ -23,7 +23,7 @@ const slugify = s =>
 
 const clamp = (s, n=160) => {
   const txt = (s||"").replace(/\s+/g," ").trim();
-  return txt.length <= n ? txt : txt.slice(0, n-1).trimEnd() + "…";
+  return txt.length <= n ? txt : txt.slice(0, n-1).trimEnd() + "â€¦";
 };
 
 const setTag = (html, tag, content) =>
@@ -43,6 +43,22 @@ const setPageTitle = (html, title) =>
     html.replace(/<h1 id="page-title">[\s\S]*?<\/h1>/i, `<h1 id="page-title">${title}</h1>`);
   
   
+
+const updatedFormatter = new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" });
+
+const injectUpdatedChip = (html, isoDate) => {
+  if (!isoDate) return html;
+  const dt = new Date(isoDate);
+  if (Number.isNaN(dt.getTime())) return html;
+  const label = updatedFormatter.format(dt);
+  const chip = `<div class="page-updated" data-updated="${isoDate}">Updated: ${label}</div>`;
+  const categoryHeaderRegex = /(<div class="category-header(?: [^"]+)?">[\s\S]*?<h1 id="page-title">[\s\S]*?<\/h1>)/i;
+  if (!categoryHeaderRegex.test(html)) return html;
+  return html.replace(categoryHeaderRegex, (match) => {
+    if (match.includes("page-updated")) return match;
+    return `${match}\n${chip}`;
+  });
+};
 
 const between = (str, start, end) => {
   const a = str.indexOf(start);
@@ -68,10 +84,14 @@ const between = (str, start, end) => {
   for (const svc of services) {
     const slug = slugify(svc.name);
     const url = `https://buoybitcoin.com/services/${slug}.html`;
-    const title = `${svc.name} — Review, fees & features | Buoy Bitcoin`;
+    const title = `${svc.name} â€” Review, fees & features | Buoy Bitcoin`;
     const desc = clamp(svc.description || `Learn about ${svc.name} on Buoy Bitcoin.`);
 
     let html = baseRaw;
+
+    if (html.includes('<div class="category-header">')) {
+      html = html.replace('<div class="category-header">', '<div class="category-header category-header--vs">');
+    }
 
     // Update head
     html = setTag(html, "title", title);
@@ -111,8 +131,9 @@ const urlShim = `
 html = html.replace('</head>', urlShim + '</head>');
 
 
-    // Update H1 (page title) → use service name
+    // Update H1 (page title) â†’ use service name
     html = setPageTitle(html, svc.name);
+    html = injectUpdatedChip(html, svc.updated);
 
     // Inject Breadcrumb (back link + full trail) under the category header
     try {
@@ -127,7 +148,7 @@ html = html.replace('</head>', urlShim + '</head>');
       const categoryPath = categoryUrlMap.get(categoryName) || "/";
       const breadcrumbBack = `\n<div class=\"breadcrumb-back\"><a href=\"${categoryPath}\">< Back to ${categoryName}</a></div>`;
       const breadcrumbHtml = `\n<nav class=\"breadcrumbs\" aria-label=\"Breadcrumb\">\n  <ol>\n    <li><a href=\"/\">Home</a></li>\n    <li><a href=\"${categoryPath}\">${categoryName}</a></li>\n    <li><span aria-current=\"page\">${svc.name}</span></li>\n  </ol>\n</nav>`;
-      html = html.replace(/<div class=\"category-header\">[\s\S]*?<\/div>/i, (m) => `${m}${breadcrumbBack}${breadcrumbHtml}`);
+      html = html.replace(/<div class=\"category-header(?: [^\"]+)?\">[\s\S]*?<\/div>/i, (m) => `${m}${breadcrumbBack}${breadcrumbHtml}`);
     } catch (_) {
       // fail-safe: skip breadcrumb injection on error
     }
@@ -137,6 +158,206 @@ html = html.replace('</head>', urlShim + '</head>');
     // <!-- BUILD:START --> ... #comparison-container ... <!-- BUILD:END -->
     try {
       const tableHtml = await renderTableHTML(svc, svc.category);
+
+      const defaultOrder = ["setup", "fees", "privacy", "interop", "migration"];
+      const order = Array.isArray(svc.section_order) && svc.section_order.length
+        ? svc.section_order.filter((key) => defaultOrder.includes(key))
+        : defaultOrder;
+
+      const sectionBlocks = [];
+
+      const renderSetup = () => {
+        const howto = svc.howto;
+        if (!howto || !Array.isArray(howto.steps) || howto.steps.length === 0) return "";
+        const steps = howto.steps.map((step) => {
+          const title = step.title ? `<h3>${step.title}</h3>` : "";
+          let image = "";
+          if (step.image && typeof step.image === "string" && step.image.trim()) {
+            image = `<img src="${step.image}" alt="${step.alt || ""}">`;
+          }
+          const text = step.text ? `<p>${step.text}</p>` : "";
+          return `<li>${title}${image}${text}</li>`;
+        }).join("");
+        return `
+<section id="setup" class="service-section">
+  <h2 class="feature-label">Getting started</h2>
+  <div class="feature-value">
+    <ol>${steps}</ol>
+  </div>
+</section>`;
+      };
+
+      const renderFees = () => {
+        const scenarios = Array.isArray(svc.fees_scenarios) ? svc.fees_scenarios : [];
+        if (!scenarios.length) return "";
+        const rows = scenarios.map((row) => {
+          const scenario = row.scenario || "";
+          const cost = row.expected_range || "";
+          const notes = row.notes || "";
+          return `<tr><td>${scenario}</td><td>${cost}</td><td>${notes}</td></tr>`;
+        }).join("");
+        return `
+<section id="fees" class="service-section">
+  <h2 class="feature-label">Fees</h2>
+  <div class="feature-value">
+    <table>
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>What you pay</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>
+</section>`;
+      };
+
+      const renderPrivacy = () => {
+        const notes = svc.privacy_notes || {};
+        const bullets = [];
+        const addList = (items) => {
+          if (!Array.isArray(items)) return;
+          for (const item of items) {
+            if (item) bullets.push(`<li>${item}</li>`);
+          }
+        };
+        addList(notes.data_flows);
+        addList(notes.backups);
+        addList(notes.recovery_drill);
+        addList(notes.own_node);
+        if (!bullets.length) return "";
+        return `
+<section id="privacy" class="service-section">
+  <h2 class="feature-label">Privacy &amp; Recovery</h2>
+  <div class="feature-value">
+    <ul>${bullets.join("")}</ul>
+  </div>
+</section>`;
+      };
+
+      const renderInterop = () => {
+        const interop = svc.interop || {};
+        const checklist = [];
+        const advancedRows = [];
+
+        const pushChecklist = (label, value) => {
+          if (!value) return;
+          checklist.push(`<li>${label} â€” ${value}</li>`);
+        };
+
+        if (interop.basic) {
+          const basicItems = Array.isArray(interop.basic) ? interop.basic : [];
+          for (const item of basicItems) {
+            if (item && item.label && item.value) {
+              pushChecklist(item.label, item.value);
+            }
+          }
+        }
+
+        const addRow = (feature, status, notes) => {
+          advancedRows.push(`<tr><td>${feature}</td><td>${status || ""}</td><td>${notes || ""}</td></tr>`);
+        };
+
+        if (interop.matrix) {
+          const matrixItems = Array.isArray(interop.matrix) ? interop.matrix : [];
+          for (const item of matrixItems) {
+            if (!item || !item.feature) continue;
+            addRow(item.feature, item.status, item.notes);
+          }
+        }
+
+        const hasData = checklist.length || advancedRows.length;
+        const hasInteropNeedsReview = Array.isArray(svc.needs_review) && svc.needs_review.some((key) => key.startsWith("interop"));
+
+        if (!hasData && !hasInteropNeedsReview) return "";
+
+        const checklistHtml = checklist.length ? `<ul>${checklist.join("")}</ul>` : "";
+        const advancedHtml = advancedRows.length ? `
+    <details>
+      <summary>Advanced</summary>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Status</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>${advancedRows.join("")}</tbody>
+      </table>
+    </details>` : "";
+        const needsReviewComment = hasInteropNeedsReview ? "\n    <!-- TODO: needs_review: interop -->" : "";
+
+        return `
+<section id="interop" class="service-section">
+  <h2 class="feature-label">Interoperability</h2>
+  <div class="feature-value">
+    ${checklistHtml || advancedHtml ? `${checklistHtml}${advancedHtml}` : ""}${needsReviewComment}
+  </div>
+</section>`;
+      };
+
+      const renderMigration = () => {
+        const migration = svc.migration || {};
+        const fromItems = Array.isArray(migration.from) ? migration.from : [];
+        const toItems = Array.isArray(migration.to) ? migration.to : [];
+        const flows = [];
+
+        if (fromItems.length) {
+          const first = fromItems[0];
+          const steps = Array.isArray(first.steps) ? first.steps : [];
+        const sourceLabel = first.source || "Another wallet";
+        flows.push(`
+    <div>
+      <h3>From ${sourceLabel} â†’ ${svc.name}</h3>
+      <ol>${steps.map(step => `<li>${step}</li>`).join("")}</ol>
+    </div>`);
+        }
+
+        if (toItems.length) {
+          const first = toItems[0];
+          const steps = Array.isArray(first.steps) ? first.steps : [];
+          const targetLabel = first.target || "Another wallet";
+          flows.push(`
+    <div>
+      <h3>From ${svc.name} â†’ ${targetLabel}</h3>
+      <ol>${steps.map(step => `<li>${step}</li>`).join("")}</ol>
+    </div>`);
+        }
+
+        if (!flows.length) return "";
+        return `
+<section id="migration" class="service-section">
+  <h2 class="feature-label">Migration</h2>
+  <div class="feature-value">
+    ${flows.join("\n")}
+  </div>
+</section>`;
+      };
+
+      const renderers = {
+        setup: renderSetup,
+        fees: renderFees,
+        privacy: renderPrivacy,
+        interop: renderInterop,
+        migration: renderMigration,
+      };
+
+      for (const key of order) {
+        const renderer = renderers[key];
+        if (!renderer) continue;
+        const block = renderer();
+        if (block) sectionBlocks.push(block);
+      }
+
+      const sectionsHtml = sectionBlocks.length
+        ? `<div class="comparison-table">
+${sectionBlocks.join("\n")}
+</div>`
+        : "";
+
       const bakedBlock = `
 <div id="comparison-container">
   <div class="logo-row-sticky">
@@ -145,7 +366,9 @@ html = html.replace('</head>', urlShim + '</head>');
   <div id="comparison-table-wrapper">
     ${tableHtml}
   </div>
-</div>`;
+</div>
+${sectionsHtml}`;
+
       const { before, after } = between(html, "<!-- BUILD:START -->", "<!-- BUILD:END -->");
       html = `${before}\n${bakedBlock}\n${after}`;
     } catch (e) {
@@ -242,8 +465,11 @@ html = html.replace('</head>', urlShim + '</head>');
 
     // Inject FAQ block (HTML + JSON-LD) right after baked table and before alternatives
     try {
-      const faqHtml = renderFAQBlock(svc);
-      const faqJson = renderFAQJsonLD(svc);
+      const svcForFaq = Array.isArray(svc.faq)
+        ? { ...svc, faq: svc.faq.slice(0, 5) }
+        : svc;
+      const faqHtml = renderFAQBlock(svcForFaq);
+      const faqJson = renderFAQJsonLD(svcForFaq);
       const faqBundle = faqHtml ? `${faqHtml}\n${faqJson}` : '';
       html = html.replace("<!-- FAQ_BLOCK -->", faqBundle);
     } catch (e) {
