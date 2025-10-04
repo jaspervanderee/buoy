@@ -612,6 +612,10 @@
 	  "description": "Phoenix is designed to provide a simple, self-custodial experience for fast, low-cost Lightning transactions directly on mobile devices, emphasizing ease of use for beginners.\\n\\nPhoenix runs a native Lightning node on the user's device, connecting to ACINQ's node for automated channel management, eliminating the need for swaps and reducing fees for direct Lightning payments. Additionally, Phoenix allows connections to a user's own Bitcoin node for enhanced privacy.\\n\\nFor beginners, Phoenix's intuitive UI, low-cost Lightning transactions, and self-custodial design make it ideal for those starting with Bitcoin, though channel size limitations may require occasional fee adjustments for frequent receivers. Compared to Breez's merchant-centric features or Aqua's Liquid-focused versatility, Phoenix excels in delivering a straightforward, cost-effective Lightning experience with robust privacy options.",
     "founded_in": "2019",
 	"website": "https://phoenix.acinq.co",
+	"links": {
+		"ios": "https://apps.apple.com/app/phoenix-wallet/id1544097028",
+		"android": "https://play.google.com/store/apps/details?id=fr.acinq.phoenix.mainnet"
+	},
 	"countries": ["WW"],
 	"tl_dr": {
 		"best_for": "Mobile-first Lightning payments with self-custody and automated channel care.",

@@ -358,10 +358,36 @@ ${sectionBlocks.join("\n")}
 </div>`
         : "";
 
+      // Build CTA buttons for Phoenix only
+      let ctaButtonsHtml = '';
+      if (slug === 'phoenix' && svc.links) {
+        const buttons = [];
+        
+        if (svc.links.ios && svc.links.android) {
+          // Both iOS and Android available
+          buttons.push(`<a href="${svc.links.ios}" target="_blank" rel="noopener" class="cta-button" data-variant="ios">iPhone</a>`);
+          buttons.push(`<a href="${svc.links.android}" target="_blank" rel="noopener" class="cta-button" data-variant="android">Android</a>`);
+        } else if (svc.links.ios) {
+          // iOS only
+          buttons.push(`<a href="${svc.links.ios}" target="_blank" rel="noopener" class="cta-button" data-variant="ios">iPhone</a>`);
+        } else if (svc.links.android) {
+          // Android only
+          buttons.push(`<a href="${svc.links.android}" target="_blank" rel="noopener" class="cta-button" data-variant="android">Android</a>`);
+        } else if (svc.links.desktop) {
+          // Desktop fallback
+          buttons.push(`<a href="${svc.links.desktop}" target="_blank" rel="noopener" class="cta-button" data-variant="desktop">Download desktop</a>`);
+        }
+        
+        if (buttons.length > 0) {
+          ctaButtonsHtml = `\n    <div class="cta-buttons-wrapper">${buttons.join('')}</div>`;
+        }
+      }
+
       const bakedBlock = `
 <div id="comparison-container">
   <div class="logo-row-sticky">
-    <div class="feature-values logo-row" id="logo-row-container"></div>
+    <div class="feature-values logo-row" id="logo-row-container">${ctaButtonsHtml}
+    </div>
   </div>
   <div id="comparison-table-wrapper">
     ${tableHtml}
