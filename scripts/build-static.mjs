@@ -46,6 +46,28 @@ const setPageTitle = (html, title) =>
 
 const updatedFormatter = new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" });
 
+// Universal content detection helper
+const hasContent = (value) => {
+  if (value == null) return false;
+  
+  // String: check if non-empty after trim
+  if (typeof value === 'string') {
+    return value.trim().length > 0;
+  }
+  
+  // Array: check if at least one item has content
+  if (Array.isArray(value)) {
+    return value.some(item => hasContent(item));
+  }
+  
+  // Object: check if at least one property has content
+  if (typeof value === 'object') {
+    return Object.values(value).some(prop => hasContent(prop));
+  }
+  
+  return false;
+};
+
 const injectUpdatedChip = (html, isoDate) => {
   if (!isoDate) return html;
   const dt = new Date(isoDate);
@@ -222,25 +244,16 @@ html = html.replace('</head>', urlShim + '</head>');
       };
 
       const renderFees = () => {
-        let scenarios = Array.isArray(svc.fees_scenarios) ? svc.fees_scenarios : [];
-        if (!scenarios.length) return "";
+        const scenarios = Array.isArray(svc.fees_scenarios) ? svc.fees_scenarios : [];
+        
+        // Take first 3 scenarios with content, regardless of service name
+        const validScenarios = scenarios
+          .filter(s => s && (hasContent(s.scenario) || hasContent(s.expected_range) || hasContent(s.notes)))
+          .slice(0, 3);
+        
+        if (!validScenarios.length) return "";
 
-        // Phoenix-specific: filter to exactly 3 scenarios by matching text
-        if (svc.name === "Phoenix") {
-          const phoenixScenarios = [
-            "Paying a €15 Lightning invoice in a café",
-            "First €30 Lightning receive when no channel exists",
-            "Receiving a €200 payout after your channel fills up"
-          ];
-          scenarios = scenarios.filter(s => phoenixScenarios.includes(s.scenario));
-        } else {
-          // For other services, take first 3 scenarios
-          scenarios = scenarios.slice(0, 3);
-        }
-
-        if (!scenarios.length) return "";
-
-        const blocks = scenarios.map((row, idx) => {
+        const blocks = validScenarios.map((row, idx) => {
           const scenario = row.scenario || "";
           const cost = row.expected_range || "";
           const notes = row.notes || "";
@@ -261,24 +274,82 @@ ${blocks}
 
       const renderPrivacy = () => {
         const notes = svc.privacy_notes || {};
-        const bullets = [];
-        const addList = (items) => {
-          if (!Array.isArray(items)) return;
-          for (const item of items) {
-            if (item) bullets.push(`<li>${item}</li>`);
-          }
-        };
-        addList(notes.data_flows);
-        addList(notes.backups);
-        addList(notes.recovery_drill);
-        addList(notes.own_node);
-        if (!bullets.length) return "";
+        
+        // Card 1: Data flows (data_flows + own_node)
+        const dataFlowsItems = [];
+        if (Array.isArray(notes.data_flows)) {
+          dataFlowsItems.push(...notes.data_flows.filter(item => hasContent(item)));
+        }
+        if (Array.isArray(notes.own_node)) {
+          dataFlowsItems.push(...notes.own_node.filter(item => hasContent(item)));
+        }
+        
+        // Card 2: Recovery plan (backups + recovery_drill)
+        const recoveryItems = [];
+        if (Array.isArray(notes.backups)) {
+          recoveryItems.push(...notes.backups.filter(item => hasContent(item)));
+        }
+        if (Array.isArray(notes.recovery_drill)) {
+          recoveryItems.push(...notes.recovery_drill.filter(item => hasContent(item)));
+        }
+        
+        // Card 3: Country caveats (country_caveats or fallback)
+        let countryItems = [];
+        if (hasContent(notes.country_caveats)) {
+          countryItems = notes.country_caveats.filter(item => hasContent(item));
+        }
+        
+        // Apply fallback only if country_caveats is missing or truly empty
+        const useCountryFallback = countryItems.length === 0;
+        if (useCountryFallback) {
+          countryItems = [
+            "Availability and funding options vary by region; confirm in your app store/on-ramp.",
+            "Install only from the official publisher; verify the developer name."
+          ];
+        }
+        
+        const cards = [];
+        
+        // Render Data flows card only if it has content
+        if (dataFlowsItems.length > 0) {
+          const bullets = dataFlowsItems.map(item => `<li>${item}</li>`).join("");
+          cards.push(`  <div id="privacy-data">
+    <div class="feature-label sublabel">Data flows</div>
+    <div class="feature-value">
+      <ul>${bullets}</ul>
+    </div>
+  </div>`);
+        }
+        
+        // Render Recovery plan card only if it has content
+        if (recoveryItems.length > 0) {
+          const bullets = recoveryItems.map(item => `<li>${item}</li>`).join("");
+          cards.push(`  <div id="privacy-recovery">
+    <div class="feature-label sublabel">Recovery plan</div>
+    <div class="feature-value">
+      <ul>${bullets}</ul>
+    </div>
+  </div>`);
+        }
+        
+        // Render Country caveats card (always has content via fallback)
+        if (countryItems.length > 0) {
+          const bullets = countryItems.map(item => `<li>${item}</li>`).join("");
+          cards.push(`  <div id="privacy-region">
+    <div class="feature-label sublabel">Country caveats</div>
+    <div class="feature-value">
+      <ul>${bullets}</ul>
+    </div>
+  </div>`);
+        }
+        
+        // Skip entire section only if no cards at all
+        if (cards.length === 0) return "";
+        
         return `
 <section id="privacy" class="service-section">
-  <h2 class="feature-label">Privacy &amp; Recovery</h2>
-  <div class="feature-value">
-    <ul>${bullets.join("")}</ul>
-  </div>
+  <h2 class="feature-label">Privacy &amp; Safety</h2>
+${cards.join("\n")}
 </section>`;
       };
 

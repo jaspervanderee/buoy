@@ -340,7 +340,7 @@
 <section id="setup" class="service-section">
   <h2 class="feature-label">Getting started</h2>
   <div class="feature-value">
-    <ol><li><h3>Install and secure your wallet</h3><p>Install Phoenix from the App Store or Google Play on a phone running iOS 16 or Android 8 or later. Open the app, accept the terms, and let it create the 12-word seed phrase. Write the words on paper, check the order twice, and store the copy away from your device. Enable your phoneâ€™s biometric lock so only you can open Phoenix. Never upload the seed to email, chat apps, or cloud drives.</p></li><li><h3>Receive your first sats</h3><p>Tap Receive to generate a Lightning invoice. Share the QR code with your payer and keep the app awake until it settles, because the first euro payment may open or splice a channel. If Phoenix warns about high fees, pause and explain that the Bitcoin network is busy before retrying with a smaller amount. After success, review inbound liquidity in the Channels screen.</p></li><li><h3>Make a payment</h3><p>Tap Send when you have a Lightning invoice to pay. Scan or paste it, read the amount and memo, then confirm. Phoenix routes the payment through its peer and shows a success banner once settled. If it hangs pending, keep the phone online because Phoenix will retry automatically. For larger euro invoices, adjust the maximum acceptable fee in Settings > Channel management before sending.</p></li></ol>
+    <ol><li><h3>1. Install and secure your wallet</h3><p>Install Phoenix from the App Store or Google Play on a phone running iOS 16 or Android 8 or later. Open the app, accept the terms, and let it create the 12-word seed phrase. Write the words on paper, check the order twice, and store the copy away from your device. Enable your phoneâ€™s biometric lock so only you can open Phoenix. Never upload the seed to email, chat apps, or cloud drives.</p></li><li><h3>2. Receive your first sats</h3><p>Tap Receive to generate a Lightning invoice. Share the QR code with your payer and keep the app awake until it settles, because the first euro payment may open or splice a channel. If Phoenix warns about high fees, pause and explain that the Bitcoin network is busy before retrying with a smaller amount. After success, review inbound liquidity in the Channels screen.</p></li><li><h3>3. Make a payment</h3><p>Tap Send when you have a Lightning invoice to pay. Scan or paste it, read the amount and memo, then confirm. Phoenix routes the payment through its peer and shows a success banner once settled. If it hangs pending, keep the phone online because Phoenix will retry automatically. For larger euro invoices, adjust the maximum acceptable fee in Settings > Channel management before sending.</p></li></ol>
   </div>
 </section>
 
@@ -348,28 +348,43 @@
   <h2 class="feature-label">Fees</h2>
   <div class="feature-label sublabel">Scenario 1</div>
   <div class="feature-value">
-    <h3>Paying a €15 Lightning invoice in a café</h3>
+    <h3>Paying a $15 Lightning invoice in a café</h3>
     <p><strong>0.4% of the amount + 4 sat</strong></p>
     <p>Outgoing Lightning payments include a fixed 4 sat charge plus 0.4% routing fee.</p>
   </div>
   <div class="feature-label sublabel">Scenario 2</div>
   <div class="feature-value">
-    <h3>First €30 Lightning receive when no channel exists</h3>
+    <h3>First $30 Lightning receive when no channel exists</h3>
     <p><strong>≈1,000 sat channel open fee + mining fee</strong></p>
     <p>Phoenix opens a channel for you and charges the 1,000 sat creation fee along with the current mining fee.</p>
   </div>
   <div class="feature-label sublabel">Scenario 3</div>
   <div class="feature-value">
-    <h3>Receiving a €200 payout after your channel fills up</h3>
+    <h3>Receiving a $200 payout after your channel fills up</h3>
     <p><strong>1% of the amount + mining fee</strong></p>
     <p>Insufficient inbound liquidity triggers a splice-in with a 1% fee plus mining costs.</p>
   </div>
 </section>
 
 <section id="privacy" class="service-section">
-  <h2 class="feature-label">Privacy &amp; Recovery</h2>
-  <div class="feature-value">
-    <ul><li>Phoenix cooperates with the ACINQ peer, which currently sees payment destinations and amounts.</li><li>Channel states are encrypted and stored with the ACINQ peer so you can restore using your seed. </li><li>The 12-word seed lives only on your device; ACINQ cannot recover it if you lose the words. </li><li>If ACINQ disappears, force close channels via Settings > Danger zone and wait roughly 720 blocks for funds.</li><li>Keep Phoenix installed until all forced-closed funds appear in the Final wallet view before sweeping them. </li><li>Connect Phoenix to your own Electrum server to reduce third-party trust when monitoring channels. </li></ul>
+  <h2 class="feature-label">Privacy &amp; Safety</h2>
+  <div id="privacy-data">
+    <div class="feature-label sublabel">Data flows</div>
+    <div class="feature-value">
+      <ul><li>Phoenix cooperates with the ACINQ peer, which currently sees payment destinations and amounts.</li><li>Connect Phoenix to your own Electrum server to reduce third-party trust when monitoring channels. </li></ul>
+    </div>
+  </div>
+  <div id="privacy-recovery">
+    <div class="feature-label sublabel">Recovery plan</div>
+    <div class="feature-value">
+      <ul><li>Channel states are encrypted and stored with the ACINQ peer so you can restore using your seed. </li><li>The 12-word seed lives only on your device; ACINQ cannot recover it if you lose the words. </li><li>If ACINQ disappears, force close channels via Settings > Danger zone and wait roughly 720 blocks for funds.</li><li>Keep Phoenix installed until all forced-closed funds appear in the Final wallet view before sweeping them. </li></ul>
+    </div>
+  </div>
+  <div id="privacy-region">
+    <div class="feature-label sublabel">Country caveats</div>
+    <div class="feature-value">
+      <ul><li>Availability and funding options vary by region; confirm in your app store/on-ramp.</li><li>Install only from the official publisher; verify the developer name.</li></ul>
+    </div>
   </div>
 </section>
 

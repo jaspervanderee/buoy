@@ -631,19 +631,19 @@
 		"title": "Getting started with Phoenix",
 		"steps": [
 			{
-				"title": "Install and secure your wallet",
+				"title": "1. Install and secure your wallet",
 				"text": "Install Phoenix from the App Store or Google Play on a phone running iOS 16 or Android 8 or later. Open the app, accept the terms, and let it create the 12-word seed phrase. Write the words on paper, check the order twice, and store the copy away from your device. Enable your phoneâ€™s biometric lock so only you can open Phoenix. Never upload the seed to email, chat apps, or cloud drives.",
 				"image": null,
 				"alt": "Phoenix install and recovery phrase backup"
 			},
 			{
-				"title": "Receive your first sats",
+				"title": "2. Receive your first sats",
 				"text": "Tap Receive to generate a Lightning invoice. Share the QR code with your payer and keep the app awake until it settles, because the first euro payment may open or splice a channel. If Phoenix warns about high fees, pause and explain that the Bitcoin network is busy before retrying with a smaller amount. After success, review inbound liquidity in the Channels screen.",
 				"image": null,
 				"alt": "Receiving a Lightning payment in Phoenix"
 			},
 			{
-				"title": "Make a payment",
+				"title": "3. Make a payment",
 				"text": "Tap Send when you have a Lightning invoice to pay. Scan or paste it, read the amount and memo, then confirm. Phoenix routes the payment through its peer and shows a success banner once settled. If it hangs pending, keep the phone online because Phoenix will retry automatically. For larger euro invoices, adjust the maximum acceptable fee in Settings > Channel management before sending.",
 				"image": null,
 				"alt": "Sending a Lightning payment from Phoenix"
@@ -653,17 +653,17 @@
 	},
 	"fees_scenarios": [
 		{
-			"scenario": "Paying a €15 Lightning invoice in a café",
+			"scenario": "Paying a $15 Lightning invoice in a café",
 			"expected_range": "0.4% of the amount + 4 sat",
 			"notes": "Outgoing Lightning payments include a fixed 4 sat charge plus 0.4% routing fee."
 		},
 		{
-			"scenario": "First €30 Lightning receive when no channel exists",
+			"scenario": "First $30 Lightning receive when no channel exists",
 			"expected_range": "≈1,000 sat channel open fee + mining fee",
 			"notes": "Phoenix opens a channel for you and charges the 1,000 sat creation fee along with the current mining fee."
 		},
 		{
-			"scenario": "Receiving a €200 payout after your channel fills up",
+			"scenario": "Receiving a $200 payout after your channel fills up",
 			"expected_range": "1% of the amount + mining fee",
 			"notes": "Insufficient inbound liquidity triggers a splice-in with a 1% fee plus mining costs."
 		},

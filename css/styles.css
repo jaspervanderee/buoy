@@ -1400,7 +1400,6 @@ p, li, a {
 .comparison-table {
   display: flex;
   flex-direction: column;
-  gap: 50px;
   padding-bottom: 40px;
   margin-top: 50px;
 }
@@ -1429,12 +1428,15 @@ p, li, a {
   margin-top: -30px; /* Decreased top margin to bring it closer to the row above */
 }
 
-/* Positive margin for service page sections (comfortable spacing) */
-.service-section .feature-label.sublabel {
-  margin-top: 6px;
+/* Fees typography (service pages only) */
+.service-section {
+  margin-bottom: 10px;
 }
 
-/* Fees typography (service pages only) */
+.service-section .feature-value {
+  margin-bottom: 20px;
+}
+
 .service-section#fees .feature-value {
   font-family: "Inter", sans-serif;   /* or keep Ubuntu Mono */
   line-height: 1.6;
@@ -1446,11 +1448,47 @@ p, li, a {
 }
 
 .service-section#fees p {
-  margin: 0 0 10px 0;                 /* tighten paragraph spacing inside the panel */
+  margin: 0 0 0 0;                 /* tighten paragraph spacing inside the panel */
 }
 
 .service-section#fees p strong {
-  font-weight: 700;                    /* the bold “cost” line */
+  font-weight: 700;                    /* the bold "cost" line */
+}
+
+/* --- Service sections: unified look across Fees, Privacy, Interop, Migration --- */
+.service-section .feature-value ul,
+.service-section .feature-value ol {
+  list-style: none;      /* no browser bullets */
+  padding-left: 0;       /* align text with paragraphs */
+  margin: 0;             /* reset UA margins */
+}
+
+/* pleasant spacing between items when lists are used */
+.service-section .feature-value li + li { margin-top: 6px; }
+
+/* normalize vertical rhythm inside every service card */
+.service-section .feature-value > *:first-child { margin-top: 0 !important; }
+.service-section .feature-value > *:last-child  { margin-bottom: 0; }
+
+/* card headings inside service sections (Fees uses <h3>, Privacy may start with <ul>) */
+.service-section .feature-value h3 {
+ 
+  font-size: 1.1em;
+  line-height: 1.3;
+}
+
+/* consistent spacing for sublabels in service sections only */
+.service-section .feature-label.sublabel {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+/* optional: ensure paragraphs inside cards share the same rhythm */
+.service-section .feature-value p { margin: 6px 0; }
+
+
+.service-section:first-of-type { 
+  margin-top: 0;          /* no gap above the first section */
 }
 
 
@@ -2541,15 +2579,6 @@ p, li, a {
 /* Ensure CTA links are not underlined */
 .cta-button{ text-decoration: none; }
 .cta-button:hover{ text-decoration: none; }
-
-/* === Fees section spacing on service pages === */
-.service-section#fees .feature-value {
-  margin-bottom: 20px;
-}
-
-.service-section#fees .feature-value:last-child {
-  margin-bottom: 0;
-}
 
 /* === Single-service baked table normalization === */
 #comparison-table-wrapper table.comparison-table {
