@@ -1422,8 +1422,37 @@ p, li, a {
   font-size: 0.8em; /* Smaller than main labels */
   color: var(--text-muted); /* Gray color */
   font-weight: 600; /* Less bold to differentiate */
+}
+
+/* Negative margin only for compare table rows (tight spacing) */
+.comparison-table .feature-label.sublabel {
   margin-top: -30px; /* Decreased top margin to bring it closer to the row above */
 }
+
+/* Positive margin for service page sections (comfortable spacing) */
+.service-section .feature-label.sublabel {
+  margin-top: 6px;
+}
+
+/* Fees typography (service pages only) */
+.service-section#fees .feature-value {
+  font-family: "Inter", sans-serif;   /* or keep Ubuntu Mono */
+  line-height: 1.6;
+}
+
+.service-section#fees h3 {
+  font-size: 1.1em;                   /* adjust title size */
+  margin: 6 0 16px 0;
+}
+
+.service-section#fees p {
+  margin: 0 0 10px 0;                 /* tighten paragraph spacing inside the panel */
+}
+
+.service-section#fees p strong {
+  font-weight: 700;                    /* the bold “cost” line */
+}
+
 
 .label-container {
   display: flex;
@@ -2512,6 +2541,15 @@ p, li, a {
 /* Ensure CTA links are not underlined */
 .cta-button{ text-decoration: none; }
 .cta-button:hover{ text-decoration: none; }
+
+/* === Fees section spacing on service pages === */
+.service-section#fees .feature-value {
+  margin-bottom: 20px;
+}
+
+.service-section#fees .feature-value:last-child {
+  margin-bottom: 0;
+}
 
 /* === Single-service baked table normalization === */
 #comparison-table-wrapper table.comparison-table {

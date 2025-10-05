@@ -222,29 +222,40 @@ html = html.replace('</head>', urlShim + '</head>');
       };
 
       const renderFees = () => {
-        const scenarios = Array.isArray(svc.fees_scenarios) ? svc.fees_scenarios : [];
+        let scenarios = Array.isArray(svc.fees_scenarios) ? svc.fees_scenarios : [];
         if (!scenarios.length) return "";
-        const rows = scenarios.map((row) => {
+
+        // Phoenix-specific: filter to exactly 3 scenarios by matching text
+        if (svc.name === "Phoenix") {
+          const phoenixScenarios = [
+            "Paying a €15 Lightning invoice in a café",
+            "First €30 Lightning receive when no channel exists",
+            "Receiving a €200 payout after your channel fills up"
+          ];
+          scenarios = scenarios.filter(s => phoenixScenarios.includes(s.scenario));
+        } else {
+          // For other services, take first 3 scenarios
+          scenarios = scenarios.slice(0, 3);
+        }
+
+        if (!scenarios.length) return "";
+
+        const blocks = scenarios.map((row, idx) => {
           const scenario = row.scenario || "";
           const cost = row.expected_range || "";
           const notes = row.notes || "";
-          return `<tr><td>${scenario}</td><td>${cost}</td><td>${notes}</td></tr>`;
-        }).join("");
+          return `  <div class="feature-label sublabel">Scenario ${idx + 1}</div>
+  <div class="feature-value">
+    <h3>${scenario}</h3>
+    <p><strong>${cost}</strong></p>
+    <p>${notes}</p>
+  </div>`;
+        }).join("\n");
+
         return `
 <section id="fees" class="service-section">
   <h2 class="feature-label">Fees</h2>
-  <div class="feature-value">
-    <table>
-      <thead>
-        <tr>
-          <th>Scenario</th>
-          <th>What you pay</th>
-          <th>Notes</th>
-        </tr>
-      </thead>
-      <tbody>${rows}</tbody>
-    </table>
-  </div>
+${blocks}
 </section>`;
       };
 

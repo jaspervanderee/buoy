@@ -906,31 +906,33 @@ modal.addEventListener("click", (e) => {
 
 
 
-document.querySelectorAll(".card").forEach(card => card.style.display = "none");
+// Card visibility logic only runs on compare pages (not single-service pages)
+if (!isSingleServiceView) {
+  // Initially hide comparison cards
+  document.querySelectorAll("#comparison-container .card").forEach(card => card.style.display = "none");
 
-	 
+  function updateCardVisibility() {
+    let isSmallScreen = window.innerWidth < 900; // Hide third card below 900px
+    const cards = document.querySelectorAll("#comparison-container .card");
 
-    function updateCardVisibility() {
-      let isSmallScreen = window.innerWidth < 900; // Hide third card below 900px
-      const cards = document.querySelectorAll("#comparison-container .card");
-
-      cards.forEach((card, index) => {
-        if (index === 2) {
-          card.style.display = isSmallScreen ? "none" : "flex"; // Show/hide third card only
-        }
-      });
-
-      // ✅ Ensure proper spacing
-      if (!isSmallScreen && servicesToCompare.length === 3) {
-        comparisonContainer.classList.add("three-cards");
-      } else {
-        comparisonContainer.classList.remove("three-cards");
+    cards.forEach((card, index) => {
+      if (index === 2) {
+        card.style.display = isSmallScreen ? "none" : "flex"; // Show/hide third card only
       }
-    }
+    });
 
-    // ✅ Run the function on load and resize
-    updateCardVisibility();
-    window.addEventListener("resize", updateCardVisibility);
+    // ✅ Ensure proper spacing
+    if (!isSmallScreen && servicesToCompare.length === 3) {
+      comparisonContainer.classList.add("three-cards");
+    } else {
+      comparisonContainer.classList.remove("three-cards");
+    }
+  }
+
+  // ✅ Run the function on load and resize
+  updateCardVisibility();
+  window.addEventListener("resize", updateCardVisibility);
+}
 
   } catch (error) {
     console.error("Error loading services:", error);
