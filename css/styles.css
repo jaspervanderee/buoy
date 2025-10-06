@@ -2688,3 +2688,176 @@ p, li, a {
     animation: none !important;
   }
 }
+
+/* === Compatibility Section (mobile-first) === */
+
+/* Tiles grid section */
+.svc-compat__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.svc-compat__tile {
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.svc-compat__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.svc-compat__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+  color: var(--text);
+  flex: 1;
+}
+
+.svc-chip {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.svc-chip--works {
+  background: #d4edda;
+  color: #155724;
+}
+
+.svc-chip--partial {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.svc-chip--advanced {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.svc-chip--notyet {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+@media (prefers-color-scheme: dark) {
+  .svc-chip--works {
+    background: #1e4620;
+    color: #b7e5ba;
+  }
+  
+  .svc-chip--partial {
+    background: #4d3e1a;
+    color: #ffeaa7;
+  }
+  
+  .svc-chip--advanced {
+    background: #1a4d52;
+    color: #b8e4ea;
+  }
+  
+  .svc-chip--notyet {
+    background: #4d1f23;
+    color: #f5c6cb;
+  }
+}
+
+.svc-compat__benefit {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--text);
+}
+
+.svc-compat__note {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85em;
+  color: var(--text-muted);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Collapsible explainers inside tiles (reuse FAQ pattern) */
+.svc-compat__tile details {
+  margin: 8px 0 0 0;
+}
+
+.svc-compat__tile summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+  font-family: "Ubuntu Mono", monospace;
+}
+
+.svc-compat__tile summary::-webkit-details-marker {
+  display: none;
+}
+
+.svc-compat__tile details > summary::before {
+  content: "\2193";
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  color: #ff603b;
+}
+
+.svc-compat__tile details[open] > summary::before {
+  transform: rotate(180deg);
+}
+
+.svc-compat__tile details > div {
+  margin-top: 0.5rem;
+}
+
+.svc-compat__tile details p {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+}
+
+.svc-compat__tile details ol {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.6;
+  margin: 8px 0 12px 0;
+  padding-left: 24px;
+}
+
+.svc-compat__tile details ol li {
+  margin: 4px 0;
+}
+
+/* Desktop: two-column grid for tiles */
+@media (min-width: 768px) {
+  .svc-compat__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .svc-compat__tile {
+    padding: 20px;
+  }
+}

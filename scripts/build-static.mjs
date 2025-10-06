@@ -181,7 +181,7 @@ html = html.replace('</head>', urlShim + '</head>');
     try {
       const tableHtml = await renderTableHTML(svc, svc.category);
 
-      const defaultOrder = ["tldr", "setup", "fees", "privacy", "interop", "migration"];
+      const defaultOrder = ["tldr", "setup", "fees", "privacy", "compat", "migration"];
       const order = Array.isArray(svc.section_order) && svc.section_order.length
         ? svc.section_order.filter((key) => defaultOrder.includes(key))
         : defaultOrder;
@@ -360,67 +360,6 @@ ${cards.join("\n")}
 </section>`;
       };
 
-      const renderInterop = () => {
-        const interop = svc.interop || {};
-        const checklist = [];
-        const advancedRows = [];
-
-        const pushChecklist = (label, value) => {
-          if (!value) return;
-          checklist.push(`<li>${label} — ${value}</li>`);
-        };
-
-        if (interop.basic) {
-          const basicItems = Array.isArray(interop.basic) ? interop.basic : [];
-          for (const item of basicItems) {
-            if (item && item.label && item.value) {
-              pushChecklist(item.label, item.value);
-            }
-          }
-        }
-
-        const addRow = (feature, status, notes) => {
-          advancedRows.push(`<tr><td>${feature}</td><td>${status || ""}</td><td>${notes || ""}</td></tr>`);
-        };
-
-        if (interop.matrix) {
-          const matrixItems = Array.isArray(interop.matrix) ? interop.matrix : [];
-          for (const item of matrixItems) {
-            if (!item || !item.feature) continue;
-            addRow(item.feature, item.status, item.notes);
-          }
-        }
-
-        const hasData = checklist.length || advancedRows.length;
-        const hasInteropNeedsReview = Array.isArray(svc.needs_review) && svc.needs_review.some((key) => key.startsWith("interop"));
-
-        if (!hasData && !hasInteropNeedsReview) return "";
-
-        const checklistHtml = checklist.length ? `<ul>${checklist.join("")}</ul>` : "";
-        const advancedHtml = advancedRows.length ? `
-    <details>
-      <summary>Advanced</summary>
-      <table>
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th>Status</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>${advancedRows.join("")}</tbody>
-      </table>
-    </details>` : "";
-        const needsReviewComment = hasInteropNeedsReview ? "\n    <!-- TODO: needs_review: interop -->" : "";
-
-        return `
-<section id="interop" class="service-section">
-  <h2 class="feature-label">Interoperability</h2>
-  <div class="feature-value">
-    ${checklistHtml || advancedHtml ? `${checklistHtml}${advancedHtml}` : ""}${needsReviewComment}
-  </div>
-</section>`;
-      };
 
       const renderMigration = () => {
         const migration = svc.migration || {};
@@ -460,12 +399,82 @@ ${cards.join("\n")}
 </section>`;
       };
 
+      const renderCompatibility = () => {
+        const tiles = Array.isArray(svc.compat_tiles) ? svc.compat_tiles.slice(0, 3) : [];
+        const explainers = Array.isArray(svc.compat_explainers) ? svc.compat_explainers.slice(0, 3) : [];
+        
+        if (!tiles.length) return "";
+        
+        const heading = svc.compat_heading || "";
+        const learnLabel = svc.compat_learn_label || "Learn more";
+        
+        // Create explainer map by id for easy lookup
+        const explainerMap = {};
+        explainers.forEach(exp => {
+          if (exp && exp.id) {
+            explainerMap[exp.id] = exp;
+          }
+        });
+        
+        // Render tiles with inline collapsibles
+        const tileItems = tiles.map(tile => {
+          const statusMap = {
+            works: "Works",
+            partial: "Partial",
+            advanced: "Advanced",
+            notyet: "Not yet"
+          };
+          const statusText = statusMap[tile.status] || tile.status;
+          const statusClass = `svc-chip svc-chip--${tile.status}`;
+          const noteHtml = tile.note ? `<p class="svc-compat__note">${tile.note}</p>` : "";
+          
+          // Find matching explainer
+          const explainer = explainerMap[tile.id];
+          let detailsHtml = "";
+          
+          if (explainer) {
+            const tryList = Array.isArray(explainer.try) && explainer.try.length > 0
+              ? `<p><strong>Try it:</strong></p><ol>${explainer.try.map(step => `<li>${step}</li>`).join("")}</ol>`
+              : "";
+            
+            detailsHtml = `
+        <details>
+          <summary>${learnLabel}</summary>
+          <div>
+            <p><strong>What:</strong> ${explainer.what}</p>
+            <p><strong>Why:</strong> ${explainer.why}</p>
+            ${tryList}
+            ${explainer.gotcha ? `<p><strong>Gotcha:</strong> ${explainer.gotcha}</p>` : ""}
+          </div>
+        </details>`;
+          }
+          
+          return `
+      <div class="svc-compat__tile">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">${tile.title}</h3>
+          <span class="${statusClass}">${statusText}</span>
+        </div>
+        <p class="svc-compat__benefit">${tile.benefit}</p>
+        ${noteHtml}${detailsHtml}
+      </div>`;
+        }).join("");
+        
+        return `
+<section id="compat" class="service-section">
+  ${heading ? `<h2 class="feature-label">${heading}</h2>` : ""}
+  <div class="svc-compat__grid">
+${tileItems}
+  </div>
+</section>`;
+      };
+
       const renderers = {
         tldr: renderTlDr,
         setup: renderSetup,
         fees: renderFees,
         privacy: renderPrivacy,
-        interop: renderInterop,
+        compat: renderCompatibility,
         migration: renderMigration,
       };
 
