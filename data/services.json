@@ -685,24 +685,43 @@
 		]
 	},
 	"migration": {
-		"from": [
+		"title": "Migration",
+		"intro": "Recover Phoenix after device loss or move funds to another wallet safely.",
+		"howto_schema": true,
+		"flows": [
 			{
-				"source": "Lost phone",
+				"id": "migrate-restore",
+				"title": "Lost phone → Phoenix (Restore)",
+				"badges": ["Time ~10 min", "Cost: free", "Risk: low if seed is safe"],
 				"steps": [
-					"Install Phoenix on a new iOS 16+ or Android 8+ device. ",
-					"Choose Restore my wallet, enter the 12-word seed, and wait for channels to resync. ",
+					"Install Phoenix on a new iOS 16+ or Android 8+ device.",
+					"Choose Restore my wallet, enter your 12-word seed, and wait for channels to resync.",
 					"Remove Phoenix from the old device once the new install works; never run both simultaneously."
-				]
-			}
-		],
-		"to": [
+				],
+				"tips": [
+					"Android transaction history will not migrate—only channel balances.",
+					"Keep the new device online during resync; it may take a few minutes."
+				],
+				"collapsed_mobile": true
+			},
 			{
-				"target": "On-chain wallet",
+				"id": "migrate-exit",
+				"title": "Phoenix → On-chain wallet",
+				"badges": ["Time ~1–6 hours", "Cost: miner fee applies", "Risk: low"],
 				"steps": [
-					"Use Settings > Close channels for a cooperative close whenever you want funds on-chain. ",
-					"Wait for closing transactions to confirm before sweeping coins into your preferred wallet. ",
-					"Reserve force close for emergencies because it is slow and incurs higher mining fees. "
-				]
+					"Open Phoenix, go to Settings > Close channels, and confirm cooperative close.",
+					"Wait for closing transactions to confirm (1–6 blocks); funds appear in Phoenix's Final wallet view.",
+					"Sweep coins to your preferred on-chain wallet once confirmed."
+				],
+				"tips": [
+					"Reserve force close for emergencies—it's slower and costs more in mining fees.",
+					"Check current network fees before closing; low-fee periods save sats."
+				],
+				"links": [
+					{ "pair": ["Phoenix", "Breez"] },
+					{ "pair": ["Phoenix", "Aqua"] }
+				],
+				"collapsed_mobile": true
 			}
 		]
 	},

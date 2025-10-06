@@ -20,10 +20,11 @@ function renderHTML(current, alts) {
     const altSlug = slugify(alt.name);
     const logo = `/images/${altSlug}.svg`;
     const brandUrl = `/services/${altSlug}.html`;
+    // Generate canonical compare URL
     const a = slugify(current.name);
     const b = slugify(alt.name);
-    const canonical = [a, b].sort().join("-vs-");
-    const compareUrl = `/${canonical}.html?services=${encodeURIComponent(current.name)},${encodeURIComponent(alt.name)}&category=${encodeURIComponent(current.category || '')}`;
+    const [first, second] = [a, b].sort();
+    const compareUrl = `/compare/${first}-vs-${second}.html`;
     return `
       <li class="alt-item">
         <div class="logo-cell">

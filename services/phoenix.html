@@ -45,7 +45,7 @@
 })();
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"https://buoybitcoin.com/services/phoenix.html#webpage","name":"Phoenix — Review, fees & features | Buoy Bitcoin","url":"https://buoybitcoin.com/services/phoenix.html","inLanguage":"en","description":"Phoenix is designed to provide a simple, self-custodial experience for fast, low-cost Lightning transactions directly on mobile devices, emphasizing ease of us…","isPartOf":{"@id":"https://buoybitcoin.com/#website"},"publisher":{"@id":"https://buoybitcoin.com/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://buoybitcoin.com/android-chrome-512x512.png","width":512,"height":512},"mainEntity":{"@id":"https://buoybitcoin.com/services/phoenix.html#service"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","@id":"https://buoybitcoin.com/services/phoenix.html#service","name":"Phoenix","url":"https://phoenix.acinq.co","mainEntityOfPage":"https://buoybitcoin.com/services/phoenix.html#webpage","provider":{"@type":"Organization","name":"Phoenix","url":"https://phoenix.acinq.co"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://buoybitcoin.com/#organization","name":"Buoy Bitcoin","url":"https://buoybitcoin.com/","logo":{"@type":"ImageObject","url":"https://buoybitcoin.com/android-chrome-512x512.png","width":512,"height":512},"sameAs":["https://x.com/jaspervanderee","https://github.com/jaspervanderee/buoy"]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://buoybitcoin.com/#website","url":"https://buoybitcoin.com/","name":"Buoy Bitcoin","inLanguage":"en","potentialAction":{"@type":"SearchAction","target":"https://buoybitcoin.com/search.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://buoybitcoin.com/"},{"@type":"ListItem","position":2,"name":"Spend Bitcoin","item":"https://buoybitcoin.com/spend-bitcoin.html"},{"@type":"ListItem","position":3,"name":"Phoenix","item":"https://buoybitcoin.com/services/phoenix.html"}]}</script></head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://buoybitcoin.com/#website","url":"https://buoybitcoin.com/","name":"Buoy Bitcoin","inLanguage":"en","potentialAction":{"@type":"SearchAction","target":"https://buoybitcoin.com/search.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://buoybitcoin.com/"},{"@type":"ListItem","position":2,"name":"Spend Bitcoin","item":"https://buoybitcoin.com/spend-bitcoin.html"},{"@type":"ListItem","position":3,"name":"Phoenix","item":"https://buoybitcoin.com/services/phoenix.html"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Lost phone → Phoenix (Restore)","description":"Recover Phoenix after device loss or move funds to another wallet safely","url":"https://buoybitcoin.com/services/phoenix.html#migrate-restore","step":[{"@type":"HowToStep","position":1,"name":"Step 1","text":"Install Phoenix on a new iOS 16+ or Android 8+ device."},{"@type":"HowToStep","position":2,"name":"Step 2","text":"Choose Restore my wallet, enter your 12-word seed, and wait for channels to resync."},{"@type":"HowToStep","position":3,"name":"Step 3","text":"Remove Phoenix from the old device once the new install works; never run both simultaneously."}],"estimatedCost":{"@type":"MonetaryAmount","currency":"USD","value":"0"},"totalTime":"PT10M"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Phoenix → On-chain wallet","description":"Recover Phoenix after device loss or move funds to another wallet safely","url":"https://buoybitcoin.com/services/phoenix.html#migrate-exit","step":[{"@type":"HowToStep","position":1,"name":"Step 1","text":"Open Phoenix, go to Settings > Close channels, and confirm cooperative close."},{"@type":"HowToStep","position":2,"name":"Step 2","text":"Wait for closing transactions to confirm (1–6 blocks); funds appear in Phoenix's Final wallet view."},{"@type":"HowToStep","position":3,"name":"Step 3","text":"Sweep coins to your preferred on-chain wallet once confirmed."}],"estimatedCost":{"@type":"MonetaryAmount","currency":"USD","value":"0"},"totalTime":"PT1H"}</script></head>
 <body>
   <div class="container">
  <header>
@@ -448,16 +448,35 @@
 
 <section id="migration" class="service-section">
   <h2 class="feature-label">Migration</h2>
-  <div class="feature-value">
-    
-    <div>
-      <h3>From Lost phone → Phoenix</h3>
-      <ol><li>Install Phoenix on a new iOS 16+ or Android 8+ device. </li><li>Choose Restore my wallet, enter the 12-word seed, and wait for channels to resync. </li><li>Remove Phoenix from the old device once the new install works; never run both simultaneously.</li></ol>
+  <p class="section-intro">Recover Phoenix after device loss or move funds to another wallet safely.</p>
+  <div class="migration-flows">
+    <div class="migration-card is-collapsed" id="migrate-restore" data-flow-id="migrate-restore">
+      <div class="migration-header">
+        <h3 class="migration-title">Lost phone → Phoenix (Restore)</h3>
+        <button class="migration-toggle" aria-expanded="false" aria-controls="migrate-restore-content" aria-label="Expand migration steps" data-event="migration_toggle">
+          <span class="migration-toggle-icon"></span>
+        </button>
+      </div>
+      <div class="migration-badges"><span class="migration-badge">Time ~10 min</span><span class="migration-badge">Cost: free</span><span class="migration-badge">Risk: low if seed is safe</span></div>
+      <div class="migration-content" id="migrate-restore-content">
+        <ol class="migration-steps"><li>Install Phoenix on a new iOS 16+ or Android 8+ device.</li><li>Choose Restore my wallet, enter your 12-word seed, and wait for channels to resync.</li><li>Remove Phoenix from the old device once the new install works; never run both simultaneously.</li></ol>
+        <ul class="migration-tips"><li>Android transaction history will not migrate—only channel balances.</li><li>Keep the new device online during resync; it may take a few minutes.</li></ul>
+        
+      </div>
     </div>
-
-    <div>
-      <h3>From Phoenix → On-chain wallet</h3>
-      <ol><li>Use Settings > Close channels for a cooperative close whenever you want funds on-chain. </li><li>Wait for closing transactions to confirm before sweeping coins into your preferred wallet. </li><li>Reserve force close for emergencies because it is slow and incurs higher mining fees. </li></ol>
+    <div class="migration-card is-collapsed" id="migrate-exit" data-flow-id="migrate-exit">
+      <div class="migration-header">
+        <h3 class="migration-title">Phoenix → On-chain wallet</h3>
+        <button class="migration-toggle" aria-expanded="false" aria-controls="migrate-exit-content" aria-label="Expand migration steps" data-event="migration_toggle">
+          <span class="migration-toggle-icon"></span>
+        </button>
+      </div>
+      <div class="migration-badges"><span class="migration-badge">Time ~1–6 hours</span><span class="migration-badge">Cost: miner fee applies</span><span class="migration-badge">Risk: low</span></div>
+      <div class="migration-content" id="migrate-exit-content">
+        <ol class="migration-steps"><li>Open Phoenix, go to Settings > Close channels, and confirm cooperative close.</li><li>Wait for closing transactions to confirm (1–6 blocks); funds appear in Phoenix's Final wallet view.</li><li>Sweep coins to your preferred on-chain wallet once confirmed.</li></ol>
+        <ul class="migration-tips"><li>Reserve force close for emergencies—it's slower and costs more in mining fees.</li><li>Check current network fees before closing; low-fee periods save sats.</li></ul>
+        <div class="migration-links"><a href="/compare/breez-vs-phoenix.html" data-event="migration_link_click" data-flow-id="migrate-exit">Compare Phoenix vs Breez</a><a href="/compare/aqua-vs-phoenix.html" data-event="migration_link_click" data-flow-id="migrate-exit">Compare Phoenix vs Aqua</a></div>
+      </div>
     </div>
   </div>
 </section>
@@ -521,7 +540,7 @@
             <img src="/images/aqua.svg" alt="Aqua" class="svg-icon" />
             <span class="visually-hidden">Aqua</span>
           </a>
-          <a class="cta-button" href="/aqua-vs-phoenix.html?services=Phoenix,Aqua&category=Spend%20Bitcoin">Compare with Phoenix</a>
+          <a class="cta-button" href="/compare/aqua-vs-phoenix.html">Compare with Phoenix</a>
         </div>
       </li>
       <li class="alt-item">
@@ -530,7 +549,7 @@
             <img src="/images/breez.svg" alt="Breez" class="svg-icon" />
             <span class="visually-hidden">Breez</span>
           </a>
-          <a class="cta-button" href="/breez-vs-phoenix.html?services=Phoenix,Breez&category=Spend%20Bitcoin">Compare with Phoenix</a>
+          <a class="cta-button" href="/compare/breez-vs-phoenix.html">Compare with Phoenix</a>
         </div>
       </li>
       <li class="alt-item">
@@ -539,7 +558,7 @@
             <img src="/images/fold.svg" alt="Fold" class="svg-icon" />
             <span class="visually-hidden">Fold</span>
           </a>
-          <a class="cta-button" href="/fold-vs-phoenix.html?services=Phoenix,Fold&category=Spend%20Bitcoin">Compare with Phoenix</a>
+          <a class="cta-button" href="/compare/fold-vs-phoenix.html">Compare with Phoenix</a>
         </div>
       </li>
       <li class="alt-item">
@@ -548,7 +567,7 @@
             <img src="/images/muun.svg" alt="Muun" class="svg-icon" />
             <span class="visually-hidden">Muun</span>
           </a>
-          <a class="cta-button" href="/muun-vs-phoenix.html?services=Phoenix,Muun&category=Spend%20Bitcoin">Compare with Phoenix</a>
+          <a class="cta-button" href="/compare/muun-vs-phoenix.html">Compare with Phoenix</a>
         </div>
       </li></ul>
 </section>
@@ -654,6 +673,7 @@
 
   <script defer src="js/script.js"></script>
   <script defer src="/js/compare.js"></script>
+  <script defer src="/js/migration.js"></script>
 </body>
 </html>
 

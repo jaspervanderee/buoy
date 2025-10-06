@@ -1491,6 +1491,250 @@ p, li, a {
   margin-top: 0;          /* no gap above the first section */
 }
 
+/* === Migration (flows/cards) === */
+
+/* Section intro text */
+.service-section#migration .section-intro {
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0 0 24px 0;
+}
+
+/* Container: mobile-first vertical stack */
+.migration-flows {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Individual flow card */
+.migration-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+/* Card header: title + toggle */
+.migration-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.migration-title {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--text);
+  flex: 1;
+}
+
+/* Toggle button (mobile collapse/expand) */
+.migration-toggle {
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.migration-toggle:hover { color: var(--accent); }
+.migration-toggle:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.migration-toggle-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.migration-toggle-icon::before {
+  content: "↓";
+  font-size: 18px;
+  font-family: "Inter", sans-serif;
+  line-height: 1;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.migration-toggle[aria-expanded="true"] .migration-toggle-icon::before {
+  transform: rotate(180deg);
+}
+
+/* Badges: time/cost/risk chips */
+.migration-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.migration-badge {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text-muted);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* Content area: steps, tips, links */
+.migration-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.migration-card.is-collapsed .migration-content {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.migration-card:not(.is-collapsed) .migration-content {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+/* Steps: numbered list */
+.migration-steps {
+  list-style: decimal;
+  padding-left: 24px;
+  margin: 0 0 16px 0;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.migration-steps li {
+  margin: 8px 0;
+  padding-left: 4px;
+}
+
+.migration-steps li:first-child { margin-top: 0; }
+.migration-steps li:last-child { margin-bottom: 0; }
+
+/* Tips: gotchas/warnings */
+.migration-tips {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.migration-tips li {
+  margin: 6px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.migration-tips li::before {
+  content: "ℹ️";
+  position: absolute;
+  left: 0;
+  font-size: 14px;
+}
+
+/* Links: internal handoffs to compare pages */
+.migration-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 0.9em;
+}
+
+.migration-links a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.migration-links a:hover { border-bottom-color: var(--link); }
+.migration-links a:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Desktop: two-column grid, always expanded */
+@media (min-width: 768px) {
+  .migration-flows {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .migration-card { padding: 20px; }
+  .migration-toggle { display: none; } /* Hide toggle on desktop */
+  
+  /* Always show content on desktop */
+  .migration-card.is-collapsed .migration-content {
+    max-height: none;
+    opacity: 1;
+  }
+  
+  .migration-content { max-height: none; }
+}
+
+/* Legacy migration (to be removed - old services using from/to arrays) */
+.service-section#migration .mig-card {
+  margin-bottom: 32px;
+}
+
+.service-section#migration .mig-card:last-child {
+  margin-bottom: 0;
+}
+
+.service-section#migration .mig-card .feature-value h3 {
+  font-size: 1.1em;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.service-section#migration .mig-card .feature-value ol {
+  list-style: decimal;
+  padding-left: 24px;
+  margin: 0;
+}
+
+.service-section#migration .mig-card .feature-value ol li {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+.service-section#migration .mig-card .feature-value ol li:first-child {
+  margin-top: 0;
+}
+
+.service-section#migration .mig-card .feature-value ol li:last-child {
+  margin-bottom: 0;
+}
+
 
 .label-container {
   display: flex;

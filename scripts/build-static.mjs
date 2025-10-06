@@ -21,6 +21,15 @@ const SERVICE_BASE = path.join(ROOT, "service.html");
 const slugify = s =>
   s.toLowerCase().replace(/&/g," and ").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
 
+// Generate canonical compare page URL from two service names
+const linkForPair = (a, b) => {
+  const slugA = slugify(a);
+  const slugB = slugify(b);
+  // Sort alphabetically for canonical order
+  const [first, second] = [slugA, slugB].sort();
+  return `/compare/${first}-vs-${second}.html`;
+};
+
 const clamp = (s, n=160) => {
   const txt = (s||"").replace(/\s+/g," ").trim();
   return txt.length <= n ? txt : txt.slice(0, n-1).trimEnd() + "…";
@@ -150,6 +159,7 @@ const urlShim = `
 })();
 </script>
 `;
+
 html = html.replace('</head>', urlShim + '</head>');
 
 
@@ -363,38 +373,150 @@ ${cards.join("\n")}
 
       const renderMigration = () => {
         const migration = svc.migration || {};
+        
+        // Support legacy format (from/to arrays) for backward compatibility
+        const hasLegacyFormat = Array.isArray(migration.from) || Array.isArray(migration.to);
+        const hasNewFormat = Array.isArray(migration.flows) && migration.flows.length > 0;
+        
+        if (!hasLegacyFormat && !hasNewFormat) return "";
+        
+        // Legacy format rendering (keep for services that haven't migrated yet)
+        if (hasLegacyFormat && !hasNewFormat) {
+          const labels = migration.labels || {};
+          const defaultLabels = { from: "Migrating to", to: "Migrating from" };
         const fromItems = Array.isArray(migration.from) ? migration.from : [];
         const toItems = Array.isArray(migration.to) ? migration.to : [];
-        const flows = [];
-
-        if (fromItems.length) {
-          const first = fromItems[0];
-          const steps = Array.isArray(first.steps) ? first.steps : [];
-        const sourceLabel = first.source || "Another wallet";
-        flows.push(`
-    <div>
-      <h3>From ${sourceLabel} → ${svc.name}</h3>
-      <ol>${steps.map(step => `<li>${step}</li>`).join("")}</ol>
+          const cards = [];
+          
+          fromItems.forEach((item, idx) => {
+            const steps = Array.isArray(item.steps) ? item.steps : [];
+            if (steps.length === 0) return;
+            const sourceLabel = item.source || "Another wallet";
+            const label = idx === 0 ? (labels.from || defaultLabels.from) : `${labels.from || defaultLabels.from} (${idx + 1})`;
+            const stepsHtml = steps.map(step => `<li>${step}</li>`).join("");
+            cards.push(`  <div class="mig-card">
+    <div class="feature-label sublabel">${label}</div>
+    <div class="feature-value">
+      <h3>From ${sourceLabel}</h3>
+      <ol>${stepsHtml}</ol>
+    </div>
+  </div>`);
+          });
+          
+          toItems.forEach((item, idx) => {
+            const steps = Array.isArray(item.steps) ? item.steps : [];
+            if (steps.length === 0) return;
+            const targetLabel = item.target || "Another wallet";
+            const label = idx === 0 ? (labels.to || defaultLabels.to) : `${labels.to || defaultLabels.to} (${idx + 1})`;
+            const stepsHtml = steps.map(step => `<li>${step}</li>`).join("");
+            cards.push(`  <div class="mig-card">
+    <div class="feature-label sublabel">${label}</div>
+    <div class="feature-value">
+      <h3>To ${targetLabel}</h3>
+      <ol>${stepsHtml}</ol>
+    </div>
     </div>`);
-        }
-
-        if (toItems.length) {
-          const first = toItems[0];
-          const steps = Array.isArray(first.steps) ? first.steps : [];
-          const targetLabel = first.target || "Another wallet";
-          flows.push(`
-    <div>
-      <h3>From ${svc.name} → ${targetLabel}</h3>
-      <ol>${steps.map(step => `<li>${step}</li>`).join("")}</ol>
-    </div>`);
-        }
-
-        if (!flows.length) return "";
-        return `
+          });
+          
+          if (cards.length === 0) return "";
+          return `
 <section id="migration" class="service-section">
   <h2 class="feature-label">Migration</h2>
-  <div class="feature-value">
-    ${flows.join("\n")}
+${cards.join("\n")}
+</section>`;
+        }
+        
+        // New flow-based format rendering
+        const title = migration.title || "Migration";
+        const intro = migration.intro || "";
+        const flows = migration.flows || [];
+        const ariaLabelToggle = migration.aria_label_toggle || "Expand migration steps";
+        
+        const flowCards = flows.map(flow => {
+          if (!flow || !Array.isArray(flow.steps) || flow.steps.length === 0) return "";
+          
+          const flowId = flow.id || "";
+          const flowTitle = flow.title || "";
+          const badges = Array.isArray(flow.badges) ? flow.badges : [];
+          const steps = flow.steps || [];
+          const tips = Array.isArray(flow.tips) ? flow.tips : [];
+          const links = Array.isArray(flow.links) ? flow.links : [];
+          const collapsedMobile = flow.collapsed_mobile !== false; // default true
+          
+          // Hook for future step images support
+          const stepImages = Array.isArray(flow.step_images) ? flow.step_images : [];
+          
+          // Render badges
+          const badgesHtml = badges.length > 0
+            ? `<div class="migration-badges">${badges.map(badge => `<span class="migration-badge">${badge}</span>`).join("")}</div>`
+            : "";
+          
+          // Render steps (with future image support)
+          const stepsHtml = `<ol class="migration-steps">${steps.map((step, idx) => {
+            // Hook: if stepImages[idx] exists, we can add <img> here in future
+            return `<li>${step}</li>`;
+          }).join("")}</ol>`;
+          
+          // Render tips
+          const tipsHtml = tips.length > 0
+            ? `<ul class="migration-tips">${tips.map(tip => `<li>${tip}</li>`).join("")}</ul>`
+            : "";
+          
+          // Render links (support pair-based or legacy href)
+          const linksHtml = links.length > 0
+            ? `<div class="migration-links">${links.map(link => {
+                let href, label;
+                
+                // New format: pair-based canonical links
+                if (Array.isArray(link.pair) && link.pair.length === 2) {
+                  href = linkForPair(link.pair[0], link.pair[1]);
+                  label = link.label || `Compare ${link.pair[0]} vs ${link.pair[1]}`;
+                }
+                // Legacy format: explicit href
+                else if (link.href && link.label) {
+                  href = link.href;
+                  label = link.label;
+                  // Log warning for migration tracking
+                  console.log(`  ⚠️  Legacy href in ${svc.name} migration: ${link.href} (consider using pair format)`);
+                }
+                else {
+                  return ""; // Invalid link
+                }
+                
+                return `<a href="${href}" data-event="migration_link_click" data-flow-id="${flowId}">${label}</a>`;
+              }).filter(Boolean).join("")}</div>`
+            : "";
+          
+          // Collapse state for mobile
+          const collapseClass = collapsedMobile ? " is-collapsed" : "";
+          const ariaExpanded = collapsedMobile ? "false" : "true";
+          
+          return `    <div class="migration-card${collapseClass}" id="${flowId}" data-flow-id="${flowId}">
+      <div class="migration-header">
+        <h3 class="migration-title">${flowTitle}</h3>
+        <button class="migration-toggle" aria-expanded="${ariaExpanded}" aria-controls="${flowId}-content" aria-label="${ariaLabelToggle}" data-event="migration_toggle">
+          <span class="migration-toggle-icon"></span>
+        </button>
+      </div>
+      ${badgesHtml}
+      <div class="migration-content" id="${flowId}-content">
+        ${stepsHtml}
+        ${tipsHtml}
+        ${linksHtml}
+      </div>
+    </div>`;
+        }).filter(Boolean).join("\n");
+        
+        if (!flowCards) return "";
+        
+        const introHtml = intro ? `  <p class="section-intro">${intro}</p>` : "";
+        
+        return `
+<section id="migration" class="service-section">
+  <h2 class="feature-label">${title}</h2>
+${introHtml}
+  <div class="migration-flows">
+${flowCards}
   </div>
 </section>`;
       };
@@ -636,6 +758,77 @@ ${sectionsHtml}`;
       html = html.replace("<!-- FAQ_BLOCK -->", faqBundle);
     } catch (e) {
       // fail-safe: skip FAQ injection on error
+    }
+
+    // Generate HowTo JSON-LD for migration flows if enabled
+    try {
+      if (svc.migration && svc.migration.howto_schema && Array.isArray(svc.migration.flows)) {
+        const howToSchemas = svc.migration.flows
+          .filter(flow => flow && Array.isArray(flow.steps) && flow.steps.length > 0)
+          .map(flow => {
+            const flowUrl = `${url}#${flow.id}`;
+            const schema = {
+              "@context": "https://schema.org",
+              "@type": "HowTo",
+              "name": flow.title || "",
+              "description": (svc.migration.intro || "").replace(/\.$/, ""),
+              "url": flowUrl,
+              "step": flow.steps.map((stepText, idx) => ({
+                "@type": "HowToStep",
+                "position": idx + 1,
+                "name": `Step ${idx + 1}`,
+                "text": stepText
+              }))
+            };
+            
+            // Parse estimatedTime from badges like "Time ~10 min" or "Time ~1–6 hours"
+            if (Array.isArray(flow.badges)) {
+              const timeBadge = flow.badges.find(b => typeof b === 'string' && /^Time\s*~/i.test(b));
+              if (timeBadge) {
+                const duration = parseTimeToDuration(timeBadge);
+                if (duration) {
+                  schema.estimatedCost = { "@type": "MonetaryAmount", "currency": "USD", "value": "0" };
+                  schema.totalTime = duration;
+                }
+              }
+            }
+            
+            return schema;
+          });
+        
+        howToSchemas.forEach(schema => {
+          html = html.replace("</head>", `<script type="application/ld+json">${JSON.stringify(schema)}</script></head>`);
+        });
+      }
+    } catch (e) {
+      // fail-safe: skip HowTo schema on error
+    }
+
+    // Helper: Parse "Time ~10 min" or "Time ~1–6 hours" to ISO 8601 duration
+    function parseTimeToDuration(badge) {
+      try {
+        const text = badge.toLowerCase();
+        
+        // Match patterns like "~10 min", "~1-6 hours", "~1–6 hours" (with en-dash)
+        const minMatch = text.match(/~\s*(\d+)\s*min/);
+        if (minMatch) {
+          return `PT${minMatch[1]}M`;
+        }
+        
+        const hourMatch = text.match(/~\s*(\d+)(?:\s*[-–]\s*\d+)?\s*hour/);
+        if (hourMatch) {
+          return `PT${hourMatch[1]}H`;
+        }
+        
+        const dayMatch = text.match(/~\s*(\d+)\s*day/);
+        if (dayMatch) {
+          return `P${dayMatch[1]}D`;
+        }
+        
+        return null;
+      } catch (e) {
+        return null;
+      }
     }
 
     // Inject Alternatives block under comparison area
