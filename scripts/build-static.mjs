@@ -274,73 +274,80 @@ ${blocks}
 
       const renderPrivacy = () => {
         const notes = svc.privacy_notes || {};
+        const labels = notes.labels || {};
         
-        // Card 1: Data flows (data_flows + own_node)
+        // Default labels
+        const defaultLabels = {
+          data_flows: "Data flows",
+          recovery_drill: "Recovery drill",
+          country: "Country caveats"
+        };
+        
+        // Card A: Data flows only
         const dataFlowsItems = [];
         if (Array.isArray(notes.data_flows)) {
           dataFlowsItems.push(...notes.data_flows.filter(item => hasContent(item)));
         }
-        if (Array.isArray(notes.own_node)) {
-          dataFlowsItems.push(...notes.own_node.filter(item => hasContent(item)));
-        }
         
-        // Card 2: Recovery plan (backups + recovery_drill)
+        // Card B: Recovery drill only
         const recoveryItems = [];
-        if (Array.isArray(notes.backups)) {
-          recoveryItems.push(...notes.backups.filter(item => hasContent(item)));
-        }
         if (Array.isArray(notes.recovery_drill)) {
           recoveryItems.push(...notes.recovery_drill.filter(item => hasContent(item)));
         }
         
-        // Card 3: Country caveats (country_caveats or fallback)
-        let countryItems = [];
-        if (hasContent(notes.country_caveats)) {
-          countryItems = notes.country_caveats.filter(item => hasContent(item));
-        }
-        
-        // Apply fallback only if country_caveats is missing or truly empty
-        const useCountryFallback = countryItems.length === 0;
-        if (useCountryFallback) {
-          countryItems = [
-            "Availability and funding options vary by region; confirm in your app store/on-ramp.",
-            "Install only from the official publisher; verify the developer name."
-          ];
+        // Card C: Country caveats only
+        const countryItems = [];
+        if (Array.isArray(notes.country_caveats)) {
+          countryItems.push(...notes.country_caveats.filter(item => hasContent(item)));
         }
         
         const cards = [];
+        const renderedCards = [];
         
         // Render Data flows card only if it has content
         if (dataFlowsItems.length > 0) {
+          const label = labels.data_flows || defaultLabels.data_flows;
           const bullets = dataFlowsItems.map(item => `<li>${item}</li>`).join("");
           cards.push(`  <div id="privacy-data">
-    <div class="feature-label sublabel">Data flows</div>
+    <div class="feature-label sublabel">${label}</div>
     <div class="feature-value">
       <ul>${bullets}</ul>
     </div>
   </div>`);
+          renderedCards.push(`${label} (${dataFlowsItems.length} bullets)`);
         }
         
-        // Render Recovery plan card only if it has content
+        // Render Recovery drill card only if it has content
         if (recoveryItems.length > 0) {
+          const label = labels.recovery_drill || defaultLabels.recovery_drill;
           const bullets = recoveryItems.map(item => `<li>${item}</li>`).join("");
           cards.push(`  <div id="privacy-recovery">
-    <div class="feature-label sublabel">Recovery plan</div>
+    <div class="feature-label sublabel">${label}</div>
     <div class="feature-value">
       <ul>${bullets}</ul>
     </div>
   </div>`);
+          renderedCards.push(`${label} (${recoveryItems.length} bullets)`);
         }
         
-        // Render Country caveats card (always has content via fallback)
+        // Render Country caveats card only if it has content
         if (countryItems.length > 0) {
+          const label = labels.country || defaultLabels.country;
           const bullets = countryItems.map(item => `<li>${item}</li>`).join("");
           cards.push(`  <div id="privacy-region">
-    <div class="feature-label sublabel">Country caveats</div>
+    <div class="feature-label sublabel">${label}</div>
     <div class="feature-value">
       <ul>${bullets}</ul>
     </div>
   </div>`);
+          renderedCards.push(`${label} (${countryItems.length} bullets)`);
+        }
+        
+        // Log rendered cards for debugging
+        if (cards.length > 0) {
+          console.log(`  Privacy cards for ${svc.name}: ${renderedCards.join(", ")}`);
+        } else {
+          console.log(`  Privacy cards for ${svc.name}: (none)`);
         }
         
         // Skip entire section only if no cards at all

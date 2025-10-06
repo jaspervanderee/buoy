@@ -666,32 +666,22 @@
 			"scenario": "Receiving a $200 payout after your channel fills up",
 			"expected_range": "1% of the amount + mining fee",
 			"notes": "Insufficient inbound liquidity triggers a splice-in with a 1% fee plus mining costs."
-		},
-		{
-			"scenario": "Requesting €500 inbound liquidity before a Berlin market day",
-			"expected_range": "1% of the requested amount + mining fee",
-			"notes": "Phoenix lets you prepay for inbound liquidity; the fee credit covers future splice-ins."
-		},
-		{
-			"scenario": "Withdrawing to an exchange through an on-chain swap-out",
-			"expected_range": "User-selected mining fee",
-			"notes": "Swap-out transactions use the feerate you choose when sending to an on-chain address."
 		}
 	],
 	"privacy_notes": {
 		"data_flows": [
-			"Phoenix cooperates with the ACINQ peer, which currently sees payment destinations and amounts."
-		],
-		"backups": [
-			"Channel states are encrypted and stored with the ACINQ peer so you can restore using your seed. ",
-			"The 12-word seed lives only on your device; ACINQ cannot recover it if you lose the words. "
+			"Phoenix connects to ACINQ’s server to run Lightning for you. Today, ACINQ can see who you pay and how much.",
+      "You can connect Phoenix to your own Electrum server to reduce what third parties can learn about your activity."
 		],
 		"recovery_drill": [
-			"If ACINQ disappears, force close channels via Settings > Danger zone and wait roughly 720 blocks for funds.",
-			"Keep Phoenix installed until all forced-closed funds appear in the Final wallet view before sweeping them. "
+			"Your channel states are encrypted and saved with ACINQ so you can restore using your 12-word seed.",
+			"The seed lives only on your phone—ACINQ can’t recover it for you if you lose it. ",
+      "If ACINQ ever disappears, go to Settings → Danger zone → Force close channels; funds return on-chain after ~720 blocks.",
+      "Keep Phoenix installed until the forced-closed coins show in the Final wallet view, then sweep them."
 		],
-		"own_node": [
-			"Connect Phoenix to your own Electrum server to reduce third-party trust when monitoring channels. "
+		"country_caveats": [
+			"Availability and funding options vary by country—check your app store or on-ramp.",
+			"Install only from the official publisher in your app store; verify the developer name."
 		]
 	},
 	"interop": {

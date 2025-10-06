@@ -371,19 +371,19 @@
   <div id="privacy-data">
     <div class="feature-label sublabel">Data flows</div>
     <div class="feature-value">
-      <ul><li>Phoenix cooperates with the ACINQ peer, which currently sees payment destinations and amounts.</li><li>Connect Phoenix to your own Electrum server to reduce third-party trust when monitoring channels. </li></ul>
+      <ul><li>Phoenix connects to ACINQ’s server to run Lightning for you. Today, ACINQ can see who you pay and how much.</li><li>You can connect Phoenix to your own Electrum server to reduce what third parties can learn about your activity.</li></ul>
     </div>
   </div>
   <div id="privacy-recovery">
-    <div class="feature-label sublabel">Recovery plan</div>
+    <div class="feature-label sublabel">Recovery drill</div>
     <div class="feature-value">
-      <ul><li>Channel states are encrypted and stored with the ACINQ peer so you can restore using your seed. </li><li>The 12-word seed lives only on your device; ACINQ cannot recover it if you lose the words. </li><li>If ACINQ disappears, force close channels via Settings > Danger zone and wait roughly 720 blocks for funds.</li><li>Keep Phoenix installed until all forced-closed funds appear in the Final wallet view before sweeping them. </li></ul>
+      <ul><li>Your channel states are encrypted and saved with ACINQ so you can restore using your 12-word seed.</li><li>The seed lives only on your phone—ACINQ can’t recover it for you if you lose it. </li><li>If ACINQ ever disappears, go to Settings → Danger zone → Force close channels; funds return on-chain after ~720 blocks.</li><li>Keep Phoenix installed until the forced-closed coins show in the Final wallet view, then sweep them.</li></ul>
     </div>
   </div>
   <div id="privacy-region">
     <div class="feature-label sublabel">Country caveats</div>
     <div class="feature-value">
-      <ul><li>Availability and funding options vary by region; confirm in your app store/on-ramp.</li><li>Install only from the official publisher; verify the developer name.</li></ul>
+      <ul><li>Availability and funding options vary by country—check your app store or on-ramp.</li><li>Install only from the official publisher in your app store; verify the developer name.</li></ul>
     </div>
   </div>
 </section>
