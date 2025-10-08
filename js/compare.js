@@ -597,45 +597,24 @@ function renderFeatures(service) {
   { key: "availability", label: "Availability", render: getAvailabilityText },
 ];
 
-document.getElementById("logo-row-container").innerHTML = `
-  ${servicesToCompare.map(service => {
-    const slug = normalizeServiceSlug(service.slug || service.name);
-    
-    // Build CTA buttons based on platform availability
-    let ctaButtons = '';
-    if (isSingleServiceView && service.links) {
-      const buttons = [];
-      if (service.links.ios && service.links.android) {
-        buttons.push(`<a href="${service.links.ios}" target="_blank" rel="noopener" class="cta-button" data-variant="ios">iPhone</a>`);
-        buttons.push(`<a href="${service.links.android}" target="_blank" rel="noopener" class="cta-button" data-variant="android">Android</a>`);
-      } else if (service.links.ios) {
-        buttons.push(`<a href="${service.links.ios}" target="_blank" rel="noopener" class="cta-button" data-variant="ios">iPhone</a>`);
-      } else if (service.links.android) {
-        buttons.push(`<a href="${service.links.android}" target="_blank" rel="noopener" class="cta-button" data-variant="android">Android</a>`);
-      } else if (service.links.desktop) {
-        buttons.push(`<a href="${service.links.desktop}" target="_blank" rel="noopener" class="cta-button" data-variant="desktop">Download desktop</a>`);
-      }
+// Guard: never mutate logo-row-container on single-service pages (baked header is source of truth)
+if (!isSingleServiceView) {
+  document.getElementById("logo-row-container").innerHTML = `
+    ${servicesToCompare.map(service => {
+      const slug = normalizeServiceSlug(service.slug || service.name);
+      // Multi-service view: simple visit button
+      const ctaButtons = `<button class="cta-button">visit</button>`;
       
-      if (buttons.length > 0) {
-        ctaButtons = `<div class="cta-buttons-wrapper">${buttons.join('')}</div>`;
-      } else {
-        ctaButtons = `<a href="${service.website}" target="_blank" rel="noopener" class="cta-button">Visit website</a>`;
-      }
-    } else {
-      // Multi-service view: keep original single "visit" button
-      ctaButtons = `<button class="cta-button">visit</button>`;
-    }
-    
-    return `
-    <div class="feature-value logo-cell" data-service="${(service.name || '').toLowerCase()}"${slug ? ` data-service-slug="${slug}"` : ''}>
-      <a href="${service.website}" target="_blank" class="service-link">
-        <img src="${getLogoFilename(service.name)}" alt="${service.name} logo" class="svg-icon sticky-logo" />
-        ${!isSingleServiceView ? ctaButtons : ''}
-      </a>
-      ${isSingleServiceView ? ctaButtons : ''}
-    </div>
-  `;}).join("")}
-`;
+      return `
+      <div class="feature-value logo-cell" data-service="${(service.name || '').toLowerCase()}"${slug ? ` data-service-slug="${slug}"` : ''}>
+        <a href="${service.website}" target="_blank" class="service-link">
+          <img src="${getLogoFilename(service.name)}" alt="${service.name} logo" class="svg-icon sticky-logo" />
+          ${ctaButtons}
+        </a>
+      </div>
+    `;}).join("")}
+  `;
+}
 
     applyBakedServiceOrder(hasBaked, servicesToCompare, canonicalLeftName, canonicalRightName);
 

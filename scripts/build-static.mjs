@@ -667,35 +667,40 @@ ${sectionBlocks.join("\n")}
 </div>`
         : "";
 
-      // Build CTA buttons for Phoenix only
-      let ctaButtonsHtml = '';
-      if (slug === 'phoenix' && svc.links) {
-        const buttons = [];
+      // Build sticky header with logo + single CTA + website link
+      const logoSrc = `/images/${svc.name.toLowerCase().replace(/\s+/g, '-')}.svg`;
+      const websiteUrl = svc.website || url;
+      
+      // Build device-aware CTA button (routes via /go for analytics)
+      let ctaButtonHtml = '';
+      if (svc.links && (svc.links.ios || svc.links.android || svc.links.desktop)) {
+        // Store platform links as data attributes for client-side device detection
+        const dataAttrs = [];
+        if (svc.links.ios) dataAttrs.push(`data-ios="${svc.links.ios}"`);
+        if (svc.links.android) dataAttrs.push(`data-android="${svc.links.android}"`);
+        if (svc.links.desktop) dataAttrs.push(`data-desktop="${svc.links.desktop}"`);
         
-        if (svc.links.ios && svc.links.android) {
-          // Both iOS and Android available
-          buttons.push(`<a href="${svc.links.ios}" target="_blank" rel="noopener" class="cta-button" data-variant="ios">iPhone</a>`);
-          buttons.push(`<a href="${svc.links.android}" target="_blank" rel="noopener" class="cta-button" data-variant="android">Android</a>`);
-        } else if (svc.links.ios) {
-          // iOS only
-          buttons.push(`<a href="${svc.links.ios}" target="_blank" rel="noopener" class="cta-button" data-variant="ios">iPhone</a>`);
-        } else if (svc.links.android) {
-          // Android only
-          buttons.push(`<a href="${svc.links.android}" target="_blank" rel="noopener" class="cta-button" data-variant="android">Android</a>`);
-        } else if (svc.links.desktop) {
-          // Desktop fallback
-          buttons.push(`<a href="${svc.links.desktop}" target="_blank" rel="noopener" class="cta-button" data-variant="desktop">Download desktop</a>`);
-        }
-        
-        if (buttons.length > 0) {
-          ctaButtonsHtml = `\n    <div class="cta-buttons-wrapper">${buttons.join('')}</div>`;
-        }
+        ctaButtonHtml = `<a href="/go?service=${encodeURIComponent(svc.name)}&target=auto" class="cta-button cta-button--primary" ${dataAttrs.join(' ')} data-service="${svc.name}">Get ${svc.name}</a>`;
+      } else {
+        // Fallback: direct website link
+        ctaButtonHtml = `<a href="/go?service=${encodeURIComponent(svc.name)}&target=website" class="cta-button cta-button--primary" data-service="${svc.name}">Get ${svc.name}</a>`;
       }
+      
+      const websiteLinkHtml = `<a href="/go?service=${encodeURIComponent(svc.name)}&target=website" class="cta-link-secondary" data-service="${svc.name}">Visit official website</a>`;
 
       const bakedBlock = `
 <div id="comparison-container">
   <div class="logo-row-sticky">
-    <div class="feature-values logo-row" id="logo-row-container">${ctaButtonsHtml}
+    <div class="feature-values logo-row" id="logo-row-container">
+      <div class="feature-value logo-cell" data-service="${svc.name.toLowerCase()}">
+        <a href="${websiteUrl}" target="_blank" class="service-link">
+          <img src="${logoSrc}" alt="${svc.name} logo" class="svg-icon sticky-logo" />
+        </a>
+        <div class="cta-row">
+          ${ctaButtonHtml}
+          ${websiteLinkHtml}
+        </div>
+      </div>
     </div>
   </div>
   <div id="comparison-table-wrapper">

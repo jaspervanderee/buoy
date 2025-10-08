@@ -1169,3 +1169,121 @@ if (newsletterForm) {
     }
   });
 }
+
+// Device-aware CTA button handler for service pages
+(function() {
+  // Detect user platform
+  function detectPlatform() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) return 'ios';
+    if (/android/i.test(ua)) return 'android';
+    return 'desktop';
+  }
+
+  // Handle CTA button clicks with device detection
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.cta-button--primary');
+    if (!btn) return;
+
+    e.preventDefault();
+    
+    const platform = detectPlatform();
+    const serviceName = btn.dataset.service || '';
+    const iosUrl = btn.dataset.ios;
+    const androidUrl = btn.dataset.android;
+    const desktopUrl = btn.dataset.desktop;
+    
+    // Track event
+    if (window.umami) {
+      umami.track('cta_primary_click', { 
+        service: serviceName, 
+        platform: platform,
+        auto_detected: true
+      });
+    }
+
+    // Route based on platform
+    if (platform === 'ios' && iosUrl) {
+      window.location.href = `/go?service=${encodeURIComponent(serviceName)}&target=ios&url=${encodeURIComponent(iosUrl)}`;
+    } else if (platform === 'android' && androidUrl) {
+      window.location.href = `/go?service=${encodeURIComponent(serviceName)}&target=android&url=${encodeURIComponent(androidUrl)}`;
+    } else if (platform === 'desktop' && (iosUrl || androidUrl)) {
+      // Desktop: show inline chooser
+      showPlatformChooser(btn, serviceName, iosUrl, androidUrl, desktopUrl);
+    } else if (desktopUrl) {
+      window.location.href = `/go?service=${encodeURIComponent(serviceName)}&target=desktop&url=${encodeURIComponent(desktopUrl)}`;
+    } else {
+      // Fallback: website
+      window.location.href = `/go?service=${encodeURIComponent(serviceName)}&target=website`;
+    }
+  });
+
+  // Show minimal platform chooser for desktop users
+  function showPlatformChooser(btn, serviceName, iosUrl, androidUrl, desktopUrl) {
+    // Remove existing chooser if any
+    const existing = document.querySelector('.platform-chooser');
+    if (existing) existing.remove();
+
+    const chooser = document.createElement('div');
+    chooser.className = 'platform-chooser';
+    chooser.innerHTML = `
+      <div class="platform-chooser__content">
+        <div class="platform-chooser__title">Choose platform</div>
+        <div class="platform-chooser__buttons">
+          ${iosUrl ? `<a href="/go?service=${encodeURIComponent(serviceName)}&target=ios&url=${encodeURIComponent(iosUrl)}" class="platform-chooser__btn" data-platform="ios">iOS</a>` : ''}
+          ${androidUrl ? `<a href="/go?service=${encodeURIComponent(serviceName)}&target=android&url=${encodeURIComponent(androidUrl)}" class="platform-chooser__btn" data-platform="android">Android</a>` : ''}
+          ${desktopUrl ? `<a href="/go?service=${encodeURIComponent(serviceName)}&target=desktop&url=${encodeURIComponent(desktopUrl)}" class="platform-chooser__btn" data-platform="desktop">Desktop</a>` : ''}
+        </div>
+        <button class="platform-chooser__close">&times;</button>
+      </div>
+    `;
+
+    // Position near button
+    const rect = btn.getBoundingClientRect();
+    chooser.style.position = 'absolute';
+    chooser.style.top = (rect.bottom + window.scrollY + 8) + 'px';
+    chooser.style.left = (rect.left + window.scrollX) + 'px';
+    chooser.style.zIndex = '1000';
+
+    document.body.appendChild(chooser);
+
+    // Track platform choice
+    chooser.querySelectorAll('.platform-chooser__btn').forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.umami) {
+          umami.track('cta_platform_override', { 
+            service: serviceName, 
+            chosen_platform: this.dataset.platform 
+          });
+        }
+      });
+    });
+
+    // Close button
+    chooser.querySelector('.platform-chooser__close').addEventListener('click', function() {
+      chooser.remove();
+    });
+
+    // Close on outside click
+    setTimeout(() => {
+      document.addEventListener('click', function closeChooser(e) {
+        if (!chooser.contains(e.target) && e.target !== btn) {
+          chooser.remove();
+          document.removeEventListener('click', closeChooser);
+        }
+      });
+    }, 100);
+  }
+
+  // Handle website link clicks (track analytics)
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('.cta-link-secondary');
+    if (!link) return;
+
+    const serviceName = link.dataset.service || '';
+    
+    if (window.umami) {
+      umami.track('cta_website_click', { service: serviceName });
+    }
+  });
+})();
