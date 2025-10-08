@@ -1512,9 +1512,7 @@ p, li, a {
 /* Individual flow card */
 .migration-card {
   background: var(--panel);
-  border: 1px solid var(--border);
   border-radius: 12px;
-  box-shadow: var(--shadow);
   padding: 16px;
   transition: all 0.3s ease;
 }

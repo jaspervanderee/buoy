@@ -5,6 +5,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
+import crypto from "crypto";
 import { injectAlternatives } from "./lib/alternatives.mjs";
 import { renderTableHTML } from "../shared/renderTable.mjs";
 import { renderFAQBlock, renderFAQJsonLD } from "./lib/faqs.mjs";
@@ -16,6 +17,7 @@ const OUT = ROOT; // site root
 const OUT_SERVICES = path.join(OUT, "services"); // write service pages under /services
 const DATA = path.join(ROOT, "data", "services.json");
 const SERVICE_BASE = path.join(ROOT, "service.html");
+const HASH_CACHE = path.join(ROOT, "data", ".service-hashes.json");
 
 // -------- helpers --------
 const slugify = s =>
@@ -102,6 +104,49 @@ const between = (str, start, end) => {
   };
 };
 
+// -------- content hashing for auto-dating --------
+const getTodayUTC = () => new Date().toISOString().split("T")[0];
+
+const normalizeMainContent = (html) => {
+  try {
+    // Extract main content between BUILD markers
+    const { inside } = between(html, "<!-- BUILD:START -->", "<!-- BUILD:END -->");
+    
+    // Remove the "Updated" chip to prevent self-triggering
+    let normalized = inside.replace(/<div class="page-updated"[^>]*>[\s\S]*?<\/div>/gi, "");
+    
+    // Remove dynamic attributes that might change without content changes
+    normalized = normalized.replace(/data-updated="[^"]*"/gi, "");
+    normalized = normalized.replace(/\sid="[^"]*"/gi, ""); // Remove dynamic IDs
+    
+    // Collapse whitespace
+    normalized = normalized.replace(/\s+/g, " ").trim();
+    
+    return normalized;
+  } catch (e) {
+    console.warn("  ⚠️  Could not normalize content for hashing:", e.message);
+    return "";
+  }
+};
+
+const hashContent = (content) => {
+  return crypto.createHash("sha256").update(content, "utf8").digest("hex");
+};
+
+const loadHashCache = async () => {
+  try {
+    const data = await fs.readFile(HASH_CACHE, "utf8");
+    return JSON.parse(data);
+  } catch (e) {
+    // Cache doesn't exist yet or is invalid
+    return {};
+  }
+};
+
+const saveHashCache = async (cache) => {
+  await fs.writeFile(HASH_CACHE, JSON.stringify(cache, null, 2), "utf8");
+};
+
 // -------- main --------
 (async () => {
   const [dataRaw, baseRaw] = await Promise.all([
@@ -111,6 +156,11 @@ const between = (str, start, end) => {
   const services = JSON.parse(dataRaw);
   await fs.mkdir(OUT_SERVICES, { recursive: true });
   const serviceUrls = [];
+  const serviceSitemapEntries = [];
+  
+  // Load content hash cache for auto-dating
+  const hashCache = await loadHashCache();
+  const newHashCache = {};
 
   for (const svc of services) {
     const slug = slugify(svc.name);
@@ -165,7 +215,9 @@ html = html.replace('</head>', urlShim + '</head>');
 
     // Update H1 (page title) → use service name
     html = setPageTitle(html, svc.name);
-    html = injectUpdatedChip(html, svc.updated);
+    
+    // Placeholder: effectiveUpdated will be determined after content hash
+    let effectiveUpdated = null;
 
     // Inject Breadcrumb (back link + full trail) under the category header
     try {
@@ -659,6 +711,37 @@ ${sectionsHtml}`;
       // If BUILD markers are missing or renderer failed, keep the page unchanged.
     }
 
+    // -------- Determine effective date from content hash --------
+    // Hash the main BUILD content (body only, not head/meta)
+    const normalizedContent = normalizeMainContent(html);
+    const contentHash = hashContent(normalizedContent);
+    const cached = hashCache[slug];
+    const today = getTodayUTC();
+    
+    // Determine effective date:
+    // 1. Manual override from services.json takes precedence
+    // 2. If hash unchanged, reuse cached date
+    // 3. If hash changed or no cache, use today
+    if (svc.updated) {
+      effectiveUpdated = svc.updated;
+      console.log(`  ${slug}: manual override → ${effectiveUpdated}`);
+    } else if (cached && cached.hash === contentHash) {
+      effectiveUpdated = cached.date;
+      console.log(`  ${slug}: content unchanged → ${effectiveUpdated}`);
+    } else {
+      effectiveUpdated = today;
+      console.log(`  ${slug}: content changed → ${effectiveUpdated}`);
+    }
+    
+    // Store in new cache
+    newHashCache[slug] = {
+      hash: contentHash,
+      date: effectiveUpdated
+    };
+    
+    // Inject the updated chip with the effective date
+    html = injectUpdatedChip(html, effectiveUpdated);
+
     // OPTIONAL: add JSON-LD for page (enriched)
     const ORG_ID = "https://buoybitcoin.com/#organization";
     const WEBSITE_ID = "https://buoybitcoin.com/#website";
@@ -680,6 +763,12 @@ ${sectionsHtml}`;
       },
       "mainEntity": { "@id": url + "#service" }
     };
+    
+    // Add dateModified using effective date
+    if (effectiveUpdated) {
+      jsonLd.dateModified = effectiveUpdated;
+    }
+    
     html = html.replace("</head>", `<script type=\"application/ld+json\">${JSON.stringify(jsonLd)}</script></head>`);
 
     // Define the Service as its own node with our @id and point back to this page's WebPage
@@ -841,6 +930,14 @@ ${sectionsHtml}`;
     // NOTE: Do NOT add data-static yet. Let the current JS render the body so design stays identical.
     await fs.writeFile(path.join(OUT_SERVICES, `${slug}.html`), html, "utf8");
     serviceUrls.push(url);
+    
+    // Store sitemap entry with lastmod using effective date
+    const sitemapEntry = { url };
+    if (effectiveUpdated) {
+      sitemapEntry.lastmod = effectiveUpdated;
+    }
+    serviceSitemapEntries.push(sitemapEntry);
+    
     console.log("Wrote", `services/${slug}.html`);
   }
 
@@ -848,9 +945,18 @@ ${sectionsHtml}`;
   const sitemapXml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...serviceUrls.map(u => `  <url><loc>${u}</loc></url>`),
+    ...serviceSitemapEntries.map(entry => {
+      if (entry.lastmod) {
+        return `  <url><loc>${entry.url}</loc><lastmod>${entry.lastmod}</lastmod></url>`;
+      }
+      return `  <url><loc>${entry.url}</loc></url>`;
+    }),
     '</urlset>'
   ].join('\n');
   await fs.writeFile(path.join(OUT, 'sitemap-services.xml'), sitemapXml, 'utf8');
   console.log('Wrote sitemap-services.xml with', serviceUrls.length, 'URLs');
+  
+  // Save the updated hash cache
+  await saveHashCache(newHashCache);
+  console.log('Saved content hash cache to', HASH_CACHE);
 })();
