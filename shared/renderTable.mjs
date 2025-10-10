@@ -202,7 +202,22 @@ export async function renderTableHTML(service, category, options = {}) {
     : null;
   
   // Default exclusions for service pages
-  const serviceExclusions = ["type_of_platform", "supported_network", "features"];
+  const serviceExclusions = [
+    "type_of_platform", 
+    "supported_network", 
+    "features",
+    "custody_control",
+    "kyc_required",
+    "recovery_method",
+    "open_source",
+    "user_experience",
+    "interface",
+    "app_ratings",
+    "profile",
+    "description",
+    "founded_in",
+    "website"
+  ];
   
   const features = [
     { key: "type_of_platform", label: "Platform" },

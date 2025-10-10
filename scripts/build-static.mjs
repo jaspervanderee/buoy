@@ -23,6 +23,14 @@ const HASH_CACHE = path.join(ROOT, "data", ".service-hashes.json");
 const slugify = s =>
   s.toLowerCase().replace(/&/g," and ").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
 
+const escapeHtml = s =>
+  String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
 // Generate canonical compare page URL from two service names
 const linkForPair = (a, b) => {
   const slugA = slugify(a);
@@ -240,10 +248,10 @@ html = html.replace('</head>', urlShim + '</head>');
     // Make sure service.html has:
     // <!-- BUILD:START --> ... #comparison-container ... <!-- BUILD:END -->
     try {
-      // Render table for service page with mode: "service" to exclude Platform/Supported/Features
+      // Render table for service page with mode: "service" to exclude legacy rows (Platform, Supported Networks, Features, Custody & Control block)
       const tableHtml = await renderTableHTML(svc, svc.category, { mode: "service" });
 
-      const defaultOrder = ["tldr", "setup", "fees", "privacy", "compat", "migration"];
+      const defaultOrder = ["tldr", "setup", "fees", "privacy", "compat", "migration", "profile"];
       const order = Array.isArray(svc.section_order) && svc.section_order.length
         ? svc.section_order.filter((key) => defaultOrder.includes(key))
         : defaultOrder;
@@ -652,6 +660,91 @@ ${tileItems}
 </section>`;
       };
 
+      const renderProfileSection = () => {
+        const profile = svc.profile;
+        const description = svc.description;
+        const foundedIn = svc.founded_in;
+        const website = svc.website;
+        
+        // Only render if at least one field has content
+        if (!profile && !description && !foundedIn && !website) return "";
+        
+        const cards = [];
+        
+        // Founder(s) card
+        if (profile) {
+          const filename = profile.toLowerCase().replace(/\s+/g, "-") + ".jpg";
+          const founderHtml = `<img src="/images/founders/${filename}" alt="${escapeHtml(profile)}" style="width:100px;height:100px;border-radius:50%;display:block;margin:0 auto 10px auto"><div style="text-align:center">${escapeHtml(profile)}</div>`;
+          cards.push(`  <div>
+    <div class="feature-label sublabel">Founder(s)</div>
+    <div class="feature-value">
+      ${founderHtml}
+    </div>
+  </div>`);
+        }
+        
+        // Company description card
+        if (description) {
+          const normalized = String(description).replace(/\\n\\n/g, "\n\n");
+          const paragraphs = normalized.split("\n\n");
+          const fullText = paragraphs.map(p => `<p>${escapeHtml(p)}</p>`).join("");
+          let descHtml;
+          if (normalized.length < 200) {
+            descHtml = fullText;
+          } else {
+            const mobilePreviewText = paragraphs[0].length > 200 ? paragraphs[0].substring(0, 200) + "..." : paragraphs[0];
+            const desktopPreviewText = paragraphs[0];
+            descHtml = `
+    <div class="collapsible-description">
+      <div class="description-preview">
+        <p class="mobile-preview">${escapeHtml(mobilePreviewText)}</p>
+        <p class="desktop-preview">${escapeHtml(desktopPreviewText)}</p>
+      </div>
+      <div class="description-full" style="display:none">${fullText}</div>
+      <button class="expand-btn" aria-expanded="false">
+        <span class="expand-text">Read more</span>
+        <span class="expand-icon"><span class="arrow-down">↓</span></span>
+      </button>
+    </div>`;
+          }
+          cards.push(`  <div>
+    <div class="feature-label sublabel">Company description</div>
+    <div class="feature-value">
+      ${descHtml}
+    </div>
+  </div>`);
+        }
+        
+        // Founded in card
+        if (foundedIn) {
+          cards.push(`  <div>
+    <div class="feature-label sublabel">Founded in</div>
+    <div class="feature-value">
+      ${escapeHtml(foundedIn)}
+    </div>
+  </div>`);
+        }
+        
+        // Website card
+        if (website) {
+          const displayDomain = String(website).replace(/https?:\/\/(www\.)?/, "");
+          cards.push(`  <div>
+    <div class="feature-label sublabel">Website</div>
+    <div class="feature-value">
+      <a href="${website}" target="_blank">${escapeHtml(displayDomain)}</a>
+    </div>
+  </div>`);
+        }
+        
+        if (cards.length === 0) return "";
+        
+        return `
+<section id="profile" class="service-section">
+  <h2 class="feature-label">Profile</h2>
+${cards.join("\n")}
+</section>`;
+      };
+
       const renderers = {
         tldr: renderTlDr,
         setup: renderSetup,
@@ -659,6 +752,7 @@ ${tileItems}
         privacy: renderPrivacy,
         compat: renderCompatibility,
         migration: renderMigration,
+        profile: renderProfileSection,
       };
 
       for (const key of order) {
