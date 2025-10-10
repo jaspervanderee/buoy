@@ -2890,6 +2890,17 @@ p, li, a {
   font-size: 1em;
   line-height: 1.4;
   color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.trust-chip-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  vertical-align: middle;
 }
 
 @media (min-width: 768px) {

@@ -618,8 +618,8 @@
 	},
 	"countries": ["WW"],
 	"trust_chips": [
-		{ "text": "Non-custodial" },
-		{ "text": "Open source" },
+		{ "text": "Non-custodial", "status": "positive" },
+		{ "text": "Open source", "status": "positive" },
 		{ "text": "No KYC", "status": "positive" }
 	],
 	"tl_dr": {

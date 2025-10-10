@@ -255,7 +255,16 @@ html = html.replace('</head>', urlShim + '</head>');
         if (!chips.length) return "";
         const chipItems = chips.map(chip => {
           if (!chip || !chip.text) return "";
-          return `<div class="trust-chip">${chip.text}</div>`;
+          // Map status to icon
+          let icon = "";
+          if (chip.status === "positive") {
+            icon = '<img src="/images/checkmark.svg" alt="positive icon" class="trust-chip-icon"/> ';
+          } else if (chip.status === "negative") {
+            icon = '<img src="/images/cross.svg" alt="negative icon" class="trust-chip-icon"/> ';
+          } else if (chip.status === "neutral") {
+            icon = '<img src="/images/neutral.svg" alt="neutral icon" class="trust-chip-icon"/> ';
+          }
+          return `<div class="trust-chip">${icon}${chip.text}</div>`;
         }).filter(Boolean).join("");
         if (!chipItems) return "";
         return `<div class="trust-chips">${chipItems}</div>`;
@@ -269,7 +278,7 @@ html = html.replace('</head>', urlShim + '</head>');
           items.push(`<p><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> <strong>Best for:</strong> ${tldr.best_for}</p>`);
         }
         if (tldr.consider_if) {
-          items.push(`<p><strong>Consider if:</strong> ${tldr.consider_if}</p>`);
+          items.push(`<p><img src="/images/neutral.svg" alt="neutral icon" class="checkmark-icon"/> <strong>Consider if:</strong> ${tldr.consider_if}</p>`);
         }
         if (tldr.not_ideal_when) {
           items.push(`<p><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> <strong>Not ideal when:</strong> ${tldr.not_ideal_when}</p>`);
