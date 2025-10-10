@@ -29,22 +29,21 @@
   try {
     var svc  = "myNode";
     var slug = "mynode";
-    var p = new URLSearchParams(location.search);
 
-    // set the common keys your JS might read
-    if (!p.get('services')) p.set('services', svc);
-    if (!p.get('service'))  p.set('service',  svc);
-    if (!p.get('name'))     p.set('name',     svc);
-    if (!p.get('slug'))     p.set('slug',     slug);
-
-    history.replaceState(null, '', location.pathname + '?' + p.toString());
+    // Set globals for runtime code to discover the current service
     window.__BUOY_SERVICE__ = svc;
     window.__BUOY_SLUG__ = slug;
     window.__BUOY_SINGLE__ = true;
+
+    // Strip query parameters on service pages (preserve hash if present)
+    if (location.search) {
+      var cleanUrl = location.pathname + (location.hash || '');
+      history.replaceState(null, '', cleanUrl);
+    }
   } catch (e) {}
 })();
 </script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"https://buoybitcoin.com/services/mynode.html#webpage","name":"myNode — Review, fees & features | Buoy Bitcoin","url":"https://buoybitcoin.com/services/mynode.html","inLanguage":"en","description":"MyNode is a turnkey Bitcoin and Lightning node platform that combines open‑source software with a polished, full‑featured web interface, making it accessible t…","isPartOf":{"@id":"https://buoybitcoin.com/#website"},"publisher":{"@id":"https://buoybitcoin.com/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://buoybitcoin.com/android-chrome-512x512.png","width":512,"height":512},"mainEntity":{"@id":"https://buoybitcoin.com/services/mynode.html#service"},"dateModified":"2025-10-08"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","@id":"https://buoybitcoin.com/services/mynode.html#service","name":"myNode","url":"https://mynodebtc.com","mainEntityOfPage":"https://buoybitcoin.com/services/mynode.html#webpage","provider":{"@type":"Organization","name":"myNode","url":"https://mynodebtc.com"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://buoybitcoin.com/#organization","name":"Buoy Bitcoin","url":"https://buoybitcoin.com/","logo":{"@type":"ImageObject","url":"https://buoybitcoin.com/android-chrome-512x512.png","width":512,"height":512},"sameAs":["https://x.com/jaspervanderee","https://github.com/jaspervanderee/buoy"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"https://buoybitcoin.com/services/mynode.html#webpage","name":"myNode — Review, fees & features | Buoy Bitcoin","url":"https://buoybitcoin.com/services/mynode.html","inLanguage":"en","description":"MyNode is a turnkey Bitcoin and Lightning node platform that combines open‑source software with a polished, full‑featured web interface, making it accessible t…","isPartOf":{"@id":"https://buoybitcoin.com/#website"},"publisher":{"@id":"https://buoybitcoin.com/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://buoybitcoin.com/android-chrome-512x512.png","width":512,"height":512},"mainEntity":{"@id":"https://buoybitcoin.com/services/mynode.html#service"},"dateModified":"2025-10-10"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","@id":"https://buoybitcoin.com/services/mynode.html#service","name":"myNode","url":"https://mynodebtc.com","mainEntityOfPage":"https://buoybitcoin.com/services/mynode.html#webpage","provider":{"@type":"Organization","name":"myNode","url":"https://mynodebtc.com"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://buoybitcoin.com/#organization","name":"Buoy Bitcoin","url":"https://buoybitcoin.com/","logo":{"@type":"ImageObject","url":"https://buoybitcoin.com/android-chrome-512x512.png","width":512,"height":512},"sameAs":["https://x.com/jaspervanderee","https://github.com/jaspervanderee/buoy"]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://buoybitcoin.com/#website","url":"https://buoybitcoin.com/","name":"Buoy Bitcoin","inLanguage":"en","potentialAction":{"@type":"SearchAction","target":"https://buoybitcoin.com/search.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://buoybitcoin.com/"},{"@type":"ListItem","position":2,"name":"Run my own node","item":"https://buoybitcoin.com/run-my-own-node.html"},{"@type":"ListItem","position":3,"name":"myNode","item":"https://buoybitcoin.com/services/mynode.html"}]}</script></head>
 <body>
   <div class="container">
@@ -126,7 +125,7 @@
  <main>
   <div class="category-header category-header--vs">
    <h1 id="page-title">myNode</h1>
-<div class="page-updated" data-updated="2025-10-08">Updated: October 2025</div>
+<div class="page-updated" data-updated="2025-10-10">Updated: October 2025</div>
   </div>
 <div class="breadcrumb-back"><a href="/run-my-own-node.html">< Back to Run my own node</a></div>
 <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -156,26 +155,6 @@
     
     <table class="comparison-table"><tbody>
       
-      <tr class="feature-row type_of_platform">
-        <td><div class="feature-label">Platform</div></td>
-        <td>
-          <div class="feature-values">
-            <div class="feature-value" data-service="mynode">Home server as software and / or hardware</div>
-          </div>
-        </td>
-      </tr>
-    
-
-      <tr class="feature-row features">
-        <td><div class="feature-label sublabel">Features</div></td>
-        <td>
-          <div class="feature-values">
-            <div class="feature-value" data-service="mynode"><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Full-featured node with many apps</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Supports Raspberry Pi</div><div class="feature-item negative-group-start"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Premium license for some features</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> App store not as expansive</div><div class="feature-item"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> Non-commercial license</div></div>
-          </div>
-        </td>
-      </tr>
-    
-
       <tr class="feature-row price">
         <td><div class="feature-label sublabel">Price</div></td>
         <td>

@@ -187,7 +187,23 @@ function userExperienceHtml(service) {
   `;
 }
 
-export async function renderTableHTML(service, category) {
+export async function renderTableHTML(service, category, options = {}) {
+  // Options API:
+  // - mode: "service" | "compare" (default "compare")
+  // - includeRows: string[] (explicit whitelist)
+  // - excludeRows: string[] (explicit blacklist)
+  const mode = options.mode || "compare";
+  const includeRows = options.includeRows;
+  const excludeRows = options.excludeRows;
+  
+  // Service-level override: if service.spec_rows is present, treat it as includeRows
+  const serviceSpecRows = Array.isArray(service.spec_rows) && service.spec_rows.length > 0
+    ? service.spec_rows
+    : null;
+  
+  // Default exclusions for service pages
+  const serviceExclusions = ["type_of_platform", "supported_network", "features"];
+  
   const features = [
     { key: "type_of_platform", label: "Platform" },
     { key: "supported_network", label: "Supported Networks" },
@@ -235,7 +251,24 @@ export async function renderTableHTML(service, category) {
     ]
   };
 
-  const allowedKeys = categoryFeaturesMap[category] || features.map(f => f.key);
+  let allowedKeys = categoryFeaturesMap[category] || features.map(f => f.key);
+  
+  // Apply filtering logic based on mode and options
+  // Priority: serviceSpecRows > includeRows > excludeRows > mode defaults
+  if (serviceSpecRows) {
+    // Service-level override: only include specified rows
+    allowedKeys = allowedKeys.filter(k => serviceSpecRows.includes(k));
+  } else if (includeRows) {
+    // Explicit include list from options
+    allowedKeys = allowedKeys.filter(k => includeRows.includes(k));
+  } else if (excludeRows) {
+    // Explicit exclude list from options
+    allowedKeys = allowedKeys.filter(k => !excludeRows.includes(k));
+  } else if (mode === "service") {
+    // Default service mode: exclude the three specified rows
+    allowedKeys = allowedKeys.filter(k => !serviceExclusions.includes(k));
+  }
+  // mode === "compare" with no overrides: use all allowedKeys as-is
   const rows = [];
   for (const key of allowedKeys) {
     const feature = features.find(f => f.key === key);

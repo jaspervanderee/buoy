@@ -1,3 +1,16 @@
+// SERVICE PAGE URL NORMALIZATION (strip query params on service pages)
+(function() {
+  try {
+    // Only run on service pages, not compare pages
+    if (window.__BUOY_SINGLE__ === true && window.location.search) {
+      const cleanUrl = window.location.pathname + (window.location.hash || '');
+      window.history.replaceState(null, '', cleanUrl);
+    }
+  } catch (e) {
+    // Silent fail - URL normalization is not critical
+  }
+})();
+
 // BUOY ANALYTICS
 (function() {
   try {

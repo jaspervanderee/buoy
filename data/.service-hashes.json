@@ -1,110 +1,110 @@
 {
   "anchorwatch": {
-    "hash": "57101a8ef25d98ab78e82e8eadccf2a55e7e0bbf2f29f001b3cbc97b5b38a327",
-    "date": "2025-10-08"
+    "hash": "2d3ef48ca267758b1a2c1a36f300ef1a44998cde1a4790ee718114bbe6495c2c",
+    "date": "2025-10-10"
   },
   "aqua": {
-    "hash": "96312ea5b4b01f6e5ff7c0f4d2c269f944941f46bdc831559383e89c356d1cfa",
-    "date": "2025-10-08"
+    "hash": "5c3726d53e83212794b5544a3b860c7400ab67184b997ed7e8f92bdaa1dd6fcf",
+    "date": "2025-10-10"
   },
   "bisq": {
-    "hash": "4cf010c70b8606eef6a22355371304ae11b038beb2d6c2ab7a810e5477949161",
-    "date": "2025-10-08"
+    "hash": "84d71d8b9dbd898d26b637b3fef5566581776cf4d0aaeb55feb2a820019e4c38",
+    "date": "2025-10-10"
   },
   "bitkey": {
-    "hash": "18a92562177fa197d8e9d40bf8fc067711349aaac968aa2a28ecde70585fe51c",
-    "date": "2025-10-08"
+    "hash": "ce8e1a7ab51ffd0a03e63bac2f335d0e9a6c4794798939d3645634e9c65731b7",
+    "date": "2025-10-10"
   },
   "bitonic": {
-    "hash": "41a6156e89af74bf6522a42a6ccdca0af5ed51dd2b8460b2695227d064e236f0",
-    "date": "2025-10-08"
+    "hash": "08d0a40fe7071c1e840d9104283000d05b4f984204daaa6b3f461c72c3e493eb",
+    "date": "2025-10-10"
   },
   "breez": {
-    "hash": "1296cb6cdff441b104957a120a8bd268af6c1b10a93b0d4d377bc233fd1178e0",
-    "date": "2025-10-08"
+    "hash": "ac75ab5c27fbcc5f7820a8fbb6cebce4df5d06fc3ac0355c443f27fe0ef58e40",
+    "date": "2025-10-10"
   },
   "btc-pay": {
-    "hash": "255d27627020dcbaef153469ae5fd29b11bfd56fecd7c2295251eb98c2d659eb",
-    "date": "2025-10-08"
+    "hash": "ea4566052373c0ea57e3dfabaef6a2e22465b7a7ad531eded227b3e7afe63d15",
+    "date": "2025-10-10"
   },
   "bull-bitcoin": {
-    "hash": "81174b0a9cda30ee39e736a0575c4f7236f0d3ead60dc448cfeaf0d6ef0ca1f5",
-    "date": "2025-10-08"
+    "hash": "727fc998bec9ebcde574a3038636cc94f8fb4fdbd14f925cbcd2df542315b309",
+    "date": "2025-10-10"
   },
   "fold": {
-    "hash": "c391bd620ac692db797c643b1e7c85bfec6ed1114f9559648aacd35c47c33d44",
-    "date": "2025-10-08"
+    "hash": "3f4a3b880976995ec5ba93b65bb8737e5e0cc656ddc1034d9f1a07b9d76e70e1",
+    "date": "2025-10-10"
   },
   "hodlhodl": {
-    "hash": "18d5fcdc086c43a0aa9aa8b211ef59efa5856289f2775b404ee46a4b31bb10dd",
-    "date": "2025-10-08"
+    "hash": "c55adc23d21a948a81c0394c2c67b8ffa1832cd3c1f13b09bcc7c3cd4b2be7f1",
+    "date": "2025-10-10"
   },
   "lightspark": {
-    "hash": "14735d9e8b7d70ef241ffcb2bc2fbf0c67336882af70eb7b71bdec9d66729d06",
-    "date": "2025-10-08"
+    "hash": "48f2c449c4c69d84f4e3f768f62a2ce7d1f1504cfdb18ea941d2d2afe2e4186c",
+    "date": "2025-10-10"
   },
   "muun": {
-    "hash": "d48a3e08d29c1a0fa0f8610463260a1abd3623cee052b8a42f768fd98d130851",
-    "date": "2025-10-08"
+    "hash": "fdcb590315f264a9c486fa29b81a5b55ce0f282751d555a71a835546a33eb92d",
+    "date": "2025-10-10"
   },
   "mynode": {
-    "hash": "7361ecb8a8b0cd1e2d2ab0a517ea68ac8614551f4034eb5154aed34747a52bdb",
-    "date": "2025-10-08"
+    "hash": "892cc4df73648712fb5f5cc038cf8c2c1b9ecfe48bf13f204d04b45023efe89d",
+    "date": "2025-10-10"
   },
   "opennode": {
-    "hash": "6cbb9c1e0407823ee625ea9c4c560b2a6c0bf1721bbf23e844b5fa417f85c0cc",
-    "date": "2025-10-08"
+    "hash": "e78cfc003a8f5daafe2974dc8b4d61a38388c249680ef0e01df3ddb7f2c402ec",
+    "date": "2025-10-10"
   },
   "peach": {
-    "hash": "8e3cb0bc0710764ec55ac067f1184a4519665aa0e69bb9c230b09c489ae10604",
-    "date": "2025-10-08"
+    "hash": "676ad66777374f4574ce93f2c30577d2bb041dc250d1259a451a78de900577d0",
+    "date": "2025-10-10"
   },
   "phoenix": {
-    "hash": "6310441271007cd78a8ef6f2bd4f72fb8188fdf8372d89e7e569dd37e98c05ca",
+    "hash": "ad6f3278d579173b66c07158fe851c46375b7314b10075eb33693c0f37ec40f6",
     "date": "2025-10-03"
   },
   "pocket": {
-    "hash": "640914a82f712f0d63661069e64023e9931eb184f879ba6b98af0831e3197edb",
-    "date": "2025-10-08"
+    "hash": "43b3c94cd51de5648655919d181152d869aebf6e5591bd59fcd3b877acead7c9",
+    "date": "2025-10-10"
   },
   "relai": {
-    "hash": "5c14b2c073e48ffebe233750abccf14789705a82fc30be999050a6b68c336923",
-    "date": "2025-10-08"
+    "hash": "378713d407066c5e50528980a0b31327a5eac2b89580da22a3f2a48416ea64a5",
+    "date": "2025-10-10"
   },
   "river": {
-    "hash": "ce6d08deff805b86eb9c65485cd62f92db63fb4c87442e1c65b43996070bb4dc",
-    "date": "2025-10-08"
+    "hash": "af0ce5cafff63a9bd98e3b1b342caa1b41a1aaf5c014b5886aa1cddb2a399961",
+    "date": "2025-10-10"
   },
   "robosats": {
-    "hash": "01fd8dad058be6d88d203e652a8e1d19ef9c2e18c8c486fd2d5267e892dc9859",
-    "date": "2025-10-08"
+    "hash": "356df1832b18ea9182139918aa1b22c3a2d6f71f47ed2e6801150dd77582231b",
+    "date": "2025-10-10"
   },
   "sparrow": {
-    "hash": "181715511f4f872461c9f40e90d68bfec21747ecc9a6c1e6b519983720ba5223",
-    "date": "2025-10-08"
+    "hash": "78042d5c27e81d08d86e9ca1a677c9e39dea33838b711aecd226ae4b3e197e98",
+    "date": "2025-10-10"
   },
   "start9": {
-    "hash": "f564b6c9dd949c2f0579f7eb065f395226655731b77f77eab7127ec7c2e37503",
-    "date": "2025-10-08"
+    "hash": "c3b12d3960a17a5ef95d0d4ece2407f86a569579edb9a373b8a97bf1ffa2b493",
+    "date": "2025-10-10"
   },
   "strike": {
-    "hash": "54f765d62f91dc5e0e240985ae52fa515ecc490042005429986c09177388e852",
-    "date": "2025-10-08"
+    "hash": "70583cfc617fd2829eac65c8386a5edc681c6886f2e02c270986def57591956f",
+    "date": "2025-10-10"
   },
   "swan": {
-    "hash": "8643b10584cc006765d160e8cd08bc1e8994946a735fcf3f4d7c3189454f0269",
-    "date": "2025-10-08"
+    "hash": "4cd7ce92976d9a7678a7530aa31bc90be332005756888dc31c9fc14bda845f55",
+    "date": "2025-10-10"
   },
   "umbrel": {
-    "hash": "823aac72a089586b0dbd32cd18a89f8f18f10459d558ead5ec381515cdfdeeeb",
-    "date": "2025-10-08"
+    "hash": "fec02789074387b26221ba5a581c953890617a49403214b6117e7bf17bc6a577",
+    "date": "2025-10-10"
   },
   "unchained": {
-    "hash": "d5b2c440fc3daacb3ffdd8f5275bba6bf133f94e8b1fa00185c13dd2c07de446",
-    "date": "2025-10-08"
+    "hash": "74cb6f7940c6abe81b1aeff386f623f901d7950d6cf4ef80c1e276de718c8d13",
+    "date": "2025-10-10"
   },
   "wasabi": {
-    "hash": "639434ff3ef5b5dc689202c1faa9d2c563c4afcbf64cdae0165dcf2c2ded1f7c",
-    "date": "2025-10-08"
+    "hash": "15aa4ea3f9e33b3751ce1cb467f455a74377bd0df3e03fd9cd564130824c727d",
+    "date": "2025-10-10"
   }
 }

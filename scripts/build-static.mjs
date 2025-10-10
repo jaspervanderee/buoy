@@ -186,25 +186,24 @@ const saveHashCache = async (cache) => {
     // Ensure single, rich robots meta for indexable service pages
     html = ensureRobotsMeta(html, { indexable: true });
 
-    // --- Inject a tiny shim so runtime JS knows which service to load ---
+    // --- Inject globals for runtime JS (no query params on service pages) ---
 const urlShim = `
 <script>
 (function(){
   try {
     var svc  = ${JSON.stringify(svc.name)};
     var slug = ${JSON.stringify(slug)};
-    var p = new URLSearchParams(location.search);
 
-    // set the common keys your JS might read
-    if (!p.get('services')) p.set('services', svc);
-    if (!p.get('service'))  p.set('service',  svc);
-    if (!p.get('name'))     p.set('name',     svc);
-    if (!p.get('slug'))     p.set('slug',     slug);
-
-    history.replaceState(null, '', location.pathname + '?' + p.toString());
+    // Set globals for runtime code to discover the current service
     window.__BUOY_SERVICE__ = svc;
     window.__BUOY_SLUG__ = slug;
     window.__BUOY_SINGLE__ = true;
+
+    // Strip query parameters on service pages (preserve hash if present)
+    if (location.search) {
+      var cleanUrl = location.pathname + (location.hash || '');
+      history.replaceState(null, '', cleanUrl);
+    }
   } catch (e) {}
 })();
 </script>
@@ -241,7 +240,8 @@ html = html.replace('</head>', urlShim + '</head>');
     // Make sure service.html has:
     // <!-- BUILD:START --> ... #comparison-container ... <!-- BUILD:END -->
     try {
-      const tableHtml = await renderTableHTML(svc, svc.category);
+      // Render table for service page with mode: "service" to exclude Platform/Supported/Features
+      const tableHtml = await renderTableHTML(svc, svc.category, { mode: "service" });
 
       const defaultOrder = ["tldr", "setup", "fees", "privacy", "compat", "migration"];
       const order = Array.isArray(svc.section_order) && svc.section_order.length

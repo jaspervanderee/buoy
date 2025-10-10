@@ -1,6 +1,12 @@
-// Buoy static-page fallback: ensure single-service param exists
+// Buoy static-page fallback: prefer globals on service pages, params on compare pages
 (function(){
   try {
+    // On service pages (/__BUOY_SINGLE__), never add query params - use globals only
+    if (window.__BUOY_SINGLE__ === true) {
+      // Service pages rely on window.__BUOY_SERVICE__ / __BUOY_SLUG__ globals
+      return;
+    }
+    // On compare pages, ensure service param exists for legacy compat if global is set
     var p = new URLSearchParams(location.search);
     if (!p.get('services') && !p.get('service') && window.__BUOY_SERVICE__) {
       p.set('service', window.__BUOY_SERVICE__);

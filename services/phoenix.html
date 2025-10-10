@@ -29,18 +29,17 @@
   try {
     var svc  = "Phoenix";
     var slug = "phoenix";
-    var p = new URLSearchParams(location.search);
 
-    // set the common keys your JS might read
-    if (!p.get('services')) p.set('services', svc);
-    if (!p.get('service'))  p.set('service',  svc);
-    if (!p.get('name'))     p.set('name',     svc);
-    if (!p.get('slug'))     p.set('slug',     slug);
-
-    history.replaceState(null, '', location.pathname + '?' + p.toString());
+    // Set globals for runtime code to discover the current service
     window.__BUOY_SERVICE__ = svc;
     window.__BUOY_SLUG__ = slug;
     window.__BUOY_SINGLE__ = true;
+
+    // Strip query parameters on service pages (preserve hash if present)
+    if (location.search) {
+      var cleanUrl = location.pathname + (location.hash || '');
+      history.replaceState(null, '', cleanUrl);
+    }
   } catch (e) {}
 })();
 </script>
@@ -156,36 +155,6 @@
     
     <table class="comparison-table"><tbody>
       
-      <tr class="feature-row type_of_platform">
-        <td><div class="feature-label">Platform</div></td>
-        <td>
-          <div class="feature-values">
-            <div class="feature-value" data-service="phoenix">Hot Wallet</div>
-          </div>
-        </td>
-      </tr>
-    
-
-      <tr class="feature-row supported_network">
-        <td><div class="feature-label sublabel">Supported Networks</div></td>
-        <td>
-          <div class="feature-values">
-            <div class="feature-value" data-service="phoenix">Lightning only, but you can receive and send on-chain using swaps</div>
-          </div>
-        </td>
-      </tr>
-    
-
-      <tr class="feature-row features">
-        <td><div class="feature-label sublabel">Features</div></td>
-        <td>
-          <div class="feature-values">
-            <div class="feature-value" data-service="phoenix"><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Seamless Lightning experience</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Runs Lightning node on device</div><div class="feature-item"><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> Option to connect your own node</div><div class="feature-item negative-group-start"><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> High on-chain fees for channel creation</div></div>
-          </div>
-        </td>
-      </tr>
-    
-
       <tr class="feature-row custody_control">
         <td><div class="feature-label">Custody &amp; Control</div></td>
         <td>

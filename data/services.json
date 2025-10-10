@@ -618,9 +618,9 @@
 	},
 	"countries": ["WW"],
 	"trust_chips": [
-		{ "text": "Non-custodial Lightning node on your device" },
-		{ "text": "Automatic channel management" },
-		{ "text": "Connect to your own Bitcoin node" }
+		{ "text": "Non-custodial" },
+		{ "text": "Open source" },
+		{ "text": "No KYC", "status": "positive" }
 	],
 	"tl_dr": {
 		"best_for": "Mobile-first Lightning payments with self-custody and automated channel care.",
