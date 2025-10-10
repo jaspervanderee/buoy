@@ -660,6 +660,43 @@ ${tileItems}
 </section>`;
       };
 
+      // Render dedicated sticky bar for service pages (not used on compare pages)
+      const renderServiceStickyCTA = (service) => {
+        const logoSrc = `/images/${service.name.toLowerCase().replace(/\s+/g, '-')}.svg`;
+        const websiteUrl = service.website || url;
+        
+        // Build device-aware CTA button (routes via /go for analytics)
+        let ctaButtonHtml = '';
+        if (service.links && (service.links.ios || service.links.android || service.links.desktop)) {
+          // Store platform links as data attributes for client-side device detection
+          const dataAttrs = [];
+          if (service.links.ios) dataAttrs.push(`data-ios="${service.links.ios}"`);
+          if (service.links.android) dataAttrs.push(`data-android="${service.links.android}"`);
+          if (service.links.desktop) dataAttrs.push(`data-desktop="${service.links.desktop}"`);
+          
+          ctaButtonHtml = `<a href="/go?service=${encodeURIComponent(service.name)}&target=auto" class="cta-button cta-button--primary" ${dataAttrs.join(' ')} data-service="${service.name}">Get ${service.name}</a>`;
+        } else {
+          // Fallback: direct website link
+          ctaButtonHtml = `<a href="/go?service=${encodeURIComponent(service.name)}&target=website" class="cta-button cta-button--primary" data-service="${service.name}">Get ${service.name}</a>`;
+        }
+        
+        const websiteLinkHtml = `<a href="/go?service=${encodeURIComponent(service.name)}&target=website" class="cta-link-secondary" data-service="${service.name}">Visit official website</a>`;
+        
+        return `<div class="service-sticky-cta">
+  <div class="feature-values logo-row">
+    <div class="feature-value logo-cell" data-service="${service.name.toLowerCase()}">
+      <a href="${websiteUrl}" target="_blank" class="service-link">
+        <img src="${logoSrc}" alt="${service.name} logo" class="svg-icon sticky-logo" />
+      </a>
+      <div class="cta-row">
+        ${ctaButtonHtml}
+        ${websiteLinkHtml}
+      </div>
+    </div>
+  </div>
+</div>`;
+      };
+
       const renderProfileSection = () => {
         const profile = svc.profile;
         const description = svc.description;
@@ -770,46 +807,10 @@ ${sectionBlocks.join("\n")}
 </div>`
         : "";
 
-      // Build sticky header with logo + single CTA + website link
-      const logoSrc = `/images/${svc.name.toLowerCase().replace(/\s+/g, '-')}.svg`;
-      const websiteUrl = svc.website || url;
-      
-      // Build device-aware CTA button (routes via /go for analytics)
-      let ctaButtonHtml = '';
-      if (svc.links && (svc.links.ios || svc.links.android || svc.links.desktop)) {
-        // Store platform links as data attributes for client-side device detection
-        const dataAttrs = [];
-        if (svc.links.ios) dataAttrs.push(`data-ios="${svc.links.ios}"`);
-        if (svc.links.android) dataAttrs.push(`data-android="${svc.links.android}"`);
-        if (svc.links.desktop) dataAttrs.push(`data-desktop="${svc.links.desktop}"`);
-        
-        ctaButtonHtml = `<a href="/go?service=${encodeURIComponent(svc.name)}&target=auto" class="cta-button cta-button--primary" ${dataAttrs.join(' ')} data-service="${svc.name}">Get ${svc.name}</a>`;
-      } else {
-        // Fallback: direct website link
-        ctaButtonHtml = `<a href="/go?service=${encodeURIComponent(svc.name)}&target=website" class="cta-button cta-button--primary" data-service="${svc.name}">Get ${svc.name}</a>`;
-      }
-      
-      const websiteLinkHtml = `<a href="/go?service=${encodeURIComponent(svc.name)}&target=website" class="cta-link-secondary" data-service="${svc.name}">Visit official website</a>`;
+      // Build the service page content (no comparison-container wrapper)
+      const stickyBarHtml = renderServiceStickyCTA(svc);
 
-      const bakedBlock = `
-<div id="comparison-container">
-  <div class="logo-row-sticky">
-    <div class="feature-values logo-row" id="logo-row-container">
-      <div class="feature-value logo-cell" data-service="${svc.name.toLowerCase()}">
-        <a href="${websiteUrl}" target="_blank" class="service-link">
-          <img src="${logoSrc}" alt="${svc.name} logo" class="svg-icon sticky-logo" />
-        </a>
-        <div class="cta-row">
-          ${ctaButtonHtml}
-          ${websiteLinkHtml}
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="comparison-table-wrapper">
-    ${tableHtml}
-  </div>
-</div>
+      const bakedBlock = `${stickyBarHtml}
 ${trustChipsHtml}
 ${sectionsHtml}`;
 

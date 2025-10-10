@@ -260,17 +260,21 @@ const isSingleServiceView =
   (typeof window.__BUOY_SINGLE__ !== 'undefined' && window.__BUOY_SINGLE__ === true) ||
   (typeof window.location.pathname === 'string' && window.location.pathname.startsWith("/services/"));
 
-// Detect baked table (static HTML injected at build time) by class to support both baked and dynamic
-const baked = document.querySelector('#comparison-table-wrapper .comparison-table');
+// Detect baked content (static HTML injected at build time)
+// Compare pages: #comparison-table-wrapper contains <table class="comparison-table">
+// Service pages: <div class="comparison-table"> contains sections directly (no wrapper)
+const baked = document.querySelector('.comparison-table');
 const hasBaked = !!baked;
 
 if (!isSingleServiceView && selectedServices.length < 2 && !hasBaked) {
-  document.getElementById("comparison-container").innerHTML = "<p>Please select at least two services.</p>";
+  const container = document.getElementById("comparison-container");
+  if (container) container.innerHTML = "<p>Please select at least two services.</p>";
   return;
 }
 
 if (isSingleServiceView && selectedServices.length !== 1) {
-  document.getElementById("comparison-container").innerHTML = "<p>Invalid or missing service.</p>";
+  const container = document.getElementById("comparison-container");
+  if (container) container.innerHTML = "<p>Invalid or missing service.</p>";
   return;
 }
 
@@ -378,7 +382,8 @@ try {
     }
 
     if (servicesToCompare.length === 0) {
-      document.getElementById("comparison-container").innerHTML = "<p>No matching services found.</p>";
+      const container = document.getElementById("comparison-container");
+      if (container) container.innerHTML = "<p>No matching services found.</p>";
       return;
     }
 
@@ -408,7 +413,8 @@ try {
         categoryTitle = categories[0];
         setCategoryTitle(categoryTitle);
       } else {
-        document.getElementById("comparison-container").innerHTML = "<p>Cannot compare services from different categories. Please select services from the same category.</p>";
+        const container = document.getElementById("comparison-container");
+        if (container) container.innerHTML = "<p>Cannot compare services from different categories. Please select services from the same category.</p>";
         return;
       }
     }
@@ -525,7 +531,6 @@ function renderFeatures(service) {
 }
 
     // ✅ Generate the comparison table or hydrate baked one
-    const comparisonContainer = document.getElementById("comparison-container");
     const features = [
   { key: "type_of_platform", label: "Platform" },
   { key: "supported_network", label: "Supported Networks" },
@@ -725,17 +730,8 @@ if (!hasBaked) {
     }
   } catch(_e) {}
 } else {
-  // Only adjust baked single-service pages for localization; 2-up compare pages remain static
-  if (isSingleServiceView) {
-    const svc = servicesToCompare[0];
-    if (countryCode !== "WW") {
-      const root = document.querySelector('#comparison-table-wrapper');
-      const cell = root && root.querySelector(`.feature-row.features .feature-value[data-service="${svc.name.toLowerCase()}"]`);
-      if (cell) {
-        cell.innerHTML = renderFeatures(svc);
-      }
-    }
-  }
+  // Service pages now use baked sections (no table structure to update)
+  // Compare pages remain static (no client-side updates)
 }
 
 // Initialize collapsible descriptions
@@ -907,10 +903,13 @@ if (!isSingleServiceView) {
     });
 
     // ✅ Ensure proper spacing
-    if (!isSmallScreen && servicesToCompare.length === 3) {
-      comparisonContainer.classList.add("three-cards");
-    } else {
-      comparisonContainer.classList.remove("three-cards");
+    const comparisonContainer = document.getElementById("comparison-container");
+    if (comparisonContainer) {
+      if (!isSmallScreen && servicesToCompare.length === 3) {
+        comparisonContainer.classList.add("three-cards");
+      } else {
+        comparisonContainer.classList.remove("three-cards");
+      }
     }
   }
 
@@ -921,19 +920,20 @@ if (!isSingleServiceView) {
 
   } catch (error) {
     console.error("Error loading services:", error);
-    document.getElementById("comparison-container").innerHTML = `<p>Error loading comparison data: ${error.message}</p>`;
+    const container = document.getElementById("comparison-container");
+    if (container) container.innerHTML = `<p>Error loading comparison data: ${error.message}</p>`;
   }
 });
 
-// ✅ Shrink logo row on scroll
+// ✅ Shrink logo row on scroll (supports both compare and service pages)
 window.addEventListener("scroll", () => {
-  const logoRow = document.querySelector(".logo-row-sticky");
-  if (!logoRow) return;
+  const stickyBar = document.querySelector(".logo-row-sticky, .service-sticky-cta");
+  if (!stickyBar) return;
 
   if (window.scrollY > 80) {
-    logoRow.classList.add("shrunk");
+    stickyBar.classList.add("shrunk");
   } else {
-    logoRow.classList.remove("shrunk");
+    stickyBar.classList.remove("shrunk");
   }
 });
 

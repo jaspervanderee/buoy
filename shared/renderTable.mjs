@@ -216,7 +216,8 @@ export async function renderTableHTML(service, category, options = {}) {
     "profile",
     "description",
     "founded_in",
-    "website"
+    "website",
+    "availability"
   ];
   
   const features = [

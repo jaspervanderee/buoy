@@ -1543,11 +1543,11 @@ p, li, a {
 
 /* Fees typography (service pages only) */
 .service-section {
-  margin-bottom: 10px;
+  margin-bottom: 40px; /* Uniform spacing between all sections */
 }
 
 .service-section .feature-value {
-  margin-bottom: 20px;
+  /* No bottom margin - spacing handled by parent .service-section */
 }
 
 .service-section#fees .feature-value {
@@ -1606,13 +1606,13 @@ p, li, a {
 
 /* === Migration (flows/cards) === */
 
-/* Section intro text */
+/* Section intro text - matches .feature-label.sublabel styling */
 .service-section#migration .section-intro {
   font-family: "Inter", sans-serif;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.8em;
+  font-weight: 600;
   color: var(--text-muted);
-  margin: 0 0 24px 0;
+  margin-bottom: 10px;
 }
 
 /* Container: mobile-first vertical stack */
@@ -1921,6 +1921,17 @@ p, li, a {
   top: 0;
   z-index: 100;
   background-color: var(--bg); /* Match page bg */
+  padding: 10px 0;
+  transition: all 0.3s ease;
+}
+
+/* Service page dedicated sticky bar (replaces logo-row-sticky on service pages) */
+.service-sticky-cta {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--bg); /* Match page background like original */
   padding: 10px 0;
   transition: all 0.3s ease;
 }
