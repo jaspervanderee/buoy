@@ -787,7 +787,41 @@
 			"gotcha": "The recipient's server must be online to generate the invoice; if it's down, the payment fails."
 		}
 	],
-	"compat_heading": "Compatibility at a glance"
+	"compat_heading": "Compatibility at a glance",
+	"privacy": {
+		"section_title": "Privacy & Safety — what Phoenix shares, how to recover, and regional notes",
+		"data_flows": [
+			"Phoenix connects to ACINQ's Lightning node to route payments. Today, ACINQ can see who you pay and the amount needed to deliver your payment.",
+			"On-chain transactions are public by design; reuse of addresses can link activity.",
+			"Use your own Electrum server (Settings) to limit what third parties learn about your addresses and balances.",
+			"Lightning peers still observe timing/amount metadata needed for routing."
+		],
+		"data_flows_do": "Connect your own Electrum server if privacy matters.",
+		"data_flows_dont": "Assume Lightning is fully private—some metadata still leaks via peers.",
+		"recovery": [
+			"Your 12-word seed lives only on your phone. ACINQ can't recover it for you. Channel states are encrypted and synced so they can be restored.",
+			"Standard restore: install Phoenix → Restore my wallet → enter seed → keep the phone online while channels resync.",
+			"If Phoenix/ACINQ is unavailable: Settings → Danger zone → Force close channels. After ~720 blocks, funds appear in the Final wallet; then sweep on-chain."
+		],
+		"recovery_do": "Store your seed offline and test a small restore when convenient.",
+		"recovery_dont": "Run Phoenix on two phones at the same time.",
+		"region": [
+			"App-store availability and funding options vary by country—check your local listing and on-ramp.",
+			"Install only from the official developer (ACINQ) on Apple App Store or Google Play.",
+			"Avoid third-party APKs; they're a common source of malware."
+		],
+		"micro_faqs": [
+			{"q": "Does Phoenix work with my own node or Electrum?", "a": "Yes. Connect your Electrum server to improve privacy; Lightning peers still see routing metadata."},
+			{"q": "Can ACINQ recover my wallet if I lose the seed?", "a": "No. The seed never leaves your device."},
+			{"q": "What if ACINQ disappears?", "a": "Use Force close; funds appear in the Final wallet after confirmations, then sweep."}
+		],
+		"glossary": [
+			{"term": "Electrum server", "def": "A server your wallet queries for balances/tx history. Running your own improves privacy."},
+			{"term": "Force close", "def": "Shuts a Lightning channel on-chain without cooperation; slower and higher fees."},
+			{"term": "Final wallet", "def": "On-chain funds after channels close; sweep when confirmed."}
+		],
+		"keywords": ["Phoenix privacy", "ACINQ", "Electrum server", "Phoenix lost phone", "force close channels", "Final wallet", "Phoenix availability"]
+	}
   },
   {
 "name": "Pocket",

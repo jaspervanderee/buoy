@@ -3086,6 +3086,220 @@ p, li, a {
   }
 }
 
+/* === Privacy & Safety Section (new structure) === */
+.privacy-cards {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.privacy-card {
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.privacy-card h3 {
+  margin: 0 0 12px 0;
+  font-size: 1.1em;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.privacy-card ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0 0 12px 0;
+}
+
+.privacy-card ul li {
+  margin: 6px 0;
+  line-height: 1.6;
+}
+
+.privacy-card ul li:first-child {
+  margin-top: 0;
+}
+
+.privacy-card ul li:last-child {
+  margin-bottom: 0;
+}
+
+.dodont-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.dodont-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+.dodont-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+}
+
+.micro-faqs {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.micro-faqs h3 {
+  margin: 0 0 16px 0;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.micro-faq-item {
+  margin-bottom: 16px;
+}
+
+.micro-faq-item:last-child {
+  margin-bottom: 0;
+}
+
+.micro-faq-item strong {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.micro-faq-item p {
+  margin: 0;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.mini-glossary {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.mini-glossary summary {
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 600;
+  padding: 8px 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.mini-glossary summary:hover {
+  opacity: 1;
+}
+
+.mini-glossary summary::-webkit-details-marker {
+  display: none;
+}
+
+.mini-glossary summary::before {
+  content: "▼";
+  font-size: 0.7em;
+  transition: transform 0.2s ease;
+  display: inline-block;
+  opacity: 0.6;
+}
+
+.mini-glossary[open] summary::before {
+  transform: rotate(-180deg);
+}
+
+.mini-glossary dl {
+  margin: 12px 0 0 0;
+}
+
+.mini-glossary dt {
+  font-weight: 600;
+  margin: 12px 0 4px 0;
+  line-height: 1.4;
+}
+
+.mini-glossary dt:first-child {
+  margin-top: 0;
+}
+
+.mini-glossary dd {
+  margin: 0 0 8px 0;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Glossary term links within cards */
+.glossary-link {
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 2px;
+  color: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.glossary-link:hover {
+  opacity: 0.7;
+}
+
+/* Glossary term highlight animation */
+.mini-glossary dt.glossary-highlight {
+  animation: glossaryPulse 2s ease-out;
+}
+
+@keyframes glossaryPulse {
+  0%, 100% {
+    background: transparent;
+  }
+  10%, 30% {
+    background: var(--accent);
+    background: rgba(255, 96, 59, 0.15);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  @keyframes glossaryPulse {
+    0%, 100% {
+      background: transparent;
+    }
+    10%, 30% {
+      background: rgba(255, 96, 59, 0.2);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .privacy-cards {
+    gap: 20px;
+  }
+  
+  .privacy-card {
+    padding: 20px;
+  }
+  
+  .dodont-strip {
+    flex-direction: row;
+    gap: 20px;
+  }
+  
+  .dodont-item {
+    flex: 1;
+  }
+}
+
 /* === Compatibility Section (mobile-first) === */
 
 /* Tiles grid section */

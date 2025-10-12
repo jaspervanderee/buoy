@@ -67,6 +67,39 @@
         }, 100);
       }
     }
+    
+    // Handle glossary term links (prevent base href redirect)
+    var glossaryLinks = document.querySelectorAll('.glossary-link');
+    glossaryLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        var href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        
+        var targetId = href.substring(1);
+        var targetTerm = document.getElementById(targetId);
+        
+        if (targetTerm) {
+          // Find and open the glossary details element
+          var glossaryDetails = document.querySelector('.mini-glossary');
+          if (glossaryDetails && !glossaryDetails.open) {
+            glossaryDetails.open = true;
+          }
+          
+          // Wait for details to expand, then scroll
+          setTimeout(function() {
+            targetTerm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Add temporary highlight
+            targetTerm.classList.add('glossary-highlight');
+            setTimeout(function() {
+              targetTerm.classList.remove('glossary-highlight');
+            }, 2000);
+          }, glossaryDetails && !glossaryDetails.open ? 150 : 0);
+        }
+      });
+    });
   }
 
   // Initialize when DOM is ready

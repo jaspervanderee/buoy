@@ -352,6 +352,147 @@ ${blocks}
       };
 
       const renderPrivacy = () => {
+        // Helper: slugify for anchor IDs
+        const slugifyAnchor = (text) => {
+          return text.toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .trim()
+            .slice(0, 50);
+        };
+        
+        // Check for new privacy object structure first
+        if (svc.privacy && typeof svc.privacy === 'object') {
+          const privacy = svc.privacy;
+          
+          // Build glossary term map for auto-linking
+          const glossaryMap = new Map();
+          if (Array.isArray(privacy.glossary)) {
+            privacy.glossary.forEach(entry => {
+              const anchor = slugifyAnchor(entry.term);
+              glossaryMap.set(entry.term, anchor);
+            });
+          }
+          
+          // Helper to auto-link glossary terms in text
+          const linkGlossaryTerms = (text) => {
+            if (glossaryMap.size === 0) return text;
+            
+            let result = text;
+            // Sort terms by length (longest first) to avoid partial matches
+            const terms = Array.from(glossaryMap.keys()).sort((a, b) => b.length - a.length);
+            
+            terms.forEach(term => {
+              const anchor = glossaryMap.get(term);
+              // Match whole words only, case-insensitive
+              const regex = new RegExp(`\\b(${term})\\b`, 'gi');
+              let matched = false;
+              result = result.replace(regex, (match) => {
+                // Only link the first occurrence in each text block
+                if (!matched) {
+                  matched = true;
+                  return `<a href="#${anchor}" class="glossary-link" data-term="${escapeHtml(term)}">${match}</a>`;
+                }
+                return match;
+              });
+            });
+            
+            return result;
+          };
+          
+          const cards = [];
+          
+          // Card 1: Data flows
+          if (Array.isArray(privacy.data_flows) && privacy.data_flows.length > 0) {
+            const bullets = privacy.data_flows.slice(0, 4).map(item => `<li>${linkGlossaryTerms(item)}</li>`).join("");
+            let dodonts = "";
+            if (privacy.data_flows_do || privacy.data_flows_dont) {
+              const doItem = privacy.data_flows_do ? `<div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Do:</strong> ${linkGlossaryTerms(privacy.data_flows_do)}</div>` : "";
+              const dontItem = privacy.data_flows_dont ? `<div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Don't:</strong> ${linkGlossaryTerms(privacy.data_flows_dont)}</div>` : "";
+              dodonts = `<div class="dodont-strip">${doItem}${dontItem}</div>`;
+            }
+            cards.push(`    <div class="privacy-card" id="data-flows">
+      <h3>Who can see what when you use ${svc.name}</h3>
+      <ul>${bullets}</ul>
+      ${dodonts}
+    </div>`);
+          }
+          
+          // Card 2: Recovery
+          if (Array.isArray(privacy.recovery) && privacy.recovery.length > 0) {
+            const bullets = privacy.recovery.slice(0, 4).map(item => `<li>${linkGlossaryTerms(item)}</li>`).join("");
+            let dodonts = "";
+            if (privacy.recovery_do || privacy.recovery_dont) {
+              const doItem = privacy.recovery_do ? `<div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Do:</strong> ${linkGlossaryTerms(privacy.recovery_do)}</div>` : "";
+              const dontItem = privacy.recovery_dont ? `<div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Don't:</strong> ${linkGlossaryTerms(privacy.recovery_dont)}</div>` : "";
+              dodonts = `<div class="dodont-strip">${doItem}${dontItem}</div>`;
+            }
+            cards.push(`    <div class="privacy-card" id="recovery">
+      <h3>Lost your phone? How ${svc.name} recovery works</h3>
+      <ul>${bullets}</ul>
+      ${dodonts}
+    </div>`);
+          }
+          
+          // Card 3: Availability / Region
+          if (Array.isArray(privacy.region) && privacy.region.length > 0) {
+            const bullets = privacy.region.slice(0, 4).map(item => `<li>${linkGlossaryTerms(item)}</li>`).join("");
+            cards.push(`    <div class="privacy-card" id="availability">
+      <h3>Availability &amp; safe installs</h3>
+      <ul>${bullets}</ul>
+    </div>`);
+          }
+          
+          // Micro-FAQs
+          let microFaqsHtml = "";
+          if (Array.isArray(privacy.micro_faqs) && privacy.micro_faqs.length > 0) {
+            const faqItems = privacy.micro_faqs.map(faq => {
+              const anchor = slugifyAnchor(faq.q);
+              return `      <div class="micro-faq-item" id="${anchor}">
+        <strong>${faq.q}</strong>
+        <p>${faq.a}</p>
+      </div>`;
+            }).join("\n");
+            microFaqsHtml = `
+    <div class="micro-faqs">
+      <h3>Quick answers</h3>
+${faqItems}
+    </div>`;
+          }
+          
+          // Mini-glossary (collapsible)
+          let glossaryHtml = "";
+          if (Array.isArray(privacy.glossary) && privacy.glossary.length > 0) {
+            const glossaryItems = privacy.glossary.map(entry => {
+              const anchor = slugifyAnchor(entry.term);
+              return `      <dt id="${anchor}">${entry.term}</dt>
+      <dd>${entry.def}</dd>`;
+            }).join("\n");
+            glossaryHtml = `
+    <details class="mini-glossary">
+      <summary>Key terms</summary>
+      <dl>
+${glossaryItems}
+      </dl>
+    </details>`;
+          }
+          
+          // Skip if no content at all
+          if (cards.length === 0 && !microFaqsHtml && !glossaryHtml) return "";
+          
+          const sectionTitle = privacy.section_title || "Privacy & Safety";
+          
+          return `
+<section id="privacy-safety" class="service-section" aria-labelledby="privacy-safety-label">
+  <h2 id="privacy-safety-label" class="feature-label">${sectionTitle}</h2>
+  <div class="privacy-cards">
+${cards.join("\n")}
+  </div>${microFaqsHtml}${glossaryHtml}
+</section>`;
+        }
+        
+        // LEGACY: Fall back to old privacy_notes format for services not yet migrated
         const notes = svc.privacy_notes || {};
         const labels = notes.labels || {};
         

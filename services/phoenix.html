@@ -190,26 +190,50 @@
   </div>
 </section>
 
-<section id="privacy" class="service-section">
-  <h2 class="feature-label">Privacy &amp; Safety</h2>
-  <div id="privacy-data">
-    <div class="feature-label sublabel">Data flows</div>
-    <div class="feature-value">
-      <ul><li>Phoenix connects to ACINQ’s server to run Lightning for you. Today, ACINQ can see who you pay and how much.</li><li>You can connect Phoenix to your own Electrum server to reduce what third parties can learn about your activity.</li></ul>
+<section id="privacy-safety" class="service-section" aria-labelledby="privacy-safety-label">
+  <h2 id="privacy-safety-label" class="feature-label">Privacy & Safety — what Phoenix shares, how to recover, and regional notes</h2>
+  <div class="privacy-cards">
+    <div class="privacy-card" id="data-flows">
+      <h3>Who can see what when you use Phoenix</h3>
+      <ul><li>Phoenix connects to ACINQ's Lightning node to route payments. Today, ACINQ can see who you pay and the amount needed to deliver your payment.</li><li>On-chain transactions are public by design; reuse of addresses can link activity.</li><li>Use your own <a href="#electrum-server" class="glossary-link" data-term="Electrum server">Electrum server</a> (Settings) to limit what third parties learn about your addresses and balances.</li><li>Lightning peers still observe timing/amount metadata needed for routing.</li></ul>
+      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Do:</strong> Connect your own <a href="#electrum-server" class="glossary-link" data-term="Electrum server">Electrum server</a> if privacy matters.</div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Don't:</strong> Assume Lightning is fully private—some metadata still leaks via peers.</div></div>
+    </div>
+    <div class="privacy-card" id="recovery">
+      <h3>Lost your phone? How Phoenix recovery works</h3>
+      <ul><li>Your 12-word seed lives only on your phone. ACINQ can't recover it for you. Channel states are encrypted and synced so they can be restored.</li><li>Standard restore: install Phoenix → Restore my wallet → enter seed → keep the phone online while channels resync.</li><li>If Phoenix/ACINQ is unavailable: Settings → Danger zone → <a href="#force-close" class="glossary-link" data-term="Force close">Force close</a> channels. After ~720 blocks, funds appear in the <a href="#final-wallet" class="glossary-link" data-term="Final wallet">Final wallet</a>; then sweep on-chain.</li></ul>
+      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Do:</strong> Store your seed offline and test a small restore when convenient.</div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Don't:</strong> Run Phoenix on two phones at the same time.</div></div>
+    </div>
+    <div class="privacy-card" id="availability">
+      <h3>Availability &amp; safe installs</h3>
+      <ul><li>App-store availability and funding options vary by country—check your local listing and on-ramp.</li><li>Install only from the official developer (ACINQ) on Apple App Store or Google Play.</li><li>Avoid third-party APKs; they're a common source of malware.</li></ul>
     </div>
   </div>
-  <div id="privacy-recovery">
-    <div class="feature-label sublabel">Recovery drill</div>
-    <div class="feature-value">
-      <ul><li>Your channel states are encrypted and saved with ACINQ so you can restore using your 12-word seed.</li><li>The seed lives only on your phone—ACINQ can’t recover it for you if you lose it. </li><li>If ACINQ ever disappears, go to Settings → Danger zone → Force close channels; funds return on-chain after ~720 blocks.</li><li>Keep Phoenix installed until the forced-closed coins show in the Final wallet view, then sweep them.</li></ul>
+    <div class="micro-faqs">
+      <h3>Quick answers</h3>
+      <div class="micro-faq-item" id="does-phoenix-work-with-my-own-node-or-electrum">
+        <strong>Does Phoenix work with my own node or Electrum?</strong>
+        <p>Yes. Connect your Electrum server to improve privacy; Lightning peers still see routing metadata.</p>
+      </div>
+      <div class="micro-faq-item" id="can-acinq-recover-my-wallet-if-i-lose-the-seed">
+        <strong>Can ACINQ recover my wallet if I lose the seed?</strong>
+        <p>No. The seed never leaves your device.</p>
+      </div>
+      <div class="micro-faq-item" id="what-if-acinq-disappears">
+        <strong>What if ACINQ disappears?</strong>
+        <p>Use Force close; funds appear in the Final wallet after confirmations, then sweep.</p>
+      </div>
     </div>
-  </div>
-  <div id="privacy-region">
-    <div class="feature-label sublabel">Country caveats</div>
-    <div class="feature-value">
-      <ul><li>Availability and funding options vary by country—check your app store or on-ramp.</li><li>Install only from the official publisher in your app store; verify the developer name.</li></ul>
-    </div>
-  </div>
+    <details class="mini-glossary">
+      <summary>Key terms</summary>
+      <dl>
+      <dt id="electrum-server">Electrum server</dt>
+      <dd>A server your wallet queries for balances/tx history. Running your own improves privacy.</dd>
+      <dt id="force-close">Force close</dt>
+      <dd>Shuts a Lightning channel on-chain without cooperation; slower and higher fees.</dd>
+      <dt id="final-wallet">Final wallet</dt>
+      <dd>On-chain funds after channels close; sweep when confirmed.</dd>
+      </dl>
+    </details>
 </section>
 
 <section id="compat" class="service-section">
@@ -221,13 +245,13 @@
           <h3 class="svc-compat__title">Pay any Lightning QR</h3>
           <span class="svc-chip svc-chip--works">Works</span>
         </div>
-        <p class="svc-compat__benefit">Scan one QR; the wallet fetches the invoice for you.</p>
+        <p class="svc-compat__benefit">Scan a Lightning QR code; the wallet fetches the invoice for you.</p>
         
         <details>
           <summary>Learn more</summary>
           <div>
             <p><strong>What:</strong> Pay using a single QR code; your wallet fetches a fresh invoice automatically.</p>
-            <p><strong>Why:</strong> Fewer steps when tipping creators or buying products online.</p>
+            <p><strong>Why:</strong> Fewer steps necessary when tipping or buying products online.</p>
             <p><strong>Try it:</strong></p><ol><li>Scan a Lightning QR on a website or in another app</li><li>Review the amount and description</li><li>Approve the payment</li></ol>
             <p><strong>Gotcha:</strong> Some QRs are on-chain Bitcoin addresses; look for 'Lightning' or 'LNURL' labels to confirm.</p>
           </div>
