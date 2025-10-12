@@ -651,22 +651,51 @@
 		],
 		"totalTime": null
 	},
+	"fees_at_a_glance": [
+		{ "value": "0.4% + 4 sat", "label": "Outgoing Lightning payment" },
+		{ "value": "≈1,000 sat + mining", "label": "First Lightning receive (channel open)" },
+		{ "value": "1% + mining", "label": "Large receive when channel is full (splice-in)" }
+	],
 	"fees_scenarios": [
 		{
-			"scenario": "Paying a $15 Lightning invoice in a café",
-			"expected_range": "0.4% of the amount + 4 sat",
-			"notes": "Outgoing Lightning payments include a fixed 4 sat charge plus 0.4% routing fee."
+			"id": "fees-pay",
+			"title": "Paying a small Lightning invoice (e.g., $15 coffee)",
+			"cost_today": "0.4% of the amount + 4 sat",
+			"what_happens": "Lightning routes your payment through peers; 0.4% routing fee + 4 sat flat charge.",
+			"how_to_minimize": "Batch small purchases when possible; avoid many micro-payments during high network activity.",
+			"learn_more": "Every outgoing Lightning payment includes this fee. The 4 sat is Phoenix's service charge, and the 0.4% covers routing through the Lightning network."
 		},
 		{
-			"scenario": "First $30 Lightning receive when no channel exists",
-			"expected_range": "≈1,000 sat channel open fee + mining fee",
-			"notes": "Phoenix opens a channel for you and charges the 1,000 sat creation fee along with the current mining fee."
+			"id": "fees-first-receive",
+			"title": "First Lightning receive when you have no channel",
+			"cost_today": "≈1,000 sat channel creation + current mining fee",
+			"what_happens": "Phoenix opens a Lightning channel so you can receive payments.",
+			"how_to_minimize": "Wait for low on-chain fees (check mempool.space); receive when network is quiet.",
+			"learn_more": "Your first Lightning receive triggers channel creation. Phoenix must commit an on-chain transaction to open the channel, which incurs the current Bitcoin mining fee plus a 1,000 sat setup charge."
 		},
 		{
-			"scenario": "Receiving a $200 payout after your channel fills up",
-			"expected_range": "1% of the amount + mining fee",
-			"notes": "Insufficient inbound liquidity triggers a splice-in with a 1% fee plus mining costs."
+			"id": "fees-splice",
+			"title": "Receiving a larger payout when your channel is full",
+			"cost_today": "1% of the amount + mining fee (splice-in)",
+			"what_happens": "Phoenix resizes your channel to accept more sats than current capacity allows.",
+			"how_to_minimize": "Consolidate into fewer, larger receives; spend down balance before receiving large amounts.",
+			"learn_more": "When incoming payment exceeds available channel capacity, Phoenix performs a splice-in operation. This on-chain transaction increases your channel size and costs 1% of the received amount plus current mining fees."
 		}
+	],
+	"fees_examples": [
+		{ "example": "Pay $15 at a café", "what_happens": "Normal Lightning route", "likely_cost": "0.4% + 4 sat" },
+		{ "example": "Receive $30 first time", "what_happens": "Channel opens", "likely_cost": "≈1,000 sat + mining" },
+		{ "example": "Receive $200 payout", "what_happens": "Splice-in", "likely_cost": "1% + mining" }
+	],
+	"fees_faq": [
+		{ "q": "Does Phoenix charge me every time I receive?", "a": "Not always. Once your channel exists and has room, small Lightning receives can be free aside from routing." },
+		{ "q": "When will Phoenix open or resize a channel?", "a": "On your first Lightning receive or when more inbound capacity is needed." },
+		{ "q": "How do I avoid the 1% splice fee?", "a": "Consolidate larger receives and avoid on-chain fee spikes." }
+	],
+	"key_terms": [
+		{ "id": "term-channel-open", "term": "Channel open", "definition": "Creates your first Lightning channel so you can receive." },
+		{ "id": "term-splice-in", "term": "Splice-in", "definition": "Increases channel capacity to take larger receives." },
+		{ "id": "term-mining-fee", "term": "Mining fee", "definition": "On-chain fee paid when opening/resizing; varies with network demand." }
 	],
 	"privacy_notes": {
 		"data_flows": [

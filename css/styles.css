@@ -1587,10 +1587,7 @@ p, li, a {
   line-height: 1.3;
 }
 
-/* consistent spacing for sublabels in service sections only */
-.service-section .feature-label.sublabel {
-  margin-bottom: 10px;
-}
+
 
 /* optional: ensure paragraphs inside cards share the same rhythm */
 .service-section .feature-value p { margin: 6px 0; }
@@ -1624,15 +1621,13 @@ p, li, a {
   border-radius: 12px;
   padding: 16px;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Card header: title + toggle */
+/* Card header: title + toggle (mobile: use display:contents to allow reordering) */
 .migration-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 12px;
+  display: contents; /* Break container on mobile, children become siblings */
 }
 
 .migration-title {
@@ -1640,49 +1635,61 @@ p, li, a {
   font-size: 1.1em;
   font-weight: 600;
   line-height: 1.3;
-  margin: 0;
+  margin: 0 0 12px 0;
   color: var(--text);
-  flex: 1;
+  order: 1; /* Title first */
 }
 
-/* Toggle button (mobile collapse/expand) */
+/* Toggle button - styled like "Learn more" on mobile */
 .migration-toggle {
   background: transparent;
   border: none;
-  padding: 4px;
+  padding: 8px 0 0 0;
   cursor: pointer;
-  color: var(--text-muted);
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+  gap: 8px;
   transition: color 0.2s ease;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--accent);
+  border-top: 1px solid var(--border);
+  margin-top: 12px;
+  width: 100%;
+  order: 3; /* Push to bottom after badges on mobile */
 }
 
-.migration-toggle:hover { color: var(--accent); }
+.migration-toggle:hover { color: #e55a35; }
 .migration-toggle:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: none; /* Remove focus border */
 }
 
 .migration-toggle-icon {
   display: block;
-  width: 20px;
-  height: 20px;
+  width: auto;
+  height: auto;
   position: relative;
+  order: -1; /* Arrow before text */
 }
 
 .migration-toggle-icon::before {
-  content: "↓";
-  font-size: 18px;
+  content: "\2193"; /* Standard down arrow */
+  font-size: 1em;
   font-family: "Inter", sans-serif;
   line-height: 1;
   transition: transform 0.3s ease;
   display: block;
+  color: #ff603b;
 }
 
 .migration-toggle[aria-expanded="true"] .migration-toggle-icon::before {
   transform: rotate(180deg);
+}
+
+/* Add "Learn more" text via pseudo-element */
+.migration-toggle::after {
+  content: "Learn more";
 }
 
 /* Badges: time/cost/risk chips */
@@ -1690,7 +1697,9 @@ p, li, a {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 0; /* Remove bottom margin on mobile (toggle adds its own) */
+  order: 2; /* Position after title/header, before toggle */
+  width: 100%;
 }
 
 .migration-badge {
@@ -1709,6 +1718,7 @@ p, li, a {
 .migration-content {
   overflow: hidden;
   transition: max-height 0.3s ease, opacity 0.3s ease;
+  order: 4; /* After title, badges, toggle */
 }
 
 .migration-card.is-collapsed .migration-content {
@@ -1797,6 +1807,33 @@ p, li, a {
   }
   
   .migration-card { padding: 20px; }
+  
+  /* Desktop: restore header as proper flex container */
+  .migration-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .migration-title {
+    flex: 1;
+    margin-bottom: 0;
+    order: initial;
+  }
+  
+  /* Desktop: restore badges original styling */
+  .migration-badges {
+    margin-bottom: 12px;
+    order: initial;
+    width: auto;
+  }
+  
+  .migration-content {
+    order: initial;
+  }
+  
   .migration-toggle { display: none; } /* Hide toggle on desktop */
   
   /* Always show content on desktop */
@@ -3155,31 +3192,19 @@ p, li, a {
   border-top: 1px solid var(--border);
 }
 
-.micro-faqs h3 {
-  margin: 0 0 16px 0;
-  font-size: 1.1em;
+.micro-faqs__title {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em; /* Match feature-label sublabel */
   font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  text-align: left;
 }
 
-.micro-faq-item {
-  margin-bottom: 16px;
-}
-
-.micro-faq-item:last-child {
-  margin-bottom: 0;
-}
-
-.micro-faq-item strong {
-  display: block;
-  margin-bottom: 4px;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-.micro-faq-item p {
-  margin: 0;
-  line-height: 1.6;
-  opacity: 0.9;
+.micro-faqs__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .mini-glossary {
@@ -3190,19 +3215,20 @@ p, li, a {
 
 .mini-glossary summary {
   cursor: pointer;
-  font-size: 0.95em;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em; /* Match feature-label sublabel */
   font-weight: 600;
   padding: 8px 0;
   list-style: none;
   display: flex;
   align-items: center;
   gap: 8px;
-  opacity: 0.8;
-  transition: opacity 0.2s ease;
+  color: var(--text-muted); /* Match feature-label sublabel */
+  transition: color 0.2s ease;
 }
 
 .mini-glossary summary:hover {
-  opacity: 1;
+  color: var(--text);
 }
 
 .mini-glossary summary::-webkit-details-marker {
@@ -3210,15 +3236,16 @@ p, li, a {
 }
 
 .mini-glossary summary::before {
-  content: "▼";
-  font-size: 0.7em;
+  content: "\2193"; /* Standard site-wide down arrow */
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  line-height: 1;
   transition: transform 0.2s ease;
-  display: inline-block;
-  opacity: 0.6;
+  color: #ff603b;
 }
 
 .mini-glossary[open] summary::before {
-  transform: rotate(-180deg);
+  transform: rotate(180deg);
 }
 
 .mini-glossary dl {
@@ -3256,7 +3283,8 @@ p, li, a {
 }
 
 /* Glossary term highlight animation */
-.mini-glossary dt.glossary-highlight {
+.mini-glossary dt.glossary-highlight,
+.key-terms dt.glossary-highlight {
   animation: glossaryPulse 2s ease-out;
 }
 
@@ -3297,6 +3325,453 @@ p, li, a {
   
   .dodont-item {
     flex: 1;
+  }
+}
+
+/* === Fees Section (mobile-first, match Compatibility layout) === */
+
+.section-fees {
+  margin-top: 24px;
+  margin-bottom: 40px;
+}
+
+.fees-title {
+  font-family: "Inter", sans-serif;
+  font-size: 1.4em;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: var(--text);
+}
+
+/* Fee chips (clickable anchors) */
+.fee-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 20px 0;
+}
+
+.fee-chip {
+  background: var(--panel);
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  padding: 8px 10px;
+  box-shadow: var(--shadow);
+  flex: 1 1 auto;
+  min-width: 140px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.fee-chip:hover {
+  border-color: #ff603b;
+  background: rgba(255, 96, 59, 0.02);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 96, 59, 0.1),
+              0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.fee-chip:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.fee-chip__value {
+  display: block;
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 600;
+  font-size: 0.95em;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.fee-chip__label {
+  display: block;
+  font-family: "Ubuntu Mono", monospace;
+  color: var(--text-muted);
+  font-size: 0.8em;
+  line-height: 1.3;
+}
+
+/* Fee scenarios (match Compatibility grid) */
+.fee-scenarios {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 44px 0 44px 0; /* Increased bottom margin for spacing to examples */
+}
+
+.fee-scenario-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.fee-card {
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 16px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  scroll-margin-top: 250px; /* Offset for sticky header + CTA bar */
+}
+
+/* Target highlight (subtle feedback) */
+.fee-card.is-target {
+  border-color: var(--accent);
+  background: rgba(255, 96, 59, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  .fee-card.is-target {
+    background: rgba(255, 96, 59, 0.1);
+  }
+}
+
+/* Native :target fallback for JS-off */
+.fee-card:target {
+  border-color: var(--accent);
+}
+
+.fee-card__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1.05em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 10px 0;
+  color: var(--text);
+}
+
+.fee-card__cost {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0 0 8px 0;
+  color: var(--text);
+}
+
+.fee-card__what,
+.fee-card__how {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.95em;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 8px 0 0 0;
+  color: var(--text);
+}
+
+.fee-card__what:last-child,
+.fee-card__how:last-child {
+  margin-bottom: 0;
+}
+
+/* Learn more disclosure */
+.fee-card__learn-more {
+  margin-top: 20px; /* Increased spacing before Learn more */
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.fee-card__learn-more summary {
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em; /* Match sublabel size */
+  font-weight: 600;
+  color: var(--accent);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fee-card__learn-more summary::-webkit-details-marker {
+  display: none;
+}
+
+.fee-card__learn-more summary::before {
+  content: "\2193"; /* Standard down arrow (match FAQ) */
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  color: #ff603b; /* Match FAQ arrow */
+}
+
+.fee-card__learn-more[open] summary::before {
+  transform: rotate(180deg); /* Rotate up when open (match FAQ) */
+}
+
+.fee-card__learn-more p {
+  margin: 12px 0 0 0; /* Increased spacing inside */
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.95em;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* Fee examples - mobile list (default) */
+.fee-examples-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.fee-example-item {
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fee-example-item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.fee-example__label {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text);
+  display: block;
+}
+
+.fee-example__note {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  color: var(--text-muted);
+  display: block;
+}
+
+.fee-example__cost {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.95em;
+  color: var(--text);
+  display: block;
+}
+
+/* Fee examples - desktop table (hidden on mobile) */
+.fee-examples-table {
+  display: none;
+}
+
+/* Quick answers (individually collapsible items, like brand FAQ) */
+.fee-quick-answers {
+  margin: 20px 0 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+/* Override .service-section#fees h3 for Quick answers title specifically */
+.service-section#fees .fee-quick-answers__title {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em; /* Match feature-label sublabel */
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.fee-quick-answers__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Individual FAQ items (match brand FAQ pattern) */
+.fee-quick-answers .micro-faq-item,
+.micro-faqs .micro-faq-item {
+  margin: 8px 0;
+}
+
+.fee-quick-answers .micro-faq-item summary,
+.micro-faqs .micro-faq-item summary {
+  cursor: pointer;
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 400;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s ease;
+}
+
+.fee-quick-answers .micro-faq-item summary::-webkit-details-marker,
+.micro-faqs .micro-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.fee-quick-answers .micro-faq-item summary::before,
+.micro-faqs .micro-faq-item summary::before {
+  content: "\2193"; /* Standard site-wide down arrow */
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  color: #ff603b;
+}
+
+.fee-quick-answers .micro-faq-item[open] summary::before,
+.micro-faqs .micro-faq-item[open] summary::before {
+  transform: rotate(180deg);
+}
+
+.fee-quick-answers .micro-faq-item > div,
+.micro-faqs .micro-faq-item > div {
+  margin-top: 8px;
+}
+
+.fee-quick-answers .micro-faq-item p,
+.micro-faqs .micro-faq-item p {
+  margin: 0;
+  font-family: "Ubuntu Mono", monospace;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* Key terms (collapsible glossary) */
+.section-fees .key-terms {
+  margin: 32px 0 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.section-fees .key-terms summary {
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em; /* Match feature-label sublabel */
+  font-weight: 600;
+  padding: 8px 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted); /* Match feature-label sublabel */
+  transition: color 0.2s ease;
+}
+
+.section-fees .key-terms summary:hover {
+  color: var(--text);
+}
+
+.section-fees .key-terms summary::-webkit-details-marker {
+  display: none;
+}
+
+.section-fees .key-terms summary::before {
+  content: "\2193"; /* Standard site-wide down arrow */
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  color: #ff603b;
+}
+
+.section-fees .key-terms[open] summary::before {
+  transform: rotate(180deg);
+}
+
+.section-fees .key-terms dl {
+  margin: 12px 0 0 0;
+}
+
+.section-fees .key-terms dt {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 600;
+  margin: 12px 0 4px 0;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.section-fees .key-terms dt:first-child {
+  margin-top: 0;
+}
+
+.section-fees .key-terms dd {
+  font-family: "Ubuntu Mono", monospace;
+  margin: 0 0 8px 0;
+  line-height: 1.6;
+  color: var(--text);
+  opacity: 0.9;
+}
+
+/* Desktop breakpoint (match Compatibility layout) */
+@media (min-width: 768px) {
+  .section-fees .section-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  
+  .fee-chips {
+    gap: 12px;
+  }
+  
+  .fee-chip {
+    flex: 1; /* Equal width chips on desktop */
+    min-width: 160px;
+    max-width: none;
+  }
+  
+  /* Two-column grid for scenarios (match Compatibility) */
+  .fee-scenarios {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  
+  .fee-card {
+    padding: 20px;
+    scroll-margin-top: 450px; /* Slightly less offset on desktop */
+  }
+  
+  /* Show table on desktop, hide mobile list */
+  .fee-examples-list {
+    display: none;
+  }
+  
+  .fee-examples-table {
+    display: table;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 0 20px 0;
+    background: var(--panel);
+  }
+  
+  .fee-examples-table thead {
+    background: var(--bg);
+  }
+  
+  .fee-examples-table th {
+    font-family: "Inter", sans-serif;
+    font-size: 0.85em;
+    font-weight: 600;
+    text-align: left;
+    padding: 12px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .fee-examples-table td {
+    font-family: "Ubuntu Mono", monospace;
+    font-size: 0.9em;
+    padding: 12px;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  
+  .fee-examples-table tbody tr:last-child td {
+    border-bottom: none;
   }
 }
 
@@ -3407,17 +3882,21 @@ p, li, a {
 
 /* Collapsible explainers inside tiles (reuse FAQ pattern) */
 .svc-compat__tile details {
-  margin: 8px 0 0 0;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
 }
 
 .svc-compat__tile summary {
-  list-style: none;
   cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em; /* Match Fees section Learn more */
+  font-weight: 600;
+  color: var(--accent);
+  list-style: none;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 400;
-  font-family: "Ubuntu Mono", monospace;
 }
 
 .svc-compat__tile summary::-webkit-details-marker {

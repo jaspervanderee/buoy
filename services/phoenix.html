@@ -168,27 +168,209 @@
   </div>
 </section>
 
-<section id="fees" class="service-section">
-  <h2 class="feature-label">Fees</h2>
-  <div class="feature-label sublabel">Scenario 1</div>
-  <div class="feature-value">
-    <h3>Paying a $15 Lightning invoice in a café</h3>
-    <p><strong>0.4% of the amount + 4 sat</strong></p>
-    <p>Outgoing Lightning payments include a fixed 4 sat charge plus 0.4% routing fee.</p>
+<section id="fees" class="service-section section-fees">
+  <h2 class="fees-title">Phoenix wallet fees: what you pay and when</h2>
+  <div class="fee-chips">
+      <a class="fee-chip" href="#fees-pay">
+        <span class="fee-chip__value">0.4% + 4 sat</span>
+        <span class="fee-chip__label">Outgoing Lightning payment</span>
+      </a>
+      <a class="fee-chip" href="#fees-first-receive">
+        <span class="fee-chip__value">≈1,000 sat + mining</span>
+        <span class="fee-chip__label">First Lightning receive (channel open)</span>
+      </a>
+      <a class="fee-chip" href="#fees-splice">
+        <span class="fee-chip__value">1% + mining</span>
+        <span class="fee-chip__label">Large receive when channel is full (splice-in)</span>
+      </a>
   </div>
-  <div class="feature-label sublabel">Scenario 2</div>
-  <div class="feature-value">
-    <h3>First $30 Lightning receive when no channel exists</h3>
-    <p><strong>≈1,000 sat channel open fee + mining fee</strong></p>
-    <p>Phoenix opens a channel for you and charges the 1,000 sat creation fee along with the current mining fee.</p>
+  <div class="fee-scenarios">
+    <div class="fee-scenario-wrapper">
+      <div class="feature-label sublabel">Scenario 1</div>
+      <article class="fee-card" id="fees-pay">
+        <h3 class="fee-card__title">Paying a small Lightning invoice (e.g., $15 coffee)</h3>
+        <p class="fee-card__cost"><strong>Cost today:</strong> 0.4% of the amount + 4 sat</p>
+        <p class="fee-card__what"><strong>What's happening:</strong> Lightning routes your payment through peers; 0.4% routing fee + 4 sat flat charge.</p>
+        <p class="fee-card__how"><strong>Keep costs low:</strong> Batch small purchases when possible; avoid many micro-payments during high network activity.</p>
+        <details class="fee-card__learn-more">
+          <summary>Learn more</summary>
+          <p>Every outgoing Lightning payment includes this fee. The 4 sat is Phoenix's service charge, and the 0.4% covers routing through the Lightning network.</p>
+        </details>
+      </article>
+    </div>
+    <div class="fee-scenario-wrapper">
+      <div class="feature-label sublabel">Scenario 2</div>
+      <article class="fee-card" id="fees-first-receive">
+        <h3 class="fee-card__title">First Lightning receive when you have no channel</h3>
+        <p class="fee-card__cost"><strong>Cost today:</strong> ≈1,000 sat channel creation + current <a href="#term-mining-fee" class="glossary-link" data-term="Mining fee">mining fee</a></p>
+        <p class="fee-card__what"><strong>What's happening:</strong> Phoenix opens a Lightning channel so you can receive payments.</p>
+        <p class="fee-card__how"><strong>Keep costs low:</strong> Wait for low on-chain fees (check mempool.space); receive when network is quiet.</p>
+        <details class="fee-card__learn-more">
+          <summary>Learn more</summary>
+          <p>Your first Lightning receive triggers channel creation. Phoenix must commit an on-chain transaction to open the channel, which incurs the current Bitcoin <a href="#term-mining-fee" class="glossary-link" data-term="Mining fee">mining fee</a> plus a 1,000 sat setup charge.</p>
+        </details>
+      </article>
+    </div>
+    <div class="fee-scenario-wrapper">
+      <div class="feature-label sublabel">Scenario 3</div>
+      <article class="fee-card" id="fees-splice">
+        <h3 class="fee-card__title">Receiving a larger payout when your channel is full</h3>
+        <p class="fee-card__cost"><strong>Cost today:</strong> 1% of the amount + <a href="#term-mining-fee" class="glossary-link" data-term="Mining fee">mining fee</a> (<a href="#term-splice-in" class="glossary-link" data-term="Splice-in">splice-in</a>)</p>
+        <p class="fee-card__what"><strong>What's happening:</strong> Phoenix resizes your channel to accept more sats than current capacity allows.</p>
+        <p class="fee-card__how"><strong>Keep costs low:</strong> Consolidate into fewer, larger receives; spend down balance before receiving large amounts.</p>
+        <details class="fee-card__learn-more">
+          <summary>Learn more</summary>
+          <p>When incoming payment exceeds available channel capacity, Phoenix performs a <a href="#term-splice-in" class="glossary-link" data-term="Splice-in">splice-in</a> operation. This on-chain transaction increases your channel size and costs 1% of the received amount plus current mining fees.</p>
+        </details>
+      </article>
+    </div>
   </div>
-  <div class="feature-label sublabel">Scenario 3</div>
-  <div class="feature-value">
-    <h3>Receiving a $200 payout after your channel fills up</h3>
-    <p><strong>1% of the amount + mining fee</strong></p>
-    <p>Insufficient inbound liquidity triggers a splice-in with a 1% fee plus mining costs.</p>
+  <ul class="fee-examples-list">
+    <li class="fee-example-item">
+      <span class="fee-example__label">Pay $15 at a café</span>
+      <span class="fee-example__note">Normal Lightning route</span>
+      <span class="fee-example__cost">0.4% + 4 sat</span>
+    </li>
+    <li class="fee-example-item">
+      <span class="fee-example__label">Receive $30 first time</span>
+      <span class="fee-example__note">Channel opens</span>
+      <span class="fee-example__cost">≈1,000 sat + mining</span>
+    </li>
+    <li class="fee-example-item">
+      <span class="fee-example__label">Receive $200 payout</span>
+      <span class="fee-example__note">Splice-in</span>
+      <span class="fee-example__cost">1% + mining</span>
+    </li>
+  </ul>
+  <table class="fee-examples-table">
+    <thead>
+      <tr>
+        <th scope="col">Example</th>
+        <th scope="col">What happens</th>
+        <th scope="col">Likely cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pay $15 at a café</td>
+        <td>Normal Lightning route</td>
+        <td>0.4% + 4 sat</td>
+      </tr>
+      <tr>
+        <td>Receive $30 first time</td>
+        <td>Channel opens</td>
+        <td>≈1,000 sat + mining</td>
+      </tr>
+      <tr>
+        <td>Receive $200 payout</td>
+        <td>Splice-in</td>
+        <td>1% + mining</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="fee-quick-answers">
+    <h3 class="fee-quick-answers__title">Quick answers</h3>
+    <div class="fee-quick-answers__list">
+    <details class="micro-faq-item">
+      <summary>Does Phoenix charge me every time I receive?</summary>
+      <div>
+        <p>Not always. Once your channel exists and has room, small Lightning receives can be free aside from routing.</p>
+      </div>
+    </details>
+    <details class="micro-faq-item">
+      <summary>When will Phoenix open or resize a channel?</summary>
+      <div>
+        <p>On your first Lightning receive or when more inbound capacity is needed.</p>
+      </div>
+    </details>
+    <details class="micro-faq-item">
+      <summary>How do I avoid the 1% splice fee?</summary>
+      <div>
+        <p>Consolidate larger receives and avoid on-chain fee spikes.</p>
+      </div>
+    </details>
+    </div>
   </div>
+  <details class="key-terms" id="fees-key-terms">
+    <summary>Key terms</summary>
+    <dl>
+      <dt id="term-channel-open">Channel open</dt>
+      <dd>Creates your first Lightning channel so you can receive.</dd>
+      <dt id="term-splice-in">Splice-in</dt>
+      <dd>Increases channel capacity to take larger receives.</dd>
+      <dt id="term-mining-fee">Mining fee</dt>
+      <dd>On-chain fee paid when opening/resizing; varies with network demand.</dd>
+    </dl>
+  </details>
+
 </section>
+<script>
+(function() {
+  const feesSection = document.querySelector('.section-fees');
+  if (!feesSection) return;
+  
+  const scenarioIds = ['fees-pay', 'fees-first-receive', 'fees-splice'];
+  
+  function highlightScenario(targetId) {
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    
+    // Remove existing highlights
+    document.querySelectorAll('.fee-card.is-target').forEach(el => {
+      el.classList.remove('is-target');
+    });
+    
+    // Add highlight to target
+    target.classList.add('is-target');
+    
+    // Remove highlight after 2.5 seconds
+    setTimeout(() => {
+      target.classList.remove('is-target');
+    }, 2500);
+  }
+  
+  // Handle chip clicks
+  feesSection.querySelectorAll('.fee-chip').forEach(chip => {
+    chip.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      
+      // Update hash without triggering hashchange
+      history.replaceState(null, null, '#' + targetId);
+      
+      // Smooth scroll to target
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      // Highlight after brief delay to ensure scroll completes
+      setTimeout(() => highlightScenario(targetId), 300);
+    });
+  });
+  
+  // Handle hash on page load
+  function handleHash() {
+    const hash = window.location.hash.slice(1);
+    if (scenarioIds.includes(hash)) {
+      const target = document.getElementById(hash);
+      if (target) {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          highlightScenario(hash);
+        }, 100);
+      }
+    }
+  }
+  
+  // Run on load and hashchange
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', handleHash);
+  } else {
+    handleHash();
+  }
+  window.addEventListener('hashchange', handleHash);
+})();
+</script>
 
 <section id="privacy-safety" class="service-section" aria-labelledby="privacy-safety-label">
   <h2 id="privacy-safety-label" class="feature-label">Privacy & Safety — what Phoenix shares, how to recover, and regional notes</h2>
@@ -209,18 +391,26 @@
     </div>
   </div>
     <div class="micro-faqs">
-      <h3>Quick answers</h3>
-      <div class="micro-faq-item" id="does-phoenix-work-with-my-own-node-or-electrum">
-        <strong>Does Phoenix work with my own node or Electrum?</strong>
-        <p>Yes. Connect your Electrum server to improve privacy; Lightning peers still see routing metadata.</p>
-      </div>
-      <div class="micro-faq-item" id="can-acinq-recover-my-wallet-if-i-lose-the-seed">
-        <strong>Can ACINQ recover my wallet if I lose the seed?</strong>
-        <p>No. The seed never leaves your device.</p>
-      </div>
-      <div class="micro-faq-item" id="what-if-acinq-disappears">
-        <strong>What if ACINQ disappears?</strong>
-        <p>Use Force close; funds appear in the Final wallet after confirmations, then sweep.</p>
+      <h3 class="micro-faqs__title">Quick answers</h3>
+      <div class="micro-faqs__list">
+      <details class="micro-faq-item" id="does-phoenix-work-with-my-own-node-or-electrum">
+        <summary>Does Phoenix work with my own node or Electrum?</summary>
+        <div>
+          <p>Yes. Connect your Electrum server to improve privacy; Lightning peers still see routing metadata.</p>
+        </div>
+      </details>
+      <details class="micro-faq-item" id="can-acinq-recover-my-wallet-if-i-lose-the-seed">
+        <summary>Can ACINQ recover my wallet if I lose the seed?</summary>
+        <div>
+          <p>No. The seed never leaves your device.</p>
+        </div>
+      </details>
+      <details class="micro-faq-item" id="what-if-acinq-disappears">
+        <summary>What if ACINQ disappears?</summary>
+        <div>
+          <p>Use Force close; funds appear in the Final wallet after confirmations, then sweep.</p>
+        </div>
+      </details>
       </div>
     </div>
     <details class="mini-glossary">

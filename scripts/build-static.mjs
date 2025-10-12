@@ -323,6 +323,303 @@ html = html.replace('</head>', urlShim + '</head>');
       };
 
       const renderFees = () => {
+        // Check for new fees structure first
+        const hasNewFeesData = svc.fees_at_a_glance || svc.fees_examples || svc.fees_faq || svc.key_terms;
+        
+        if (hasNewFeesData) {
+          // New fees structure: chips → scenarios → table → FAQ → key terms
+          const serviceName = svc.name || "this service";
+          const currentYear = new Date().getFullYear();
+          
+          // Build glossary term map for auto-linking in fees section
+          const feesGlossaryMap = new Map();
+          if (Array.isArray(svc.key_terms)) {
+            svc.key_terms.forEach(term => {
+              if (term && term.id && term.term) {
+                feesGlossaryMap.set(term.term, term.id);
+              }
+            });
+          }
+          
+          // Helper to auto-link glossary terms in text
+          const linkFeesGlossaryTerms = (text) => {
+            if (feesGlossaryMap.size === 0 || !text) return text;
+            
+            let result = text;
+            // Sort terms by length (longest first) to avoid partial matches
+            const terms = Array.from(feesGlossaryMap.keys()).sort((a, b) => b.length - a.length);
+            
+            terms.forEach(term => {
+              const anchor = feesGlossaryMap.get(term);
+              // Match whole words only, case-insensitive
+              const regex = new RegExp(`\\b(${term})\\b`, 'gi');
+              let matched = false;
+              result = result.replace(regex, (match) => {
+                // Only link the first occurrence in each text block
+                if (!matched) {
+                  matched = true;
+                  return `<a href="#${anchor}" class="glossary-link" data-term="${escapeHtml(term)}">${match}</a>`;
+                }
+                return match;
+              });
+            });
+            
+            return result;
+          };
+          
+          // Determine effective fees date for section heading
+          let feesDateLabel = "";
+          if (svc.fees_updated) {
+            const feesDate = new Date(svc.fees_updated);
+            if (!Number.isNaN(feesDate.getTime())) {
+              const year = feesDate.getFullYear();
+              feesDateLabel = ` (${year})`;
+            }
+          }
+          
+          // Updated chip removed per user request
+          
+          // Render chips (at-a-glance) as clickable anchors
+          let chipsHtml = "";
+          if (Array.isArray(svc.fees_at_a_glance) && svc.fees_at_a_glance.length > 0) {
+            // Map chips to scenario IDs based on order
+            const scenarioIds = ['fees-pay', 'fees-first-receive', 'fees-splice'];
+            const chipItems = svc.fees_at_a_glance.slice(0, 3).map((chip, idx) => {
+              if (!chip || !chip.value || !chip.label) return "";
+              const targetId = scenarioIds[idx] || "";
+              return `      <a class="fee-chip" href="#${targetId}">
+        <span class="fee-chip__value">${chip.value}</span>
+        <span class="fee-chip__label">${chip.label}</span>
+      </a>`;
+            }).filter(Boolean).join("\n");
+            
+            if (chipItems) {
+              chipsHtml = `  <div class="fee-chips">
+${chipItems}
+  </div>\n`;
+            }
+          }
+          
+          // Render scenarios (all three visible, equal size)
+          let scenariosHtml = "";
+          if (Array.isArray(svc.fees_scenarios) && svc.fees_scenarios.length > 0) {
+            const validScenarios = svc.fees_scenarios
+              .filter(s => s && hasContent(s.title))
+              .slice(0, 3);
+            
+            if (validScenarios.length > 0) {
+              const scenarioCards = validScenarios.map((scenario, idx) => {
+                const id = scenario.id || "";
+                const title = scenario.title || "";
+                const cost = linkFeesGlossaryTerms(scenario.cost_today || "");
+                const what = linkFeesGlossaryTerms(scenario.what_happens || "");
+                const how = linkFeesGlossaryTerms(scenario.how_to_minimize || "");
+                const learn = linkFeesGlossaryTerms(scenario.learn_more || "");
+                const scenarioNum = idx + 1;
+                
+                let learnHtml = "";
+                if (learn) {
+                  learnHtml = `
+        <details class="fee-card__learn-more">
+          <summary>Learn more</summary>
+          <p>${learn}</p>
+        </details>`;
+                }
+                
+                return `    <div class="fee-scenario-wrapper">
+      <div class="feature-label sublabel">Scenario ${scenarioNum}</div>
+      <article class="fee-card" id="${id}">
+        <h3 class="fee-card__title">${title}</h3>
+        ${cost ? `<p class="fee-card__cost"><strong>Cost today:</strong> ${cost}</p>` : ""}
+        ${what ? `<p class="fee-card__what"><strong>What's happening:</strong> ${what}</p>` : ""}
+        ${how ? `<p class="fee-card__how"><strong>Keep costs low:</strong> ${how}</p>` : ""}${learnHtml}
+      </article>
+    </div>`;
+              }).join("\n");
+              
+              scenariosHtml = `  <div class="fee-scenarios">
+${scenarioCards}
+  </div>\n`;
+            }
+          }
+          
+          // Render examples (mobile list + desktop table)
+          let examplesHtml = "";
+          if (Array.isArray(svc.fees_examples) && svc.fees_examples.length > 0) {
+            const validExamples = svc.fees_examples
+              .filter(ex => ex && hasContent(ex.example))
+              .slice(0, 3);
+            
+            if (validExamples.length > 0) {
+              // Mobile list
+              const listItems = validExamples.map(ex => {
+                return `    <li class="fee-example-item">
+      <span class="fee-example__label">${ex.example || ""}</span>
+      <span class="fee-example__note">${ex.what_happens || ""}</span>
+      <span class="fee-example__cost">${ex.likely_cost || ""}</span>
+    </li>`;
+              }).join("\n");
+              
+              const mobileList = `  <ul class="fee-examples-list">
+${listItems}
+  </ul>`;
+              
+              // Desktop table
+              const tableRows = validExamples.map(ex => {
+                return `      <tr>
+        <td>${ex.example || ""}</td>
+        <td>${ex.what_happens || ""}</td>
+        <td>${ex.likely_cost || ""}</td>
+      </tr>`;
+              }).join("\n");
+              
+              const desktopTable = `  <table class="fee-examples-table">
+    <thead>
+      <tr>
+        <th scope="col">In short:</th>
+        <th scope="col">What happens</th>
+        <th scope="col">Likely cost</th>
+      </tr>
+    </thead>
+    <tbody>
+${tableRows}
+    </tbody>
+  </table>`;
+              
+              examplesHtml = `${mobileList}\n${desktopTable}\n`;
+            }
+          }
+          
+          // Render micro-FAQ (each item individually collapsible, like brand FAQ)
+          let microFaqHtml = "";
+          if (Array.isArray(svc.fees_faq) && svc.fees_faq.length > 0) {
+            const validFaqs = svc.fees_faq
+              .filter(faq => faq && hasContent(faq.q) && hasContent(faq.a))
+              .slice(0, 3);
+            
+            if (validFaqs.length > 0) {
+              const faqItems = validFaqs.map(faq => {
+                return `    <details class="micro-faq-item">
+      <summary>${faq.q}</summary>
+      <div>
+        <p>${linkFeesGlossaryTerms(faq.a)}</p>
+      </div>
+    </details>`;
+              }).join("\n");
+              
+              microFaqHtml = `  <div class="fee-quick-answers">
+    <h3 class="fee-quick-answers__title">Quick answers</h3>
+    <div class="fee-quick-answers__list">
+${faqItems}
+    </div>
+  </div>\n`;
+            }
+          }
+          
+          // Render key terms (collapsible glossary)
+          let keyTermsHtml = "";
+          if (Array.isArray(svc.key_terms) && svc.key_terms.length > 0) {
+            const validTerms = svc.key_terms
+              .filter(term => term && hasContent(term.term) && hasContent(term.definition))
+              .slice(0, 5);
+            
+            if (validTerms.length > 0) {
+              const termItems = validTerms.map(term => {
+                const id = term.id || "";
+                return `      <dt id="${id}">${term.term}</dt>
+      <dd>${term.definition}</dd>`;
+              }).join("\n");
+              
+              keyTermsHtml = `  <details class="key-terms" id="fees-key-terms">
+    <summary>Key terms</summary>
+    <dl>
+${termItems}
+    </dl>
+  </details>\n`;
+            }
+          }
+          
+          // Skip entire section if no content at all
+          if (!chipsHtml && !scenariosHtml && !examplesHtml && !microFaqHtml && !keyTermsHtml) return "";
+          
+          // Enhancement script for smooth scroll and highlight
+          const enhancementScript = `<script>
+(function() {
+  const feesSection = document.querySelector('.section-fees');
+  if (!feesSection) return;
+  
+  const scenarioIds = ['fees-pay', 'fees-first-receive', 'fees-splice'];
+  
+  function highlightScenario(targetId) {
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    
+    // Remove existing highlights
+    document.querySelectorAll('.fee-card.is-target').forEach(el => {
+      el.classList.remove('is-target');
+    });
+    
+    // Add highlight to target
+    target.classList.add('is-target');
+    
+    // Remove highlight after 2.5 seconds
+    setTimeout(() => {
+      target.classList.remove('is-target');
+    }, 2500);
+  }
+  
+  // Handle chip clicks
+  feesSection.querySelectorAll('.fee-chip').forEach(chip => {
+    chip.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      
+      // Update hash without triggering hashchange
+      history.replaceState(null, null, '#' + targetId);
+      
+      // Smooth scroll to target
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      // Highlight after brief delay to ensure scroll completes
+      setTimeout(() => highlightScenario(targetId), 300);
+    });
+  });
+  
+  // Handle hash on page load
+  function handleHash() {
+    const hash = window.location.hash.slice(1);
+    if (scenarioIds.includes(hash)) {
+      const target = document.getElementById(hash);
+      if (target) {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          highlightScenario(hash);
+        }, 100);
+      }
+    }
+  }
+  
+  // Run on load and hashchange
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', handleHash);
+  } else {
+    handleHash();
+  }
+  window.addEventListener('hashchange', handleHash);
+})();
+</script>`;
+          
+          return `
+<section id="fees" class="service-section section-fees">
+  <h2 class="fees-title">${serviceName} wallet fees${feesDateLabel}: what you pay and when</h2>
+${chipsHtml}${scenariosHtml}${examplesHtml}${microFaqHtml}${keyTermsHtml}
+</section>
+${enhancementScript}`;
+        }
+        
+        // LEGACY: Fall back to old fees_scenarios format for services not yet migrated
         const scenarios = Array.isArray(svc.fees_scenarios) ? svc.fees_scenarios : [];
         
         // Take first 3 scenarios with content, regardless of service name
@@ -444,20 +741,24 @@ ${blocks}
     </div>`);
           }
           
-          // Micro-FAQs
+          // Micro-FAQs (each item individually collapsible, like brand FAQ)
           let microFaqsHtml = "";
           if (Array.isArray(privacy.micro_faqs) && privacy.micro_faqs.length > 0) {
             const faqItems = privacy.micro_faqs.map(faq => {
               const anchor = slugifyAnchor(faq.q);
-              return `      <div class="micro-faq-item" id="${anchor}">
-        <strong>${faq.q}</strong>
-        <p>${faq.a}</p>
-      </div>`;
+              return `      <details class="micro-faq-item" id="${anchor}">
+        <summary>${faq.q}</summary>
+        <div>
+          <p>${faq.a}</p>
+        </div>
+      </details>`;
             }).join("\n");
             microFaqsHtml = `
     <div class="micro-faqs">
-      <h3>Quick answers</h3>
+      <h3 class="micro-faqs__title">Quick answers</h3>
+      <div class="micro-faqs__list">
 ${faqItems}
+      </div>
     </div>`;
           }
           

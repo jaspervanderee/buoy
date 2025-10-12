@@ -81,8 +81,8 @@
         var targetTerm = document.getElementById(targetId);
         
         if (targetTerm) {
-          // Find and open the glossary details element
-          var glossaryDetails = document.querySelector('.mini-glossary');
+          // Find and open the glossary details element (both .mini-glossary and .key-terms)
+          var glossaryDetails = targetTerm.closest('details');
           if (glossaryDetails && !glossaryDetails.open) {
             glossaryDetails.open = true;
           }
