@@ -1,63 +1,63 @@
 {
   "anchorwatch": {
     "hash": "8e93a9bccb3425fcbd016115ff7482b3e67fb621e38723a7b96746601a5d27d4",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "aqua": {
     "hash": "1f95d33f1d304393f6a52f9604ea614e6cb8de8db0bcb5747fde9f22982c33b4",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "bisq": {
     "hash": "2e6ca8857d688f0518ca15ffda945c1995d93d60b4f761db087ee4aa5a5a92c8",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "bitkey": {
     "hash": "0c7d8b8133cf6e5df6acb6f565177e2321113d062b7bda825622914496eaecf3",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "bitonic": {
     "hash": "275bcdc196d82a524df65e1906e48c98b97f7f6465740ef561a95115141a176f",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "breez": {
     "hash": "a1a094a4fb7aed4051ff9deeebd531b71b5705ea916b90170c666f97fc02236d",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "btc-pay": {
     "hash": "805f7f59062d5fd7d7abb5e66de86a711061b7feeae30bdcf143e2105b1d4ed1",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "bull-bitcoin": {
     "hash": "3f81f5d601e6a3ba67503fd2f77064470396d87da07d22f6db1d8d88441b1c6a",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "fold": {
     "hash": "35fb404d444e46e1d91fb05254ae2af83671b830fd3199b0aebcd90c1c8f39c5",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "hodlhodl": {
     "hash": "238e7f68d06465de406754abdbe7db110b601b231524312cac117615ab4521c7",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "lightspark": {
     "hash": "a5f7572034486789c7cdfd929b77fa22fce7f6ac15aa8278cd2c26b3fc05b410",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "muun": {
     "hash": "6280705af60b558912067b5a965d04641c9bacefdcef2cbfccdbd478b4e60527",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "mynode": {
     "hash": "2182326896174a00aef35e24d9af75149f9fefce5aaa0019b3f2211870bf9a6f",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "opennode": {
     "hash": "cf7a1c54788f65c69b9fb90c6b329213466c8683518de974420854f37921a4de",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "peach": {
     "hash": "6e01650e6bd779c8f4733cc5522c20b95105ee0cec50ad5a53f8250c941ce8bc",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "phoenix": {
     "hash": "6449ffaaf15db635bab366b2d39f702701b9b8cde97b9c44aeafb6e73c57f619",
@@ -65,46 +65,46 @@
   },
   "pocket": {
     "hash": "7acb99e5d16c6df299f721767653778ae841ff189fc55ad59021b269c86f7930",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "relai": {
     "hash": "20bbadceaf0d0400236e7451564b28cb12871e5275a1758d62d82242fb5e5aa6",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "river": {
     "hash": "2d5cda566c21483664eb08d05c4d92cf206250ae2f3cf983c9d81d1670b24c8f",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "robosats": {
     "hash": "4717158f2b4f743488c4360f27637101c69e1787e7effd5d52d5d0da8f6fc7a5",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "sparrow": {
     "hash": "0200914b6234a1262cb048ecc10796e834bed750265e5f5329cfb1bcc39782ff",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "start9": {
     "hash": "49b1ee00d49e671dcc18f5139bc6cdd552ee1037f4bd2484559aa2f8336e9b53",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "strike": {
     "hash": "e8439fb30c5ab78a149b87cdbcd130d776d2eb4f10409c20d6065082a0d366e5",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "swan": {
     "hash": "0acab892442002cd1d74d474fb0dbc6089c158caa316c0da62d808edf24c30bd",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "umbrel": {
     "hash": "d240fa09bc6cffc93774381ed80f2cb54ffba0f304ac5c8b560a3cff3713c751",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "unchained": {
     "hash": "91fefc45f4c33f40cbb935293b698b00e2b4cd2fa0538acc1f8af3e4006eb378",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   },
   "wasabi": {
     "hash": "89fe17565007bf4c2329b4a6805c536df1c16e71d6c25f855424429b9607ce86",
-    "date": "2025-10-10"
+    "date": "2025-10-12"
   }
 }

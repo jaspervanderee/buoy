@@ -1536,18 +1536,15 @@ p, li, a {
   font-weight: 600; /* Less bold to differentiate */
 }
 
-/* Negative margin only for compare table rows (tight spacing) */
-.comparison-table .feature-label.sublabel {
+/* Negative margin only for compare table rows (tight spacing) - scoped to comparison pages only */
+#comparison-container .feature-label.sublabel,
+#comparison-table-wrapper .feature-label.sublabel {
   margin-top: -30px; /* Decreased top margin to bring it closer to the row above */
 }
 
 /* Fees typography (service pages only) */
 .service-section {
   margin-bottom: 40px; /* Uniform spacing between all sections */
-}
-
-.service-section .feature-value {
-  /* No bottom margin - spacing handled by parent .service-section */
 }
 
 .service-section#fees .feature-value {
@@ -1592,8 +1589,7 @@ p, li, a {
 
 /* consistent spacing for sublabels in service sections only */
 .service-section .feature-label.sublabel {
-  margin-top: 6px;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
 /* optional: ensure paragraphs inside cards share the same rhythm */
@@ -1869,10 +1865,33 @@ p, li, a {
   padding: 10px;
   border-radius: 8px;
   text-align: left;
+  margin-bottom: 0; /* Reset default; specific contexts add their own spacing */
 }
 
 .feature-value p:first-of-type {
   margin-top: 0;
+}
+
+/* Comparison pages: add spacing between feature rows */
+#comparison-container .feature-row,
+#comparison-table-wrapper .feature-row {
+  margin-bottom: 50px;
+}
+
+#comparison-container .feature-row:last-child,
+#comparison-table-wrapper .feature-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Comparison pages: prevent double margins on feature-value within rows */
+#comparison-container .feature-value,
+#comparison-table-wrapper .feature-value {
+  margin-bottom: 0; /* spacing handled by row margin */
+}
+
+/* Service pages: add spacing to feature sections */
+.service-section .feature-value {
+  margin-bottom: 2em;
 }
 
 .feature-row.profile .feature-value {
@@ -2972,7 +2991,7 @@ p, li, a {
 
 #comparison-table-wrapper table.comparison-table tr.feature-row {
   display: block;
-  margin: 0 0 50px 0; /* mimic .comparison-table gap */
+  margin: 0 0 50px 0; /* consistent spacing between feature rows */
 }
 
 #comparison-table-wrapper table.comparison-table tr.feature-row:last-child {
@@ -3016,6 +3035,7 @@ p, li, a {
   padding: 10px;
   border-radius: 8px;
   text-align: left;
+  margin-bottom: 0; /* spacing handled by row margin */
 }
 
 /* --- Nudge animations (CSS-only via class toggles) --- */

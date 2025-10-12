@@ -748,7 +748,7 @@
 		{
 			"id": "lnurl-pay",
 			"title": "Pay any Lightning QR",
-			"benefit": "Scan one QR; the wallet fetches the invoice for you.",
+			"benefit": "Scan a Lightning QR code; the wallet fetches the invoice for you.",
 			"status": "works"
 		},
 		{
@@ -768,7 +768,7 @@
 		{
 			"id": "lnurl-pay",
 			"what": "Pay using a single QR code; your wallet fetches a fresh invoice automatically.",
-			"why": "Fewer steps when tipping creators or buying products online.",
+			"why": "Fewer steps necessary when tipping or buying products online.",
 			"try": ["Scan a Lightning QR on a website or in another app", "Review the amount and description", "Approve the payment"],
 			"gotcha": "Some QRs are on-chain Bitcoin addresses; look for 'Lightning' or 'LNURL' labels to confirm."
 		},
