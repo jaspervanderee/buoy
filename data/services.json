@@ -714,43 +714,55 @@
 		]
 	},
 	"migration": {
-		"title": "Migration",
-		"intro": "Recover Phoenix after device loss or move funds to another wallet safely.",
+		"title": "Restore or move your Phoenix wallet",
+		"intro": "Choose the path you need—restore after a lost phone, move to an on-chain wallet, or switch to another wallet.",
 		"howto_schema": true,
 		"flows": [
 			{
-				"id": "migrate-restore",
-				"title": "Lost phone → Phoenix (Restore)",
-				"badges": ["Time ~10 min", "Cost: free", "Risk: low if seed is safe"],
+				"id": "restore-phoenix",
+				"title": "How to restore Phoenix on a new phone (iOS/Android)",
+				"meta": "Time ~10 min • Cost: free • Risk: low (if seed is safe)",
 				"steps": [
-					"Install Phoenix on a new iOS 16+ or Android 8+ device.",
+					"Install Phoenix on a new iOS 16+ or Android 8+ device and verify it's the official app from ACINQ.",
 					"Choose Restore my wallet, enter your 12-word seed, and wait for channels to resync.",
 					"Remove Phoenix from the old device once the new install works; never run both simultaneously."
 				],
 				"tips": [
-					"Android transaction history will not migrate—only channel balances.",
+					"Don't run Phoenix on two phones at the same time—channel states will conflict.",
 					"Keep the new device online during resync; it may take a few minutes."
 				],
-				"collapsed_mobile": true
+				"totalTime": "PT10M"
 			},
 			{
-				"id": "migrate-exit",
-				"title": "Phoenix → On-chain wallet",
-				"badges": ["Time ~1–6 hours", "Cost: miner fee applies", "Risk: low"],
+				"id": "move-to-onchain",
+				"title": "Move funds from Phoenix to an on-chain wallet",
+				"meta": "Time ~1–6 hours • Cost: mining fee • Risk: low",
 				"steps": [
-					"Open Phoenix, go to Settings > Close channels, and confirm cooperative close.",
+					"Open Phoenix, go to Settings > Close channels, and confirm cooperative close (cheapest way to exit).",
 					"Wait for closing transactions to confirm (1–6 blocks); funds appear in Phoenix's Final wallet view.",
 					"Sweep coins to your preferred on-chain wallet once confirmed."
 				],
 				"tips": [
-					"Reserve force close for emergencies—it's slower and costs more in mining fees.",
-					"Check current network fees before closing; low-fee periods save sats."
+					"Prefer cooperative close over force close; it's faster and cheaper.",
+					"Check current fees (e.g., mempool.space) before closing; wait for low-fee periods to save sats."
 				],
-				"links": [
-					{ "pair": ["Phoenix", "Breez"] },
-					{ "pair": ["Phoenix", "Aqua"] }
+				"totalTime": "PT2H"
+			},
+			{
+				"id": "switch-to-another-wallet",
+				"title": "Switch from Phoenix to another wallet",
+				"meta": "Time ~15–45 min • Cost: routing/swap fees may apply • Risk: low",
+				"steps": [
+					"Install your new wallet and complete its backup process—verify the recovery model (seed phrase, email+code, or cloud backup).",
+					"Send a small test payment (~10,000 sats) from Phoenix to the new wallet to verify it works.",
+					"Close Phoenix channels (Settings > Close channels) and sweep remaining funds once confirmed."
 				],
-				"collapsed_mobile": true
+				"tips": [
+					"Test first with a small amount (~10,000 sats) to catch issues before moving everything.",
+					"Verify the new wallet's recovery model matches your security preferences."
+				],
+				"totalTime": "PT30M",
+				"show_recommendations": true
 			}
 		]
 	},

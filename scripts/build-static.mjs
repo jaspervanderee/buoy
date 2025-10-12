@@ -941,92 +941,129 @@ ${cards.join("\n")}
         const title = migration.title || "Migration";
         const intro = migration.intro || "";
         const flows = migration.flows || [];
-        const ariaLabelToggle = migration.aria_label_toggle || "Expand migration steps";
+        
+        // Helper: Generate recommended alternatives for switch flow
+        const generateRecommendations = (currentService) => {
+          const category = currentService.category;
+          const currentName = currentService.name;
+          
+          // Find services in same category, exclude current service
+          const candidates = services
+            .filter(s => s.category === category && s.name !== currentName)
+            .slice(0, 5); // Cap at 5 candidates
+          
+          // Score by diversity (different recovery methods, features)
+          const scored = candidates.map(s => {
+            let score = 0;
+            
+            // Prefer different recovery method
+            if (s.recovery_method && currentService.recovery_method && 
+                s.recovery_method !== currentService.recovery_method) {
+              score += 2;
+            }
+            
+            // Prefer different networks
+            if (s.supported_network && currentService.supported_network &&
+                s.supported_network !== currentService.supported_network) {
+              score += 1;
+            }
+            
+            // Prefer WW availability
+            if (Array.isArray(s.countries) && s.countries.includes('WW')) {
+              score += 1;
+            }
+            
+            return { service: s, score };
+          });
+          
+          // Sort by score and take top 3
+          scored.sort((a, b) => b.score - a.score);
+          const top3 = scored.slice(0, 3).map(item => item.service);
+          
+          // Generate HTML for each recommendation
+          return top3.map(s => {
+            const slug = slugify(s.name);
+            const compareLink = linkForPair(currentName, s.name);
+            
+            // Generate reason from key features
+            let reason = "";
+            if (s.recovery_method) {
+              reason = `Recovery: ${s.recovery_method}`;
+            }
+            if (s.supported_network && s.supported_network !== currentService.supported_network) {
+              reason += reason ? ` • Supports ${s.supported_network}` : `Supports ${s.supported_network}`;
+            }
+            
+            return `      <li>
+        <a href="/services/${slug}.html"><strong>${s.name}</strong></a> — ${reason || 'Alternative wallet option'}
+        <br><a href="${compareLink}" class="compare-link">Compare ${currentName} vs ${s.name}</a>
+      </li>`;
+          }).join("\n");
+        };
         
         const flowCards = flows.map(flow => {
           if (!flow || !Array.isArray(flow.steps) || flow.steps.length === 0) return "";
           
           const flowId = flow.id || "";
           const flowTitle = flow.title || "";
-          const badges = Array.isArray(flow.badges) ? flow.badges : [];
+          const meta = flow.meta || "";
           const steps = flow.steps || [];
           const tips = Array.isArray(flow.tips) ? flow.tips : [];
-          const links = Array.isArray(flow.links) ? flow.links : [];
-          const collapsedMobile = flow.collapsed_mobile !== false; // default true
+          const showRecommendations = flow.show_recommendations === true;
           
-          // Hook for future step images support
-          const stepImages = Array.isArray(flow.step_images) ? flow.step_images : [];
+          // Determine analytics flow type from ID
+          let flowType = "restore";
+          if (flowId.includes("move-to-onchain")) flowType = "move-to-onchain";
+          else if (flowId.includes("switch")) flowType = "switch-generic";
           
-          // Render badges
-          const badgesHtml = badges.length > 0
-            ? `<div class="migration-badges">${badges.map(badge => `<span class="migration-badge">${badge}</span>`).join("")}</div>`
-            : "";
+          // Parse meta info into badge chips
+          let badgesHtml = "";
+          if (meta) {
+            const badges = meta.split("•").map(b => b.trim()).filter(Boolean);
+            if (badges.length > 0) {
+              badgesHtml = `<div class="migration-badges">${badges.map(badge => `<span class="migration-badge">${badge}</span>`).join("")}</div>`;
+            }
+          }
           
-          // Render steps (with future image support)
-          const stepsHtml = `<ol class="migration-steps">${steps.map((step, idx) => {
-            // Hook: if stepImages[idx] exists, we can add <img> here in future
-            return `<li>${step}</li>`;
-          }).join("")}</ol>`;
+          // Render steps
+          const stepsHtml = `<ol class="migration-steps">${steps.map(step => `<li>${step}</li>`).join("")}</ol>`;
           
           // Render tips
           const tipsHtml = tips.length > 0
-            ? `<ul class="migration-tips">${tips.map(tip => `<li>${tip}</li>`).join("")}</ul>`
+            ? `<div class="migration-tips"><strong>Tips:</strong> ${tips.join(" ")}</div>`
             : "";
           
-          // Render links (support pair-based or legacy href)
-          const linksHtml = links.length > 0
-            ? `<div class="migration-links">${links.map(link => {
-                let href, label;
-                
-                // New format: pair-based canonical links
-                if (Array.isArray(link.pair) && link.pair.length === 2) {
-                  href = linkForPair(link.pair[0], link.pair[1]);
-                  label = link.label || `Compare ${link.pair[0]} vs ${link.pair[1]}`;
-                }
-                // Legacy format: explicit href
-                else if (link.href && link.label) {
-                  href = link.href;
-                  label = link.label;
-                  // Log warning for migration tracking
-                  console.log(`  ⚠️  Legacy href in ${svc.name} migration: ${link.href} (consider using pair format)`);
-                }
-                else {
-                  return ""; // Invalid link
-                }
-                
-                return `<a href="${href}" data-event="migration_link_click" data-flow-id="${flowId}">${label}</a>`;
-              }).filter(Boolean).join("")}</div>`
-            : "";
+          // Render recommendations if enabled
+          let recommendationsHtml = "";
+          if (showRecommendations) {
+            const recList = generateRecommendations(svc);
+            if (recList) {
+              recommendationsHtml = `
+    <div class="migration-recommendations">
+      <h4>Recommended options</h4>
+      <ul>
+${recList}
+      </ul>
+    </div>`;
+            }
+          }
           
-          // Collapse state for mobile
-          const collapseClass = collapsedMobile ? " is-collapsed" : "";
-          const ariaExpanded = collapsedMobile ? "false" : "true";
-          
-          return `    <div class="migration-card${collapseClass}" id="${flowId}" data-flow-id="${flowId}">
-      <div class="migration-header">
-        <h3 class="migration-title">${flowTitle}</h3>
-        <button class="migration-toggle" aria-expanded="${ariaExpanded}" aria-controls="${flowId}-content" aria-label="${ariaLabelToggle}" data-event="migration_toggle">
-          <span class="migration-toggle-icon"></span>
-        </button>
-      </div>
+          return `    <div class="migration-card" id="${flowId}" data-migration-flow="${flowType}">
+      <h3>${flowTitle}</h3>
       ${badgesHtml}
-      <div class="migration-content" id="${flowId}-content">
-        ${stepsHtml}
-        ${tipsHtml}
-        ${linksHtml}
-      </div>
+      ${stepsHtml}
+      ${tipsHtml}${recommendationsHtml}
     </div>`;
         }).filter(Boolean).join("\n");
         
         if (!flowCards) return "";
         
-        const introHtml = intro ? `  <p class="section-intro">${intro}</p>` : "";
+        const introHtml = intro ? `  <p class="section-intro">${intro}</p>\n` : "";
         
         return `
 <section id="migration" class="service-section">
   <h2 class="feature-label">${title}</h2>
-${introHtml}
-  <div class="migration-flows">
+${introHtml}  <div class="migration-flows">
 ${flowCards}
   </div>
 </section>`;
@@ -1421,16 +1458,10 @@ ${sectionsHtml}`;
               }))
             };
             
-            // Parse estimatedTime from badges like "Time ~10 min" or "Time ~1–6 hours"
-            if (Array.isArray(flow.badges)) {
-              const timeBadge = flow.badges.find(b => typeof b === 'string' && /^Time\s*~/i.test(b));
-              if (timeBadge) {
-                const duration = parseTimeToDuration(timeBadge);
-                if (duration) {
-                  schema.estimatedCost = { "@type": "MonetaryAmount", "currency": "USD", "value": "0" };
-                  schema.totalTime = duration;
-                }
-              }
+            // Add totalTime if present in flow data
+            if (flow.totalTime) {
+              schema.totalTime = flow.totalTime;
+              schema.estimatedCost = { "@type": "MonetaryAmount", "currency": "USD", "value": "0" };
             }
             
             return schema;
@@ -1442,33 +1473,6 @@ ${sectionsHtml}`;
       }
     } catch (e) {
       // fail-safe: skip HowTo schema on error
-    }
-
-    // Helper: Parse "Time ~10 min" or "Time ~1–6 hours" to ISO 8601 duration
-    function parseTimeToDuration(badge) {
-      try {
-        const text = badge.toLowerCase();
-        
-        // Match patterns like "~10 min", "~1-6 hours", "~1–6 hours" (with en-dash)
-        const minMatch = text.match(/~\s*(\d+)\s*min/);
-        if (minMatch) {
-          return `PT${minMatch[1]}M`;
-        }
-        
-        const hourMatch = text.match(/~\s*(\d+)(?:\s*[-–]\s*\d+)?\s*hour/);
-        if (hourMatch) {
-          return `PT${hourMatch[1]}H`;
-        }
-        
-        const dayMatch = text.match(/~\s*(\d+)\s*day/);
-        if (dayMatch) {
-          return `P${dayMatch[1]}D`;
-        }
-        
-        return null;
-      } catch (e) {
-        return null;
-      }
     }
 
     // Inject Alternatives block under comparison area

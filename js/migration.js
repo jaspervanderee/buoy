@@ -30,6 +30,47 @@
       });
     });
     
+    // Handle mini-TOC navigation (expand and scroll)
+    var tocLinks = document.querySelectorAll('.migration-toc-link');
+    tocLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        var href = link.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        
+        var targetId = href.substring(1);
+        var targetCard = document.getElementById(targetId);
+        
+        if (targetCard && targetCard.classList.contains('migration-card')) {
+          // Update hash without triggering hashchange
+          history.replaceState(null, null, href);
+          
+          // Expand the card
+          targetCard.classList.remove('is-collapsed');
+          
+          // Update toggle button aria-expanded
+          var toggle = targetCard.querySelector('.migration-toggle');
+          if (toggle) {
+            toggle.setAttribute('aria-expanded', 'true');
+          }
+          
+          // Smooth scroll to target
+          setTimeout(function() {
+            targetCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 50);
+          
+          // Analytics
+          if (window.umami) {
+            window.umami.track('migration_toc_click', {
+              flow_id: targetId,
+              service: window.__BUOY_SERVICE__ || ''
+            });
+          }
+        }
+      });
+    });
+    
     // Track migration link clicks
     var migrationLinks = document.querySelectorAll('.migration-links a[data-event="migration_link_click"]');
     migrationLinks.forEach(function(link) {
