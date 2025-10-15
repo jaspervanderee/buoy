@@ -90,6 +90,40 @@ header .container {
   align-items: center; /* Align vertically */
 }
 
+/* Desktop navigation - hidden by default (mobile-first) */
+.desktop-nav {
+  display: none;
+}
+
+/* Show desktop nav on larger screens */
+@media (min-width: 1024px) {
+  /* Group logo and nav together on the left */
+  header .container {
+    justify-content: flex-start;
+  }
+  
+  .desktop-nav {
+    display: block;
+    margin-left: 60px;
+  }
+  
+  .desktop-nav a {
+    font-family: "Inter", sans-serif;
+    font-size: 1em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  
+  .desktop-nav a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Push hamburger to the right */
+  header .hamburger {
+    margin-left: auto;
+  }
+}
+
 #logo {
  width: 160px;
 }
@@ -166,7 +200,7 @@ header .container {
   display: flex;
   justify-content: center;
   align-items: center; /* Align menu at the top */
-  overflow-y: auto; /* Enable vertical scrolling for additional options */
+  overflow-y: hidden; /* Disable scrolling on the overlay itself */
   z-index: 1000;
 }
 
@@ -178,7 +212,7 @@ header .container {
   width: 100%;
   max-width: 400px; /* Limit width of the menu */
   margin: 0 auto; /* Center horizontally */
-  max-height: 80vh; /* Prevent overflow and keep the menu scrollable */
+  max-height: 95vh; /* Prevent overflow and keep the menu scrollable */
   overflow-y: auto; /* Enable scrolling within the menu */
   padding: 10px; /* Add padding for visual separation */
   box-sizing: border-box; /* Ensure padding is included in the width/height */
@@ -3837,5 +3871,148 @@ p, li, a {
   
   .svc-compat__tile {
     padding: 20px;
+  }
+}
+
+/* Blog styles */
+main.container {
+  padding-top: 2rem;
+}
+
+.blog-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.blog-list li {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.blog-list li:last-child {
+  border-bottom: none;
+}
+
+.blog-list a {
+  font-size: 1.2em;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  display: inline;
+}
+
+.blog-list a:hover {
+  color: var(--link);
+}
+
+.lang-pill {
+  display: inline-block;
+  background: var(--border);
+  color: var(--text-muted);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75em;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  font-family: "Inter", sans-serif;
+}
+
+/* Blog article */
+.blog-article {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.blog-article h1 {
+  font-size: 2em;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.blog-article .meta {
+  color: var(--text-muted);
+  font-size: 0.9em;
+  margin-bottom: 2rem;
+  font-family: "Inter", sans-serif;
+}
+
+.blog-article .meta span {
+  margin-right: 2em;
+}
+
+.blog-article .meta span:last-child {
+  margin-right: 0;
+}
+
+.blog-article .meta a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+  text-decoration: underline;
+}
+
+
+.blog-article h2 {
+  font-size: 1.5em;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  margin: 2rem 0 1rem 0;
+}
+
+.blog-article h3 {
+  font-size: 1.2em;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem 0;
+}
+
+.blog-article p {
+  font-family: "Inter", sans-serif;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.blog-article ul,
+.blog-article ol {
+  font-family: "Inter", sans-serif;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.blog-article li {
+  margin-bottom: 0.5rem;
+}
+
+.blog-article hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+.blog-article a {
+  color: var(--link);
+  text-decoration: underline;
+}
+
+.blog-article a:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .blog-article {
+    padding: 3rem 2rem;
+  }
+
+  .blog-article h1 {
+    font-size: 2.5em;
   }
 }

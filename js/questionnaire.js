@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
  
   async function loadServices() {
     if (servicesData.length) return;
-    const res = await fetch("data/services.json");
+    const res = await fetch("/data/services.json");
     servicesData = await res.json();
   }
 

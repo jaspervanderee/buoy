@@ -472,7 +472,7 @@ const searchInput = document.getElementById("country-search");
 
 
     try {
-        const response = await fetch("data/countries.json");
+        const response = await fetch("/data/countries.json");
         if (!response.ok) throw new Error(`Failed to load countries.json (Status: ${response.status})`);
 
         const countries = await response.json();
