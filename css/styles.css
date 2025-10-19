@@ -92,7 +92,7 @@ header .container {
 
 /* Desktop navigation - hidden by default (mobile-first) */
 .desktop-nav {
-  display: none;
+  display: none !important;
 }
 
 /* Show desktop nav on larger screens */
@@ -103,7 +103,7 @@ header .container {
   }
   
   .desktop-nav {
-    display: block;
+    display: block !important;
     margin-left: 60px;
   }
   
@@ -911,10 +911,21 @@ footer h3 {
 }
 
 /* Paragraphs and other text */
+/* Scope Ubuntu Mono globally but allow blog overrides */
 p, li, a {
   font-family: "Ubuntu Mono", monospace;
   font-weight: 400; /* Regular weight */
   line-height: 1.5; /* Improve readability */
+}
+
+/* Blog context overrides */
+.blog-article p,
+.blog-article li,
+.blog-article a,
+.blog-list a,
+.article-card,
+.article-card * {
+  font-family: "Inter", sans-serif !important;
 }
 
 
@@ -2370,10 +2381,12 @@ p, li, a {
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .copy-link-btn {
+    display: flex !important;
     bottom: 15px;
     left: 15px;
     padding: 8px 14px;
     font-size: 0.85em;
+    z-index: 999;
   }
 
   .feedback-bubble {
@@ -3991,6 +4004,17 @@ main.container {
   color: var(--text-muted);
 }
 
+/* Blog index page - push content to top */
+main:has(.blog-list) {
+  padding-top: 3rem;
+  min-height: calc(100vh - 200px); /* Ensure footer stays at bottom */
+}
+
+main:has(.blog-list) h1 {
+  font-size: 2em;
+  margin: 0 0 2rem 0;
+}
+
 .blog-list {
   list-style: none;
   padding: 0;
@@ -4039,6 +4063,8 @@ main.container {
   max-width: 750px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  overflow-x: hidden;
+  word-wrap: break-word;
 }
 
 .container:has(.blog-article) {
@@ -4125,10 +4151,12 @@ main.container {
 
 .blog-article img {
   max-width: 100%;
+  width: 100%;
   height: auto;
   border-radius: 8px;
   margin: 2rem 0;
   display: block;
+  object-fit: contain;
 }
 
 @media (min-width: 768px) {
@@ -4138,5 +4166,15 @@ main.container {
 
   .blog-article h1 {
     font-size: 2.5em;
+  }
+  
+  /* Blog index - more top padding on desktop */
+  main:has(.blog-list) {
+    padding-top: 5rem;
+  }
+  
+  main:has(.blog-list) h1 {
+    font-size: 2.5em;
+    margin: 0 0 3rem 0;
   }
 }
