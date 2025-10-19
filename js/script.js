@@ -1300,3 +1300,32 @@ if (newsletterForm) {
     }
   });
 })();
+
+// Copy link functionality for blog articles
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('copy-link-btn');
+  if (!btn) return;
+  
+  const canonical = document.querySelector('link[rel="canonical"]')?.href || window.location.href.split('?')[0];
+  
+  btn.addEventListener('click', function() {
+    navigator.clipboard.writeText(canonical).then(() => {
+      // Fire Umami events
+      if (window.umami) {
+        window.umami.track('copy_link');
+        window.umami.track('share_native');
+      }
+      
+      // Visual feedback
+      const span = btn.querySelector('span');
+      const originalText = span.textContent;
+      span.textContent = 'Copied!';
+      btn.classList.add('copied');
+      
+      setTimeout(() => {
+        span.textContent = originalText;
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  });
+});

@@ -114,9 +114,34 @@
       <h1>{{ARTICLE_TITLE}}</h1>
       <p class="meta"><span><a href="https://snort.social/p/npub165w944kqt29hrt90l2ssc0rvmhf0u77dgezskknfnczr7r030v0s2g6kae" target="_blank">{{AUTHOR_NAME}}</a></span><span>{{PUBLISH_DATE}}</span><span>{{READ_TIME}}</span></p>
       {{ARTICLE_HTML}}
-      <hr>
-      <p>New here? <a href="/compare.html">Compare Bitcoin services</a> · <a href="/what-is-bitcoin.html">What is Bitcoin?</a></p>
     </article>
+    
+    <!-- Related articles -->
+    <section class="related-articles">
+        <h2><a href="/blog/">More articles</a></h2>
+        <hr>
+        <div class="article-cards">
+          <a href="/blog/article-1/" class="article-card">
+            <div class="article-card__content">
+              <h3 class="article-card__title">Article Title Placeholder 1</h3>
+              <span class="article-card__date">Jan 15, 2025</span>
+            </div>
+          </a>
+          <a href="/blog/article-2/" class="article-card">
+            <div class="article-card__content">
+              <h3 class="article-card__title">Article Title Placeholder 2</h3>
+              <span class="article-card__date">Jan 10, 2025</span>
+            </div>
+          </a>
+          <a href="/blog/article-3/" class="article-card">
+            <div class="article-card__content">
+              <h3 class="article-card__title">Article Title Placeholder 3</h3>
+              <span class="article-card__date">Jan 5, 2025</span>
+            </div>
+          </a>
+        </div>
+        <hr>
+      </section>
   </main>
 
   <!-- Footer copied from index.html to keep opt-in -->
@@ -157,6 +182,15 @@
       </div>
     </div>
   </footer>
+
+  <!-- Copy link button -->
+  <button id="copy-link-btn" class="copy-link-btn" aria-label="Copy article link">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+      <path d="M6 3a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+    </svg>
+    <span>Copy link</span>
+  </button>
 
   <!-- Keep menu + UI scripts; drop homepage-only questionnaire.js -->
   <script src="/js/script.js"></script>
