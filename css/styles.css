@@ -1033,7 +1033,7 @@ p, li, a {
   width: 110px; /* Adjust size */
   height: auto; /* Maintain aspect ratio */
   margin-top: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .checkmark-icon {
@@ -1158,7 +1158,6 @@ p, li, a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
   padding: 12px;
 }
 
@@ -1167,7 +1166,6 @@ p, li, a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
 }
 
 .cta-button {
@@ -1911,7 +1909,31 @@ p, li, a {
   z-index: 100;
   background-color: var(--bg); /* Match page bg */
   padding: 10px 0;
-  transition: all 0.3s ease;
+  transition: padding 0.2s ease;
+}
+
+.logo-row-sticky .svg-icon {
+  transition: width 0.2s ease;
+}
+
+/* Mobile-first: shrunk state active by default */
+.logo-row-sticky.shrunk {
+  padding: 5px 0;
+}
+
+.logo-row-sticky.shrunk .svg-icon {
+  width: 50px;
+}
+
+/* Desktop: disable shrink behavior */
+@media (min-width: 768px) {
+  .logo-row-sticky.shrunk {
+    padding: 10px 0;
+  }
+
+  .logo-row-sticky.shrunk .svg-icon {
+    width: 110px;
+  }
 }
 
 /* Service page dedicated sticky bar (replaces logo-row-sticky on service pages) */
@@ -1922,7 +1944,31 @@ p, li, a {
   z-index: 100;
   background-color: var(--bg); /* Match page background like original */
   padding: 10px 0;
-  transition: all 0.3s ease;
+  transition: padding 0.2s ease;
+}
+
+.service-sticky-cta .svg-icon {
+  transition: width 0.2s ease;
+}
+
+/* Mobile-first: shrunk state active by default */
+.service-sticky-cta.shrunk {
+  padding: 5px 0;
+}
+
+.service-sticky-cta.shrunk .svg-icon {
+  width: 50px;
+}
+
+/* Desktop: disable shrink behavior */
+@media (min-width: 768px) {
+  .service-sticky-cta.shrunk {
+    padding: 10px 0;
+  }
+
+  .service-sticky-cta.shrunk .svg-icon {
+    width: 110px;
+  }
 }
 
 /* Collapsible Description Styles */
