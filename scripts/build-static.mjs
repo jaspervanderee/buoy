@@ -328,8 +328,6 @@ html = html.replace('</head>', urlShim + '</head>');
         
         if (hasNewFeesData) {
           // New fees structure: chips → scenarios → table → FAQ → key terms
-          const serviceName = svc.name || "this service";
-          const currentYear = new Date().getFullYear();
           
           // Build glossary term map for auto-linking in fees section
           const feesGlossaryMap = new Map();
@@ -376,8 +374,6 @@ html = html.replace('</head>', urlShim + '</head>');
               feesDateLabel = ` (${year})`;
             }
           }
-          
-          // Updated chip removed per user request
           
           // Render chips (at-a-glance) as clickable anchors
           let chipsHtml = "";
@@ -613,7 +609,7 @@ ${termItems}
           
           return `
 <section id="fees" class="service-section section-fees">
-  <h2 class="fees-title">${serviceName} wallet fees${feesDateLabel}: what you pay and when</h2>
+  <h2 class="fees-title">Fees${feesDateLabel}: what you pay and when</h2>
 ${chipsHtml}${scenariosHtml}${examplesHtml}${microFaqHtml}${keyTermsHtml}
 </section>
 ${enhancementScript}`;
@@ -1070,13 +1066,13 @@ ${flowCards}
       };
 
       const renderCompatibility = () => {
-        const tiles = Array.isArray(svc.compat_tiles) ? svc.compat_tiles.slice(0, 3) : [];
-        const explainers = Array.isArray(svc.compat_explainers) ? svc.compat_explainers.slice(0, 3) : [];
+        const tiles = Array.isArray(svc.compat_tiles) ? svc.compat_tiles : [];
+        const explainers = Array.isArray(svc.compat_explainers) ? svc.compat_explainers : [];
         
         if (!tiles.length) return "";
         
         const heading = svc.compat_heading || "";
-        const learnLabel = svc.compat_learn_label || "Learn more";
+        const learnLabel = svc.compat_learn_label || "Show steps";
         
         // Create explainer map by id for easy lookup
         const explainerMap = {};
@@ -1090,8 +1086,7 @@ ${flowCards}
         const tileItems = tiles.map(tile => {
           const statusMap = {
             works: "Works",
-            partial: "Partial",
-            advanced: "Advanced",
+            setup: "Needs setup",
             notyet: "Not yet"
           };
           const statusText = statusMap[tile.status] || tile.status;
@@ -1100,24 +1095,30 @@ ${flowCards}
           
           // Find matching explainer
           const explainer = explainerMap[tile.id];
-          let detailsHtml = "";
           
-          if (explainer) {
+          // Always render details element for consistent template
+          let detailsContent = "";
+          if (explainer && explainer.why) {
             const tryList = Array.isArray(explainer.try) && explainer.try.length > 0
               ? `<p><strong>Try it:</strong></p><ol>${explainer.try.map(step => `<li>${step}</li>`).join("")}</ol>`
               : "";
             
-            detailsHtml = `
-        <details>
-          <summary>${learnLabel}</summary>
-          <div>
-            <p><strong>What:</strong> ${explainer.what}</p>
-            <p><strong>Why:</strong> ${explainer.why}</p>
+            detailsContent = `
+            <p><strong>Why it matters:</strong> ${explainer.why}</p>
             ${tryList}
-            ${explainer.gotcha ? `<p><strong>Gotcha:</strong> ${explainer.gotcha}</p>` : ""}
+            ${explainer.gotcha ? `<p><strong>Gotcha:</strong> ${explainer.gotcha}</p>` : ""}`;
+          } else {
+            // Default content when no explainer exists
+            detailsContent = `
+            <p>Additional details coming soon.</p>`;
+          }
+          
+          const detailsHtml = `
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="${learnLabel}">${learnLabel}</summary>
+          <div>${detailsContent}
           </div>
         </details>`;
-          }
           
           return `
       <div class="svc-compat__tile">

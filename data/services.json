@@ -785,6 +785,7 @@
 		"interop.bolt12",
 		"interop.coin_control"
 	],
+  "compat_heading": "What this Phoenix wallet can or can't do",
 	"compat_tiles": [
 		{
 			"id": "lnurl-pay",
@@ -808,27 +809,23 @@
 	"compat_explainers": [
 		{
 			"id": "lnurl-pay",
-			"what": "Pay using a single QR code; your wallet fetches a fresh invoice automatically.",
 			"why": "Fewer steps necessary when tipping or buying products online.",
 			"try": ["Scan a Lightning QR on a website or in another app", "Review the amount and description", "Approve the payment"],
 			"gotcha": "Some QRs are on-chain Bitcoin addresses; look for 'Lightning' or 'LNURL' labels to confirm."
 		},
 		{
 			"id": "lnurl-withdraw",
-			"what": "Claim funds from services like exchanges or faucets by scanning a QR or tapping a link.",
 			"why": "Faster than generating an invoice yourself and pasting it into a web form.",
 			"try": ["Tap or scan the withdrawal QR from the service", "Confirm the amount in Phoenix", "Funds appear in your wallet instantly"],
 			"gotcha": "The service sets the amount; you can't request more than they offer."
 		},
 		{
 			"id": "lightning-address",
-			"what": "Send sats to a simple email-style address like user@domain.com instead of a long invoice string.",
 			"why": "Much easier to share and remember than a traditional Lightning invoice.",
 			"try": ["Ask a friend for their Lightning address", "Enter it in Phoenix's Send field", "Specify the amount and send"],
 			"gotcha": "The recipient's server must be online to generate the invoice; if it's down, the payment fails."
-		}
+		}   
 	],
-	"compat_heading": "Compatibility at a glance",
 	"privacy": {
 		"section_title": "Privacy & Safety — what Phoenix shares, how to recover, and regional notes",
 		"data_flows": [

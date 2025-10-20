@@ -169,7 +169,7 @@
 </section>
 
 <section id="fees" class="service-section section-fees">
-  <h2 class="fees-title">Phoenix wallet fees: what you pay and when</h2>
+  <h2 class="fees-title">Fees: what you pay and when</h2>
   <div class="fee-chips">
       <a class="fee-chip" href="#fees-pay">
         <span class="fee-chip__value">0.4% + 4 sat</span>
@@ -427,7 +427,7 @@
 </section>
 
 <section id="compat" class="service-section">
-  <h2 class="feature-label">Compatibility at a glance</h2>
+  <h2 class="feature-label">What this Phoenix wallet can and can't do</h2>
   <div class="svc-compat__grid">
 
       <div class="svc-compat__tile">
@@ -437,11 +437,10 @@
         </div>
         <p class="svc-compat__benefit">Scan a Lightning QR code; the wallet fetches the invoice for you.</p>
         
-        <details>
-          <summary>Learn more</summary>
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
           <div>
-            <p><strong>What:</strong> Pay using a single QR code; your wallet fetches a fresh invoice automatically.</p>
-            <p><strong>Why:</strong> Fewer steps necessary when tipping or buying products online.</p>
+            <p><strong>Why it matters:</strong> Fewer steps necessary when tipping or buying products online.</p>
             <p><strong>Try it:</strong></p><ol><li>Scan a Lightning QR on a website or in another app</li><li>Review the amount and description</li><li>Approve the payment</li></ol>
             <p><strong>Gotcha:</strong> Some QRs are on-chain Bitcoin addresses; look for 'Lightning' or 'LNURL' labels to confirm.</p>
           </div>
@@ -454,11 +453,10 @@
         </div>
         <p class="svc-compat__benefit">Claim funds from an exchange or faucet using a single tap.</p>
         
-        <details>
-          <summary>Learn more</summary>
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
           <div>
-            <p><strong>What:</strong> Claim funds from services like exchanges or faucets by scanning a QR or tapping a link.</p>
-            <p><strong>Why:</strong> Faster than generating an invoice yourself and pasting it into a web form.</p>
+            <p><strong>Why it matters:</strong> Faster than generating an invoice yourself and pasting it into a web form.</p>
             <p><strong>Try it:</strong></p><ol><li>Tap or scan the withdrawal QR from the service</li><li>Confirm the amount in Phoenix</li><li>Funds appear in your wallet instantly</li></ol>
             <p><strong>Gotcha:</strong> The service sets the amount; you can't request more than they offer.</p>
           </div>
@@ -471,11 +469,10 @@
         </div>
         <p class="svc-compat__benefit">Send to user@domain.com instead of a long invoice.</p>
         
-        <details>
-          <summary>Learn more</summary>
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
           <div>
-            <p><strong>What:</strong> Send sats to a simple email-style address like user@domain.com instead of a long invoice string.</p>
-            <p><strong>Why:</strong> Much easier to share and remember than a traditional Lightning invoice.</p>
+            <p><strong>Why it matters:</strong> Much easier to share and remember than a traditional Lightning invoice.</p>
             <p><strong>Try it:</strong></p><ol><li>Ask a friend for their Lightning address</li><li>Enter it in Phoenix's Send field</li><li>Specify the amount and send</li></ol>
             <p><strong>Gotcha:</strong> The recipient's server must be online to generate the invoice; if it's down, the payment fails.</p>
           </div>
@@ -498,7 +495,7 @@
       <h3>Move funds from Phoenix to an on-chain wallet</h3>
       <div class="migration-badges"><span class="migration-badge">Time ~1–6 hours</span><span class="migration-badge">Cost: mining fee</span><span class="migration-badge">Risk: low</span></div>
       <ol class="migration-steps"><li>Open Phoenix, go to Settings > Close channels, and confirm cooperative close (cheapest way to exit).</li><li>Wait for closing transactions to confirm (1–6 blocks); funds appear in Phoenix's Final wallet view.</li><li>Sweep coins to your preferred on-chain wallet once confirmed.</li></ol>
-      <div class="migration-tips"><strong>Tips:</strong> Prefer cooperative close over force close; it's faster and cheaper. Check mempool.space before closing—wait for low-fee periods to save sats.</div>
+      <div class="migration-tips"><strong>Tips:</strong> Prefer cooperative close over force close; it's faster and cheaper. Check current fees (e.g., mempool.space) before closing; wait for low-fee periods to save sats.</div>
     </div>
     <div class="migration-card" id="switch-to-another-wallet" data-migration-flow="switch-generic">
       <h3>Switch from Phoenix to another wallet</h3>

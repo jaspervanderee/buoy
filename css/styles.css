@@ -3812,14 +3812,9 @@ p, li, a {
   color: #155724;
 }
 
-.svc-chip--partial {
+.svc-chip--setup {
   background: #fff3cd;
   color: #856404;
-}
-
-.svc-chip--advanced {
-  background: #d1ecf1;
-  color: #0c5460;
 }
 
 .svc-chip--notyet {
@@ -3833,14 +3828,9 @@ p, li, a {
     color: #b7e5ba;
   }
   
-  .svc-chip--partial {
+  .svc-chip--setup {
     background: #4d3e1a;
     color: #ffeaa7;
-  }
-  
-  .svc-chip--advanced {
-    background: #1a4d52;
-    color: #b8e4ea;
   }
   
   .svc-chip--notyet {
@@ -3899,6 +3889,25 @@ p, li, a {
 
 .svc-compat__tile details[open] > summary::before {
   transform: rotate(180deg);
+}
+
+/* Toggle text between "Show steps" and "Hide steps" */
+.svc-compat__tile details summary::after {
+  content: attr(data-closed-text);
+}
+
+.svc-compat__tile details[open] summary::after {
+  content: attr(data-open-text);
+}
+
+/* Hide the default text node when using data attributes */
+.svc-compat__tile details.compat-details summary {
+  font-size: 0;
+}
+
+.svc-compat__tile details.compat-details summary::before,
+.svc-compat__tile details.compat-details summary::after {
+  font-size: 0.8rem;
 }
 
 .svc-compat__tile details > div {
