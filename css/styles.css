@@ -3197,8 +3197,8 @@ p, li, a {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 12px;
-  padding-top: 12px;
+  margin-top: 22px;
+  padding-top: 22px;
   border-top: 1px solid var(--border);
 }
 
@@ -3374,73 +3374,12 @@ p, li, a {
   color: var(--text);
 }
 
-/* Fee chips (clickable anchors) */
-.fee-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0 0 20px 0;
-}
-
-.fee-chip {
-  background: var(--panel);
-  border: 1.5px solid transparent;
-  border-radius: 8px;
-  padding: 8px 10px;
-  box-shadow: var(--shadow);
-  flex: 1 1 auto;
-  min-width: 140px;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: pointer;
-}
-
-.fee-chip:hover {
-  border-color: #ff603b;
-  background: rgba(255, 96, 59, 0.02);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 96, 59, 0.1),
-              0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.fee-chip:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-.fee-chip__value {
-  display: block;
-  font-family: "Ubuntu Mono", monospace;
-  font-weight: 600;
-  font-size: 0.95em;
-  color: var(--text);
-  line-height: 1.3;
-}
-
-.fee-chip__label {
-  display: block;
-  font-family: "Ubuntu Mono", monospace;
-  color: var(--text-muted);
-  font-size: 0.8em;
-  line-height: 1.3;
-}
-
 /* Fee scenarios (match Compatibility grid) */
 .fee-scenarios {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
-  margin: 44px 0 44px 0; /* Increased bottom margin for spacing to examples */
-}
-
-.fee-scenario-wrapper {
-  display: flex;
-  flex-direction: column;
+  margin: 0 0 24px 0;
 }
 
 .fee-card {
@@ -3536,59 +3475,35 @@ p, li, a {
   transform: rotate(180deg); /* Rotate up when open (match FAQ) */
 }
 
+/* Toggle text between "Learn more" and "Hide details" */
+.fee-card__learn-more summary::after {
+  content: attr(data-closed-text);
+}
+
+.fee-card__learn-more[open] summary::after {
+  content: attr(data-open-text);
+}
+
+/* Hide the default text node when using data attributes */
+.fee-card__learn-more summary {
+  font-size: 0;
+}
+
+.fee-card__learn-more summary::before,
+.fee-card__learn-more summary::after {
+  font-size: 0.8rem;
+}
+
+.fee-card__learn-more > div {
+  margin-top: 0.5rem;
+}
+
 .fee-card__learn-more p {
   margin: 12px 0 0 0; /* Increased spacing inside */
   font-family: "Ubuntu Mono", monospace;
   font-size: 0.95em;
   line-height: 1.5;
   color: var(--text);
-}
-
-/* Fee examples - mobile list (default) */
-.fee-examples-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 20px 0;
-}
-
-.fee-example-item {
-  padding: 12px 0;
-  border-top: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.fee-example-item:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.fee-example__label {
-  font-family: "Ubuntu Mono", monospace;
-  font-size: 1em;
-  font-weight: 600;
-  color: var(--text);
-  display: block;
-}
-
-.fee-example__note {
-  font-family: "Ubuntu Mono", monospace;
-  font-size: 0.9em;
-  color: var(--text-muted);
-  display: block;
-}
-
-.fee-example__cost {
-  font-family: "Ubuntu Mono", monospace;
-  font-size: 0.95em;
-  color: var(--text);
-  display: block;
-}
-
-/* Fee examples - desktop table (hidden on mobile) */
-.fee-examples-table {
-  display: none;
 }
 
 /* Quick answers (individually collapsible items, like brand FAQ) */
@@ -3739,16 +3654,6 @@ p, li, a {
     align-items: baseline;
   }
   
-  .fee-chips {
-    gap: 12px;
-  }
-  
-  .fee-chip {
-    flex: 1; /* Equal width chips on desktop */
-    min-width: 160px;
-    max-width: none;
-  }
-  
   /* Two-column grid for scenarios (match Compatibility) */
   .fee-scenarios {
     grid-template-columns: repeat(2, 1fr);
@@ -3759,50 +3664,6 @@ p, li, a {
   .fee-card {
     padding: 20px;
     scroll-margin-top: 450px; /* Slightly less offset on desktop */
-  }
-  
-  /* Show table on desktop, hide mobile list */
-  .fee-examples-list {
-    display: none;
-  }
-  
-  .fee-examples-table {
-    display: table;
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 0 0 20px 0;
-    background: var(--panel);
-  }
-  
-  .fee-examples-table thead {
-    background: var(--bg);
-  }
-  
-  .fee-examples-table th {
-    font-family: "Inter", sans-serif;
-    font-size: 0.85em;
-    font-weight: 600;
-    text-align: left;
-    padding: 12px;
-    color: var(--text);
-    border-bottom: 1px solid var(--border);
-  }
-  
-  .fee-examples-table td {
-    font-family: "Ubuntu Mono", monospace;
-    font-size: 0.9em;
-    padding: 12px;
-    color: var(--text);
-    border-bottom: 1px solid var(--border);
-    vertical-align: top;
-  }
-  
-  .fee-examples-table tbody tr:last-child td {
-    border-bottom: none;
   }
 }
 
@@ -3885,6 +3746,14 @@ p, li, a {
   }
 }
 
+.svc-compat__summary {
+  font-family: "Inter", sans-serif;
+  font-size: 0.95em;
+  color: var(--text);
+  margin: 8px 0 0 0;
+  line-height: 1.4;
+}
+
 .svc-compat__benefit {
   font-family: "Ubuntu Mono", monospace;
   font-size: 1em;
@@ -3957,7 +3826,7 @@ p, li, a {
 }
 
 .svc-compat__tile details > div {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 .svc-compat__tile details p {
@@ -3980,6 +3849,24 @@ p, li, a {
 }
 
 /* Desktop: two-column grid for tiles */
+/* Migration meta chips (time, cost, risk) inherit from compatibility layout */
+.migration-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.migration-meta-chip {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+
 @media (min-width: 768px) {
   .svc-compat__grid {
     grid-template-columns: repeat(2, 1fr);

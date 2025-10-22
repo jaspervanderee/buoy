@@ -651,11 +651,6 @@
 		],
 		"totalTime": null
 	},
-	"fees_at_a_glance": [
-		{ "value": "0.4% + 4 sat", "label": "Outgoing Lightning payment" },
-		{ "value": "≈1,000 sat + mining", "label": "First Lightning receive (channel open)" },
-		{ "value": "1% + mining", "label": "Large receive when channel is full (splice-in)" }
-	],
 	"fees_scenarios": [
 		{
 			"id": "fees-pay",
@@ -681,11 +676,6 @@
 			"how_to_minimize": "Consolidate into fewer, larger receives; spend down balance before receiving large amounts.",
 			"learn_more": "When incoming payment exceeds available channel capacity, Phoenix performs a splice-in operation. This on-chain transaction increases your channel size and costs 1% of the received amount plus current mining fees."
 		}
-	],
-	"fees_examples": [
-		{ "example": "Pay $15 at a café", "what_happens": "Normal Lightning route", "likely_cost": "0.4% + 4 sat" },
-		{ "example": "Receive $30 first time", "what_happens": "Channel opens", "likely_cost": "≈1,000 sat + mining" },
-		{ "example": "Receive $200 payout", "what_happens": "Splice-in", "likely_cost": "1% + mining" }
 	],
 	"fees_faq": [
 		{ "q": "Does Phoenix charge me every time I receive?", "a": "Not always. Once your channel exists and has room, small Lightning receives can be free aside from routing." },
@@ -713,78 +703,40 @@
 			"Install only from the official publisher in your app store; verify the developer name."
 		]
 	},
-	"migration": {
-		"title": "Restore or move your Phoenix wallet",
-		"intro": "Choose the path you need—restore after a lost phone, move to an on-chain wallet, or switch to another wallet.",
-		"howto_schema": true,
-		"flows": [
-			{
-				"id": "restore-phoenix",
-				"title": "How to restore Phoenix on a new phone (iOS/Android)",
-				"meta": "Time ~10 min • Cost: free • Risk: low (if seed is safe)",
-				"steps": [
-					"Install Phoenix on a new iOS 16+ or Android 8+ device and verify it's the official app from ACINQ.",
-					"Choose Restore my wallet, enter your 12-word seed, and wait for channels to resync.",
-					"Remove Phoenix from the old device once the new install works; never run both simultaneously."
-				],
-				"tips": [
-					"Don't run Phoenix on two phones at the same time—channel states will conflict.",
-					"Keep the new device online during resync; it may take a few minutes."
-				],
-				"totalTime": "PT10M"
-			},
-			{
-				"id": "move-to-onchain",
-				"title": "Move funds from Phoenix to an on-chain wallet",
-				"meta": "Time ~1–6 hours • Cost: mining fee • Risk: low",
-				"steps": [
-					"Open Phoenix, go to Settings > Close channels, and confirm cooperative close (cheapest way to exit).",
-					"Wait for closing transactions to confirm (1–6 blocks); funds appear in Phoenix's Final wallet view.",
-					"Sweep coins to your preferred on-chain wallet once confirmed."
-				],
-				"tips": [
-					"Prefer cooperative close over force close; it's faster and cheaper.",
-					"Check current fees (e.g., mempool.space) before closing; wait for low-fee periods to save sats."
-				],
-				"totalTime": "PT2H"
-			},
-			{
-				"id": "switch-to-another-wallet",
-				"title": "Switch from Phoenix to another wallet",
-				"meta": "Time ~15–45 min • Cost: routing/swap fees may apply • Risk: low",
-				"steps": [
-					"Install your new wallet and complete its backup process—verify the recovery model (seed phrase, email+code, or cloud backup).",
-					"Send a small test payment (~10,000 sats) from Phoenix to the new wallet to verify it works.",
-					"Close Phoenix channels (Settings > Close channels) and sweep remaining funds once confirmed."
-				],
-				"tips": [
-					"Test first with a small amount (~10,000 sats) to catch issues before moving everything.",
-					"Verify the new wallet's recovery model matches your security preferences."
-				],
-				"totalTime": "PT30M",
-				"show_recommendations": true
-			}
-		]
+  "privacy": {
+		"section_title": "Privacy & Safety",
+		"data_flows": [
+			"Phoenix connects to ACINQ's Lightning node to route payments. Today, ACINQ can see who you pay and the amount needed to deliver your payment.",
+			"On-chain transactions are public by design; reuse of addresses can link activity.",
+			"Use your own Electrum server (Settings) to limit what third parties learn about your addresses and balances.",
+			"Lightning peers still observe timing/amount metadata needed for routing."
+		],
+		"data_flows_do": "Connect your own Electrum server if privacy matters.",
+		"data_flows_dont": "Assume Lightning is fully private. Some metadata still leaks via peers.",
+		"recovery": [
+			"Your 12-word seed lives only on your phone. ACINQ can't recover it for you. Channel states are encrypted and synced so they can be restored.",
+			"Standard restore: install Phoenix → Restore my wallet → enter seed → keep the phone online while channels resync.",
+			"If Phoenix/ACINQ is unavailable: Settings → Danger zone → Force close channels. After ~720 blocks, funds appear in the Final wallet; then sweep on-chain."
+		],
+		"recovery_do": "Store your seed offline and test a small restore when convenient.",
+		"recovery_dont": "Run Phoenix on two phones at the same time.",
+		"region": [
+			"App-store availability and funding options vary by country—check your local listing and on-ramp.",
+			"Install only from the official developer (ACINQ) on Apple App Store or Google Play.",
+			"Avoid third-party APKs; they're a common source of malware."
+		],
+		"micro_faqs": [
+			{"q": "Does Phoenix work with my own node or Electrum?", "a": "Yes. Connect your Electrum server to improve privacy; Lightning peers still see routing metadata."},
+			{"q": "Can ACINQ recover my wallet if I lose the seed?", "a": "No. The seed never leaves your device."},
+			{"q": "What if ACINQ disappears?", "a": "Use Force close; funds appear in the Final wallet after confirmations, then sweep."}
+		],
+		"glossary": [
+			{"term": "Electrum server", "def": "A server your wallet queries for balances/tx history. Running your own improves privacy."},
+			{"term": "Force close", "def": "Shuts a Lightning channel on-chain without cooperation; slower and higher fees."},
+			{"term": "Final wallet", "def": "On-chain funds after channels close; sweep when confirmed."}
+		],
+		"keywords": ["Phoenix privacy", "ACINQ", "Electrum server", "Phoenix lost phone", "force close channels", "Final wallet", "Phoenix availability"]
 	},
-	"anchors": {
-		"setup": "#setup",
-		"fees": "#fees",
-		"privacy": "#privacy",
-		"migration": "#migration",
-		"faq": "#faq"
-	},
-	"schema_flags": {
-		"hasHowTo": true,
-		"hasFAQ": true
-	},
-	"updated": "2025-10-03",
-	"needs_review": [
-		"interop.lnurl_pay",
-		"interop.lnurl_withdraw",
-		"interop.lightning_address",
-		"interop.bolt12",
-		"interop.coin_control"
-	],
   "compat_heading": "What this Phoenix wallet can or can't do",
 	"compat_tiles": [
 		{
@@ -826,40 +778,86 @@
 			"gotcha": "The recipient's server must be online to generate the invoice; if it's down, the payment fails."
 		}   
 	],
-	"privacy": {
-		"section_title": "Privacy & Safety — what Phoenix shares, how to recover, and regional notes",
-		"data_flows": [
-			"Phoenix connects to ACINQ's Lightning node to route payments. Today, ACINQ can see who you pay and the amount needed to deliver your payment.",
-			"On-chain transactions are public by design; reuse of addresses can link activity.",
-			"Use your own Electrum server (Settings) to limit what third parties learn about your addresses and balances.",
-			"Lightning peers still observe timing/amount metadata needed for routing."
-		],
-		"data_flows_do": "Connect your own Electrum server if privacy matters.",
-		"data_flows_dont": "Assume Lightning is fully private—some metadata still leaks via peers.",
-		"recovery": [
-			"Your 12-word seed lives only on your phone. ACINQ can't recover it for you. Channel states are encrypted and synced so they can be restored.",
-			"Standard restore: install Phoenix → Restore my wallet → enter seed → keep the phone online while channels resync.",
-			"If Phoenix/ACINQ is unavailable: Settings → Danger zone → Force close channels. After ~720 blocks, funds appear in the Final wallet; then sweep on-chain."
-		],
-		"recovery_do": "Store your seed offline and test a small restore when convenient.",
-		"recovery_dont": "Run Phoenix on two phones at the same time.",
-		"region": [
-			"App-store availability and funding options vary by country—check your local listing and on-ramp.",
-			"Install only from the official developer (ACINQ) on Apple App Store or Google Play.",
-			"Avoid third-party APKs; they're a common source of malware."
-		],
-		"micro_faqs": [
-			{"q": "Does Phoenix work with my own node or Electrum?", "a": "Yes. Connect your Electrum server to improve privacy; Lightning peers still see routing metadata."},
-			{"q": "Can ACINQ recover my wallet if I lose the seed?", "a": "No. The seed never leaves your device."},
-			{"q": "What if ACINQ disappears?", "a": "Use Force close; funds appear in the Final wallet after confirmations, then sweep."}
-		],
-		"glossary": [
-			{"term": "Electrum server", "def": "A server your wallet queries for balances/tx history. Running your own improves privacy."},
-			{"term": "Force close", "def": "Shuts a Lightning channel on-chain without cooperation; slower and higher fees."},
-			{"term": "Final wallet", "def": "On-chain funds after channels close; sweep when confirmed."}
-		],
-		"keywords": ["Phoenix privacy", "ACINQ", "Electrum server", "Phoenix lost phone", "force close channels", "Final wallet", "Phoenix availability"]
-	}
+	"migration": [
+		{
+			"id": "restore-phoenix",
+			"title": "Restore Phoenix on a new phone",
+			"choose": "When you get a new device and want to keep using Phoenix.",
+			"time": "~10 min",
+			"cost": "Free",
+			"risk": "Low",
+			"steps": [
+				"Install Phoenix on the new phone and verify it's the official app from ACINQ.",
+				"Choose Restore my wallet, enter your 12-word seed, and wait for channels to resync.",
+				"Remove Phoenix from the old device once the new install works; never run both simultaneously."
+			],
+			"tips": "Don't run Phoenix on two phones at the same time: channel states will conflict. Keep the new device online during resync; it may take a few minutes.",
+			"gotcha": "Android transaction history won't migrate; only your balance and channels restore."
+		},
+		{
+			"id": "move-from-another-wallet",
+			"title": "Another wallet → to Phoenix",
+			"choose": "When you want to start using Phoenix but have funds in a different Lightning wallet.",
+			"time": "~5–15 min",
+			"cost": "Routing fees",
+			"risk": "Low",
+			"steps": [
+				"Install Phoenix and complete the initial setup to generate your wallet and first channel.",
+				"In Phoenix, tap Receive and generate a Lightning invoice for the amount you want to transfer.",
+				"In your old wallet, send the Lightning payment to the Phoenix invoice. Start with a small test (~10,000 sats) first."
+			],
+			"tips": "Always test with a small amount first. Phoenix will automatically open a channel if needed (costs ~1,000 sat + mining fee). Keep both apps open during the transfer.",
+			"gotcha": "Your old wallet's channel balance can't be transferred directly—you must send payments to Phoenix, which takes a minute or two."
+		},
+		{
+			"id": "move-to-onchain",
+			"title": "Phoenix → to on-chain wallet",
+			"choose": "When you want to move Bitcoin for long-term storage.",
+			"time": "~1–6 hours",
+			"cost": "Mining fee",
+			"risk": "Low",
+			"steps": [
+				"Open Phoenix, go to Settings > Close channels, and confirm cooperative close (cheapest way to exit).",
+				"Wait for closing transactions to confirm (1–6 blocks); funds appear in Phoenix's Final wallet view.",
+				"Sweep coins to your preferred on-chain wallet once confirmed."
+			],
+			"tips": "Prefer cooperative close over force close; it's faster and cheaper. Check current fees before closing; wait for low-fee periods to save sats.",
+			"gotcha": "Forced close can take up to 5 days and costs more. Only use if ACINQ is offline."
+		},
+		{
+			"id": "switch-to-another-wallet",
+			"title": "Phoenix → to another Lightning wallet",
+			"choose": "When you want to try a different Lightning wallet and move your Phoenix balance.",
+			"time": "~15–45 min",
+			"cost": "Routing fees",
+			"risk": "Low",
+			"steps": [
+				"Install your new wallet and complete its backup process.",
+				"Send a small test payment (~10,000 sats) from Phoenix to the new wallet to verify it works.",
+				"Close Phoenix channels (Settings > Close channels) and sweep remaining funds once confirmed."
+			],
+			"tips": "Test first with a small amount (~10,000 sats) to catch issues before moving everything. Verify the new wallet's recovery model matches your security preferences."
+		}
+	],
+	"anchors": {
+		"setup": "#setup",
+		"fees": "#fees",
+		"privacy": "#privacy",
+		"migration": "#migration",
+		"faq": "#faq"
+	},
+	"schema_flags": {
+		"hasHowTo": true,
+		"hasFAQ": true
+	},
+	"updated": "2025-10-03",
+	"needs_review": [
+		"interop.lnurl_pay",
+		"interop.lnurl_withdraw",
+		"interop.lightning_address",
+		"interop.bolt12",
+		"interop.coin_control"
+	]
   },
   {
 "name": "Pocket",

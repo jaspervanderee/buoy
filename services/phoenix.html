@@ -44,7 +44,7 @@
 })();
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","@id":"https://buoybitcoin.com/services/phoenix.html#webpage","name":"Phoenix — Review, fees & features | Buoy Bitcoin","url":"https://buoybitcoin.com/services/phoenix.html","inLanguage":"en","description":"Phoenix is designed to provide a simple, self-custodial experience for fast, low-cost Lightning transactions directly on mobile devices, emphasizing ease of us…","isPartOf":{"@id":"https://buoybitcoin.com/#website"},"publisher":{"@id":"https://buoybitcoin.com/#organization"},"primaryImageOfPage":{"@type":"ImageObject","url":"https://buoybitcoin.com/android-chrome-512x512.png","width":512,"height":512},"mainEntity":{"@id":"https://buoybitcoin.com/services/phoenix.html#service"},"dateModified":"2025-10-03"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","@id":"https://buoybitcoin.com/services/phoenix.html#service","name":"Phoenix","url":"https://phoenix.acinq.co","mainEntityOfPage":"https://buoybitcoin.com/services/phoenix.html#webpage","provider":{"@type":"Organization","name":"Phoenix","url":"https://phoenix.acinq.co"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://buoybitcoin.com/#organization","name":"Buoy Bitcoin","url":"https://buoybitcoin.com/","logo":{"@type":"ImageObject","url":"https://buoybitcoin.com/android-chrome-512x512.png","width":512,"height":512},"sameAs":["https://x.com/jaspervanderee","https://github.com/jaspervanderee/buoy"]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://buoybitcoin.com/#website","url":"https://buoybitcoin.com/","name":"Buoy Bitcoin","inLanguage":"en","potentialAction":{"@type":"SearchAction","target":"https://buoybitcoin.com/search.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://buoybitcoin.com/"},{"@type":"ListItem","position":2,"name":"Spend Bitcoin","item":"https://buoybitcoin.com/spend-bitcoin.html"},{"@type":"ListItem","position":3,"name":"Phoenix","item":"https://buoybitcoin.com/services/phoenix.html"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to restore Phoenix on a new phone (iOS/Android)","description":"Choose the path you need—restore after a lost phone, move to an on-chain wallet, or switch to another wallet","url":"https://buoybitcoin.com/services/phoenix.html#restore-phoenix","step":[{"@type":"HowToStep","position":1,"name":"Step 1","text":"Install Phoenix on a new iOS 16+ or Android 8+ device and verify it's the official app from ACINQ."},{"@type":"HowToStep","position":2,"name":"Step 2","text":"Choose Restore my wallet, enter your 12-word seed, and wait for channels to resync."},{"@type":"HowToStep","position":3,"name":"Step 3","text":"Remove Phoenix from the old device once the new install works; never run both simultaneously."}],"totalTime":"PT10M","estimatedCost":{"@type":"MonetaryAmount","currency":"USD","value":"0"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Move funds from Phoenix to an on-chain wallet","description":"Choose the path you need—restore after a lost phone, move to an on-chain wallet, or switch to another wallet","url":"https://buoybitcoin.com/services/phoenix.html#move-to-onchain","step":[{"@type":"HowToStep","position":1,"name":"Step 1","text":"Open Phoenix, go to Settings > Close channels, and confirm cooperative close (cheapest way to exit)."},{"@type":"HowToStep","position":2,"name":"Step 2","text":"Wait for closing transactions to confirm (1–6 blocks); funds appear in Phoenix's Final wallet view."},{"@type":"HowToStep","position":3,"name":"Step 3","text":"Sweep coins to your preferred on-chain wallet once confirmed."}],"totalTime":"PT2H","estimatedCost":{"@type":"MonetaryAmount","currency":"USD","value":"0"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Switch from Phoenix to another wallet","description":"Choose the path you need—restore after a lost phone, move to an on-chain wallet, or switch to another wallet","url":"https://buoybitcoin.com/services/phoenix.html#switch-to-another-wallet","step":[{"@type":"HowToStep","position":1,"name":"Step 1","text":"Install your new wallet and complete its backup process—verify the recovery model (seed phrase, email+code, or cloud backup)."},{"@type":"HowToStep","position":2,"name":"Step 2","text":"Send a small test payment (~10,000 sats) from Phoenix to the new wallet to verify it works."},{"@type":"HowToStep","position":3,"name":"Step 3","text":"Close Phoenix channels (Settings > Close channels) and sweep remaining funds once confirmed."}],"totalTime":"PT30M","estimatedCost":{"@type":"MonetaryAmount","currency":"USD","value":"0"}}</script></head>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","@id":"https://buoybitcoin.com/#website","url":"https://buoybitcoin.com/","name":"Buoy Bitcoin","inLanguage":"en","potentialAction":{"@type":"SearchAction","target":"https://buoybitcoin.com/search.html?q={search_term_string}","query-input":"required name=search_term_string"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://buoybitcoin.com/"},{"@type":"ListItem","position":2,"name":"Spend Bitcoin","item":"https://buoybitcoin.com/spend-bitcoin.html"},{"@type":"ListItem","position":3,"name":"Phoenix","item":"https://buoybitcoin.com/services/phoenix.html"}]}</script></head>
 <body>
   <div class="container">
  <header>
@@ -170,104 +170,38 @@
 
 <section id="fees" class="service-section section-fees">
   <h2 class="fees-title">Fees: what you pay and when</h2>
-  <div class="fee-chips">
-      <a class="fee-chip" href="#fees-pay">
-        <span class="fee-chip__value">0.4% + 4 sat</span>
-        <span class="fee-chip__label">Outgoing Lightning payment</span>
-      </a>
-      <a class="fee-chip" href="#fees-first-receive">
-        <span class="fee-chip__value">≈1,000 sat + mining</span>
-        <span class="fee-chip__label">First Lightning receive (channel open)</span>
-      </a>
-      <a class="fee-chip" href="#fees-splice">
-        <span class="fee-chip__value">1% + mining</span>
-        <span class="fee-chip__label">Large receive when channel is full (splice-in)</span>
-      </a>
-  </div>
   <div class="fee-scenarios">
-    <div class="fee-scenario-wrapper">
-      <div class="feature-label sublabel">Scenario 1</div>
-      <article class="fee-card" id="fees-pay">
-        <h3 class="fee-card__title">Paying a small Lightning invoice (e.g., $15 coffee)</h3>
-        <p class="fee-card__cost"><strong>Cost today:</strong> 0.4% of the amount + 4 sat</p>
-        <p class="fee-card__what"><strong>What's happening:</strong> Lightning routes your payment through peers; 0.4% routing fee + 4 sat flat charge.</p>
-        <p class="fee-card__how"><strong>Keep costs low:</strong> Batch small purchases when possible; avoid many micro-payments during high network activity.</p>
+    <article class="fee-card" id="fees-pay">
+      <h3 class="fee-card__title">Paying a small Lightning invoice (e.g., $15 coffee)</h3>
+      <p class="fee-card__cost"><strong>Cost today:</strong> 0.4% of the amount + 4 sat</p>
+      <p class="fee-card__what"><strong>What's happening:</strong> Lightning routes your payment through peers; 0.4% routing fee + 4 sat flat charge.</p>
+      <p class="fee-card__how"><strong>Keep costs low:</strong> Batch small purchases when possible; avoid many micro-payments during high network activity.</p>
         <details class="fee-card__learn-more">
-          <summary>Learn more</summary>
-          <p>Every outgoing Lightning payment includes this fee. The 4 sat is Phoenix's service charge, and the 0.4% covers routing through the Lightning network.</p>
+          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
+          <div><p>Every outgoing Lightning payment includes this fee. The 4 sat is Phoenix's service charge, and the 0.4% covers routing through the Lightning network.</p></div>
         </details>
-      </article>
-    </div>
-    <div class="fee-scenario-wrapper">
-      <div class="feature-label sublabel">Scenario 2</div>
-      <article class="fee-card" id="fees-first-receive">
-        <h3 class="fee-card__title">First Lightning receive when you have no channel</h3>
-        <p class="fee-card__cost"><strong>Cost today:</strong> ≈1,000 sat channel creation + current <a href="#term-mining-fee" class="glossary-link" data-term="Mining fee">mining fee</a></p>
-        <p class="fee-card__what"><strong>What's happening:</strong> Phoenix opens a Lightning channel so you can receive payments.</p>
-        <p class="fee-card__how"><strong>Keep costs low:</strong> Wait for low on-chain fees (check mempool.space); receive when network is quiet.</p>
+    </article>
+    <article class="fee-card" id="fees-first-receive">
+      <h3 class="fee-card__title">First Lightning receive when you have no channel</h3>
+      <p class="fee-card__cost"><strong>Cost today:</strong> ≈1,000 sat channel creation + current <a href="#term-mining-fee" class="glossary-link" data-term="Mining fee">mining fee</a></p>
+      <p class="fee-card__what"><strong>What's happening:</strong> Phoenix opens a Lightning channel so you can receive payments.</p>
+      <p class="fee-card__how"><strong>Keep costs low:</strong> Wait for low on-chain fees (check mempool.space); receive when network is quiet.</p>
         <details class="fee-card__learn-more">
-          <summary>Learn more</summary>
-          <p>Your first Lightning receive triggers channel creation. Phoenix must commit an on-chain transaction to open the channel, which incurs the current Bitcoin <a href="#term-mining-fee" class="glossary-link" data-term="Mining fee">mining fee</a> plus a 1,000 sat setup charge.</p>
+          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
+          <div><p>Your first Lightning receive triggers channel creation. Phoenix must commit an on-chain transaction to open the channel, which incurs the current Bitcoin <a href="#term-mining-fee" class="glossary-link" data-term="Mining fee">mining fee</a> plus a 1,000 sat setup charge.</p></div>
         </details>
-      </article>
-    </div>
-    <div class="fee-scenario-wrapper">
-      <div class="feature-label sublabel">Scenario 3</div>
-      <article class="fee-card" id="fees-splice">
-        <h3 class="fee-card__title">Receiving a larger payout when your channel is full</h3>
-        <p class="fee-card__cost"><strong>Cost today:</strong> 1% of the amount + <a href="#term-mining-fee" class="glossary-link" data-term="Mining fee">mining fee</a> (<a href="#term-splice-in" class="glossary-link" data-term="Splice-in">splice-in</a>)</p>
-        <p class="fee-card__what"><strong>What's happening:</strong> Phoenix resizes your channel to accept more sats than current capacity allows.</p>
-        <p class="fee-card__how"><strong>Keep costs low:</strong> Consolidate into fewer, larger receives; spend down balance before receiving large amounts.</p>
+    </article>
+    <article class="fee-card" id="fees-splice">
+      <h3 class="fee-card__title">Receiving a larger payout when your channel is full</h3>
+      <p class="fee-card__cost"><strong>Cost today:</strong> 1% of the amount + <a href="#term-mining-fee" class="glossary-link" data-term="Mining fee">mining fee</a> (<a href="#term-splice-in" class="glossary-link" data-term="Splice-in">splice-in</a>)</p>
+      <p class="fee-card__what"><strong>What's happening:</strong> Phoenix resizes your channel to accept more sats than current capacity allows.</p>
+      <p class="fee-card__how"><strong>Keep costs low:</strong> Consolidate into fewer, larger receives; spend down balance before receiving large amounts.</p>
         <details class="fee-card__learn-more">
-          <summary>Learn more</summary>
-          <p>When incoming payment exceeds available channel capacity, Phoenix performs a <a href="#term-splice-in" class="glossary-link" data-term="Splice-in">splice-in</a> operation. This on-chain transaction increases your channel size and costs 1% of the received amount plus current mining fees.</p>
+          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
+          <div><p>When incoming payment exceeds available channel capacity, Phoenix performs a <a href="#term-splice-in" class="glossary-link" data-term="Splice-in">splice-in</a> operation. This on-chain transaction increases your channel size and costs 1% of the received amount plus current mining fees.</p></div>
         </details>
-      </article>
-    </div>
+    </article>
   </div>
-  <ul class="fee-examples-list">
-    <li class="fee-example-item">
-      <span class="fee-example__label">Pay $15 at a café</span>
-      <span class="fee-example__note">Normal Lightning route</span>
-      <span class="fee-example__cost">0.4% + 4 sat</span>
-    </li>
-    <li class="fee-example-item">
-      <span class="fee-example__label">Receive $30 first time</span>
-      <span class="fee-example__note">Channel opens</span>
-      <span class="fee-example__cost">≈1,000 sat + mining</span>
-    </li>
-    <li class="fee-example-item">
-      <span class="fee-example__label">Receive $200 payout</span>
-      <span class="fee-example__note">Splice-in</span>
-      <span class="fee-example__cost">1% + mining</span>
-    </li>
-  </ul>
-  <table class="fee-examples-table">
-    <thead>
-      <tr>
-        <th scope="col">In short:</th>
-        <th scope="col">What happens</th>
-        <th scope="col">Likely cost</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Pay $15 at a café</td>
-        <td>Normal Lightning route</td>
-        <td>0.4% + 4 sat</td>
-      </tr>
-      <tr>
-        <td>Receive $30 first time</td>
-        <td>Channel opens</td>
-        <td>≈1,000 sat + mining</td>
-      </tr>
-      <tr>
-        <td>Receive $200 payout</td>
-        <td>Splice-in</td>
-        <td>1% + mining</td>
-      </tr>
-    </tbody>
-  </table>
   <div class="fee-quick-answers">
     <h3 class="fee-quick-answers__title">Quick answers</h3>
     <div class="fee-quick-answers__list">
@@ -304,86 +238,19 @@
   </details>
 
 </section>
-<script>
-(function() {
-  const feesSection = document.querySelector('.section-fees');
-  if (!feesSection) return;
-  
-  const scenarioIds = ['fees-pay', 'fees-first-receive', 'fees-splice'];
-  
-  function highlightScenario(targetId) {
-    const target = document.getElementById(targetId);
-    if (!target) return;
-    
-    // Remove existing highlights
-    document.querySelectorAll('.fee-card.is-target').forEach(el => {
-      el.classList.remove('is-target');
-    });
-    
-    // Add highlight to target
-    target.classList.add('is-target');
-    
-    // Remove highlight after 2.5 seconds
-    setTimeout(() => {
-      target.classList.remove('is-target');
-    }, 2500);
-  }
-  
-  // Handle chip clicks
-  feesSection.querySelectorAll('.fee-chip').forEach(chip => {
-    chip.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href').slice(1);
-      const target = document.getElementById(targetId);
-      if (!target) return;
-      
-      // Update hash without triggering hashchange
-      history.replaceState(null, null, '#' + targetId);
-      
-      // Smooth scroll to target
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      
-      // Highlight after brief delay to ensure scroll completes
-      setTimeout(() => highlightScenario(targetId), 300);
-    });
-  });
-  
-  // Handle hash on page load
-  function handleHash() {
-    const hash = window.location.hash.slice(1);
-    if (scenarioIds.includes(hash)) {
-      const target = document.getElementById(hash);
-      if (target) {
-        setTimeout(() => {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          highlightScenario(hash);
-        }, 100);
-      }
-    }
-  }
-  
-  // Run on load and hashchange
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', handleHash);
-  } else {
-    handleHash();
-  }
-  window.addEventListener('hashchange', handleHash);
-})();
-</script>
 
 <section id="privacy-safety" class="service-section" aria-labelledby="privacy-safety-label">
-  <h2 id="privacy-safety-label" class="feature-label">Privacy & Safety — what Phoenix shares, how to recover, and regional notes</h2>
+  <h2 id="privacy-safety-label" class="feature-label">Privacy & Safety</h2>
   <div class="privacy-cards">
     <div class="privacy-card" id="data-flows">
       <h3>Who can see what when you use Phoenix</h3>
       <ul><li>Phoenix connects to ACINQ's Lightning node to route payments. Today, ACINQ can see who you pay and the amount needed to deliver your payment.</li><li>On-chain transactions are public by design; reuse of addresses can link activity.</li><li>Use your own <a href="#electrum-server" class="glossary-link" data-term="Electrum server">Electrum server</a> (Settings) to limit what third parties learn about your addresses and balances.</li><li>Lightning peers still observe timing/amount metadata needed for routing.</li></ul>
-      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Do:</strong> Connect your own <a href="#electrum-server" class="glossary-link" data-term="Electrum server">Electrum server</a> if privacy matters.</div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Don't:</strong> Assume Lightning is fully private—some metadata still leaks via peers.</div></div>
+      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> Connect your own <a href="#electrum-server" class="glossary-link" data-term="Electrum server">Electrum server</a> if privacy matters.</span></div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> Assume Lightning is fully private. Some metadata still leaks via peers.</span></div></div>
     </div>
     <div class="privacy-card" id="recovery">
       <h3>Lost your phone? How Phoenix recovery works</h3>
       <ul><li>Your 12-word seed lives only on your phone. ACINQ can't recover it for you. Channel states are encrypted and synced so they can be restored.</li><li>Standard restore: install Phoenix → Restore my wallet → enter seed → keep the phone online while channels resync.</li><li>If Phoenix/ACINQ is unavailable: Settings → Danger zone → <a href="#force-close" class="glossary-link" data-term="Force close">Force close</a> channels. After ~720 blocks, funds appear in the <a href="#final-wallet" class="glossary-link" data-term="Final wallet">Final wallet</a>; then sweep on-chain.</li></ul>
-      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Do:</strong> Store your seed offline and test a small restore when convenient.</div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Don't:</strong> Run Phoenix on two phones at the same time.</div></div>
+      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> Store your seed offline and test a small restore when convenient.</span></div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> Run Phoenix on two phones at the same time.</span></div></div>
     </div>
     <div class="privacy-card" id="availability">
       <h3>Availability &amp; safe installs</h3>
@@ -427,7 +294,7 @@
 </section>
 
 <section id="compat" class="service-section">
-  <h2 class="feature-label">What this Phoenix wallet can and can't do</h2>
+  <h2 class="feature-label">What this Phoenix wallet can or can't do</h2>
   <div class="svc-compat__grid">
 
       <div class="svc-compat__tile">
@@ -482,44 +349,57 @@
 </section>
 
 <section id="migration" class="service-section">
-  <h2 class="feature-label">Restore or move your Phoenix wallet</h2>
-  <p class="section-intro">Choose the path you need—restore after a lost phone, move to an on-chain wallet, or switch to another wallet.</p>
-  <div class="migration-flows">
-    <div class="migration-card" id="restore-phoenix" data-migration-flow="restore">
-      <h3>How to restore Phoenix on a new phone (iOS/Android)</h3>
-      <div class="migration-badges"><span class="migration-badge">Time ~10 min</span><span class="migration-badge">Cost: free</span><span class="migration-badge">Risk: low (if seed is safe)</span></div>
-      <ol class="migration-steps"><li>Install Phoenix on a new iOS 16+ or Android 8+ device and verify it's the official app from ACINQ.</li><li>Choose Restore my wallet, enter your 12-word seed, and wait for channels to resync.</li><li>Remove Phoenix from the old device once the new install works; never run both simultaneously.</li></ol>
-      <div class="migration-tips"><strong>Tips:</strong> Don't run Phoenix on two phones at the same time—channel states will conflict. Keep the new device online during resync; it may take a few minutes.</div>
-    </div>
-    <div class="migration-card" id="move-to-onchain" data-migration-flow="move-to-onchain">
-      <h3>Move funds from Phoenix to an on-chain wallet</h3>
-      <div class="migration-badges"><span class="migration-badge">Time ~1–6 hours</span><span class="migration-badge">Cost: mining fee</span><span class="migration-badge">Risk: low</span></div>
-      <ol class="migration-steps"><li>Open Phoenix, go to Settings > Close channels, and confirm cooperative close (cheapest way to exit).</li><li>Wait for closing transactions to confirm (1–6 blocks); funds appear in Phoenix's Final wallet view.</li><li>Sweep coins to your preferred on-chain wallet once confirmed.</li></ol>
-      <div class="migration-tips"><strong>Tips:</strong> Prefer cooperative close over force close; it's faster and cheaper. Check current fees (e.g., mempool.space) before closing; wait for low-fee periods to save sats.</div>
-    </div>
-    <div class="migration-card" id="switch-to-another-wallet" data-migration-flow="switch-generic">
-      <h3>Switch from Phoenix to another wallet</h3>
-      <div class="migration-badges"><span class="migration-badge">Time ~15–45 min</span><span class="migration-badge">Cost: routing/swap fees may apply</span><span class="migration-badge">Risk: low</span></div>
-      <ol class="migration-steps"><li>Install your new wallet and complete its backup process—verify the recovery model (seed phrase, email+code, or cloud backup).</li><li>Send a small test payment (~10,000 sats) from Phoenix to the new wallet to verify it works.</li><li>Close Phoenix channels (Settings > Close channels) and sweep remaining funds once confirmed.</li></ol>
-      <div class="migration-tips"><strong>Tips:</strong> Test first with a small amount (~10,000 sats) to catch issues before moving everything. Verify the new wallet's recovery model matches your security preferences.</div>
-    <div class="migration-recommendations">
-      <h4>Recommended options</h4>
-      <ul>
-      <li>
-        <a href="/services/aqua.html"><strong>Aqua</strong></a> — Recovery: 12-word seed + optional passphrase • Supports Bitcoin + Lightning + Liquid
-        <br><a href="/compare/aqua-vs-phoenix.html" class="compare-link">Compare Phoenix vs Aqua</a>
-      </li>
-      <li>
-        <a href="/services/breez.html"><strong>Breez</strong></a> — Recovery: Seed phrase + cloud backup • Supports Bitcoin + Lightning
-        <br><a href="/compare/breez-vs-phoenix.html" class="compare-link">Compare Phoenix vs Breez</a>
-      </li>
-      <li>
-        <a href="/services/muun.html"><strong>Muun</strong></a> — Recovery: Emergency kit with email and recovery code • Supports Bitcoin + Lightning
-        <br><a href="/compare/muun-vs-phoenix.html" class="compare-link">Compare Phoenix vs Muun</a>
-      </li>
-      </ul>
-    </div>
-    </div>
+  <h2 class="feature-label">Move your Phoenix wallet or funds</h2>
+  <div class="svc-compat__grid">
+
+      <div class="svc-compat__tile" id="restore-phoenix">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Restore Phoenix on a new phone</h3>
+        </div>
+        <div class="migration-meta"><span class="migration-meta-chip">Time: ~10 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <p class="svc-compat__benefit"><strong>Choose:</strong> When you get a new device and want to keep using Phoenix.</p>
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><ol><li>Install Phoenix on the new phone and verify it's the official app from ACINQ.</li><li>Choose Restore my wallet, enter your 12-word seed, and wait for channels to resync.</li><li>Remove Phoenix from the old device once the new install works; never run both simultaneously.</li></ol><p><strong>Tips:</strong> Don't run Phoenix on two phones at the same time: channel states will conflict. Keep the new device online during resync; it may take a few minutes.</p><p><strong>Gotcha:</strong> Android transaction history won't migrate; only your balance and channels restore.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="move-from-another-wallet">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Another wallet → to Phoenix</h3>
+        </div>
+        <div class="migration-meta"><span class="migration-meta-chip">Time: ~5–15 min</span><span class="migration-meta-chip">Cost: Routing fees</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <p class="svc-compat__benefit"><strong>Choose:</strong> When you want to start using Phoenix but have funds in a different Lightning wallet.</p>
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><ol><li>Install Phoenix and complete the initial setup to generate your wallet and first channel.</li><li>In Phoenix, tap Receive and generate a Lightning invoice for the amount you want to transfer.</li><li>In your old wallet, send the Lightning payment to the Phoenix invoice. Start with a small test (~10,000 sats) first.</li></ol><p><strong>Tips:</strong> Always test with a small amount first. Phoenix will automatically open a channel if needed (costs ~1,000 sat + mining fee). Keep both apps open during the transfer.</p><p><strong>Gotcha:</strong> Your old wallet's channel balance can't be transferred directly—you must send payments to Phoenix, which takes a minute or two.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="move-to-onchain">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Phoenix → to on-chain wallet</h3>
+        </div>
+        <div class="migration-meta"><span class="migration-meta-chip">Time: ~1–6 hours</span><span class="migration-meta-chip">Cost: Mining fee</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <p class="svc-compat__benefit"><strong>Choose:</strong> When you want to move Bitcoin for long-term storage.</p>
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><ol><li>Open Phoenix, go to Settings > Close channels, and confirm cooperative close (cheapest way to exit).</li><li>Wait for closing transactions to confirm (1–6 blocks); funds appear in Phoenix's Final wallet view.</li><li>Sweep coins to your preferred on-chain wallet once confirmed.</li></ol><p><strong>Tips:</strong> Prefer cooperative close over force close; it's faster and cheaper. Check current fees before closing; wait for low-fee periods to save sats.</p><p><strong>Gotcha:</strong> Forced close can take up to 5 days and costs more. Only use if ACINQ is offline.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="switch-to-another-wallet">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Phoenix → to another Lightning wallet</h3>
+        </div>
+        <div class="migration-meta"><span class="migration-meta-chip">Time: ~15–45 min</span><span class="migration-meta-chip">Cost: Routing fees</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <p class="svc-compat__benefit"><strong>Choose:</strong> When you want to try a different Lightning wallet and move your Phoenix balance.</p>
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><ol><li>Install your new wallet and complete its backup process.</li><li>Send a small test payment (~10,000 sats) from Phoenix to the new wallet to verify it works.</li><li>Close Phoenix channels (Settings > Close channels) and sweep remaining funds once confirmed.</li></ol><p><strong>Tips:</strong> Test first with a small amount (~10,000 sats) to catch issues before moving everything. Verify the new wallet's recovery model matches your security preferences.</p>
+          </div>
+        </details>
+      </div>
   </div>
 </section>
 

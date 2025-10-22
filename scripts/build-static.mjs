@@ -324,10 +324,10 @@ html = html.replace('</head>', urlShim + '</head>');
 
       const renderFees = () => {
         // Check for new fees structure first
-        const hasNewFeesData = svc.fees_at_a_glance || svc.fees_examples || svc.fees_faq || svc.key_terms;
+        const hasNewFeesData = svc.fees_faq || svc.key_terms;
         
         if (hasNewFeesData) {
-          // New fees structure: chips → scenarios → table → FAQ → key terms
+          // New fees structure: scenarios → FAQ → key terms
           
           // Build glossary term map for auto-linking in fees section
           const feesGlossaryMap = new Map();
@@ -375,27 +375,6 @@ html = html.replace('</head>', urlShim + '</head>');
             }
           }
           
-          // Render chips (at-a-glance) as clickable anchors
-          let chipsHtml = "";
-          if (Array.isArray(svc.fees_at_a_glance) && svc.fees_at_a_glance.length > 0) {
-            // Map chips to scenario IDs based on order
-            const scenarioIds = ['fees-pay', 'fees-first-receive', 'fees-splice'];
-            const chipItems = svc.fees_at_a_glance.slice(0, 3).map((chip, idx) => {
-              if (!chip || !chip.value || !chip.label) return "";
-              const targetId = scenarioIds[idx] || "";
-              return `      <a class="fee-chip" href="#${targetId}">
-        <span class="fee-chip__value">${chip.value}</span>
-        <span class="fee-chip__label">${chip.label}</span>
-      </a>`;
-            }).filter(Boolean).join("\n");
-            
-            if (chipItems) {
-              chipsHtml = `  <div class="fee-chips">
-${chipItems}
-  </div>\n`;
-            }
-          }
-          
           // Render scenarios (all three visible, equal size)
           let scenariosHtml = "";
           if (Array.isArray(svc.fees_scenarios) && svc.fees_scenarios.length > 0) {
@@ -404,85 +383,34 @@ ${chipItems}
               .slice(0, 3);
             
             if (validScenarios.length > 0) {
-              const scenarioCards = validScenarios.map((scenario, idx) => {
+              const scenarioCards = validScenarios.map((scenario) => {
                 const id = scenario.id || "";
                 const title = scenario.title || "";
                 const cost = linkFeesGlossaryTerms(scenario.cost_today || "");
                 const what = linkFeesGlossaryTerms(scenario.what_happens || "");
                 const how = linkFeesGlossaryTerms(scenario.how_to_minimize || "");
                 const learn = linkFeesGlossaryTerms(scenario.learn_more || "");
-                const scenarioNum = idx + 1;
                 
                 let learnHtml = "";
                 if (learn) {
                   learnHtml = `
         <details class="fee-card__learn-more">
-          <summary>Learn more</summary>
-          <p>${learn}</p>
+          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
+          <div><p>${learn}</p></div>
         </details>`;
                 }
                 
-                return `    <div class="fee-scenario-wrapper">
-      <div class="feature-label sublabel">Scenario ${scenarioNum}</div>
-      <article class="fee-card" id="${id}">
-        <h3 class="fee-card__title">${title}</h3>
-        ${cost ? `<p class="fee-card__cost"><strong>Cost today:</strong> ${cost}</p>` : ""}
-        ${what ? `<p class="fee-card__what"><strong>What's happening:</strong> ${what}</p>` : ""}
-        ${how ? `<p class="fee-card__how"><strong>Keep costs low:</strong> ${how}</p>` : ""}${learnHtml}
-      </article>
-    </div>`;
+                return `    <article class="fee-card" id="${id}">
+      <h3 class="fee-card__title">${title}</h3>
+      ${cost ? `<p class="fee-card__cost"><strong>Cost today:</strong> ${cost}</p>` : ""}
+      ${what ? `<p class="fee-card__what"><strong>What's happening:</strong> ${what}</p>` : ""}
+      ${how ? `<p class="fee-card__how"><strong>Keep costs low:</strong> ${how}</p>` : ""}${learnHtml}
+    </article>`;
               }).join("\n");
               
               scenariosHtml = `  <div class="fee-scenarios">
 ${scenarioCards}
   </div>\n`;
-            }
-          }
-          
-          // Render examples (mobile list + desktop table)
-          let examplesHtml = "";
-          if (Array.isArray(svc.fees_examples) && svc.fees_examples.length > 0) {
-            const validExamples = svc.fees_examples
-              .filter(ex => ex && hasContent(ex.example))
-              .slice(0, 3);
-            
-            if (validExamples.length > 0) {
-              // Mobile list
-              const listItems = validExamples.map(ex => {
-                return `    <li class="fee-example-item">
-      <span class="fee-example__label">${ex.example || ""}</span>
-      <span class="fee-example__note">${ex.what_happens || ""}</span>
-      <span class="fee-example__cost">${ex.likely_cost || ""}</span>
-    </li>`;
-              }).join("\n");
-              
-              const mobileList = `  <ul class="fee-examples-list">
-${listItems}
-  </ul>`;
-              
-              // Desktop table
-              const tableRows = validExamples.map(ex => {
-                return `      <tr>
-        <td>${ex.example || ""}</td>
-        <td>${ex.what_happens || ""}</td>
-        <td>${ex.likely_cost || ""}</td>
-      </tr>`;
-              }).join("\n");
-              
-              const desktopTable = `  <table class="fee-examples-table">
-    <thead>
-      <tr>
-        <th scope="col">In short:</th>
-        <th scope="col">What happens</th>
-        <th scope="col">Likely cost</th>
-      </tr>
-    </thead>
-    <tbody>
-${tableRows}
-    </tbody>
-  </table>`;
-              
-              examplesHtml = `${mobileList}\n${desktopTable}\n`;
             }
           }
           
@@ -536,83 +464,13 @@ ${termItems}
           }
           
           // Skip entire section if no content at all
-          if (!chipsHtml && !scenariosHtml && !examplesHtml && !microFaqHtml && !keyTermsHtml) return "";
-          
-          // Enhancement script for smooth scroll and highlight
-          const enhancementScript = `<script>
-(function() {
-  const feesSection = document.querySelector('.section-fees');
-  if (!feesSection) return;
-  
-  const scenarioIds = ['fees-pay', 'fees-first-receive', 'fees-splice'];
-  
-  function highlightScenario(targetId) {
-    const target = document.getElementById(targetId);
-    if (!target) return;
-    
-    // Remove existing highlights
-    document.querySelectorAll('.fee-card.is-target').forEach(el => {
-      el.classList.remove('is-target');
-    });
-    
-    // Add highlight to target
-    target.classList.add('is-target');
-    
-    // Remove highlight after 2.5 seconds
-    setTimeout(() => {
-      target.classList.remove('is-target');
-    }, 2500);
-  }
-  
-  // Handle chip clicks
-  feesSection.querySelectorAll('.fee-chip').forEach(chip => {
-    chip.addEventListener('click', function(e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href').slice(1);
-      const target = document.getElementById(targetId);
-      if (!target) return;
-      
-      // Update hash without triggering hashchange
-      history.replaceState(null, null, '#' + targetId);
-      
-      // Smooth scroll to target
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      
-      // Highlight after brief delay to ensure scroll completes
-      setTimeout(() => highlightScenario(targetId), 300);
-    });
-  });
-  
-  // Handle hash on page load
-  function handleHash() {
-    const hash = window.location.hash.slice(1);
-    if (scenarioIds.includes(hash)) {
-      const target = document.getElementById(hash);
-      if (target) {
-        setTimeout(() => {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          highlightScenario(hash);
-        }, 100);
-      }
-    }
-  }
-  
-  // Run on load and hashchange
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', handleHash);
-  } else {
-    handleHash();
-  }
-  window.addEventListener('hashchange', handleHash);
-})();
-</script>`;
+          if (!scenariosHtml && !microFaqHtml && !keyTermsHtml) return "";
           
           return `
 <section id="fees" class="service-section section-fees">
   <h2 class="fees-title">Fees${feesDateLabel}: what you pay and when</h2>
-${chipsHtml}${scenariosHtml}${examplesHtml}${microFaqHtml}${keyTermsHtml}
-</section>
-${enhancementScript}`;
+${scenariosHtml}${microFaqHtml}${keyTermsHtml}
+</section>`;
         }
         
         // LEGACY: Fall back to old fees_scenarios format for services not yet migrated
@@ -701,8 +559,8 @@ ${blocks}
             const bullets = privacy.data_flows.slice(0, 4).map(item => `<li>${linkGlossaryTerms(item)}</li>`).join("");
             let dodonts = "";
             if (privacy.data_flows_do || privacy.data_flows_dont) {
-              const doItem = privacy.data_flows_do ? `<div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Do:</strong> ${linkGlossaryTerms(privacy.data_flows_do)}</div>` : "";
-              const dontItem = privacy.data_flows_dont ? `<div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Don't:</strong> ${linkGlossaryTerms(privacy.data_flows_dont)}</div>` : "";
+              const doItem = privacy.data_flows_do ? `<div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> ${linkGlossaryTerms(privacy.data_flows_do)}</span></div>` : "";
+              const dontItem = privacy.data_flows_dont ? `<div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> ${linkGlossaryTerms(privacy.data_flows_dont)}</span></div>` : "";
               dodonts = `<div class="dodont-strip">${doItem}${dontItem}</div>`;
             }
             cards.push(`    <div class="privacy-card" id="data-flows">
@@ -717,8 +575,8 @@ ${blocks}
             const bullets = privacy.recovery.slice(0, 4).map(item => `<li>${linkGlossaryTerms(item)}</li>`).join("");
             let dodonts = "";
             if (privacy.recovery_do || privacy.recovery_dont) {
-              const doItem = privacy.recovery_do ? `<div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Do:</strong> ${linkGlossaryTerms(privacy.recovery_do)}</div>` : "";
-              const dontItem = privacy.recovery_dont ? `<div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /> <strong>Don't:</strong> ${linkGlossaryTerms(privacy.recovery_dont)}</div>` : "";
+              const doItem = privacy.recovery_do ? `<div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> ${linkGlossaryTerms(privacy.recovery_do)}</span></div>` : "";
+              const dontItem = privacy.recovery_dont ? `<div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> ${linkGlossaryTerms(privacy.recovery_dont)}</span></div>` : "";
               dodonts = `<div class="dodont-strip">${doItem}${dontItem}</div>`;
             }
             cards.push(`    <div class="privacy-card" id="recovery">
@@ -879,188 +737,70 @@ ${cards.join("\n")}
 
 
       const renderMigration = () => {
-        const migration = svc.migration || {};
+        const items = Array.isArray(svc.migration) ? svc.migration : [];
         
-        // Support legacy format (from/to arrays) for backward compatibility
-        const hasLegacyFormat = Array.isArray(migration.from) || Array.isArray(migration.to);
-        const hasNewFormat = Array.isArray(migration.flows) && migration.flows.length > 0;
+        if (!items.length) return "";
         
-        if (!hasLegacyFormat && !hasNewFormat) return "";
+        const heading = `Move your ${svc.name} wallet or funds`;
+        const learnLabel = "Show steps";
         
-        // Legacy format rendering (keep for services that haven't migrated yet)
-        if (hasLegacyFormat && !hasNewFormat) {
-          const labels = migration.labels || {};
-          const defaultLabels = { from: "Migrating to", to: "Migrating from" };
-        const fromItems = Array.isArray(migration.from) ? migration.from : [];
-        const toItems = Array.isArray(migration.to) ? migration.to : [];
-          const cards = [];
-          
-          fromItems.forEach((item, idx) => {
-            const steps = Array.isArray(item.steps) ? item.steps : [];
-            if (steps.length === 0) return;
-            const sourceLabel = item.source || "Another wallet";
-            const label = idx === 0 ? (labels.from || defaultLabels.from) : `${labels.from || defaultLabels.from} (${idx + 1})`;
-            const stepsHtml = steps.map(step => `<li>${step}</li>`).join("");
-            cards.push(`  <div class="mig-card">
-    <div class="feature-label sublabel">${label}</div>
-    <div class="feature-value">
-      <h3>From ${sourceLabel}</h3>
-      <ol>${stepsHtml}</ol>
-    </div>
-  </div>`);
-          });
-          
-          toItems.forEach((item, idx) => {
-            const steps = Array.isArray(item.steps) ? item.steps : [];
-            if (steps.length === 0) return;
-            const targetLabel = item.target || "Another wallet";
-            const label = idx === 0 ? (labels.to || defaultLabels.to) : `${labels.to || defaultLabels.to} (${idx + 1})`;
-            const stepsHtml = steps.map(step => `<li>${step}</li>`).join("");
-            cards.push(`  <div class="mig-card">
-    <div class="feature-label sublabel">${label}</div>
-    <div class="feature-value">
-      <h3>To ${targetLabel}</h3>
-      <ol>${stepsHtml}</ol>
-    </div>
-    </div>`);
-          });
-          
-          if (cards.length === 0) return "";
-          return `
-<section id="migration" class="service-section">
-  <h2 class="feature-label">Migration</h2>
-${cards.join("\n")}
-</section>`;
-        }
-        
-        // New flow-based format rendering
-        const title = migration.title || "Migration";
-        const intro = migration.intro || "";
-        const flows = migration.flows || [];
-        
-        // Helper: Generate recommended alternatives for switch flow
-        const generateRecommendations = (currentService) => {
-          const category = currentService.category;
-          const currentName = currentService.name;
-          
-          // Find services in same category, exclude current service
-          const candidates = services
-            .filter(s => s.category === category && s.name !== currentName)
-            .slice(0, 5); // Cap at 5 candidates
-          
-          // Score by diversity (different recovery methods, features)
-          const scored = candidates.map(s => {
-            let score = 0;
-            
-            // Prefer different recovery method
-            if (s.recovery_method && currentService.recovery_method && 
-                s.recovery_method !== currentService.recovery_method) {
-              score += 2;
-            }
-            
-            // Prefer different networks
-            if (s.supported_network && currentService.supported_network &&
-                s.supported_network !== currentService.supported_network) {
-              score += 1;
-            }
-            
-            // Prefer WW availability
-            if (Array.isArray(s.countries) && s.countries.includes('WW')) {
-              score += 1;
-            }
-            
-            return { service: s, score };
-          });
-          
-          // Sort by score and take top 3
-          scored.sort((a, b) => b.score - a.score);
-          const top3 = scored.slice(0, 3).map(item => item.service);
-          
-          // Generate HTML for each recommendation
-          return top3.map(s => {
-            const slug = slugify(s.name);
-            const compareLink = linkForPair(currentName, s.name);
-            
-            // Generate reason from key features
-            let reason = "";
-            if (s.recovery_method) {
-              reason = `Recovery: ${s.recovery_method}`;
-            }
-            if (s.supported_network && s.supported_network !== currentService.supported_network) {
-              reason += reason ? ` • Supports ${s.supported_network}` : `Supports ${s.supported_network}`;
-            }
-            
-            return `      <li>
-        <a href="/services/${slug}.html"><strong>${s.name}</strong></a> — ${reason || 'Alternative wallet option'}
-        <br><a href="${compareLink}" class="compare-link">Compare ${currentName} vs ${s.name}</a>
-      </li>`;
-          }).join("\n");
-        };
-        
-        const flowCards = flows.map(flow => {
-          if (!flow || !Array.isArray(flow.steps) || flow.steps.length === 0) return "";
-          
-          const flowId = flow.id || "";
-          const flowTitle = flow.title || "";
-          const meta = flow.meta || "";
-          const steps = flow.steps || [];
-          const tips = Array.isArray(flow.tips) ? flow.tips : [];
-          const showRecommendations = flow.show_recommendations === true;
-          
-          // Determine analytics flow type from ID
-          let flowType = "restore";
-          if (flowId.includes("move-to-onchain")) flowType = "move-to-onchain";
-          else if (flowId.includes("switch")) flowType = "switch-generic";
-          
-          // Parse meta info into badge chips
-          let badgesHtml = "";
-          if (meta) {
-            const badges = meta.split("•").map(b => b.trim()).filter(Boolean);
-            if (badges.length > 0) {
-              badgesHtml = `<div class="migration-badges">${badges.map(badge => `<span class="migration-badge">${badge}</span>`).join("")}</div>`;
-            }
-          }
-          
-          // Render steps
-          const stepsHtml = `<ol class="migration-steps">${steps.map(step => `<li>${step}</li>`).join("")}</ol>`;
-          
-          // Render tips
-          const tipsHtml = tips.length > 0
-            ? `<div class="migration-tips"><strong>Tips:</strong> ${tips.join(" ")}</div>`
+        // Render tiles similar to compatibility but without status pills
+        const tileItems = items.map(item => {
+          // Meta chips (time, cost, risk)
+          const metaChips = [];
+          if (item.time) metaChips.push(`<span class="migration-meta-chip">Time: ${item.time}</span>`);
+          if (item.cost) metaChips.push(`<span class="migration-meta-chip">Cost: ${item.cost}</span>`);
+          if (item.risk) metaChips.push(`<span class="migration-meta-chip">Risk: ${item.risk}</span>`);
+          const metaHtml = metaChips.length > 0 
+            ? `<div class="migration-meta">${metaChips.join("")}</div>` 
             : "";
           
-          // Render recommendations if enabled
-          let recommendationsHtml = "";
-          if (showRecommendations) {
-            const recList = generateRecommendations(svc);
-            if (recList) {
-              recommendationsHtml = `
-    <div class="migration-recommendations">
-      <h4>Recommended options</h4>
-      <ul>
-${recList}
-      </ul>
-    </div>`;
+          // Choose (formerly benefit)
+          const chooseHtml = item.choose ? `<p class="svc-compat__benefit"><strong>Choose:</strong> ${item.choose}</p>` : "";
+          
+          // Steps collapsible
+          let detailsContent = "";
+          if (Array.isArray(item.steps) && item.steps.length > 0) {
+            const stepsList = `<ol>${item.steps.map(step => `<li>${step}</li>`).join("")}</ol>`;
+            detailsContent = stepsList;
+            
+            // Append tips if present
+            if (item.tips) {
+              detailsContent += `<p><strong>Tips:</strong> ${item.tips}</p>`;
             }
+            
+            // Append gotcha if present
+            if (item.gotcha) {
+              detailsContent += `<p><strong>Gotcha:</strong> ${item.gotcha}</p>`;
+            }
+          } else {
+            detailsContent = `<p>Additional details coming soon.</p>`;
           }
           
-          return `    <div class="migration-card" id="${flowId}" data-migration-flow="${flowType}">
-      <h3>${flowTitle}</h3>
-      ${badgesHtml}
-      ${stepsHtml}
-      ${tipsHtml}${recommendationsHtml}
-    </div>`;
-        }).filter(Boolean).join("\n");
-        
-        if (!flowCards) return "";
-        
-        const introHtml = intro ? `  <p class="section-intro">${intro}</p>\n` : "";
+          const detailsHtml = `
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="${learnLabel}">${learnLabel}</summary>
+          <div>${detailsContent}
+          </div>
+        </details>`;
+          
+          const tileId = item.id || slugify(item.title || "");
+          
+          return `
+      <div class="svc-compat__tile" id="${tileId}">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">${item.title}</h3>
+        </div>
+        ${metaHtml}
+        ${chooseHtml}${detailsHtml}
+      </div>`;
+        }).join("");
         
         return `
 <section id="migration" class="service-section">
-  <h2 class="feature-label">${title}</h2>
-${introHtml}  <div class="migration-flows">
-${flowCards}
+  <h2 class="feature-label">${heading}</h2>
+  <div class="svc-compat__grid">
+${tileItems}
   </div>
 </section>`;
       };
