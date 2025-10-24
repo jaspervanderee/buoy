@@ -163,8 +163,32 @@
 
 <section id="setup" class="service-section">
   <h2 class="feature-label">Getting started</h2>
-  <div class="feature-value">
-    <ol><li><h3>1. Install and secure your wallet</h3><p>Install Phoenix from the App Store or Google Play on a phone running iOS 16 or Android 8 or later. Open the app, accept the terms, and let it create the 12-word seed phrase. Write the words on paper, check the order twice, and store the copy away from your device. Enable your phoneâ€™s biometric lock so only you can open Phoenix. Never upload the seed to email, chat apps, or cloud drives.</p></li><li><h3>2. Receive your first sats</h3><p>Tap Receive to generate a Lightning invoice. Share the QR code with your payer and keep the app awake until it settles, because the first euro payment may open or splice a channel. If Phoenix warns about high fees, pause and explain that the Bitcoin network is busy before retrying with a smaller amount. After success, review inbound liquidity in the Channels screen.</p></li><li><h3>3. Make a payment</h3><p>Tap Send when you have a Lightning invoice to pay. Scan or paste it, read the amount and memo, then confirm. Phoenix routes the payment through its peer and shows a success banner once settled. If it hangs pending, keep the phone online because Phoenix will retry automatically. For larger euro invoices, adjust the maximum acceptable fee in Settings > Channel management before sending.</p></li></ol>
+  <div class="svc-compat__grid">
+
+      <div class="svc-compat__tile" id="setup-install">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Install and secure your wallet</h3>
+        </div>
+        <div class="migration-meta"><span class="migration-meta-chip">Time: ~5 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <ol><li>Install Phoenix from App Store or Google Play (iOS 16+ or Android 8+)</li><li>Write down your 12-word seed on paper and store it away from your device</li><li>Enable biometric lock on your phone</li></ol>
+        <p><strong>Gotcha:</strong> Never upload the seed to email, chat apps, or cloud drives.</p>
+      </div>
+      <div class="svc-compat__tile" id="setup-receive">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Receive your first sats</h3>
+        </div>
+        <div class="migration-meta"><span class="migration-meta-chip">Time: ~2 min</span><span class="migration-meta-chip">Cost: ~1,000 sat + mining fee (first time)</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <ol><li>Tap Receive to generate a Lightning invoice</li><li>Share the QR code with your payer</li><li>Keep the app awake until payment settles</li></ol>
+        <p><strong>Gotcha:</strong> First payment may open a channel and charge ~1,000 sat plus current mining fees if the network is busy.</p>
+      </div>
+      <div class="svc-compat__tile" id="setup-pay">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Make a payment</h3>
+        </div>
+        <div class="migration-meta"><span class="migration-meta-chip">Time: ~1 min</span><span class="migration-meta-chip">Cost: 0.4% + 4 sat</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <ol><li>Tap Send and scan or paste a Lightning invoice</li><li>Review the amount and memo, then confirm</li><li>Wait for the success banner (Phoenix retries automatically if needed)</li></ol>
+        <p><strong>Gotcha:</strong> For large invoices, adjust the maximum acceptable fee in Settings → Channel management before sending.</p>
+      </div>
   </div>
 </section>
 

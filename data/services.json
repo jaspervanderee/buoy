@@ -631,22 +631,37 @@
 		"title": "Getting started with Phoenix",
 		"steps": [
 			{
+				"id": "setup-install",
 				"title": "1. Install and secure your wallet",
-				"text": "Install Phoenix from the App Store or Google Play on a phone running iOS 16 or Android 8 or later. Open the app, accept the terms, and let it create the 12-word seed phrase. Write the words on paper, check the order twice, and store the copy away from your device. Enable your phoneâ€™s biometric lock so only you can open Phoenix. Never upload the seed to email, chat apps, or cloud drives.",
-				"image": null,
-				"alt": "Phoenix install and recovery phrase backup"
+				"chips": { "time": "~5 min", "cost": "Free", "risk": "Low" },
+				"actions": [
+					"Install Phoenix from App Store or Google Play (iOS 16+ or Android 8+)",
+					"Write down your 12-word seed on paper and store it away from your device",
+					"Enable biometric lock on your phone"
+				],
+				"gotcha": "Never upload the seed to email, chat apps, or cloud drives."
 			},
 			{
+				"id": "setup-receive",
 				"title": "2. Receive your first sats",
-				"text": "Tap Receive to generate a Lightning invoice. Share the QR code with your payer and keep the app awake until it settles, because the first euro payment may open or splice a channel. If Phoenix warns about high fees, pause and explain that the Bitcoin network is busy before retrying with a smaller amount. After success, review inbound liquidity in the Channels screen.",
-				"image": null,
-				"alt": "Receiving a Lightning payment in Phoenix"
+				"chips": { "time": "~2 min", "cost": "~1,000 sat + mining fee (first time)", "risk": "Low" },
+				"actions": [
+					"Tap Receive to generate a Lightning invoice",
+					"Share the QR code with your payer",
+					"Keep the app awake until payment settles"
+				],
+				"gotcha": "First payment may open a channel and charge ~1,000 sat plus current mining fees if the network is busy."
 			},
 			{
+				"id": "setup-pay",
 				"title": "3. Make a payment",
-				"text": "Tap Send when you have a Lightning invoice to pay. Scan or paste it, read the amount and memo, then confirm. Phoenix routes the payment through its peer and shows a success banner once settled. If it hangs pending, keep the phone online because Phoenix will retry automatically. For larger euro invoices, adjust the maximum acceptable fee in Settings > Channel management before sending.",
-				"image": null,
-				"alt": "Sending a Lightning payment from Phoenix"
+				"chips": { "time": "~1 min", "cost": "0.4% + 4 sat", "risk": "Low" },
+				"actions": [
+					"Tap Send and scan or paste a Lightning invoice",
+					"Review the amount and memo, then confirm",
+					"Wait for the success banner (Phoenix retries automatically if needed)"
+				],
+				"gotcha": "For large invoices, adjust the maximum acceptable fee in Settings → Channel management before sending."
 			}
 		],
 		"totalTime": null

@@ -1633,11 +1633,6 @@ p, li, a {
   line-height: 1.6;
 }
 
-.service-section#fees h3 {
-  font-size: 1.1em;
-  margin: 6 0 16px 0;
-}
-
 .service-section#fees p strong {
   font-weight: 700;
 }
@@ -3203,7 +3198,7 @@ p, li, a {
 
 .privacy-card h3 {
   margin: 0 0 12px 0;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 600;
   line-height: 1.4;
 }

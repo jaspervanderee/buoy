@@ -294,7 +294,7 @@ html = html.replace('</head>', urlShim + '</head>');
         if (!items.length) return "";
         return `
 <section id="tldr" class="service-section">
-  <h2 class="feature-label">TL;DR</h2>
+  <h2 class="feature-label">Quick verdict</h2>
   <div class="feature-value">
     ${items.join("\n    ")}
   </div>
@@ -304,20 +304,47 @@ html = html.replace('</head>', urlShim + '</head>');
       const renderSetup = () => {
         const howto = svc.howto;
         if (!howto || !Array.isArray(howto.steps) || howto.steps.length === 0) return "";
-        const steps = howto.steps.map((step) => {
-          const title = step.title ? `<h3>${step.title}</h3>` : "";
-          let image = "";
-          if (step.image && typeof step.image === "string" && step.image.trim()) {
-            image = `<img src="${step.image}" alt="${step.alt || ""}">`;
+        
+        const tileItems = howto.steps.map((step) => {
+          const tileId = step.id || slugify(step.title || "");
+          
+          // Meta chips (time, cost, risk)
+          const metaChips = [];
+          if (step.chips) {
+            if (step.chips.time) metaChips.push(`<span class="migration-meta-chip">Time: ${step.chips.time}</span>`);
+            if (step.chips.cost) metaChips.push(`<span class="migration-meta-chip">Cost: ${step.chips.cost}</span>`);
+            if (step.chips.risk) metaChips.push(`<span class="migration-meta-chip">Risk: ${step.chips.risk}</span>`);
           }
-          const text = step.text ? `<p>${step.text}</p>` : "";
-          return `<li>${title}${image}${text}</li>`;
+          const metaHtml = metaChips.length > 0 
+            ? `<div class="migration-meta">${metaChips.join("")}</div>` 
+            : "";
+          
+          // Actions list (visible, max 3 items)
+          let actionsHtml = "";
+          if (Array.isArray(step.actions) && step.actions.length > 0) {
+            const actionItems = step.actions.slice(0, 3).map(action => `<li>${action}</li>`).join("");
+            actionsHtml = `<ol>${actionItems}</ol>`;
+          }
+          
+          // Gotcha (one line)
+          const gotchaHtml = step.gotcha ? `<p><strong>Gotcha:</strong> ${step.gotcha}</p>` : "";
+          
+          return `
+      <div class="svc-compat__tile" id="${tileId}">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">${step.title}</h3>
+        </div>
+        ${metaHtml}
+        ${actionsHtml}
+        ${gotchaHtml}
+      </div>`;
         }).join("");
+        
         return `
 <section id="setup" class="service-section">
   <h2 class="feature-label">Getting started</h2>
-  <div class="feature-value">
-    <ol>${steps}</ol>
+  <div class="svc-compat__grid">
+${tileItems}
   </div>
 </section>`;
       };
