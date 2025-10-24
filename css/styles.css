@@ -1585,27 +1585,61 @@ p, li, a {
   margin-top: -30px; /* Decreased top margin to bring it closer to the row above */
 }
 
-/* Fees typography (service pages only) */
+/* === Universal Typography Utilities === */
+
+/* Card/Section titles - shared by fee-card, compat, migration, etc. */
+.card-title,
+.fee-card__title,
+.svc-compat__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 20px 0;
+  color: var(--text);
+}
+
+/* Monospace body text - used in fee cards, compat tiles, etc. */
+.mono-text,
+.fee-card p,
+.svc-compat__benefit,
+.svc-compat__tile details p,
+.svc-compat__tile details ol {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* Small section headings (FAQ titles, key terms, etc.) */
+.section-subheading,
+.micro-faqs__title,
+.fee-quick-answers__title {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* === Service Section Base === */
 .service-section {
-  margin-bottom: 40px; /* Uniform spacing between all sections */
+  margin-bottom: 40px;
 }
 
 .service-section#fees .feature-value {
-  font-family: "Inter", sans-serif;   /* or keep Ubuntu Mono */
+  font-family: "Inter", sans-serif;
   line-height: 1.6;
 }
 
 .service-section#fees h3 {
-  font-size: 1.1em;                   /* adjust title size */
+  font-size: 1.1em;
   margin: 6 0 16px 0;
 }
 
-.service-section#fees p {
-  margin: 0 0 0 0;                 /* tighten paragraph spacing inside the panel */
-}
-
 .service-section#fees p strong {
-  font-weight: 700;                    /* the bold "cost" line */
+  font-weight: 700;
 }
 
 /* --- Service sections: unified look across Fees, Privacy, Interop, Migration --- */
@@ -3223,14 +3257,7 @@ p, li, a {
   border-top: 1px solid var(--border);
 }
 
-.micro-faqs__title {
-  font-family: "Inter", sans-serif;
-  font-size: 0.8em; /* Match feature-label sublabel */
-  font-weight: 600;
-  color: var(--text-muted);
-  margin-bottom: 10px;
-  text-align: left;
-}
+/* .micro-faqs__title - now using universal .section-subheading utility */
 
 .micro-faqs__list {
   display: flex;
@@ -3407,35 +3434,21 @@ p, li, a {
   border-color: var(--accent);
 }
 
-.fee-card__title {
-  font-family: "Inter", sans-serif;
-  font-size: 1.05em;
-  font-weight: 600;
-  line-height: 1.3;
-  margin: 0 0 10px 0;
-  color: var(--text);
+/* .fee-card__title - now using universal .card-title utility above */
+
+/* Fee card body text - base styles from .mono-text utility, only overrides here */
+.fee-card p.fee-card__cost {
+  font-size: 1.2em;
+  margin: 0 0 20px 0;
 }
 
-.fee-card__cost {
-  font-family: "Ubuntu Mono", monospace;
-  font-size: 1em;
-  line-height: 1.5;
-  margin: 0 0 8px 0;
-  color: var(--text);
+.fee-card p.fee-card__what,
+.fee-card p.fee-card__how {
+  margin: 20px 0 0 0;
 }
 
-.fee-card__what,
-.fee-card__how {
-  font-family: "Ubuntu Mono", monospace;
-  font-size: 0.95em;
-  font-weight: 400;
-  line-height: 1.5;
-  margin: 8px 0 0 0;
-  color: var(--text);
-}
-
-.fee-card__what:last-child,
-.fee-card__how:last-child {
+.fee-card p.fee-card__what:last-child,
+.fee-card p.fee-card__how:last-child {
   margin-bottom: 0;
 }
 
@@ -3498,12 +3511,9 @@ p, li, a {
   margin-top: 0.5rem;
 }
 
+/* Learn more text - inherits from .mono-text utility */
 .fee-card__learn-more p {
-  margin: 12px 0 0 0; /* Increased spacing inside */
-  font-family: "Ubuntu Mono", monospace;
-  font-size: 0.95em;
-  line-height: 1.5;
-  color: var(--text);
+  margin: 12px 0 0 0;
 }
 
 /* Quick answers (individually collapsible items, like brand FAQ) */
@@ -3513,15 +3523,7 @@ p, li, a {
   border-top: 1px solid var(--border);
 }
 
-/* Override .service-section#fees h3 for Quick answers title specifically */
-.service-section#fees .fee-quick-answers__title {
-  font-family: "Inter", sans-serif;
-  font-size: 0.8em; /* Match feature-label sublabel */
-  font-weight: 600;
-  color: var(--text-muted);
-  margin-bottom: 10px;
-  text-align: left;
-}
+/* .fee-quick-answers__title - now using universal .section-subheading utility */
 
 .fee-quick-answers__list {
   display: flex;
@@ -3572,12 +3574,11 @@ p, li, a {
   margin-top: 8px;
 }
 
+/* Micro FAQ answers - inherit from .mono-text utility */
 .fee-quick-answers .micro-faq-item p,
 .micro-faqs .micro-faq-item p {
   margin: 0;
-  font-family: "Ubuntu Mono", monospace;
   line-height: 1.6;
-  color: var(--text);
 }
 
 /* Key terms (collapsible glossary) */
@@ -3626,12 +3627,11 @@ p, li, a {
   margin: 12px 0 0 0;
 }
 
+/* Key terms - inherit from .mono-text utility */
 .section-fees .key-terms dt {
-  font-family: "Ubuntu Mono", monospace;
   font-weight: 600;
   margin: 12px 0 4px 0;
   line-height: 1.4;
-  color: var(--text);
 }
 
 .section-fees .key-terms dt:first-child {
@@ -3639,10 +3639,8 @@ p, li, a {
 }
 
 .section-fees .key-terms dd {
-  font-family: "Ubuntu Mono", monospace;
   margin: 0 0 8px 0;
   line-height: 1.6;
-  color: var(--text);
   opacity: 0.9;
 }
 
@@ -3693,13 +3691,9 @@ p, li, a {
   gap: 12px;
 }
 
+/* .svc-compat__title - using universal utility, with specific overrides */
 .svc-compat__title {
-  font-family: "Inter", sans-serif;
-  font-size: 1.1em;
-  font-weight: 600;
   margin: 0;
-  line-height: 1.3;
-  color: var(--text);
   flex: 1;
 }
 
@@ -3748,18 +3742,15 @@ p, li, a {
 
 .svc-compat__summary {
   font-family: "Inter", sans-serif;
-  font-size: 0.95em;
+  font-size: 1em;
   color: var(--text);
   margin: 8px 0 0 0;
   line-height: 1.4;
 }
 
+/* .svc-compat__benefit - inherit from .mono-text utility */
 .svc-compat__benefit {
-  font-family: "Ubuntu Mono", monospace;
-  font-size: 1em;
-  line-height: 1.5;
   margin: 0;
-  color: var(--text);
 }
 
 .svc-compat__note {
@@ -3829,16 +3820,13 @@ p, li, a {
   margin-top: 1rem;
 }
 
+/* Compat tile details - inherit from .mono-text utility */
 .svc-compat__tile details p {
-  font-family: "Ubuntu Mono", monospace;
-  font-size: 1em;
   line-height: 1.6;
   margin: 0 0 12px 0;
 }
 
 .svc-compat__tile details ol {
-  font-family: "Ubuntu Mono", monospace;
-  font-size: 1em;
   line-height: 1.6;
   margin: 8px 0 12px 0;
   padding-left: 24px;

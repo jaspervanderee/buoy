@@ -172,30 +172,30 @@
   <h2 class="fees-title">Fees: what you pay and when</h2>
   <div class="fee-scenarios">
     <article class="fee-card" id="fees-pay">
-      <h3 class="fee-card__title">Paying a small Lightning invoice (e.g., $15 coffee)</h3>
-      <p class="fee-card__cost"><strong>Cost today:</strong> 0.4% of the amount + 4 sat</p>
-      <p class="fee-card__what"><strong>What's happening:</strong> Lightning routes your payment through peers; 0.4% routing fee + 4 sat flat charge.</p>
-      <p class="fee-card__how"><strong>Keep costs low:</strong> Batch small purchases when possible; avoid many micro-payments during high network activity.</p>
+      <h3 class="fee-card__title">Pay someone</h3>
+      <p class="fee-card__cost"><strong>0.4% of the amount + 4 sat</strong></p>
+      <p class="fee-card__what">What happens:<br>Your payment routes over Lightning.</p>
+      <p class="fee-card__how">Save money:<br>Avoid lots of tiny payments when the network is busy.</p>
         <details class="fee-card__learn-more">
           <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
           <div><p>Every outgoing Lightning payment includes this fee. The 4 sat is Phoenix's service charge, and the 0.4% covers routing through the Lightning network.</p></div>
         </details>
     </article>
     <article class="fee-card" id="fees-first-receive">
-      <h3 class="fee-card__title">First Lightning receive when you have no channel</h3>
-      <p class="fee-card__cost"><strong>Cost today:</strong> ≈1,000 sat channel creation + current <a href="#term-mining-fee" class="glossary-link" data-term="Mining fee">mining fee</a></p>
-      <p class="fee-card__what"><strong>What's happening:</strong> Phoenix opens a Lightning channel so you can receive payments.</p>
-      <p class="fee-card__how"><strong>Keep costs low:</strong> Wait for low on-chain fees (check mempool.space); receive when network is quiet.</p>
+      <h3 class="fee-card__title">First time you receive</h3>
+      <p class="fee-card__cost"><strong>≈1,000 sat channel creation + current <a href="#term-mining-fee" class="glossary-link" data-term="Mining fee">mining fee</a></strong></p>
+      <p class="fee-card__what">What happens:<br>Phoenix opens a Lightning channel so you can receive payments.</p>
+      <p class="fee-card__how">Save money:<br>Wait for low on-chain fees (check mempool.space); receive when network is quiet.</p>
         <details class="fee-card__learn-more">
           <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
           <div><p>Your first Lightning receive triggers channel creation. Phoenix must commit an on-chain transaction to open the channel, which incurs the current Bitcoin <a href="#term-mining-fee" class="glossary-link" data-term="Mining fee">mining fee</a> plus a 1,000 sat setup charge.</p></div>
         </details>
     </article>
     <article class="fee-card" id="fees-splice">
-      <h3 class="fee-card__title">Receiving a larger payout when your channel is full</h3>
-      <p class="fee-card__cost"><strong>Cost today:</strong> 1% of the amount + <a href="#term-mining-fee" class="glossary-link" data-term="Mining fee">mining fee</a> (<a href="#term-splice-in" class="glossary-link" data-term="Splice-in">splice-in</a>)</p>
-      <p class="fee-card__what"><strong>What's happening:</strong> Phoenix resizes your channel to accept more sats than current capacity allows.</p>
-      <p class="fee-card__how"><strong>Keep costs low:</strong> Consolidate into fewer, larger receives; spend down balance before receiving large amounts.</p>
+      <h3 class="fee-card__title">Big receive</h3>
+      <p class="fee-card__cost"><strong>1% of the amount + <a href="#term-mining-fee" class="glossary-link" data-term="Mining fee">mining fee</a> (<a href="#term-splice-in" class="glossary-link" data-term="Splice-in">splice-in</a>)</strong></p>
+      <p class="fee-card__what">What happens:<br>Phoenix resizes your channel to accept more sats than current capacity allows.</p>
+      <p class="fee-card__how">Save money:<br>Consolidate into fewer, larger receives; spend down balance before receiving large amounts.</p>
         <details class="fee-card__learn-more">
           <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
           <div><p>When incoming payment exceeds available channel capacity, Phoenix performs a <a href="#term-splice-in" class="glossary-link" data-term="Splice-in">splice-in</a> operation. This on-chain transaction increases your channel size and costs 1% of the received amount plus current mining fees.</p></div>

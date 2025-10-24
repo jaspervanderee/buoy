@@ -654,15 +654,15 @@
 	"fees_scenarios": [
 		{
 			"id": "fees-pay",
-			"title": "Paying a small Lightning invoice (e.g., $15 coffee)",
+			"title": "Pay someone",
 			"cost_today": "0.4% of the amount + 4 sat",
-			"what_happens": "Lightning routes your payment through peers; 0.4% routing fee + 4 sat flat charge.",
-			"how_to_minimize": "Batch small purchases when possible; avoid many micro-payments during high network activity.",
+			"what_happens": "Your payment routes over Lightning.",
+			"how_to_minimize": "Avoid lots of tiny payments when the network is busy.",
 			"learn_more": "Every outgoing Lightning payment includes this fee. The 4 sat is Phoenix's service charge, and the 0.4% covers routing through the Lightning network."
 		},
 		{
 			"id": "fees-first-receive",
-			"title": "First Lightning receive when you have no channel",
+			"title": "First time you receive",
 			"cost_today": "≈1,000 sat channel creation + current mining fee",
 			"what_happens": "Phoenix opens a Lightning channel so you can receive payments.",
 			"how_to_minimize": "Wait for low on-chain fees (check mempool.space); receive when network is quiet.",
@@ -670,7 +670,7 @@
 		},
 		{
 			"id": "fees-splice",
-			"title": "Receiving a larger payout when your channel is full",
+			"title": "Big receive",
 			"cost_today": "1% of the amount + mining fee (splice-in)",
 			"what_happens": "Phoenix resizes your channel to accept more sats than current capacity allows.",
 			"how_to_minimize": "Consolidate into fewer, larger receives; spend down balance before receiving large amounts.",

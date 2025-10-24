@@ -402,9 +402,9 @@ html = html.replace('</head>', urlShim + '</head>');
                 
                 return `    <article class="fee-card" id="${id}">
       <h3 class="fee-card__title">${title}</h3>
-      ${cost ? `<p class="fee-card__cost"><strong>Cost today:</strong> ${cost}</p>` : ""}
-      ${what ? `<p class="fee-card__what"><strong>What's happening:</strong> ${what}</p>` : ""}
-      ${how ? `<p class="fee-card__how"><strong>Keep costs low:</strong> ${how}</p>` : ""}${learnHtml}
+      ${cost ? `<p class="fee-card__cost"><strong>${cost}</strong></p>` : ""}
+      ${what ? `<p class="fee-card__what">What happens:<br>${what}</p>` : ""}
+      ${how ? `<p class="fee-card__how">Save money:<br>${how}</p>` : ""}${learnHtml}
     </article>`;
               }).join("\n");
               
