@@ -114,10 +114,6 @@ header .container {
     text-decoration: none;
   }
   
-  .desktop-nav a:hover {
-    text-decoration: underline;
-  }
-  
   /* Push hamburger to the right */
   header .hamburger {
     margin-left: auto;
@@ -1212,7 +1208,6 @@ p, li, a {
 
 .cta-link-secondary:hover {
   color: var(--accent);
-  text-decoration: underline;
 }
 
 /* Row wrapper for CTA + website link */
@@ -1528,7 +1523,6 @@ p, li, a {
   margin-top: 4px; /* Small margin for spacing */
   font-size: 0.9em;
   color: var(--link); /* Link color */
-  text-decoration: underline;
 }
 
 .review-link:hover { color: var(--accent); }
@@ -1784,10 +1778,6 @@ p, li, a {
   text-decoration: none;
 }
 
-.migration-recommendations a:hover {
-  text-decoration: underline;
-}
-
 .migration-recommendations .compare-link {
   font-size: 0.9em;
   opacity: 0.8;
@@ -2034,8 +2024,6 @@ p, li, a {
   align-items: center;
   gap: 0.5em;
   transition: color 0.2s ease, background-color 0.2s ease;
-  text-decoration: underline;
-  text-underline-offset: 2px;
   border-radius: 4px;
 }
 
@@ -3323,9 +3311,6 @@ p, li, a {
 
 /* Glossary term links within cards */
 .glossary-link {
-  text-decoration: underline;
-  text-decoration-color: currentColor;
-  text-underline-offset: 2px;
   color: inherit;
   cursor: pointer;
   transition: opacity 0.2s ease;
@@ -3860,6 +3845,45 @@ p, li, a {
   .svc-compat__tile {
     padding: 20px;
   }
+  
+  /* Remove margin-top for trust section grid specifically */
+  #trust .svc-compat__grid {
+    margin-top: 0;
+  }
+}
+
+/* Trust section card styling */
+.trust-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.trust-card-icon {
+  width: 50px;
+  height: 50px;
+  opacity: 0.7;
+}
+
+.trust-card-fact {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  margin: 0;
+  color: var(--text);
+}
+
+.trust-card-link {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85em;
+  color: var(--link);
+  text-decoration: none;
+}
+
+.trust-card-link:hover {
+  opacity: 0.8;
 }
 
 /* Blog styles */
@@ -3878,9 +3902,6 @@ main.container {
   margin: 0 0 0.5rem 0;
 }
 
-.related-articles h2 a {
-  text-decoration: underline;
-}
 
 .related-articles hr {
   margin: 1rem 0;
@@ -3906,9 +3927,6 @@ main.container {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.article-card:hover .article-card__title {
-  text-decoration: underline;
-}
 
 .article-card__content {
   display: flex;
@@ -4023,7 +4041,6 @@ main:has(.blog-list) h1 {
   color: var(--text-muted);
   text-decoration: none;
   font-family: "Inter", sans-serif;
-  text-decoration: underline;
 }
 
 
@@ -4067,7 +4084,6 @@ main:has(.blog-list) h1 {
 
 .blog-article a {
   color: var(--link);
-  text-decoration: underline;
 }
 
 .blog-article a:hover {

@@ -872,7 +872,35 @@
 		"interop.lightning_address",
 		"interop.bolt12",
 		"interop.coin_control"
-	]
+	],
+	"trust": {
+		"cards": [
+			{
+				"id": "update",
+				"fact": "October 2025",
+				"link_text": "Store page",
+				"link_url": "https://apps.apple.com/app/phoenix-wallet/id1544097028"
+			},
+			{
+				"id": "publisher",
+				"fact": "ACINQ",
+				"link_text": "Verify",
+				"link_url": "https://apps.apple.com/developer/acinq/id1463814067"
+			},
+			{
+				"id": "source",
+				"fact": "Yes",
+				"link_text": "Repo",
+				"link_url": "https://github.com/ACINQ/phoenix"
+			},
+			{
+				"id": "activity",
+				"fact": "Active in last 30 days",
+				"link_text": "Commits",
+				"link_url": "https://github.com/ACINQ/phoenix/commits/master"
+			}
+		]
+	}
   },
   {
 "name": "Pocket",

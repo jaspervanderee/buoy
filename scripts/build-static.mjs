@@ -251,7 +251,7 @@ html = html.replace('</head>', urlShim + '</head>');
       // Render table for service page with mode: "service" to exclude legacy rows (Platform, Supported Networks, Features, Custody & Control block)
       const tableHtml = await renderTableHTML(svc, svc.category, { mode: "service" });
 
-      const defaultOrder = ["tldr", "setup", "fees", "privacy", "compat", "migration", "profile"];
+      const defaultOrder = ["tldr", "setup", "fees", "privacy", "compat", "migration", "trust", "profile"];
       const order = Array.isArray(svc.section_order) && svc.section_order.length
         ? svc.section_order.filter((key) => defaultOrder.includes(key))
         : defaultOrder;
@@ -944,6 +944,76 @@ ${tileItems}
 </div>`;
       };
 
+      const renderTrustSection = () => {
+        const trust = svc.trust;
+        if (!trust || !Array.isArray(trust.cards) || trust.cards.length === 0) return "";
+        
+        // Predefined card type mapping (icon paths and labels)
+        const cardTypeMap = {
+          update: {
+            label: "Last update",
+            icon: "/images/update.svg"
+          },
+          publisher: {
+            label: "Publisher",
+            icon: "/images/publisher.svg"
+          },
+          source: {
+            label: "Open source",
+            icon: "/images/opensource.svg"
+          },
+          activity: {
+            label: "Development activity",
+            icon: "/images/activity.svg"
+          },
+          audit: {
+            label: "Security audit",
+            icon: "/images/audit.svg"
+          }
+        };
+        
+        // Take up to 5 cards
+        const cards = trust.cards.slice(0, 5);
+        
+        const tileItems = cards.map(card => {
+          if (!card || !hasContent(card.fact)) return "";
+          
+          const cardId = card.id ? `trust-${card.id}` : "";
+          const cardType = cardTypeMap[card.id] || {};
+          const label = escapeHtml(cardType.label || "");
+          const icon = cardType.icon || "";
+          const fact = escapeHtml(card.fact || "No data yet");
+          const linkText = escapeHtml(card.link_text || "learn more");
+          const linkUrl = card.link_url || "#";
+          
+          // Icon (decorative)
+          const iconHtml = icon 
+            ? `<img src="${icon}" alt="" class="trust-card-icon" aria-hidden="true" />`
+            : "";
+          
+          return `    <div>
+      <div class="feature-label sublabel">${label}</div>
+      <div class="svc-compat__tile" id="${cardId}">
+        <div class="trust-card-body">
+          ${iconHtml}
+          <p class="trust-card-fact">${fact}</p>
+          <a href="${linkUrl}" target="_blank" class="trust-card-link">${linkText}</a>
+        </div>
+      </div>
+    </div>`;
+        }).filter(Boolean).join("\n");
+        
+        if (!tileItems) return "";
+        
+        return `
+<section id="trust" class="service-section">
+  <h2 class="feature-label">Release &amp; Trust</h2>
+  <div class="svc-compat__grid">
+${tileItems}
+  </div>
+</section>`;
+      };
+
       const renderProfileSection = () => {
         const profile = svc.profile;
         const description = svc.description;
@@ -1036,6 +1106,7 @@ ${cards.join("\n")}
         privacy: renderPrivacy,
         compat: renderCompatibility,
         migration: renderMigration,
+        trust: renderTrustSection,
         profile: renderProfileSection,
       };
 
