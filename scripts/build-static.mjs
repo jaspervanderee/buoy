@@ -45,6 +45,50 @@ const clamp = (s, n=160) => {
   return txt.length <= n ? txt : txt.slice(0, n-1).trimEnd() + "…";
 };
 
+// -------- Illustration registry (Fees, Compatibility, Migration) --------
+// Maps tile/card IDs to shared illustration paths across all sections
+// Services can override via item.image in services.json
+// 
+// TO ADD A NEW ILLUSTRATION:
+// 1. Find the item's "id" in services.json (e.g., "lnurl-pay" or "restore-same-wallet")
+// 2. Add: "item-id": "/images/illustration/your-image.svg"
+// 3. Add matching alt text below
+// 4. The same ID works across all services (shared illustrations!)
+const COMPAT_ILLUSTRATIONS = {
+  // Fees section
+  "fees-pay": "/images/illustration/pay-someone.svg",
+  "fees-first-receive": "/images/illustration/receive.svg",
+  "fees-splice": "/images/illustration/big-receive.svg",
+  // Compatibility section
+  "lnurl-pay": "/images/illustration/pay-any-lightning-qr.svg",
+  "lnurl-withdraw": "/images/illustration/withdraw-from-service.svg",
+  "lightning-address": "/images/illustration/lightning-address.svg",
+  // Migration section (generic IDs work across all services)
+  "restore-same-wallet": "/images/illustration/restore-wallet-new-phone.svg",
+  "move-from-another-wallet": "/images/illustration/move-from-another-wallet.svg",
+  "move-to-onchain": "/images/illustration/wallet-to-cold-wallet.svg",
+  "switch-to-another-wallet": "/images/illustration/move-to-another-wallet.svg",
+  // Add more: "item-id": "/images/illustration/filename.svg"
+};
+
+// Alt text registry for illustrations (must match keys above)
+const COMPAT_ILLUSTRATION_ALTS = {
+  // Fees
+  "fees-pay": "Pay someone",
+  "fees-first-receive": "First time you receive",
+  "fees-splice": "Big receive",
+  // Compatibility
+  "lnurl-pay": "Scan a Lightning QR; wallet pays",
+  "lnurl-withdraw": "Tap or scan the withdrawal QR from the service",
+  "lightning-address": "Ask a friend for their Lightning address",
+  // Migration
+  "restore-same-wallet": "Restore wallet on new device",
+  "move-from-another-wallet": "Move wallet from another wallet",
+  "move-to-onchain": "Move wallet to cold wallet storage",
+  "switch-to-another-wallet": "Move wallet to another wallet"
+  // Add more: "item-id": "Short action-focused description"
+};
+
 const setTag = (html, tag, content) =>
   html.replace(new RegExp(`<${tag}[^>]*>[\\s\\S]*?<\\/${tag}>`, "i"), `<${tag}>${content}</${tag}>`);
 
@@ -418,6 +462,17 @@ ${tileItems}
                 const how = linkFeesGlossaryTerms(scenario.how_to_minimize || "");
                 const learn = linkFeesGlossaryTerms(scenario.learn_more || "");
                 
+                // Resolve illustration: per-scenario override takes precedence over registry
+                let illustrationHtml = "";
+                const imagePath = scenario.image || COMPAT_ILLUSTRATIONS[id];
+                if (imagePath) {
+                  const altText = scenario.image_alt || COMPAT_ILLUSTRATION_ALTS[id] || title;
+                  illustrationHtml = `
+      <div class="svc-compat__illustration">
+        <img src="${imagePath}" alt="${escapeHtml(altText)}" loading="lazy" />
+      </div>`;
+                }
+                
                 let learnHtml = "";
                 if (learn) {
                   learnHtml = `
@@ -427,7 +482,7 @@ ${tileItems}
         </details>`;
                 }
                 
-                return `    <article class="fee-card" id="${id}">
+                return `    <article class="fee-card" id="${id}">${illustrationHtml}
       <h3 class="fee-card__title">${title}</h3>
       ${cost ? `<p class="fee-card__cost"><strong>${cost}</strong></p>` : ""}
       ${what ? `<p class="fee-card__what">What happens:<br>${what}</p>` : ""}
@@ -773,6 +828,19 @@ ${cards.join("\n")}
         
         // Render tiles similar to compatibility but without status pills
         const tileItems = items.map(item => {
+          const tileId = item.id || slugify(item.title || "");
+          
+          // Resolve illustration: per-item override takes precedence over registry
+          let illustrationHtml = "";
+          const imagePath = item.image || COMPAT_ILLUSTRATIONS[tileId];
+          if (imagePath) {
+            const altText = item.image_alt || COMPAT_ILLUSTRATION_ALTS[tileId] || item.title;
+            illustrationHtml = `
+        <div class="svc-compat__illustration">
+          <img src="${imagePath}" alt="${escapeHtml(altText)}" loading="lazy" />
+        </div>`;
+          }
+          
           // Meta chips (time, cost, risk)
           const metaChips = [];
           if (item.time) metaChips.push(`<span class="migration-meta-chip">Time: ${item.time}</span>`);
@@ -811,10 +879,8 @@ ${cards.join("\n")}
           </div>
         </details>`;
           
-          const tileId = item.id || slugify(item.title || "");
-          
           return `
-      <div class="svc-compat__tile" id="${tileId}">
+      <div class="svc-compat__tile" id="${tileId}">${illustrationHtml}
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">${item.title}</h3>
         </div>
@@ -860,6 +926,17 @@ ${tileItems}
           const statusClass = `svc-chip svc-chip--${tile.status}`;
           const noteHtml = tile.note ? `<p class="svc-compat__note">${tile.note}</p>` : "";
           
+          // Resolve illustration: per-tile override takes precedence over registry
+          let illustrationHtml = "";
+          const imagePath = tile.image || COMPAT_ILLUSTRATIONS[tile.id];
+          if (imagePath) {
+            const altText = tile.image_alt || COMPAT_ILLUSTRATION_ALTS[tile.id] || tile.title;
+            illustrationHtml = `
+        <div class="svc-compat__illustration">
+          <img src="${imagePath}" alt="${escapeHtml(altText)}" loading="lazy" />
+        </div>`;
+          }
+          
           // Find matching explainer
           const explainer = explainerMap[tile.id];
           
@@ -888,7 +965,7 @@ ${tileItems}
         </details>`;
           
           return `
-      <div class="svc-compat__tile">
+      <div class="svc-compat__tile">${illustrationHtml}
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">${tile.title}</h3>
           <span class="${statusClass}">${statusText}</span>

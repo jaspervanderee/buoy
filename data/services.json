@@ -795,7 +795,7 @@
 	],
 	"migration": [
 		{
-			"id": "restore-phoenix",
+			"id": "restore-same-wallet",
 			"title": "Restore Phoenix on a new phone",
 			"choose": "When you get a new device and want to keep using Phoenix.",
 			"time": "~10 min",
