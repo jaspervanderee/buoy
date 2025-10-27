@@ -18,7 +18,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #000000;
-    --panel: #303030;
+    --panel: #212121;
     --text: #ebebeb;
     --text-muted: #808080;
     --border: #5f5f5f;
@@ -976,7 +976,7 @@ p, li, a {
 }
 
 @media (prefers-color-scheme: dark) {
-  .card { background: #303030; }
+  .card { background: #212121; }
 }
 
 .card span {
@@ -3675,6 +3675,11 @@ p, li, a {
   background: #ededed; /* Subtle container background for loading state */
 }
 
+/* Getting Started section: different background for screenshots */
+#setup .svc-compat__illustration {
+  background: #0d0d0d; /* Clean white/dark panel background for screenshots */
+}
+
 .svc-compat__illustration img {
   display: block;
   width: 100%;
@@ -4145,5 +4150,114 @@ main:has(.blog-list) h1 {
   main:has(.blog-list) h1 {
     font-size: 2.5em;
     margin: 0 0 3rem 0;
+  }
+}
+
+/* === Screenshot Lightbox === */
+
+/* Make screenshots clickable when lightbox available */
+.screenshot-trigger {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.screenshot-trigger:hover {
+  opacity: 0.9;
+}
+
+.screenshot-trigger:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Lightbox overlay */
+.screenshot-lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.screenshot-lightbox.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .screenshot-lightbox {
+    transition: none;
+  }
+}
+
+/* Close button */
+.screenshot-lightbox__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  z-index: 10001;
+  font-family: "Inter", sans-serif;
+  line-height: 1;
+  padding: 0;
+}
+
+.screenshot-lightbox__close:hover,
+.screenshot-lightbox__close:focus {
+  background: rgba(255, 96, 59, 0.2);
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* Content container */
+.screenshot-lightbox__content {
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Full screenshot image */
+.screenshot-lightbox__image {
+  max-width: 100%;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Desktop adjustments */
+@media (min-width: 768px) {
+  .screenshot-lightbox__content {
+    max-width: 95%;
+    max-height: 95%;
+  }
+  
+  .screenshot-lightbox__close {
+    top: 30px;
+    right: 30px;
   }
 }

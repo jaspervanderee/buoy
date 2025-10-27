@@ -3,6 +3,7 @@
 
 // scripts/build-static.mjs
 import fs from "fs/promises";
+import fsSync from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import crypto from "crypto";
@@ -55,6 +56,7 @@ const clamp = (s, n=160) => {
 // 3. Add matching alt text below
 // 4. The same ID works across all services (shared illustrations!)
 const COMPAT_ILLUSTRATIONS = {
+  // Setup / Getting started section (now resolved per-slug at build time)
   // Fees section
   "fees-pay": "/images/illustration/pay-someone.svg",
   "fees-first-receive": "/images/illustration/receive.svg",
@@ -73,6 +75,7 @@ const COMPAT_ILLUSTRATIONS = {
 
 // Alt text registry for illustrations (must match keys above)
 const COMPAT_ILLUSTRATION_ALTS = {
+  // Setup / Getting started (now resolved per-slug at build time)
   // Fees
   "fees-pay": "Pay someone",
   "fees-first-receive": "First time you receive",
@@ -352,6 +355,53 @@ html = html.replace('</head>', urlShim + '</head>');
         const tileItems = howto.steps.map((step) => {
           const tileId = step.id || slugify(step.title || "");
           
+          // Resolve illustration: per-slug screenshot takes precedence
+          let illustrationHtml = "";
+          
+          // Extract step name for per-service screenshots (e.g., "setup-install" → "install")
+          const stepName = tileId.replace(/^setup-/, '');
+          const bannerPath = `/images/screenshots/${slug}-${stepName}.webp`;
+          const fullPath = `/images/screenshots/${slug}-${stepName}-full.webp`;
+          
+          // Check if per-service screenshot exists at build time
+          const bannerExists = (() => {
+            try {
+              fsSync.accessSync(path.join(ROOT, bannerPath));
+              return true;
+            } catch { return false; }
+          })();
+          
+          const fullExists = bannerExists && (() => {
+            try {
+              fsSync.accessSync(path.join(ROOT, fullPath));
+              return true;
+            } catch { return false; }
+          })();
+          
+          // Priority: per-service screenshot → per-step override → registry fallback
+          let imagePath = null;
+          let isScreenshot = false;
+          
+          if (bannerExists) {
+            imagePath = bannerPath;
+            isScreenshot = true;
+          } else if (step.image) {
+            imagePath = step.image;
+          } else if (COMPAT_ILLUSTRATIONS[tileId]) {
+            imagePath = COMPAT_ILLUSTRATIONS[tileId];
+          }
+          
+          if (imagePath) {
+            const altText = step.image_alt || COMPAT_ILLUSTRATION_ALTS[tileId] || step.title;
+            const interactiveClass = (isScreenshot && fullExists) ? ' screenshot-trigger' : '';
+            const dataAttrs = (isScreenshot && fullExists) ? ` data-full="${fullPath}" data-alt="${escapeHtml(altText)}"` : '';
+            
+            illustrationHtml = `
+        <div class="svc-compat__illustration${interactiveClass}"${dataAttrs}>
+          <img src="${imagePath}" alt="${escapeHtml(altText)}" loading="lazy" />
+        </div>`;
+          }
+          
           // Meta chips (time, cost, risk)
           const metaChips = [];
           if (step.chips) {
@@ -374,7 +424,7 @@ html = html.replace('</head>', urlShim + '</head>');
           const gotchaHtml = step.gotcha ? `<p><strong>Gotcha:</strong> ${step.gotcha}</p>` : "";
           
           return `
-      <div class="svc-compat__tile" id="${tileId}">
+      <div class="svc-compat__tile" id="${tileId}">${illustrationHtml}
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">${step.title}</h3>
         </div>
@@ -1397,6 +1447,69 @@ ${sectionsHtml}`;
     } catch (e) {
       // fail-safe: if anything goes wrong, keep the page without alternatives
     }
+
+    // Inject screenshot lightbox overlay (for Getting started screenshots)
+    const lightboxHtml = `
+<!-- Screenshot Lightbox -->
+<div id="screenshot-lightbox" class="screenshot-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+  <button class="screenshot-lightbox__close" aria-label="Close screenshot viewer">&times;</button>
+  <div class="screenshot-lightbox__content">
+    <img class="screenshot-lightbox__image" src="" alt="" />
+  </div>
+</div>
+<script>
+(function() {
+  const lightbox = document.getElementById('screenshot-lightbox');
+  if (!lightbox) return;
+  
+  const img = lightbox.querySelector('.screenshot-lightbox__image');
+  const closeBtn = lightbox.querySelector('.screenshot-lightbox__close');
+  
+  function openLightbox(fullPath, altText) {
+    img.src = fullPath;
+    img.alt = altText;
+    lightbox.setAttribute('aria-hidden', 'false');
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  
+  function closeLightbox() {
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    img.src = '';
+  }
+  
+  // Attach click handlers to all screenshot triggers
+  document.addEventListener('click', function(e) {
+    const trigger = e.target.closest('.screenshot-trigger');
+    if (trigger) {
+      e.preventDefault();
+      const fullPath = trigger.getAttribute('data-full');
+      const altText = trigger.getAttribute('data-alt') || '';
+      if (fullPath) openLightbox(fullPath, altText);
+    }
+  });
+  
+  // Close on overlay click
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  
+  // Close button
+  closeBtn.addEventListener('click', closeLightbox);
+  
+  // Keyboard: Esc to close
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+})();
+</script>
+`;
+    html = html.replace('</body>', lightboxHtml + '</body>');
 
     // NOTE: Do NOT add data-static yet. Let the current JS render the body so design stays identical.
     await fs.writeFile(path.join(OUT_SERVICES, `${slug}.html`), html, "utf8");

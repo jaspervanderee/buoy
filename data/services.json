@@ -866,13 +866,6 @@
 		"hasFAQ": true
 	},
 	"updated": "2025-10-03",
-	"needs_review": [
-		"interop.lnurl_pay",
-		"interop.lnurl_withdraw",
-		"interop.lightning_address",
-		"interop.bolt12",
-		"interop.coin_control"
-	],
 	"trust": {
 		"cards": [
 			{

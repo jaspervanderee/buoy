@@ -356,6 +356,65 @@
   <script defer src="js/script.js"></script>
   <script defer src="/js/compare.js"></script>
   <script defer src="/js/migration.js"></script>
+
+<!-- Screenshot Lightbox -->
+<div id="screenshot-lightbox" class="screenshot-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+  <button class="screenshot-lightbox__close" aria-label="Close screenshot viewer">&times;</button>
+  <div class="screenshot-lightbox__content">
+    <img class="screenshot-lightbox__image" src="" alt="" />
+  </div>
+</div>
+<script>
+(function() {
+  const lightbox = document.getElementById('screenshot-lightbox');
+  if (!lightbox) return;
+  
+  const img = lightbox.querySelector('.screenshot-lightbox__image');
+  const closeBtn = lightbox.querySelector('.screenshot-lightbox__close');
+  
+  function openLightbox(fullPath, altText) {
+    img.src = fullPath;
+    img.alt = altText;
+    lightbox.setAttribute('aria-hidden', 'false');
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  
+  function closeLightbox() {
+    lightbox.setAttribute('aria-hidden', 'true');
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    img.src = '';
+  }
+  
+  // Attach click handlers to all screenshot triggers
+  document.addEventListener('click', function(e) {
+    const trigger = e.target.closest('.screenshot-trigger');
+    if (trigger) {
+      e.preventDefault();
+      const fullPath = trigger.getAttribute('data-full');
+      const altText = trigger.getAttribute('data-alt') || '';
+      if (fullPath) openLightbox(fullPath, altText);
+    }
+  });
+  
+  // Close on overlay click
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  
+  // Close button
+  closeBtn.addEventListener('click', closeLightbox);
+  
+  // Keyboard: Esc to close
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+})();
+</script>
 </body>
 </html>
 
