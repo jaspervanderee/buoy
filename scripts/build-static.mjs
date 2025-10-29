@@ -226,7 +226,23 @@ const saveHashCache = async (cache) => {
     const slug = slugify(svc.name);
     const url = `https://buoybitcoin.com/services/${slug}.html`;
     const title = `${svc.name} — Review, fees & features | Buoy Bitcoin`;
-    const desc = clamp(svc.description || `Learn about ${svc.name} on Buoy Bitcoin.`);
+    
+    // Generate query-focused meta description
+    const generateMetaDescription = (service) => {
+      const type = service.type_of_platform || 'service';
+      const category = service.category || 'Bitcoin';
+      const custody = service.custody_control ? `${service.custody_control}.` : '';
+      const kyc = service.kyc_required === 'No' ? 'No KYC required.' : '';
+      
+      let desc = `${service.name} review: ${type} for ${category}. `;
+      if (custody) desc += `${custody} `;
+      if (kyc) desc += `${kyc} `;
+      desc += 'Compare fees, features, and setup guide.';
+      
+      return clamp(desc, 160);
+    };
+    
+    const desc = generateMetaDescription(svc);
 
     let html = baseRaw;
 
@@ -1330,20 +1346,114 @@ ${sectionsHtml}`;
     
     html = html.replace("</head>", `<script type=\"application/ld+json\">${JSON.stringify(jsonLd)}</script></head>`);
 
-    // Define the Service as its own node with our @id and point back to this page's WebPage
+    // Define the Service/SoftwareApplication as its own node with enriched fields
+    // Use SoftwareApplication for wallets and apps, Service for exchanges/processors
+    const isApp = ['Hot Wallet', 'Desktop wallet', 'Physical device (hardware wallet) + mobile app'].includes(svc.type_of_platform);
+    
     const serviceJson = {
       "@context": "https://schema.org",
-      "@type": "Service",
+      "@type": isApp ? "SoftwareApplication" : "Service",
       "@id": url + "#service",
       "name": svc.name,
       "url": svc.website || url,
-      "mainEntityOfPage": url + "#webpage",
-      "provider": {
-        "@type": "Organization",
-        "name": svc.name,
-        "url": svc.website || url
-      }
+      "mainEntityOfPage": url + "#webpage"
     };
+    
+    // Add description (short version for better snippets)
+    if (svc.description) {
+      serviceJson.description = clamp(svc.description, 200);
+    }
+    
+    // Add logo/image
+    const logoPath = `/images/${svc.name.toLowerCase().replace(/\s+/g, '-')}.svg`;
+    serviceJson.image = `https://buoybitcoin.com${logoPath}`;
+    
+    // Add category/serviceType
+    if (svc.category) {
+      if (isApp) {
+        serviceJson.applicationCategory = svc.category;
+      } else {
+        serviceJson.serviceType = svc.category;
+      }
+    }
+    
+    // Add area served (countries)
+    if (Array.isArray(svc.countries) && svc.countries.length > 0) {
+      if (svc.countries.includes('WW')) {
+        serviceJson.areaServed = "Worldwide";
+      } else {
+        serviceJson.areaServed = svc.countries.map(code => ({ "@type": "Country", "identifier": code }));
+      }
+    }
+    
+    // For apps: add operating system and download URLs
+    if (isApp && svc.links) {
+      const os = [];
+      if (svc.links.ios) {
+        os.push("iOS");
+        serviceJson.downloadUrl = svc.links.ios; // Primary download
+      }
+      if (svc.links.android) {
+        os.push("Android");
+        if (!serviceJson.downloadUrl) serviceJson.downloadUrl = svc.links.android;
+      }
+      if (svc.links.desktop) {
+        os.push("Windows");
+        os.push("macOS");
+        os.push("Linux");
+      }
+      if (os.length > 0) {
+        serviceJson.operatingSystem = os.join(", ");
+      }
+    }
+    
+    // Add price/offers
+    if (svc.price) {
+      serviceJson.offers = {
+        "@type": "Offer",
+        "price": svc.price.includes('Free') || svc.price.includes('$0') ? "0" : svc.price.match(/\d+/)?.[0] || "0",
+        "priceCurrency": "USD"
+      };
+    } else {
+      // Most Bitcoin services are free to use
+      serviceJson.offers = {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      };
+    }
+    
+    // Add aggregate rating if available
+    if (svc.app_ratings) {
+      const iosRating = typeof svc.app_ratings.ios === 'number' ? svc.app_ratings.ios : null;
+      const androidRating = typeof svc.app_ratings.android === 'number' ? svc.app_ratings.android : null;
+      
+      if (iosRating || androidRating) {
+        const avgRating = iosRating && androidRating 
+          ? ((iosRating + androidRating) / 2).toFixed(1)
+          : (iosRating || androidRating).toFixed(1);
+        
+        serviceJson.aggregateRating = {
+          "@type": "AggregateRating",
+          "ratingValue": avgRating,
+          "bestRating": "5",
+          "worstRating": "1"
+        };
+      }
+    }
+    
+    // Add provider organization
+    serviceJson.provider = {
+      "@type": "Organization",
+      "name": svc.name,
+      "url": svc.website || url
+    };
+    
+    // Add datePublished if we have founded_in
+    if (svc.founded_in) {
+      serviceJson.datePublished = `${svc.founded_in}-01-01`;
+    }
+    
     html = html.replace("</head>", `<script type=\"application/ld+json\">${JSON.stringify(serviceJson)}</script></head>`);
 
     // Inject Organization and WebSite JSON-LD so references by @id resolve on this page
@@ -1406,6 +1516,53 @@ ${sectionsHtml}`;
       html = html.replace("<!-- FAQ_BLOCK -->", faqBundle);
     } catch (e) {
       // fail-safe: skip FAQ injection on error
+    }
+
+    // Generate HowTo JSON-LD for "Getting started" section
+    try {
+      if (svc.howto && Array.isArray(svc.howto.steps) && svc.howto.steps.length > 0) {
+        const howtoTitle = svc.howto.title || `Getting started with ${svc.name}`;
+        const howtoUrl = `${url}#setup`;
+        
+        const howtoSchema = {
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          "name": howtoTitle,
+          "description": `Step-by-step guide to set up and start using ${svc.name}.`,
+          "url": howtoUrl,
+          "step": svc.howto.steps.map((step, idx) => {
+            const stepSchema = {
+              "@type": "HowToStep",
+              "position": idx + 1,
+              "name": step.title || `Step ${idx + 1}`,
+              "text": Array.isArray(step.actions) ? step.actions.join(' ') : step.title
+            };
+            
+            // Add time estimate if available
+            if (step.chips && step.chips.time) {
+              stepSchema.description = `Time: ${step.chips.time}`;
+            }
+            
+            return stepSchema;
+          })
+        };
+        
+        // Add total time if available
+        if (svc.howto.totalTime) {
+          howtoSchema.totalTime = svc.howto.totalTime;
+        }
+        
+        // Add estimated cost (most are free to start)
+        howtoSchema.estimatedCost = {
+          "@type": "MonetaryAmount",
+          "currency": "USD",
+          "value": "0"
+        };
+        
+        html = html.replace("</head>", `<script type="application/ld+json">${JSON.stringify(howtoSchema)}</script></head>`);
+      }
+    } catch (e) {
+      // fail-safe: skip HowTo schema on error
     }
 
     // Generate HowTo JSON-LD for migration flows if enabled
