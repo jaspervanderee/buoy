@@ -11,6 +11,7 @@ import { injectAlternatives } from "./lib/alternatives.mjs";
 import { renderTableHTML } from "../shared/renderTable.mjs";
 import { renderFAQBlock, renderFAQJsonLD } from "./lib/faqs.mjs";
 import { ensureRobotsMeta } from "./lib/head.mjs";
+import { mergeServices } from "./merge-services.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -204,6 +205,10 @@ const saveHashCache = async (cache) => {
 
 // -------- main --------
 (async () => {
+  // Merge individual service files into services.json before building
+  console.log('Merging individual service files...');
+  mergeServices();
+  
   const [dataRaw, baseRaw] = await Promise.all([
     fs.readFile(DATA, "utf8"),
     fs.readFile(SERVICE_BASE, "utf8"),

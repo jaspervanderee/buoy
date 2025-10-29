@@ -1,0 +1,63 @@
+{
+  "name": "OpenNode",
+  "category": "Accept Bitcoin as a merchant",
+  "type_of_platform": "Payment Processor",
+  "faqs": [
+    {
+      "q": "What is OpenNode?",
+      "a": "OpenNode is a Bitcoin payment processor for businesses with hosted checkouts, plugins and APIs."
+    },
+    {
+      "q": "Is OpenNode custodial?",
+      "a": "Funds are custodial until withdrawal or automatic settlement to your bank or wallet."
+    },
+    {
+      "q": "What are OpenNode fees?",
+      "a": "Fees are typically around 1% depending on product and volume; see pricing for details."
+    }
+  ],
+  "supported_network": "Bitcoin + Lightning",
+  "features": {
+    "WW": [
+      {
+        "text": "Turnkey payment processor",
+        "status": "positive"
+      },
+      {
+        "text": "Fraud protection",
+        "status": "positive"
+      },
+      {
+        "text": "Custodial until funds are withdrawn",
+        "status": "negative"
+      },
+      {
+        "text": "Fees can add up for high-volume businesses",
+        "status": "negative"
+      },
+      {
+        "text": "No self-custody",
+        "status": "negative"
+      }
+    ]
+  },
+  "fees": {
+    "intro": "1% fees"
+  },
+  "subscription_fees": "1%",
+  "conversion_fees": "1%",
+  "settlement_time": "1-2 days",
+  "compatibility": "text",
+  "pos_compatibility": "text",
+  "custody_control": "Custodial (until withdrawal or automatic settlement)",
+  "kyc_required": "Yes",
+  "open_source": "No",
+  "user_experience": "0.0",
+  "profile": "Joao Almeida & Afnan Rahman",
+  "description": "OpenNode is a Bitcoin-first payment processor that empowers businesses to accept and send Bitcoin—either on-chain or via Lightning—using simple plugins, hosted checkouts, or its developer-friendly API. Organisations that want a turnkey, compliant solution—especially mid-sized to large enterprises—can onboard easily with KYC and achieve global scale without building complex node infrastructure.\\n\\nIt offers instant, low-cost microtransactions with a focus on liquidity management, channel operations, and protocol support. For merchants, this means accessing Bitcoin payments both instantly and economically, alongside automatic settlement options in fiat or BTC. By abstracting away technical complexities like node handling, liquidity, and channel balance, OpenNode allows businesses to plug-and-play and scale efficiently.\\n\\nIt holds US regulatory licenses, manages KYC requirements, and maintains automated fiat conversions and payouts. This makes it ideal for businesses—especially blue-chip and enterprise-level—that require solid legal and financial backstops.\\n\\nTheir long-term vision is to see global businesses and platforms integrate Bitcoin payments as seamlessly as credit cards—secure, censorship-resistant, and frictionless—while pushing forward broader adoption of Bitcoin as a unit of exchange across borders and cultures.",
+  "founded_in": "2018",
+  "website": "https://opennode.com",
+  "countries": [
+    "WW"
+  ]
+}

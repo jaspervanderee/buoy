@@ -1,0 +1,95 @@
+{
+  "name": "Bull Bitcoin",
+  "category": "Buy Bitcoin",
+  "type_of_platform": "Non-custodial",
+  "faqs": [
+    {
+      "q": "What is Bull Bitcoin?",
+      "a": "Bull Bitcoin is a non‑custodial Bitcoin service that sends purchases directly to your own wallet and supports bill payments in Canada."
+    },
+    {
+      "q": "Is KYC required at Bull Bitcoin?",
+      "a": "For buying and selling, identity verification applies by jurisdiction; the platform focuses on privacy and self‑custody."
+    },
+    {
+      "q": "Where is Bull Bitcoin available?",
+      "a": "Canada is the primary market, with expanding international access and features available in select regions."
+    }
+  ],
+  "features": {
+    "WW": [
+      {
+        "text": "Live on Bitcoin standard",
+        "status": "positive"
+      },
+      {
+        "text": "Non-custodial",
+        "status": "positive"
+      },
+      {
+        "text": "Mobile app in beta",
+        "status": "negative"
+      },
+      {
+        "text": "Not a direct payment service",
+        "status": "negative"
+      }
+    ],
+    "CA": [
+      {
+        "text": "Live on Bitcoin standard",
+        "status": "positive"
+      },
+      {
+        "text": "Non-custodial",
+        "status": "positive"
+      },
+      {
+        "text": "External wallet required",
+        "status": "negative"
+      },
+      {
+        "text": "Not a direct payment service",
+        "status": "negative"
+      }
+    ]
+  },
+  "fees": {
+    "intro": "Based on monthly trading volume",
+    "tiers": [
+      {
+        "range": "up to $100,000",
+        "fee": "around 2%"
+      },
+      {
+        "range": "$100,000 and up",
+        "fee": "discount"
+      }
+    ]
+  },
+  "dca": "Yes",
+  "payment_methods": [
+    "Interac e-Transfer",
+    "Wire Transfer",
+    "Bill Payment, SEPA bank transfer"
+  ],
+  "custody_control": "Non-custodial",
+  "kyc_required": "No",
+  "open_source": "Yes",
+  "user_experience": "0.0",
+  "interface": "Mobile & Desktop",
+  "app_ratings": {
+    "ios": "No app available",
+    "android": "In beta"
+  },
+  "profile": "Francis Pouliot",
+  "description": "Bull Bitcoin is a Canadian Bitcoin exchange that stands out by being entirely non-custodial, meaning users must provide their own wallet and take full ownership of their Bitcoin. It allows users to buy Bitcoin directly to their own wallets, sell Bitcoin instantly without waiting for confirmations, and even pay bills, rent, and credit cards in Canada by converting Bitcoin to fiat without relying on traditional banks. This approach positions Bitcoin as a tool for everyday exchange, not just long-term saving.\\n\\nThe platform (the mobile app is in beta) is self-funded, Bitcoin-only, and deeply ideological, rejecting external investors. Its team identifies as cypherpunks, building open-source tools and promoting financial sovereignty. Bull Bitcoin's mission is to create sovereign individuals through uncompromising adherence to Bitcoin principles, making it attractive to users who want to align their actions with their values.\\n\\nBeginners find the platform easy to use, with a clean interface and responsive support, while advanced users appreciate its strong privacy stance and no-compromise philosophy. It's ideal for Canadians and expanding internationally for those who want full control over their Bitcoin without depending on custodians or legacy finance systems.",
+  "founded_in": "2013",
+  "website": "https://www.bullbitcoin.com",
+  "countries": [
+    "CA",
+    "EU",
+    "CR",
+    "MX"
+  ]
+}

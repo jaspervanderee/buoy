@@ -1,0 +1,54 @@
+{
+  "name": "Umbrel",
+  "category": "Run my own node",
+  "type_of_platform": "Home server as software and / or hardware",
+  "faqs": [
+    {
+      "q": "What is Umbrel?",
+      "a": "Umbrel is a user‑friendly home server OS to self‑host Bitcoin/Lightning nodes and 100+ apps via a one‑click App Store."
+    },
+    {
+      "q": "Is Umbrel open source?",
+      "a": "Umbrel is source‑available rather than fully open‑source; many apps are open‑source."
+    },
+    {
+      "q": "Does Umbrel support remote access?",
+      "a": "Yes. Umbrel supports secure remote access via Tor and Tailscale VPN."
+    }
+  ],
+  "features": {
+    "WW": [
+      {
+        "text": "Simple self-hosted node OS",
+        "status": "positive"
+      },
+      {
+        "text": "Polished macOS-style interface",
+        "status": "positive"
+      },
+      {
+        "text": "Remote access via Tor or Tailscale VPN",
+        "status": "positive"
+      },
+      {
+        "text": "Source-available license (not fully open-source)",
+        "status": "negative"
+      },
+      {
+        "text": "No HTTPS by default",
+        "status": "negative"
+      }
+    ]
+  },
+  "price": "$299 for hardware device",
+  "user_experience": "0.0",
+  "interface": "Desktop only",
+  "support": "Community forums",
+  "profile": "Luke Childs & Mayank Chhabra",
+  "description": "Umbrel is a user-friendly, plug‑and‑play home server OS primarily designed to run Bitcoin and Lightning nodes. It supports the official Umbrel Home hardware and installation on Raspberry Pi or x86 machines. What sets it apart is its polished, macOS‑style interface with a one‑click App Store for installing things like Bitcoin Core, LND, Electrum Rust Server, mempool explorer, and various self‑hosted apps like Nextcloud, Plex, Pi‑Hole, Home Assistant, and AI models. The setup process is straightforward—just plug in, set a password, install apps, and sync—which makes it accessible for non‑technical users.\\n\\nWhat truly distinguishes Umbrel is its elegant design and focus on broad self‑hosting beyond just Bitcoin. The dashboard offers real‑time system stats, customizable widgets, seamless updates, and integrations for VPN access via Tailscale or TOR. The App Store's curated ecosystem of over 100 vetted, containerized apps makes complex tasks like running blockchain explorers or home automation easy—without requiring command‑line work. This polished UX lowers the bar for users who want to self‑host smartly.\\n\\nIn terms of community and support, Umbrel has an active user base and support channels via chat and forums. However, discussions also mention that Umbrel uses unencrypted HTTP by default and lacks HTTPS, which could pose risks on exposed LANs. More privacy‑focused alternatives like Citadel and StartOS offer full HTTPS and fully open‑source licensing.\\n\\nUmbrel is aimed at users seeking a seamless, beautiful entry point into self‑sovereign Bitcoin and home‑server use. Its vision is to expand the personal server experience by enabling anyone to host their own apps, AI, media, and nodes with minimal friction. But it trades off some transparency and technical control—its source‑available license, lack of HTTPS out of the box, and centralized update model may concern advanced or privacy‑focused users. In sum, Umbrel offers a delightful, low‑barrier way to participate in Bitcoin sovereignty and self‑hosting, though some might prefer more open or secure setups if they prioritize full technical autonomy.",
+  "founded_in": "2019",
+  "website": "https://umbrel.com",
+  "countries": [
+    "WW"
+  ]
+}

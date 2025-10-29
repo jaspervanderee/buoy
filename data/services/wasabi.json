@@ -1,0 +1,61 @@
+{
+  "name": "Wasabi",
+  "category": "Store it safely",
+  "type_of_platform": "Desktop wallet",
+  "faqs": [
+    {
+      "q": "What is Wasabi Wallet?",
+      "a": "Wasabi is an open‑source, non‑custodial desktop wallet focused on privacy with built‑in CoinJoin."
+    },
+    {
+      "q": "Does Wasabi work over Tor?",
+      "a": "Yes. Wasabi routes traffic over Tor and uses compact filters to protect your IP and balance privacy."
+    },
+    {
+      "q": "Is Wasabi beginner‑friendly?",
+      "a": "Wasabi offers a clear interface, but privacy features like CoinJoin may require learning for new users."
+    }
+  ],
+  "supported_network": "Bitcoin",
+  "features": {
+    "WW": [
+      {
+        "text": "Enhanced privacy with CoinJoin",
+        "status": "positive"
+      },
+      {
+        "text": "Open-source code",
+        "status": "positive"
+      },
+      {
+        "text": "Desktop only",
+        "status": "negative"
+      },
+      {
+        "text": "Can be complex for beginners",
+        "status": "negative"
+      },
+      {
+        "text": "Coinjoin fees apply",
+        "status": "negative"
+      }
+    ]
+  },
+  "price": "Free",
+  "custody_control": "Non-custodial",
+  "recovery_method": "12-word seed + optional passphrase",
+  "open_source": "Yes",
+  "node_connect": "Yes (via hardware wallets)",
+  "user_experience": "0.0",
+  "interface": "Desktop only",
+  "app_ratings": {
+    "text": "No app available"
+  },
+  "profile": "Balint Harmat, Adam Ficsor & Gergely Hajdu",
+  "description": "Wasabi Wallet is a privacy-focused, open-source, non‑custodial Bitcoin desktop wallet launched by zkSNACKs. It routes all traffic through Tor and uses compact blockchain filters, keeping your IP and balance private. Its standout feature is built-in CoinJoin, a process that mixes your Bitcoin with others' to make it harder for anyone to trace your transactions, enhancing privacy without relying on third parties.\\n\\nThe user interface is straightforward but functional, with a dashboard showing your balance, privacy progress, and transaction history, though it may feel technical for complete beginners. Setup involves writing down a 12-word seed phrase and an optional passphrase, which adds security but requires careful storage.\\n\\nWhat sets Wasabi apart is its strong focus on privacy through CoinJoin, which is seamlessly integrated and doesn't require manual setup, making it accessible for newcomers. It also allows advanced users to connect to custom coordinators via platforms like Nostr, ensuring privacy even if default services are unavailable.\\n\\nWasabi is for people who want to own their Bitcoin without having to trust big companies. It hides your transactions by mixing them with others, runs silently in the background over Tor, and gives you full control—all on your own computer. Its goal is to make privacy easy and powerful, while building toward a future where you don't rely on any single server.",
+  "founded_in": "2018",
+  "website": "https://wasabiwallet.io",
+  "countries": [
+    "WW"
+  ]
+}

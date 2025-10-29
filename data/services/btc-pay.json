@@ -1,0 +1,71 @@
+{
+  "name": "BTC Pay",
+  "category": "Accept Bitcoin as a merchant",
+  "type_of_platform": "Hosted payment gateway",
+  "faqs": [
+    {
+      "q": "What is BTCPay Server?",
+      "a": "BTCPay Server is a free, open‑source, self‑hosted Bitcoin and Lightning payment processor that sends payments directly to your wallet."
+    },
+    {
+      "q": "Does BTCPay charge fees?",
+      "a": "No platform fees are charged by BTCPay; you only pay standard Bitcoin/Lightning network fees and your hosting costs."
+    },
+    {
+      "q": "Is BTCPay custodial?",
+      "a": "No. It's non‑custodial—private keys stay under your control."
+    },
+    {
+      "q": "Is BTCPay difficult to set up?",
+      "a": "Setup can be technical, but guides and one‑click deployments make it manageable for motivated beginners."
+    },
+    {
+      "q": "Which plugins does BTCPay support?",
+      "a": "BTCPay integrates with WooCommerce, Shopify (via bridge), Magento, and many more ecommerce platforms."
+    }
+  ],
+  "supported_network": "Bitcoin + Lightning",
+  "features": {
+    "WW": [
+      {
+        "text": "Decentralized payment processor",
+        "status": "positive"
+      },
+      {
+        "text": "0% fees & no third-party",
+        "status": "positive"
+      },
+      {
+        "text": "Lightning Network support",
+        "status": "positive"
+      },
+      {
+        "text": "Technical setup",
+        "status": "negative"
+      },
+      {
+        "text": "Self-hosted maintenance",
+        "status": "negative"
+      }
+    ]
+  },
+  "fees": {
+    "intro": "No fees"
+  },
+  "subscription_fees": "No fees",
+  "conversion_fees": "No fees",
+  "settlement_time": "Blockchain confirmation time",
+  "compatibility": "Big Commerce, Drupal, Ecwid, GiveWP, Grandnode, Invoice Ninja, Magento, Nopcommerce, Odoo, OpenCart, PhocaCart, PrestaShop, Pretix, Shopify V2, Shopware, Ghost, Smartstore, VirtueMart, Wix, WooCommerce, Xenforo, Zapier, Custom Integration",
+  "pos_compatibility": "Yes",
+  "custody_control": "Non-custodial",
+  "kyc_required": "No",
+  "open_source": "Yes",
+  "user_experience": "0.0",
+  "profile": "Nicolas Dorier",
+  "description": "BTC Pay Server, developed by a community-driven open-source project, is a self-hosted Bitcoin payment processor designed to empower merchants and individuals to accept Bitcoin payments securely and privately without intermediaries. All payments go directly to the user's own wallet—private keys stay under user control, greatly enhancing privacy and censorship resistance.\\n\\nUnlike other payment solutions, users can create online stores, point‑of‑sale systems, tipping buttons, crowdfunding campaigns, or invoice links—all within a single interface. It avoids KYC, middleman fees, and personal data collection, appealing to anyone seeking financial sovereignty with seamless integration to hardware wallets or custodial services.\\n\\nUsers highlight its open‑source, self‑hosted nature and flexibility, commenting on how easy it is to connect a cloud‑hosted or home server, link a Bitcoin wallet, and enable Lightning payments—empowering them to accept Bitcoin anywhere, anytime, though some note the initial setup complexity for beginners.\\n\\nBTCPay Server's mission is to democratize Bitcoin payments—removing fees, intermediaries, and technical barriers. Their vision for the future includes releasing a mobile app to enable non‑custodial Lightning payments for merchants, refining multisig and fee‑acceleration tools, and expanding e‑commerce integrations.",
+  "founded_in": "2017",
+  "website": "https://btcpayserver.org",
+  "countries": [
+    "WW"
+  ]
+}

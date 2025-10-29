@@ -1,0 +1,75 @@
+{
+  "name": "Peach",
+  "category": "Buy Bitcoin",
+  "type_of_platform": "P2P",
+  "faqs": [
+    {
+      "q": "What is Peach Bitcoin?",
+      "a": "Peach is a mobile peer‑to‑peer marketplace to buy and sell Bitcoin with non‑custodial multisig escrow."
+    },
+    {
+      "q": "Does Peach require KYC?",
+      "a": "No for smaller trades; limits and verification depend on region and payment method."
+    },
+    {
+      "q": "Which payment methods does Peach support?",
+      "a": "Many options including bank transfer, cash in person and regional fintech apps depending on your counterpart."
+    }
+  ],
+  "features": {
+    "WW": [
+      {
+        "text": "No KYC",
+        "status": "positive"
+      },
+      {
+        "text": "Non-custodial",
+        "status": "positive"
+      },
+      {
+        "text": "Many payment methods",
+        "status": "positive"
+      },
+      {
+        "text": "Mobile only",
+        "status": "negative"
+      },
+      {
+        "text": "No recurring buys",
+        "status": "negative"
+      },
+      {
+        "text": "Required to build reputation on closed platform",
+        "status": "negative"
+      }
+    ]
+  },
+  "fees": {
+    "intro": "<strong>2%</strong>"
+  },
+  "dca": "No",
+  "payment_methods": [
+    "Bank Transfer",
+    "Cash in Person",
+    "SEPA",
+    "Wise",
+    "Revolut",
+    "Twint"
+  ],
+  "custody_control": "Non-custodial",
+  "kyc_required": "No",
+  "open_source": "Yes",
+  "user_experience": "0.0",
+  "interface": "Mobile only",
+  "app_ratings": {
+    "ios": "In development",
+    "android": "N/A"
+  },
+  "profile": "Stephanie",
+  "description": "Peach Bitcoin is a mobile-only peer-to-peer platform for buying and selling Bitcoin. It stands out with its non-custodial model, using multi-signature escrow to secure trades without holding user funds, shifting trust to individual traders, and offering KYC-free (Know Your Customer) transactions up to 1,000 CHF daily, emphasizing privacy.\\n\\nUsers must build trust through reviews and completed trades to unlock higher transaction limits. It supports over 100 payment methods, including cash and gift cards, with a 2% fee for buyers and free selling.\\n\\nPeach's mission is to make peer-to-peer Bitcoin trading the standard, promoting financial freedom, with plans to enhance Lightning Network support and expand globally, especially in Latin America and Africa. The vision is to offer a private, on‑the‑go way to trade Bitcoin without heavy identity requirements, making it attractive to beginners who want control and privacy without overcomplicating the process. Beginners love its privacy and ease, but some find the mobile-only platform limiting.",
+  "founded_in": "2022",
+  "website": "https://peachbitcoin.com",
+  "countries": [
+    "WW"
+  ]
+}

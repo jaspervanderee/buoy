@@ -1,0 +1,50 @@
+{
+  "name": "Start9",
+  "category": "Run my own node",
+  "type_of_platform": "Home server as software and / or hardware",
+  "faqs": [
+    {
+      "q": "What is Start9?",
+      "a": "Start9 offers StartOS and plug‑and‑play personal servers (Server One/Pure) to self‑host Bitcoin, Lightning and many apps."
+    },
+    {
+      "q": "Is Start9 open source?",
+      "a": "StartOS is source‑available; many bundled apps are open‑source."
+    },
+    {
+      "q": "Which hardware should I choose?",
+      "a": "Use Server One/Pure for turnkey support, or install StartOS on your own x86/Raspberry Pi for DIY control."
+    }
+  ],
+  "features": {
+    "WW": [
+      {
+        "text": "Plug-and-play home server",
+        "status": "positive"
+      },
+      {
+        "text": "Excellent app marketplace",
+        "status": "positive"
+      },
+      {
+        "text": "Hardware can be costly",
+        "status": "negative"
+      },
+      {
+        "text": "Source-available license (not fully open-source)",
+        "status": "negative"
+      }
+    ]
+  },
+  "price": "$619: Server One<br>$899: Server Pure",
+  "user_experience": "0.0",
+  "interface": "Desktop only",
+  "support": "Community forums and Premium support (Free with device)",
+  "profile": "Matt Hill",
+  "description": "Start9 (Start9 Labs) is the creator of the Embassy—a turnkey, self-hosted personal server and Bitcoin stack powered by their open-source StartOS. Their mission is to eliminate reliance on centralized third parties, placing privacy, decentralization, and individual autonomy at the forefront. Unlike other DIY solutions, Start9 aims to \"level the playing field,\" offering plug-and-play hardware kits (like Embassy One and Embassy Pro) or a do-it-yourself image for Raspberry Pi or x86, all fully supported by their first-class community and expert support team.\\n\\nStart9's target users are privacy-conscious individuals, Bitcoiners, and anyone seeking digital autonomy without sacrificing usability. They prioritize delivering polished self-sovereign computing with high-quality hardware, intuitive interfaces, and expert support (via Matrix) to onboard less technical users while remaining fully transparent and open-source. Users appreciate its robust foundation, modular update system (allowing single-service patching), backup ease, and strong headless health checking—compared to alternatives like Umbrel.\\n\\nLooking forward, Start9 envisions a world where personal servers become the backbone of a sovereign internet and smart homes, enabling blockchain-native apps, decentralized messaging, password managers, file storage, and more. Their open hardware and software philosophy ensures that even if the company disappears, the ecosystem lives on—fully community-driven and censorship-resistant.",
+  "founded_in": "2020",
+  "website": "https://start9.com",
+  "countries": [
+    "WW"
+  ]
+}

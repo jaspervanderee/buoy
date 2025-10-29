@@ -1,0 +1,96 @@
+{
+  "name": "Relai",
+  "category": "Buy Bitcoin",
+  "type_of_platform": "Exchange",
+  "faqs": [
+    {
+      "q": "What is Relai?",
+      "a": "Relai is a beginner‑friendly Bitcoin app with a built‑in self‑custodial wallet and automatic withdrawals to your address."
+    },
+    {
+      "q": "Does Relai support recurring buys?",
+      "a": "Yes. Recurring buys are supported with free tiers up to monthly limits; fees apply above that."
+    },
+    {
+      "q": "Where is Relai available?",
+      "a": "Relai primarily serves Europe and supports SEPA, cards and mobile pay methods."
+    }
+  ],
+  "features": {
+    "WW": [
+      {
+        "text": "Self-custodial wallet included",
+        "status": "positive"
+      },
+      {
+        "text": "Bitcoin will automatically be sent to your wallet",
+        "status": "positive"
+      },
+      {
+        "text": "Fees on recurring buys",
+        "status": "negative"
+      },
+      {
+        "text": "Minimum buy amount",
+        "status": "negative"
+      },
+      {
+        "text": "EU only",
+        "status": "negative"
+      }
+    ],
+    "EU": [
+      {
+        "text": "Self-custodial wallet included",
+        "status": "positive"
+      },
+      {
+        "text": "Bitcoin will automatically be sent to your wallet",
+        "status": "positive"
+      },
+      {
+        "text": "Fees on recurring buys",
+        "status": "negative"
+      },
+      {
+        "text": "Minimum buy amount",
+        "status": "negative"
+      }
+    ]
+  },
+  "fees": {
+    "tiers": [
+      {
+        "range": "€50 - €100 per month",
+        "fee": "free up to €1.200"
+      },
+      {
+        "range": "€1200 and above",
+        "fee": "1%"
+      }
+    ]
+  },
+  "dca": "Yes: but free only on the first €1.200",
+  "payment_methods": [
+    "SEPA",
+    "Credit Card",
+    "Apple Pay",
+    "Google Pay"
+  ],
+  "custody_control": "Custodial",
+  "kyc_required": "Yes",
+  "open_source": "No",
+  "user_experience": "0.0",
+  "interface": "Mobile only",
+  "app_ratings": {
+    "ios": 4.6,
+    "android": 4.1
+  },
+  "profile": "Julian Liniger & Adem Bilican",
+  "description": "Relai, founded in 2020 in Zürich, Switzerland, is an app designed for beginners to buy and save Bitcoin easily. It stands out from competitors with its non-custodial wallet, meaning users control their Bitcoin via a 12-word seed phrase. After purchasing Bitcoin, it will be directly sent to your wallet.\\n\\nRelai offers purchases starting at €50 | 54,205 sats, one free buy up to €100 | 108,409 sats monthly, until you hit €1200. After that you pay a 1% fee for any transaction. For businesses and wealthy individuals Relai offers personal service and expert guidance.\\n\\nIts app, rated 4.5 stars on iOS, is praised by users for simple onboarding and smooth navigation, though some users report verification delays or high card fees. Relai focuses on privacy and self-custody, with optional KYC for small transactions.\\n\\nIts vision is to make Bitcoin saving accessible across Europe, with plans to add Lightning Network support for faster payments. Beginners love its straightforward design and security, but it's limited to Europe and lacks advanced savings features.",
+  "founded_in": "2020",
+  "website": "https://relai.app",
+  "countries": [
+    "EU"
+  ]
+}

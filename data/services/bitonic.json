@@ -1,0 +1,83 @@
+{
+  "name": "Bitonic",
+  "category": "Buy Bitcoin",
+  "type_of_platform": "Exchange",
+  "faqs": [
+    {
+      "q": "What is Bitonic?",
+      "a": "Bitonic is the Netherlands' oldest Bitcoin‑only broker, offering fast iDEAL and SEPA buys with automatic delivery to your wallet."
+    },
+    {
+      "q": "Does Bitonic support recurring buys?",
+      "a": "Yes. Auto Invest allows recurring buys; fees may apply beyond the free monthly tier."
+    },
+    {
+      "q": "Is Bitonic custodial?",
+      "a": "Bitonic is custodial for purchases, but encourages self‑custody and supports automatic withdrawals to your own wallet."
+    }
+  ],
+  "features": {
+    "WW": [
+      {
+        "text": "iDeal",
+        "status": "positive"
+      },
+      {
+        "text": "Bitcoin will automatically be sent to your wallet",
+        "status": "positive"
+      },
+      {
+        "text": "EU only",
+        "status": "negative"
+      }
+    ],
+    "EU": [
+      {
+        "text": "iDeal",
+        "status": "positive"
+      },
+      {
+        "text": "Bitcoin will automatically be sent to your wallet",
+        "status": "positive"
+      },
+      {
+        "text": "Limited free recurring buys",
+        "status": "negative"
+      }
+    ]
+  },
+  "fees": {
+    "intro": "<strong>1%</strong><br>recurring monthly buys:",
+    "tiers": [
+      {
+        "range": "up to €250",
+        "fee": "0%"
+      },
+      {
+        "range": "€250 and up",
+        "fee": "0.89%"
+      }
+    ]
+  },
+  "dca": "Yes: but free only on the first €250 with every purchase",
+  "payment_methods": [
+    "iDEAL",
+    "Bancontact, SEPA"
+  ],
+  "custody_control": "Custodial",
+  "kyc_required": "Yes",
+  "open_source": "No",
+  "user_experience": "0.0",
+  "interface": "Mobile & Desktop",
+  "app_ratings": {
+    "ios": 4.5,
+    "android": 4.4
+  },
+  "profile": "Robert de Waard, Jouke Hofman & Niels van Groningen",
+  "founded_in": "2012",
+  "description": "Bitonic is the oldest and largest Bitcoin-only broker in the Netherlands, founded in 2012, with a reputation for reliability and simplicity. They offer fast, automatic Bitcoin delivery via iDEAL, SEPA, and Bancontact, and their fully automated system ensures quick transfers.\\n\\nIt stands out with its direct purchase model, selling Bitcoin from its own stock for instant delivery and transparent pricing, avoiding third-party intermediaries. Bitonic offers buying, selling, and saving Bitcoin via iDEAL, SEPA, or Bancontact and provide an Auto Invest savings feature, allowing users to easily set up recurring Bitcoin purchases, (though only up to €250 | 271,023 sats) and a business solution for Bitcoin payments.\\n\\nIts app, rated 4.5 stars on iOS, is praised for its clean, no-nonsense design, though some users report slow verification. The platform uses multi-signature cold storage for security and encourages self-custody with personal wallets.\\n\\nTheir vision focuses on making Bitcoin accessible and easy for Dutch and European users, backed by education through Bitonic Academy and news via Bitcoin.nl. Overall, Bitonic is ideal for beginners who want a reliable, no-altcoin platform in Europe, with fast transactions, clear pricing and a strong local support.",
+  "website": "https://bitonic.nl",
+  "countries": [
+    "EU"
+  ]
+}

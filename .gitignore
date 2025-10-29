@@ -21,6 +21,9 @@ npm-debug.log*
 build/
 out/
 
+# Generated files
+data/services.json
+
 # Or exclude all PHP files if you have more
 *.php.cursor/
 .cursor-rules.md

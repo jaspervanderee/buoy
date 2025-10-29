@@ -1,0 +1,65 @@
+{
+  "name": "Sparrow",
+  "category": "Store it safely",
+  "type_of_platform": "Desktop wallet",
+  "faqs": [
+    {
+      "q": "What is Sparrow Wallet?",
+      "a": "Sparrow is a powerful non‑custodial desktop wallet with advanced coin control and hardware wallet support."
+    },
+    {
+      "q": "Does Sparrow support my own node?",
+      "a": "Yes. Sparrow connects to Bitcoin Core or your own Electrum server, including over Tor."
+    },
+    {
+      "q": "Is Sparrow open source?",
+      "a": "Yes. Sparrow is open‑source and actively maintained."
+    }
+  ],
+  "supported_network": "Bitcoin",
+  "features": {
+    "WW": [
+      {
+        "text": "Full control",
+        "status": "positive"
+      },
+      {
+        "text": "Detailed UTXO/coin control",
+        "status": "positive"
+      },
+      {
+        "text": "Integration with your own node",
+        "status": "positive"
+      },
+      {
+        "text": "Steeper learning curve",
+        "status": "negative"
+      },
+      {
+        "text": "Desktop only",
+        "status": "negative"
+      },
+      {
+        "text": "No Lightning support",
+        "status": "negative"
+      }
+    ]
+  },
+  "price": "Free",
+  "custody_control": "Non-custodial",
+  "recovery_method": "Manual seed backup",
+  "open_source": "Yes",
+  "node_connect": "Yes – Bitcoin Core or Electrum server (Tor supported)",
+  "user_experience": "0.0",
+  "interface": "Desktop only",
+  "app_ratings": {
+    "text": "No app available"
+  },
+  "profile": "Craig Raw",
+  "description": "Sparrow Wallet is a desktop Bitcoin wallet designed to give users full control over their bitcoin. It was created by developer Craig Raw and is open-source, privacy-focused, and ideal for both beginners and advanced users. The wallet works on Windows, macOS, and Linux.\\n\\nWhat separates Sparrow from other wallets is its balance between simplicity and advanced features. Beginners can start with a basic hot wallet setup and gradually explore more complex features like hardware wallet integration, multisig vaults, and UTXO control—all within the same interface. It gives users direct visibility into how Bitcoin works, showing transaction details, input and output flows, and allowing for precise control over fees and coin selection. This level of transparency helps users understand and manage their funds more deliberately.\\n\\nUser reviews highlight how Sparrow scales with you as you learn. It is refered to as the most powerful and versatile Bitcoin wallet, and users praise its clean layout, customizable setup, and educational value. Despite its many features, the app's interface is considered clear and organized once users get past the initial learning curve.\\n\\nSparrow's vision is to offer users complete sovereignty over their bitcoin. It avoids mobile compromises and instead focuses on a desktop experience that can integrate with cold storage, your own node, and advanced privacy tools. For beginners who want to grow into more advanced use cases without switching wallets, Sparrow offers a flexible and educational path to full control.",
+  "founded_in": "2020",
+  "website": "https://sparrowwallet.com",
+  "countries": [
+    "WW"
+  ]
+}

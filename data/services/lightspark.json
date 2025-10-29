@@ -1,0 +1,73 @@
+{
+  "name": "Lightspark",
+  "category": "Accept Bitcoin as a merchant",
+  "type_of_platform": "Payment Infrastructure",
+  "faqs": [
+    {
+      "q": "What is Lightspark?",
+      "a": "Lightspark provides enterprise Lightning infrastructure and APIs to send and receive global payments with low latency and cost."
+    },
+    {
+      "q": "Is Lightspark self‑custodial?",
+      "a": "Lightspark supports self‑custodial wallets via Spark and also offers managed nodes for enterprises that need it."
+    },
+    {
+      "q": "Who is Lightspark for?",
+      "a": "Digital banks, wallets, exchanges and fintechs needing scalable Bitcoin/Lightning payments and fiat interoperability."
+    }
+  ],
+  "supported_network": "Lightning only",
+  "features": {
+    "WW": [
+      {
+        "text": "Enterprise-grade Lightning solutions",
+        "status": "positive"
+      },
+      {
+        "text": "Instant, low-cost global payments and fiat interoperability",
+        "status": "positive"
+      },
+      {
+        "text": "Compliance-ready tools for regulated entities",
+        "status": "positive"
+      },
+      {
+        "text": "Enterprise-focused, may require custom setup for small users",
+        "status": "negative"
+      },
+      {
+        "text": "Managed nodes introduce some custodial elements",
+        "status": "negative"
+      }
+    ]
+  },
+  "fees": {
+    "intro": "Based on monthly trading volume",
+    "tiers": [
+      {
+        "range": "Starter ($300,000)",
+        "fee": "0.50%"
+      },
+      {
+        "range": "Enterprise ($3,000,000 - $15,000,000)",
+        "fee": "0.15% - 0.30%"
+      }
+    ]
+  },
+  "subscription_fees": "Starter: $0<br>Enterprise: $9,000 - $15,000/month",
+  "conversion_fees": "Included in transaction fees",
+  "settlement_time": "Instant via Lightning",
+  "compatibility": "SDKs and APIs for wallets, exchanges, digital banks; Integrates with fiat rails (e.g., RTP) and Lightning Network",
+  "pos_compatibility": "Yes",
+  "custody_control": "Flexible: Supports self-custodial wallets via Spark; Managed nodes for enterprises",
+  "kyc_required": "Yes",
+  "open_source": "Yes (Spark protocol and SDKs)",
+  "user_experience": "0.0",
+  "profile": "David Marcus",
+  "description": "Lightspark is a payments infrastructure company founded by David Marcus (formerly of PayPal, Meta, and Diem) in 2022. They aim to build what they call the \"Money Grid,\" a global, open payment network using Bitcoin as a neutral settlement layer and leveraging Lightning for high-speed transfers.\n\nTheir target audience includes enterprises—digital banks, fintechs, wallets, exchanges—that need to move money across currencies and jurisdictions instantly and cheaply, as well as developers building Bitcoin-native payment applications or self-custodial wallets that need scalable infrastructure.\n\nWhat sets Lightspark apart is their end-to-end product integration, combining seamless liquidity management, intelligent routing, compliance-ready infrastructure, and human-friendly Universal Money Address (UMA) tech. This abstraction lets banks, wallets, exchanges, and businesses effortlessly send and receive fiat or crypto globally without having to manage Lightning channels, cross-border FX, or complex on-chain details. These tools have already seen traction with big regulated partners and typically involves KYC via the partner.\n\nLooking forward, Lightspark's vision is to scale the Money Grid globally—connecting all real-time payment systems and making Bitcoin native rails for everything from everyday consumer transfers to B2B fiat-fiat flows. Spark aims to resolve key Lightning limitations like self-custody economic scalability and lacks native token support. By building Spark open-source and fully backward compatible with Lightning, they hope to decentralize stablecoin issuance on Bitcoin and finally realize high-velocity, global Bitcoin-based payment settlement.",
+  "founded_in": "2022",
+  "website": "https://www.lightspark.com",
+  "countries": [
+    "WW"
+  ]
+}

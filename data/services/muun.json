@@ -1,0 +1,65 @@
+{
+  "name": "Muun",
+  "category": "Spend Bitcoin",
+  "type_of_platform": "Hot Wallet",
+  "faqs": [
+    {
+      "q": "What is Muun Wallet?",
+      "a": "Muun is a non‑custodial Bitcoin and Lightning wallet that chooses the best network automatically for each payment."
+    },
+    {
+      "q": "How does Muun backup work?",
+      "a": "Muun uses an email and encrypted recovery code instead of a traditional 12‑word seed phrase."
+    },
+    {
+      "q": "Is Muun open source?",
+      "a": "Yes. Muun is open‑source and widely reviewed by the community."
+    }
+  ],
+  "supported_network": "Bitcoin + Lightning",
+  "features": {
+    "WW": [
+      {
+        "text": "Auto chooses Lighting or on-chain",
+        "status": "positive"
+      },
+      {
+        "text": "Simple user interface",
+        "status": "positive"
+      },
+      {
+        "text": "Emergency kit for recovery",
+        "status": "positive"
+      },
+      {
+        "text": "Not lightning native: higher fees",
+        "status": "negative"
+      },
+      {
+        "text": "No Lightning address support",
+        "status": "negative"
+      },
+      {
+        "text": "Email required for backup",
+        "status": "negative"
+      }
+    ]
+  },
+  "custody_control": "Non-custodial",
+  "kyc_required": "No",
+  "recovery_method": "Emergency kit with email and recovery code",
+  "open_source": "Yes",
+  "user_experience": "0.0",
+  "interface": "Mobile only",
+  "app_ratings": {
+    "ios": 4.3,
+    "android": 4
+  },
+  "profile": "Dario Sneidermanis",
+  "description": "Muun is a non-custodial Bitcoin and Lightning wallet focused on giving users full control with minimal complexity. It separates itself from other wallets through its unique security and backup model: users recover access using an email, password, and encrypted recovery code—removing the need to manage a traditional 12-word seed phrase. This makes onboarding easier for beginners without compromising self-custody.\\n\\nMuun's key differentiator is how it handles both Lightning and on-chain Bitcoin in one seamless balance. Users don't have to manage channels or worry about liquidity—Muun automates that behind the scenes. You can send or receive Bitcoin however you want, and the wallet figures out whether to use Lightning or regular Bitcoin based on speed, cost, and availability. This hybrid approach appeals to users who want convenience but still own their funds.\\n\\nUsers praise Muun for its simple design, clear recovery process, and solid privacy. It's especially recommended for first-time users who want a secure but low-friction experience. However, some note that Muun doesn't support Lightning addresses and that Lightning transactions may route via on-chain swaps. This means unpredictable fees, especially when onchain activity rises.\\n\\nMuun's mission is to provide a simple, secure way to use Bitcoin daily without needing technical knowledge. It prioritizes non-custodial access, user control, and cross-platform consistency, helping new users enter Bitcoin while retaining ownership from day one.",
+  "founded_in": "2019",
+  "website": "https://muun.com",
+  "countries": [
+    "WW"
+  ]
+}

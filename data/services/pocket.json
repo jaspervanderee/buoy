@@ -1,0 +1,89 @@
+{
+  "name": "Pocket",
+  "category": "Buy Bitcoin",
+  "type_of_platform": "P2P",
+  "faqs": [
+    {
+      "q": "What is Pocket Bitcoin?",
+      "a": "Pocket is a non‑custodial service for recurring buys that sends Bitcoin directly to your own wallet."
+    },
+    {
+      "q": "Does Pocket require KYC?",
+      "a": "Pocket is KYC‑light; verification applies for larger purchases based on EU regulations."
+    },
+    {
+      "q": "Which regions does Pocket support?",
+      "a": "Pocket focuses on the EU, with support varying by country and bank."
+    }
+  ],
+  "features": {
+    "WW": [
+      {
+        "text": "Non-custodial",
+        "status": "positive"
+      },
+      {
+        "text": "Bitcoin will automatically be sent to your wallet",
+        "status": "positive"
+      },
+      {
+        "text": "KYC-light",
+        "status": "positive"
+      },
+      {
+        "text": "EU only",
+        "status": "negative"
+      },
+      {
+        "text": "Bitcoin is purchased through Kraken",
+        "status": "negative"
+      }
+    ],
+    "EU": [
+      {
+        "text": "Non-custodial",
+        "status": "positive"
+      },
+      {
+        "text": "Bitcoin will automatically be sent to your wallet",
+        "status": "positive"
+      },
+      {
+        "text": "KYC-light",
+        "status": "positive"
+      },
+      {
+        "text": "Supports select hardware wallets",
+        "status": "negative"
+      },
+      {
+        "text": "Bitcoin is purchased through Kraken",
+        "status": "negative"
+      }
+    ]
+  },
+  "fees": {
+    "intro": "<strong>1.5%</strong>"
+  },
+  "dca": "Yes",
+  "payment_methods": [
+    "SEPA",
+    "Bank Transfer"
+  ],
+  "custody_control": "Non-custodial",
+  "kyc_required": "Yes, but only for purchases over €1.000",
+  "open_source": "No",
+  "user_experience": "0.0",
+  "interface": "Mobile only",
+  "app_ratings": {
+    "ios": "4.2",
+    "android": "?"
+  },
+  "profile": "David Knezic",
+  "description": "Pocket Bitcoin stands out with its non-custodial model, sending Bitcoin directly to your wallet without holding funds, and a no-account, KYC-light approach for daily buys up to €1,000 | 0.01 BTC | 0.01 BTC, prioritizing privacy. It offers one-off or recurring buys via bank transfer, with a 1.5% fee and no withdrawal fees, supporting select hardware wallets like Trezor and Ledger with message signing.\\n\\nPocket's mission is to make Bitcoin ownership frictionless and private, promoting self-custody without complexity and with a vision to expand to a dozen more European countries and enhance wallet integrations.\\n\\nThe mobile app, and the web portal for managing orders and wallet settings, are praised for their simple interface and fast transactions, but some find the fees slightly high.",
+  "founded_in": "2020",
+  "website": "https://pocketbitcoin.com",
+  "countries": [
+    "EU"
+  ]
+}

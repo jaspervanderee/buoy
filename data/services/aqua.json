@@ -1,0 +1,61 @@
+{
+  "name": "Aqua",
+  "category": "Spend Bitcoin",
+  "type_of_platform": "Hot Wallet",
+  "faqs": [
+    {
+      "q": "What is Aqua Wallet?",
+      "a": "Aqua is a non‑custodial mobile wallet supporting Bitcoin, Lightning and Liquid in one interface for easy saving and spending."
+    },
+    {
+      "q": "Does Aqua require KYC?",
+      "a": "No. Aqua is a self‑custodial wallet and does not require KYC to use the app."
+    },
+    {
+      "q": "Is Aqua open source?",
+      "a": "Yes. Aqua is open‑source and welcomes community review and contributions."
+    }
+  ],
+  "supported_network": "Bitcoin + Lightning + Liquid",
+  "features": {
+    "WW": [
+      {
+        "text": "Bitcoin, Lightning & Liquid wallet",
+        "status": "positive"
+      },
+      {
+        "text": "Privacy benefits with confidential transactions on Liquid",
+        "status": "positive"
+      },
+      {
+        "text": "Built-in swap between on-chain and Liquid",
+        "status": "positive"
+      },
+      {
+        "text": "Higher Lightning fees",
+        "status": "negative"
+      },
+      {
+        "text": "Relies on Boltz for Lightning swaps",
+        "status": "negative"
+      }
+    ]
+  },
+  "custody_control": "Non-custodial",
+  "kyc_required": "No",
+  "recovery_method": "12-word seed + optional passphrase",
+  "open_source": "Yes",
+  "user_experience": "0.0",
+  "interface": "Mobile only",
+  "app_ratings": {
+    "ios": 4.3,
+    "android": 4.4
+  },
+  "profile": "Samson Mow",
+  "description": "Aqua Wallet, originally launched by Blockstream, later taken over by Jan3, is a mobile app designed for easy saving and spending in Bitcoin. It's a non-custodial, open-source wallet using a 12-word seed phrase for user control, and a unified balance across on-chain Bitcoin, Lightning, and Liquid Network transactions, defaulting to Liquid for low-fee, private payments. It offers sending, receiving, and swapping Bitcoin (on-chain to Liquid or vice versa) but for Lightning payments they rely on Boltz, a third party which can occur higher swap fees. This might affect daily usability for some users.\\n\\nThe app has an intuitive interface - although the design could use some work - and offers seamless swaps between on-chain Bitcoin and Lightning or Liquid.\\n\\nJAN3's mission is to onboard billions to Bitcoin, with a vision to expand Aqua with debit card integration, credit/loans, and global on/off-ramps. Beginners love its simple setup and versatility, but some find stablecoin options and swap fees confusing.",
+  "founded_in": "2024",
+  "website": "https://aqua.net",
+  "countries": [
+    "WW"
+  ]
+}

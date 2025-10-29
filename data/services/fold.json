@@ -1,0 +1,80 @@
+{
+  "name": "Fold",
+  "category": "Spend Bitcoin",
+  "type_of_platform": "Bitcoin rewards card",
+  "faqs": [
+    {
+      "q": "What is Fold?",
+      "a": "Fold is a Bitcoin rewards app with a prepaid debit card and gift cards that earn sats on everyday spending."
+    },
+    {
+      "q": "Is Fold custodial?",
+      "a": "Fold holds balances in your account until you withdraw; rewards can be sent to your own wallet."
+    },
+    {
+      "q": "Where is Fold available?",
+      "a": "Most card features are U.S.‑only; gift cards and rewards access may vary by region."
+    }
+  ],
+  "supported_network": "Visa Debit Card, Credit Card, Giftcards",
+  "features": {
+    "WW": [
+      {
+        "text": "Bitcoin rewards on everyday spending",
+        "status": "positive"
+      },
+      {
+        "text": "Seamless integration of Bitcoin into traditional finance",
+        "status": "positive"
+      },
+      {
+        "text": "Most features US only",
+        "status": "negative"
+      },
+      {
+        "text": "Custodial until withdrawn",
+        "status": "negative"
+      },
+      {
+        "text": "High fees possible on some services",
+        "status": "negative"
+      }
+    ],
+    "US": [
+      {
+        "text": "Live on Bitcoin standard",
+        "status": "positive"
+      },
+      {
+        "text": "2% unlimited Bitcoin rewards on credit card",
+        "status": "positive"
+      },
+      {
+        "text": "Custodial",
+        "status": "negative"
+      },
+      {
+        "text": "KYC required",
+        "status": "negative"
+      }
+    ]
+  },
+  "custody_control": "Custodial (until withdrawn)",
+  "kyc_required": "Yes",
+  "recovery_method": "Custodial account",
+  "open_source": "No",
+  "user_experience": "0.0",
+  "interface": "Mobile only",
+  "app_ratings": {
+    "ios": 4.8,
+    "android": 4.6
+  },
+  "profile": "Will Reeves",
+  "description": "Fold aims to make Bitcoin accessible by integrating it into daily financial activities. It offers a Visa prepaid debit card, gift card purchases, and bill payments, all rewarding users with Bitcoin (sats). Users can also buy Bitcoin with low or no fees, depending on their plan, and deposit Bitcoin into their Fold account for insured custody.\\n\\nWhat sets Fold apart is how it combines traditional finance functions like bill pay and debit card usage with Bitcoin rewards in one simple interface. Users don't need to juggle multiple apps or wallets. Rewards can be earned on nearly every transaction, from daily spending to mortgage payments, with bonus sats for gift card purchases. Fold also allows external Bitcoin deposits and provides low-fee conversions from paycheck to BTC, making it easy to live on a Bitcoin standard while minimizing taxable events.\\n\\nUsers praise the ease of use, the ability to stack Bitcoin passively, and the clear design of the app. Some power users run most of their household finances through Fold, using the gift card section for groceries and shopping, and setting up recurring buys with leftover balances at the end of each month. The ability to earn rewards even on ACH bill pay is seen as a unique benefit.\\n\\nFold's vision is to be the ultimate platform for living on a Bitcoin standard, making it easy to earn, spend, and save Bitcoin while navigating a fiat world, giving users control and flexibility without the complexity of traditional exchanges or wallets.",
+  "founded_in": "2019",
+  "website": "https://foldapp.com",
+  "countries": [
+    "NA",
+    "EU"
+  ]
+}

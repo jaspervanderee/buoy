@@ -1,0 +1,91 @@
+{
+  "name": "AnchorWatch",
+  "category": "Store it safely",
+  "type_of_platform": "Collaborative custody",
+  "faqs": [
+    {
+      "q": "What is AnchorWatch?",
+      "a": "AnchorWatch provides insured, collaborative custody with multisig vaults designed for long‑term bitcoin storage and inheritance."
+    },
+    {
+      "q": "Is AnchorWatch insured?",
+      "a": "Yes. Policies are designed to cover bitcoin in AnchorWatch vaults with 1:1 insurance."
+    },
+    {
+      "q": "Does AnchorWatch require KYC?",
+      "a": "Yes. As a regulated provider AnchorWatch requires identity verification."
+    }
+  ],
+  "supported_network": "Bitcoin",
+  "features": {
+    "WW": [
+      {
+        "text": "Built-in estate planning",
+        "status": "positive"
+      },
+      {
+        "text": "1:1 Insurance Coverage",
+        "status": "positive"
+      },
+      {
+        "text": "Collaborative security",
+        "status": "positive"
+      },
+      {
+        "text": "US only",
+        "status": "negative"
+      },
+      {
+        "text": "Limited international access",
+        "status": "negative"
+      },
+      {
+        "text": "Custodial elements",
+        "status": "negative"
+      }
+    ],
+    "US": [
+      {
+        "text": "1:1 Insurance Coverage",
+        "status": "positive"
+      },
+      {
+        "text": "Estate planning tools",
+        "status": "positive"
+      },
+      {
+        "text": "Regulated custody",
+        "status": "positive"
+      },
+      {
+        "text": "Custodial",
+        "status": "negative"
+      },
+      {
+        "text": "KYC required",
+        "status": "negative"
+      },
+      {
+        "text": "Higher fees possible",
+        "status": "negative"
+      }
+    ]
+  },
+  "price": "Custom pricing",
+  "custody_control": "Collaborative custody (insurance multisig)",
+  "recovery_method": "Time-locked multisig recovery",
+  "open_source": "No",
+  "node_connect": "No",
+  "user_experience": "0.0",
+  "interface": "Desktop only",
+  "app_ratings": {
+    "text": "No app available"
+  },
+  "profile": "Robert Hamilton & Becca Rubenfeld",
+  "description": "AnchorWatch is a U.S.-based bitcoin custody and insurance provider trying to bridge traditional insurance with Bitcoin-native custody, delivering peace of mind by offering an elegant, turnkey solution for long‑term bitcoin holders and corporate treasuries seeking secure, insured, and inheritance‑ready custody.\n\nWhat separates AnchorWatch is their unique integration of protocol-level multisig vaults with time-locked recovery and insurance. Users hold a multi-signature key set alongside AnchorWatch; both are required to sign transactions, and over time additional recovery mechanisms activate to handle key-loss, death, or coercion scenarios.\n\nUser reviews and discussions (e.g. from the Build With Bitcoin transcript) emphasize AnchorWatch's layered approach: the combination of vault tech and insurance addresses both technical and human vulnerabilities. The service also supports inheritance planning—time-locked access for heirs without cumbersome \"treasure maps\". This focus on estate continuity is cited as a major differentiator, especially for non‑technical beneficiaries.\n\nTheir future vision includes expanding beyond U.S. customers, offering bespoke large-value enterprise policies, and exploring Bitcoin-denominated insurance.",
+  "founded_in": "2022",
+  "website": "https://anchorwatch.com",
+  "countries": [
+    "US"
+  ]
+}

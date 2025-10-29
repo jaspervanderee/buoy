@@ -1,0 +1,54 @@
+{
+  "name": "myNode",
+  "category": "Run my own node",
+  "type_of_platform": "Home server as software and / or hardware",
+  "faqs": [
+    {
+      "q": "What is myNode?",
+      "a": "myNode is a turnkey Bitcoin and Lightning node platform with a polished web UI and many integrated apps."
+    },
+    {
+      "q": "Is myNode free?",
+      "a": "Core software is free; premium features and supported hardware are available for a fee."
+    },
+    {
+      "q": "Which devices does myNode support?",
+      "a": "Raspberry Pi, DIY x86 hardware, and prebuilt myNode devices."
+    }
+  ],
+  "features": {
+    "WW": [
+      {
+        "text": "Full-featured node with many apps",
+        "status": "positive"
+      },
+      {
+        "text": "Supports Raspberry Pi",
+        "status": "positive"
+      },
+      {
+        "text": "Premium license for some features",
+        "status": "negative"
+      },
+      {
+        "text": "App store not as expansive",
+        "status": "negative"
+      },
+      {
+        "text": "Non-commercial license",
+        "status": "negative"
+      }
+    ]
+  },
+  "price": "Free software<br>$79 for premium software<br>$399 Model One hardware device<br>$599 Model Two hardware device",
+  "user_experience": "0.0",
+  "interface": "Desktop only",
+  "support": "Community forums and Premium support",
+  "profile": "Taylor Helsper",
+  "description": "MyNode is a turnkey Bitcoin and Lightning node platform that combines open‑source software with a polished, full‑featured web interface, making it accessible to both novices and advanced users.\\n\\nWhat sets MyNode apart is its integration of a wide array of Bitcoin tools all in one place—your own full node, Lightning (via LND), Electrum server, block explorers, wallet pairing tools and more—coordinated through an intuitive UI.\\n\\nThe target audience ranges from beginners who can get started with simple, plug‑and‑play hardware builds or prebuilt units, to seasoned users. The Premium+ hardware options (Model One/Two) bundle top‑spec hardware with built‑in support and warranty, while DIYers can start with the free software and chosen hardware.\\n\\nLooking ahead, MyNode continues to expand its ecosystem with new beta apps and features plus consistent rapid updates and community‑driven development. Their vision is clear: empower individuals to run a sovereign, private, and all‑in‑one Bitcoin infrastructure at home, easily and robustly, with ongoing innovation and support.",
+  "founded_in": "2019",
+  "website": "https://mynodebtc.com",
+  "countries": [
+    "WW"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "name": "Breez",
+  "category": "Spend Bitcoin",
+  "type_of_platform": "Hot Wallet",
+  "faqs": [
+    {
+      "q": "What is Breez Wallet?",
+      "a": "Breez is a non‑custodial Lightning wallet with PoS mode and a podcast player for streaming sats to creators."
+    },
+    {
+      "q": "Does Breez require cloud backup?",
+      "a": "Yes. Breez uses a cloud backup to restore your wallet and Lightning channels, which some users prefer for convenience."
+    },
+    {
+      "q": "Is Breez open source?",
+      "a": "Yes. Breez is open‑source and actively developed with the community."
+    }
+  ],
+  "supported_network": "Bitcoin + Lightning",
+  "features": {
+    "WW": [
+      {
+        "text": "Self-custodial",
+        "status": "positive"
+      },
+      {
+        "text": "Podcast player with streaming sats",
+        "status": "positive"
+      },
+      {
+        "text": "Point-of-Sale mode for merchants",
+        "status": "positive"
+      },
+      {
+        "text": "In beta",
+        "status": "negative"
+      },
+      {
+        "text": "Cloud backup required for recovery",
+        "status": "negative"
+      },
+      {
+        "text": "Not ideal for micro payments (<100 sats)",
+        "status": "negative"
+      }
+    ]
+  },
+  "custody_control": "Non-custodial: you hold your own keys",
+  "kyc_required": "No",
+  "open_source": "Yes",
+  "recovery_method": "Seed phrase + cloud backup",
+  "user_experience": "0.0",
+  "interface": "Mobile only",
+  "app_ratings": {
+    "ios": 3.7,
+    "android": "N/A"
+  },
+  "profile": "Roy Sheinfeld",
+  "description": "Breez (Misty Breez) focuses on making Lightning Network payments fast and easy. It stands out with its non-custodial mobile app, letting users control their Bitcoin, and a unique Point-of-Sale mode for merchants to accept instant payments. It offers sending, receiving, and storing Bitcoin via Lightning, plus a podcast player to support creators with Bitcoin tips.\\n\\nThe app has a simple interface and no-setup payments, though some users report issues with cloud backups and wallet restoration.\\n\\nBreez's mission is to drive Bitcoin adoption for everyday use, with a vision to expand Lightning payments across apps using its Breez SDK, a free developer tool. The app currently suits everyday payments rather than very small transactions. Beginners love its ease and merchant tools, but some find technical issues frustrating.",
+  "founded_in": "2018",
+  "website": "https://breez.technology",
+  "countries": [
+    "WW"
+  ]
+}

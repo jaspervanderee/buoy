@@ -1,0 +1,426 @@
+{
+  "name": "Phoenix",
+  "category": "Spend Bitcoin",
+  "type_of_platform": "Hot Wallet",
+  "faqs": [
+    {
+      "q": "What fees apply when I pay over Lightning?",
+      "a": "Phoenix charges 0.4% plus 4 sat for every Lightning payment you send."
+    },
+    {
+      "q": "What happens if I lack inbound liquidity when receiving?",
+      "a": "Phoenix may open or splice a channel and charge 1% of the amount plus the mining fee when incoming liquidity is insufficient."
+    },
+    {
+      "q": "How private are Phoenix payments today?",
+      "a": "ACINQ sees the destination and amount of your payments for now, although privacy upgrades are planned."
+    },
+    {
+      "q": "How do on-chain deposits work in Phoenix?",
+      "a": "Phoenix gives you a Bitcoin address; after three confirmations the app swaps the funds to Lightning if fees are below your limit."
+    },
+    {
+      "q": "How can I restore Phoenix after losing my phone?",
+      "a": "Install Phoenix, choose Restore my wallet, enter the 12-word seed, and let channels resync; Android history will not migrate."
+    }
+  ],
+  "supported_network": "Lightning only, but you can receive and send on-chain using swaps",
+  "features": {
+    "WW": [
+      {
+        "text": "Seamless Lightning experience",
+        "status": "positive"
+      },
+      {
+        "text": "Runs Lightning node on device",
+        "status": "positive"
+      },
+      {
+        "text": "Option to connect your own node",
+        "status": "positive"
+      },
+      {
+        "text": "High on-chain fees for channel creation",
+        "status": "negative"
+      }
+    ]
+  },
+  "custody_control": "Non-custodial (runs Lightning node)",
+  "kyc_required": "No",
+  "recovery_method": "Seed phrase + static channel backup",
+  "open_source": "Yes",
+  "user_experience": "0.0",
+  "interface": "Mobile only",
+  "app_ratings": {
+    "ios": 4.2,
+    "android": 4.3
+  },
+  "profile": "Fabrice Drouin & Pierre-Marie Padiou",
+  "description": "Phoenix is designed to provide a simple, self-custodial experience for fast, low-cost Lightning transactions directly on mobile devices, emphasizing ease of use for beginners.\\n\\nPhoenix runs a native Lightning node on the user's device, connecting to ACINQ's node for automated channel management, eliminating the need for swaps and reducing fees for direct Lightning payments. Additionally, Phoenix allows connections to a user's own Bitcoin node for enhanced privacy.\\n\\nFor beginners, Phoenix's intuitive UI, low-cost Lightning transactions, and self-custodial design make it ideal for those starting with Bitcoin, though channel size limitations may require occasional fee adjustments for frequent receivers. Compared to Breez's merchant-centric features or Aqua's Liquid-focused versatility, Phoenix excels in delivering a straightforward, cost-effective Lightning experience with robust privacy options.",
+  "founded_in": "2019",
+  "website": "https://phoenix.acinq.co",
+  "links": {
+    "ios": "https://apps.apple.com/app/phoenix-wallet/id1544097028",
+    "android": "https://play.google.com/store/apps/details?id=fr.acinq.phoenix.mainnet"
+  },
+  "countries": [
+    "WW"
+  ],
+  "trust_chips": [
+    {
+      "text": "Non-custodial",
+      "status": "positive"
+    },
+    {
+      "text": "Open source",
+      "status": "positive"
+    },
+    {
+      "text": "No KYC",
+      "status": "positive"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "Mobile-first Lightning payments with self-custody and automated channel care.",
+    "consider_if": "You expect to receive euro Lightning tips without running your own node.",
+    "not_ideal_when": "You need desktop access or stronger payment privacy."
+  },
+  "howto": {
+    "title": "Getting started with Phoenix",
+    "steps": [
+      {
+        "id": "setup-install",
+        "title": "1. Install and secure your wallet",
+        "chips": {
+          "time": "~5 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Install Phoenix from App Store or Google Play",
+          "Write down your 12-word seed on paper and store it away from your device",
+          "Enable biometric lock on your phone"
+        ],
+        "gotcha": "Never upload the seed to email, chat apps, or cloud drives."
+      },
+      {
+        "id": "setup-receive",
+        "title": "2. Receive your first sats",
+        "chips": {
+          "time": "~2 min",
+          "cost": "~1,000 sat + mining fee (first time)",
+          "risk": "Low"
+        },
+        "actions": [
+          "Tap Receive to generate a Lightning invoice",
+          "Share the QR code with your payer",
+          "Keep the app awake until payment settles"
+        ],
+        "gotcha": "First payment may open a channel and charge ~1,000 sat plus current mining fees if the network is busy."
+      },
+      {
+        "id": "setup-pay",
+        "title": "3. Make a payment",
+        "chips": {
+          "time": "~1 min",
+          "cost": "0.4% + 4 sat",
+          "risk": "Low"
+        },
+        "actions": [
+          "Tap Send and scan or paste a Lightning invoice",
+          "Review the amount and memo, then confirm",
+          "Wait for the success banner (Phoenix retries automatically if needed)"
+        ],
+        "gotcha": "For large invoices, adjust the maximum acceptable fee in Settings → Channel management before sending."
+      }
+    ],
+    "totalTime": null
+  },
+  "fees_scenarios": [
+    {
+      "id": "fees-pay",
+      "title": "Pay someone",
+      "cost_today": "0.4% of the amount + 4 sat",
+      "what_happens": "Your payment routes over Lightning.",
+      "how_to_minimize": "Avoid lots of tiny payments when the network is busy.",
+      "learn_more": "Every outgoing Lightning payment includes this fee. The 4 sat is Phoenix's service charge, and the 0.4% covers routing through the Lightning network."
+    },
+    {
+      "id": "fees-first-receive",
+      "title": "First time you receive",
+      "cost_today": "≈1,000 sat channel creation + current mining fee",
+      "what_happens": "Phoenix opens a Lightning channel so you can receive payments.",
+      "how_to_minimize": "Wait for low on-chain fees (check mempool.space); receive when network is quiet.",
+      "learn_more": "Your first Lightning receive triggers channel creation. Phoenix must commit an on-chain transaction to open the channel, which incurs the current Bitcoin mining fee plus a 1,000 sat setup charge."
+    },
+    {
+      "id": "fees-splice",
+      "title": "Big receive",
+      "cost_today": "1% of the amount + mining fee (splice-in)",
+      "what_happens": "Phoenix resizes your channel to accept more sats than current capacity allows.",
+      "how_to_minimize": "Consolidate into fewer, larger receives; spend down balance before receiving large amounts.",
+      "learn_more": "When incoming payment exceeds available channel capacity, Phoenix performs a splice-in operation. This on-chain transaction increases your channel size and costs 1% of the received amount plus current mining fees."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "Does Phoenix charge me every time I receive?",
+      "a": "Not always. Once your channel exists and has room, small Lightning receives can be free aside from routing."
+    },
+    {
+      "q": "When will Phoenix open or resize a channel?",
+      "a": "On your first Lightning receive or when more inbound capacity is needed."
+    },
+    {
+      "q": "How do I avoid the 1% splice fee?",
+      "a": "Consolidate larger receives and avoid on-chain fee spikes."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-channel-open",
+      "term": "Channel open",
+      "definition": "Creates your first Lightning channel so you can receive."
+    },
+    {
+      "id": "term-splice-in",
+      "term": "Splice-in",
+      "definition": "Increases channel capacity to take larger receives."
+    },
+    {
+      "id": "term-mining-fee",
+      "term": "Mining fee",
+      "definition": "On-chain fee paid when opening/resizing; varies with network demand."
+    }
+  ],
+  "privacy_notes": {
+    "data_flows": [
+      "Phoenix connects to ACINQ’s server to run Lightning for you. Today, ACINQ can see who you pay and how much.",
+      "You can connect Phoenix to your own Electrum server to reduce what third parties can learn about your activity."
+    ],
+    "recovery_drill": [
+      "Your channel states are encrypted and saved with ACINQ so you can restore using your 12-word seed.",
+      "The seed lives only on your phone—ACINQ can’t recover it for you if you lose it. ",
+      "If ACINQ ever disappears, go to Settings → Danger zone → Force close channels; funds return on-chain after ~720 blocks.",
+      "Keep Phoenix installed until the forced-closed coins show in the Final wallet view, then sweep them."
+    ],
+    "country_caveats": [
+      "Availability and funding options vary by country—check your app store or on-ramp.",
+      "Install only from the official publisher in your app store; verify the developer name."
+    ]
+  },
+  "privacy": {
+    "section_title": "Privacy & Safety",
+    "data_flows": [
+      "Phoenix connects to ACINQ's Lightning node to route payments. Today, ACINQ can see who you pay and the amount needed to deliver your payment.",
+      "On-chain transactions are public by design; reuse of addresses can link activity.",
+      "Use your own Electrum server (Settings) to limit what third parties learn about your addresses and balances.",
+      "Lightning peers still observe timing/amount metadata needed for routing."
+    ],
+    "data_flows_do": "Connect your own Electrum server if privacy matters.",
+    "data_flows_dont": "Assume Lightning is fully private. Some metadata still leaks via peers.",
+    "recovery": [
+      "Your 12-word seed lives only on your phone. ACINQ can't recover it for you. Channel states are encrypted and synced so they can be restored.",
+      "Standard restore: install Phoenix → Restore my wallet → enter seed → keep the phone online while channels resync.",
+      "If Phoenix/ACINQ is unavailable: Settings → Danger zone → Force close channels. After ~720 blocks, funds appear in the Final wallet; then sweep on-chain."
+    ],
+    "recovery_do": "Store your seed offline and test a small restore when convenient.",
+    "recovery_dont": "Run Phoenix on two phones at the same time.",
+    "region": [
+      "App-store availability and funding options vary by country—check your local listing and on-ramp.",
+      "Install only from the official developer (ACINQ) on Apple App Store or Google Play.",
+      "Avoid third-party APKs; they're a common source of malware."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Does Phoenix work with my own node or Electrum?",
+        "a": "Yes. Connect your Electrum server to improve privacy; Lightning peers still see routing metadata."
+      },
+      {
+        "q": "Can ACINQ recover my wallet if I lose the seed?",
+        "a": "No. The seed never leaves your device."
+      },
+      {
+        "q": "What if ACINQ disappears?",
+        "a": "Use Force close; funds appear in the Final wallet after confirmations, then sweep."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "Electrum server",
+        "def": "A server your wallet queries for balances/tx history. Running your own improves privacy."
+      },
+      {
+        "term": "Force close",
+        "def": "Shuts a Lightning channel on-chain without cooperation; slower and higher fees."
+      },
+      {
+        "term": "Final wallet",
+        "def": "On-chain funds after channels close; sweep when confirmed."
+      }
+    ],
+    "keywords": [
+      "Phoenix privacy",
+      "ACINQ",
+      "Electrum server",
+      "Phoenix lost phone",
+      "force close channels",
+      "Final wallet",
+      "Phoenix availability"
+    ]
+  },
+  "compat_heading": "What this Phoenix wallet can or can't do",
+  "compat_tiles": [
+    {
+      "id": "lnurl-pay",
+      "title": "Pay any Lightning QR",
+      "benefit": "Scan a Lightning QR code; the wallet fetches the invoice for you.",
+      "status": "works"
+    },
+    {
+      "id": "lnurl-withdraw",
+      "title": "Withdraw from services",
+      "benefit": "Claim funds from an exchange or faucet using a single tap.",
+      "status": "works"
+    },
+    {
+      "id": "lightning-address",
+      "title": "Lightning addresses",
+      "benefit": "Send to user@domain.com instead of a long invoice.",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "lnurl-pay",
+      "why": "Fewer steps necessary when tipping or buying products online.",
+      "try": [
+        "Scan a Lightning QR on a website or in another app",
+        "Review the amount and description",
+        "Approve the payment"
+      ],
+      "gotcha": "Some QRs are on-chain Bitcoin addresses; look for 'Lightning' or 'LNURL' labels to confirm."
+    },
+    {
+      "id": "lnurl-withdraw",
+      "why": "Faster than generating an invoice yourself and pasting it into a web form.",
+      "try": [
+        "Tap or scan the withdrawal QR from the service",
+        "Confirm the amount in Phoenix",
+        "Funds appear in your wallet instantly"
+      ],
+      "gotcha": "The service sets the amount; you can't request more than they offer."
+    },
+    {
+      "id": "lightning-address",
+      "why": "Much easier to share and remember than a traditional Lightning invoice.",
+      "try": [
+        "Ask a friend for their Lightning address",
+        "Enter it in Phoenix's Send field",
+        "Specify the amount and send"
+      ],
+      "gotcha": "The recipient's server must be online to generate the invoice; if it's down, the payment fails."
+    }
+  ],
+  "migration": [
+    {
+      "id": "restore-same-wallet",
+      "title": "Restore Phoenix on a new phone",
+      "choose": "When you get a new device and want to keep using Phoenix.",
+      "time": "~10 min",
+      "cost": "Free",
+      "risk": "Low",
+      "steps": [
+        "Install Phoenix on the new phone and verify it's the official app from ACINQ.",
+        "Choose Restore my wallet, enter your 12-word seed, and wait for channels to resync.",
+        "Remove Phoenix from the old device once the new install works; never run both simultaneously."
+      ],
+      "tips": "Don't run Phoenix on two phones at the same time: channel states will conflict. Keep the new device online during resync; it may take a few minutes.",
+      "gotcha": "Android transaction history won't migrate; only your balance and channels restore."
+    },
+    {
+      "id": "move-from-another-wallet",
+      "title": "Another wallet → to Phoenix",
+      "choose": "When you want to start using Phoenix but have funds in a different Lightning wallet.",
+      "time": "~5–15 min",
+      "cost": "Routing fees",
+      "risk": "Low",
+      "steps": [
+        "Install Phoenix and complete the initial setup to generate your wallet and first channel.",
+        "In Phoenix, tap Receive and generate a Lightning invoice for the amount you want to transfer.",
+        "In your old wallet, send the Lightning payment to the Phoenix invoice. Start with a small test (~10,000 sats) first."
+      ],
+      "tips": "Always test with a small amount first. Phoenix will automatically open a channel if needed (costs ~1,000 sat + mining fee). Keep both apps open during the transfer.",
+      "gotcha": "Your old wallet's channel balance can't be transferred directly—you must send payments to Phoenix, which takes a minute or two."
+    },
+    {
+      "id": "move-to-onchain",
+      "title": "Phoenix → to on-chain wallet",
+      "choose": "When you want to move Bitcoin for long-term storage.",
+      "time": "~1–6 hours",
+      "cost": "Mining fee",
+      "risk": "Low",
+      "steps": [
+        "Open Phoenix, go to Settings > Close channels, and confirm cooperative close (cheapest way to exit).",
+        "Wait for closing transactions to confirm (1–6 blocks); funds appear in Phoenix's Final wallet view.",
+        "Sweep coins to your preferred on-chain wallet once confirmed."
+      ],
+      "tips": "Prefer cooperative close over force close; it's faster and cheaper. Check current fees before closing; wait for low-fee periods to save sats.",
+      "gotcha": "Forced close can take up to 5 days and costs more. Only use if ACINQ is offline."
+    },
+    {
+      "id": "switch-to-another-wallet",
+      "title": "Phoenix → to another Lightning wallet",
+      "choose": "When you want to try a different Lightning wallet and move your Phoenix balance.",
+      "time": "~15–45 min",
+      "cost": "Routing fees",
+      "risk": "Low",
+      "steps": [
+        "Install your new wallet and complete its backup process.",
+        "Send a small test payment (~10,000 sats) from Phoenix to the new wallet to verify it works.",
+        "Close Phoenix channels (Settings > Close channels) and sweep remaining funds once confirmed."
+      ],
+      "tips": "Test first with a small amount (~10,000 sats) to catch issues before moving everything. Verify the new wallet's recovery model matches your security preferences."
+    }
+  ],
+  "anchors": {
+    "setup": "#setup",
+    "fees": "#fees",
+    "privacy": "#privacy",
+    "migration": "#migration",
+    "faq": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-10-03",
+  "trust": {
+    "cards": [
+      {
+        "id": "update",
+        "fact": "October 2025",
+        "link_text": "Store page",
+        "link_url": "https://apps.apple.com/app/phoenix-wallet/id1544097028"
+      },
+      {
+        "id": "publisher",
+        "fact": "ACINQ",
+        "link_text": "Verify",
+        "link_url": "https://apps.apple.com/developer/acinq/id1463814067"
+      },
+      {
+        "id": "source",
+        "fact": "Yes",
+        "link_text": "Repo",
+        "link_url": "https://github.com/ACINQ/phoenix"
+      },
+      {
+        "id": "activity",
+        "fact": "Active in last 30 days",
+        "link_text": "Commits",
+        "link_url": "https://github.com/ACINQ/phoenix/commits/master"
+      }
+    ]
+  }
+}

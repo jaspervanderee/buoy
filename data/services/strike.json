@@ -1,0 +1,120 @@
+{
+  "name": "Strike",
+  "category": "Buy Bitcoin",
+  "type_of_platform": "Exchange",
+  "faqs": [
+    {
+      "q": "Is Strike self‑custodial?",
+      "a": "No. Strike is custodial, but you can withdraw on‑chain or via Lightning for free to self‑custody."
+    },
+    {
+      "q": "Where is Strike available?",
+      "a": "Support focuses on North America, Europe, South America and Australia; some features like Bill Pay are U.S. only."
+    },
+    {
+      "q": "What are Strike fees?",
+      "a": "Trading fees follow a tiered volume schedule; recurring orders are free after setup."
+    }
+  ],
+  "fees": {
+    "intro": "Based on monthly trading volume",
+    "tiers": [
+      {
+        "range": "up to $250",
+        "fee": "0.99%"
+      },
+      {
+        "range": "$250 - $2,000",
+        "fee": "0.95%"
+      },
+      {
+        "range": "$2,000 - $5,000",
+        "fee": "0.89%"
+      },
+      {
+        "range": "$5,000 - $50,000",
+        "fee": "0.79%"
+      },
+      {
+        "range": "$50,000 - $500,000",
+        "fee": "0.69%"
+      },
+      {
+        "range": "$500,000 - $5,000,000",
+        "fee": "0.59%"
+      },
+      {
+        "range": "$5,000,000 - $15,000,000",
+        "fee": "0.49%"
+      },
+      {
+        "range": "$15,000,000 and over",
+        "fee": "0.39%"
+      }
+    ]
+  },
+  "dca": "Yes: Recurring orders are free",
+  "payment_methods": [
+    "Bank Transfer",
+    "Debit Card",
+    "Cash App"
+  ],
+  "custody_control": "Custodial",
+  "kyc_required": "Yes",
+  "open_source": "No",
+  "user_experience": "0.0",
+  "interface": "Mobile only",
+  "app_ratings": {
+    "ios": 4.8,
+    "android": 4.5
+  },
+  "profile": "Jack Mallers",
+  "description": "Strike's goal is to make worldwide payments in Bitcoin as easy as possible, it offers free on‑chain and Lightning withdrawals, making it flexible and cost‑effective to hold your Bitcoin in self-custody. Its recurring buy feature at no fee costs after the initial setup, makes DCA (dollar‑cost averaging) simple and efficient. Strike also functions as a Lightning wallet, enabling quick micropayments with features like unique payment links and cash-to-Bitcoin transfers, and offers responsive customer support praised by users.\n\nStrike's vision goes beyond being merely another payment app. It aims to democratize financial access, reduce dependency on traditional banks, and promote financial sovereignty by empowering individuals to manage their money independently. Their user-friendly app interface, available on both iOS and Android, highlights simplicity and accessibility with a minimalistic design.\n\nIn the US, Strike now offers a powerful Bill Pay feature aiming to reduce reliance on fiat currency and combat inflation by leveraging Bitcoin's appreciating value, with automated tax reporting to simplify the process.\n\nAnother Strike feature is the Bitcoin‑backed loan that lets users pledge Bitcoin as collateral and borrow USD with no origination or early repayment fees. Loans can be repaid anytime without penalties.",
+  "founded_in": "2020",
+  "website": "https://strike.me",
+  "features": {
+    "WW": [
+      {
+        "text": "Free recurring buys",
+        "status": "positive"
+      },
+      {
+        "text": "Free withdrawals to self-custody",
+        "status": "positive"
+      },
+      {
+        "text": "Limited utility non-US users",
+        "status": "negative"
+      },
+      {
+        "text": "KYC required",
+        "status": "negative"
+      }
+    ],
+    "US": [
+      {
+        "text": "Bill Payment in Bitcoin",
+        "status": "positive"
+      },
+      {
+        "text": "Free recurring buys",
+        "status": "positive"
+      },
+      {
+        "text": "Free withdrawals to self-custody",
+        "status": "positive"
+      },
+      {
+        "text": "Slow account verification",
+        "status": "negative"
+      },
+      {
+        "text": "KYC required",
+        "status": "negative"
+      }
+    ]
+  },
+  "countries": [
+    "WW"
+  ]
+}

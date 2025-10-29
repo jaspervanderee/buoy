@@ -1,0 +1,78 @@
+{
+  "name": "Hodlhodl",
+  "category": "Buy Bitcoin",
+  "type_of_platform": "P2P",
+  "faqs": [
+    {
+      "q": "What is Hodl Hodl?",
+      "a": "Hodl Hodl is a peer‑to‑peer Bitcoin marketplace using multisig escrow so you trade directly with others without custodial risk."
+    },
+    {
+      "q": "Does Hodl Hodl require KYC?",
+      "a": "No. You can trade without KYC, though building reputation improves pricing and limits."
+    },
+    {
+      "q": "What payment methods are supported?",
+      "a": "Many methods are supported—bank transfer, Revolut, cash in person and more—depending on the seller and country."
+    }
+  ],
+  "features": {
+    "WW": [
+      {
+        "text": "No KYC",
+        "status": "positive"
+      },
+      {
+        "text": "Non-custodial",
+        "status": "positive"
+      },
+      {
+        "text": "Many payment methods",
+        "status": "positive"
+      },
+      {
+        "text": "Required to build reputation on closed platform",
+        "status": "negative"
+      },
+      {
+        "text": "High premium without reputation",
+        "status": "negative"
+      },
+      {
+        "text": "No recurring buys",
+        "status": "negative"
+      }
+    ]
+  },
+  "fees": {
+    "intro": "<strong>0.5%</strong>"
+  },
+  "dca": "No",
+  "payment_methods": [
+    "Bank Transfer",
+    "Revolut",
+    "Cash in Person",
+    "Wise",
+    "SEPA",
+    "PayPal"
+  ],
+  "custody_control": "Non-custodial",
+  "kyc_required": "No",
+  "open_source": "No",
+  "user_experience": "0.0",
+  "interface": "Desktop only",
+  "app_ratings": {
+    "text": "No app available"
+  },
+  "profile": "Max Keidun",
+  "description": "Hodl Hodl is a peer-to-peer (p2p) Bitcoin trading and lending platform based in London that stands out by being fully non-custodial and privacy-focused. Instead of holding funds, it uses multisig escrow contracts, so users retain control of their Bitcoin until both parties agree to release it, shifting trust from the exchange to individual traders, as trades happen directly between user's Bitcoin wallets rather than a centralized entity.\\n\\nWhat separates Hodl Hodl from custodial platforms is its ability to let people trade without KYC (Know Your Customer) or central control, supporting over 100 currencies and various payment methods including cash, bank transfers, even PayPal. You do pay a higher premium on Bitcoin set by the seller, especially when you're a beginner and have to build a reputation on the platform.\\n\\nThe web-based interface is beginner-friendly, praised by users for easy signup without mandatory ID checks, though users note clunky navigation and scam risks from unresponsive traders. To unlock significant transaction amounts, users must build trust through reviews and completed trades, as higher limits depend on a strong reputation score.\\n\\nHodl Hodl's vision is to foster a decentralized Bitcoin economy, ideal for beginners who want self-custody and anonymity, but users should be careful, stay informed, and follow best practices during trades.",
+  "founded_in": "2018",
+  "website": "https://hodlhodl.com",
+  "countries": [
+    "SA",
+    "EU",
+    "AF",
+    "AS",
+    "OC"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "name": "Bisq",
+  "category": "Buy Bitcoin",
+  "type_of_platform": "P2P",
+  "faqs": [
+    {
+      "q": "What is Bisq?",
+      "a": "Bisq is a decentralized, open‑source desktop app for buying and selling bitcoin directly with other people over Tor using a non‑custodial wallet and no sign‑ups or KYC."
+    },
+    {
+      "q": "Does Bisq require KYC?",
+      "a": "No. Bisq has no accounts or sign‑ups and does not require KYC; trades are peer‑to‑peer with multisig security deposits."
+    },
+    {
+      "q": "How are trades secured?",
+      "a": "Each trade locks refundable security deposits from both parties in a 2‑of‑2 multisig escrow; account‑age rules and signing raise limits over time to reduce chargeback risk."
+    }
+  ],
+  "supported_network": "Bitcoin",
+  "features": {
+    "WW": [
+      {
+        "text": "No KYC",
+        "status": "positive"
+      },
+      {
+        "text": "Non‑custodial with 2‑of‑2 multisig deposits",
+        "status": "positive"
+      },
+      {
+        "text": "All traffic over Tor",
+        "status": "positive"
+      },
+      {
+        "text": "Many fiat payment methods",
+        "status": "positive"
+      },
+      {
+        "text": "Requires some BTC for fees/deposits",
+        "status": "negative"
+      },
+      {
+        "text": "Liquidity and spreads vary by region",
+        "status": "negative"
+      },
+      {
+        "text": "Desktop only; settlement depends on fiat method",
+        "status": "negative"
+      }
+    ]
+  },
+  "fees": {
+    "intro": "Variable; lower if paid in BSQ"
+  },
+  "dca": "No",
+  "payment_methods": [
+    "Bank Transfer",
+    "Revolut",
+    "Wise",
+    "Cash in Person",
+    "SEPA"
+  ],
+  "custody_control": "Non-custodial",
+  "kyc_required": "No",
+  "open_source": "Yes",
+  "user_experience": "0.0",
+  "interface": "Desktop only",
+  "app_ratings": {
+    "text": "No app available"
+  },
+  "profile": "Manfred Karrer",
+  "description": "Bisq is a decentralized, open‑source desktop app created by Manfred Karrer for buying and selling bitcoin directly with other people. It routes all traffic over Tor, uses a built‑in non‑custodial wallet and has no sign‑ups or KYC. Trades span many national currencies and payment rails, and the project is funded and governed through a community DAO with the BSQ token rather than a company.\n\nWhat separates Bisq is its security and incentive design for fiat‑to‑BTC P2P. Each trade locks both sides’ refundable security deposits in a 2‑of‑2 multisig escrow. Account‑age and signing rules gradually raise per‑trade limits to reduce chargeback risk, and a small amount of bitcoin is required up front to cover fees and deposits. Trading fees are transparent and lower if paid in BSQ. It’s desktop‑first by design; the mobile app is for notifications.\n\nUser feedback highlights Bisq’s strengths in privacy, censorship resistance and self‑custody, along with clear, step‑by‑step trade flows and a multi‑stage dispute process if things go wrong.\n\nThe trade‑offs are thinner liquidity depending on region, wider spreads than convenience brokers, the need to already have a little bitcoin, and settlement times tied to the chosen fiat method and counterparties’ availability. Some users note that disputes can take time, and that desktop performance varies by setup.\n\nBisq’s target audience is privacy‑minded bitcoiners and anyone who needs a resilient, non‑custodial fiat ramp. The roadmap is to keep the marketplace permissionless while improving UX and resilience: Bisq 2 introduces a simpler “Bisq Easy” path alongside the familiar multisig protocol, support for multiple privacy networks, and optional use of Liquid for faster, lower‑fee settlement.",
+  "founded_in": "2014",
+  "website": "https://bisq.network",
+  "countries": [
+    "WW"
+  ]
+}

@@ -3237,7 +3237,6 @@ p, li, a {
 .micro-faqs {
   margin-top: 32px;
   padding-top: 24px;
-  border-top: 1px solid var(--border);
 }
 
 /* .micro-faqs__title - now using universal .section-subheading utility */
@@ -3501,7 +3500,6 @@ p, li, a {
 .fee-quick-answers {
   margin: 20px 0 0 0;
   padding-top: 20px;
-  border-top: 1px solid var(--border);
 }
 
 /* .fee-quick-answers__title - now using universal .section-subheading utility */

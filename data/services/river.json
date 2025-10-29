@@ -1,0 +1,103 @@
+{
+  "name": "River",
+  "category": "Buy Bitcoin",
+  "type_of_platform": "Exchange",
+  "faqs": [
+    {
+      "q": "What is River?",
+      "a": "River is a U.S. Bitcoin platform with full‑reserve custody, recurring buys and Lightning payments."
+    },
+    {
+      "q": "What are River fees?",
+      "a": "Fees are volume‑based with transparent tiers; recurring orders are free to set and manage."
+    },
+    {
+      "q": "Is River available outside the U.S.?",
+      "a": "River primarily serves the U.S.; availability outside the U.S. is limited."
+    }
+  ],
+  "features": {
+    "WW": [
+      {
+        "text": "Free recurring orders",
+        "status": "positive"
+      },
+      {
+        "text": "Earn interest on cash",
+        "status": "positive"
+      },
+      {
+        "text": "US only",
+        "status": "negative"
+      },
+      {
+        "text": "Incentivizes custodial saving",
+        "status": "negative"
+      },
+      {
+        "text": "KYC required",
+        "status": "negative"
+      }
+    ],
+    "US": [
+      {
+        "text": "Free recurring orders",
+        "status": "positive"
+      },
+      {
+        "text": "Earn interest on cash",
+        "status": "positive"
+      },
+      {
+        "text": "Incentivizes custodial saving",
+        "status": "negative"
+      },
+      {
+        "text": "KYC required",
+        "status": "negative"
+      }
+    ]
+  },
+  "fees": {
+    "intro": "Based on monthly trading volume",
+    "tiers": [
+      {
+        "range": "up to $1,000,000",
+        "fee": "1%"
+      },
+      {
+        "range": "$1,000,000 - $5,000,000",
+        "fee": "0.70%"
+      },
+      {
+        "range": "$5,000,000 - $15,000,000",
+        "fee": "0.40%"
+      },
+      {
+        "range": "$15,000,000 and up",
+        "fee": "0.25%"
+      }
+    ]
+  },
+  "dca": "Yes: Recurring orders are free",
+  "payment_methods": [
+    "Bank Transfer",
+    "Wire Transfer"
+  ],
+  "custody_control": "Custodial",
+  "kyc_required": "Yes",
+  "open_source": "No",
+  "user_experience": "0.0",
+  "interface": "Mobile only",
+  "app_ratings": {
+    "ios": 4.9,
+    "android": 4.8
+  },
+  "profile": "Alex Leishman",
+  "description": "River helps U.S. based customers invest in Bitcoin simply and securely with a focus on long-term saving. Unlike many platforms, River holds all Bitcoin in full-reserve cold storage with multi-signature security and gives users transparency through real-time proof of reserves. This might sound inviting to people who don't want to hold Bitcoin in self-custody but it also means more centralization within Bitcoin.\\n\\nIt supports things like inheritance planning, business accounts, and joint accounts, making it attractive for people who want to treat Bitcoin like serious money. Users can buy Bitcoin instantly, set up automated savings, and send Bitcoin via on-chain or Lightning payments. On top of that, you can earn 3.8% Bitcoin interest on your cash. The app has a clean interface and is designed to be easy to use, earning high ratings on both iOS and Android.\\n\\nRiver's mission is to provide a trusted, high-quality experience for people who want to build wealth in Bitcoin without distractions. It aims to give users full control and transparency. While some users note strict ID verification and limited availability outside the U.S., River is praised for its reliability, personal customer service, and focus on security.",
+  "founded_in": "2019",
+  "website": "https://river.com",
+  "countries": [
+    "US"
+  ]
+}

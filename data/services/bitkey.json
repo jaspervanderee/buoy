@@ -1,0 +1,59 @@
+{
+  "name": "Bitkey",
+  "category": "Store it safely",
+  "type_of_platform": "Physical device (hardware wallet) + mobile app",
+  "faqs": [
+    {
+      "q": "What is Bitkey?",
+      "a": "Bitkey is a 2‑of‑3 multisig wallet combining a mobile app, hardware device, and cloud backup to make self‑custody simple for beginners."
+    },
+    {
+      "q": "Do I need to memorize a seed phrase?",
+      "a": "No. Bitkey replaces traditional seed phrases with device pairing and an encrypted cloud backup for recovery."
+    },
+    {
+      "q": "Can I connect Bitkey to my own node?",
+      "a": "Yes. Bitkey supports connecting to your own Bitcoin node for improved privacy and verification."
+    }
+  ],
+  "supported_network": "Bitcoin",
+  "features": {
+    "WW": [
+      {
+        "text": "No seed phrase memorization",
+        "status": "positive"
+      },
+      {
+        "text": "Two-of-three key security model",
+        "status": "positive"
+      },
+      {
+        "text": "Easy to setup and use",
+        "status": "positive"
+      },
+      {
+        "text": "No screen on device",
+        "status": "negative"
+      }
+    ]
+  },
+  "price": "$149 for device",
+  "custody_control": "Shared custody: you hold two out of three keys",
+  "kyc_required": "No",
+  "recovery_method": "Cloud + device pairing",
+  "open_source": "No",
+  "node_connect": "Yes",
+  "user_experience": "0.0",
+  "interface": "Mobile only",
+  "app_ratings": {
+    "ios": 4.6,
+    "android": 4.2
+  },
+  "profile": "Jack Dorsey",
+  "description": "Bitkey is a mobile and hardware wallet developed by Block and designed for people new to Bitcoin who want simple, secure self-custody. The system combines a phone app with a wireless hardware device and an encrypted cloud backup, using a 2-of-3 multisig model to keep users in control of their funds. This structure allows users to recover access even if they lose their phone or the device, adding safety without relying on seed phrases.\\n\\nThe hardware, a sleek hexagonal device with a fingerprint sensor and NFC for phone pairing, eliminates the need for complex seed phrases, making it user-friendly. Sending Bitcoin requires both your phone and the Bitkey device, while smaller transactions can be approved using just your phone and Bitkey's server key if you've set spending limits. This balance appeals to people who want more security than just a phone wallet but don't want the complexity of most hardware wallets.\\n\\nUsers can set daily spending limits for app-only transactions, adding flexibility. The setup is quick, often taking just 5 minutes, and the app's clean interface is intuitive. The app allows Bitcoin purchases, shows balance in both sats and fiat, and offers recovery through trusted contacts in case of loss. It also lacks a screen, meaning you can't visually verify addresses on the hardware itself.\\n\\nBitkey's mission is to bring secure Bitcoin ownership to a global audience, especially those new to Bitcoin, by removing friction and avoiding the pitfalls of traditional backups. Their future vision includes broader international support, expanded wallet functionality, and continued emphasis on open-source development and user control. For beginners, Bitkey offers a straightforward, secure way to own Bitcoin with a polished user experience, though advanced users may want more flexibility.",
+  "founded_in": "2024",
+  "website": "https://bitkey.world",
+  "countries": [
+    "WW"
+  ]
+}
