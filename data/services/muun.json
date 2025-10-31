@@ -14,13 +14,21 @@
     {
       "q": "Is Muun open source?",
       "a": "Yes. Muun is open‑source and widely reviewed by the community."
+    },
+    {
+      "q": "What is Muun's 2-of-2 multisig model?",
+      "a": "Muun requires two signatures to spend: one from your phone and one from Muun's server, ensuring both security and convenience for daily transactions."
+    },
+    {
+      "q": "How can I restore Muun after losing my phone?",
+      "a": "Use your Emergency Kit PDF combined with your Recovery Code to restore full access; both pieces are required."
     }
   ],
   "supported_network": "Bitcoin + Lightning",
   "features": {
     "WW": [
       {
-        "text": "Auto chooses Lighting or on-chain",
+        "text": "Auto chooses Lightning or on-chain",
         "status": "positive"
       },
       {
@@ -45,7 +53,7 @@
       }
     ]
   },
-  "custody_control": "Non-custodial",
+  "custody_control": "Non-custodial (2-of-2 multisig)",
   "kyc_required": "No",
   "recovery_method": "Emergency kit with email and recovery code",
   "open_source": "Yes",
@@ -59,7 +67,367 @@
   "description": "Muun is a non-custodial Bitcoin and Lightning wallet focused on giving users full control with minimal complexity. It separates itself from other wallets through its unique security and backup model: users recover access using an email, password, and encrypted recovery code—removing the need to manage a traditional 12-word seed phrase. This makes onboarding easier for beginners without compromising self-custody.\\n\\nMuun's key differentiator is how it handles both Lightning and on-chain Bitcoin in one seamless balance. Users don't have to manage channels or worry about liquidity—Muun automates that behind the scenes. You can send or receive Bitcoin however you want, and the wallet figures out whether to use Lightning or regular Bitcoin based on speed, cost, and availability. This hybrid approach appeals to users who want convenience but still own their funds.\\n\\nUsers praise Muun for its simple design, clear recovery process, and solid privacy. It's especially recommended for first-time users who want a secure but low-friction experience. However, some note that Muun doesn't support Lightning addresses and that Lightning transactions may route via on-chain swaps. This means unpredictable fees, especially when onchain activity rises.\\n\\nMuun's mission is to provide a simple, secure way to use Bitcoin daily without needing technical knowledge. It prioritizes non-custodial access, user control, and cross-platform consistency, helping new users enter Bitcoin while retaining ownership from day one.",
   "founded_in": "2019",
   "website": "https://muun.com",
+  "links": {
+    "ios": "https://apps.apple.com/app/muun-bitcoin-wallet/id1482037683",
+    "android": "https://play.google.com/store/apps/details?id=io.muun.apollo"
+  },
   "countries": [
     "WW"
-  ]
+  ],
+  "trust_chips": [
+    {
+      "text": "Non-custodial",
+      "status": "positive"
+    },
+    {
+      "text": "Open source",
+      "status": "positive"
+    },
+    {
+      "text": "No KYC",
+      "status": "positive"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "Beginners who want automatic network selection and no manual channel management.",
+    "consider_if": "You want both Lightning and on-chain in one seamless balance without technical complexity.",
+    "not_ideal_when": "You need Lightning addresses or want predictable low fees during high on-chain activity."
+  },
+  "howto": {
+    "title": "Getting started with Muun",
+    "steps": [
+      {
+        "id": "setup-install",
+        "title": "1. Install and create Emergency Kit",
+        "chips": {
+          "time": "~10 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Install Muun from App Store or Google Play",
+          "Create your account with email and password",
+          "Generate and save your Emergency Kit PDF (can store in cloud—it's encrypted)",
+          "Write down your Recovery Code on paper and keep it safe"
+        ],
+        "gotcha": "You need BOTH the Emergency Kit AND Recovery Code to restore. Neither alone is enough to access your funds."
+      },
+      {
+        "id": "setup-receive",
+        "title": "2. Receive your first Bitcoin",
+        "chips": {
+          "time": "~2 min",
+          "cost": "Varies (network fees)",
+          "risk": "Low"
+        },
+        "actions": [
+          "Tap Receive and choose Lightning or Bitcoin address",
+          "Muun automatically handles the network selection",
+          "Share the QR code or address with your payer",
+          "Funds appear instantly for Lightning, or after confirmations for on-chain"
+        ],
+        "gotcha": "Lightning payments may use submarine swaps which can have higher fees than native Lightning wallets during busy periods."
+      },
+      {
+        "id": "setup-pay",
+        "title": "3. Make a payment",
+        "chips": {
+          "time": "~1 min",
+          "cost": "Network fees (varies)",
+          "risk": "Low"
+        },
+        "actions": [
+          "Tap Send and scan or paste an invoice or address",
+          "Muun automatically chooses Lightning or on-chain based on the payment",
+          "Review the amount and fee estimate, then confirm",
+          "Payment completes instantly for Lightning or after confirmations for on-chain"
+        ],
+        "gotcha": "Fees can be unpredictable. Muun may use on-chain transactions for Lightning payments when network conditions require it."
+      }
+    ],
+    "totalTime": null
+  },
+  "fees_scenarios": [
+    {
+      "id": "fees-pay",
+      "title": "Send Lightning",
+      "cost_today": "Network routing fees (typically <10 sats for small amounts)",
+      "what_happens": "Muun routes your Lightning payment automatically.",
+      "how_to_minimize": "Lightning fees are already minimal and scale with payment size.",
+      "learn_more": "Lightning payments through Muun are fast and cheap when routing works cleanly. The wallet handles all the complexity—you just see the total fee before confirming."
+    },
+    {
+      "id": "fees-first-receive",
+      "title": "Receive Lightning (submarine swap)",
+      "cost_today": "On-chain mining fee + swap service fee (varies $2-$50+)",
+      "what_happens": "Muun uses an on-chain transaction to enable your Lightning receive—you pay the fee, not the sender.",
+      "how_to_minimize": "Check mempool.space before requesting large Lightning payments; avoid receiving when on-chain fees are high.",
+        "learn_more": "When you receive Lightning but Muun needs to establish payment capacity, it uses a submarine swap—an on-chain transaction that enables the Lightning payment. Unlike most Lightning wallets, YOU (the receiver) pay this fee. This is the main cost tradeoff of Muun's automatic channel management."
+    },
+    {
+      "id": "fees-onchain-send",
+      "title": "Send Bitcoin on-chain",
+      "cost_today": "Current mining fee (check mempool.space)",
+      "what_happens": "Your payment is broadcast to the Bitcoin network and confirmed in blocks.",
+      "how_to_minimize": "Send during weekends or low-activity periods; consolidate outputs when fees are cheap.",
+      "learn_more": "Muun's fee estimator uses real-time mempool data to suggest optimal fees. You won't overpay when the network is quiet, but you'll pay market rate during busy periods."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "Why are Muun's fees sometimes higher than other Lightning wallets?",
+      "a": "Muun uses submarine swaps to provide seamless Lightning payments without manual channel management. This convenience comes with potentially higher fees when on-chain activity is high."
+    },
+    {
+      "q": "How does Muun's fee estimator work?",
+      "a": "Muun uses a mempool-based estimator that looks at current network conditions, not past blocks. This helps you pay efficient fees—not overpaying when the network is quiet, nor underestimating when it's busy."
+    },
+    {
+      "q": "Can I control whether Muun uses Lightning or on-chain?",
+      "a": "Muun automatically chooses the best method based on the payment type and network conditions. You'll see the fee estimate before confirming."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-submarine-swap",
+      "term": "Submarine swap",
+      "definition": "An on-chain Bitcoin transaction that enables Lightning payments when direct channel routing isn't possible. In Muun, YOU pay for this when receiving."
+    },
+    {
+      "id": "term-mining-fee",
+      "term": "Mining fee",
+      "definition": "Fee paid to Bitcoin miners to include your transaction in a block. Varies with network demand; check mempool.space for current rates."
+    }
+  ],
+  "privacy": {
+    "section_title": "Privacy & Safety",
+    "data_flows": [
+      "Muun uses a 2-of-2 multisig model: one key on your phone, one on Muun's server. Muun co-signs your transactions for daily use.",
+      "For Lightning payments, Muun servers can see transaction amounts and timing needed for routing.",
+      "On-chain transactions are public by design; address reuse can link your activity.",
+      "Your Emergency Kit contains both keys encrypted—neither Muun nor attackers can access funds without your Recovery Code."
+    ],
+    "data_flows_do": "Use Muun's automatic network selection to benefit from both Lightning and on-chain privacy features.",
+    "data_flows_dont": "Assume complete privacy—Muun's cooperative model means some metadata is visible to Muun servers.",
+    "recovery": [
+      "Your Emergency Kit (PDF) and Recovery Code (paper) together give you full self-custody. Neither piece alone can access funds.",
+      "Standard restore: install Muun → enter email/password → wallet syncs automatically. For full recovery use your Emergency Kit + Recovery Code.",
+      "If Muun servers go offline: decrypt your Emergency Kit with your Recovery Code to access both private keys independently.",
+      "Your keys are stored in two places: one on your phone (hot) and one on Muun's server (hot), but both are encrypted in your Emergency Kit (cold)."
+    ],
+    "recovery_do": "Store your Emergency Kit in multiple secure locations (it's encrypted). Keep your Recovery Code on paper, never digital.",
+    "recovery_dont": "Lose both the Emergency Kit and Recovery Code—you need them together for full self-custody.",
+    "region": [
+      "Muun is available worldwide through official app stores.",
+      "Download only from the official publisher on Apple App Store or Google Play.",
+      "Verify the developer name (Muun) before installing."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Can Muun access my Bitcoin?",
+        "a": "No. While Muun holds one key for daily transactions, they never have both keys decrypted simultaneously. Your Emergency Kit ensures full self-custody."
+      },
+      {
+        "q": "What if I lose my phone?",
+        "a": "Install Muun on a new phone, log in with email/password. For full recovery without Muun, use your Emergency Kit + Recovery Code."
+      },
+      {
+        "q": "What if Muun company disappears?",
+        "a": "Use your Emergency Kit + Recovery Code to access both private keys and sweep your funds independently."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "2-of-2 multisig",
+        "def": "Requires two signatures to spend funds—one from you, one from Muun—ensuring security and convenience."
+      },
+      {
+        "term": "Emergency Kit",
+        "def": "PDF with your encrypted keys and output descriptors for independent recovery."
+      },
+      {
+        "term": "Recovery Code",
+        "def": "Random characters that decrypt your Emergency Kit; has more entropy than a 12-word mnemonic."
+      }
+    ],
+    "keywords": [
+      "Muun privacy",
+      "multisig wallet",
+      "Emergency Kit",
+      "Recovery Code",
+      "Muun lost phone",
+      "self-custody",
+      "submarine swaps"
+    ]
+  },
+  "compat_heading": "What this Muun wallet can or can't do",
+  "compat_tiles": [
+    {
+      "id": "pay-lightning",
+      "title": "Pay with Lightning",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Invoices</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Pay links</span> <span class=\"icon-text-pair\"><img src=\"/images/cross.svg\" class=\"inline-icon\" alt=\"\"> Lightning Address</span>",
+      "status": "works"
+    },
+    {
+      "id": "pay-onchain",
+      "title": "Pay on-chain",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Native on-chain</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Auto-selects network</span>",
+      "status": "works"
+    },
+    {
+      "id": "receive-lightning",
+      "title": "Receive on Lightning",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Uses swaps</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> You pay swap fee</span>",
+      "status": "setup"
+    },
+    {
+      "id": "receive-onchain",
+      "title": "Receive on-chain",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Native</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Unified balance</span>",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "pay-lightning",
+      "why": "Muun automatically routes Lightning payments via submarine swaps when needed.",
+      "try": [
+        "Scan or paste any BOLT11 invoice or LNURL",
+        "Review fee estimate—can be higher than native Lightning wallets",
+        "Confirm and payment completes instantly"
+      ],
+      "gotcha": "Lightning Address (user@domain.com) is not yet supported. Muun may use on-chain swaps for Lightning sends, increasing fees during busy periods."
+    },
+    {
+      "id": "pay-onchain",
+      "why": "Muun lets you send to any Bitcoin address with automatic network selection.",
+      "try": [
+        "Paste a Bitcoin address in the Send field",
+        "Muun auto-selects on-chain routing",
+        "Review mining fee and confirm"
+      ],
+      "gotcha": "On-chain fees vary with network congestion. Check mempool.space before sending large amounts."
+    },
+    {
+      "id": "receive-lightning",
+      "why": "Muun uses submarine swaps to receive Lightning payments without managing channels.",
+      "try": [
+        "Tap Receive and generate a Lightning invoice",
+        "Share with the payer",
+        "Muun handles the swap automatically—YOU pay the on-chain fee, not the sender"
+      ],
+      "gotcha": "Unlike most Lightning wallets, YOU (the receiver) pay the submarine swap fee (on-chain mining fee + service fee). This can be $2–$50+ when the network is busy."
+    },
+    {
+      "id": "receive-onchain",
+      "why": "Receive from exchanges and other wallets directly to your unified balance.",
+      "try": [
+        "Tap Receive → Bitcoin address",
+        "Share the address with the sender",
+        "Funds appear after confirmations in your unified balance"
+      ],
+      "gotcha": "Muun shows one balance for both Lightning and on-chain—convenient but different from channel-based wallets."
+    }
+  ],
+  "migration": [
+    {
+      "id": "restore-same-wallet",
+      "title": "Restore Muun on a new phone",
+      "choose": "When you get a new device and want to keep using Muun.",
+      "time": "~5 min",
+      "cost": "Free",
+      "risk": "Low",
+      "steps": [
+        "Install Muun on the new phone from the official app store.",
+        "Log in with your email and password—your wallet syncs automatically.",
+        "Verify your balance and transaction history appear correctly."
+      ],
+      "tips": "Keep your Emergency Kit and Recovery Code safe—they're your ultimate backup if email access fails.",
+      "gotcha": "If you lose email access, you'll need your Emergency Kit + Recovery Code for full recovery."
+    },
+    {
+      "id": "move-from-another-wallet",
+      "title": "Another wallet → to Muun",
+      "choose": "When you want to start using Muun but have funds elsewhere.",
+      "time": "~10–20 min",
+      "cost": "Network fees",
+      "risk": "Low",
+      "steps": [
+        "Install Muun and complete the setup (Emergency Kit + Recovery Code).",
+        "In Muun, tap Receive and choose Lightning or Bitcoin depending on your source wallet.",
+        "Send from your old wallet to Muun. Start with a small test amount first."
+      ],
+      "tips": "Always test with a small amount first. Muun handles both Lightning and on-chain automatically—choose what works best for your source wallet.",
+      "gotcha": "Muun may use submarine swaps for Lightning receives, which can incur on-chain fees if network is busy."
+    },
+    {
+      "id": "move-to-onchain",
+      "title": "Muun → to cold storage",
+      "choose": "When you want to move Bitcoin to long-term storage.",
+      "time": "~10 min to 1 hour",
+      "cost": "Mining fee",
+      "risk": "Low",
+      "steps": [
+        "Get a receiving address from your cold storage wallet.",
+        "In Muun, tap Send and paste the cold storage address.",
+        "Review the fee and confirm—wait for blockchain confirmations."
+      ],
+      "tips": "Check current mining fees before sending. Consider waiting for weekends when fees are typically lower.",
+      "gotcha": "On-chain confirmations can take 10 minutes to several hours depending on network activity and fee paid."
+    },
+    {
+      "id": "switch-to-another-wallet",
+      "title": "Muun → to another wallet",
+      "choose": "When you want to try a different wallet and move your balance.",
+      "time": "~15–30 min",
+      "cost": "Network fees",
+      "risk": "Low",
+      "steps": [
+        "Install and set up your new wallet completely.",
+        "Test with a small payment (~10,000 sats) from Muun to the new wallet.",
+        "Once verified, send the remaining balance from Muun to your new wallet."
+      ],
+      "tips": "Test first with a small amount. Keep both wallets until you confirm the full transfer succeeded.",
+      "gotcha": "Different wallets have different recovery models—make sure you understand your new wallet's backup system before moving funds."
+    }
+  ],
+  "anchors": {
+    "setup": "#setup",
+    "fees": "#fees",
+    "privacy": "#privacy",
+    "migration": "#migration",
+    "faq": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "trust": {
+    "cards": [
+      {
+        "id": "update",
+        "fact": "October 2025",
+        "link_text": "Store page",
+        "link_url": "https://apps.apple.com/app/muun-bitcoin-wallet/id1482037683"
+      },
+      {
+        "id": "publisher",
+        "fact": "Muun",
+        "link_text": "Verify",
+        "link_url": "https://apps.apple.com/developer/muun/id1482037681"
+      },
+      {
+        "id": "source",
+        "fact": "Yes (MIT)",
+        "link_text": "Repo",
+        "link_url": "https://github.com/muun"
+      },
+      {
+        "id": "activity",
+        "fact": "Active development",
+        "link_text": "Commits",
+        "link_url": "https://github.com/muun/apollo/commits"
+      }
+    ]
+  }
 }

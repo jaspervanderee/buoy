@@ -57,5 +57,74 @@
   "website": "https://aqua.net",
   "countries": [
     "WW"
+  ],
+  "compat_heading": "What this Aqua wallet can or can't do",
+  "compat_tiles": [
+    {
+      "id": "pay-lightning",
+      "title": "Pay with Lightning",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Via Boltz</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Higher swap fees</span>",
+      "status": "setup"
+    },
+    {
+      "id": "pay-onchain",
+      "title": "Pay on-chain",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Bitcoin</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Liquid</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Built-in swaps</span>",
+      "status": "works"
+    },
+    {
+      "id": "receive-lightning",
+      "title": "Receive on Lightning",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Via Boltz</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Swaps to Liquid or Bitcoin</span>",
+      "status": "setup"
+    },
+    {
+      "id": "receive-onchain",
+      "title": "Receive on-chain",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Bitcoin</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Liquid</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Unified interface</span>",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "pay-lightning",
+      "why": "Aqua routes Lightning payments through Boltz swaps, enabling Lightning without native channels.",
+      "try": [
+        "Scan or paste a Lightning invoice",
+        "Review the swap fee (typically higher than native Lightning wallets)",
+        "Confirm and Aqua swaps from Liquid/on-chain to Lightning"
+      ],
+      "gotcha": "Aqua relies on Boltz for Lightning, which can have higher fees than wallets with native Lightning channels. Best for occasional Lightning use."
+    },
+    {
+      "id": "pay-onchain",
+      "why": "Aqua supports both Bitcoin and Liquid networks with seamless swaps between them.",
+      "try": [
+        "Paste a Bitcoin or Liquid address",
+        "Aqua auto-detects the network and routes appropriately",
+        "Review fee and confirm—Liquid is faster and cheaper"
+      ],
+      "gotcha": "Bitcoin on-chain fees vary with network congestion. Liquid transactions are faster with lower fees but require Liquid-compatible wallets."
+    },
+    {
+      "id": "receive-lightning",
+      "why": "Receive Lightning payments that Aqua swaps to your Liquid or Bitcoin balance.",
+      "try": [
+        "Generate a Lightning invoice in Aqua",
+        "Share with the payer",
+        "Aqua receives via Boltz and settles to Liquid or Bitcoin"
+      ],
+      "gotcha": "Boltz swap fees apply. For frequent Lightning receives, consider a wallet with native Lightning channels like Phoenix or Breez."
+    },
+    {
+      "id": "receive-onchain",
+      "why": "Receive both Bitcoin and Liquid in one unified interface with built-in privacy on Liquid.",
+      "try": [
+        "Tap Receive and select Bitcoin or Liquid",
+        "Share the address with the sender",
+        "Funds appear after confirmations—Liquid is faster (1-2 min)"
+      ],
+      "gotcha": "Liquid transactions offer confidential amounts but require both sender and receiver to use Liquid-compatible wallets."
+    }
   ]
 }

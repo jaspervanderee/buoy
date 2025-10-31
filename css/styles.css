@@ -1597,6 +1597,7 @@ p, li, a {
 .mono-text,
 .fee-card p,
 .svc-compat__benefit,
+.svc-compat__why,
 .svc-compat__tile details p,
 .svc-compat__tile details ol {
   font-family: "Ubuntu Mono", monospace;
@@ -3753,6 +3754,32 @@ p, li, a {
 /* .svc-compat__benefit - inherit from .mono-text utility */
 .svc-compat__benefit {
   margin: 0;
+}
+
+/* .svc-compat__why - inherit from .mono-text utility */
+.svc-compat__why {
+  margin: 8px 0 0 0;
+}
+
+/* Icon-text pair wrapper for consistent spacing */
+.icon-text-pair {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 16px;
+}
+
+.icon-text-pair:last-child {
+  margin-right: 0;
+}
+
+/* Inline icons for compatibility status indicators */
+.inline-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 6px 0 0;
+  flex-shrink: 0;
 }
 
 .svc-compat__note {

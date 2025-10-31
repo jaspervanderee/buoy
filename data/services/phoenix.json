@@ -272,54 +272,70 @@
   "compat_heading": "What this Phoenix wallet can or can't do",
   "compat_tiles": [
     {
-      "id": "lnurl-pay",
-      "title": "Pay any Lightning QR",
-      "benefit": "Scan a Lightning QR code; the wallet fetches the invoice for you.",
+      "id": "pay-lightning",
+      "title": "Pay with Lightning",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Invoices</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Pay links</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Lightning Address</span>",
       "status": "works"
     },
     {
-      "id": "lnurl-withdraw",
-      "title": "Withdraw from services",
-      "benefit": "Claim funds from an exchange or faucet using a single tap.",
+      "id": "pay-onchain",
+      "title": "Pay on-chain",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Send to Bitcoin addresses</span>",
       "status": "works"
     },
     {
-      "id": "lightning-address",
-      "title": "Lightning addresses",
-      "benefit": "Send to user@domain.com instead of a long invoice.",
+      "id": "receive-lightning",
+      "title": "Receive on Lightning",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Invoices</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Pay links</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Auto-opens channels</span>",
+      "status": "works"
+    },
+    {
+      "id": "receive-onchain",
+      "title": "Receive on-chain",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Converts to Lightning</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 3 confirmations</span>",
       "status": "works"
     }
   ],
   "compat_explainers": [
     {
-      "id": "lnurl-pay",
-      "why": "Fewer steps necessary when tipping or buying products online.",
+      "id": "pay-lightning",
+      "why": "Phoenix natively routes payments over Lightning with low fees (0.4% + 4 sat).",
       "try": [
-        "Scan a Lightning QR on a website or in another app",
-        "Review the amount and description",
-        "Approve the payment"
+        "Scan or paste any Lightning invoice, QR, or address",
+        "Review the amount and routing fee",
+        "Confirm and payment settles instantly"
       ],
-      "gotcha": "Some QRs are on-chain Bitcoin addresses; look for 'Lightning' or 'LNURL' labels to confirm."
+      "gotcha": "For very large payments, adjust the maximum fee cap in Settings → Channel management before sending."
     },
     {
-      "id": "lnurl-withdraw",
-      "why": "Faster than generating an invoice yourself and pasting it into a web form.",
+      "id": "pay-onchain",
+      "why": "You can send to regular Bitcoin addresses by closing channels or using swap-out.",
       "try": [
-        "Tap or scan the withdrawal QR from the service",
-        "Confirm the amount in Phoenix",
-        "Funds appear in your wallet instantly"
+        "Paste a Bitcoin address in the Send field",
+        "Phoenix routes via on-chain (swap-out or channel close)",
+        "Confirm and wait for blockchain confirmations"
       ],
-      "gotcha": "The service sets the amount; you can't request more than they offer."
+      "gotcha": "On-chain sends incur mining fees that vary with network congestion. Check mempool.space first."
     },
     {
-      "id": "lightning-address",
-      "why": "Much easier to share and remember than a traditional Lightning invoice.",
+      "id": "receive-lightning",
+      "why": "Phoenix automatically manages channels so you can receive without manual setup.",
       "try": [
-        "Ask a friend for their Lightning address",
-        "Enter it in Phoenix's Send field",
-        "Specify the amount and send"
+        "Tap Receive and generate a Lightning invoice",
+        "Share the QR or invoice with the payer",
+        "Phoenix opens or resizes channels if needed (≈1% + mining fee for large receives)"
       ],
-      "gotcha": "The recipient's server must be online to generate the invoice; if it's down, the payment fails."
+      "gotcha": "First receive or large amounts may trigger channel creation/splice-in, costing ~1,000 sat + current mining fee."
+    },
+    {
+      "id": "receive-onchain",
+      "why": "You can receive Bitcoin from exchanges and other on-chain wallets; Phoenix converts to Lightning.",
+      "try": [
+        "Tap Receive → Bitcoin address",
+        "Share the address with the sender",
+        "After 3 confirmations, Phoenix swaps funds into your Lightning channel automatically"
+      ],
+      "gotcha": "Phoenix waits 3 confirmations before swapping on-chain funds to Lightning. Set a swap fee limit in Settings."
     }
   ],
   "migration": [

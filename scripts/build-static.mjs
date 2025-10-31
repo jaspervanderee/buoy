@@ -62,10 +62,16 @@ const COMPAT_ILLUSTRATIONS = {
   "fees-pay": "/images/illustration/pay-someone.svg",
   "fees-first-receive": "/images/illustration/receive.svg",
   "fees-splice": "/images/illustration/big-receive.svg",
-  // Compatibility section
+  "fees-onchain-send": "/images/illustration/pay-on-chain.svg",
+  // Compatibility section (legacy)
   "lnurl-pay": "/images/illustration/pay-any-lightning-qr.svg",
   "lnurl-withdraw": "/images/illustration/withdraw-from-service.svg",
   "lightning-address": "/images/illustration/lightning-address.svg",
+  // Compatibility section (standardized)
+  "pay-lightning": "/images/illustration/pay-any-lightning-qr.svg",
+  "pay-onchain": "/images/illustration/pay-on-chain.svg",
+  "receive-lightning": "/images/illustration/receive.svg",
+  "receive-onchain": "/images/illustration/receive-on-chain.svg",
   // Migration section (generic IDs work across all services)
   "restore-same-wallet": "/images/illustration/restore-wallet-new-phone.svg",
   "move-from-another-wallet": "/images/illustration/move-from-another-wallet.svg",
@@ -81,10 +87,16 @@ const COMPAT_ILLUSTRATION_ALTS = {
   "fees-pay": "Pay someone",
   "fees-first-receive": "First time you receive",
   "fees-splice": "Big receive",
-  // Compatibility
+  "fees-onchain-send": "Send Bitcoin on-chain",
+  // Compatibility (legacy)
   "lnurl-pay": "Scan a Lightning QR; wallet pays",
   "lnurl-withdraw": "Tap or scan the withdrawal QR from the service",
   "lightning-address": "Ask a friend for their Lightning address",
+  // Compatibility (standardized)
+  "pay-lightning": "Pay with Lightning",
+  "pay-onchain": "Pay on-chain",
+  "receive-lightning": "Receive on Lightning",
+  "receive-onchain": "Receive on-chain",
   // Migration
   "restore-same-wallet": "Restore wallet on new device",
   "move-from-another-wallet": "Move wallet from another wallet",
@@ -338,7 +350,7 @@ html = html.replace('</head>', urlShim + '</head>');
           } else if (chip.status === "negative") {
             icon = '<img src="/images/cross.svg" alt="negative icon" class="trust-chip-icon"/> ';
           } else if (chip.status === "neutral") {
-            icon = '<img src="/images/neutral.svg" alt="neutral icon" class="trust-chip-icon"/> ';
+            icon = '<img src="/images/warning.svg" alt="neutral icon" class="trust-chip-icon"/> ';
           }
           return `<div class="trust-chip">${icon}${chip.text}</div>`;
         }).filter(Boolean).join("");
@@ -354,7 +366,7 @@ html = html.replace('</head>', urlShim + '</head>');
           items.push(`<p><img src="/images/checkmark.svg" alt="positive icon" class="checkmark-icon"/> <strong>Best for:</strong> ${tldr.best_for}</p>`);
         }
         if (tldr.consider_if) {
-          items.push(`<p><img src="/images/neutral.svg" alt="neutral icon" class="checkmark-icon"/> <strong>Consider if:</strong> ${tldr.consider_if}</p>`);
+          items.push(`<p><img src="/images/warning.svg" alt="neutral icon" class="checkmark-icon"/> <strong>Consider if:</strong> ${tldr.consider_if}</p>`);
         }
         if (tldr.not_ideal_when) {
           items.push(`<p><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> <strong>Not ideal when:</strong> ${tldr.not_ideal_when}</p>`);
@@ -1011,29 +1023,32 @@ ${tileItems}
           // Find matching explainer
           const explainer = explainerMap[tile.id];
           
-          // Always render details element for consistent template
+          // Pull "Why it matters" outside collapsible, keep Try/Gotcha inside
+          let whyHtml = "";
           let detailsContent = "";
+          
           if (explainer && explainer.why) {
+            whyHtml = `<p class="svc-compat__why">${explainer.why}</p>`;
+            
             const tryList = Array.isArray(explainer.try) && explainer.try.length > 0
               ? `<p><strong>Try it:</strong></p><ol>${explainer.try.map(step => `<li>${step}</li>`).join("")}</ol>`
               : "";
             
-            detailsContent = `
-            <p><strong>Why it matters:</strong> ${explainer.why}</p>
-            ${tryList}
-            ${explainer.gotcha ? `<p><strong>Gotcha:</strong> ${explainer.gotcha}</p>` : ""}`;
-          } else {
-            // Default content when no explainer exists
-            detailsContent = `
-            <p>Additional details coming soon.</p>`;
+            const gotchaHtml = explainer.gotcha ? `<p><strong>Gotcha:</strong> ${explainer.gotcha}</p>` : "";
+            
+            // Only include Try/Gotcha in collapsible
+            if (tryList || gotchaHtml) {
+              detailsContent = `${tryList}${gotchaHtml}`;
+            }
           }
           
-          const detailsHtml = `
+          // Only render details if there's content for it
+          const detailsHtml = detailsContent ? `
         <details class="compat-details">
           <summary data-open-text="Hide steps" data-closed-text="${learnLabel}">${learnLabel}</summary>
           <div>${detailsContent}
           </div>
-        </details>`;
+        </details>` : "";
           
           return `
       <div class="svc-compat__tile">${illustrationHtml}
@@ -1042,6 +1057,7 @@ ${tileItems}
           <span class="${statusClass}">${statusText}</span>
         </div>
         <p class="svc-compat__benefit">${tile.benefit}</p>
+        ${whyHtml}
         ${noteHtml}${detailsHtml}
       </div>`;
         }).join("");
@@ -1423,24 +1439,8 @@ ${sectionsHtml}`;
       };
     }
     
-    // Add aggregate rating if available
-    if (svc.app_ratings) {
-      const iosRating = typeof svc.app_ratings.ios === 'number' ? svc.app_ratings.ios : null;
-      const androidRating = typeof svc.app_ratings.android === 'number' ? svc.app_ratings.android : null;
-      
-      if (iosRating || androidRating) {
-        const avgRating = iosRating && androidRating 
-          ? ((iosRating + androidRating) / 2).toFixed(1)
-          : (iosRating || androidRating).toFixed(1);
-        
-        serviceJson.aggregateRating = {
-          "@type": "AggregateRating",
-          "ratingValue": avgRating,
-          "bestRating": "5",
-          "worstRating": "1"
-        };
-      }
-    }
+    // Note: aggregateRating removed - only include when ratings are visibly displayed on page
+    // Google requires on-page rating UI + review count to include aggregateRating in structured data
     
     // Add provider organization
     serviceJson.provider = {
@@ -1541,6 +1541,23 @@ ${sectionsHtml}`;
             // Add time estimate if available
             if (step.chips && step.chips.time) {
               stepSchema.description = `Time: ${step.chips.time}`;
+            }
+            
+            // Add step image if screenshot exists (e.g., /images/screenshots/phoenix-install.webp)
+            if (step.id) {
+              const stepName = step.id.replace(/^setup-/, '');
+              const imagePath = `/images/screenshots/${slug}-${stepName}.webp`;
+              const fullImagePath = path.join(ROOT, imagePath);
+              
+              try {
+                fsSync.accessSync(fullImagePath);
+                stepSchema.image = {
+                  "@type": "ImageObject",
+                  "url": `https://buoybitcoin.com${imagePath}`
+                };
+              } catch (err) {
+                // Screenshot doesn't exist, skip image
+              }
             }
             
             return stepSchema;

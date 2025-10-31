@@ -61,5 +61,74 @@
   "website": "https://breez.technology",
   "countries": [
     "WW"
+  ],
+  "compat_heading": "What this Breez wallet can or can't do",
+  "compat_tiles": [
+    {
+      "id": "pay-lightning",
+      "title": "Pay with Lightning",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Invoices</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Pay links</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Lightning Address</span>",
+      "status": "works"
+    },
+    {
+      "id": "pay-onchain",
+      "title": "Pay on-chain",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Via swap to on-chain</span>",
+      "status": "works"
+    },
+    {
+      "id": "receive-lightning",
+      "title": "Receive on Lightning",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Invoices</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Pay links</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Auto-managed</span>",
+      "status": "works"
+    },
+    {
+      "id": "receive-onchain",
+      "title": "Receive on-chain",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Swaps to Lightning</span>",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "pay-lightning",
+      "why": "Breez is a native Lightning wallet with full support for modern Lightning features.",
+      "try": [
+        "Scan or paste any Lightning invoice, LNURL, or Lightning Address",
+        "Review the routing fee (typically very low)",
+        "Confirm and payment settles instantly"
+      ],
+      "gotcha": "Not ideal for very small payments under 100 sats due to minimum channel reserves."
+    },
+    {
+      "id": "pay-onchain",
+      "why": "You can send to Bitcoin addresses via reverse submarine swaps.",
+      "try": [
+        "Paste a Bitcoin address in the Send field",
+        "Breez routes via reverse submarine swap to on-chain",
+        "Review swap fee and confirm"
+      ],
+      "gotcha": "Reverse swaps include service fees plus on-chain mining fees. Check total cost before confirming."
+    },
+    {
+      "id": "receive-lightning",
+      "why": "Breez handles Lightning channel liquidity automatically in the background.",
+      "try": [
+        "Tap Receive to generate a Lightning invoice",
+        "Share the QR or invoice with the payer",
+        "Breez manages channel capacity behind the scenes"
+      ],
+      "gotcha": "First receive or liquidity adjustments may take time. Keep the app open while receiving large amounts."
+    },
+    {
+      "id": "receive-onchain",
+      "why": "Receive Bitcoin from exchanges or on-chain wallets; Breez swaps it to Lightning.",
+      "try": [
+        "Tap Receive and select Bitcoin address option",
+        "Share the address with the sender",
+        "After confirmations, Breez swaps the funds to your Lightning balance"
+      ],
+      "gotcha": "Submarine swaps to Lightning include service fees. Consider the cost for small on-chain receives."
+    }
   ]
 }

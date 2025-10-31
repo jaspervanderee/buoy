@@ -76,5 +76,74 @@
   "countries": [
     "NA",
     "EU"
+  ],
+  "compat_heading": "What this Fold wallet can or can't do",
+  "compat_tiles": [
+    {
+      "id": "pay-lightning",
+      "title": "Pay with Lightning",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Via Visa card</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Converts to fiat</span>",
+      "status": "setup"
+    },
+    {
+      "id": "pay-onchain",
+      "title": "Pay on-chain",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Via Visa card</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Can withdraw on-chain</span>",
+      "status": "setup"
+    },
+    {
+      "id": "receive-lightning",
+      "title": "Receive on Lightning",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Lightning deposits</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Custodial account</span>",
+      "status": "works"
+    },
+    {
+      "id": "receive-onchain",
+      "title": "Receive on-chain",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Bitcoin deposits</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Custodial account</span>",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "pay-lightning",
+      "why": "Fold lets you spend Bitcoin anywhere Visa is accepted—your balance converts to fiat at checkout.",
+      "try": [
+        "Load your Fold account with Bitcoin or Lightning",
+        "Use your Fold Visa debit card anywhere",
+        "Earn Bitcoin rewards on purchases (varies by plan)"
+      ],
+      "gotcha": "You're not paying Lightning directly to merchants—Fold converts your balance to USD at payment time. This creates taxable events."
+    },
+    {
+      "id": "pay-onchain",
+      "why": "Use your Bitcoin balance for everyday spending via the Fold Visa card, or withdraw on-chain.",
+      "try": [
+        "Tap Send and enter a Bitcoin address to withdraw on-chain",
+        "Or use your Fold Visa card anywhere—balance converts to fiat",
+        "Review fees before confirming withdrawals"
+      ],
+      "gotcha": "Card payments trigger fiat conversion (taxable event). On-chain withdrawals incur mining fees. Check fee structure before large withdrawals."
+    },
+    {
+      "id": "receive-lightning",
+      "why": "Deposit Bitcoin via Lightning to your Fold account for spending or holding.",
+      "try": [
+        "Tap Receive and generate a Lightning invoice",
+        "Send from another wallet to your Fold Lightning address",
+        "Funds appear in your custodial Fold account"
+      ],
+      "gotcha": "Fold is custodial—they hold your Bitcoin until you withdraw. Consider moving large amounts to self-custody."
+    },
+    {
+      "id": "receive-onchain",
+      "why": "Deposit Bitcoin from exchanges or other wallets directly to your Fold account.",
+      "try": [
+        "Tap Receive and get your Bitcoin deposit address",
+        "Send from exchange or another wallet",
+        "Funds appear after confirmations in your Fold balance"
+      ],
+      "gotcha": "Fold holds your Bitcoin custodially. Withdrawals to your own wallet are possible but incur on-chain fees."
+    }
   ]
 }
