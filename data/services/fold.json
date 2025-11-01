@@ -82,25 +82,25 @@
     {
       "id": "pay-lightning",
       "title": "Pay with Lightning",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Via Visa card</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Converts to fiat</span>",
+      "benefit": "⚠ Via Visa card · ⚠ Converts to fiat",
       "status": "setup"
     },
     {
       "id": "pay-onchain",
       "title": "Pay on-chain",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Via Visa card</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Can withdraw on-chain</span>",
+      "benefit": "⚠ Via Visa card · ✓ Withdraw on-chain",
       "status": "setup"
     },
     {
       "id": "receive-lightning",
       "title": "Receive on Lightning",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Lightning deposits</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Custodial account</span>",
+      "benefit": "✓ Lightning deposit · ✓ Custodial account",
       "status": "works"
     },
     {
       "id": "receive-onchain",
       "title": "Receive on-chain",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Bitcoin deposits</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Custodial account</span>",
+      "benefit": "✓ Bitcoin deposit · ✓ Custodial account",
       "status": "works"
     }
   ],

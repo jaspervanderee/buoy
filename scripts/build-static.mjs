@@ -990,6 +990,17 @@ ${tileItems}
         const heading = svc.compat_heading || "";
         const learnLabel = svc.compat_learn_label || "Show steps";
         
+        // Helper: convert Unicode symbols to HTML icons
+        const renderBenefitWithIcons = (text) => {
+          if (!text) return "";
+          return text
+            .replace(/·\s*/g, '</span> ') // Close span and remove separator
+            .replace(/✓\s*/g, '<span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> ')
+            .replace(/✗\s*/g, '<span class="icon-text-pair"><img src="/images/cross.svg" class="inline-icon" alt=""> ')
+            .replace(/⚠\s*/g, '<span class="icon-text-pair"><img src="/images/warning.svg" class="inline-icon" alt=""> ')
+            .replace(/$/, '</span>'); // Close final span
+        };
+        
         // Create explainer map by id for easy lookup
         const explainerMap = {};
         explainers.forEach(exp => {
@@ -1056,7 +1067,7 @@ ${tileItems}
           <h3 class="svc-compat__title">${tile.title}</h3>
           <span class="${statusClass}">${statusText}</span>
         </div>
-        <p class="svc-compat__benefit">${tile.benefit}</p>
+        <p class="svc-compat__benefit">${renderBenefitWithIcons(tile.benefit)}</p>
         ${whyHtml}
         ${noteHtml}${detailsHtml}
       </div>`;

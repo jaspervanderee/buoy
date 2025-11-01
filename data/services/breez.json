@@ -4,131 +4,440 @@
   "type_of_platform": "Hot Wallet",
   "faqs": [
     {
-      "q": "What is Breez Wallet?",
-      "a": "Breez is a non‑custodial Lightning wallet with PoS mode and a podcast player for streaming sats to creators."
+      "q": "What fees apply when I pay over Lightning?",
+      "a": "Breez passes along the network's routing fees (like a toll) and lets you cap them under Preferences > Lightning Fees; the app itself doesn't add extra charges to everyday sends."
     },
     {
-      "q": "Does Breez require cloud backup?",
-      "a": "Yes. Breez uses a cloud backup to restore your wallet and Lightning channels, which some users prefer for convenience."
+      "q": "What happens if I don't have enough capacity to receive?",
+      "a": "Breez automatically sets up a new channel for you and charges 0.4% of the amount plus the current Bitcoin network fee when more capacity is needed."
     },
     {
-      "q": "Is Breez open source?",
-      "a": "Yes. Breez is open‑source and actively developed with the community."
+      "q": "How does Breez back up my wallet?",
+      "a": "Each time you make a payment or generate an address, Breez encrypts your channel data and saves it to your cloud account (Google Drive, iCloud, Nextcloud, or any WebDAV provider) so you can restore everything if you lose your phone."
+    },
+    {
+      "q": "How can I restore Breez after losing my phone?",
+      "a": "Install Breez on your new device, sign in with the recovery key and cloud account you set up, then keep the app open while it downloads your backup and rebuilds your channels."
+    },
+    {
+      "q": "Does Breez support on-chain transactions?",
+      "a": "Yes. Breez uses submarine swaps so you can receive to a Bitcoin address or send out to on-chain wallets while keeping a single Lightning balance."
     }
   ],
-  "supported_network": "Bitcoin + Lightning",
+  "supported_network": "Lightning only, with on-chain deposits and withdrawals via submarine swaps",
   "features": {
     "WW": [
       {
-        "text": "Self-custodial",
+        "text": "Runs a full Lightning node on your phone",
         "status": "positive"
       },
       {
-        "text": "Podcast player with streaming sats",
+        "text": "Built-in POS mode and Podcasting 2.0 streaming",
         "status": "positive"
       },
       {
-        "text": "Point-of-Sale mode for merchants",
+        "text": "Automatic channel setup—no manual work",
         "status": "positive"
       },
       {
-        "text": "In beta",
-        "status": "negative"
-      },
-      {
-        "text": "Cloud backup required for recovery",
-        "status": "negative"
-      },
-      {
-        "text": "Not ideal for micro payments (<100 sats)",
+        "text": "Requires continuous encrypted cloud backups",
         "status": "negative"
       }
     ]
   },
-  "custody_control": "Non-custodial: you hold your own keys",
+  "custody_control": "Non-custodial (Lightning node on device; you hold the recovery key)",
   "kyc_required": "No",
+  "recovery_method": "Encrypted cloud backup + Breez recovery key",
   "open_source": "Yes",
-  "recovery_method": "Seed phrase + cloud backup",
   "user_experience": "0.0",
   "interface": "Mobile only",
   "app_ratings": {
-    "ios": 3.7,
-    "android": "N/A"
+    "ios": 3.6,
+    "android": 3.5
   },
   "profile": "Roy Sheinfeld",
-  "description": "Breez (Misty Breez) focuses on making Lightning Network payments fast and easy. It stands out with its non-custodial mobile app, letting users control their Bitcoin, and a unique Point-of-Sale mode for merchants to accept instant payments. It offers sending, receiving, and storing Bitcoin via Lightning, plus a podcast player to support creators with Bitcoin tips.\\n\\nThe app has a simple interface and no-setup payments, though some users report issues with cloud backups and wallet restoration.\\n\\nBreez's mission is to drive Bitcoin adoption for everyday use, with a vision to expand Lightning payments across apps using its Breez SDK, a free developer tool. The app currently suits everyday payments rather than very small transactions. Beginners love its ease and merchant tools, but some find technical issues frustrating.",
+  "description": "Breez is a beginner-friendly Lightning wallet designed to make everyday bitcoin payments effortless on mobile. The app runs a Lightning node behind the scenes, pairing a simple interface with automatic channel management so anyone can spend or receive sats in seconds.\n\nBeyond standard wallet features, Breez adds a merchant-focused Point-of-Sale mode, podcast streaming with bitcoin tips, and one-tap Lightning addresses. Instant channel setups and automatic swaps keep the experience seamless while Breez encrypts your channel data to your cloud account after every payment.\n\nCompared with Phoenix's recovery phrase backups or Muun's dual on-chain approach, Breez focuses on automation: it handles all the technical channel work for you, but requires encrypted cloud backups and charges a 0.4% setup fee when new receiving capacity is needed.",
   "founded_in": "2018",
   "website": "https://breez.technology",
+  "links": {
+    "ios": "https://apps.apple.com/us/app/breez-lightning-client-pos/id1463604142",
+    "android": "https://play.google.com/store/apps/details?id=com.breez.client"
+  },
   "countries": [
     "WW"
   ],
+  "trust_chips": [
+    {
+      "text": "Non-custodial",
+      "status": "positive"
+    },
+    {
+      "text": "Open source",
+      "status": "positive"
+    },
+    {
+      "text": "No KYC",
+      "status": "positive"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "Mobile Lightning payments with auto-managed channels, POS tools, and podcast streaming.",
+    "consider_if": "You want to accept sats in a shop or stream payments to creators without running nodes manually.",
+    "not_ideal_when": "You avoid cloud backups, need desktop access, or demand ultra-low inbound fees."
+  },
+  "howto": {
+    "title": "Getting started with Breez",
+    "steps": [
+      {
+        "id": "setup-install",
+        "title": "1. Install and secure Breez",
+        "chips": {
+          "time": "~5 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Install Breez from the App Store or Google Play",
+          "Set a PIN or biometric lock under Preferences > Security & Backup",
+          "Link a cloud provider and write down your Breez recovery key offline"
+        ],
+        "gotcha": "Cloud access alone is not enough—store the recovery key somewhere offline before using real funds."
+      },
+      {
+        "id": "setup-receive",
+        "title": "2. Receive your first sats",
+        "chips": {
+          "time": "~3 min",
+          "cost": "~0.4% + mining fee when a new channel opens",
+          "risk": "Low"
+        },
+        "actions": [
+          "Tap Receive and choose Lightning invoice",
+          "Share the QR with your payer and keep the app awake",
+          "Let Breez set up a channel automatically if you need more capacity"
+        ],
+        "gotcha": "Channel creation fees appear before you confirm; wait for lower mempool fees if the estimate is high."
+      },
+      {
+        "id": "setup-pay",
+        "title": "3. Pay with Lightning or POS",
+        "chips": {
+          "time": "~1 min",
+          "cost": "Network routing fee (you set the max)",
+          "risk": "Low"
+        },
+        "actions": [
+          "Tap Send, scan a Lightning invoice or Lightning Address",
+          "Review the route fee Breez found and confirm",
+          "In POS mode, enter the amount and show the invoice QR to your customer"
+        ],
+        "gotcha": "Large payments may need more channel space—check your available balance before charging a big order."
+      }
+    ],
+    "totalTime": null
+  },
+  "fees_scenarios": [
+    {
+      "id": "fees-pay",
+      "title": "Pay someone",
+      "cost_today": "Network routing fee (you set the max)",
+      "what_happens": "Breez routes the payment over Lightning and finds the best available path.",
+      "how_to_minimize": "Set a reasonable fee cap and avoid paying during busy network periods when finding routes is harder.",
+      "learn_more": "Routing fees depend on the payment path. Breez lets you control the maximum fee under Preferences > Lightning Fees so you stay in budget."
+    },
+    {
+      "id": "fees-first-receive",
+      "title": "First time you receive",
+      "cost_today": "0.4% of the amount + small base fee + current network mining fee",
+      "what_happens": "Breez sets up a new channel automatically so you have capacity to receive that payment.",
+      "how_to_minimize": "Receive a meaningful amount on your first payment and wait for quieter network periods to reduce the mining fee portion.",
+      "learn_more": "The fee covers Breez funding a new channel on the Bitcoin network. It only applies when your wallet needs more receiving capacity."
+    },
+    {
+      "id": "fees-onchain-send",
+      "title": "Send to a Bitcoin address",
+      "cost_today": "0.5% swap fee + mining fee (via swap partner)",
+      "what_happens": "Breez converts your Lightning balance into an on-chain Bitcoin transaction automatically.",
+      "how_to_minimize": "Combine withdrawals and wait for low-fee periods; swaps need at least 50k sats and cost more when the network is busy.",
+      "learn_more": "A swap partner handles the conversion for Breez. Expect a 0.5% service fee plus the current Bitcoin network mining fee."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "Does Breez charge every time I receive Lightning payments?",
+      "a": "No. Once your channel has capacity, receives are free apart from normal network routing fees; the 0.4% setup fee applies only when you need more receiving capacity."
+    },
+    {
+      "q": "Can I limit how much a payment costs to send?",
+      "a": "Yes. Use Preferences > Lightning Fees to set your own caps so Breez will only send payments within your budget."
+    },
+    {
+      "q": "What happens if a swap to Bitcoin is too expensive?",
+      "a": "Wait for lower network fees or send the funds over Lightning instead—swaps to on-chain Bitcoin inherit the network's mining costs."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-instant-channel",
+      "term": "Instant channel setup",
+      "definition": "A Lightning channel that Breez opens automatically without waiting for network confirmations so you can receive payments right away."
+    },
+    {
+      "id": "term-reverse-swap",
+      "term": "Reverse submarine swap",
+      "definition": "Converts your Lightning balance into an on-chain Bitcoin payment using a trustless escrow."
+    },
+    {
+      "id": "term-cloud-backup",
+      "term": "Encrypted cloud backup",
+      "definition": "Breez saves your encrypted channel data to your cloud account so you can restore everything if you lose your device."
+    }
+  ],
+  "privacy_notes": {
+    "data_flows": [
+      "Breez uses efficient data filtering and connects to Breez's service to route payments, so the operator can see payment timing and amounts needed for channel management.",
+      "Your channel data is encrypted before leaving your device and stored with the cloud provider you selected for backups."
+    ],
+    "recovery_drill": [
+      "Open Breez periodically so cloud backups stay current after each payment.",
+      "Verify you can sign in to your linked cloud account before relying on it for larger amounts.",
+      "Store the Breez recovery key offline; this key decrypts your channel data during wallet restore.",
+      "If Breez's service disappears, use Close channels to move funds to on-chain after network confirmations."
+    ],
+    "country_caveats": [
+      "App-store availability varies; check your regional store before planning to deploy POS mode.",
+      "Some cloud providers (e.g., Google Drive) may be restricted in specific jurisdictions—choose an alternative like WebDAV if needed."
+    ]
+  },
+  "privacy": {
+    "section_title": "Privacy & Safety",
+    "data_flows": [
+      "Breez connects to Breez's service to route Lightning payments, so the operator can see payment amounts and timing needed to keep channels working.",
+      "Swaps to on-chain Bitcoin show up as public Bitcoin transactions that include your chosen swap amount.",
+      "Your encrypted channel data sits with your cloud provider, though they cannot read it without your recovery key.",
+      "Lightning network nodes in the payment path still see metadata (amount, timing, routing hints) needed to forward payments."
+    ],
+    "data_flows_do": "Consider connecting Breez to your own Bitcoin node when possible to limit what third parties can see.",
+    "data_flows_dont": "Assume Lightning is fully private—routing still reveals payment amounts and timing to nodes along the path.",
+    "recovery": [
+      "Link a cloud account (Google Drive, iCloud, Nextcloud, or any compatible service) and confirm backups work after your first payment.",
+      "Write down the Breez recovery key offline; this key decrypts your backup when you need to restore.",
+      "To restore: install Breez, sign in to the same cloud account, and enter your recovery key so the app can rebuild your channels.",
+      "If Breez or its service disappears, use the Close channels option to move funds to on-chain—wait several hours for network confirmations."
+    ],
+    "recovery_do": "Test a small restore before keeping larger amounts to make sure you can access your cloud backup and recovery key.",
+    "recovery_dont": "Run Breez on two phones at once; this causes conflicts and can lead to losing funds.",
+    "region": [
+      "App-store listings and Lightning connectivity vary by country—check if Breez is available in your region before recommending it to merchants.",
+      "If your preferred cloud service is blocked locally, switch Breez to another supported provider in Settings."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Does Breez expose my payments to my cloud provider?",
+        "a": "No. Backups are encrypted on your device before upload; the provider stores encrypted data and cannot read your balances without your recovery key."
+      },
+      {
+        "q": "Can Breez connect to my own Bitcoin node?",
+        "a": "Yes. Configure a custom node in Preferences > Network to reduce reliance on Breez's default service."
+      },
+      {
+        "q": "What if Breez's service goes offline when I need funds?",
+        "a": "Use the Close channels option to move funds to on-chain. Settlement happens after the standard safety period of about 5 days."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "Efficient data filtering",
+        "def": "A method that lets Breez check the Bitcoin network without downloading the entire blockchain to your phone."
+      },
+      {
+        "term": "Channel service",
+        "def": "A partner service that opens channels for you and keeps payment capacity available so your transactions go through smoothly."
+      },
+      {
+        "term": "Recovery key",
+        "def": "The Breez-generated encryption key that unlocks your cloud backup when you need to restore your wallet."
+      }
+    ],
+    "keywords": [
+      "Breez privacy",
+      "Breez recovery key",
+      "Instant channel setup",
+      "Automatic swap",
+      "Breez cloud backup",
+      "Lightning wallet",
+      "Bitcoin cash register"
+    ]
+  },
   "compat_heading": "What this Breez wallet can or can't do",
   "compat_tiles": [
     {
       "id": "pay-lightning",
       "title": "Pay with Lightning",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Invoices</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Pay links</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Lightning Address</span>",
+      "benefit": "Invoices | Pay links | Lightning Address",
       "status": "works"
     },
     {
       "id": "pay-onchain",
       "title": "Pay on-chain",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Via swap to on-chain</span>",
+      "benefit": "Automatic swap to Bitcoin address",
       "status": "works"
     },
     {
       "id": "receive-lightning",
       "title": "Receive on Lightning",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Invoices</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Pay links</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Auto-managed</span>",
+      "benefit": "Invoices | Pay links | Auto-opens channels",
       "status": "works"
     },
     {
       "id": "receive-onchain",
       "title": "Receive on-chain",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Swaps to Lightning</span>",
+      "benefit": "Converts to Lightning | 3 confirmations",
       "status": "works"
     }
   ],
   "compat_explainers": [
     {
       "id": "pay-lightning",
-      "why": "Breez is a native Lightning wallet with full support for modern Lightning features.",
+      "why": "Breez routes Lightning invoices, pay links, and Lightning Addresses automatically and finds the best path for reliable delivery.",
       "try": [
-        "Scan or paste any Lightning invoice, LNURL, or Lightning Address",
-        "Review the routing fee (typically very low)",
-        "Confirm and payment settles instantly"
+        "Scan or paste any Lightning invoice or Lightning Address",
+        "Review the network routing fee and confirm",
+        "Breez retries automatically if the first route doesn't work"
       ],
-      "gotcha": "Not ideal for very small payments under 100 sats due to minimum channel reserves."
+      "gotcha": "Very small payments under ~100 sats can fail because channel partners enforce minimum balances."
     },
     {
       "id": "pay-onchain",
-      "why": "You can send to Bitcoin addresses via reverse submarine swaps.",
+      "why": "Automatic swaps let you send Lightning funds to an on-chain address without leaving Breez.",
       "try": [
-        "Paste a Bitcoin address in the Send field",
-        "Breez routes via reverse submarine swap to on-chain",
-        "Review swap fee and confirm"
+        "Tap Send and paste a Bitcoin address",
+        "Review the swap quote and approve",
+        "Wait for the network confirmation before spending again"
       ],
-      "gotcha": "Reverse swaps include service fees plus on-chain mining fees. Check total cost before confirming."
+      "gotcha": "Swaps carry a 0.5% service fee plus network mining costs and need at least 50k sats."
     },
     {
       "id": "receive-lightning",
-      "why": "Breez handles Lightning channel liquidity automatically in the background.",
+      "why": "Breez opens channels instantly so you can accept payments without setting up capacity yourself.",
       "try": [
-        "Tap Receive to generate a Lightning invoice",
-        "Share the QR or invoice with the payer",
-        "Breez manages channel capacity behind the scenes"
+        "Tap Receive → Lightning invoice",
+        "Share the QR or link with the person paying you",
+        "Leave Breez open while the first large payment completes"
       ],
-      "gotcha": "First receive or liquidity adjustments may take time. Keep the app open while receiving large amounts."
+      "gotcha": "Channel setup fees apply when you need more capacity; you'll see the fee before confirming."
     },
     {
       "id": "receive-onchain",
-      "why": "Receive Bitcoin from exchanges or on-chain wallets; Breez swaps it to Lightning.",
+      "why": "Breez gives you on-chain addresses and automatically swaps confirmed funds into your Lightning balance.",
       "try": [
-        "Tap Receive and select Bitcoin address option",
-        "Share the address with the sender",
-        "After confirmations, Breez swaps the funds to your Lightning balance"
+        "Tap Receive → Bitcoin address",
+        "Share the address and track network confirmations",
+        "Funds move to Lightning after three confirmations if fees are reasonable"
       ],
-      "gotcha": "Submarine swaps to Lightning include service fees. Consider the cost for small on-chain receives."
+      "gotcha": "Set a reasonable fee limit to avoid delays; high network fees can pause the automatic conversion."
     }
-  ]
+  ],
+  "migration": [
+    {
+      "id": "restore-same-wallet",
+      "title": "Restore Breez on a new phone",
+      "choose": "When your original device is lost or retired.",
+      "time": "~10 min",
+      "cost": "Free",
+      "risk": "Low",
+      "steps": [
+        "Install Breez on the new device from the official store listing.",
+        "Select Restore, pick the same cloud provider, and enter your Breez recovery key.",
+        "Stay online while Breez downloads backups and resyncs channels before uninstalling the old copy."
+      ],
+      "tips": "Test the recovery flow with a small balance before storing large funds so you know the process.",
+      "gotcha": "Running Breez on two phones at once can desync channels—shut down the old device after the restore."
+    },
+    {
+      "id": "move-from-another-wallet",
+      "title": "Another wallet → to Breez",
+      "choose": "When you want Breez automation but currently use another Lightning wallet.",
+      "time": "~5–15 min",
+      "cost": "Routing fees",
+      "risk": "Low",
+      "steps": [
+        "Set up Breez and complete the security and backup prompts.",
+        "Create a Breez Lightning invoice for the amount you wish to move.",
+        "Pay the invoice from your old wallet, starting with a small test before larger transfers."
+      ],
+      "tips": "Leave both wallets open during the transfer so routes stay active and invoice timers do not expire.",
+        "gotcha": "Expect Breez to charge the 0.4% setup fee if the transfer needs fresh receiving capacity."
+    },
+    {
+      "id": "move-to-onchain",
+      "title": "Breez → to on-chain wallet",
+      "choose": "When you plan to cold-store funds on-chain.",
+      "time": "~1–6 hours",
+      "cost": "Mining fee",
+      "risk": "Low",
+      "steps": [
+        "Open Settings > Close channels and choose cooperative close for the lowest fee.",
+        "Wait for the closing transaction to confirm; funds appear in Breez’s on-chain view.",
+        "Sweep the confirmed balance to your external wallet."
+      ],
+      "tips": "Check mempool fees before closing channels and target cheaper periods to save on miner fees.",
+      "gotcha": "Force-closing channels is slower (up to ~5 days) and costs more—reserve it for emergencies."
+    },
+    {
+      "id": "switch-to-another-wallet",
+      "title": "Breez → to another Lightning wallet",
+      "choose": "When you want to switch to a different Lightning client.",
+      "time": "~15–45 min",
+      "cost": "Routing fees",
+      "risk": "Low",
+      "steps": [
+        "Install and secure the new wallet, including its recovery method.",
+        "Send a test Lightning payment from Breez to the new wallet to confirm connectivity.",
+        "Move the remaining balance, then close Breez channels or export funds on-chain as needed."
+      ],
+      "tips": "Move funds in batches if routes fail; Breez’s mission control improves with retries.",
+      "gotcha": "Remember to update any POS terminals or podcast splits to the new wallet’s Lightning Address."
+    }
+  ],
+  "anchors": {
+    "setup": "#setup",
+    "fees": "#fees",
+    "privacy": "#privacy",
+    "migration": "#migration",
+    "faq": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-01",
+  "trust": {
+    "cards": [
+      {
+        "id": "update",
+        "fact": "January 2025 release",
+        "link_text": "App Store",
+        "link_url": "https://apps.apple.com/us/app/breez-lightning-client-pos/id1463604142"
+      },
+      {
+        "id": "publisher",
+        "fact": "Breez Development LTD",
+        "link_text": "Developer",
+        "link_url": "https://apps.apple.com/us/developer/breez-development-ltd/id1463604141"
+      },
+      {
+        "id": "source",
+        "fact": "Open source",
+        "link_text": "GitHub",
+        "link_url": "https://github.com/breez/breezmobile"
+      },
+      {
+        "id": "activity",
+        "fact": "Last commit Sep 2025",
+        "link_text": "Commits",
+        "link_url": "https://github.com/breez/breezmobile/commits/master"
+      }
+    ]
+  }
 }

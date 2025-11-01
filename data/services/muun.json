@@ -261,32 +261,32 @@
     ]
   },
   "compat_heading": "What this Muun wallet can or can't do",
-  "compat_tiles": [
-    {
-      "id": "pay-lightning",
-      "title": "Pay with Lightning",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Invoices</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Pay links</span> <span class=\"icon-text-pair\"><img src=\"/images/cross.svg\" class=\"inline-icon\" alt=\"\"> Lightning Address</span>",
-      "status": "works"
-    },
-    {
-      "id": "pay-onchain",
-      "title": "Pay on-chain",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Native on-chain</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Auto-selects network</span>",
-      "status": "works"
-    },
-    {
-      "id": "receive-lightning",
-      "title": "Receive on Lightning",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Uses swaps</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> You pay swap fee</span>",
-      "status": "setup"
-    },
-    {
-      "id": "receive-onchain",
-      "title": "Receive on-chain",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Native</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Unified balance</span>",
-      "status": "works"
-    }
-  ],
+    "compat_tiles": [
+      {
+        "id": "pay-lightning",
+        "title": "Pay with Lightning",
+        "benefit": "✓ Invoices · ✓ Pay links · ✗ Lightning Address",
+        "status": "works"
+      },
+      {
+        "id": "pay-onchain",
+        "title": "Pay on-chain",
+        "benefit": "✓ Native on-chain · ✓ Auto-selects network",
+        "status": "works"
+      },
+      {
+        "id": "receive-lightning",
+        "title": "Receive on Lightning",
+        "benefit": "⚠ Uses swaps · ⚠ You pay swap fee",
+        "status": "setup"
+      },
+      {
+        "id": "receive-onchain",
+        "title": "Receive on-chain",
+        "benefit": "✓ Native · ✓ Unified balance",
+        "status": "works"
+      }
+    ],
   "compat_explainers": [
     {
       "id": "pay-lightning",
