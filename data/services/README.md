@@ -1,41 +1,48 @@
-# Services Directory
+# Service JSON Files
 
-This directory contains individual JSON files for each service on Buoy Bitcoin.
+This directory contains individual service data files that get merged into `../services.json` during the build process.
 
-## Structure
+## When Adding or Updating a Service JSON File
 
-Each service is stored in its own file, named with lowercase and hyphens:
-- `phoenix.json`
-- `aqua.json`
-- `bisq.json`
-- etc.
+**📖 Read the comprehensive guide first:**
+```
+.cursor/rules/populate-service-json.md
+```
 
-## Workflow
+This guide contains:
+- ✅ Standardized IDs and titles for fees, compatibility, and migration sections
+- ✅ Trust chip values to use
+- ✅ Status values for compatibility tiles
+- ✅ Text formatting rules (no em-dashes!)
+- ✅ Complete schema patterns
 
-### Editing a Service
+## Quick Start
 
-1. **Edit the individual file** in `data/services/[service-name].json`
-2. **Build** the site: `node scripts/build-static.mjs`
-3. **Commit** your changes (both the individual file and generated `services.json`)
+1. **Use `phoenix.json` as your schema reference** for field structure and nesting
+2. **Follow `populate-service-json.md`** for standardized IDs and titles
+3. **Extract service-specific facts** from official sources (FAQ, docs, app stores)
+4. **Use plain language** throughout—avoid jargon
 
-### How It Works
+## Common Mistakes to Avoid
 
-- **Source files**: `data/services/*.json` (these are what you edit)
-- **Generated file**: `data/services.json` (automatically created during build)
-- **Build process**: 
-  1. `merge-services.mjs` combines all individual files into `services.json`
-  2. `build-static.mjs` uses `services.json` to generate HTML pages
+❌ Don't create custom `illustration` fields (handled automatically by build script registry)  
+❌ Don't use em-dashes (—) as sentence breaks (use periods instead)  
+❌ Don't invent new fee scenario IDs for common scenarios (use standards: `fees-send-lightning`, etc.)  
+❌ Don't use technical jargon (say "Pay someone" not "Execute Lightning payment")  
+❌ Don't use "Needs setup" for features that work with caveats (use `"works-caveat"` status instead)  
 
-### Important Notes
+## Build Process
 
-- ✅ **DO edit**: Individual files in `data/services/`
-- ❌ **DON'T edit**: `data/services.json` directly (it gets overwritten)
-- 📝 The merged `services.json` is gitignored but recreated on every build
+Individual service files here are merged into `../services.json` by:
+```bash
+npm run build:services
+```
 
-## Benefits
+This also generates:
+- `/services/{service}.html` pages
+- Updated search indexes
+- Content hashes for cache busting
 
-- **Easier editing**: Find and edit one service at a time
-- **Better git history**: Changes to one service don't affect others
-- **Cleaner diffs**: See exactly what changed per service
-- **Scalability**: Can grow to 100+ services without issues
+---
 
+**Need help?** Check the populate guide: `.cursor/rules/populate-service-json.md`

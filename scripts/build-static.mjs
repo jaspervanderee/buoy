@@ -60,7 +60,9 @@ const COMPAT_ILLUSTRATIONS = {
   // Setup / Getting started section (now resolved per-slug at build time)
   // Fees section
   "fees-pay": "/images/illustration/pay-someone.svg",
+  "fees-send-lightning": "/images/illustration/pay-someone.svg",
   "fees-first-receive": "/images/illustration/receive.svg",
+  "fees-receive-lightning": "/images/illustration/receive.svg",
   "fees-splice": "/images/illustration/big-receive.svg",
   "fees-onchain-send": "/images/illustration/pay-on-chain.svg",
   // Compatibility section (legacy)
@@ -85,7 +87,9 @@ const COMPAT_ILLUSTRATION_ALTS = {
   // Setup / Getting started (now resolved per-slug at build time)
   // Fees
   "fees-pay": "Pay someone",
+  "fees-send-lightning": "Pay someone",
   "fees-first-receive": "First time you receive",
+  "fees-receive-lightning": "Receive on Lightning",
   "fees-splice": "Big receive",
   "fees-onchain-send": "Send Bitcoin on-chain",
   // Compatibility (legacy)
@@ -1013,6 +1017,7 @@ ${tileItems}
         const tileItems = tiles.map(tile => {
           const statusMap = {
             works: "Works",
+            "works-caveat": "Works, with caveat",
             setup: "Needs setup",
             notyet: "Not yet"
           };
