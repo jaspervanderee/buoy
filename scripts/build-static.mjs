@@ -1149,6 +1149,10 @@ ${tileItems}
           audit: {
             label: "Security audit",
             icon: "/images/audit.svg"
+          },
+          custody: {
+            label: "Insurance",
+            icon: "/images/insurance.svg"
           }
         };
         

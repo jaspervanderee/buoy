@@ -1363,148 +1363,464 @@
     "type_of_platform": "Bitcoin rewards card",
     "faqs": [
       {
-        "q": "What is Fold?",
-        "a": "Fold is a Bitcoin rewards app with a prepaid debit card and gift cards that earn sats on everyday spending."
+        "q": "How do Fold rewards differ by plan?",
+        "a": "Fold's Basic plan lets you spin the Rewards Wheel, buy gift cards, and refer friends for sats, while Fold+ subscribers add guaranteed 0.5% back on signature Visa purchases, 1.5%-5% rotating Card and Merchant Boosts, and ACH Bill Pay rewards."
       },
       {
-        "q": "Is Fold custodial?",
-        "a": "Fold holds balances in your account until you withdraw; rewards can be sent to your own wallet."
+        "q": "How do ACH Bill Pay rewards work?",
+        "a": "Fold+ members earn 0.25%-1.5% back on ACH Bill Payments up to the amount of the previous month's qualified spend-the first $2,500 in payments uses your tier rate, dollars $2,501-$5,000 revert to 0.25%, and anything beyond last month's spend earns 0%. Qualified spend includes bitcoin buys, gift cards purchased with your Fold balance (counted 2x), and Visa Signature transactions that only received the base 0.5% reward."
       },
       {
-        "q": "Where is Fold available?",
-        "a": "Most card features are U.S.‑only; gift cards and rewards access may vary by region."
+        "q": "What limits apply to the Fold Card?",
+        "a": "As of September 5, 2024 the Fold Card caps include a $30,000 account balance, $15,000 per-day spend, $15,000 per calendar-day loads, a $2,000 rolling 24-hour gift card limit, and $250 per ATM transaction ($1,000 per day/month). Instant debit transfers cap at $1,500 per deposit and depend on how long you have held Fold+."
+      },
+      {
+        "q": "Is the Fold Card FDIC insured?",
+        "a": "USD on the Fold Card is issued by Sutton Bank, Member FDIC, so balances qualify for pass-through FDIC insurance up to $250,000 per ownership category when eligibility conditions are met. Bitcoin balances, rewards, and gift card value are not FDIC or SIPC protected."
+      },
+      {
+        "q": "How long does Push to Card take and what does it cost?",
+        "a": "Push to Card sells bitcoin inside Fold and loads USD to your Fold Card; Fold+ members pay no fee, Basic users pay a 1% sell fee, and transfers usually settle in 1-10 minutes (rarely up to 24 hours)."
+      },
+      {
+        "q": "How do I withdraw bitcoin from Fold?",
+        "a": "Open the Bitcoin tab, tap Send -> Withdraw, paste or scan your destination address, and confirm; the only cost is the Bitcoin network miner fee. Most withdrawals finalize within 1-2 hours, and Fold asks you to contact support if a transfer hasn't landed after 24 hours."
       }
     ],
-    "supported_network": "Visa Debit Card, Credit Card, Giftcards",
+    "supported_network": "Visa Prepaid debit, ACH bill pay, gift card marketplace, bitcoin buys and withdrawals",
     "features": {
       "WW": [
         {
-          "text": "Bitcoin rewards on everyday spending",
+          "text": "Daily Rewards Wheel and gift cards earn sats without needing the Fold Card",
           "status": "positive"
         },
         {
-          "text": "Seamless integration of Bitcoin into traditional finance",
+          "text": "Push to Card and bitcoin automations convert between BTC and USD in minutes",
           "status": "positive"
         },
         {
-          "text": "Most features US only",
+          "text": "Bitcoin stays custodial with Fold partners until you withdraw to your own wallet",
           "status": "negative"
         },
         {
-          "text": "Custodial until withdrawn",
-          "status": "negative"
-        },
-        {
-          "text": "High fees possible on some services",
+          "text": "Top rewards require an active Fold+ subscription",
           "status": "negative"
         }
       ],
       "US": [
         {
-          "text": "Live on Bitcoin standard",
+          "text": "Fold Visa Signature debit yields 0.5% base and 1.5%-5% rotating Boosts",
           "status": "positive"
         },
         {
-          "text": "2% unlimited Bitcoin rewards on credit card",
+          "text": "Fold+ ACH Bill Pay can earn up to 1.5% on the first $2,500 each month",
           "status": "positive"
         },
         {
-          "text": "Custodial",
+          "text": "Fold Prepaid Debit Card is limited to United States residents",
           "status": "negative"
         },
         {
-          "text": "KYC required",
+          "text": "Card enrollment requires full KYC identity verification",
           "status": "negative"
         }
       ]
     },
-    "custody_control": "Custodial (until withdrawn)",
+    "custody_control": "Custodial (USD via Sutton Bank, BTC via BitGo until you withdraw)",
     "kyc_required": "Yes",
-    "recovery_method": "Custodial account",
+    "recovery_method": "Custodial account with KYC; withdraw bitcoin to your own wallet",
     "open_source": "No",
     "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
-      "ios": 4.8,
-      "android": 4.6
+      "ios": 4.2,
+      "android": "Not available"
     },
     "profile": "Will Reeves",
-    "description": "Fold aims to make Bitcoin accessible by integrating it into daily financial activities. It offers a Visa prepaid debit card, gift card purchases, and bill payments, all rewarding users with Bitcoin (sats). Users can also buy Bitcoin with low or no fees, depending on their plan, and deposit Bitcoin into their Fold account for insured custody.\\n\\nWhat sets Fold apart is how it combines traditional finance functions like bill pay and debit card usage with Bitcoin rewards in one simple interface. Users don't need to juggle multiple apps or wallets. Rewards can be earned on nearly every transaction, from daily spending to mortgage payments, with bonus sats for gift card purchases. Fold also allows external Bitcoin deposits and provides low-fee conversions from paycheck to BTC, making it easy to live on a Bitcoin standard while minimizing taxable events.\\n\\nUsers praise the ease of use, the ability to stack Bitcoin passively, and the clear design of the app. Some power users run most of their household finances through Fold, using the gift card section for groceries and shopping, and setting up recurring buys with leftover balances at the end of each month. The ability to earn rewards even on ACH bill pay is seen as a unique benefit.\\n\\nFold's vision is to be the ultimate platform for living on a Bitcoin standard, making it easy to earn, spend, and save Bitcoin while navigating a fiat world, giving users control and flexibility without the complexity of traditional exchanges or wallets.",
+    "description": "Fold aims to make Bitcoin accessible by integrating it into daily financial activities. It offers a Visa prepaid debit card, gift card purchases, and bill payments, all rewarding users with Bitcoin (sats). Users can also buy Bitcoin with low or no fees, depending on their plan, and deposit Bitcoin into their Fold account for insured custody.\n\nWhat sets Fold apart is how it combines traditional finance functions like bill pay and debit card usage with Bitcoin rewards in one simple interface. Users don't need to juggle multiple apps or wallets. Rewards can be earned on nearly every transaction, from daily spending to mortgage payments, with bonus sats for gift card purchases. Fold also allows external Bitcoin deposits and provides low-fee conversions from paycheck to BTC, making it easy to live on a Bitcoin standard while minimizing taxable events.\n\nUsers praise the ease of use, the ability to stack Bitcoin passively, and the clear design of the app. Some power users run most of their household finances through Fold, using the gift card section for groceries and shopping, and setting up recurring buys with leftover balances at the end of each month. The ability to earn rewards even on ACH bill pay is seen as a unique benefit.\n\nFold's vision is to be the ultimate platform for living on a Bitcoin standard, making it easy to earn, spend, and save Bitcoin while navigating a fiat world, giving users control and flexibility without the complexity of traditional exchanges or wallets.",
     "founded_in": "2019",
     "website": "https://foldapp.com",
+    "links": {
+      "ios": "https://apps.apple.com/us/app/fold-bitcoin-personal-finance/id1480424785",
+      "android": "Not available"
+    },
     "countries": [
-      "NA",
-      "EU"
+      "US"
     ],
+    "trust_chips": [
+      {
+        "text": "BitGo-insured bitcoin custody",
+        "status": "positive"
+      },
+      {
+        "text": "Pass-through FDIC for USD balances",
+        "status": "positive"
+      },
+      {
+        "text": "KYC required",
+        "status": "negative"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "US spenders who want bitcoin rewards on daily purchases without running their own node.",
+      "consider_if": "You plan to fund the Fold Card with bitcoin or pay big bills via ACH to earn 0.25%-1.5% back.",
+      "not_ideal_when": "You need worldwide access, true self-custody, or want to avoid KYC."
+    },
+    "howto": {
+      "title": "Getting started with Fold",
+      "steps": [
+        {
+          "id": "setup-verify",
+          "title": "1. Download Fold and verify your identity",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Install Fold from the App Store and start the Fold Card application",
+            "Enter your legal name, SSN, and residential (non-PO Box) address for KYC",
+            "Answer any identity questions and wait for the approval email (manual reviews can take 3-4 business days)"
+          ],
+          "gotcha": "Mistyped answers or PO Box addresses cause verification failures-double-check the details before resubmitting."
+        },
+        {
+          "id": "setup-fund",
+          "title": "2. Add dollars or bitcoin",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Up to 1% (non Fold+)",
+            "risk": "Medium"
+          },
+          "actions": [
+            "Link your bank for ACH transfers or direct deposit if you plan to load USD regularly",
+            "Use Push to Card to sell bitcoin inside Fold and instantly fund the card (Fold+ pays 0%, Basic pays 1%)",
+            "Keep transfers within instant move limits ($1,500 per deposit, higher tiers unlock after six months of Fold+)"
+          ],
+          "gotcha": "Instant debit transfers and loads are capped; large amounts may need traditional ACH, which can take a few days."
+        },
+        {
+          "id": "setup-earn",
+          "title": "3. Start earning rewards",
+          "chips": {
+            "time": "~2 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Spin the Rewards Wheel every day for sats and buy gift cards through Fold to unlock extra cash back",
+            "Use the Fold Visa card for signature purchases to earn 0.5% base and catch category or merchant boosts worth 1.5%-5%",
+            "Pay recurring bills with ACH Bill Pay to earn up to 1.5% on the first $2,500 that month based on last month's qualified spend"
+          ],
+          "gotcha": "ACH rewards stop once you exceed last month's qualified spend, and boosted card purchases don't count toward next month's allowance."
+        }
+      ],
+      "totalTime": null
+    },
+    "fees_scenarios": [
+      {
+        "id": "fees-buy-btc",
+        "title": "Buy bitcoin inside Fold",
+        "cost_today": "Fold+ 0% fee; Basic 0.95% fee plus spread",
+        "what_happens": "Fold executes the buy through its custodial partners and includes a small spread in the quoted exchange rate.",
+        "how_to_minimize": "Upgrade to Fold+ or batch purchases when spreads are narrow.",
+        "learn_more": "Fold+ members skip the processing fee entirely, while Basic users pay 0.95%-everyone sees the spread baked into the previewed price."
+      },
+      {
+        "id": "fees-push-card",
+        "title": "Convert bitcoin to USD with Push to Card",
+        "cost_today": "Fold+ 0%; Basic 1% sell fee",
+        "what_happens": "Fold sells the exact bitcoin amount you specify and immediately loads the proceeds onto your Fold Card.",
+        "how_to_minimize": "Keep Fold+ active if you rely on Push to Card; otherwise, consolidate conversions into fewer transactions.",
+        "learn_more": "Transfers usually finish within 1-10 minutes (rarely up to 24 hours) and the USD balance is ready to swipe anywhere Visa is accepted."
+      },
+      {
+        "id": "fees-withdraw-btc",
+        "title": "Withdraw bitcoin to self-custody",
+        "cost_today": "Bitcoin network miner fee (variable)",
+        "what_happens": "Your withdrawal broadcasts on-chain and mines into a block; the deduction includes your amount plus the network fee.",
+        "how_to_minimize": "Schedule withdrawals when mempool fees are low and avoid tiny payouts that get eaten by fees.",
+        "learn_more": "Fold does not charge an extra fee-what you see is the miner fee required for a timely confirmation."
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "Why did my ACH Bill Pay rewards drop to 0%?",
+        "a": "ACH rewards only apply up to the total qualified spend you logged the previous month; once current ACH payments exceed that dollar amount, the reward rate falls to 0% until the next cycle."
+      },
+      {
+        "q": "Do boosted Visa transactions count toward qualified spend?",
+        "a": "Only Visa Signature transactions that earned the base 0.5% reward count. Purchases in boosted categories, PIN transactions, and prior ACH payments do not increase next month's allowance."
+      },
+      {
+        "q": "What exactly happens when I push to card?",
+        "a": "Push to Card sells bitcoin for USD and loads those dollars to your Fold Card balance-you're not sending BTC directly onto the card, so the conversion can create a taxable event."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "term-qualified-spend",
+        "term": "Qualified spend",
+        "definition": "Your prior month's bitcoin buys, gift cards bought with Fold balance (counted 2x), and Visa Signature transactions that only earned the base 0.5% reward-used to size next month's ACH allowance."
+      },
+      {
+        "id": "term-push-to-card",
+        "term": "Push to Card",
+        "definition": "Fold's instant conversion that sells bitcoin balances and loads the USD proceeds to your Fold Card, typically within 1-10 minutes."
+      },
+      {
+        "id": "term-fold-plus",
+        "term": "Fold+",
+        "definition": "Fold's paid subscription that unlocks 0% bitcoin buy/sell fees, 0.5% base card rewards, rotating Boosts, ACH Bill Pay rewards, and higher instant transfer limits."
+      }
+    ],
+    "privacy_notes": {
+      "data_flows": [
+        "Fold collects personal identity data (name, SSN, address, knowledge-based answers) during KYC verification for the Fold Card.",
+        "USD balances sit with Sutton Bank, Member FDIC, and bitcoin balances are held by custodial partners such as BitGo until you withdraw.",
+        "ACH reward eligibility emails summarize your prior month's qualified spend and current reward tier."
+      ],
+      "recovery_drill": [
+        "If identity verification fails, correct any typos, avoid PO boxes, and allow 3-4 business days for manual review before retrying.",
+        "For stalled Push to Card conversions, Fold asks you to wait up to 24 hours before contacting support.",
+        "When withdrawing bitcoin, keep the app open until the transaction appears in your history and use a block explorer if you need extra confirmation."
+      ],
+      "country_caveats": [
+        "The Fold Prepaid Debit Card is currently available only in the United States.",
+        "ACH Bill Pay rewards depend on your previous month's qualified spend calculated in UTC time, which can differ from your local timezone.",
+        "Instant debit transfer limits are lower for new Fold+ members (e.g., $125 per withdrawal in the first six months)."
+      ]
+    },
+    "privacy": {
+      "section_title": "Privacy & Safety",
+      "data_flows": [
+        "KYC information you submit is checked against public records and may be reviewed manually for 3-4 business days when verification fails.",
+        "USD card funds are held at Sutton Bank, so the bank and Fold have visibility into your account activity for compliance and FDIC pass-through coverage.",
+        "Bitcoin you hold in Fold remains with custodial partners such as BitGo until you withdraw it to self-custody.",
+        "Fold may rotate deposit addresses after each confirmed receive; reusing older addresses can reduce your privacy."
+      ],
+      "data_flows_do": "Plan to withdraw or sweep bitcoin balances you intend to custody yourself once they settle.",
+      "data_flows_dont": "Assume Fold provides on-chain privacy-address reuse and custodial storage link activity to your account.",
+      "recovery": [
+        "To move funds off Fold, go to the Bitcoin tab, tap Send -> Withdraw, enter your destination, and confirm the network fee.",
+        "Ensure your available balance exceeds the displayed miner fee before submitting a withdrawal so it can broadcast successfully.",
+        "Contact support@foldapp.com if a withdrawal or Push to Card conversion has not arrived after 24 hours."
+      ],
+      "recovery_do": "Test a small withdrawal first and keep your destination wallet backups secure before moving larger amounts.",
+      "recovery_dont": "Ignore app notifications-pending transactions still require network confirmations before the balance is spendable.",
+      "region": [
+        "The Fold Prepaid Debit Card currently serves U.S. residents only.",
+        "Qualified spend and ACH reward calculations use UTC windows, so late-night transactions near month end may land in the next cycle.",
+        "You must maintain Fold+ membership for the entire month to earn ACH rewards; lapses reset eligibility until the following month."
+      ],
+      "micro_faqs": [
+        {
+          "q": "Does the Fold Card work internationally?",
+          "a": "Yes, international transactions are supported, but standard network fees or issuer limits may apply and USD balances still live at Sutton Bank."
+        },
+        {
+          "q": "How quickly will Push to Card funds show up?",
+          "a": "Push to Card usually loads USD within 1-10 minutes, though Fold notes rare delays of up to 24 hours."
+        },
+        {
+          "q": "What should I do if identity verification fails?",
+          "a": "Double-check your personal details, avoid PO boxes, and allow 3-4 business days for manual review before retrying or contacting support."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Qualified spend",
+          "def": "The tally of eligible Fold activity in the prior month that sets your ACH Bill Pay reward allowance."
+        },
+        {
+          "term": "Instant withdrawal limit",
+          "def": "Fold's cap on instant debit transfers (e.g., $250 per withdrawal for long-tenured Fold+ members) before ACH settlement clears."
+        },
+        {
+          "term": "BitGo insurance",
+          "def": "Coverage maintained by Fold's custodial partner BitGo against theft of private keys while your bitcoin stays in Fold."
+        }
+      ],
+      "keywords": [
+        "Fold ACH rewards",
+        "Fold Push to Card",
+        "Fold card limits",
+        "Fold BitGo custody",
+        "Fold FDIC coverage",
+        "Fold identity verification"
+      ]
+    },
     "compat_heading": "What this Fold wallet can or can't do",
     "compat_tiles": [
       {
         "id": "pay-lightning",
-        "title": "Pay with Lightning",
-        "benefit": "⚠ Via Visa card · ⚠ Converts to fiat",
+        "title": "Spend from Fold Card",
+        "benefit": "⚠ Converts to USD · ✓ Visa network coverage",
         "status": "setup"
       },
       {
         "id": "pay-onchain",
-        "title": "Pay on-chain",
-        "benefit": "⚠ Via Visa card · ✓ Withdraw on-chain",
-        "status": "setup"
+        "title": "Send on-chain",
+        "benefit": "✓ Withdraw to Bitcoin addresses · ✓ Miner fee only",
+        "status": "works"
       },
       {
         "id": "receive-lightning",
         "title": "Receive on Lightning",
-        "benefit": "✓ Lightning deposit · ✓ Custodial account",
+        "benefit": "✓ Generate invoices · ⚠ Custodial balance",
         "status": "works"
       },
       {
         "id": "receive-onchain",
         "title": "Receive on-chain",
-        "benefit": "✓ Bitcoin deposit · ✓ Custodial account",
+        "benefit": "✓ Fresh deposit addresses · ⚠ Wait for confirmations",
         "status": "works"
       }
     ],
     "compat_explainers": [
       {
         "id": "pay-lightning",
-        "why": "Fold lets you spend Bitcoin anywhere Visa is accepted—your balance converts to fiat at checkout.",
+        "why": "Fold lets you swipe anywhere Visa is accepted while earning bitcoin rewards.",
         "try": [
-          "Load your Fold account with Bitcoin or Lightning",
-          "Use your Fold Visa debit card anywhere",
-          "Earn Bitcoin rewards on purchases (varies by plan)"
+          "Fund the Fold Card with Push to Card or a bank transfer",
+          "Use the card for signature Visa purchases to earn the base 0.5% plus any Boosts",
+          "Monitor the Rewards feed to see which categories or merchants currently pay 1.5%-5%"
         ],
-        "gotcha": "You're not paying Lightning directly to merchants—Fold converts your balance to USD at payment time. This creates taxable events."
+        "gotcha": "Transactions settle in USD, so they create taxable events just like selling bitcoin outright."
       },
       {
         "id": "pay-onchain",
-        "why": "Use your Bitcoin balance for everyday spending via the Fold Visa card, or withdraw on-chain.",
+        "why": "You can withdraw bitcoin to any external wallet from the Bitcoin tab.",
         "try": [
-          "Tap Send and enter a Bitcoin address to withdraw on-chain",
-          "Or use your Fold Visa card anywhere—balance converts to fiat",
-          "Review fees before confirming withdrawals"
+          "Tap Send -> Withdraw and paste your destination address",
+          "Review the miner fee Fold quotes before submitting",
+          "Track the transaction in your Fold history or via a block explorer"
         ],
-        "gotcha": "Card payments trigger fiat conversion (taxable event). On-chain withdrawals incur mining fees. Check fee structure before large withdrawals."
+        "gotcha": "Fold cannot cancel a withdrawal once broadcast, so verify the address and fee before confirming."
       },
       {
         "id": "receive-lightning",
-        "why": "Deposit Bitcoin via Lightning to your Fold account for spending or holding.",
+        "why": "Fold lets you accept bitcoin via Lightning invoices for quick top-ups.",
         "try": [
-          "Tap Receive and generate a Lightning invoice",
-          "Send from another wallet to your Fold Lightning address",
-          "Funds appear in your custodial Fold account"
+          "Open the Bitcoin tab and tap Receive",
+          "Share the Lightning invoice or QR with the payer",
+          "Leave the app open until the invoice shows as settled"
         ],
-        "gotcha": "Fold is custodial—they hold your Bitcoin until you withdraw. Consider moving large amounts to self-custody."
+        "gotcha": "Invoices settle into your custodial Fold balance-withdraw to self-custody if you need control of the keys."
       },
       {
         "id": "receive-onchain",
-        "why": "Deposit Bitcoin from exchanges or other wallets directly to your Fold account.",
+        "why": "Deposit bitcoin from exchanges or other wallets using Fold-generated addresses.",
         "try": [
-          "Tap Receive and get your Bitcoin deposit address",
-          "Send from exchange or another wallet",
-          "Funds appear after confirmations in your Fold balance"
+          "Tap Receive -> Bitcoin address to generate a new deposit address",
+          "Send bitcoin from the external wallet and monitor the mempool",
+          "Wait for confirmations before the balance becomes available for Push to Card or withdrawals"
         ],
-        "gotcha": "Fold holds your Bitcoin custodially. Withdrawals to your own wallet are possible but incur on-chain fees."
+        "gotcha": "Fold may rotate addresses after each confirmed receive, so always copy the latest address from the app."
       }
-    ]
+    ],
+    "migration": [
+      {
+        "id": "restore-same-wallet",
+        "title": "Restore Fold on a new phone",
+        "choose": "When you get a new device and want to keep using Fold.",
+        "time": "~10 min",
+        "cost": "Free",
+        "risk": "Low",
+        "steps": [
+          "Install Fold on the new phone and verify it's the official app from Fold, Inc.",
+          "Open the app and complete identity verification with your SSN and address",
+          "Your account and balances will automatically sync; contact support if rewards history doesn't appear"
+        ],
+        "tips": "Fold accounts remain active as long as you have at least one action per year; if inactive too long, some rewards may claw back.",
+        "gotcha": "Fold Card must be re-activated with a new PIN if you get a new device; call customer support at 1-866-FOLDAPP."
+      },
+      {
+        "id": "move-from-another-wallet",
+        "title": "Another wallet → to Fold",
+        "choose": "When you want to start using Fold but have funds in a different bitcoin wallet.",
+        "time": "~5–15 min",
+        "cost": "Network fees",
+        "risk": "Low",
+        "steps": [
+          "Install Fold and complete the Fold Card application with identity verification.",
+          "In Fold, go to the Bitcoin tab and tap Receive to generate a Lightning invoice or on-chain address.",
+          "Send from your other wallet to Fold. Start with a small test amount (~10,000 sats) first."
+        ],
+        "tips": "Always test with a small amount first. Keep both apps open during the transfer and wait for confirmations.",
+        "gotcha": "Fold is custodial-once funds arrive, they're held by BitGo partners until you withdraw to self-custody."
+      },
+      {
+        "id": "move-to-onchain",
+        "title": "Fold → to on-chain wallet",
+        "choose": "When you want to hold your sats in self-custody.",
+        "time": "~1-2 hours",
+        "cost": "Miner fee",
+        "risk": "Medium",
+        "steps": [
+          "Tap Send -> Withdraw from the Bitcoin tab",
+          "Scan or paste your wallet address and review the network fee",
+          "Confirm and monitor the transaction in Fold or a block explorer"
+        ],
+        "tips": "Make sure your available balance exceeds the miner fee and test with a small withdrawal before sweeping everything.",
+        "gotcha": "Withdrawals cannot be cancelled; contact support only if a transfer is still unconfirmed after 24 hours."
+      },
+      {
+        "id": "switch-to-another-wallet",
+        "title": "Fold → to another wallet",
+        "choose": "When you want to try a different bitcoin wallet and move your Fold balance.",
+        "time": "~15–45 min",
+        "cost": "Network fees",
+        "risk": "Low",
+        "steps": [
+          "Install your new wallet and complete its setup process.",
+          "Withdraw bitcoin from Fold to the new wallet. Start with a small test amount (~10,000 sats).",
+          "Once testing succeeds, withdraw your full balance and close your Fold account."
+        ],
+        "tips": "Test first with a small amount (~10,000 sats) to catch issues before moving everything. Verify the new wallet's security model.",
+        "gotcha": "Fold accounts may have minimum activity requirements; unused accounts can lose rewards over time."
+      }
+    ],
+    "anchors": {
+      "setup": "#setup",
+      "fees": "#fees",
+      "privacy": "#privacy",
+      "migration": "#migration",
+      "faq": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-01",
+    "trust": {
+      "cards": [
+        {
+          "id": "update",
+          "fact": "iOS app updated October 31 2025",
+          "link_text": "App Store",
+          "link_url": "https://apps.apple.com/us/app/fold-bitcoin-personal-finance/id1480424785"
+        },
+        {
+          "id": "publisher",
+          "fact": "Card issued by Sutton Bank (Member FDIC)",
+          "link_text": "Support article",
+          "link_url": "https://support.foldapp.com/hc/en-us/articles/360052026512-Is-Fold-Card-FDIC-insured"
+        },
+        {
+          "id": "custody",
+          "fact": "Fold custody covered by BitGo insurance",
+          "link_text": "Withdraw guide",
+          "link_url": "https://support.foldapp.com/hc/en-us/articles/9905232708891-How-to-Withdraw-Purchased-Bitcoin-From-Fold"
+        },
+        {
+          "id": "activity",
+          "fact": "Card limits refreshed September 5 2024",
+          "link_text": "Card limits",
+          "link_url": "https://support.foldapp.com/hc/en-us/articles/360052537511-What-limits-is-my-card-subject-to"
+        }
+      ]
+    }
   },
   {
     "name": "Hodlhodl",
