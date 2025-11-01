@@ -185,7 +185,7 @@
       "title": "Getting started with Aqua",
       "steps": [
         {
-          "id": "setup-create",
+          "id": "setup-install",
           "title": "1. Install and create your wallet",
           "chips": {
             "time": "~5 min",
@@ -200,7 +200,7 @@
           "gotcha": "Aqua cannot import seeds from other wallets, so keep this new phrase safe."
         },
         {
-          "id": "setup-fund",
+          "id": "setup-receive",
           "title": "2. Add funds",
           "chips": {
             "time": "~10 min",
@@ -248,14 +248,6 @@
         "what_happens": "Boltz receives the payment and credits your Liquid or Bitcoin balance.",
         "how_to_minimize": "Use Lightning sparingly for small payments and rely on on-chain or Liquid for bigger transfers.",
         "learn_more": "Receiving Lightning through Aqua triggers a Boltz swap that currently costs 0.25% plus the Liquid mining fee."
-      },
-      {
-        "id": "fees-usdt-swap",
-        "title": "Move USDt to another chain",
-        "cost_today": "≈0.9% + provider network fees",
-        "what_happens": "Aqua hands the transfer to SideShift or Changelly, who convert Liquid USDt to the destination chain.",
-        "how_to_minimize": "Compare quotes and only bridge when you actually need funds on another network.",
-        "learn_more": "Swap partners set their own network fees, so conversions to chains like Ethereum or Tron cost more than staying on Liquid."
       }
     ],
     "fees_faq": [

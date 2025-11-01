@@ -3732,7 +3732,7 @@ p, li, a {
     color: #b7e5ba;
   }
   
-  .svc-chip--setup {
+  .svc-chip--setup, .svc-chip--works-caveat {
     background: #4d3e1a;
     color: #ffeaa7;
   }
