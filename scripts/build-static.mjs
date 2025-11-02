@@ -65,6 +65,9 @@ const COMPAT_ILLUSTRATIONS = {
   "fees-receive-lightning": "/images/illustration/receive.svg",
   "fees-splice": "/images/illustration/big-receive.svg",
   "fees-onchain-send": "/images/illustration/pay-on-chain.svg",
+  "fees-deposit": "/images/illustration/deposit-cash.svg",
+  "fees-buy": "/images/illustration/buy-bitcoin.svg",
+  "fees-withdraw": "/images/illustration/move-to-another-wallet.svg",
   // Compatibility section (legacy)
   "lnurl-pay": "/images/illustration/pay-any-lightning-qr.svg",
   "lnurl-withdraw": "/images/illustration/withdraw-from-service.svg",
@@ -79,6 +82,11 @@ const COMPAT_ILLUSTRATIONS = {
   "move-from-another-wallet": "/images/illustration/move-from-another-wallet.svg",
   "move-to-onchain": "/images/illustration/wallet-to-cold-wallet.svg",
   "switch-to-another-wallet": "/images/illustration/move-to-another-wallet.svg",
+  // Self-custody section (generic IDs work across all services)
+  "pick-wallet": "/images/illustration/wallet-to-cold-wallet.svg",
+  "make-receive-code": "/images/illustration/create-code.svg",
+  "test-small": "/images/illustration/tiny-test.svg",
+  "move-rest": "/images/illustration/move-the-rest.svg"
   // Add more: "item-id": "/images/illustration/filename.svg"
 };
 
@@ -92,6 +100,9 @@ const COMPAT_ILLUSTRATION_ALTS = {
   "fees-receive-lightning": "Receive on Lightning",
   "fees-splice": "Big receive",
   "fees-onchain-send": "Send Bitcoin on-chain",
+  "fees-deposit": "Deposit cash",
+  "fees-buy": "Buy bitcoin",
+  "fees-withdraw": "Withdraw bitcoin",
   // Compatibility (legacy)
   "lnurl-pay": "Scan a Lightning QR; wallet pays",
   "lnurl-withdraw": "Tap or scan the withdrawal QR from the service",
@@ -105,7 +116,12 @@ const COMPAT_ILLUSTRATION_ALTS = {
   "restore-same-wallet": "Restore wallet on new device",
   "move-from-another-wallet": "Move wallet from another wallet",
   "move-to-onchain": "Move wallet to cold wallet storage",
-  "switch-to-another-wallet": "Move wallet to another wallet"
+  "switch-to-another-wallet": "Move wallet to another wallet",
+    // Migration
+    "pick-wallet": "Pick a wallet",
+    "make-receive-code": "Make a safe receive code",
+    "test-small": "Send a tiny test first",
+    "move-rest": "Move the rest"
   // Add more: "item-id": "Short action-focused description"
 };
 
@@ -336,9 +352,14 @@ html = html.replace('</head>', urlShim + '</head>');
       const tableHtml = await renderTableHTML(svc, svc.category, { mode: "service" });
 
       const defaultOrder = ["tldr", "setup", "fees", "privacy", "compat", "migration", "trust", "profile"];
-      const order = Array.isArray(svc.section_order) && svc.section_order.length
-        ? svc.section_order.filter((key) => defaultOrder.includes(key))
+      let order = Array.isArray(svc.section_order) && svc.section_order.length
+        ? svc.section_order.filter((key) => defaultOrder.includes(key) || key === "self_custody")
         : defaultOrder;
+      
+      // For Buy Bitcoin services, replace migration with self_custody
+      if (svc.category === "Buy Bitcoin") {
+        order = order.map(key => key === "migration" ? "self_custody" : key);
+      }
 
       const sectionBlocks = [];
 
@@ -471,12 +492,38 @@ html = html.replace('</head>', urlShim + '</head>');
       </div>`;
         }).join("");
         
+        // Render micro-FAQ (each item individually collapsible, like fees micro-FAQ)
+        let microFaqHtml = "";
+        if (Array.isArray(howto.micro_faqs) && howto.micro_faqs.length > 0) {
+          const validFaqs = howto.micro_faqs
+            .filter(faq => faq && hasContent(faq.q) && hasContent(faq.a))
+            .slice(0, 3);
+          
+          if (validFaqs.length > 0) {
+            const faqItems = validFaqs.map(faq => {
+              return `    <details class="micro-faq-item">
+      <summary>${faq.q}</summary>
+      <div>
+        <p>${faq.a}</p>
+      </div>
+    </details>`;
+            }).join("\n");
+            
+            microFaqHtml = `  <div class="fee-quick-answers">
+    <h3 class="fee-quick-answers__title">Quick answers</h3>
+    <div class="fee-quick-answers__list">
+${faqItems}
+    </div>
+  </div>\n`;
+          }
+        }
+        
         return `
 <section id="setup" class="service-section">
   <h2 class="feature-label">Getting started</h2>
   <div class="svc-compat__grid">
 ${tileItems}
-  </div>
+  </div>${microFaqHtml}
 </section>`;
       };
 
@@ -985,6 +1032,110 @@ ${tileItems}
 </section>`;
       };
 
+      const renderSelfCustody = () => {
+        const selfCustody = svc.self_custody || {};
+        const tiles = Array.isArray(selfCustody.tiles) ? selfCustody.tiles : [];
+        
+        if (!tiles.length) return "";
+        
+        const heading = selfCustody.heading || "Self-custody: withdraw safely";
+        const learnLabel = "Show steps";
+        
+        // Render tiles with same structure as Migration
+        const tileItems = tiles.map(tile => {
+          const tileId = tile.id || slugify(tile.title || "");
+          
+          // Resolve illustration: per-tile override takes precedence over registry
+          let illustrationHtml = "";
+          const imagePath = tile.image || COMPAT_ILLUSTRATIONS[tileId];
+          if (imagePath) {
+            const altText = tile.image_alt || COMPAT_ILLUSTRATION_ALTS[tileId] || tile.title;
+            illustrationHtml = `
+        <div class="svc-compat__illustration">
+          <img src="${imagePath}" alt="${escapeHtml(altText)}" loading="lazy" />
+        </div>`;
+          }
+          
+          // Meta chips (time, cost, risk) from chips object
+          const metaChips = [];
+          if (tile.chips) {
+            if (tile.chips.time) metaChips.push(`<span class="migration-meta-chip">Time: ${tile.chips.time}</span>`);
+            if (tile.chips.cost) metaChips.push(`<span class="migration-meta-chip">Cost: ${tile.chips.cost}</span>`);
+            if (tile.chips.risk) metaChips.push(`<span class="migration-meta-chip">Risk: ${tile.chips.risk}</span>`);
+          }
+          const metaHtml = metaChips.length > 0 
+            ? `<div class="migration-meta">${metaChips.join("")}</div>` 
+            : "";
+          
+          // Why explanation (visible above collapsible)
+          const whyHtml = tile.why ? `<p class="svc-compat__why">${tile.why}</p>` : "";
+
+          // Steps collapsible - use actions array for ordered steps
+          let detailsContent = "";
+          if (Array.isArray(tile.actions) && tile.actions.length > 0) {
+            const stepsList = `<ol>${tile.actions.map(step => `<li>${step}</li>`).join("")}</ol>`;
+            detailsContent = stepsList;
+
+            // Append gotcha if present
+            if (tile.gotcha) {
+              detailsContent += `<p><strong>Gotcha:</strong> ${tile.gotcha}</p>`;
+            }
+          } else {
+            detailsContent = `<p>Additional details coming soon.</p>`;
+          }
+
+          const detailsHtml = `
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="${learnLabel}">${learnLabel}</summary>
+          <div>${detailsContent}
+          </div>
+        </details>`;
+
+          return `
+      <div class="svc-compat__tile" id="${tileId}">${illustrationHtml}
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">${tile.title}</h3>
+        </div>
+        ${metaHtml}
+        ${whyHtml}${detailsHtml}
+      </div>`;
+        }).join("");
+        
+        // Render micro-FAQ (same structure as fees_faq)
+        let microFaqHtml = "";
+        if (Array.isArray(selfCustody.micro_faqs) && selfCustody.micro_faqs.length > 0) {
+          const validFaqs = selfCustody.micro_faqs
+            .filter(faq => faq && hasContent(faq.q) && hasContent(faq.a))
+            .slice(0, 4);
+          
+          if (validFaqs.length > 0) {
+            const faqItems = validFaqs.map(faq => {
+              return `    <details class="micro-faq-item">
+      <summary>${faq.q}</summary>
+      <div>
+        <p>${faq.a}</p>
+      </div>
+    </details>`;
+            }).join("\n");
+            
+            microFaqHtml = `  <div class="fee-quick-answers">
+    <h3 class="fee-quick-answers__title">Quick answers</h3>
+    <div class="fee-quick-answers__list">
+${faqItems}
+    </div>
+  </div>\n`;
+          }
+        }
+        
+        return `
+<section id="self-custody" class="service-section">
+  <h2 class="feature-label">${heading}</h2>
+  <div class="svc-compat__grid">
+${tileItems}
+  </div>${microFaqHtml}
+</section>`;
+      };
+
       const renderCompatibility = () => {
         const tiles = Array.isArray(svc.compat_tiles) ? svc.compat_tiles : [];
         const explainers = Array.isArray(svc.compat_explainers) ? svc.compat_explainers : [];
@@ -1302,6 +1453,7 @@ ${cards.join("\n")}
         privacy: renderPrivacy,
         compat: renderCompatibility,
         migration: renderMigration,
+        self_custody: renderSelfCustody,
         trust: renderTrustSection,
         profile: renderProfileSection,
       };

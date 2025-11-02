@@ -3421,6 +3421,7 @@ p, li, a {
 .fee-card p.fee-card__cost {
   font-size: 1.2em;
   margin: 0 0 20px 0;
+  line-height: 1.8; /* Add spacing between lines when using <br> */
 }
 
 .fee-card p.fee-card__what,
