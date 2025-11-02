@@ -1399,7 +1399,7 @@
           "status": "positive"
         },
         {
-          "text": "Bitcoin stays custodial with Fold partners until you withdraw to your own wallet",
+          "text": "Custodial custody",
           "status": "negative"
         },
         {
@@ -1535,7 +1535,7 @@
         "learn_more": "Transfers usually finish within 1-10 minutes (rarely up to 24 hours) and the USD balance is ready to swipe anywhere Visa is accepted."
       },
       {
-        "id": "fees-withdraw-btc",
+        "id": "move-to-onchain",
         "title": "Withdraw bitcoin to self-custody",
         "cost_today": "Bitcoin network miner fee (variable)",
         "what_happens": "Your withdrawal broadcasts on-chain and mines into a block; the deduction includes your amount plus the network fee.",
@@ -3528,63 +3528,88 @@
     "type_of_platform": "Exchange",
     "faqs": [
       {
-        "q": "Is Strike self‑custodial?",
-        "a": "No. Strike is custodial, but you can withdraw on‑chain or via Lightning for free to self‑custody."
+        "q": "How do Strike's bitcoin trading fees work?",
+        "a": "Strike charges a tiered Strike fee that starts at 0.99% for monthly volume under $250 and steps down to 0.39% once you trade more than $15,000,000. Recurring purchases skip the fee after the first cycle for hourly or daily schedules and after the second run for weekly or monthly schedules."
       },
       {
-        "q": "Where is Strike available?",
-        "a": "Support focuses on North America, Europe, South America and Australia; some features like Bill Pay are U.S. only."
+        "q": "How much bitcoin can I buy or sell in one trade?",
+        "a": "Level 1 and Level 2 accounts can place bitcoin buys or sells up to $2,500,000 per trade with unlimited trades, though Strike may start you with lower limits while it reviews activity."
       },
       {
-        "q": "What are Strike fees?",
-        "a": "Trading fees follow a tiered volume schedule; recurring orders are free after setup."
+        "q": "When are ACH deposits available to withdraw?",
+        "a": "ACH deposits post instantly for trading but sit in your pending balance until the transfer settles, which typically takes about five business days plus any extra hold Strike applies based on your history. Once the deposit moves to available balance you can send, spend, or withdraw it."
+      },
+      {
+        "q": "Do debit card deposits clear right away?",
+        "a": "Debit card deposits post immediately for trading and withdrawal. Strike passes through a card processing fee that is typically 1.99%."
+      },
+      {
+        "q": "What are the limits for wire withdrawals?",
+        "a": "Wire withdrawals are available to fully verified U.S. customers with a $50,000 minimum and $5,000,000 maximum per withdrawal, plus a flat $15 fee. Funds usually reach your bank within one business day."
+      },
+      {
+        "q": "Are Lightning withdrawals free?",
+        "a": "Yes. Lightning withdrawals from your available bitcoin balance have no Strike fee and settle instantly once your ACH or card deposit has cleared."
+      },
+      {
+        "q": "How do bitcoin auto-withdrawals work?",
+        "a": "You can set a threshold between 1,000,000 and 500,000,000 sats along with one or more payout addresses. When your available balance crosses the threshold Strike queues the full amount, gives you a 12 hour window to cancel, then broadcasts within 24 hours using the fee-free Flexible tier."
+      },
+      {
+        "q": "What happens if a recurring purchase fails?",
+        "a": "Strike retries when your chosen payment method has insufficient funds. After three failed attempts the recurring purchase cancels until you reconfigure it."
+      },
+      {
+        "q": "Can I access pending deposits sooner?",
+        "a": "Eligible customers can request Strike Instant, which grants limited early access to pending ACH funds so you can send or withdraw before the standard hold completes."
+      },
+      {
+        "q": "Where is Strike available today?",
+        "a": "Strike is available across the United States except New York, Puerto Rico, and in more than 95 other countries. Availability and payment methods vary, so confirm support in your local App Store or on the Strike website."
       }
     ],
-    "fees": {
-      "intro": "Based on monthly trading volume",
-      "tiers": [
+    "supported_network": "Bitcoin (on-chain and Lightning)",
+    "features": {
+      "WW": [
         {
-          "range": "up to $250",
-          "fee": "0.99%"
+          "text": "Instant Lightning withdrawals",
+          "status": "positive"
         },
         {
-          "range": "$250 - $2,000",
-          "fee": "0.95%"
+          "text": "Recurring bitcoin buys with fee waivers",
+          "status": "positive"
         },
         {
-          "range": "$2,000 - $5,000",
-          "fee": "0.89%"
+          "text": "Tiered trading fees fall as volume rises",
+          "status": "positive"
         },
         {
-          "range": "$5,000 - $50,000",
-          "fee": "0.79%"
+          "text": "ACH deposits must clear before withdrawals",
+          "status": "negative"
+        }
+      ],
+      "US": [
+        {
+          "text": "Free ACH and wire deposits",
+          "status": "positive"
         },
         {
-          "range": "$50,000 - $500,000",
-          "fee": "0.69%"
+          "text": "Bill Pay converts paychecks to bitcoin",
+          "status": "positive"
         },
         {
-          "range": "$500,000 - $5,000,000",
-          "fee": "0.59%"
+          "text": "Instant cash-out costs 1.78%",
+          "status": "negative"
         },
         {
-          "range": "$5,000,000 - $15,000,000",
-          "fee": "0.49%"
-        },
-        {
-          "range": "$15,000,000 and over",
-          "fee": "0.39%"
+          "text": "Wire withdrawals require at least $50k",
+          "status": "negative"
         }
       ]
     },
-    "dca": "Yes: Recurring orders are free",
-    "payment_methods": [
-      "Bank Transfer",
-      "Debit Card",
-      "Cash App"
-    ],
     "custody_control": "Custodial",
-    "kyc_required": "Yes",
+    "kyc_required": "Yes (government ID required)",
+    "recovery_method": "Email login with optional 2FA and support assisted resets",
     "open_source": "No",
     "user_experience": "0.0",
     "interface": "Mobile only",
@@ -3593,54 +3618,416 @@
       "android": 4.5
     },
     "profile": "Jack Mallers",
-    "description": "Strike's goal is to make worldwide payments in Bitcoin as easy as possible, it offers free on‑chain and Lightning withdrawals, making it flexible and cost‑effective to hold your Bitcoin in self-custody. Its recurring buy feature at no fee costs after the initial setup, makes DCA (dollar‑cost averaging) simple and efficient. Strike also functions as a Lightning wallet, enabling quick micropayments with features like unique payment links and cash-to-Bitcoin transfers, and offers responsive customer support praised by users.\n\nStrike's vision goes beyond being merely another payment app. It aims to democratize financial access, reduce dependency on traditional banks, and promote financial sovereignty by empowering individuals to manage their money independently. Their user-friendly app interface, available on both iOS and Android, highlights simplicity and accessibility with a minimalistic design.\n\nIn the US, Strike now offers a powerful Bill Pay feature aiming to reduce reliance on fiat currency and combat inflation by leveraging Bitcoin's appreciating value, with automated tax reporting to simplify the process.\n\nAnother Strike feature is the Bitcoin‑backed loan that lets users pledge Bitcoin as collateral and borrow USD with no origination or early repayment fees. Loans can be repaid anytime without penalties.",
+    "description": "Strike is a custodial bitcoin app focused on fast buys and cash like payments. The mobile interface puts bank, card, and direct deposit funding beside instant Lightning withdrawals, so you can move from fiat to bitcoin and back with minimal steps.\n\nFunding options cover fee-free ACH, debit cards with a small processor fee, and same day wires. ACH deposits trade instantly yet stay pending for roughly five business days before you can withdraw, while wires settle in about one business day and debit card purchases clear immediately.\n\nRecurring purchases waive the Strike fee after the first cycle, and optional auto-withdrawals move your balance to self custody once it reaches the threshold you set. Customer prompts inside the app highlight fee tiers, settlement speed, and the 12 hour cancel window Strike gives you before broadcasting auto-withdrawals.",
     "founded_in": "2020",
     "website": "https://strike.me",
-    "features": {
-      "WW": [
-        {
-          "text": "Free recurring buys",
-          "status": "positive"
-        },
-        {
-          "text": "Free withdrawals to self-custody",
-          "status": "positive"
-        },
-        {
-          "text": "Limited utility non-US users",
-          "status": "negative"
-        },
-        {
-          "text": "KYC required",
-          "status": "negative"
-        }
-      ],
-      "US": [
-        {
-          "text": "Bill Payment in Bitcoin",
-          "status": "positive"
-        },
-        {
-          "text": "Free recurring buys",
-          "status": "positive"
-        },
-        {
-          "text": "Free withdrawals to self-custody",
-          "status": "positive"
-        },
-        {
-          "text": "Slow account verification",
-          "status": "negative"
-        },
-        {
-          "text": "KYC required",
-          "status": "negative"
-        }
-      ]
+    "links": {
+      "ios": "https://apps.apple.com/app/apple-store/id1488724463",
+      "android": "https://play.google.com/store/apps/details?id=zapsolutions.strike"
     },
     "countries": [
+      "US",
       "WW"
-    ]
+    ],
+    "trust_chips": [
+      {
+        "text": "Lightning withdrawals",
+        "status": "positive"
+      },
+      {
+        "text": "Transparent fee tiers",
+        "status": "positive"
+      },
+      {
+        "text": "Auto-withdraw to self-custody",
+        "status": "positive"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "Buyers who want to DCA and withdraw over Lightning without extra fees.",
+      "consider_if": "You need bank or debit funding with predictable limits and recurring buys.",
+      "not_ideal_when": "You require support for other cryptocurrencies or desktop trading."
+    },
+    "howto": {
+      "title": "Getting started with Strike",
+      "steps": [
+        {
+          "id": "setup-install",
+          "title": "1. Create your Strike account",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Download Strike from the App Store or Google Play",
+            "Sign up with your email and pick a username",
+            "Confirm the code Strike emails to you"
+          ],
+          "gotcha": "Strike requires you to be 18 and will ask for your legal identity."
+        },
+        {
+          "id": "setup-verify",
+          "title": "2. Verify your identity",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Enter your full name, date of birth, address, and phone",
+            "Provide your SSN or national ID details and upload any requested document",
+            "Wait for approval; contact support if review exceeds 24 hours"
+          ],
+          "gotcha": "Limits stay conservative until verification is approved."
+        },
+        {
+          "id": "setup-fund",
+          "title": "3. Link a funding method",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Bank: Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Open Account > Payment methods",
+            "Connect your bank via Plaid or add a debit card",
+            "Review ACH, card, or wire limits before depositing"
+          ],
+          "gotcha": "ACH cash remains pending until the transfer settles."
+        },
+        {
+          "id": "setup-buy",
+          "title": "4. Buy bitcoin",
+          "chips": {
+            "time": "~1 min",
+            "cost": "0.99%-0.39% Strike fee",
+            "risk": "Medium"
+          },
+          "actions": [
+            "Tap Bitcoin > Buy or configure a recurring purchase",
+            "Choose your amount and payment source",
+            "Confirm the displayed Strike fee tier or DCA schedule"
+          ],
+          "gotcha": "Monthly volume resets on the first day of each month at 00:00 UTC."
+        },
+        {
+          "id": "setup-withdraw",
+          "title": "5. Withdraw to your wallet",
+          "chips": {
+            "time": "~1-24 hr",
+            "cost": "Lightning: Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Tap Bitcoin > Send > Bitcoin wallet",
+            "Scan a Lightning invoice or paste an on-chain address",
+            "Pick Lightning or choose Priority, Standard, or Flexible on-chain"
+          ],
+          "gotcha": "ACH funded bitcoin must reach available balance before it can leave Strike."
+        }
+      ],
+      "totalTime": null
+    },
+    "fees_scenarios": [
+      {
+        "id": "fees-buy",
+        "title": "Buy bitcoin",
+        "cost_today": "0.99% down to 0.39% as monthly volume increases",
+        "what_happens": "Strike applies the Strike fee tier based on your calendar month buy and sell volume.",
+        "how_to_minimize": "Batch purchases to advance tiers and enable recurring buys so ongoing orders skip the fee.",
+        "learn_more": "Tier thresholds: <$250 = 0.99%, $250-$2,000 = 0.95%, $2,000-$5,000 = 0.89%, $5,000-$50,000 = 0.79%, $50,000-$500,000 = 0.69%, $500,000-$5,000,000 = 0.59%, $5,000,000-$15,000,000 = 0.49%, $15,000,000+ = 0.39%."
+      },
+      {
+        "id": "fees-deposit",
+        "title": "Deposit cash",
+        "cost_today": "ACH free; debit card ~1.99%; wire free (your bank may charge)",
+        "what_happens": "ACH arrives instantly for trading but stays pending about five business days before you can withdraw, debit card funds are available immediately, and wire deposits usually clear within one business day.",
+        "how_to_minimize": "Use ACH for fee-free funding, choose wire for large transfers, and monitor Strike Instant eligibility for early access.",
+        "learn_more": "Deposit limits start at $1,000 per seven days for ACH and can scale to $100,000, while wire and direct deposit limits are unlimited."
+      },
+      {
+        "id": "fees-withdraw",
+        "title": "Withdraw bitcoin",
+        "cost_today": "Lightning free; on-chain Priority or Standard fees vary; Flexible tier is free (~24 hr)",
+        "what_happens": "Lightning withdrawals pay invoices instantly, while on-chain sends let you pick Priority (~10 min), Standard (~1 hour), or Flexible (~24 hours, no fee). Wire cash withdrawals carry a $15 fee with a $50,000 minimum.",
+        "how_to_minimize": "Keep a Lightning wallet ready, schedule auto-withdrawals for the Flexible tier, and reserve wires for large cash moves.",
+        "learn_more": "Auto-withdrawals queue for 12 hours before broadcast and settle within 24 hours, and ACH funded bitcoin must reach available balance before leaving Strike."
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "Does Strike charge network fees on Lightning withdrawals?",
+        "a": "Strike covers the Lightning routing cost, so you only pay the invoice amount. On-chain withdrawals still depend on the mining fee tier you pick."
+      },
+      {
+        "q": "When does my Strike fee tier reset?",
+        "a": "Strike resets monthly trading volume at 00:00 UTC on the first day of the new month, placing you back on the highest fee tier until you trade again."
+      },
+      {
+        "q": "Can I change the speed of an on-chain withdrawal after I send it?",
+        "a": "You cannot edit a broadcast once Strike submits it, but you can pick Priority, Standard, or Flexible before confirming, and auto-withdrawals give you a 12 hour cancel window."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "term-strike-fee",
+        "term": "Strike fee",
+        "definition": "The percentage Strike charges on bitcoin buys and sells. It ranges from 0.99% to 0.39% based on your monthly volume."
+      },
+      {
+        "id": "term-pending-balance",
+        "term": "Pending balance",
+        "definition": "ACH or loan proceeds that you can trade but cannot withdraw until Strike marks them available."
+      },
+      {
+        "id": "term-auto-withdrawal",
+        "term": "Auto-withdrawal",
+        "definition": "A rule that queues your entire bitcoin balance to leave Strike once it reaches a threshold you set."
+      }
+    ],
+    "privacy_notes": {
+      "data_flows": [
+        "Strike stores the personal information and identity documents you submit during sign up to meet AML and KYC rules.",
+        "Bank and card details are shared with regulated payment processors so your deposits and withdrawals can settle."
+      ],
+      "recovery_drill": [
+        "Enable two-factor authentication and confirm your email before funding the account.",
+        "If you lose access, open the app on a trusted device and follow the in-app recovery prompts or contact support with your ID.",
+        "Review the Account > Limits view after recovery to confirm Strike restored your previous limits."
+      ],
+      "country_caveats": [
+        "ACH, Bill Pay, and Strike Instant are currently limited to U.S. customers.",
+        "Wire deposits and withdrawals require a U.S. bank that supports Fedwire.",
+        "Availability and payment options differ by country; confirm support inside the Strike app store listing."
+      ]
+    },
+    "privacy": {
+      "section_title": "Privacy & Safety",
+      "data_flows": [
+        "Strike retains your legal name, address, phone number, and SSN or national ID to verify the account.",
+        "Connected banks and cards route through Plaid and card processors that can see your account and routing numbers.",
+        "Strike records Lightning invoices, on-chain addresses, and order history for compliance and customer support.",
+        "Support escalations may require you to confirm identity details again before Strike re-enables withdrawals."
+      ],
+      "data_flows_do": "Turn on two-factor authentication and review recent login sessions in Account > Security.",
+      "data_flows_dont": "Reuse the same password you use on other services or share your ID documents outside Strike's secure upload flow.",
+      "recovery": [
+        "Use the email verification link or code Strike sends to reset your password.",
+        "If 2FA is enabled, enter your authenticator code or backup code to finish the reset.",
+        "Contact support with your legal name and ID if you no longer control the registered email."
+      ],
+      "recovery_do": "Store authenticator backup codes offline and keep your email secured with its own 2FA.",
+      "recovery_dont": "Wait until your account is fully locked before you reach out to Strike support.",
+      "withdrawal_policy": [
+        "Lightning withdrawals are free and process instantly once your balance is available.",
+        "On-chain withdrawals offer Priority (~10 min), Standard (~1 hour), and Flexible (~24 hours, no fee) tiers.",
+        "ACH funded bitcoin stays locked until the pending window ends, while wire withdrawals require $50,000 minimum and carry a $15 fee."
+      ],
+      "withdrawal_policy_do": "Plan large cash outs with wires and keep auto-withdrawals in sync with your settlement windows.",
+      "withdrawal_policy_dont": "Assume ACH deposits or Strike Instant advances remove the $50,000 wire minimum.",
+      "region": [
+        "Strike operates in the United States (except New York) and 95+ other countries.",
+        "Recurring purchases, Bill Pay, and Strike Instant availability depends on your region.",
+        "Confirm local limits and payment methods in Account > Limits before funding."
+      ],
+      "micro_faqs": [
+        {
+          "q": "Does Strike support hardware wallet withdrawals?",
+          "a": "Yes. You can paste any Bitcoin address from your hardware wallet or trigger an auto-withdrawal to that address."
+        },
+        {
+          "q": "Can I change my Lightning withdrawal address after triggering auto-withdrawal?",
+          "a": "You can edit your address list before the auto-withdrawal broadcasts. Each run gives you a 12 hour cancellation window."
+        },
+        {
+          "q": "How can I track past withdrawals?",
+          "a": "Open Bitcoin > Activity to view completed auto-withdrawals, Lightning sends, and on-chain transactions."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Strike Instant",
+          "def": "A program that unlocks access to some pending ACH funds before standard settlement when you meet eligibility."
+        },
+        {
+          "term": "Flexible tier",
+          "def": "The free on-chain withdrawal option that targets about 24 hour confirmation."
+        },
+        {
+          "term": "Threshold",
+          "def": "The sat amount that triggers an automatic withdrawal when your balance exceeds it."
+        }
+      ],
+      "keywords": [
+        "Strike trading fees",
+        "Strike ACH pending balance",
+        "Strike Lightning withdrawal",
+        "Strike auto-withdrawal",
+        "Strike wire minimum",
+        "Strike recurring purchase",
+        "Strike Instant program"
+      ]
+    },
+    "compat_heading": "What this Strike account can or can't do",
+    "compat_tiles": [
+      {
+        "id": "deposit-ach",
+        "title": "Fund with ACH",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Free ACH</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Instant trading</span>",
+        "status": "works-caveat"
+      },
+      {
+        "id": "deposit-card",
+        "title": "Fund with debit card",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Instant clearance</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Apple Pay & Google Pay</span>",
+        "status": "works-caveat"
+      },
+      {
+        "id": "withdraw-lightning",
+        "title": "Withdraw on Lightning",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Invoices</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> No Strike fee</span>",
+        "status": "works"
+      },
+      {
+        "id": "withdraw-onchain",
+        "title": "Withdraw on-chain",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Priority tier</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Flexible (no fee)</span>",
+        "status": "works"
+      }
+    ],
+    "compat_explainers": [
+      {
+        "id": "deposit-ach",
+        "why": "ACH transfers let you fund Strike without fees while trading immediately.",
+        "try": [
+          "Link your bank in Account > Payment methods",
+          "Tap Cash > Deposit > Bank transfer",
+          "Trade right away while the deposit settles"
+        ],
+        "gotcha": "ACH deposits stay pending about five business days before you can withdraw or auto-withdraw."
+      },
+      {
+        "id": "deposit-card",
+        "why": "Debit cards give you instant settlement for time-sensitive buys.",
+        "try": [
+          "Add your debit card and verify the four digit code",
+          "Tap Cash > Deposit > Debit card",
+          "Confirm the processor fee and finish the buy"
+        ],
+        "gotcha": "Card deposits include a processing fee and may have lower weekly limits."
+      },
+      {
+        "id": "withdraw-lightning",
+        "why": "Lightning withdrawals let you exit Strike within seconds without extra cost.",
+        "try": [
+          "Tap Bitcoin > Send > Bitcoin wallet",
+          "Scan your Lightning invoice or paste a Lightning Address",
+          "Confirm the amount and send"
+        ],
+        "gotcha": "Lightning requires available balance; ACH funded bitcoin must settle before it can leave."
+      },
+      {
+        "id": "withdraw-onchain",
+        "why": "On-chain withdrawals let you choose cost versus confirmation time.",
+        "try": [
+          "Tap Bitcoin > Send > Bitcoin wallet",
+          "Paste a bech32 or legacy address",
+          "Pick Priority, Standard, or Flexible then confirm"
+        ],
+        "gotcha": "Flexible tier waits up to 24 hours; Priority and Standard charge a mining fee."
+      }
+    ],
+    "migration": [
+      {
+        "id": "move-from-another-wallet",
+        "title": "Another exchange > Strike",
+        "choose": "When you want to consolidate fiat funding and recurring buys inside Strike.",
+        "time": "~15 min",
+        "cost": "ACH free",
+        "risk": "Low",
+        "steps": [
+          "Link your bank or card in the Strike app",
+          "Transfer fiat or bitcoin from your old exchange into Strike",
+          "Wait for the deposit to settle before disabling your old account"
+        ],
+        "tips": "Start with a small test deposit before moving your main balance.",
+        "gotcha": "ACH deposits stay pending for several business days before you can withdraw from Strike."
+      },
+      {
+        "id": "move-to-onchain",
+        "title": "Strike > Long-term storage",
+        "choose": "When you are ready to sweep sats into a hardware wallet or multisig.",
+        "time": "~10-24 hr",
+        "cost": "Lightning free or on-chain mining fee",
+        "risk": "Low",
+        "steps": [
+          "Tap Bitcoin > Send and pick Lightning or on-chain",
+          "Scan your cold storage invoice or paste the address",
+          "Confirm the withdrawal tier and store the transaction ID"
+        ],
+        "tips": "Use auto-withdrawals to keep your Strike balance near zero.",
+        "gotcha": "Flexible on-chain sends queue for up to 24 hours, so plan ahead if you need faster confirmation."
+      },
+      {
+        "id": "switch-to-another-wallet",
+        "title": "Strike > Another exchange",
+        "choose": "When you want to close Strike or rotate to a different service.",
+        "time": "~1 day",
+        "cost": "Lightning free",
+        "risk": "Medium",
+        "steps": [
+          "Withdraw bitcoin to your new service over Lightning or on-chain",
+          "Send any remaining cash back to your bank via ACH or wire",
+          "Close recurring purchases and auto-withdrawals once funds arrive"
+        ],
+        "tips": "Capture statements from Account > Limits before closing for your records.",
+        "gotcha": "Wire cash-outs have a $50,000 minimum and a $15 fee."
+      }
+    ],
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#kyc",
+      "compat": "#features",
+      "migration": "#withdrawal",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-01",
+    "trust": {
+      "cards": [
+        {
+          "id": "licenses",
+          "fact": "U.S. MSB coverage",
+          "link_text": "Licenses",
+          "link_url": "https://strike.me/legal/licenses/"
+        },
+        {
+          "id": "activity",
+          "fact": "Realtime uptime",
+          "link_text": "Status",
+          "link_url": "https://status.strike.me/"
+        },
+        {
+          "id": "security",
+          "fact": "Security & compliance docs",
+          "link_text": "Trust Center",
+          "link_url": "https://trust.strike.me/"
+        },
+        {
+          "id": "privacy_withdrawal",
+          "fact": "Privacy notice October 2025",
+          "link_text": "Privacy notice",
+          "link_url": "https://strike.me/legal/privacy/"
+        }
+      ]
+    }
   },
   {
     "name": "Swan",

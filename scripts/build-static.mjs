@@ -1151,8 +1151,20 @@ ${tileItems}
             icon: "/images/audit.svg"
           },
           custody: {
-            label: "Insurance",
+            label: "Custody & safeguarding",
             icon: "/images/insurance.svg"
+          },
+          licenses: {
+            label: "Licenses & registrations",
+            icon: "/images/license.svg"
+          },
+          security: {
+            label: "Security & compliance",
+            icon: "/images/security.svg"
+          },
+          privacy_withdrawal: {
+            label: "Privacy & withdrawal policy",
+            icon: "/images/privacy.svg"
           }
         };
         
