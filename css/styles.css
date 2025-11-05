@@ -3019,6 +3019,21 @@ p, li, a {
   vertical-align: middle;
 }
 
+/* Differentiator variant: golden shiny outline for unique features */
+.trust-chip--differentiator {
+  position: relative;
+  border: 2px solid transparent;
+  background: linear-gradient(var(--panel), var(--panel)) padding-box,
+              linear-gradient(135deg, #f8cd77 0%, #ff987b 50%, #f9d48c 100%) border-box;
+  box-shadow: 0 0 12px rgba(252, 211, 130, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  .trust-chip--differentiator {
+    box-shadow: 0 0 16px rgba(249, 206, 120, 0.4);
+  }
+}
+
 @media (min-width: 768px) {
   .trust-chips {
     grid-template-columns: repeat(3, 1fr);
@@ -3498,6 +3513,47 @@ p, li, a {
   margin: 12px 0 0 0;
 }
 
+/* Learn more table heading */
+.learn-more-table-heading {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--text);
+  margin: 12px 0 8px 0;
+}
+
+/* Fee tiers table - scannable format for fee tiers */
+.fee-tiers-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.95em;
+  margin-top: 8px;
+}
+
+.fee-tiers-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.fee-tiers-table td:first-child {
+  text-align: left;
+  color: var(--text);
+  font-weight: 400;
+  padding-left: 0;
+}
+
+.fee-tiers-table td:last-child {
+  text-align: right;
+  color: var(--text);
+  font-weight: 600;
+  padding-right: 0;
+}
+
+.fee-tiers-table tr:last-child td {
+  border-bottom: none;
+}
+
 /* Quick answers (individually collapsible items, like brand FAQ) */
 .fee-quick-answers {
   margin: 20px 0 0 0;
@@ -3643,6 +3699,222 @@ p, li, a {
   .fee-card {
     padding: 20px;
     scroll-margin-top: 450px; /* Slightly less offset on desktop */
+  }
+}
+
+/* === Payment Methods & Limits Section === */
+.payment-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.payment-card {
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-card--unavailable {
+  opacity: 0.6;
+}
+
+.payment-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.payment-card__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+  flex: 1;
+}
+
+.payment-card__summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.payment-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75em;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.payment-details {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.payment-details summary {
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--accent);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.payment-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.payment-details summary::before {
+  content: "\2193";
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  color: #ff603b;
+}
+
+.payment-details[open] summary::before {
+  transform: rotate(180deg);
+}
+
+.payment-details > div {
+  margin-top: 12px;
+}
+
+.limits-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+}
+
+.limits-table th {
+  text-align: left;
+  padding: 8px 12px 8px 0;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.limits-table td {
+  text-align: right;
+  padding: 8px 0 8px 12px;
+  font-weight: 400;
+  border-bottom: 1px solid var(--border);
+}
+
+.limits-table tr:last-child th,
+.limits-table tr:last-child td {
+  border-bottom: none;
+}
+
+@media (min-width: 768px) {
+  .payment-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .payment-card {
+    padding: 20px;
+  }
+}
+
+/* === Key Features Section === */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.feature-tile {
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feature-tile__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--text);
+}
+
+.feature-tile__description {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--text);
+  flex: 1;
+}
+
+.feature-badge {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+  align-self: flex-start;
+  line-height: 1.2;
+  background: var(--bg);
+  color: var(--text-muted);
+}
+
+.feature-badge--free {
+  background: #d4edda;
+  color: #155724;
+}
+
+@media (prefers-color-scheme: dark) {
+  .feature-badge--free {
+    background: #1e4620;
+    color: #b7e5ba;
+  }
+}
+
+@media (min-width: 768px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .feature-tile {
+    padding: 20px;
   }
 }
 

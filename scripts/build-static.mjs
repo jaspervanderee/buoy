@@ -351,9 +351,9 @@ html = html.replace('</head>', urlShim + '</head>');
       // Render table for service page with mode: "service" to exclude legacy rows (Platform, Supported Networks, Features, Custody & Control block)
       const tableHtml = await renderTableHTML(svc, svc.category, { mode: "service" });
 
-      const defaultOrder = ["tldr", "setup", "fees", "privacy", "compat", "migration", "trust", "profile"];
+      const defaultOrder = ["tldr", "setup", "fees", "payment_methods_limits", "key_features", "privacy", "compat", "migration", "trust", "profile"];
       let order = Array.isArray(svc.section_order) && svc.section_order.length
-        ? svc.section_order.filter((key) => defaultOrder.includes(key) || key === "self_custody")
+        ? svc.section_order.filter((key) => defaultOrder.includes(key) || key === "self_custody" || key === "payment_methods_limits" || key === "key_features")
         : defaultOrder;
       
       // For Buy Bitcoin services, replace migration with self_custody
@@ -377,7 +377,9 @@ html = html.replace('</head>', urlShim + '</head>');
           } else if (chip.status === "neutral") {
             icon = '<img src="/images/warning.svg" alt="neutral icon" class="trust-chip-icon"/> ';
           }
-          return `<div class="trust-chip">${icon}${chip.text}</div>`;
+          // Add differentiator variant class if specified
+          const variantClass = chip.variant === "differentiator" ? " trust-chip--differentiator" : "";
+          return `<div class="trust-chip${variantClass}">${icon}${chip.text}</div>`;
         }).filter(Boolean).join("");
         if (!chipItems) return "";
         return `<div class="trust-chips">${chipItems}</div>`;
@@ -594,7 +596,6 @@ ${tileItems}
                 const cost = linkFeesGlossaryTerms(scenario.cost_today || "");
                 const what = linkFeesGlossaryTerms(scenario.what_happens || "");
                 const how = linkFeesGlossaryTerms(scenario.how_to_minimize || "");
-                const learn = linkFeesGlossaryTerms(scenario.learn_more || "");
                 
                 // Resolve illustration: per-scenario override takes precedence over registry
                 let illustrationHtml = "";
@@ -607,13 +608,62 @@ ${tileItems}
       </div>`;
                 }
                 
+                // Handle learn_more: can be string or table object
                 let learnHtml = "";
-                if (learn) {
-                  learnHtml = `
+                if (scenario.learn_more) {
+                  const learnMore = scenario.learn_more;
+                  
+                  if (typeof learnMore === "object" && learnMore.type === "table") {
+                    // Resolve table rows - either inline or from source reference
+                    let tableRows = [];
+                    
+                    if (learnMore.source) {
+                      // Reference to another property in the service object (e.g., "fees.tiers")
+                      const path = learnMore.source.split('.');
+                      let sourceData = svc;
+                      for (const key of path) {
+                        sourceData = sourceData?.[key];
+                      }
+                      tableRows = Array.isArray(sourceData) ? sourceData : [];
+                    } else if (Array.isArray(learnMore.rows)) {
+                      // Inline rows
+                      tableRows = learnMore.rows;
+                    }
+                    
+                    if (tableRows.length > 0) {
+                      // Render as table
+                      const tableHeading = learnMore.heading ? `<h4 class="learn-more-table-heading">${escapeHtml(learnMore.heading)}</h4>` : "";
+                      const rowsHtml = tableRows.map(row => {
+                        const cells = Object.entries(row).map(([key, value]) => {
+                          return `<td>${escapeHtml(value)}</td>`;
+                        }).join("");
+                        return `<tr>${cells}</tr>`;
+                      }).join("\n            ");
+                      
+                      learnHtml = `
         <details class="fee-card__learn-more">
           <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
-          <div><p>${learn}</p></div>
+          <div>
+            ${tableHeading}
+            <table class="fee-tiers-table">
+              <tbody>
+                ${rowsHtml}
+              </tbody>
+            </table>
+          </div>
         </details>`;
+                    }
+                  } else {
+                    // Render as text
+                    const learnText = typeof learnMore === "string" ? linkFeesGlossaryTerms(learnMore) : "";
+                    if (learnText) {
+                      learnHtml = `
+        <details class="fee-card__learn-more">
+          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
+          <div><p>${learnText}</p></div>
+        </details>`;
+                    }
+                  }
                 }
                 
                 return `    <article class="fee-card" id="${id}">${illustrationHtml}
@@ -951,6 +1001,109 @@ ${cards.join("\n")}
 </section>`;
       };
 
+      const renderPaymentMethods = () => {
+        const paymentData = svc.payment_methods_limits;
+        if (!paymentData || !Array.isArray(paymentData.methods)) return "";
+        
+        const heading = paymentData.heading || "Payment methods & limits";
+        const methods = paymentData.methods;
+        
+        const methodCards = methods.map(method => {
+          if (!method.available) {
+            // Unavailable payment method - show disabled state
+            return `
+      <div class="payment-card payment-card--unavailable">
+        <div class="payment-card__header">
+          <h3 class="payment-card__title">${escapeHtml(method.name)}</h3>
+          <span class="svc-chip svc-chip--notyet">Not available</span>
+        </div>
+      </div>`;
+          }
+          
+          // Available payment method - show summary and details
+          const summary = method.summary || {};
+          const limits = method.limits || {};
+          
+          const summaryStats = `
+        <div class="payment-card__summary">
+          <div class="payment-stat">
+            <span class="stat-label">Fee</span>
+            <span class="stat-value">${escapeHtml(summary.fee || "N/A")}</span>
+          </div>
+          <div class="payment-stat">
+            <span class="stat-label">Speed</span>
+            <span class="stat-value">${escapeHtml(summary.speed || "N/A")}</span>
+          </div>
+          <div class="payment-stat">
+            <span class="stat-label">Withdraw</span>
+            <span class="stat-value">${escapeHtml(summary.withdraw || "N/A")}</span>
+          </div>
+        </div>`;
+          
+          // Build limits table
+          const limitsTable = `
+        <table class="limits-table">
+          <tbody>
+            ${limits.min_per_tx ? `<tr><th>Min per transaction</th><td>${escapeHtml(limits.min_per_tx)}</td></tr>` : ""}
+            ${limits.max_per_tx ? `<tr><th>Max per transaction</th><td>${escapeHtml(limits.max_per_tx)}</td></tr>` : ""}
+            ${limits.max_per_day ? `<tr><th>Max per day</th><td>${escapeHtml(limits.max_per_day)}</td></tr>` : ""}
+            ${limits.max_per_week ? `<tr><th>Max per week</th><td>${escapeHtml(limits.max_per_week)}</td></tr>` : ""}
+            ${limits.withdraw_eligibility ? `<tr><th>Withdrawal eligibility</th><td>${escapeHtml(limits.withdraw_eligibility)}</td></tr>` : ""}
+          </tbody>
+        </table>`;
+          
+          return `
+      <div class="payment-card">
+        <div class="payment-card__header">
+          <h3 class="payment-card__title">${escapeHtml(method.name)}</h3>
+          <span class="svc-chip svc-chip--works">Available</span>
+        </div>
+        ${summaryStats}
+        <details class="payment-details">
+          <summary>View limits & details</summary>
+          <div>
+            ${limitsTable}
+          </div>
+        </details>
+      </div>`;
+        }).join("");
+        
+        return `
+<section id="payment-methods" class="service-section">
+  <h2 class="feature-label">${heading}</h2>
+  <div class="payment-cards">
+${methodCards}
+  </div>
+</section>`;
+      };
+
+      const renderKeyFeatures = () => {
+        const featuresData = svc.key_features;
+        if (!featuresData || !Array.isArray(featuresData.features)) return "";
+        
+        const heading = featuresData.heading || "Key features";
+        const features = featuresData.features;
+        
+        const featureTiles = features.map(feature => {
+          const badgeClass = feature.badge_type === "free" ? "feature-badge--free" : "feature-badge";
+          const badgeHtml = feature.badge ? `<span class="${badgeClass}">${escapeHtml(feature.badge)}</span>` : "";
+          
+          return `
+      <div class="feature-tile">
+        <h3 class="feature-tile__title">${escapeHtml(feature.title)}</h3>
+        <p class="feature-tile__description">${escapeHtml(feature.description)}</p>
+        ${badgeHtml}
+      </div>`;
+        }).join("");
+        
+        return `
+<section id="key-features" class="service-section">
+  <h2 class="feature-label">${heading}</h2>
+  <div class="feature-grid">
+${featureTiles}
+  </div>
+</section>`;
+      };
 
       const renderMigration = () => {
         const items = Array.isArray(svc.migration) ? svc.migration : [];
@@ -1450,6 +1603,8 @@ ${cards.join("\n")}
         tldr: renderTlDr,
         setup: renderSetup,
         fees: renderFees,
+        payment_methods_limits: renderPaymentMethods,
+        key_features: renderKeyFeatures,
         privacy: renderPrivacy,
         compat: renderCompatibility,
         migration: renderMigration,

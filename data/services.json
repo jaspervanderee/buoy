@@ -3552,7 +3552,7 @@
     "features": {
       "WW": [
         {
-          "text": "Instant Lightning withdrawals",
+          "text": "Live on bitcoin with Bill Pay",
           "status": "positive"
         },
         {
@@ -3560,7 +3560,7 @@
           "status": "positive"
         },
         {
-          "text": "Tiered trading fees fall as volume rises",
+          "text": "Bitcoin-backed loans",
           "status": "positive"
         },
         {
@@ -3611,15 +3611,17 @@
     ],
     "trust_chips": [
       {
+        "text": "Bill Pay",
+        "status": "positive",
+        "variant": "differentiator"
+      },
+      {
+        "text": "Bitcoin-backed loans",
+        "status": "positive",
+        "variant": "differentiator"
+      },
+      {
         "text": "Lightning withdrawals",
-        "status": "positive"
-      },
-      {
-        "text": "Transparent fee tiers",
-        "status": "positive"
-      },
-      {
-        "text": "Auto-withdraw to self-custody",
         "status": "positive"
       }
     ],
@@ -3640,9 +3642,9 @@
             "risk": "Low"
           },
           "actions": [
-            "Download app → sign up",
-            "Submit ID (photo + doc)",
-            "Wait for approval (if >24h, contact support)"
+            "Install Strike from App Store or Google Play and sign up with your email",
+            "Submit your government ID photo and provide your legal name, address, and SSN",
+            "Wait for verification to complete—contact support if it takes longer than 24 hours"
           ],
           "gotcha": "Limits stay conservative until verification clears."
         },
@@ -3655,9 +3657,9 @@
             "risk": "Low"
           },
           "actions": [
-            "Open Account → Payment methods",
-            "Add bank/card; review limits",
-            "Deposit (know: ACH trades now but withdraws later)"
+            "Open Account → Payment methods and link your bank via Plaid or add a debit card",
+            "Review your deposit limits for ACH, card, or wire before funding",
+            "Deposit cash—ACH trades instantly but stays pending ~5 business days before withdrawal"
           ],
           "gotcha": "ACH sits in pending ~5 biz days before you can withdraw."
         },
@@ -3671,9 +3673,9 @@
             "risk": "Low"
           },
           "actions": [
-            "Buy an amount or set a recurring buy",
-            "Withdraw a tiny test → scan Lightning invoice or paste address",
-            "Move the rest (Lightning = fast; on-chain = choose fee tier)"
+            "Tap Buy Bitcoin, enter an amount, or set up a recurring purchase to dollar-cost average",
+            "Test withdrawal: tap Bitcoin → Send, scan a Lightning invoice or paste a Bitcoin address, and send a small amount (~$5–$10)",
+            "Once verified, send the rest—Lightning is instant and free; on-chain offers Priority (~10 min), Standard (~1 hour), or Flexible (~24 hours, free)"
           ],
           "gotcha": "Flexible on-chain is free but ~24h; Standard ~1h."
         }
@@ -3694,6 +3696,48 @@
         }
       ]
     },
+    "fees": {
+      "intro": "Based on monthly trading volume",
+      "tiers": [
+        {
+          "range": "< $250",
+          "fee": "0.99%"
+        },
+        {
+          "range": "$250 - $2,000",
+          "fee": "0.95%"
+        },
+        {
+          "range": "$2,000 - $5,000",
+          "fee": "0.89%"
+        },
+        {
+          "range": "$5,000 - $50,000",
+          "fee": "0.79%"
+        },
+        {
+          "range": "$50,000 - $500,000",
+          "fee": "0.69%"
+        },
+        {
+          "range": "$500,000 - $5,000,000",
+          "fee": "0.59%"
+        },
+        {
+          "range": "$5,000,000 - $15,000,000",
+          "fee": "0.49%"
+        },
+        {
+          "range": "$15,000,000+",
+          "fee": "0.39%"
+        }
+      ]
+    },
+    "dca": "Yes: Recurring orders are free",
+    "payment_methods": [
+      "Bank Transfer",
+      "Wire Transfer"
+    ],
     "fees_scenarios": [
       {
         "id": "fees-deposit",
@@ -3709,7 +3753,11 @@
         "cost_today": "0.99% down to 0.39% as monthly volume increases",
         "what_happens": "Strike applies the Strike fee tier based on your calendar month buy and sell volume.",
         "how_to_minimize": "Batch purchases to advance tiers and enable recurring buys so ongoing orders skip the fee.",
-        "learn_more": "Tier thresholds: <$250 = 0.99%, $250-$2,000 = 0.95%, $2,000-$5,000 = 0.89%, $5,000-$50,000 = 0.79%, $50,000-$500,000 = 0.69%, $500,000-$5,000,000 = 0.59%, $5,000,000-$15,000,000 = 0.49%, $15,000,000+ = 0.39%."
+        "learn_more": {
+          "type": "table",
+          "heading": "Fee tier thresholds (monthly volume)",
+          "source": "fees.tiers"
+        }
       },
       {
         "id": "fees-withdraw",
@@ -3903,6 +3951,86 @@
         "gotcha": "Flexible tier waits up to 24 hours; Priority and Standard charge a mining fee."
       }
     ],
+    "payment_methods_limits": {
+      "heading": "Payment methods & limits",
+      "methods": [
+        {
+          "id": "ach",
+          "name": "Bank Transfer (ACH / SEPA)",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "Free",
+            "speed": "~5 days",
+            "withdraw": "After settlement"
+          },
+          "limits": {
+            "min_per_tx": "$10",
+            "max_per_tx": "$100,000",
+            "max_per_day": "$100,000",
+            "max_per_week": "$100,000",
+            "withdraw_eligibility": "Available after ~5 business days"
+          }
+        },
+        {
+          "id": "card",
+          "name": "Debit Card",
+          "available": true,
+          "icon": "card",
+          "summary": {
+            "fee": "~1.99%",
+            "speed": "Instant",
+            "withdraw": "Immediately"
+          },
+          "limits": {
+            "min_per_tx": "$10",
+            "max_per_tx": "$1,000",
+            "max_per_day": "$1,000",
+            "max_per_week": "$7,000",
+            "withdraw_eligibility": "Immediate"
+          }
+        },
+        {
+          "id": "lightning",
+          "name": "Lightning Top-up",
+          "available": false,
+          "icon": "lightning"
+        }
+      ]
+    },
+    "key_features": {
+      "heading": "Key features",
+      "features": [
+        {
+          "id": "dca",
+          "title": "Dollar-cost averaging (DCA)",
+          "description": "Set up recurring purchases daily, weekly, or monthly. After the first cycle, Strike waives fees on all future orders.",
+          "badge": "Free after first cycle",
+          "badge_type": "free"
+        },
+        {
+          "id": "auto-withdraw",
+          "title": "Auto-withdraw",
+          "description": "Set a threshold (1M-500M sats) and Strike automatically sends your balance to your wallet once reached. 12-hour cancel window before broadcast.",
+          "badge": "Free (Flexible tier)",
+          "badge_type": "free"
+        },
+        {
+          "id": "lightning-withdrawals",
+          "title": "Lightning withdrawals",
+          "description": "Send bitcoin instantly over Lightning to any compatible wallet. Strike covers routing fees.",
+          "badge": "Free",
+          "badge_type": "free"
+        },
+        {
+          "id": "onchain-withdrawals",
+          "title": "On-chain withdrawals",
+          "description": "Choose Priority (~10 min), Standard (~1 hour), or Flexible (~24 hours, free) based on urgency.",
+          "badge": "Variable fee",
+          "badge_type": "neutral"
+        }
+      ]
+    },
     "self_custody": {
       "heading": "Self-custody: withdraw safely",
       "tiles": [
