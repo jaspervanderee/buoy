@@ -379,6 +379,10 @@ html = html.replace('</head>', urlShim + '</head>');
           }
           // Add differentiator variant class if specified
           const variantClass = chip.variant === "differentiator" ? " trust-chip--differentiator" : "";
+          // If chip has link_to, make it clickable with full path (due to <base href="/" /> in service pages)
+          if (chip.link_to) {
+            return `<a href="/services/${slug}.html#${chip.link_to}" class="trust-chip${variantClass}">${icon}${chip.text}</a>`;
+          }
           return `<div class="trust-chip${variantClass}">${icon}${chip.text}</div>`;
         }).filter(Boolean).join("");
         if (!chipItems) return "";
@@ -1010,13 +1014,16 @@ ${cards.join("\n")}
         
         const methodCards = methods.map(method => {
           if (!method.available) {
-            // Unavailable payment method - show disabled state
+            // Unavailable payment method - show disabled state with optional body text
+            const bodyHtml = method.body ? `
+        <p class="payment-card__body">${escapeHtml(method.body)}</p>` : "";
+            
             return `
       <div class="payment-card payment-card--unavailable">
         <div class="payment-card__header">
           <h3 class="payment-card__title">${escapeHtml(method.name)}</h3>
           <span class="svc-chip svc-chip--notyet">Not available</span>
-        </div>
+        </div>${bodyHtml}
       </div>`;
           }
           
@@ -1024,11 +1031,18 @@ ${cards.join("\n")}
           const summary = method.summary || {};
           const limits = method.limits || {};
           
+          // Link fee to fees_scenarios if fee_link is provided
+          // Use full path to avoid base href issues
+          const feeValue = summary.fee || "N/A";
+          const feeHtml = summary.fee_link 
+            ? `<a href="/services/${slug}.html#${summary.fee_link}" class="stat-link">${escapeHtml(feeValue)}</a>`
+            : escapeHtml(feeValue);
+          
           const summaryStats = `
         <div class="payment-card__summary">
           <div class="payment-stat">
             <span class="stat-label">Fee</span>
-            <span class="stat-value">${escapeHtml(summary.fee || "N/A")}</span>
+            <span class="stat-value">${feeHtml}</span>
           </div>
           <div class="payment-stat">
             <span class="stat-label">Speed</span>
@@ -1039,6 +1053,10 @@ ${cards.join("\n")}
             <span class="stat-value">${escapeHtml(summary.withdraw || "N/A")}</span>
           </div>
         </div>`;
+          
+          // Best for hint (below stats)
+          const bestForHtml = method.best_for ? `
+        <p class="payment-card__best-for"><strong>Best for:</strong> ${escapeHtml(method.best_for)}</p>` : "";
           
           // Build limits table
           const limitsTable = `
@@ -1058,7 +1076,7 @@ ${cards.join("\n")}
           <h3 class="payment-card__title">${escapeHtml(method.name)}</h3>
           <span class="svc-chip svc-chip--works">Available</span>
         </div>
-        ${summaryStats}
+        ${summaryStats}${bestForHtml}
         <details class="payment-details">
           <summary>View limits & details</summary>
           <div>
@@ -1085,14 +1103,20 @@ ${methodCards}
         const features = featuresData.features;
         
         const featureTiles = features.map(feature => {
-          const badgeClass = feature.badge_type === "free" ? "feature-badge--free" : "feature-badge";
-          const badgeHtml = feature.badge ? `<span class="${badgeClass}">${escapeHtml(feature.badge)}</span>` : "";
+          // Render chips below title (similar to self_custody structure)
+          const metaChips = [];
+          if (feature.chips) {
+            if (feature.chips.cost) metaChips.push(`<span class="migration-meta-chip">Cost: ${escapeHtml(feature.chips.cost)}</span>`);
+          }
+          const metaHtml = metaChips.length > 0 
+            ? `<div class="migration-meta">${metaChips.join("")}</div>` 
+            : "";
           
           return `
       <div class="feature-tile">
         <h3 class="feature-tile__title">${escapeHtml(feature.title)}</h3>
+        ${metaHtml}
         <p class="feature-tile__description">${escapeHtml(feature.description)}</p>
-        ${badgeHtml}
       </div>`;
         }).join("");
         
@@ -1371,7 +1395,7 @@ ${tileItems}
         </details>` : "";
           
           return `
-      <div class="svc-compat__tile">${illustrationHtml}
+      <div class="svc-compat__tile" id="${tile.id || ''}">${illustrationHtml}
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">${tile.title}</h3>
           <span class="${statusClass}">${statusText}</span>

@@ -149,7 +149,7 @@
     </div>
   </div>
 </div>
-<div class="trust-chips"><div class="trust-chip trust-chip--differentiator"><img src="/images/checkmark.svg" alt="positive icon" class="trust-chip-icon"/> Bill Pay</div><div class="trust-chip trust-chip--differentiator"><img src="/images/checkmark.svg" alt="positive icon" class="trust-chip-icon"/> Bitcoin-backed loans</div><div class="trust-chip"><img src="/images/checkmark.svg" alt="positive icon" class="trust-chip-icon"/> Lightning withdrawals</div></div>
+<div class="trust-chips"><a href="/services/strike.html#bill-pay" class="trust-chip trust-chip--differentiator"><img src="/images/checkmark.svg" alt="positive icon" class="trust-chip-icon"/> Bill Pay</a><a href="/services/strike.html#bitcoin-loans" class="trust-chip trust-chip--differentiator"><img src="/images/checkmark.svg" alt="positive icon" class="trust-chip-icon"/> Bitcoin-backed loans</a><a href="/services/strike.html#auto-withdraw" class="trust-chip"><img src="/images/checkmark.svg" alt="positive icon" class="trust-chip-icon"/> Lightning withdrawals</a></div>
 <div class="comparison-table">
 
 <section id="tldr" class="service-section">
@@ -331,17 +331,18 @@
         <div class="payment-card__summary">
           <div class="payment-stat">
             <span class="stat-label">Fee</span>
-            <span class="stat-value">Free</span>
+            <span class="stat-value"><a href="/services/strike.html#fees-deposit" class="stat-link">Free</a></span>
           </div>
           <div class="payment-stat">
             <span class="stat-label">Speed</span>
-            <span class="stat-value">~5 days</span>
+            <span class="stat-value">~2 days</span>
           </div>
           <div class="payment-stat">
             <span class="stat-label">Withdraw</span>
             <span class="stat-value">After settlement</span>
           </div>
         </div>
+        <p class="payment-card__best-for"><strong>Best for:</strong> Low-cost funding when you can wait ~2 days to withdraw</p>
         <details class="payment-details">
           <summary>View limits & details</summary>
           <div>
@@ -352,7 +353,7 @@
             <tr><th>Max per transaction</th><td>$100,000</td></tr>
             <tr><th>Max per day</th><td>$100,000</td></tr>
             <tr><th>Max per week</th><td>$100,000</td></tr>
-            <tr><th>Withdrawal eligibility</th><td>Available after ~5 business days</td></tr>
+            <tr><th>Withdrawal eligibility</th><td>Available after ~2 business days</td></tr>
           </tbody>
         </table>
           </div>
@@ -360,14 +361,14 @@
       </div>
       <div class="payment-card">
         <div class="payment-card__header">
-          <h3 class="payment-card__title">Debit Card</h3>
+          <h3 class="payment-card__title">Debit Card (incl. Apple Pay / Google Pay)</h3>
           <span class="svc-chip svc-chip--works">Available</span>
         </div>
         
         <div class="payment-card__summary">
           <div class="payment-stat">
             <span class="stat-label">Fee</span>
-            <span class="stat-value">~1.99%</span>
+            <span class="stat-value"><a href="/services/strike.html#fees-deposit" class="stat-link">~1.99%</a></span>
           </div>
           <div class="payment-stat">
             <span class="stat-label">Speed</span>
@@ -378,6 +379,7 @@
             <span class="stat-value">Immediately</span>
           </div>
         </div>
+        <p class="payment-card__best-for"><strong>Best for:</strong> Instant purchases with immediate withdrawal access</p>
         <details class="payment-details">
           <summary>View limits & details</summary>
           <div>
@@ -394,38 +396,49 @@
           </div>
         </details>
       </div>
+      <div class="payment-card">
+        <div class="payment-card__header">
+          <h3 class="payment-card__title">Wire Transfer</h3>
+          <span class="svc-chip svc-chip--works">Available</span>
+        </div>
+        
+        <div class="payment-card__summary">
+          <div class="payment-stat">
+            <span class="stat-label">Fee</span>
+            <span class="stat-value"><a href="/services/strike.html#fees-deposit" class="stat-link">Free deposit</a></span>
+          </div>
+          <div class="payment-stat">
+            <span class="stat-label">Speed</span>
+            <span class="stat-value">~1 day</span>
+          </div>
+          <div class="payment-stat">
+            <span class="stat-label">Withdraw</span>
+            <span class="stat-value">$15 + $50k min</span>
+          </div>
+        </div>
+        <p class="payment-card__best-for"><strong>Best for:</strong> Large deposits with faster settlement than ACH</p>
+        <details class="payment-details">
+          <summary>View limits & details</summary>
+          <div>
+            
+        <table class="limits-table">
+          <tbody>
+            <tr><th>Min per transaction</th><td>No minimum</td></tr>
+            <tr><th>Max per transaction</th><td>Unlimited</td></tr>
+            <tr><th>Max per day</th><td>Unlimited</td></tr>
+            <tr><th>Max per week</th><td>Unlimited</td></tr>
+            <tr><th>Withdrawal eligibility</th><td>Within 1 business day (withdrawals: $50k min, $15 fee)</td></tr>
+          </tbody>
+        </table>
+          </div>
+        </details>
+      </div>
       <div class="payment-card payment-card--unavailable">
         <div class="payment-card__header">
           <h3 class="payment-card__title">Lightning Top-up</h3>
           <span class="svc-chip svc-chip--notyet">Not available</span>
         </div>
-      </div>
-  </div>
-</section>
-
-<section id="key-features" class="service-section">
-  <h2 class="feature-label">Key features</h2>
-  <div class="feature-grid">
-
-      <div class="feature-tile">
-        <h3 class="feature-tile__title">Dollar-cost averaging (DCA)</h3>
-        <p class="feature-tile__description">Set up recurring purchases daily, weekly, or monthly. After the first cycle, Strike waives fees on all future orders.</p>
-        <span class="feature-badge--free">Free after first cycle</span>
-      </div>
-      <div class="feature-tile">
-        <h3 class="feature-tile__title">Auto-withdraw</h3>
-        <p class="feature-tile__description">Set a threshold (1M-500M sats) and Strike automatically sends your balance to your wallet once reached. 12-hour cancel window before broadcast.</p>
-        <span class="feature-badge--free">Free (Flexible tier)</span>
-      </div>
-      <div class="feature-tile">
-        <h3 class="feature-tile__title">Lightning withdrawals</h3>
-        <p class="feature-tile__description">Send bitcoin instantly over Lightning to any compatible wallet. Strike covers routing fees.</p>
-        <span class="feature-badge--free">Free</span>
-      </div>
-      <div class="feature-tile">
-        <h3 class="feature-tile__title">On-chain withdrawals</h3>
-        <p class="feature-tile__description">Choose Priority (~10 min), Standard (~1 hour), or Flexible (~24 hours, free) based on urgency.</p>
-        <span class="feature-badge">Variable fee</span>
+        <p class="payment-card__body">Strike does not currently support Lightning deposits to fund your cash balance</p>
       </div>
   </div>
 </section>
@@ -485,62 +498,62 @@
 </section>
 
 <section id="compat" class="service-section">
-  <h2 class="feature-label">What this Strike account can or can't do</h2>
+  <h2 class="feature-label">Strike features & limits</h2>
   <div class="svc-compat__grid">
 
-      <div class="svc-compat__tile">
+      <div class="svc-compat__tile" id="bill-pay">
         <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Fund with ACH</h3>
+          <h3 class="svc-compat__title">Bill Pay</h3>
           <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
         </div>
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Free ACH</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Instant trading</span></span></p>
-        <p class="svc-compat__why">ACH transfers let you fund Strike without fees while trading immediately.</p>
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Live on bitcoin</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Auto-pay from paycheck</span></span></p>
+        <p class="svc-compat__why">Pay bills directly from your Strike balance while maintaining bitcoin exposure. Convert your paycheck to bitcoin via direct deposit, then let Strike handle rent, utilities, and credit cards automatically.</p>
         
         <details class="compat-details">
           <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Try it:</strong></p><ol><li>Link your bank in Account > Payment methods</li><li>Tap Cash > Deposit > Bank transfer</li><li>Trade right away while the deposit settles</li></ol><p><strong>Gotcha:</strong> ACH deposits stay pending about five business days before you can withdraw or auto-withdraw.</p>
+          <div><p><strong>Try it:</strong></p><ol><li>Tap Cash > Bill Pay and generate your unique Strike account and routing numbers</li><li>Set your default payment source to Cash or Bitcoin</li><li>Add your Strike account details to your employer's direct deposit and to each biller's payment system</li><li>Bills auto-pay from your chosen balance each month</li></ol><p><strong>Gotcha:</strong> Paying bills from your bitcoin balance triggers a taxable event—Strike sells bitcoin to cover each payment. Custodial setup: you still hold counterparty risk while funds sit on Strike.</p>
           </div>
         </details>
       </div>
-      <div class="svc-compat__tile">
+      <div class="svc-compat__tile" id="bitcoin-loans">
         <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Fund with debit card</h3>
+          <h3 class="svc-compat__title">Bitcoin-backed loans</h3>
           <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
         </div>
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Instant clearance</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Apple Pay & Google Pay</span></span></p>
-        <p class="svc-compat__why">Debit cards give you instant settlement for time-sensitive buys.</p>
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 9.5% APR</span> <span class="icon-text-pair"><img src="/images/warning.svg" class="inline-icon" alt=""> Liquidation risk</span></span></p>
+        <p class="svc-compat__why">Access cash without selling your bitcoin. You retain ownership and future upside while Strike holds your bitcoin as collateral.</p>
         
         <details class="compat-details">
           <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Try it:</strong></p><ol><li>Add your debit card and verify the four digit code</li><li>Tap Cash > Deposit > Debit card</li><li>Confirm the processor fee and finish the buy</li></ol><p><strong>Gotcha:</strong> Card deposits include a processing fee and may have lower weekly limits.</p>
+          <div><p><strong>Try it:</strong></p><ol><li>Ensure your Strike account is fully verified and you're in a supported U.S. state</li><li>Tap Cash > Bitcoin-backed loans</li><li>Choose your loan amount and add the required bitcoin collateral</li><li>Review the Loan Agreement (interest rate, liquidation threshold, repayment terms)</li><li>Receive cash in your Strike account after approval</li></ol><p><strong>Gotcha:</strong> If bitcoin's price drops below the liquidation threshold, Strike may sell your collateral to cover the loan. Loan availability and minimums vary by state. You give up self-custody while bitcoin sits as collateral.</p>
           </div>
         </details>
       </div>
-      <div class="svc-compat__tile">
+      <div class="svc-compat__tile" id="dca">
         <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Withdraw on Lightning</h3>
+          <h3 class="svc-compat__title">Dollar-cost averaging (DCA)</h3>
           <span class="svc-chip svc-chip--works">Works</span>
         </div>
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Invoices</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> No Strike fee</span></span></p>
-        <p class="svc-compat__why">Lightning withdrawals let you exit Strike within seconds without extra cost.</p>
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Free after first cycle</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Daily, weekly, or monthly</span></span></p>
+        <p class="svc-compat__why">Set up recurring purchases to automatically buy bitcoin at regular intervals, building your position over time without timing the market.</p>
         
         <details class="compat-details">
           <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Try it:</strong></p><ol><li>Tap Bitcoin > Send > Bitcoin wallet</li><li>Scan your Lightning invoice or paste a Lightning Address</li><li>Confirm the amount and send</li></ol><p><strong>Gotcha:</strong> Lightning requires available balance; ACH funded bitcoin must settle before it can leave.</p>
+          <div><p><strong>Try it:</strong></p><ol><li>Tap Buy Bitcoin, then select Recurring</li><li>Choose your schedule: hourly, daily, weekly, or monthly</li><li>Set your purchase amount and confirm</li><li>After the first cycle completes, all future orders are free</li></ol><p><strong>Gotcha:</strong> The first recurring purchase includes the standard Strike fee. All subsequent orders in the same schedule are fee-free.</p>
           </div>
         </details>
       </div>
-      <div class="svc-compat__tile">
+      <div class="svc-compat__tile" id="auto-withdraw">
         <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Withdraw on-chain</h3>
+          <h3 class="svc-compat__title">Auto-withdraw</h3>
           <span class="svc-chip svc-chip--works">Works</span>
         </div>
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Priority tier</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Flexible (no fee)</span></span></p>
-        <p class="svc-compat__why">On-chain withdrawals let you choose cost versus confirmation time.</p>
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Free (Flexible tier)</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 12-hour cancel window</span></span></p>
+        <p class="svc-compat__why">Automatically move your bitcoin to self-custody once your balance reaches a threshold you set, reducing time on exchange.</p>
         
         <details class="compat-details">
           <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Try it:</strong></p><ol><li>Tap Bitcoin > Send > Bitcoin wallet</li><li>Paste a bech32 or legacy address</li><li>Pick Priority, Standard, or Flexible then confirm</li></ol><p><strong>Gotcha:</strong> Flexible tier waits up to 24 hours; Priority and Standard charge a mining fee.</p>
+          <div><p><strong>Try it:</strong></p><ol><li>Open Bitcoin settings and tap Auto-withdraw</li><li>Set your threshold between 1,000,000 and 500,000,000 sats</li><li>Add one or more payout addresses (on-chain Bitcoin addresses)</li><li>When your balance crosses the threshold, Strike queues the withdrawal with a 12-hour cancel window</li></ol><p><strong>Gotcha:</strong> Auto-withdrawals use the free Flexible tier, which can take up to 24 hours to confirm. You can cancel during the 12-hour window before broadcast.</p>
           </div>
         </details>
       </div>

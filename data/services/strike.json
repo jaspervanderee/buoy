@@ -89,16 +89,19 @@
     {
       "text": "Bill Pay",
       "status": "positive",
-      "variant": "differentiator"
+      "variant": "differentiator",
+      "link_to": "bill-pay"
     },
     {
       "text": "Bitcoin-backed loans",
       "status": "positive",
-      "variant": "differentiator"
+      "variant": "differentiator",
+      "link_to": "bitcoin-loans"
     },
     {
-      "text": "Lightning withdrawals",
-      "status": "positive"
+      "text": "Automatic withdrawals",
+      "status": "positive",
+      "link_to": "auto-withdraw"
     }
   ],
   "tl_dr": {
@@ -212,6 +215,7 @@
   "dca": "Yes: Recurring orders are free",
   "payment_methods": [
     "Bank Transfer",
+    "Debit Card",
     "Wire Transfer"
   ],
   "fees_scenarios": [
@@ -358,73 +362,78 @@
       "Strike Instant program"
     ]
   },
-  "compat_heading": "What this Strike account can or can't do",
+  "compat_heading": "Strike features & limits",
   "compat_tiles": [
     {
-      "id": "deposit-ach",
-      "title": "Fund with ACH",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Free ACH</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Instant trading</span>",
+      "id": "bill-pay",
+      "title": "Bill Pay",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Live on bitcoin</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Auto-pay from paycheck</span>",
       "status": "works-caveat"
     },
     {
-      "id": "deposit-card",
-      "title": "Fund with debit card",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Instant clearance</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Apple Pay & Google Pay</span>",
+      "id": "bitcoin-loans",
+      "title": "Bitcoin-backed loans",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 9.5% APR</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Liquidation risk</span>",
       "status": "works-caveat"
     },
     {
-      "id": "withdraw-lightning",
-      "title": "Withdraw on Lightning",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Invoices</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> No Strike fee</span>",
+      "id": "dca",
+      "title": "Dollar-cost averaging (DCA)",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Free after first cycle</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Daily, weekly, or monthly</span>",
       "status": "works"
     },
     {
-      "id": "withdraw-onchain",
-      "title": "Withdraw on-chain",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Priority tier</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Flexible (no fee)</span>",
+      "id": "auto-withdraw",
+      "title": "Auto-withdraw",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Free (Flexible tier)</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 12-hour cancel window</span>",
       "status": "works"
     }
   ],
   "compat_explainers": [
     {
-      "id": "deposit-ach",
-      "why": "ACH transfers let you fund Strike without fees while trading immediately.",
+      "id": "bill-pay",
+      "why": "Pay bills directly from your Strike balance while maintaining bitcoin exposure. Convert your paycheck to bitcoin via direct deposit, then let Strike handle rent, utilities, and credit cards automatically.",
       "try": [
-        "Link your bank in Account > Payment methods",
-        "Tap Cash > Deposit > Bank transfer",
-        "Trade right away while the deposit settles"
+        "Tap Cash > Bill Pay and generate your unique Strike account and routing numbers",
+        "Set your default payment source to Cash or Bitcoin",
+        "Add your Strike account details to your employer's direct deposit and to each biller's payment system",
+        "Bills auto-pay from your chosen balance each month"
       ],
-      "gotcha": "ACH deposits stay pending about five business days before you can withdraw or auto-withdraw."
+      "gotcha": "Paying bills from your bitcoin balance triggers a taxable event—Strike sells bitcoin to cover each payment. Custodial setup: you still hold counterparty risk while funds sit on Strike."
     },
     {
-      "id": "deposit-card",
-      "why": "Debit cards give you instant settlement for time-sensitive buys.",
+      "id": "bitcoin-loans",
+      "why": "Access cash without selling your bitcoin. You retain ownership and future upside while Strike holds your bitcoin as collateral.",
       "try": [
-        "Add your debit card and verify the four digit code",
-        "Tap Cash > Deposit > Debit card",
-        "Confirm the processor fee and finish the buy"
+        "Ensure your Strike account is fully verified and you're in a supported U.S. state",
+        "Tap Cash > Bitcoin-backed loans",
+        "Choose your loan amount and add the required bitcoin collateral",
+        "Review the Loan Agreement (interest rate, liquidation threshold, repayment terms)",
+        "Receive cash in your Strike account after approval"
       ],
-      "gotcha": "Card deposits include a processing fee and may have lower weekly limits."
+      "gotcha": "If bitcoin's price drops below the liquidation threshold, Strike may sell your collateral to cover the loan. Loan availability and minimums vary by state. You give up self-custody while bitcoin sits as collateral."
     },
     {
-      "id": "withdraw-lightning",
-      "why": "Lightning withdrawals let you exit Strike within seconds without extra cost.",
+      "id": "dca",
+      "why": "Set up recurring purchases to automatically buy bitcoin at regular intervals, building your position over time without timing the market.",
       "try": [
-        "Tap Bitcoin > Send > Bitcoin wallet",
-        "Scan your Lightning invoice or paste a Lightning Address",
-        "Confirm the amount and send"
+        "Tap Buy Bitcoin, then select Recurring",
+        "Choose your schedule: hourly, daily, weekly, or monthly",
+        "Set your purchase amount and confirm",
+        "After the first cycle completes, all future orders are free"
       ],
-      "gotcha": "Lightning requires available balance; ACH funded bitcoin must settle before it can leave."
+      "gotcha": "The first recurring purchase includes the standard Strike fee. All subsequent orders in the same schedule are fee-free."
     },
     {
-      "id": "withdraw-onchain",
-      "why": "On-chain withdrawals let you choose cost versus confirmation time.",
+      "id": "auto-withdraw",
+      "why": "Automatically move your bitcoin to self-custody once your balance reaches a threshold you set, reducing time on exchange.",
       "try": [
-        "Tap Bitcoin > Send > Bitcoin wallet",
-        "Paste a bech32 or legacy address",
-        "Pick Priority, Standard, or Flexible then confirm"
+        "Open Bitcoin settings and tap Auto-withdraw",
+        "Set your threshold between 1,000,000 and 500,000,000 sats",
+        "Add one or more payout addresses (on-chain Bitcoin addresses)",
+        "When your balance crosses the threshold, Strike queues the withdrawal with a 12-hour cancel window"
       ],
-      "gotcha": "Flexible tier waits up to 24 hours; Priority and Standard charge a mining fee."
+      "gotcha": "Auto-withdrawals use the free Flexible tier, which can take up to 24 hours to confirm. You can cancel during the 12-hour window before broadcast."
     }
   ],
   "payment_methods_limits": {
@@ -437,27 +446,31 @@
         "icon": "bank",
         "summary": {
           "fee": "Free",
-          "speed": "~5 days",
+          "fee_link": "fees-deposit",
+          "speed": "~2 days",
           "withdraw": "After settlement"
         },
+        "best_for": "Low-cost funding when you can wait ~2 days to withdraw",
         "limits": {
           "min_per_tx": "$10",
           "max_per_tx": "$100,000",
           "max_per_day": "$100,000",
           "max_per_week": "$100,000",
-          "withdraw_eligibility": "Available after ~5 business days"
+          "withdraw_eligibility": "Available after ~2 business days"
         }
       },
       {
         "id": "card",
-        "name": "Debit Card",
+        "name": "Debit Card (incl. Apple Pay / Google Pay)",
         "available": true,
         "icon": "card",
         "summary": {
           "fee": "~1.99%",
+          "fee_link": "fees-deposit",
           "speed": "Instant",
           "withdraw": "Immediately"
         },
+        "best_for": "Instant purchases with immediate withdrawal access",
         "limits": {
           "min_per_tx": "$10",
           "max_per_tx": "$1,000",
@@ -467,43 +480,31 @@
         }
       },
       {
+        "id": "wire",
+        "name": "Wire Transfer",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "Free deposit",
+          "fee_link": "fees-deposit",
+          "speed": "~1 day",
+          "withdraw": "$15 + $50k min"
+        },
+        "best_for": "Large deposits with faster settlement than ACH",
+        "limits": {
+          "min_per_tx": "No minimum",
+          "max_per_tx": "Unlimited",
+          "max_per_day": "Unlimited",
+          "max_per_week": "Unlimited",
+          "withdraw_eligibility": "Within 1 business day (withdrawals: $50k min, $15 fee)"
+        }
+      },
+      {
         "id": "lightning",
         "name": "Lightning Top-up",
         "available": false,
-        "icon": "lightning"
-      }
-    ]
-  },
-  "key_features": {
-    "heading": "Key features",
-    "features": [
-      {
-        "id": "dca",
-        "title": "Dollar-cost averaging (DCA)",
-        "description": "Set up recurring purchases daily, weekly, or monthly. After the first cycle, Strike waives fees on all future orders.",
-        "badge": "Free after first cycle",
-        "badge_type": "free"
-      },
-      {
-        "id": "auto-withdraw",
-        "title": "Auto-withdraw",
-        "description": "Set a threshold (1M-500M sats) and Strike automatically sends your balance to your wallet once reached. 12-hour cancel window before broadcast.",
-        "badge": "Free (Flexible tier)",
-        "badge_type": "free"
-      },
-      {
-        "id": "lightning-withdrawals",
-        "title": "Lightning withdrawals",
-        "description": "Send bitcoin instantly over Lightning to any compatible wallet. Strike covers routing fees.",
-        "badge": "Free",
-        "badge_type": "free"
-      },
-      {
-        "id": "onchain-withdrawals",
-        "title": "On-chain withdrawals",
-        "description": "Choose Priority (~10 min), Standard (~1 hour), or Flexible (~24 hours, free) based on urgency.",
-        "badge": "Variable fee",
-        "badge_type": "neutral"
+        "icon": "lightning",
+        "body": "Strike does not currently support Lightning deposits to fund your cash balance"
       }
     ]
   },

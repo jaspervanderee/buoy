@@ -2449,7 +2449,7 @@ p, li, a {
     bottom: 15px;
     left: 15px;
     padding: 8px 14px;
-    font-size: 0.85em;
+    font-size: 0.8em;
     z-index: 999;
   }
 
@@ -3000,6 +3000,7 @@ p, li, a {
 
 .trust-chip {
   background: var(--panel);
+  border: 1.5px solid transparent;
   border-radius: 8px;
   padding: 16px 20px;
   text-align: center;
@@ -3009,6 +3010,7 @@ p, li, a {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: var(--shadow);
   gap: 8px;
 }
 
@@ -3019,19 +3021,23 @@ p, li, a {
   vertical-align: middle;
 }
 
-/* Differentiator variant: golden shiny outline for unique features */
-.trust-chip--differentiator {
-  position: relative;
-  border: 2px solid transparent;
-  background: linear-gradient(var(--panel), var(--panel)) padding-box,
-              linear-gradient(135deg, #f8cd77 0%, #ff987b 50%, #f9d48c 100%) border-box;
-  box-shadow: 0 0 12px rgba(252, 211, 130, 0.3);
+/* Clickable trust chips (anchor tags) */
+a.trust-chip {
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  .trust-chip--differentiator {
-    box-shadow: 0 0 16px rgba(249, 206, 120, 0.4);
-  }
+a.trust-chip:hover {
+  border-color: #ff603b;
+  background: rgba(255, 96, 59, 0.02);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 96, 59, 0.1),
+              0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+a.trust-chip:active {
+  transform: translateY(0);
 }
 
 @media (min-width: 768px) {
@@ -3516,7 +3522,7 @@ p, li, a {
 /* Learn more table heading */
 .learn-more-table-heading {
   font-family: "Inter", sans-serif;
-  font-size: 0.85em;
+  font-size: 0.8em;
   font-weight: 600;
   color: var(--text);
   margin: 12px 0 8px 0;
@@ -3739,6 +3745,18 @@ p, li, a {
   flex: 1;
 }
 
+.payment-card__body {
+  font-size: 1em;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.payment-card__best-for {
+  font-size: 1em;
+  line-height: 1.5;
+  background: var(--bg-subtle);
+}
+
 .payment-card__summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -3766,6 +3784,17 @@ p, li, a {
   font-size: 1em;
   font-weight: 600;
   color: var(--text);
+}
+
+.stat-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent);
+  transition: border-bottom-style 0.2s ease;
+}
+
+.stat-link:hover {
+  border-bottom-style: solid;
 }
 
 .payment-details {
@@ -3936,6 +3965,43 @@ p, li, a {
   flex-direction: column;
   gap: 12px;
   overflow: hidden; /* Clip illustration at top corners */
+  scroll-margin-top: 250px; /* Account for sticky header when jumping to anchor */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Highlight tile when it's the target of a clicked trust chip */
+.svc-compat__tile:target {
+  animation: tile-highlight 2s ease-out;
+}
+
+@keyframes tile-highlight {
+  0% {
+    box-shadow: 0 0 0 4px rgba(255, 96, 59, 0.4), 0 0 20px rgba(255, 96, 59, 0.3);
+    transform: scale(1.02);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(255, 96, 59, 0.3), 0 0 20px rgba(255, 96, 59, 0.2);
+  }
+  100% {
+    box-shadow: none;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  @keyframes tile-highlight {
+    0% {
+      box-shadow: 0 0 0 4px rgba(255, 96, 59, 0.6), 0 0 25px rgba(255, 96, 59, 0.4);
+      transform: scale(1.02);
+    }
+    50% {
+      box-shadow: 0 0 0 4px rgba(255, 96, 59, 0.4), 0 0 20px rgba(255, 96, 59, 0.3);
+    }
+    100% {
+      box-shadow: none;
+      transform: scale(1);
+    }
+  }
 }
 
 /* Illustration wrapper: full-bleed at top with rounded corners 
@@ -4057,7 +4123,7 @@ p, li, a {
 
 .svc-compat__note {
   font-family: "Inter", sans-serif;
-  font-size: 0.85em;
+  font-size: 0.8em;
   color: var(--text-muted);
   margin: 0;
   font-style: italic;
@@ -4153,7 +4219,7 @@ p, li, a {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 4px;
-  font-size: 0.85em;
+  font-size: 0.8em;
   color: var(--text-muted);
 }
 
@@ -4208,7 +4274,7 @@ p, li, a {
 
 .trust-card-link {
   font-family: "Inter", sans-serif;
-  font-size: 0.85em;
+  font-size: 0.8em;
   color: var(--link);
   text-decoration: none;
 }
@@ -4274,7 +4340,7 @@ main.container {
 
 .article-card__date {
   font-family: "Inter", sans-serif;
-  font-size: 0.85em;
+  font-size: 0.8em;
   color: var(--text-muted);
 }
 
