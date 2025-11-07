@@ -257,19 +257,24 @@ const saveHashCache = async (cache) => {
   for (const svc of services) {
     const slug = slugify(svc.name);
     const url = `https://buoybitcoin.com/services/${slug}.html`;
-    const title = `${svc.name} — Review, fees & features | Buoy Bitcoin`;
+    
+    // SEO-optimized title: Add year for freshness and front-load keywords
+    const currentYear = new Date().getFullYear();
+    const title = `${svc.name} Review ${currentYear}: Fees, Features & Setup Guide | Buoy Bitcoin`;
     
     // Generate query-focused meta description
     const generateMetaDescription = (service) => {
+      const currentYear = new Date().getFullYear();
       const type = service.type_of_platform || 'service';
       const category = service.category || 'Bitcoin';
       const custody = service.custody_control ? `${service.custody_control}.` : '';
       const kyc = service.kyc_required === 'No' ? 'No KYC required.' : '';
       
-      let desc = `${service.name} review: ${type} for ${category}. `;
+      // More compelling description with year for freshness
+      let desc = `${service.name} review ${currentYear}: ${type} for ${category}. `;
       if (custody) desc += `${custody} `;
       if (kyc) desc += `${kyc} `;
-      desc += 'Compare fees, features, and setup guide.';
+      desc += 'Compare fees, features & setup guide.';
       
       return clamp(desc, 160);
     };
@@ -320,8 +325,9 @@ const urlShim = `
 html = html.replace('</head>', urlShim + '</head>');
 
 
-    // Update H1 (page title) → use service name
-    html = setPageTitle(html, svc.name);
+    // Update H1 (page title) → use service name with hidden SEO text
+    const seoH1 = `${svc.name}<span class="visually-hidden"> Review: Fees, Features & Setup Guide</span>`;
+    html = setPageTitle(html, seoH1);
     
     // Placeholder: effectiveUpdated will be determined after content hash
     let effectiveUpdated = null;
@@ -344,6 +350,12 @@ html = html.replace('</head>', urlShim + '</head>');
       // fail-safe: skip breadcrumb injection on error
     }
 
+    // Inject Jump to navigation after breadcrumbs (before BUILD block renders sections)
+    // This will be populated based on which sections actually exist after rendering
+    // Placeholder injection - actual pills will be added after section rendering
+    const jumpToPlaceholder = '\n<!-- JUMP_TO_NAV -->';
+    html = html.replace(/(<nav class="breadcrumbs"[^>]*>[\s\S]*?<\/nav>)/i, (m) => `${m}${jumpToPlaceholder}`);
+
     // Keep existing container markup (your JS will populate it)
     // Make sure service.html has:
     // <!-- BUILD:START --> ... #comparison-container ... <!-- BUILD:END -->
@@ -351,7 +363,7 @@ html = html.replace('</head>', urlShim + '</head>');
       // Render table for service page with mode: "service" to exclude legacy rows (Platform, Supported Networks, Features, Custody & Control block)
       const tableHtml = await renderTableHTML(svc, svc.category, { mode: "service" });
 
-      const defaultOrder = ["tldr", "setup", "fees", "payment_methods_limits", "key_features", "privacy", "compat", "migration", "trust", "profile"];
+      const defaultOrder = ["tldr", "setup", "fees", "payment_methods_limits", "key_features", "compat", "migration", "privacy", "trust", "profile"];
       let order = Array.isArray(svc.section_order) && svc.section_order.length
         ? svc.section_order.filter((key) => defaultOrder.includes(key) || key === "self_custody" || key === "payment_methods_limits" || key === "key_features")
         : defaultOrder;
@@ -1637,12 +1649,50 @@ ${cards.join("\n")}
         profile: renderProfileSection,
       };
 
+      // Track which sections actually rendered for Jump to navigation
+      const renderedSections = [];
+      
       for (const key of order) {
         const renderer = renderers[key];
         if (!renderer) continue;
         const block = renderer();
-        if (block) sectionBlocks.push(block);
+        if (block) {
+          sectionBlocks.push(block);
+          renderedSections.push(key);
+        }
       }
+
+      // Build Jump to navigation based on rendered sections
+      const jumpToMap = {
+        setup: { id: 'setup', label: 'Setup' },
+        fees: { id: 'fees', label: 'Fees' },
+        payment_methods_limits: { id: 'payment-methods', label: 'Methods' },
+        key_features: { id: 'key-features', label: 'Features' },
+        compat: { id: 'compat', label: 'Features' },
+        self_custody: { id: 'self-custody', label: 'Self-custody' },
+        privacy: { id: 'privacy-safety', label: 'Privacy' },
+        migration: { id: 'migration', label: 'Migration' },
+        trust: { id: 'trust', label: 'Trust' }
+      };
+      
+      // Build full path for hash links to avoid <base href> issues
+      const pagePath = `/services/${slug}.html`;
+      
+      const jumpToPills = renderedSections
+        .filter(key => jumpToMap[key])
+        .map(key => {
+          const { id, label } = jumpToMap[key];
+          return `<a href="${pagePath}#${id}">${label}</a>`;
+        });
+      
+      // Always add FAQs link (rendered outside BUILD block)
+      if (Array.isArray(svc.faqs) && svc.faqs.length > 0) {
+        jumpToPills.push(`<a href="${pagePath}#faq-heading">FAQs</a>`);
+      }
+      
+      const jumpToHtml = jumpToPills.length > 0
+        ? `\n<nav class="jump-nav" aria-label="Jump to">\n  ${jumpToPills.join(' • ')}\n</nav>`
+        : '';
 
       const trustChipsHtml = renderTrustChips();
 
@@ -1661,6 +1711,9 @@ ${sectionsHtml}`;
 
       const { before, after } = between(html, "<!-- BUILD:START -->", "<!-- BUILD:END -->");
       html = `${before}\n${bakedBlock}\n${after}`;
+      
+      // Replace Jump to navigation placeholder with actual nav
+      html = html.replace('<!-- JUMP_TO_NAV -->', jumpToHtml);
     } catch (e) {
       // If BUILD markers are missing or renderer failed, keep the page unchanged.
     }

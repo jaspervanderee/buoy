@@ -279,87 +279,76 @@
       "definition": "A rule that queues your entire bitcoin balance to leave Strike once it reaches a threshold you set."
     }
   ],
-  "privacy_notes": {
-    "data_flows": [
-      "Strike stores the personal information and identity documents you submit during sign up to meet AML and KYC rules.",
-      "Bank and card details are shared with regulated payment processors so your deposits and withdrawals can settle."
-    ],
-    "recovery_drill": [
-      "Enable two-factor authentication and confirm your email before funding the account.",
-      "If you lose access, open the app on a trusted device and follow the in-app recovery prompts or contact support with your ID.",
-      "Review the Account > Limits view after recovery to confirm Strike restored your previous limits."
-    ],
-    "country_caveats": [
-      "ACH, Bill Pay, and Strike Instant are currently limited to U.S. customers.",
-      "Wire deposits and withdrawals require a U.S. bank that supports Fedwire.",
-      "Availability and payment options differ by country; confirm support inside the Strike app store listing."
-    ]
-  },
-  "privacy": {
-    "section_title": "Privacy & Safety",
-    "data_flows": [
-      "Strike retains your legal name, address, phone number, and SSN or national ID to verify the account.",
-      "Connected banks and cards route through Plaid and card processors that can see your account and routing numbers.",
-      "Strike records Lightning invoices, on-chain addresses, and order history for compliance and customer support.",
-      "Support escalations may require you to confirm identity details again before Strike re-enables withdrawals."
-    ],
-    "data_flows_do": "Turn on two-factor authentication and review recent login sessions in Account > Security.",
-    "data_flows_dont": "Reuse the same password you use on other services or share your ID documents outside Strike's secure upload flow.",
-    "recovery": [
-      "Use the email verification link or code Strike sends to reset your password.",
-      "If 2FA is enabled, enter your authenticator code or backup code to finish the reset.",
-      "Contact support with your legal name and ID if you no longer control the registered email."
-    ],
-    "recovery_do": "Store authenticator backup codes offline and keep your email secured with its own 2FA.",
-    "recovery_dont": "Wait until your account is fully locked before you reach out to Strike support.",
-    "withdrawal_policy": [
-      "Lightning withdrawals are free and process instantly once your balance is available.",
-      "On-chain withdrawals offer Priority (~10 min), Standard (~1 hour), and Flexible (~24 hours, no fee) tiers.",
-      "ACH funded bitcoin stays locked until the pending window ends, while wire withdrawals require $50,000 minimum and carry a $15 fee."
-    ],
-    "withdrawal_policy_do": "Plan large cash outs with wires and keep auto-withdrawals in sync with your settlement windows.",
-    "withdrawal_policy_dont": "Assume ACH deposits or Strike Instant advances remove the $50,000 wire minimum.",
-    "region": [
-      "Strike operates in the United States (except New York) and 95+ other countries.",
-      "Recurring purchases, Bill Pay, and Strike Instant availability depends on your region.",
-      "Confirm local limits and payment methods in Account > Limits before funding."
-    ],
-    "micro_faqs": [
+  "payment_methods_limits": {
+    "heading": "Payment methods & limits",
+    "methods": [
       {
-        "q": "Does Strike support hardware wallet withdrawals?",
-        "a": "Yes. You can paste any Bitcoin address from your hardware wallet or trigger an auto-withdrawal to that address."
+        "id": "ach",
+        "name": "Bank Transfer (ACH / SEPA)",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "Free",
+          "fee_link": "fees-deposit",
+          "speed": "~2 days",
+          "withdraw": "After settlement"
+        },
+        "best_for": "Low-cost funding when you can wait ~2 days to withdraw",
+        "limits": {
+          "min_per_tx": "$10",
+          "max_per_tx": "$100,000",
+          "max_per_day": "$100,000",
+          "max_per_week": "$100,000",
+          "withdraw_eligibility": "Available after ~2 business days"
+        }
       },
       {
-        "q": "Can I change my Lightning withdrawal address after triggering auto-withdrawal?",
-        "a": "You can edit your address list before the auto-withdrawal broadcasts. Each run gives you a 12 hour cancellation window."
+        "id": "card",
+        "name": "Debit Card (incl. Apple Pay / Google Pay)",
+        "available": true,
+        "icon": "card",
+        "summary": {
+          "fee": "~1.99%",
+          "fee_link": "fees-deposit",
+          "speed": "Instant",
+          "withdraw": "Immediately"
+        },
+        "best_for": "Instant purchases with immediate withdrawal access",
+        "limits": {
+          "min_per_tx": "$10",
+          "max_per_tx": "$1,000",
+          "max_per_day": "$1,000",
+          "max_per_week": "$7,000",
+          "withdraw_eligibility": "Immediate"
+        }
       },
       {
-        "q": "How can I track past withdrawals?",
-        "a": "Open Bitcoin > Activity to view completed auto-withdrawals, Lightning sends, and on-chain transactions."
+        "id": "wire",
+        "name": "Wire Transfer",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "Free deposit",
+          "fee_link": "fees-deposit",
+          "speed": "~1 day",
+          "withdraw": "$15 + $50k min"
+        },
+        "best_for": "Large deposits with faster settlement than ACH",
+        "limits": {
+          "min_per_tx": "No minimum",
+          "max_per_tx": "Unlimited",
+          "max_per_day": "Unlimited",
+          "max_per_week": "Unlimited",
+          "withdraw_eligibility": "Within 1 business day (withdrawals: $50k min, $15 fee)"
+        }
+      },
+      {
+        "id": "lightning",
+        "name": "Lightning Top-up",
+        "available": false,
+        "icon": "lightning",
+        "body": "Strike does not currently support Lightning deposits to fund your cash balance"
       }
-    ],
-    "glossary": [
-      {
-        "term": "Strike Instant",
-        "def": "A program that unlocks access to some pending ACH funds before standard settlement when you meet eligibility."
-      },
-      {
-        "term": "Flexible tier",
-        "def": "The free on-chain withdrawal option that targets about 24 hour confirmation."
-      },
-      {
-        "term": "Threshold",
-        "def": "The sat amount that triggers an automatic withdrawal when your balance exceeds it."
-      }
-    ],
-    "keywords": [
-      "Strike trading fees",
-      "Strike ACH pending balance",
-      "Strike Lightning withdrawal",
-      "Strike auto-withdrawal",
-      "Strike wire minimum",
-      "Strike recurring purchase",
-      "Strike Instant program"
     ]
   },
   "compat_heading": "Strike features & limits",
@@ -436,78 +425,6 @@
       "gotcha": "Auto-withdrawals use the free Flexible tier, which can take up to 24 hours to confirm. You can cancel during the 12-hour window before broadcast."
     }
   ],
-  "payment_methods_limits": {
-    "heading": "Payment methods & limits",
-    "methods": [
-      {
-        "id": "ach",
-        "name": "Bank Transfer (ACH / SEPA)",
-        "available": true,
-        "icon": "bank",
-        "summary": {
-          "fee": "Free",
-          "fee_link": "fees-deposit",
-          "speed": "~2 days",
-          "withdraw": "After settlement"
-        },
-        "best_for": "Low-cost funding when you can wait ~2 days to withdraw",
-        "limits": {
-          "min_per_tx": "$10",
-          "max_per_tx": "$100,000",
-          "max_per_day": "$100,000",
-          "max_per_week": "$100,000",
-          "withdraw_eligibility": "Available after ~2 business days"
-        }
-      },
-      {
-        "id": "card",
-        "name": "Debit Card (incl. Apple Pay / Google Pay)",
-        "available": true,
-        "icon": "card",
-        "summary": {
-          "fee": "~1.99%",
-          "fee_link": "fees-deposit",
-          "speed": "Instant",
-          "withdraw": "Immediately"
-        },
-        "best_for": "Instant purchases with immediate withdrawal access",
-        "limits": {
-          "min_per_tx": "$10",
-          "max_per_tx": "$1,000",
-          "max_per_day": "$1,000",
-          "max_per_week": "$7,000",
-          "withdraw_eligibility": "Immediate"
-        }
-      },
-      {
-        "id": "wire",
-        "name": "Wire Transfer",
-        "available": true,
-        "icon": "bank",
-        "summary": {
-          "fee": "Free deposit",
-          "fee_link": "fees-deposit",
-          "speed": "~1 day",
-          "withdraw": "$15 + $50k min"
-        },
-        "best_for": "Large deposits with faster settlement than ACH",
-        "limits": {
-          "min_per_tx": "No minimum",
-          "max_per_tx": "Unlimited",
-          "max_per_day": "Unlimited",
-          "max_per_week": "Unlimited",
-          "withdraw_eligibility": "Within 1 business day (withdrawals: $50k min, $15 fee)"
-        }
-      },
-      {
-        "id": "lightning",
-        "name": "Lightning Top-up",
-        "available": false,
-        "icon": "lightning",
-        "body": "Strike does not currently support Lightning deposits to fund your cash balance"
-      }
-    ]
-  },
   "self_custody": {
     "heading": "Self-custody: withdraw safely",
     "tiles": [
@@ -593,6 +510,89 @@
         "q": "What's the safest way to store my seed phrase?",
         "a": "Memorize your 12-24 word seed phrase or write it on paper or metal. Store copies in separate secure locations like a fireproof safe and safety deposit box. Never store it digitally."
       }
+    ]
+  },
+  "privacy_notes": {
+    "data_flows": [
+      "Strike stores the personal information and identity documents you submit during sign up to meet AML and KYC rules.",
+      "Bank and card details are shared with regulated payment processors so your deposits and withdrawals can settle."
+    ],
+    "recovery_drill": [
+      "Enable two-factor authentication and confirm your email before funding the account.",
+      "If you lose access, open the app on a trusted device and follow the in-app recovery prompts or contact support with your ID.",
+      "Review the Account > Limits view after recovery to confirm Strike restored your previous limits."
+    ],
+    "country_caveats": [
+      "ACH, Bill Pay, and Strike Instant are currently limited to U.S. customers.",
+      "Wire deposits and withdrawals require a U.S. bank that supports Fedwire.",
+      "Availability and payment options differ by country; confirm support inside the Strike app store listing."
+    ]
+  },
+  "privacy": {
+    "section_title": "Privacy & Safety",
+    "data_flows": [
+      "Strike retains your legal name, address, phone number, and SSN or national ID to verify the account.",
+      "Connected banks and cards route through Plaid and card processors that can see your account and routing numbers.",
+      "Strike records Lightning invoices, on-chain addresses, and order history for compliance and customer support.",
+      "Support escalations may require you to confirm identity details again before Strike re-enables withdrawals."
+    ],
+    "data_flows_do": "Turn on two-factor authentication and review recent login sessions in Account > Security.",
+    "data_flows_dont": "Reuse the same password you use on other services or share your ID documents outside Strike's secure upload flow.",
+    "recovery": [
+      "Use the email verification link or code Strike sends to reset your password.",
+      "If 2FA is enabled, enter your authenticator code or backup code to finish the reset.",
+      "Contact support with your legal name and ID if you no longer control the registered email."
+    ],
+    "recovery_do": "Store authenticator backup codes offline and keep your email secured with its own 2FA.",
+    "recovery_dont": "Wait until your account is fully locked before you reach out to Strike support.",
+    "withdrawal_policy": [
+      "Lightning withdrawals are free and process instantly once your balance is available.",
+      "On-chain withdrawals offer Priority (~10 min), Standard (~1 hour), and Flexible (~24 hours, no fee) tiers.",
+      "ACH funded bitcoin stays locked until the pending window ends, while wire withdrawals require $50,000 minimum and carry a $15 fee."
+    ],
+    "withdrawal_policy_do": "Plan large cash outs with wires and keep auto-withdrawals in sync with your settlement windows.",
+    "withdrawal_policy_dont": "Assume ACH deposits or Strike Instant advances remove the $50,000 wire minimum.",
+    "region": [
+      "Strike operates in the United States (except New York) and 95+ other countries.",
+      "Recurring purchases, Bill Pay, and Strike Instant availability depends on your region.",
+      "Confirm local limits and payment methods in Account > Limits before funding."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Does Strike support hardware wallet withdrawals?",
+        "a": "Yes. You can paste any Bitcoin address from your hardware wallet or trigger an auto-withdrawal to that address."
+      },
+      {
+        "q": "Can I change my Lightning withdrawal address after triggering auto-withdrawal?",
+        "a": "You can edit your address list before the auto-withdrawal broadcasts. Each run gives you a 12 hour cancellation window."
+      },
+      {
+        "q": "How can I track past withdrawals?",
+        "a": "Open Bitcoin > Activity to view completed auto-withdrawals, Lightning sends, and on-chain transactions."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "Strike Instant",
+        "def": "A program that unlocks access to some pending ACH funds before standard settlement when you meet eligibility."
+      },
+      {
+        "term": "Flexible tier",
+        "def": "The free on-chain withdrawal option that targets about 24 hour confirmation."
+      },
+      {
+        "term": "Threshold",
+        "def": "The sat amount that triggers an automatic withdrawal when your balance exceeds it."
+      }
+    ],
+    "keywords": [
+      "Strike trading fees",
+      "Strike ACH pending balance",
+      "Strike Lightning withdrawal",
+      "Strike auto-withdrawal",
+      "Strike wire minimum",
+      "Strike recurring purchase",
+      "Strike Instant program"
     ]
   },
   "anchors": {

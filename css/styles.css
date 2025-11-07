@@ -30,6 +30,7 @@
 html {
   font-size: 1em;
   background: var(--bg);
+  scroll-behavior: smooth;
 }
 
 
@@ -2988,6 +2989,36 @@ p, li, a {
   }
 }
 
+
+/* Jump to navigation (minimal inline style) */
+.jump-nav {
+  font-family: "Inter", sans-serif !important;
+  font-size: 0.8em;
+  color: var(--text-muted);
+  margin: 8px 0 10px 0;
+  line-height: 1.6;
+}
+
+.jump-nav a {
+  font-family: "Inter", sans-serif !important;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 4px 0;
+  display: inline-block;
+  transition: color 0.2s ease;
+}
+
+.jump-nav a:hover,
+.jump-nav a:focus {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* Scroll margin for section anchors to account for sticky header */
+.service-section,
+.brand-faq {
+  scroll-margin-top: 250px;
+}
 
 /* Trust chips (build-time) */
 .trust-chips {
