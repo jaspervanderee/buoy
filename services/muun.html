@@ -164,6 +164,8 @@
     <p><img src="/images/cross.svg" alt="negative icon" class="checkmark-icon"/> <strong>Not ideal when:</strong> You need Lightning addresses or want predictable low fees during high on-chain activity.</p>
   </div>
 </section>
+<details class="section-accordion">
+  <summary>Getting started</summary>
 
 <section id="setup" class="service-section">
   <h2 class="feature-label">Getting started</h2>
@@ -204,6 +206,9 @@
       </div>
   </div>
 </section>
+</details>
+<details class="section-accordion">
+  <summary>Fees: what you pay and when</summary>
 
 <section id="fees" class="service-section section-fees">
   <h2 class="fees-title">Fees: what you pay and when</h2>
@@ -282,6 +287,9 @@
   </details>
 
 </section>
+</details>
+<details class="section-accordion">
+  <summary>What this Muun wallet can or can't do</summary>
 
 <section id="compat" class="service-section">
   <h2 class="feature-label">What this Muun wallet can or can't do</h2>
@@ -357,6 +365,9 @@
       </div>
   </div>
 </section>
+</details>
+<details class="section-accordion">
+  <summary>Move your Muun wallet or funds</summary>
 
 <section id="migration" class="service-section">
   <h2 class="feature-label">Move your Muun wallet or funds</h2>
@@ -424,6 +435,9 @@
       </div>
   </div>
 </section>
+</details>
+<details class="section-accordion">
+  <summary>Privacy & Safety</summary>
 
 <section id="privacy-safety" class="service-section" aria-labelledby="privacy-safety-label">
   <h2 id="privacy-safety-label" class="feature-label">Privacy & Safety</h2>
@@ -478,6 +492,9 @@
       </dl>
     </details>
 </section>
+</details>
+<details class="section-accordion">
+  <summary>Release & Trust</summary>
 
 <section id="trust" class="service-section">
   <h2 class="feature-label">Release &amp; Trust</h2>
@@ -524,6 +541,9 @@
     </div>
   </div>
 </section>
+</details>
+<details class="section-accordion">
+  <summary>Profile</summary>
 
 <section id="profile" class="service-section">
   <h2 class="feature-label">Profile</h2>
@@ -563,6 +583,7 @@
     </div>
   </div>
 </section>
+</details>
 </div>
 <!-- BUILD:END -->
 
@@ -814,6 +835,49 @@
       closeLightbox();
     }
   });
+})();
+</script>
+<!-- Mobile Section Accordions -->
+<script>
+(function() {
+  // Desktop: force all accordions open
+  if (window.innerWidth >= 768) {
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.section-accordion').forEach(function(acc) {
+        acc.setAttribute('open', '');
+      });
+    });
+    return;
+  }
+  
+  // Mobile: open accordion if hash points to element inside it
+  function openAccordionForHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    
+    try {
+      const target = document.querySelector(hash);
+      if (!target) return;
+      
+      // Find parent accordion
+      const accordion = target.closest('.section-accordion');
+      if (accordion && !accordion.open) {
+        accordion.open = true;
+      }
+    } catch (e) {
+      // Invalid selector, ignore
+    }
+  }
+  
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', openAccordionForHash);
+  } else {
+    openAccordionForHash();
+  }
+  
+  // Run when hash changes (clicking jump links, back/forward)
+  window.addEventListener('hashchange', openAccordionForHash);
 })();
 </script>
 </body>

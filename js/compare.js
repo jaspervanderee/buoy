@@ -742,8 +742,8 @@ initializeCollapsibleDescriptions();
 // Rating modal logic (updated for backend)
 const modal = document.getElementById("rating-modal");
 
+// Gracefully exit if modal doesn't exist (e.g., on service pages)
 if (!modal) {
-    alert("Error: Rating modal not found in your HTML. Add <div id='rating-modal'>...</div> to your page.");
     return;
 }
 

@@ -2992,32 +2992,125 @@ p, li, a {
 
 /* Jump to navigation (minimal inline style) */
 .jump-nav {
-  font-family: "Inter", sans-serif !important;
-  font-size: 0.8em;
-  color: var(--text-muted);
-  margin: 8px 0 10px 0;
-  line-height: 1.6;
+  display: none; /* Hidden on mobile by default */
 }
 
-.jump-nav a {
-  font-family: "Inter", sans-serif !important;
-  color: var(--text-muted);
-  text-decoration: none;
-  padding: 4px 0;
-  display: inline-block;
-  transition: color 0.2s ease;
-}
-
-.jump-nav a:hover,
-.jump-nav a:focus {
-  color: var(--accent);
-  text-decoration: underline;
+@media (min-width: 768px) {
+  .jump-nav {
+    display: block;
+    font-family: "Inter", sans-serif !important;
+    font-size: 0.8em;
+    color: var(--text-muted);
+    margin: 8px 0 10px 0;
+    line-height: 1.6;
+  }
+  
+  .jump-nav a {
+    font-family: "Inter", sans-serif !important;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 4px 0;
+    display: inline-block;
+    transition: color 0.2s ease;
+  }
+  
+  .jump-nav a:hover,
+  .jump-nav a:focus {
+    color: var(--accent);
+    text-decoration: underline;
+  }
 }
 
 /* Scroll margin for section anchors to account for sticky header */
 .service-section,
 .brand-faq {
   scroll-margin-top: 250px;
+}
+
+/* === Mobile Section Accordions === */
+
+/* Wrapper for collapsible sections on mobile */
+.section-accordion {
+  margin-bottom: 16px;
+}
+
+/* Direct child summary only (not nested details) */
+.section-accordion > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 16px;
+  background: var(--panel);
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.section-accordion > summary::-webkit-details-marker {
+  display: none;
+}
+
+.section-accordion > summary::after {
+  content: "\2193"; /* Down arrow */
+  font-size: 1.2em;
+  color: var(--accent);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.section-accordion[open] > summary {
+  background: var(--accent);
+  color: white;
+}
+
+.section-accordion[open] > summary::after {
+  transform: rotate(180deg);
+  color: white;
+}
+
+.section-accordion > summary:hover {
+  background: var(--bg);
+}
+
+.section-accordion[open] > summary:hover {
+  background: var(--accent);
+  opacity: 0.9;
+}
+
+/* Section content inside accordion */
+.section-accordion .service-section {
+  margin-bottom: 0;
+}
+
+.section-accordion .service-section > h2 {
+  display: none; /* Hide h2 since summary shows title */
+}
+
+/* Desktop/tablet: force accordions open and hide accordion UI */
+@media (min-width: 768px) {
+  .section-accordion {
+    margin-bottom: 40px; /* Increase spacing between sections on desktop */
+  }
+  
+  .section-accordion > summary {
+    display: none; /* Hide summary on desktop */
+  }
+  
+  .section-accordion {
+    background: none;
+    padding: 0;
+  }
+  
+  .section-accordion .service-section > h2 {
+    display: block; /* Show original h2 on desktop */
+  }
 }
 
 /* Trust chips (build-time) */
@@ -3302,8 +3395,8 @@ a.trust-chip:active {
 
 .mini-glossary {
   margin-top: 32px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
 }
 
 .mini-glossary summary {
@@ -3658,8 +3751,8 @@ a.trust-chip:active {
 /* Key terms (collapsible glossary) */
 .section-fees .key-terms {
   margin: 32px 0 0 0;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
 }
 
 .section-fees .key-terms summary {

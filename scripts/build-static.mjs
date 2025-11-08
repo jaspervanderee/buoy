@@ -1652,12 +1652,38 @@ ${cards.join("\n")}
       // Track which sections actually rendered for Jump to navigation
       const renderedSections = [];
       
+      // Section titles for mobile accordions
+      const sectionTitles = {
+        profile: "Profile",
+        setup: "Getting started",
+        fees: "Fees: what you pay and when",
+        payment_methods_limits: "Payment methods & limits",
+        key_features: "Key features",
+        compat: svc.compat_heading || "Features",
+        self_custody: svc.self_custody?.heading || "Self-custody: withdraw safely",
+        migration: `Move your ${svc.name} wallet or funds`,
+        privacy: svc.privacy?.section_title || "Privacy & Safety",
+        trust: "Release & Trust"
+      };
+      
+      // Sections that should NOT be wrapped in accordions
+      const excludeFromAccordion = new Set(['tldr']);
+      
       for (const key of order) {
         const renderer = renderers[key];
         if (!renderer) continue;
         const block = renderer();
         if (block) {
-          sectionBlocks.push(block);
+          // Wrap in mobile accordion unless excluded
+          if (!excludeFromAccordion.has(key) && sectionTitles[key]) {
+            const wrappedBlock = `<details class="section-accordion">
+  <summary>${sectionTitles[key]}</summary>
+${block}
+</details>`;
+            sectionBlocks.push(wrappedBlock);
+          } else {
+            sectionBlocks.push(block);
+          }
           renderedSections.push(key);
         }
       }
@@ -2101,6 +2127,49 @@ ${sectionsHtml}`;
       closeLightbox();
     }
   });
+})();
+</script>
+<!-- Mobile Section Accordions -->
+<script>
+(function() {
+  // Desktop: force all accordions open
+  if (window.innerWidth >= 768) {
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.section-accordion').forEach(function(acc) {
+        acc.setAttribute('open', '');
+      });
+    });
+    return;
+  }
+  
+  // Mobile: open accordion if hash points to element inside it
+  function openAccordionForHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    
+    try {
+      const target = document.querySelector(hash);
+      if (!target) return;
+      
+      // Find parent accordion
+      const accordion = target.closest('.section-accordion');
+      if (accordion && !accordion.open) {
+        accordion.open = true;
+      }
+    } catch (e) {
+      // Invalid selector, ignore
+    }
+  }
+  
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', openAccordionForHash);
+  } else {
+    openAccordionForHash();
+  }
+  
+  // Run when hash changes (clicking jump links, back/forward)
+  window.addEventListener('hashchange', openAccordionForHash);
 })();
 </script>
 `;
