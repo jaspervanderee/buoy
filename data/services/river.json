@@ -4,18 +4,27 @@
   "type_of_platform": "Exchange",
   "faqs": [
     {
-      "q": "What is River?",
-      "a": "River is a U.S. Bitcoin platform with full‑reserve custody, recurring buys and Lightning payments."
+      "q": "How do River's fees compare to staying on an exchange?",
+      "a": "River's trading fee starts at 1% and drops to 0.25% as your volume grows. Recurring buys skip fees entirely after the first week, and you can pair that with Auto-withdraw to move sats to self-custody automatically—though keeping some balance on River for active trading can make sense depending on your workflow."
     },
     {
-      "q": "What are River fees?",
-      "a": "Fees are volume‑based with transparent tiers; recurring orders are free to set and manage."
+      "q": "When can I withdraw ACH-funded bitcoin to my own wallet?",
+      "a": "ACH deposits trade instantly but stay pending about seven days until settlement clears. Once funds move to available balance you can withdraw to self-custody. River holds the keys during that time, which introduces the usual custodial and counterparty considerations."
     },
     {
-      "q": "Is River available outside the U.S.?",
-      "a": "River primarily serves the U.S.; availability outside the U.S. is limited."
+      "q": "What's the exit path for moving sats off River?",
+      "a": "Lightning withdrawals are free and instant once your balance is available. On-chain offers Priority, Standard, and Flexible tiers depending on how quickly you need confirmation. Auto-withdraw can move sats automatically when you hit a threshold, though manual withdrawals give you more control over timing and fee selection."
+    },
+    {
+      "q": "What's the trade-off with Bitcoin Interest on Cash?",
+      "a": "River pays 3.5% APY on idle cash and converts interest to bitcoin monthly. Your cash stays custodial during this time, which means trusting River's reserves without per-user on-chain proof. Some people use this for working capital while moving long-term holdings to self-custody; others prefer to avoid custodial yield entirely."
+    },
+    {
+      "q": "Where is River available and what are the limits?",
+      "a": "River serves U.S. residents, though some states face additional verification steps until local licensing clears. The service is custodial, which means River holds the keys while you use the platform—you can withdraw to self-custody at any time once your deposits settle."
     }
   ],
+  "supported_network": "Bitcoin (on-chain and Lightning)",
   "features": {
     "WW": [
       {
@@ -58,6 +67,117 @@
       }
     ]
   },
+  "custody_control": "Custodial",
+  "kyc_required": "Yes",
+  "recovery_method": "Email login with optional 2FA. Support can reset access after you reverify your ID.",
+  "open_source": "No",
+  "user_experience": "0.0",
+  "interface": "Mobile only",
+  "app_ratings": {
+    "ios": 4.9,
+    "android": 4.8
+  },
+  "profile": "Alex Leishman",
+  "description": "River helps U.S. based customers invest in Bitcoin simply and securely with a focus on long-term saving. Unlike many platforms, River holds all Bitcoin in full-reserve cold storage with multi-signature security and gives users transparency through real-time proof of reserves. This might sound inviting to people who don't want to hold Bitcoin in self-custody but it also means more centralization within Bitcoin.\\n\\nIt supports things like inheritance planning, business accounts, and joint accounts, making it attractive for people who want to treat Bitcoin like serious money. Users can buy Bitcoin instantly, set up automated savings, and send Bitcoin via on-chain or Lightning payments. On top of that, you can earn 3.8% Bitcoin interest on your cash. The app has a clean interface and is designed to be easy to use, earning high ratings on both iOS and Android.\\n\\nRiver's mission is to provide a trusted, high-quality experience for people who want to build wealth in Bitcoin without distractions. It aims to give users full control and transparency. While some users note strict ID verification and limited availability outside the U.S., River is praised for its reliability, personal customer service, and focus on security.",
+  "founded_in": "2019",
+  "website": "https://river.com",
+  "links": {
+    "ios": "https://apps.apple.com/us/app/river-buy-bitcoin-instantly/id1481139699",
+    "android": "https://play.google.com/store/apps/details?id=com.riverfinancial.river"
+  },
+  "countries": [
+    "US"
+  ],
+  "trust_chips": [
+    {
+      "text": "Bitcoin Interest on Cash",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "bitcoin-interest"
+    },
+    {
+      "text": "Beneficiary plans",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "beneficiary-plans"
+    },
+    {
+      "text": "Auto-withdraw",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "auto-withdraw"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "U.S. buyers who want high-touch custody plus bitcoin interest payouts.",
+    "consider_if": "You need concierge funding, River Link, and beneficiary planning under one login.",
+    "not_ideal_when": "You want self-custody or service outside the United States."
+  },
+  "howto": {
+    "title": "Getting started with River",
+    "steps": [
+      {
+        "id": "setup-install",
+        "title": "1. Create and verify your account",
+        "chips": {
+          "time": "~10 min",
+          "cost": "Free",
+          "risk": "Medium"
+        },
+        "actions": [
+          "Sign up at river.com or install the River app from your app store.",
+          "Enter your legal name, address, Social Security number, and upload a government ID when prompted.",
+          "Turn on two-factor authentication inside Settings > Security before funding the account."
+        ],
+        "gotcha": "River stays custodial until you withdraw, so plan your exit path before you fund it."
+      },
+      {
+        "id": "setup-receive",
+        "title": "2. Fund with ACH, wire, or direct deposit",
+        "chips": {
+          "time": "~1-5 business days",
+          "cost": "Varies",
+          "risk": "Medium"
+        },
+        "actions": [
+          "Link your U.S. bank account via Plaid or copy your River routing and account numbers for payroll.",
+          "Schedule an ACH transfer or initiate a wire; wires usually clear in about one business day while ACH settles in roughly a week.",
+          "Watch the Funding tab; cash trades immediately but moves from pending to available once settlement finishes."
+        ],
+        "gotcha": "ACH withdrawals unlock after funds settle, which typically takes around seven days."
+      },
+      {
+        "id": "setup-pay",
+        "title": "3. Buy bitcoin and set your exit",
+        "chips": {
+          "time": "~5 min",
+          "cost": "0.99% -> 0.25% + network fees",
+          "risk": "Medium"
+        },
+        "actions": [
+          "Place an instant buy or create a zero-fee recurring order so future DCA runs without River's trading fee.",
+          "Enable Auto Withdraw or queue manual withdrawals to your hardware wallet once funds become available.",
+          "Test a Lightning send through River Link to confirm you can move sats off the platform on demand."
+        ],
+        "gotcha": "Zero-fee recurring buys skip fees after the first seven days but the bitcoin still sits in River custody until you withdraw."
+      }
+    ],
+    "totalTime": null,
+    "micro_faqs": [
+      {
+        "q": "How long before I can withdraw an ACH deposit?",
+        "a": "ACH cash trades instantly but River and Lead Bank release it for withdrawals after settlement, usually in about seven days."
+      },
+      {
+        "q": "Does all of my cash earn bitcoin interest?",
+        "a": "Once you enroll, every settled dollar in your cash balance accrues interest daily and River converts the payout to bitcoin each month."
+      },
+      {
+        "q": "Can River handle business or trust accounts?",
+        "a": "Yes. River offers business, private client, and beneficiary accounts; contact support to open the right profile."
+      }
+    ]
+  },
   "fees": {
     "intro": "Based on monthly trading volume",
     "tiers": [
@@ -82,22 +202,420 @@
   "dca": "Yes: Recurring orders are free",
   "payment_methods": [
     "Bank Transfer",
-    "Wire Transfer"
+    "Wire Transfer",
+    "Direct Deposit"
   ],
-  "custody_control": "Custodial",
-  "kyc_required": "Yes",
-  "open_source": "No",
-  "user_experience": "0.0",
-  "interface": "Mobile only",
-  "app_ratings": {
-    "ios": 4.9,
-    "android": 4.8
+  "fees_scenarios": [
+    {
+      "id": "fees-deposit",
+      "title": "Add cash",
+      "cost_today": "ACH: Free<br>Wire: Free from River (your bank may charge)<br>Direct deposit: Free",
+      "what_happens": "ACH trades instantly but remains pending until settlement clears. Wires usually post within one business day and direct deposits land each payday.",
+      "how_to_minimize": "Link your bank once, queue ACH transfers before you need the bitcoin, and use wires for larger amounts you want withdrawable faster.",
+      "learn_more": "ACH withdrawals unlock after settlement, typically around seven calendar days."
+    },
+    {
+      "id": "fees-buy",
+      "title": "Buy bitcoin",
+      "cost_today": "0.99% down to 0.25% as monthly volume increases",
+      "what_happens": "River applies its tiered fee across your combined buys and sells for the calendar month.",
+      "how_to_minimize": "Batch larger purchases, let zero-fee recurring buys run after the first week, and track your tier inside Settings.",
+      "learn_more": {
+        "type": "table",
+        "heading": "Fee tier thresholds (monthly volume)",
+        "source": "fees.tiers"
+      }
+    },
+    {
+      "id": "fees-withdraw",
+      "title": "Withdraw bitcoin",
+      "cost_today": "Lightning: Free<br>On-chain: Miner fee only (you pick the priority)<br>Auto-withdraw: Free via flexible tier (~24 hours)",
+      "what_happens": "Lightning sends settle instantly. On-chain withdrawals let you pick the fee tier, and auto-withdraw moves your balance after a short review window.",
+      "how_to_minimize": "Keep a Lightning wallet ready, test with a small send, and schedule larger on-chain withdrawals when fees are low.",
+      "learn_more": "ACH-funded bitcoin stays locked until settlement. Auto-withdraw queues for review before River broadcasts the transaction."
+    },
+    {
+      "id": "fees-bitcoin-interest",
+      "title": "Earn bitcoin interest on cash",
+      "cost_today": "No management fee. Current rate: 3.5% APY paid in bitcoin.",
+      "what_happens": "After you enroll, River converts daily cash interest to bitcoin and credits it to your balance monthly.",
+      "how_to_minimize": "Sweep the earned bitcoin to self-custody after each payout so you control the keys.",
+      "learn_more": "You can switch payouts back to USD if you prefer to limit additional custodial bitcoin exposure."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "When can I withdraw an ACH deposit?",
+      "a": "Once River and Lead Bank mark your ACH transfer settled, usually about seven days after you initiate it, the funds move from pending to available and you can withdraw."
+    },
+    {
+      "q": "Do Lightning withdrawals include fees?",
+      "a": "River covers Lightning routing so you only pay the invoice amount. On-chain withdrawals pass through the miner fee for the priority you choose."
+    },
+    {
+      "q": "Can I opt out of bitcoin interest payouts?",
+      "a": "Yes. In Cash > Interest you can switch payouts to USD or unenroll entirely if you prefer not to receive bitcoin."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-full-reserve-custody",
+      "term": "Full-reserve custody",
+      "definition": "River keeps 100% of client bitcoin in multisig cold storage without lending it out, so assets and liabilities match at all times."
+    },
+    {
+      "id": "term-river-link",
+      "term": "River Link",
+      "definition": "A feature that lets you text a Lightning payment link so the recipient can claim sats to any Lightning or on-chain wallet."
+    },
+    {
+      "id": "term-forcefield",
+      "term": "ForceField",
+      "definition": "River's account protection layer that blocks outgoing transfers if your device, IP, or behavior look risky."
+    }
+  ],
+  "payment_methods_limits": {
+    "heading": "Payment methods & limits",
+    "methods": [
+      {
+        "id": "ach",
+        "name": "Bank Transfer (ACH)",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "Free",
+          "fee_link": "fees-deposit",
+          "speed": "~1-3 business days",
+          "withdraw": "After settlement (~7 days)"
+        },
+        "best_for": "Consistent dollar-cost averaging with no funding fee.",
+        "limits": {
+          "min_per_tx": "$10",
+          "max_per_tx": "Varies by account",
+          "max_per_day": "Varies by account",
+          "max_per_week": "Varies by account",
+          "withdraw_eligibility": "Available after settlement (~7 days)"
+        }
+      },
+      {
+        "id": "wire",
+        "name": "Wire Transfer",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "Free from River (bank may charge)",
+          "fee_link": "fees-deposit",
+          "speed": "~1 business day",
+          "withdraw": "Once funds post"
+        },
+        "best_for": "Large cash moves when you need withdrawal access sooner.",
+        "limits": {
+          "min_per_tx": "$1,000",
+          "max_per_tx": "Coordinate with River support",
+          "max_per_day": "Coordinate with River support",
+          "max_per_week": "Coordinate with River support",
+          "withdraw_eligibility": "Usually within one business day"
+        }
+      },
+      {
+        "id": "direct-deposit",
+        "name": "Direct Deposit",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "Free",
+          "fee_link": "fees-deposit",
+          "speed": "Each payday",
+          "withdraw": "After settlement (~2 business days)"
+        },
+        "best_for": "Automating paycheck-to-bitcoin flows without logging in every payday.",
+        "limits": {
+          "min_per_tx": "Employer dependent",
+          "max_per_tx": "Employer dependent",
+          "max_per_day": "Employer dependent",
+          "max_per_week": "Employer dependent",
+          "withdraw_eligibility": "Available after funds settle"
+        }
+      }
+    ]
   },
-  "profile": "Alex Leishman",
-  "description": "River helps U.S. based customers invest in Bitcoin simply and securely with a focus on long-term saving. Unlike many platforms, River holds all Bitcoin in full-reserve cold storage with multi-signature security and gives users transparency through real-time proof of reserves. This might sound inviting to people who don't want to hold Bitcoin in self-custody but it also means more centralization within Bitcoin.\\n\\nIt supports things like inheritance planning, business accounts, and joint accounts, making it attractive for people who want to treat Bitcoin like serious money. Users can buy Bitcoin instantly, set up automated savings, and send Bitcoin via on-chain or Lightning payments. On top of that, you can earn 3.8% Bitcoin interest on your cash. The app has a clean interface and is designed to be easy to use, earning high ratings on both iOS and Android.\\n\\nRiver's mission is to provide a trusted, high-quality experience for people who want to build wealth in Bitcoin without distractions. It aims to give users full control and transparency. While some users note strict ID verification and limited availability outside the U.S., River is praised for its reliability, personal customer service, and focus on security.",
-  "founded_in": "2019",
-  "website": "https://river.com",
-  "countries": [
-    "US"
-  ]
+  "compat_heading": "River features & limits",
+  "compat_tiles": [
+    {
+      "id": "bitcoin-interest",
+      "title": "Bitcoin Interest on Cash",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 3.5% APY</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Custodial exposure</span>",
+      "status": "works-caveat"
+    },
+    {
+      "id": "beneficiary-plans",
+      "title": "Beneficiary plans",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Assign heirs</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Guided handoff</span>",
+      "status": "works"
+    },
+    {
+      "id": "dca",
+      "title": "Dollar-cost averaging (DCA)",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Free after first week</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Daily, weekly, or monthly</span>",
+      "status": "works"
+    },
+    {
+      "id": "auto-withdraw",
+      "title": "Auto-withdraw",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Free (Flexible tier)</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Scheduled withdrawals</span>",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "bitcoin-interest",
+      "why": "River pays 3.5% APY on idle cash and converts the interest to bitcoin each month. Your cash stays custodial during this time, which means trusting River's reserves without per-user on-chain proof. Some people use this for working capital while moving long-term holdings to self-custody; others prefer to avoid custodial yield arrangements entirely.",
+      "try": [
+        "In Cash, opt into Bitcoin Interest on Cash",
+        "River accrues interest daily and converts to bitcoin monthly",
+        "You can sweep earned sats to self-custody after each payout",
+        "Different people draw different lines about how much to keep custodial versus self-custodied"
+      ],
+      "gotcha": "Interest payouts stay custodial until you withdraw. You can set Auto-withdraw to sweep sats automatically or manage this manually based on your preferences."
+    },
+    {
+      "id": "beneficiary-plans",
+      "why": "Beneficiary plans let your heirs access your River account without hunting for passwords. River becomes a single point of access for those assets, which means your heirs inherit both the balance and the counterparty considerations that come with any custodial service.",
+      "try": [
+        "Open Settings > Beneficiaries and add trusted contacts",
+        "Define allocation rules for cash, bitcoin, and interest payouts",
+        "Share River's beneficiary instructions with your heirs"
+      ],
+      "gotcha": "This plan covers assets held on River. For holdings in self-custody, you'll want a separate inheritance plan that gives your heirs access to your keys and instructions."
+    },
+    {
+      "id": "dca",
+      "why": "Recurring buys let you build a bitcoin position without timing the market, though your sats stay custodial until you move them. You can pair this with Auto-withdraw to move sats to self-custody automatically, or manage withdrawals manually depending on what fits your workflow.",
+      "try": [
+        "Tap Buy Bitcoin, then select Recurring",
+        "Choose your schedule: daily, weekly, or monthly",
+        "Set your purchase amount and confirm",
+        "After the first week, all future orders skip fees—you can connect Auto-withdraw or withdraw manually"
+      ],
+      "gotcha": "Recurring buys stay fee-free after the first week, but bitcoin remains in River custody until you withdraw. Self-custody means you hold the keys directly rather than trusting River to hold them for you."
+    },
+    {
+      "id": "auto-withdraw",
+      "why": "When your balance hits a threshold you set, River automatically moves sats to your wallet using the free Flexible tier. This reduces the time your bitcoin sits in custody, though you give up some control over the exact timing and fee selection compared to manual withdrawals.",
+      "try": [
+        "Open Settings and tap Auto-withdraw",
+        "Set your threshold amount in sats",
+        "Add one or more payout addresses to your self-custody wallet",
+        "River queues the withdrawal within 24 hours once you cross the threshold"
+      ],
+      "gotcha": "Auto-withdrawals use the Flexible tier, which takes about 24 hours to confirm. ACH-funded bitcoin must settle first before any withdrawal can process."
+    }
+  ],
+  "self_custody": {
+    "heading": "Self-custody: withdraw safely",
+    "tiles": [
+      {
+        "id": "pick-wallet",
+        "title": "1. Pick a cold storage wallet",
+        "chips": {
+          "time": "~5 min",
+          "cost": "$0-$200",
+          "risk": "Low"
+        },
+        "why": "A hardware or paper wallet keeps your bitcoin offline so River cannot be a single point of failure.",
+        "actions": [
+          "Choose a hardware wallet or air-gapped setup from our store-it-safely guide.",
+          "Initialize the wallet, generate your seed phrase, and write it on durable material.",
+          "Store the seed in separate secure locations."
+        ],
+        "gotcha": "Do not photograph or upload the seed; digital copies expose you to remote theft."
+      },
+      {
+        "id": "make-receive-code",
+        "title": "2. Create a fresh receive address",
+        "chips": {
+          "time": "~2 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "why": "Fresh addresses limit the on-chain metadata River and other watchers can tie to you.",
+        "actions": [
+          "Connect your wallet to its companion app or desktop software.",
+          "Generate a new on-chain address and copy it carefully.",
+          "Verify the address on the hardware wallet screen before you use it."
+        ],
+        "gotcha": "Never reuse an address. Create a new one for every withdrawal."
+      },
+      {
+        "id": "test-small",
+        "title": "3. Send a small test amount",
+        "chips": {
+          "time": "~5 min",
+          "cost": "Mining fee (~$1-$5)",
+          "risk": "Low"
+        },
+        "why": "Testing the process with a small amount confirms your withdrawal path before you move more value.",
+        "actions": [
+          "Tap Wallet > Send > Bitcoin address in the River app.",
+          "Paste your fresh address and send a small amount using the Standard fee tier.",
+          "Confirm the transaction arrived in your wallet before proceeding."
+        ],
+        "gotcha": "Flexible tier is free but can take around a day. Use Standard for predictable confirmation."
+      },
+      {
+        "id": "move-rest",
+        "title": "4. Withdraw the remaining balance",
+        "chips": {
+          "time": "~10-60 min",
+          "cost": "Mining fees (~$5-$50)",
+          "risk": "Low"
+        },
+        "why": "Finish the move to self-custody so River is no longer a custodial bottleneck for your savings.",
+        "actions": [
+          "Generate a new address for the rest of your withdrawal.",
+          "Use Auto Withdraw or send manually once your ACH or wire funds are available.",
+          "Label the transaction in your wallet and store the hardware device securely."
+        ],
+        "gotcha": "Auto Withdraw uses the flexible tier, so plan ahead if you need confirmed funds quickly."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Why bother with self-custody if River is full reserve?",
+        "a": "Full reserve reduces rehypothecation risk but you still rely on River's controls and jurisdiction. Self-custody gives you final settlement without counterparty risk."
+      },
+      {
+        "q": "Can I send to a Lightning wallet instead of on-chain?",
+        "a": "Yes. River supports Lightning withdrawals at no added fee, which is handy for topping up a mobile wallet before moving larger balances on-chain."
+      },
+      {
+        "q": "What happens to auto-withdrawals if fees spike?",
+        "a": "Auto-withdrawals default to the flexible tier. Pause or cancel them during high fee spikes and send manually with a fee tier that matches your urgency."
+      }
+    ]
+  },
+  "privacy_notes": {
+    "data_flows": [
+      "River and Lead Bank store the identity documents and banking details you provide during onboarding.",
+      "Transaction metadata, including Lightning invoices and on-chain addresses, remains in River logs for compliance."
+    ],
+    "recovery_drill": [
+      "Enable two-factor authentication and store backup codes offline before you fund the account.",
+      "If you lose access, contact support from your verified email and be ready to re-submit ID documents.",
+      "Review Limits and Security settings after recovery to ensure River restored your previous controls."
+    ],
+    "country_caveats": [
+      "River currently serves U.S. residents; availability in other jurisdictions is limited.",
+      "Direct deposit and ACH features require a U.S. bank relationship.",
+      "River may restrict features in unsupported states until it secures local licensing."
+    ]
+  },
+  "privacy": {
+    "section_title": "Privacy & Safety",
+    "data_flows": [
+      "River holds your personal information, banking details, and transaction history to comply with U.S. financial regulations.",
+      "Proof of Reserves publishes anonymized liability chunks, so outsiders cannot see account-level balances but can verify totals."
+    ],
+    "data_flows_do": "Export statements regularly and delete unneeded banking links if you change providers.",
+    "data_flows_dont": "Assume Lightning activity is private. River and routing peers still see invoices and timestamp metadata.",
+    "recovery": [
+      "Reset your password from the login screen and confirm the email link River sends.",
+      "Provide your ID again if support escalates the recovery request.",
+      "Once access is restored, review ForceField settings and regenerate backup codes."
+    ],
+    "recovery_do": "Store authenticator backup codes offline and keep your email secured with its own two-factor authentication.",
+    "recovery_dont": "Reuse the same password you keep on other services or postpone recovery after a suspected compromise.",
+    "withdrawal_policy": [
+      "Lightning withdrawals are free and instant once your cash or bitcoin is in the available balance.",
+      "On-chain withdrawals offer Priority, Standard, and Flexible tiers that pass through the miner fee you choose.",
+      "Cash wires originate from Lead Bank and may take one to two business days to reach your external account."
+    ],
+    "withdrawal_policy_do": "Plan large on-chain exits when mempool fees are quiet and confirm destination addresses offline.",
+    "withdrawal_policy_dont": "Leave large balances on River just to earn interest; sweep to self-custody on a cadence.",
+    "region": [
+      "River focuses on U.S. clients; confirm availability before you attempt to open an account abroad.",
+      "Some states or business types may face additional verification or limits until River completes licensing.",
+      "Direct deposit and interest products may be unavailable outside eligible jurisdictions."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Does Proof of Reserves reveal my balance?",
+        "a": "No. River publishes aggregated liability data so you can verify totals without exposing individual accounts."
+      },
+      {
+        "q": "Can I delete my personal data?",
+        "a": "You can request data deletion once regulatory retention periods end; contact support for the latest policy."
+      },
+      {
+        "q": "What if I detect suspicious activity?",
+        "a": "Enable ForceField and contact River security immediately. They can freeze withdrawals while you update credentials."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "ForceField",
+        "def": "River's security control that adds device and behavior checks before large withdrawals."
+      },
+      {
+        "term": "Proof of Reserves tree",
+        "def": "The Merkle sum tree River uses so customers can verify total liabilities match on-chain assets."
+      },
+      {
+        "term": "Beneficiary plan",
+        "def": "An instruction set stored with River that lets designated heirs claim account assets after you pass away."
+      }
+    ],
+    "keywords": [
+      "River zero-fee recurring buys",
+      "River Bitcoin Interest on Cash",
+      "River Lightning withdrawals",
+      "River ForceField security",
+      "River Proof of Reserves",
+      "River beneficiary plan",
+      "River FDIC insured cash"
+    ]
+  },
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#methods",
+    "fees": "#fees",
+    "privacy": "#kyc",
+    "compat": "#features",
+    "migration": "#withdrawal",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-08",
+  "trust": {
+    "cards": [
+      {
+        "id": "proof-of-reserves",
+        "fact": "Monthly Proof of Reserves reports",
+        "link_text": "Verify reserves",
+        "link_url": "https://river.com/reserves"
+      },
+      {
+        "id": "security",
+        "fact": "Multisig cold storage & security",
+        "link_text": "Security practices",
+        "link_url": "https://river.com/security"
+      },
+      {
+        "id": "financials",
+        "fact": "Corporate financial transparency",
+        "link_text": "Financials",
+        "link_url": "https://river.com/financials"
+      },
+      {
+        "id": "terms",
+        "fact": "Terms of service and legal docs",
+        "link_text": "Legal",
+        "link_url": "https://river.com/terms"
+      }
+    ]
+  }
 }

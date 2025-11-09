@@ -4,18 +4,27 @@
   "type_of_platform": "Exchange",
   "faqs": [
     {
-      "q": "What is Swan Bitcoin?",
-      "a": "Swan is a Bitcoin savings platform with recurring buys, education and IRA products for U.S. users."
+      "q": "How do Swan's bitcoin purchase fees work?",
+      "a": "Swan waives fees on your first $10,000 in lifetime buys, then charges 1% on each additional buy or sell. Auto-withdrawals keep Swan Safe custody fees waived so you do not pay the optional 0.03% monthly charge."
     },
     {
-      "q": "Does Swan support automatic withdrawals?",
-      "a": "Yes. Swan encourages self‑custody and supports automatic withdrawals to your address."
+      "q": "When are ACH deposits available to withdraw from Swan?",
+      "a": "ACH purchases under $1,000 typically unlock in 10–15 days (closer to 5–10 days once your account is seasoned), while larger ACH purchases unlock in 20–30 days; wires and bitcoin deposits settle within about 24 hours. Use the “Available to withdraw” banner in your dashboard to see exact dates."
     },
     {
-      "q": "Where is Swan available?",
-      "a": "Swan primarily serves the U.S.; availability elsewhere is limited."
+      "q": "Does Swan charge for bitcoin withdrawals?",
+      "a": "Swan does not add a platform fee when you withdraw bitcoin; you simply pick the on-chain fee tier that matches the speed you want. USD wires carry a $15 fee with a $50,000 minimum if you move cash instead of bitcoin."
+    },
+    {
+      "q": "How do Swan auto-withdrawals work?",
+      "a": "Add a wallet address under Withdrawals, enable two-factor authentication, and set the on-chain balance threshold that fits your cadence. Once your unlocked balance crosses that mark, Swan queues an on-chain withdrawal to that address."
+    },
+    {
+      "q": "Who holds custody of bitcoin bought on Swan?",
+      "a": "Swan opens an individually titled account for you with regulated custodians Bakkt, BitGo, or Equity Trust, and those partners do not lend or rehypothecate customer coins. You can leave funds there temporarily or withdraw to your own wallet whenever you are ready."
     }
   ],
+  "supported_network": "Bitcoin (on-chain)",
   "features": {
     "WW": [
       {
@@ -63,6 +72,7 @@
     ]
   },
   "fees": {
+    "intro": "Zero-fee onboarding on the first $10,000 in lifetime buys, 1% after that, plus optional custody programs billed separately.",
     "tiers": [
       {
         "range": "up to $10,000",
@@ -77,7 +87,8 @@
   "dca": "Yes: but with fees after the first $10.000",
   "payment_methods": [
     "Bank Transfer",
-    "Wire Transfer"
+    "Wire Transfer",
+    "Bitcoin Transfer"
   ],
   "custody_control": "Custodial",
   "kyc_required": "Yes",
@@ -89,10 +100,508 @@
     "android": 4.6
   },
   "profile": "Cory Klippsten",
-  "description": "Swan Bitcoin, launched by Cory Klippsten and based in California, is a platform focused on making it easy for beginners to buy and save Bitcoin.\\n\\nWhat makes Swan distinct is its focus on self-custody support and education. It automatically withdraws BTC weekly to your own address and provides guides for self-custody, while also offering Swan Guard with fraud protection and identity verification tools. Swan prioritizes teaching users about Bitcoin's value for financial freedom. Swan also targets long-term savers by offering IRA products making Bitcoin tax-advantaged retirement savings easier.\\n\\nSwan offers zero-fee purchases on the first $10,000, a low 0.99% fee for recurring buys, and free withdrawals to personal wallets, encouraging self-custody. Its app is praised for its clean design and simple setup. However, some users report slow customer support and issues with account restrictions.\\n\\nIts vision is to onboard 10 million Bitcoin users by promoting Bitcoin as better money for a decentralized future.",
+  "description": "Swan Bitcoin, launched by Cory Klippsten and based in California, is a platform focused on making it easy for beginners to buy and save Bitcoin.\n\nWhat makes Swan distinct is its focus on self-custody support and education. It automatically withdraws BTC weekly to your own address and provides guides for self-custody, while also offering Swan Guard with fraud protection and identity verification tools. Swan prioritizes teaching users about Bitcoin's value for financial freedom. Swan also targets long-term savers by offering IRA products making Bitcoin tax-advantaged retirement savings easier.\n\nSwan offers zero-fee purchases on the first $10,000, a low 0.99% fee for recurring buys, and free withdrawals to personal wallets, encouraging self-custody. Its app is praised for its clean design and simple setup. However, some users report slow customer support and issues with account restrictions.\n\nIts vision is to onboard 10 million Bitcoin users by promoting Bitcoin as better money for a decentralized future.",
   "founded_in": "2019",
   "website": "https://www.swanbitcoin.com",
+  "links": {
+    "ios": "https://apps.apple.com/us/app/swan-bitcoin/id1576287352",
+    "android": "https://play.google.com/store/apps/details?id=com.swanbitcoin.android"
+  },
   "countries": [
     "US"
-  ]
+  ],
+  "recovery_method": "One-time passcode email login with optional authenticator app 2FA.",
+  "trust_chips": [
+    {
+      "text": "Swan Vault",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "swan-vault"
+    },
+    {
+      "text": "Swan Guard",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "swan-guard"
+    },
+    {
+      "text": "Auto-withdraw",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "auto-withdraw"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "Long-term bitcoin buyers who want zero fees on their first $10,000 and concierge paths into self-custody.",
+    "consider_if": "You value regulated custody partners, Swan Vault backups, or IRA automation alongside recurring buys.",
+    "not_ideal_when": "You need instant Lightning payments or want to avoid full KYC disclosures."
+  },
+  "howto": {
+    "title": "Getting started with Swan",
+    "steps": [
+      {
+        "id": "setup-install",
+        "title": "1. Create & verify",
+        "chips": {
+          "time": "~10 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Sign up at swanbitcoin.com or install the Swan app and enter your email to receive a one-time passcode.",
+          "Complete identity verification with your legal name, address, and government ID.",
+          "Turn on authenticator-based 2FA before funding so withdrawals stay protected."
+        ],
+        "gotcha": "Swan only supports customers over 18 with a U.S. government ID and an eligible bank account."
+      },
+      {
+        "id": "setup-pay",
+        "title": "2. Link your funding",
+        "chips": {
+          "time": "~5–30 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Open the main menu → Bank Accounts and add a U.S. checking account (ACH is required for transfers).",
+          "Double-check you entered the ACH routing number rather than the wire routing number.",
+          "For large buys, request wire instructions from the Funding section so your bank can send same-day cash."
+        ],
+        "gotcha": "Small fintech banks and savings-only accounts may be rejected by the account verification system."
+      },
+      {
+        "id": "setup-receive",
+        "title": "3. Buy & schedule withdrawal",
+        "why": "Automate your stacking while keeping a clear exit to self-custody.",
+        "chips": {
+          "time": "~5–20 min",
+          "cost": "0% on first $10k, 1% afterward + mining fee",
+          "risk": "Low"
+        },
+        "actions": [
+          "Start a one-time or recurring plan; Swan pulls ACH purchases on your chosen cadence.",
+          "Watch the “Available to withdraw” timeline so you know when ACH-funded bitcoin unlocks.",
+          "Add your wallet in Withdrawals and set auto-withdraw so sats leave custody as soon as they unlock."
+        ],
+        "gotcha": "ACH-funded bitcoin cannot move until its unlock window closes, even if you trigger auto-withdraw."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Can I fund Swan with a savings account?",
+        "a": "No. Swan requires a U.S. checking account that supports ACH transfers for recurring buys."
+      },
+      {
+        "q": "Where do I see my unlock dates?",
+        "a": "Open the dashboard banner labeled “Available to withdraw” to view the exact release schedule for each ACH purchase."
+      },
+      {
+        "q": "Do auto-withdrawals require 2FA?",
+        "a": "Yes. Swan asks you to enable two-factor authentication before it will approve a new withdrawal address or auto-withdraw rule."
+      }
+    ]
+  },
+  "fees_scenarios": [
+    {
+      "id": "fees-deposit",
+      "title": "Deposit cash or bitcoin",
+      "cost_today": "ACH: free<br>Wire: free from Swan (your bank may charge)<br>Bitcoin deposit: network fee only",
+      "what_happens": "ACH trades instantly but unlocks in roughly 10–30 days depending on amount and account history, while wires and bitcoin deposits settle within about 24 hours.",
+      "how_to_minimize": "Keep ACH amounts modest while your account is new, use wires for large transfers, and deposit bitcoin directly if you already hold custody.",
+      "learn_more": "Unlock timelines appear under the “Available to withdraw” banner in your Swan dashboard."
+    },
+    {
+      "id": "fees-buy",
+      "title": "Buy bitcoin",
+      "cost_today": "First $10,000 lifetime: 0%<br>After $10,000: 1% per buy or sell",
+      "what_happens": "Swan draws from your linked bank account, executes the buy, and bills trading fees through your bank rather than deducting from your bitcoin.",
+      "how_to_minimize": "Batch larger buys into wire transfers, enable recurring plans to stay disciplined, and use auto-withdraw to avoid Swan Safe custody fees.",
+      "learn_more": "Fees are charged monthly via ACH once purchases settle and cannot be taken from your bitcoin balance."
+    },
+    {
+      "id": "fees-withdraw",
+      "title": "Withdraw bitcoin",
+      "cost_today": "Bitcoin: mining fee you choose<br>USD wire: $15 fee (requires $50,000 minimum)",
+      "what_happens": "Once funds are unlocked you can trigger a manual send or leave auto-withdraw enabled to move the full balance on-chain.",
+      "how_to_minimize": "Plan withdrawals around the unlock calendar, keep a low-fee window open in your wallet, and reserve USD wires for large cash moves.",
+      "learn_more": "Auto-withdrawals run on-chain; Swan does not currently offer Lightning withdrawals."
+    },
+    {
+      "id": "fees-swan-safe",
+      "title": "Keep bitcoin in Swan Safe",
+      "cost_today": "0.03% of assets per month (waived with auto-withdraw enabled)",
+      "what_happens": "Swan invoices the custody fee via ACH once at least $1 has accrued unless you keep auto-withdraw turned on.",
+      "how_to_minimize": "Enable auto-withdraw, sweep funds to your own wallet, or upgrade to Swan Vault if you want collaborative multisig backups.",
+      "learn_more": "Fees pause automatically when auto-withdraw is turned on or your balance drops below the $1 billing threshold."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "How are Swan fees collected?",
+      "a": "Trading, Swan Safe, Vault, and IRA fees are debited via ACH from your linked bank account; Swan never pulls them from your bitcoin balance."
+    },
+    {
+      "q": "Does turning on auto-withdraw waive Swan Safe fees?",
+      "a": "Yes. Swan Safe’s 0.03% monthly charge is automatically waived when you keep auto-withdraw enabled."
+    },
+    {
+      "q": "What does Swan Vault cost?",
+      "a": "Swan Vault runs at 0.02% of assets per month with a $30 minimum and $500 maximum, and includes a complimentary onboarding call."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-swan-safe-fee",
+      "term": "Swan Safe fee",
+      "definition": "An optional 0.03% monthly custody fee that is waived when you enable auto-withdraw or move funds to self-custody."
+    },
+    {
+      "id": "term-unlock-window",
+      "term": "Unlock window",
+      "definition": "The holding period Swan applies to ACH purchases before bitcoin or USD can leave custody; it ranges from 10 to 30 days depending on amount and history."
+    },
+    {
+      "id": "term-auto-withdraw-threshold",
+      "term": "Auto-withdraw threshold",
+      "definition": "The on-chain balance level you choose that tells Swan when to queue a full withdrawal to your saved wallet."
+    }
+  ],
+  "payment_methods_limits": {
+    "heading": "Payment methods & limits",
+    "methods": [
+      {
+        "id": "ach",
+        "name": "Bank Transfer (ACH)",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "Free",
+          "fee_link": "fees-deposit",
+          "speed": "Trades instantly, unlocks later",
+          "withdraw": "After unlock window"
+        },
+        "best_for": "Recurring buys from a U.S. checking account.",
+        "limits": {
+          "min_per_tx": "Varies by account history",
+          "max_per_tx": "Varies by account history",
+          "max_per_day": "Varies by account history",
+          "max_per_week": "Varies by account history",
+          "withdraw_eligibility": "Unlocks in 10–30 days based on amount"
+        }
+      },
+      {
+        "id": "wire",
+        "name": "Wire Transfer",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "No Swan fee (bank may charge)",
+          "fee_link": "fees-deposit",
+          "speed": "~1 business day",
+          "withdraw": "$15 fee + $50k minimum"
+        },
+        "best_for": "Large purchases that need faster unlocks than ACH.",
+        "limits": {
+          "min_per_tx": "Set by your bank",
+          "max_per_tx": "Set by your bank",
+          "max_per_day": "Set by your bank",
+          "max_per_week": "Set by your bank",
+          "withdraw_eligibility": "Typically within 24 hours after trade confirmation"
+        }
+      },
+      {
+        "id": "bitcoin",
+        "name": "Bitcoin Deposit",
+        "available": true,
+        "icon": "bitcoin",
+        "summary": {
+          "fee": "Network fee only",
+          "fee_link": "fees-deposit",
+          "speed": "1 block target",
+          "withdraw": "Immediately once deposited"
+        },
+        "best_for": "Moving externally held bitcoin into Swan Vault or Swan Safe.",
+        "limits": {
+          "min_per_tx": "Network dust limits apply",
+          "max_per_tx": "No posted maximum",
+          "max_per_day": "No posted maximum",
+          "max_per_week": "No posted maximum",
+          "withdraw_eligibility": "Available once the deposit confirms"
+        }
+      }
+    ]
+  },
+  "compat_heading": "Swan programs & limits",
+  "compat_tiles": [
+    {
+      "id": "swan-vault",
+      "title": "Swan Vault",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Assisted multisig security</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Concierge onboarding call</span>",
+      "status": "works-caveat"
+    },
+    {
+      "id": "swan-guard",
+      "title": "Swan Guard",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Segregated custody partners</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Fraud monitoring & alerts</span>",
+      "status": "works"
+    },
+    {
+      "id": "dca",
+      "title": "Dollar-cost averaging (DCA)",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Daily, weekly, or monthly pulls</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> First $10,000 fee-free</span>",
+      "status": "works"
+    },
+    {
+      "id": "auto-withdraw",
+      "title": "Auto-withdraw",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Sends full unlocked balance</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Runs on your schedule</span>",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "swan-vault",
+      "why": "Collaborative multisig keeps your keys offline while Swan guides you through secure storage and inheritance planning.",
+      "try": [
+        "Schedule a Swan Vault onboarding call (included in the fee).",
+        "Set up your Jade signing device and register it with the Vault dashboard.",
+        "Store your recovery phrases in separate secure locations.",
+        "Practice a health check so you can sign independently of Swan if needed."
+      ],
+      "gotcha": "Swan Vault costs 0.02% per month with a $30 minimum and $500 maximum."
+    },
+    {
+      "id": "swan-guard",
+      "why": "Swan Guard layers fraud detection, withdrawal reviews, and segregated custody so you always know who can touch your bitcoin.",
+      "try": [
+        "Enable authenticator-based 2FA and passkey logins inside Security.",
+        "Turn on withdrawal notifications so you see every movement request.",
+        "Review the Custody screen to confirm whether Bakkt, BitGo, or Equity Trust holds your account."
+      ],
+      "gotcha": "Security alerts rely on accurate contact details, so keep your email and phone number current."
+    },
+    {
+      "id": "dca",
+      "why": "Automated buys take the emotion out of stacking while you plan your exit to self-custody.",
+      "try": [
+        "Choose daily, weekly, or monthly frequency from the Buy Bitcoin screen.",
+        "Keep ACH limits in mind if you schedule large recurring amounts.",
+        "Pair the plan with auto-withdraw so sats leave Swan as soon as they unlock."
+      ],
+      "gotcha": "After the first $10,000 in lifetime buys, every recurring purchase incurs the 1% trading fee."
+    },
+    {
+      "id": "auto-withdraw",
+      "why": "Auto-withdraw reduces counterparty risk by moving every unlocked sat to a wallet you control.",
+      "try": [
+        "Add a wallet in Withdrawals and validate the address with 2FA.",
+        "Set a threshold that aligns with your fee tolerance (smaller sends cost more in mining fees).",
+        "Monitor the queue after each ACH unlock so you know when the transaction broadcasts."
+      ],
+      "gotcha": "Auto-withdraw only moves unlocked balances; ACH funds still inside the holding window stay custodial until they clear."
+    }
+  ],
+  "self_custody": {
+    "heading": "Self-custody: withdraw safely",
+    "tiles": [
+      {
+        "id": "pick-wallet",
+        "title": "1. Pick a cold storage wallet",
+        "chips": {
+          "time": "~5 min",
+          "cost": "$0–$200",
+          "risk": "Low"
+        },
+        "why": "Cold storage keeps your bitcoin offline and resistant to hacks.",
+        "actions": [
+          "Choose a <a href=\"/store-it-safely.html\">hardware or multisig wallet</a> that fits your experience level.",
+          "Initialize the device, write down the seed phrase, and store it in two secure places.",
+          "Add your wallet software to a trusted computer so you can verify addresses later."
+        ],
+        "gotcha": "Never store your seed phrase in cloud storage or screenshots; paper or metal backups are safer."
+      },
+      {
+        "id": "make-receive-code",
+        "title": "2. Register a withdrawal address",
+        "chips": {
+          "time": "~3 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "why": "Registering a fresh address lets Swan route bitcoin directly to your custody.",
+        "actions": [
+          "Open your wallet software and generate a new receive address.",
+          "In Swan: go to Withdrawals → Wallets, paste the address, and validate it with 2FA.",
+          "Label the wallet so you recognize it during future withdrawals."
+        ],
+        "gotcha": "If you add an xpub, only use wallets you fully control; custodial wallets can break auto-withdraw rules."
+      },
+      {
+        "id": "test-small",
+        "title": "3. Send a test amount",
+        "chips": {
+          "time": "~10 min",
+          "cost": "Mining fee (~$1–$5)",
+          "risk": "Low"
+        },
+        "why": "A small test verifies the address and your signing flow before you move larger balances.",
+        "actions": [
+          "Trigger a manual withdrawal for a small amount and pick the Standard fee tier.",
+          "Confirm the transaction in your wallet or on a block explorer.",
+          "Wait for confirmation before scheduling larger transfers."
+        ],
+        "gotcha": "Do not reuse addresses; generate a new one for every withdrawal to improve privacy."
+      },
+      {
+        "id": "move-rest",
+        "title": "4. Withdraw the remaining balance",
+        "chips": {
+          "time": "~10–60 min",
+          "cost": "Mining fee (~$5–$50)",
+          "risk": "Low"
+        },
+        "why": "Finishing the withdrawal puts every sat back under your sole control.",
+        "actions": [
+          "Choose the fee tier that fits your urgency: Priority, Standard, or Flexible.",
+          "Set or adjust your auto-withdraw threshold so future buys leave custody automatically.",
+          "Verify the final transaction and store your hardware wallet securely."
+        ],
+        "gotcha": "Flexible withdrawals can take up to 24 hours to broadcast; plan ahead if you need faster confirmation."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Can I stop using auto-withdraw after I sweep my balance?",
+        "a": "Yes. You can pause auto-withdraw anytime, but leaving it on keeps Swan Safe fees waived and shortens your custodial exposure."
+      },
+      {
+        "q": "What if I need help recovering a Swan Vault?",
+        "a": "Swan Vault includes concierge support and health checks so you can rehearse recovery before you ever need it."
+      },
+      {
+        "q": "Do I still need Swan Guard after I withdraw?",
+        "a": "Swan Guard continues to monitor your account for suspicious logins, but once bitcoin leaves custody those sats live entirely on your hardware wallet."
+      }
+    ]
+  },
+  "privacy_notes": {
+    "data_flows": [
+      "Swan stores the identity documents you submit for KYC along with your onboarding questionnaire responses.",
+      "Bank account details are shared with regulated payment processors so ACH and wire transfers can settle.",
+      "Custody partners maintain segregated accounts that keep your bitcoin separate from Swan’s corporate balance sheet."
+    ],
+    "recovery_drill": [
+      "Enable two-factor authentication and record backup codes before your first deposit.",
+      "Review your cookie and privacy settings at swan.com/privacy-policy if you want to limit optional data sharing."
+    ],
+    "country_caveats": [
+      "ACH funding and Swan Safe require a U.S. checking account; international customers typically use Swan Private via BitGo custody.",
+      "Advertising cookie sharing only happens when you opt in via the consent banner."
+    ]
+  },
+  "privacy": {
+    "section_title": "Privacy & Safety",
+    "data_flows": [
+      "Swan retains your legal name, address, date of birth, and government ID to satisfy AML and KYC obligations.",
+      "Connected bank and card data flows through regulated processors so ACH pulls and wires can clear.",
+      "Custody partners Bakkt, BitGo, and Equity Trust hold bitcoin in individually titled accounts and do not rehypothecate customer assets.",
+      "Cookie preferences control optional analytics and advertising sharing; you can edit them anytime at swan.com/privacy-policy."
+    ],
+    "data_flows_do": "Review the privacy-policy link and disable non-essential cookies if you prefer not to share behavioral data.",
+    "data_flows_dont": "Assume declining cookies removes regulatory obligations; KYC data must be retained regardless of marketing consent.",
+    "recovery": [
+      "Use the emailed one-time passcode to sign in, then add an authenticator app or passkey for stronger protection.",
+      "If you lose 2FA access, submit a recovery request with your ID so Swan support can re-enable your account."
+    ],
+    "recovery_do": "Store authenticator backup codes offline and secure your email with its own two-factor authentication.",
+    "recovery_dont": "Share passcodes or IDs over unsecured channels; always use the official support form.",
+    "withdrawal_policy": [
+      "ACH-funded bitcoin unlocks between 10 and 30 days depending on the purchase size and your account history.",
+      "Wire deposits and inbound bitcoin typically unlock within about 24 hours after the trade completes.",
+      "USD wire withdrawals incur a $15 fee and require a $50,000 minimum per transfer."
+    ],
+    "withdrawal_policy_do": "Check the Available to withdraw banner before scheduling a large withdrawal or auto-withdraw trigger.",
+    "withdrawal_policy_dont": "Expect on-chain withdrawals to leave immediately if the underlying ACH is still in its unlock window.",
+    "region": [
+      "Swan serves all 50 U.S. states and supports select international clients through Swan Private with BitGo custody.",
+      "ACH funding and Swan Safe remain limited to U.S. checking accounts that support ACH transfers."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Does Swan sell my personal data?",
+        "a": "No. Swan states it never sells customer data and only shares with advertising partners when you opt in via the cookie banner."
+      },
+      {
+        "q": "How do I adjust my privacy settings?",
+        "a": "Visit swan.com/privacy-policy to review or change cookie and data sharing choices at any time."
+      },
+      {
+        "q": "Where is my bitcoin held while I wait to withdraw?",
+        "a": "Your bitcoin sits with regulated custodians Bakkt, BitGo, or Equity Trust until you move it to your own wallet."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "Cookie banner",
+        "def": "The consent pop-up that lets you opt in or out of optional analytics and advertising data sharing."
+      },
+      {
+        "term": "Segregated custody",
+        "def": "Client assets are held in individually titled accounts, never commingled with Swan’s corporate funds."
+      },
+      {
+        "term": "2FA",
+        "def": "Two-factor authentication such as an authenticator app or passkey used to secure logins and withdrawals."
+      }
+    ],
+    "keywords": [
+      "Swan data retention",
+      "Swan cookie settings",
+      "Swan auto-withdraw security",
+      "Swan custody partners"
+    ]
+  },
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#methods",
+    "fees": "#fees",
+    "privacy": "#kyc",
+    "compat": "#features",
+    "migration": "#withdrawal",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-08",
+  "trust": {
+    "cards": [
+      {
+        "id": "custody",
+        "fact": "Segregated accounts with Bakkt, BitGo, and Equity Trust",
+        "link_text": "Custody partners",
+        "link_url": "https://help.swanbitcoin.com/hc/en-us/articles/360050513913-Which-custodians-does-Swan-work-with"
+      },
+      {
+        "id": "activity",
+        "fact": "Realtime uptime and maintenance updates",
+        "link_text": "Status page",
+        "link_url": "https://swanbitcoin.statuspage.io/"
+      },
+      {
+        "id": "security",
+        "fact": "Swan Guard security overview and roadmap",
+        "link_text": "Security update",
+        "link_url": "https://www.swanbitcoin.com/product-updates/building-swan-guard-raising-the-standard-across-the-bitcoin-custody-spectrum/"
+      },
+      {
+        "id": "privacy_withdrawal",
+        "fact": "Data usage and privacy controls",
+        "link_text": "Data practices",
+        "link_url": "https://help.swanbitcoin.com/hc/en-us/articles/32946610794007-What-data-does-Swan-collect-do-you-sell-my-data"
+      }
+    ]
+  }
 }

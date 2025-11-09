@@ -1828,18 +1828,27 @@
     "type_of_platform": "P2P",
     "faqs": [
       {
-        "q": "What is Hodl Hodl?",
-        "a": "Hodl Hodl is a peer‑to‑peer Bitcoin marketplace using multisig escrow so you trade directly with others without custodial risk."
+        "q": "How do Hodl Hodl trading fees work?",
+        "a": "Hodl Hodl caps its trading fee at 0.5% and splits it equally between the buyer and seller when the contract closes. You see the fee in the contract preview before you lock funds so you can decide whether the price still fits your trade."
       },
       {
-        "q": "Does Hodl Hodl require KYC?",
-        "a": "No. You can trade without KYC, though building reputation improves pricing and limits."
+        "q": "Does Hodl Hodl require KYC verification?",
+        "a": "Hodl Hodl lets you sign up with an email and start trading without submitting identity documents. Higher reputation still helps your pricing, so you can choose optional verification only if counterparties request it."
       },
       {
-        "q": "What payment methods are supported?",
-        "a": "Many methods are supported—bank transfer, Revolut, cash in person and more—depending on the seller and country."
+        "q": "How does Hodl Hodl multisig escrow keep trades secure?",
+        "a": "Each trade locks bitcoin in a unique 2-of-3 multisig address controlled by you, the counterparty, and Hodl Hodl support. If a dispute happens, either you or support can co-sign the release so the contract settles even if the site goes offline."
+      },
+      {
+        "q": "What payment methods can I use on Hodl Hodl?",
+        "a": "Sellers post over 1,000 payment methods ranging from bank transfers and Wise to cash in person, with availability filtered by currency and country. You can sort offers by payment type to match whatever rails you already trust."
+      },
+      {
+        "q": "What are Hodl Hodl trading limits and how do I increase them?",
+        "a": "New accounts start on the first limit tier with smaller trade caps until you complete contracts and earn reviews. As your reputation score climbs you unlock higher daily and lifetime limits, and you can request manual increases for high volume deals."
       }
     ],
+    "supported_network": "Bitcoin (on-chain multisig)",
     "features": {
       "WW": [
         {
@@ -1868,8 +1877,128 @@
         }
       ]
     },
+    "custody_control": "Non-custodial",
+    "kyc_required": "No",
+    "recovery_method": "Email login with optional 2FA, Trusted Devices, and support mediated account recovery",
+    "open_source": "No",
+    "user_experience": "0.0",
+    "interface": "Desktop only",
+    "app_ratings": {
+      "text": "No app available"
+    },
+    "profile": "Max Keidun",
+    "description": "Hodl Hodl is a peer-to-peer Bitcoin marketplace that removes the custodial step most exchanges require. When you buy or sell on a typical platform, the exchange holds your funds and decides when you can withdraw. That reintroduces the same counterparty risk Bitcoin was designed to eliminate. Hodl Hodl takes a different approach: each trade locks bitcoin in a 2-of-3 multisig escrow that you, the counterparty, and Hodl Hodl support control together. Neither side can move the funds alone, which means trades settle directly between wallets without Hodl Hodl ever holding custody. That shifts trust from a centralized company to verifiable on-chain contracts.\n\nYou can sign up with an email and start trading without submitting identity documents. Hodl Hodl supports over 100 fiat currencies and lets sellers post offers using bank transfers, cash in person, Revolut, PayPal, and other payment rails you already trust. Premiums vary by offer and tend to be higher for new accounts until you complete a few trades and build reputation. The platform uses a limit tier system: as your reputation score grows through successful contracts and reviews, you unlock higher daily and lifetime trading caps.\n\nThe web interface is straightforward. You filter offers by country, currency, and payment method, read the seller's instructions, and open a contract. Both parties chat inside the contract, upload payment proof, and coordinate the release once fiat clears. If something breaks, you can open a dispute and Hodl Hodl support co-signs the multisig based on the evidence. A Testnet environment lets you rehearse the full workflow with valueless coins before risking real sats, so you learn the escrow flow, chat prompts, and dispute process without capital at stake.\n\nHodl Hodl fits users who want non-custodial trading and are comfortable managing their own wallets, confirming payments, and negotiating premiums. You bring your own Bitcoin wallet to every trade, which means no withdrawal limits or custodial freezes. The trade-off is that you handle more of the process yourself compared to a custodial exchange that automates order matching and holds funds. Choose Hodl Hodl when self-custody and privacy matter more than instant card funding or automated recurring buys.",
+    "founded_in": "2018",
+    "website": "https://hodlhodl.com",
+    "links": {
+      "web": "https://hodlhodl.com"
+    },
+    "countries": [
+      "SA",
+      "EU",
+      "AF",
+      "AS",
+      "OC"
+    ],
+    "trust_chips": [
+      {
+        "text": "Multisig escrow contracts",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "multisig-escrow"
+      },
+      {
+        "text": "Testnet practice trading",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "testnet-practice"
+      },
+      {
+        "text": "Custom offer marketplace",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "custom-offers"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "Traders who want a non-custodial Bitcoin marketplace with multisig escrow and no KYC.",
+      "consider_if": "You are comfortable negotiating premiums, confirming fiat payments, and managing your own wallet.",
+      "not_ideal_when": "You need instant card funding, automated recurring buys, or regulated exchange assurances."
+    },
+    "howto": {
+      "title": "Getting started with Hodl Hodl",
+      "steps": [
+        {
+          "id": "setup-install",
+          "title": "1. Create and secure your account",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Visit hodlhodl.com and sign up with your email and a strong password.",
+            "Enable Two-Factor Authentication in Settings and register your trusted devices.",
+            "Review the trading guide so you understand the multisig escrow flow before posting offers."
+          ],
+          "gotcha": "Losing your 2FA device without backup codes can delay support mediated recovery."
+        },
+        {
+          "id": "setup-receive",
+          "title": "2. Find or create an offer",
+          "chips": {
+            "time": "~10-30 min",
+            "cost": "Free",
+            "risk": "Medium"
+          },
+          "actions": [
+            "Filter offers by country, currency, payment method, and price premium.",
+            "Read the seller's reputation, limit tier, and instructions before clicking Trade.",
+            "If no offer fits, create your own listing with your preferred terms and response window."
+          ],
+          "gotcha": "Counterparties respond faster when you stay in chat and confirm payments promptly."
+        },
+        {
+          "id": "setup-pay",
+          "title": "3. Complete the trade",
+          "why": "Settle the exchange while keeping bitcoin locked in escrow until payment clears.",
+          "chips": {
+            "time": "~15-60 min",
+            "cost": "Trading fee: 0.5% split",
+            "risk": "Medium"
+          },
+          "actions": [
+            "As the buyer, send the agreed fiat payment and upload proof inside the contract.",
+            "Wait for the seller to confirm receipt and release bitcoin from escrow to your address.",
+            "Double check the release transaction in your wallet or on a block explorer before closing the chat."
+          ],
+          "gotcha": "If the other party stalls, open a dispute so support can join the contract."
+        }
+      ],
+      "totalTime": null,
+      "micro_faqs": [
+        {
+          "q": "How long do Hodl Hodl contracts usually take?",
+          "a": "Most contracts settle within the payment window set by the seller, often under an hour for instant rails and longer for bank transfers."
+        },
+        {
+          "q": "Can I practice on Hodl Hodl before trading real bitcoin?",
+          "a": "Yes. Switch to the Testnet environment from the top menu and run mock trades with test coins until you are comfortable."
+        },
+        {
+          "q": "What happens if my counterparty disappears during a trade?",
+          "a": "Open a dispute from the contract and Hodl Hodl staff can co-sign the multisig to release funds once evidence is reviewed."
+        }
+      ]
+    },
     "fees": {
-      "intro": "<strong>0.5%</strong>"
+      "intro": "<strong>0.5%</strong>",
+      "tiers": [
+        {
+          "range": "All contracts",
+          "fee": "0.5% (split equally between buyer and seller)"
+        }
+      ]
     },
     "dca": "No",
     "payment_methods": [
@@ -1880,25 +2009,439 @@
       "SEPA",
       "PayPal"
     ],
-    "custody_control": "Non-custodial",
-    "kyc_required": "No",
-    "open_source": "No",
-    "user_experience": "0.0",
-    "interface": "Desktop only",
-    "app_ratings": {
-      "text": "No app available"
+    "fees_scenarios": [
+      {
+        "id": "fees-deposit",
+        "title": "Fund the escrow",
+        "cost_today": "On-chain mining fee paid by the seller",
+        "what_happens": "The seller sends bitcoin from their wallet into a unique Hodl Hodl 2-of-3 escrow address before the fiat transfer starts. Once the transaction confirms, both parties can move to the payment step.",
+        "how_to_minimize": "Batch escrow funding when you can and use mempool-based fee estimation to pick a low congestion window.",
+        "learn_more": "The escrow address and funding status are visible inside the contract timeline."
+      },
+      {
+        "id": "fees-buy",
+        "title": "Buy bitcoin",
+        "cost_today": "Trading fee: 0.5% split equally between both parties",
+        "what_happens": "Hodl Hodl deducts the fee from the release transaction once both sides confirm payment, so no custodial account ever holds your bitcoin.",
+        "how_to_minimize": "Build reputation and negotiate premiums with trusted traders to keep your all-in price close to spot.",
+        "learn_more": "Premiums vary by offer; review the contract summary before you lock in a trade."
+      },
+      {
+        "id": "fees-withdraw",
+        "title": "Release bitcoin",
+        "cost_today": "Bitcoin network fee chosen during release",
+        "what_happens": "When the seller unlocks the escrow, the release transaction broadcasts from the multisig address to the buyer's wallet. The seller picks the fee level based on current mempool conditions.",
+        "how_to_minimize": "Agree on fee levels before you trade and pick lower-fee windows when time allows.",
+        "learn_more": "You can review the fee slider under Contract -> Transaction fee before confirming the release."
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "Who pays the bitcoin network fees on Hodl Hodl?",
+        "a": "The seller covers the on-chain fee to fund escrow and can choose the release fee, while the buyer only pays their own wallet fee if they move coins again."
+      },
+      {
+        "q": "When does Hodl Hodl charge the 0.5% fee?",
+        "a": "The fee is withheld from the escrow release once both parties confirm payment, so no extra invoice or deposit is needed."
+      },
+      {
+        "q": "Can I change the release fee after a contract starts?",
+        "a": "Yes. The seller can adjust the release fee inside the contract before broadcasting, and you both see the change in the chat history."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "term-multisig-escrow",
+        "term": "Multisig escrow",
+        "definition": "A 2-of-3 bitcoin address controlled by buyer, seller, and Hodl Hodl support that secures each trade."
+      },
+      {
+        "id": "term-trusted-devices",
+        "term": "Trusted Devices",
+        "definition": "A security setting that lets you approve browsers before they can sign in to your account."
+      },
+      {
+        "id": "term-limit-tier",
+        "term": "Limit tier",
+        "definition": "Hodl Hodl's reputation-based level that sets maximum contract sizes and open trades."
+      }
+    ],
+    "payment_methods_limits": {
+      "heading": "Payment methods & limits",
+      "methods": [
+        {
+          "id": "bank-transfer",
+          "name": "Bank transfer",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "Negotiated per offer",
+            "fee_link": "fees-buy",
+            "speed": "Same day to several days",
+            "withdraw": "Release after seller confirms receipt"
+          },
+          "best_for": "Larger trades when both parties can wait for bank settlement.",
+          "limits": {
+            "min_per_tx": "Set by the offer",
+            "max_per_tx": "Scales with your limit level",
+            "max_per_day": "Scales with your limit level",
+            "max_per_week": "Scales with your limit level",
+            "withdraw_eligibility": "Release triggered once fiat clears"
+          }
+        },
+        {
+          "id": "cash",
+          "name": "Cash in person",
+          "available": true,
+          "icon": "cash",
+          "summary": {
+            "fee": "Negotiated per offer",
+            "fee_link": "fees-buy",
+            "speed": "Immediate",
+            "withdraw": "Release on confirmation at the meeting"
+          },
+          "best_for": "Local trades when you want face-to-face settlement without banking rails.",
+          "limits": {}
+        },
+        {
+          "id": "online-wallet",
+          "name": "Online wallets (Revolut, Wise, PayPal)",
+          "available": true,
+          "icon": "card",
+          "summary": {
+            "fee": "Processor fees may apply",
+            "fee_link": "fees-buy",
+            "speed": "Minutes to hours",
+            "withdraw": "Release after the seller verifies the transfer"
+          },
+          "best_for": "Cross-border trades when both parties already use the same fintech apps.",
+          "limits": {
+            "min_per_tx": "Set by the offer",
+            "max_per_tx": "Follows platform limits and your Hodl Hodl tier",
+            "max_per_day": "Follows platform limits and your Hodl Hodl tier",
+            "max_per_week": "Follows platform limits and your Hodl Hodl tier",
+            "withdraw_eligibility": "Release after the online wallet shows the funds settled"
+          }
+        }
+      ]
     },
-    "profile": "Max Keidun",
-    "description": "Hodl Hodl is a peer-to-peer (p2p) Bitcoin trading and lending platform based in London that stands out by being fully non-custodial and privacy-focused. Instead of holding funds, it uses multisig escrow contracts, so users retain control of their Bitcoin until both parties agree to release it, shifting trust from the exchange to individual traders, as trades happen directly between user's Bitcoin wallets rather than a centralized entity.\\n\\nWhat separates Hodl Hodl from custodial platforms is its ability to let people trade without KYC (Know Your Customer) or central control, supporting over 100 currencies and various payment methods including cash, bank transfers, even PayPal. You do pay a higher premium on Bitcoin set by the seller, especially when you're a beginner and have to build a reputation on the platform.\\n\\nThe web-based interface is beginner-friendly, praised by users for easy signup without mandatory ID checks, though users note clunky navigation and scam risks from unresponsive traders. To unlock significant transaction amounts, users must build trust through reviews and completed trades, as higher limits depend on a strong reputation score.\\n\\nHodl Hodl's vision is to foster a decentralized Bitcoin economy, ideal for beginners who want self-custody and anonymity, but users should be careful, stay informed, and follow best practices during trades.",
-    "founded_in": "2018",
-    "website": "https://hodlhodl.com",
-    "countries": [
-      "SA",
-      "EU",
-      "AF",
-      "AS",
-      "OC"
-    ]
+    "compat_heading": "Hodl Hodl features & limits",
+    "compat_tiles": [
+      {
+        "id": "multisig-escrow",
+        "title": "Multisig escrow contracts",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 2-of-3 control</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Escrow visible on-chain</span>",
+        "status": "works"
+      },
+      {
+        "id": "testnet-practice",
+        "title": "Testnet practice trading",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Rehearse every step</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> No real sats at risk</span>",
+        "status": "works"
+      },
+      {
+        "id": "custom-offers",
+        "title": "Custom offer marketplace",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Set your own premiums</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Choose payment rails</span>",
+        "status": "works"
+      }
+    ],
+    "compat_explainers": [
+      {
+        "id": "multisig-escrow",
+        "why": "Each Hodl Hodl trade locks bitcoin in a 2-of-3 multisig address controlled by you, the counterparty, and support, so neither party can move funds alone. You can verify the escrow address on-chain before sending fiat, keeping coins outside company custody while disputes still have a resolution path.",
+        "try": [
+          "Open the contract and copy the escrow address before you send fiat.",
+          "Check the address on a block explorer to confirm the funding transaction.",
+          "Share screenshots of the payment proof in chat so support can review if needed.",
+          "Release the coins only after you see the fiat payment cleared."
+        ],
+        "gotcha": "Escrow funding needs at least one on-chain confirmation before the buyer should send fiat."
+      },
+      {
+        "id": "testnet-practice",
+        "why": "Hodl Hodl's Testnet environment lets you rehearse trades with valueless coins before risking real sats, so you learn the escrow flow, chat prompts, and dispute process without capital at stake.",
+        "try": [
+          "Click Testnet in the header and open the practice marketplace.",
+          "Generate test bitcoin from the faucet link provided.",
+          "Run through a sample contract with a friend or trusted trader.",
+          "Review the chat and escrow steps so you know where evidence lives."
+        ],
+        "gotcha": "Remember that testnet coins have no value, so switch back to Mainnet when you are ready for real trades."
+      },
+      {
+        "id": "custom-offers",
+        "why": "Creating your own Hodl Hodl offer lets you set currency, payment method, premium, and working hours so buyers meet your terms instead of negotiating someone else's setup.",
+        "try": [
+          "Choose Create offer and select buy or sell.",
+          "Set the currency, minimum and maximum trade size, and allowed payment windows.",
+          "Add clear instructions so the other party knows how to pay.",
+          "Enable working hours or temporarily disable the offer when you are offline."
+        ],
+        "gotcha": "Offers auto-expire if you leave them inactive past the working hours you set."
+      }
+    ],
+    "migration": [
+      {
+        "id": "restore-same-wallet",
+        "title": "Restore Hodl Hodl on a new device",
+        "choose": "Use this when you get a new computer or browser and need to log back into your trading account.",
+        "time": "~5 min",
+        "cost": "Free",
+        "risk": "Low",
+        "steps": [
+          "Sign in at hodlhodl.com with your email and password.",
+          "Approve the login through Trusted Devices by confirming the email link.",
+          "Re-enable Two-Factor Authentication and verify that your active contracts appear correctly."
+        ],
+        "tips": "Keep backup codes handy so you can finish 2FA even if your authenticator app is unavailable.",
+        "gotcha": "If you remove the old device before adding the new one, support must reset access manually which can delay active trades."
+      },
+      {
+        "id": "move-to-onchain",
+        "title": "Hodl Hodl -> Long-term storage",
+        "choose": "Choose this when you want to move released bitcoin into cold storage after the contract settles.",
+        "time": "~10-30 min",
+        "cost": "Mining fee",
+        "risk": "Low",
+        "steps": [
+          "Wait for the escrow release to reach the number of confirmations you consider safe.",
+          "Open your cold storage wallet and generate a fresh receive address.",
+          "Send the received sats from your hot wallet to cold storage with an appropriate miner fee.",
+          "Label the transaction in both wallets so you can audit it later."
+        ],
+        "tips": "Plan for higher network fees during congestion so the sweep to cold storage confirms on your timeline.",
+        "gotcha": "Sending large amounts without a test transaction can be stressful, so consider a small rehearsal before moving your full balance."
+      },
+      {
+        "id": "switch-to-another-wallet",
+        "title": "Hodl Hodl -> Another hot wallet",
+        "choose": "Pick this when you want future trades to pay out to a different mobile or desktop wallet.",
+        "time": "~5-15 min",
+        "cost": "Mining fee",
+        "risk": "Medium",
+        "steps": [
+          "Install and secure the new wallet, then write down its seed phrase.",
+          "Generate a fresh receive address and update the default payout address in your Hodl Hodl profile.",
+          "Test the new wallet with a small release from Testnet or a micro trade.",
+          "Switch remaining contracts to the new address once you are confident everything works."
+        ],
+        "tips": "Keep the old wallet accessible until every open contract has settled to the new address.",
+        "gotcha": "Forgetting to update active contracts leaves payouts going to the previous wallet, so review each trade before the release."
+      }
+    ],
+    "self_custody": {
+      "heading": "Self-custody: withdraw safely",
+      "tiles": [
+        {
+          "id": "pick-wallet",
+          "title": "1. Pick a cold storage wallet",
+          "chips": {
+            "time": "~5 min",
+            "cost": "$0–$200",
+            "risk": "Low"
+          },
+          "why": "When you buy through Hodl Hodl, the bitcoin releases directly to an address you control.",
+          "actions": [
+            "Choose a <a href=\"/store-it-safely.html\">cold storage wallet</a> that fits your budget and skill level.",
+            "Buy and initialize your hardware wallet or install cold storage software.",
+            "Generate a new seed phrase and write it down on paper.",
+            "Store your seed phrase in a fireproof safe or safety deposit box."
+          ],
+          "gotcha": "Hardware wallets cost money but provide the highest security. Never store your seed phrase digitally."
+        },
+        {
+          "id": "make-receive-code",
+          "title": "2. Create a fresh receive address",
+          "chips": {
+            "time": "~2 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "why": "Each Hodl Hodl trade should pay out to a new address so counterparties cannot see your total holdings or link your trades together.",
+          "actions": [
+            "Connect your hardware wallet to a companion app or computer.",
+            "Generate a new receive address in your wallet software.",
+            "Copy the Bitcoin address (starts with bc1, 1, or 3).",
+            "Paste this address into your Hodl Hodl contract as the payout destination."
+          ],
+          "gotcha": "Never reuse Bitcoin addresses. Hardware wallets generate fresh addresses automatically for privacy."
+        },
+        {
+          "id": "test-small",
+          "title": "3. Test with a small trade",
+          "chips": {
+            "time": "~30-60 min",
+            "cost": "Trading fee + mining",
+            "risk": "Low"
+          },
+          "why": "Testing the full Hodl Hodl workflow with a small amount lets you verify escrow release, confirm your cold wallet receives correctly, and rehearse the payment proof steps before larger trades.",
+          "actions": [
+            "Find a small offer on Hodl Hodl (under $50 equivalent).",
+            "Enter your cold storage address as the payout destination.",
+            "Complete the trade and watch the release transaction confirm.",
+            "Verify in your hardware wallet that the bitcoin arrived at the correct address."
+          ],
+          "gotcha": "Premiums on small trades tend to be higher, but the cost is worth the confidence you gain."
+        },
+        {
+          "id": "move-rest",
+          "title": "4. Scale to larger purchases",
+          "chips": {
+            "time": "~30-90 min per trade",
+            "cost": "Trading fee + mining",
+            "risk": "Low"
+          },
+          "why": "Building reputation on Hodl Hodl through successful trades unlocks higher limits and access to better premiums.",
+          "actions": [
+            "Generate a fresh cold storage address for each new purchase.",
+            "Filter offers by reputation and premium to find trusted sellers.",
+            "Complete trades the same way you practiced, uploading payment proof promptly.",
+            "Leave feedback after each contract to grow your own reputation score."
+          ],
+          "gotcha": "Your limit tier controls maximum trade size, so expect to complete multiple smaller trades before unlocking larger amounts."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Why should I use cold storage for Hodl Hodl purchases?",
+          "a": "Hodl Hodl releases bitcoin directly to your address, so you never introduce custodial risk if you provide a cold storage destination from the start."
+        },
+        {
+          "q": "How do I verify my trade paid out correctly?",
+          "a": "Check your hardware wallet's transaction history or use a block explorer like mempool.space. The release transaction confirms within 10 minutes to a few hours depending on the fee."
+        },
+        {
+          "q": "What's the safest way to store my seed phrase?",
+          "a": "Write it on paper or metal and store copies in separate secure locations like a fireproof safe and safety deposit box. Never store it digitally."
+        }
+      ]
+    },
+    "privacy_notes": {
+      "data_flows": [
+        "Hodl Hodl stores your email, IP address, and optional verification documents for compliance requests.",
+        "Contract chat logs, attached payment proofs, and dispute notes stay on their servers so staff can arbitrate issues.",
+        "Every multisig escrow address lives on the public Bitcoin blockchain, so observers can see funding and release transactions."
+      ],
+      "recovery_drill": [
+        "Enable Two-Factor Authentication and save backup codes after you register.",
+        "Record the Trusted Device secret so you can approve new browsers quickly.",
+        "If locked out, email support from your registered address with contract IDs so they can reset access."
+      ],
+      "country_caveats": [
+        "Some payment methods only appear in specific countries or currencies; filter offers accordingly.",
+        "Local regulations may block certain rails or require you to confirm banking details with counterparties.",
+        "Hodl Hodl avoids holding fiat, so you must comply with your jurisdiction's tax reporting on peer-to-peer trades."
+      ]
+    },
+    "privacy": {
+      "section_title": "Privacy & Safety",
+      "data_flows": [
+        "Hodl Hodl keeps account data such as email, IP logs, and optional verification files on its servers.",
+        "Contract chats, payment attachments, and dispute evidence remain in their database to support arbitration.",
+        "Escrow transactions happen on-chain, so funding and release details are visible on the Bitcoin blockchain."
+      ],
+      "data_flows_do": "Use unique email aliases and enable 2FA to reduce the risk of account takeover.",
+      "data_flows_dont": "Share sensitive payment instructions in public chat rooms; keep them inside the contract thread only.",
+      "recovery": [
+        "Log in with your email and password, then approve the device through Trusted Devices.",
+        "If 2FA is enabled and you lost access, submit your backup code or contact support with contract evidence.",
+        "Once restored, review active contracts to confirm nothing changed during the lockout."
+      ],
+      "recovery_do": "Store backup codes offline and keep your recovery email secured with its own 2FA.",
+      "recovery_dont": "Delay contacting support if you suspect a compromise; disputes need timely evidence.",
+      "withdrawal_policy": [
+        "Escrow releases broadcast straight to the buyer's wallet once both parties confirm payment.",
+        "Release fees are selected by the seller inside the contract before broadcast.",
+        "There is no custodial withdrawal queue, so funds move as soon as the release transaction enters the mempool."
+      ],
+      "withdrawal_policy_do": "Agree on expected confirmation targets with your counterparty before the trade starts.",
+      "withdrawal_policy_dont": "Send fiat before the escrow funding transaction has at least one confirmation.",
+      "region": [
+        "Hodl Hodl operates globally, but certain fiat rails or currencies depend on local traders.",
+        "U.S. residents can trade but should review their state regulations on peer-to-peer bitcoin sales.",
+        "Some countries may require additional verification for high volume trades; check the limit tier policy."
+      ],
+      "micro_faqs": [
+        {
+          "q": "Where can I delete my Hodl Hodl account data?",
+          "a": "Request deletion from support@hodlhodl.com and they will wipe your profile once all contracts close."
+        },
+        {
+          "q": "Does Hodl Hodl share my information with counterparties?",
+          "a": "You only share the details you put in the contract chat; the platform does not expose your email by default."
+        },
+        {
+          "q": "Can Hodl Hodl recover my bitcoin if I lose my wallet?",
+          "a": "No. You hold the receiving wallet, so keep backups because Hodl Hodl cannot reissue coins after release."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Trusted Devices",
+          "def": "A security setting that lets you approve browsers before they can sign in to your account."
+        },
+        {
+          "term": "Escrow release",
+          "def": "The on-chain transaction that moves bitcoin from the 2-of-3 address to the buyer once payment clears."
+        },
+        {
+          "term": "Limit tier",
+          "def": "Your reputation-based level that sets maximum contract sizes and open trades."
+        }
+      ],
+      "keywords": [
+        "Hodl Hodl multisig escrow",
+        "Hodl Hodl no KYC",
+        "Hodl Hodl trading limits",
+        "Hodl Hodl testnet",
+        "Hodl Hodl reputation score",
+        "Hodl Hodl payment methods"
+      ]
+    },
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#kyc",
+      "compat": "#features",
+      "migration": "#withdrawal",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-09",
+    "trust": {
+      "cards": [
+        {
+          "id": "security",
+          "fact": "Explains 2-of-3 multisig escrow and dispute process",
+          "link_text": "Security overview",
+          "link_url": "https://hodlhodl.com/faq/why-is-trading-on-hodl-hodl-secure"
+        },
+        {
+          "id": "privacy",
+          "fact": "Outlines data handling and retention policies",
+          "link_text": "Privacy policy",
+          "link_url": "https://hodlhodl.com/legal/privacy-policy"
+        },
+        {
+          "id": "terms",
+          "fact": "Covers marketplace rules and dispute resolution",
+          "link_text": "Terms of Service",
+          "link_url": "https://hodlhodl.com/legal/terms-and-conditions"
+        },
+        {
+          "id": "activity",
+          "fact": "Company and platform details",
+          "link_text": "About",
+          "link_url": "https://hodlhodl.com/about"
+        }
+      ]
+    }
   },
   {
     "name": "Lightspark",
@@ -3135,18 +3678,27 @@
     "type_of_platform": "Exchange",
     "faqs": [
       {
-        "q": "What is Relai?",
-        "a": "Relai is a beginner‑friendly Bitcoin app with a built‑in self‑custodial wallet and automatic withdrawals to your address."
+        "q": "How do Relai's bitcoin buying fees work?",
+        "a": "Relai charges a 1% service fee on each buy, drops to 0.9% when you enter an invite code, applies a dynamic spread of up to 1%, and waives the fee on your first auto-invest plan up to 100 CHF/€ per month."
       },
       {
-        "q": "Does Relai support recurring buys?",
-        "a": "Yes. Recurring buys are supported with free tiers up to monthly limits; fees apply above that."
+        "q": "Does Relai let me buy bitcoin straight to my hardware wallet?",
+        "a": "Yes. Open Settings > Wallets in the Relai web app, connect your BitBox, Ledger, or Trezor, and sign the verification message so future buys settle to that address."
       },
       {
-        "q": "Where is Relai available?",
-        "a": "Relai primarily serves Europe and supports SEPA, cards and mobile pay methods."
+        "q": "What is the minimum order size on Relai?",
+        "a": "Relai orders start at 50 CHF or €50 whether you buy once or set up an auto-invest plan."
+      },
+      {
+        "q": "What payment methods does Relai support for buying bitcoin?",
+        "a": "You can fund purchases with a manual SEPA transfer or use credit and debit cards, Apple Pay, or Google Pay for instant settlement, though cards add about 3% per order."
+      },
+      {
+        "q": "Where is Relai available today?",
+        "a": "Relai focuses on Switzerland and the broader EEA, so confirm availability in your local app store and review which payment options are enabled in your country."
       }
     ],
+    "supported_network": "Bitcoin (on-chain only)",
     "features": {
       "WW": [
         {
@@ -3190,6 +3742,7 @@
       ]
     },
     "fees": {
+      "intro": "Base service fee is 1% (0.9% with an invite code). Cards add about 3% and Relai covers the on-chain mining fee on buys.",
       "tiers": [
         {
           "range": "€50 - €100 per month",
@@ -3221,9 +3774,513 @@
     "description": "Relai, founded in 2020 in Zürich, Switzerland, is an app designed for beginners to buy and save Bitcoin easily. It stands out from competitors with its non-custodial wallet, meaning users control their Bitcoin via a 12-word seed phrase. After purchasing Bitcoin, it will be directly sent to your wallet.\\n\\nRelai offers purchases starting at €50 | 54,205 sats, one free buy up to €100 | 108,409 sats monthly, until you hit €1200. After that you pay a 1% fee for any transaction. For businesses and wealthy individuals Relai offers personal service and expert guidance.\\n\\nIts app, rated 4.5 stars on iOS, is praised by users for simple onboarding and smooth navigation, though some users report verification delays or high card fees. Relai focuses on privacy and self-custody, with optional KYC for small transactions.\\n\\nIts vision is to make Bitcoin saving accessible across Europe, with plans to add Lightning Network support for faster payments. Beginners love its straightforward design and security, but it's limited to Europe and lacks advanced savings features.",
     "founded_in": "2020",
     "website": "https://relai.app",
+    "links": {
+      "ios": "https://apps.apple.com/app/relai-buy-bitcoin-instantly/id1502051395",
+      "android": "https://play.google.com/store/apps/details?id=io.relai.app"
+    },
     "countries": [
       "EU"
-    ]
+    ],
+    "trust_chips": [
+      {
+        "text": "Direct-to-wallet delivery",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "direct-to-wallet"
+      },
+      {
+        "text": "Hardware wallet signing",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "hardware-wallet-connect"
+      },
+      {
+        "text": "Dollar-cost averaging (DCA)",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "dca"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "European savers who want bitcoin delivered straight into a self-custodial app with minimal steps.",
+      "consider_if": "You plan to pair a hardware wallet with recurring buys and prefer SEPA funding over keeping cash on an exchange.",
+      "not_ideal_when": "You need Lightning withdrawals, desktop trading tools, or live outside Relai's supported countries."
+    },
+    "howto": {
+      "title": "Getting started with Relai",
+      "steps": [
+        {
+          "id": "setup-install",
+          "title": "1. Create & verify",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Install Relai from the App Store or Google Play and create your wallet.",
+            "Write your 12-word recovery phrase on paper, confirm it in-app, and store it safely offline.",
+            "Complete the ID verification Relai requests so you can fund larger orders without delay."
+          ],
+          "gotcha": "Never take a photo of the recovery phrase or store it in email."
+        },
+        {
+          "id": "setup-pay",
+          "title": "2. Fund (SEPA / card)",
+          "chips": {
+            "time": "~5 min (card) / ~1-2 biz days (SEPA)",
+            "cost": "Varies",
+            "risk": "Low"
+          },
+          "actions": [
+            "Tap the + button, choose Buy, then add your SEPA bank account or a card for instant funding.",
+            "If you pick SEPA, copy the Relai IBAN exactly and initiate the transfer from the same-name bank account.",
+            "For cards, complete the 3-D Secure approval and confirm you accept the ~3% processor fee."
+          ],
+          "gotcha": "SEPA transfers must match the currency quoted in the order or your bank may reverse the payment."
+        },
+        {
+          "id": "setup-receive",
+          "title": "3. Buy & withdraw",
+          "why": "Own bitcoin and move it to your wallet.",
+          "chips": {
+            "time": "Instant with cards / ~10–30 min after SEPA posts",
+            "cost": "1% fee (0.9% with invite) + spread",
+            "risk": "Medium"
+          },
+          "actions": [
+            "Set a one-time amount or schedule an auto-invest plan and review the fee summary.",
+            "Leave delivery on the in-app wallet or toggle external wallet to paste a hardware wallet address.",
+            "Confirm the order; Relai covers the mining fee and broadcasts the transaction once the payment clears."
+          ],
+          "gotcha": "Auto-invest stays free only on your first active plan up to 100 CHF/€ each month."
+        }
+      ],
+      "totalTime": null,
+      "micro_faqs": [
+        {
+          "q": "How do I connect a hardware wallet to Relai?",
+          "a": "Open the Relai web app, go to Settings > Wallets, choose Add new wallet address, select your hardware wallet, and sign the message on the device."
+        },
+        {
+          "q": "How long do SEPA transfers take to fund a Relai order?",
+          "a": "Most SEPA transfers arrive within one to two business days; Relai executes the order and broadcasts the bitcoin once funds land."
+        },
+        {
+          "q": "Can I edit or pause a Relai auto-invest plan?",
+          "a": "Yes. Open Orders, tap your plan, and you can change the amount, pause the schedule, or cancel it entirely."
+        }
+      ]
+    },
+    "fees_scenarios": [
+      {
+        "id": "fees-deposit",
+        "title": "Deposit cash",
+        "cost_today": "SEPA bank transfer: Free (Relai)<br>Credit/debit card, Apple Pay, Google Pay: ~3.0% processor fee",
+        "what_happens": "SEPA transfers settle in one to two business days before Relai executes the buy, while cards and mobile pay fund immediately.",
+        "how_to_minimize": "Use SEPA for larger orders, match the transfer currency to your quote, and avoid card funding unless you need the speed.",
+        "learn_more": "Only send funds from the bank account you registered in Relai so the transfer auto-matches to your pending order."
+      },
+      {
+        "id": "fees-buy",
+        "title": "Buy bitcoin",
+        "cost_today": "Relai service fee: 1%<br>Invite code applied: 0.9%<br>Auto-invest free tier: 0% on first plan up to 100 CHF/€ per month<br>Dynamic spread: Up to 1%",
+        "what_happens": "Relai quotes a live price, applies the service fee, then sends bitcoin to your wallet once payment clears.",
+        "how_to_minimize": "Enter an invite code before you confirm, keep the free auto-invest plan within the monthly cap, and batch larger buys to reduce card fees.",
+        "learn_more": "Relai covers the mining fee on buys, so the sats you receive already include the on-chain fee they paid."
+      },
+      {
+        "id": "fees-withdraw",
+        "title": "Withdraw bitcoin",
+        "cost_today": "Bitcoin network fee: Varies with mempool",
+        "what_happens": "You send bitcoin from your Relai wallet on-chain to any external address, covering the mining fee yourself.",
+        "how_to_minimize": "Wait for lower network fees and consolidate small UTXOs when the mempool clears.",
+        "learn_more": "Relai pays the mining fee on buys but you cover it on manual sends to hardware wallets or other addresses."
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "Does Relai cover the bitcoin network fee when I buy?",
+        "a": "Yes. Relai pays the mining fee on purchases, so the sats you receive already include the on-chain cost."
+      },
+      {
+        "q": "How does the 0% auto-invest tier work on Relai?",
+        "a": "Your first active auto-invest plan up to 100 CHF/€ per month runs at 0%; any extra volume or additional plans revert to the standard 1% fee."
+      },
+      {
+        "q": "How can I reduce Relai fees?",
+        "a": "Add an invite code to drop buys to 0.9%, stick with SEPA transfers to avoid card fees, and schedule buys within the free auto-invest allowance."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "term-relai-fee",
+        "term": "Relai service fee",
+        "definition": "The 1% commission Relai charges on each buy or sell, reduced to 0.9% when you enter an invite code."
+      },
+      {
+        "id": "term-auto-invest-free-tier",
+        "term": "Auto-invest free tier",
+        "definition": "Relai's 0% fee allowance on your first auto-invest plan up to 100 CHF/€ per month."
+      },
+      {
+        "id": "term-hardware-signature",
+        "term": "Hardware wallet signature",
+        "definition": "A verification step where you sign a message on a BitBox, Ledger, or Trezor so Relai can deliver future buys to that address."
+      }
+    ],
+    "payment_methods_limits": {
+      "heading": "Payment methods & limits",
+      "methods": [
+        {
+          "id": "sepa",
+          "name": "SEPA bank transfer",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "Free (Relai)",
+            "fee_link": "fees-deposit",
+            "speed": "1-2 business days",
+            "withdraw": "Bitcoin releases on-chain"
+          },
+          "best_for": "Larger buys with minimal fees when you can wait for settlement",
+          "limits": {
+            "min_per_tx": "€50 / 50 CHF",
+            "max_per_tx": "Up to €100,000 per order",
+            "max_per_day": "Depends on verification",
+            "max_per_week": "Depends on verification",
+            "withdraw_eligibility": "Relai broadcasts once funds arrive"
+          }
+        },
+        {
+          "id": "card",
+          "name": "Credit/debit card",
+          "available": true,
+          "icon": "card",
+          "summary": {
+            "fee": "~3.0%",
+            "fee_link": "fees-deposit",
+            "speed": "Instant",
+            "withdraw": "Bitcoin arrives instantly"
+          },
+          "best_for": "Instant buys with cards, Apple Pay, or Google Pay when you accept the processor fee",
+          "limits": {
+            "min_per_tx": "€50 / 50 CHF",
+            "max_per_tx": "Varies by issuer",
+            "max_per_day": "Varies by issuer",
+            "max_per_week": "Varies by issuer",
+            "withdraw_eligibility": "Immediate once the payment clears"
+          }
+        },
+        {
+          "id": "lightning",
+          "name": "Lightning deposit",
+          "available": false,
+          "icon": "lightning",
+          "body": "Relai does not support Lightning deposits; all buys settle on-chain."
+        }
+      ]
+    },
+    "compat_heading": "Relai features & limits",
+    "compat_tiles": [
+      {
+        "id": "direct-to-wallet",
+        "title": "Direct-to-wallet delivery",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Self-custodial settlement</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Mining fee covered on buys</span>",
+        "status": "works"
+      },
+      {
+        "id": "hardware-wallet-connect",
+        "title": "Hardware wallet connect",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> BitBox, Ledger, Trezor</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Desktop signing required</span>",
+        "status": "works-caveat"
+      },
+      {
+        "id": "dca",
+        "title": "Dollar-cost averaging (DCA)",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Weekly or monthly</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> First plan up to 100 CHF/€ is 0%</span>",
+        "status": "works"
+      }
+    ],
+    "compat_explainers": [
+      {
+        "id": "direct-to-wallet",
+        "why": "Relai keeps your bitcoin in the self-custodial wallet on your device, so buys land on-chain without waiting for withdrawal windows.",
+        "try": [
+          "Open Relai, tap +, and choose Buy.",
+          "Enter the amount, confirm the funding method, and leave delivery on Relai wallet or switch to external wallet if needed.",
+          "Confirm the order; Relai covers the mining fee and broadcasts once funds clear.",
+          "Watch the transaction confirm in Relai or your hardware wallet."
+        ],
+        "gotcha": "SEPA orders broadcast only after the transfer arrives, and network congestion can still slow confirmation even though Relai covers the fee."
+      },
+      {
+        "id": "hardware-wallet-connect",
+        "why": "Linking a hardware wallet lets you combine Relai's easy buys with cold storage security.",
+        "try": [
+          "Open the Relai web app and go to Settings > Wallets.",
+          "Click Add new wallet address and select your hardware wallet brand.",
+          "Connect the device, follow the on-screen steps, and sign the verification message.",
+          "Name the address so future buys target the correct hardware wallet account."
+        ],
+        "gotcha": "Hardware wallet signing requires the Relai web app on a desktop browser; mobile browsers cannot pass the USB signature yet."
+      },
+      {
+        "id": "dca",
+        "why": "Recurring buys help you stack sats consistently while keeping custody on your phone.",
+        "try": [
+          "Tap +, choose Buy, and select Auto-invest.",
+          "Pick weekly or monthly cadence, set the amount, and add an invite code for the 0.9% fee tier.",
+          "Review the schedule, confirm, and watch the plan appear under Orders.",
+          "Keep the amount within 100 CHF/€ per month to stay inside the 0% fee tier."
+        ],
+        "gotcha": "Only your first active plan up to 100 CHF/€ per month stays fee-free; extra volume reverts to the 1% service fee."
+      }
+    ],
+    "self_custody": {
+      "heading": "Self-custody: withdraw safely",
+      "tiles": [
+        {
+          "id": "pick-wallet",
+          "title": "1. Pick a cold storage wallet",
+          "chips": {
+            "time": "~5 min",
+            "cost": "€0–€200",
+            "risk": "Low"
+          },
+          "why": "Cold storage keeps long-term savings offline and away from phone risks.",
+          "actions": [
+            "Choose a <a href=\"/store-it-safely.html\">cold storage wallet</a> that fits your budget and skill level.",
+            "Initialize the hardware wallet or cold storage software and generate a new seed phrase.",
+            "Record the seed on paper or metal and store backups in separate secure locations."
+          ],
+          "gotcha": "Never store the new seed digitally or reuse the seed Relai generated for your mobile wallet."
+        },
+        {
+          "id": "make-receive-code",
+          "title": "2. Create a fresh receive address",
+          "chips": {
+            "time": "~2 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "why": "Fresh addresses protect privacy and make tracking easier.",
+          "actions": [
+            "Connect your cold storage wallet to its desktop or mobile companion app.",
+            "Generate a new receive address and verify it on the hardware wallet screen.",
+            "Copy the address to Relai when you are ready to move larger balances."
+          ],
+          "gotcha": "Use each address once; hardware wallets make it easy to generate a new one for every withdrawal."
+        },
+        {
+          "id": "test-small",
+          "title": "3. Send a small test amount",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Mining fee (~€1–€5)",
+            "risk": "Low"
+          },
+          "why": "Testing the flow confirms your address and keeps stress low for bigger moves.",
+          "actions": [
+            "Open Relai, tap Send, and paste the fresh address from your cold storage wallet.",
+            "Send a small amount (~€20) using the network fee Relai quotes.",
+            "Confirm the transaction in your hardware wallet app or on a block explorer."
+          ],
+          "gotcha": "Wait for at least one confirmation before moving the rest."
+        },
+        {
+          "id": "move-rest",
+          "title": "4. Withdraw the remaining balance",
+          "chips": {
+            "time": "~10–60 min",
+            "cost": "Mining fee (~€5–€20)",
+            "risk": "Low"
+          },
+          "why": "Finish the migration so your long-term sats live in cold storage.",
+          "actions": [
+            "Generate another fresh address for the main withdrawal.",
+            "Send the remaining balance from Relai and record the transaction ID with your backups.",
+            "Export Relai transaction history so you can track cost basis later."
+          ],
+          "gotcha": "Relai covers mining fees on buys but not on withdrawals, so wait for quieter mempool periods when possible."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Can Relai recover my wallet if I lose the seed phrase?",
+          "a": "No. Relai never sees your 12-word seed, so the only recovery path is the backup you create."
+        },
+        {
+          "q": "Does Relai support multisig wallets?",
+          "a": "Relai does not coordinate multisig today; pair the app with a hardware wallet or move large balances to a dedicated multisig provider."
+        },
+        {
+          "q": "How often should I rotate receiving addresses in Relai?",
+          "a": "Relai issues a fresh address for every order; keep using new addresses to limit on-chain linking."
+        }
+      ]
+    },
+    "privacy_notes": {
+      "data_flows": [
+        "Relai stores the personal data you provide for verification to meet Swiss and EU AML rules.",
+        "SEPA funding uses your bank account details, so your bank can see you are buying bitcoin with Relai."
+      ],
+      "recovery_drill": [
+        "Write down your seed, restore it on a spare device, and verify the balance before deleting the test install.",
+        "Review the hardware wallet connection flow once a year so you remember how to sign messages.",
+        "Export transaction history quarterly to maintain your own audit trail."
+      ],
+      "country_caveats": [
+        "Relai focuses on the EEA and Switzerland; card and Apple Pay support may vary by country.",
+        "Bank payouts require a matching IBAN name, and some banks block bitcoin transfers.",
+        "Check the Relai help center for the latest list of supported countries and payment options."
+      ]
+    },
+    "privacy": {
+      "section_title": "Privacy & Safety",
+      "data_flows": [
+        "Relai retains your name, address, and ID scans once you complete verification.",
+        "Card and mobile payments route through payment processors that can view your card details and approval history.",
+        "Support agents can access order history and delivery addresses to resolve funding or payout issues.",
+        "Your 12-word seed lives only on your device; Relai does not upload or store it on their servers."
+      ],
+      "data_flows_do": "Lock the Relai app with a device passcode, review connected devices regularly, and revoke access you no longer use.",
+      "data_flows_dont": "Share screenshots of your orders or seed phrase in chat apps or email threads.",
+      "recovery": [
+        "Reinstall Relai on a new phone and choose Restore wallet when prompted.",
+        "Enter your 12-word seed carefully and keep the app open until balances resync.",
+        "Contact support only if you still see zero balance after the blockchain sync completes."
+      ],
+      "recovery_do": "Store the seed offline, test a restore when convenient, and protect your email with its own two-factor authentication.",
+      "recovery_dont": "Delete the app or wipe your phone before you confirm the restore worked.",
+      "withdrawal_policy": [
+        "Buys broadcast on-chain once your SEPA transfer or card payment clears and Relai covers the mining fee.",
+        "Sells require you to send bitcoin back to Relai, so you pay the on-chain fee before they remit fiat.",
+        "SEPA payouts typically arrive within one to two business days depending on your bank."
+      ],
+      "withdrawal_policy_do": "Plan sells during lower fee windows and keep a cushion of sats to cover the mining fee.",
+      "withdrawal_policy_dont": "Assume card refunds or bank payouts settle instantly; track the transfer until it lands.",
+      "region": [
+        "Relai targets Switzerland and the broader EEA; confirm app availability in your local store.",
+        "Apple Pay, Google Pay, and card processing depend on the country where your bank issued the card.",
+        "Tax reporting still varies by jurisdiction, so export your records and consult local guidance."
+      ],
+      "micro_faqs": [
+        {
+          "q": "Can Relai recover my seed phrase if I lose it?",
+          "a": "No. Relai never stores your 12-word seed, so only your offline backup can restore the wallet."
+        },
+        {
+          "q": "Does Relai support Lightning withdrawals?",
+          "a": "Not yet. All withdrawals and deliveries run on-chain today."
+        },
+        {
+          "q": "How can I request my data or close my account?",
+          "a": "Use the in-app support chat or email support@relai.app to request data export or account deletion as outlined in their privacy policy."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Invite code",
+          "def": "A referral code you enter in Relai to reduce the buy and sell fee from 1% to 0.9%."
+        },
+        {
+          "term": "Dynamic spread",
+          "def": "The price adjustment Relai applies, up to 1%, to mirror real-time bitcoin exchange rates."
+        },
+        {
+          "term": "SEPA",
+          "def": "Single Euro Payments Area bank transfer rail used for Relai funding and payouts."
+        }
+      ],
+      "keywords": [
+        "Relai fees",
+        "Relai auto-invest",
+        "Relai hardware wallet",
+        "Relai SEPA transfer",
+        "Relai card fee",
+        "Relai sell bitcoin"
+      ]
+    },
+    "migration": [
+      {
+        "id": "restore-same-wallet",
+        "title": "Restore Relai on a new phone",
+        "choose": "When you upgrade phones and want to keep using your existing Relai wallet.",
+        "time": "~20 min",
+        "cost": "Free",
+        "risk": "Low",
+        "steps": [
+          "Install Relai on the new phone from the App Store or Google Play.",
+          "Tap Restore wallet, enter your 12-word seed, and keep the app open until balances resync.",
+          "Once the new device shows the correct balance, delete Relai from the old phone."
+        ],
+        "tips": "Verify the new install receives a small test transaction before you wipe the old device.",
+        "gotcha": "Running the same seed on two phones at once can cause conflicting states, so switch devices only after the restore finishes."
+      },
+      {
+        "id": "move-from-another-wallet",
+        "title": "Another wallet → Relai",
+        "choose": "When you want Relai to handle future buys but start with bitcoin stored elsewhere.",
+        "time": "~15 min",
+        "cost": "Mining fee",
+        "risk": "Medium",
+        "steps": [
+          "Open your existing wallet and create a small on-chain send to the address Relai generates.",
+          "Wait for one confirmation to make sure the transfer arrived.",
+          "Once confirmed, schedule your Relai buys as usual and keep the seed backed up for both wallets."
+        ],
+        "tips": "Start with a small amount so you can verify the address flow before moving more bitcoin.",
+        "gotcha": "Relai cannot import another wallet's seed; you must send funds on-chain to consolidate."
+      },
+      {
+        "id": "move-to-onchain",
+        "title": "Relai → Long-term storage",
+        "choose": "When you want to migrate savings from Relai's in-app wallet to dedicated cold storage.",
+        "time": "~30 min",
+        "cost": "Mining fee",
+        "risk": "Low",
+        "steps": [
+          "Generate a fresh receive address on your hardware wallet or cold storage app.",
+          "In Relai, tap Send, paste the new address, and send a small test amount first.",
+          "After the test confirms, move the remainder in one or two larger transactions.",
+          "Record the transaction IDs and store them with your backup for future reference."
+        ],
+        "tips": "Plan withdrawals when network fees are low and keep a small balance in Relai for future DCA orders.",
+        "gotcha": "Relai pays the mining fee only on buys; you cover it when you send coins to external cold storage."
+      }
+    ],
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#kyc",
+      "compat": "#features",
+      "migration": "#withdrawal",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-08",
+    "trust": {
+      "cards": [
+        {
+          "id": "terms",
+          "fact": "Terms for Swiss and EEA clients",
+          "link_text": "Terms & conditions",
+          "link_url": "https://relai.app/terms-and-conditions"
+        },
+        {
+          "id": "privacy",
+          "fact": "Privacy notice for customer data",
+          "link_text": "Privacy policy",
+          "link_url": "https://relai.app/privacy-policy"
+        }
+      ]
+    }
   },
   {
     "name": "River",
@@ -3231,18 +4288,27 @@
     "type_of_platform": "Exchange",
     "faqs": [
       {
-        "q": "What is River?",
-        "a": "River is a U.S. Bitcoin platform with full‑reserve custody, recurring buys and Lightning payments."
+        "q": "How do River's fees compare to staying on an exchange?",
+        "a": "River's trading fee starts at 1% and drops to 0.25% as your volume grows. Recurring buys skip fees entirely after the first week, and you can pair that with Auto-withdraw to move sats to self-custody automatically—though keeping some balance on River for active trading can make sense depending on your workflow."
       },
       {
-        "q": "What are River fees?",
-        "a": "Fees are volume‑based with transparent tiers; recurring orders are free to set and manage."
+        "q": "When can I withdraw ACH-funded bitcoin to my own wallet?",
+        "a": "ACH deposits trade instantly but stay pending about seven days until settlement clears. Once funds move to available balance you can withdraw to self-custody. River holds the keys during that time, which introduces the usual custodial and counterparty considerations."
       },
       {
-        "q": "Is River available outside the U.S.?",
-        "a": "River primarily serves the U.S.; availability outside the U.S. is limited."
+        "q": "What's the exit path for moving sats off River?",
+        "a": "Lightning withdrawals are free and instant once your balance is available. On-chain offers Priority, Standard, and Flexible tiers depending on how quickly you need confirmation. Auto-withdraw can move sats automatically when you hit a threshold, though manual withdrawals give you more control over timing and fee selection."
+      },
+      {
+        "q": "What's the trade-off with Bitcoin Interest on Cash?",
+        "a": "River pays 3.5% APY on idle cash and converts interest to bitcoin monthly. Your cash stays custodial during this time, which means trusting River's reserves without per-user on-chain proof. Some people use this for working capital while moving long-term holdings to self-custody; others prefer to avoid custodial yield entirely."
+      },
+      {
+        "q": "Where is River available and what are the limits?",
+        "a": "River serves U.S. residents, though some states face additional verification steps until local licensing clears. The service is custodial, which means River holds the keys while you use the platform—you can withdraw to self-custody at any time once your deposits settle."
       }
     ],
+    "supported_network": "Bitcoin (on-chain and Lightning)",
     "features": {
       "WW": [
         {
@@ -3285,6 +4351,117 @@
         }
       ]
     },
+    "custody_control": "Custodial",
+    "kyc_required": "Yes",
+    "recovery_method": "Email login with optional 2FA. Support can reset access after you reverify your ID.",
+    "open_source": "No",
+    "user_experience": "0.0",
+    "interface": "Mobile only",
+    "app_ratings": {
+      "ios": 4.9,
+      "android": 4.8
+    },
+    "profile": "Alex Leishman",
+    "description": "River helps U.S. based customers invest in Bitcoin simply and securely with a focus on long-term saving. Unlike many platforms, River holds all Bitcoin in full-reserve cold storage with multi-signature security and gives users transparency through real-time proof of reserves. This might sound inviting to people who don't want to hold Bitcoin in self-custody but it also means more centralization within Bitcoin.\\n\\nIt supports things like inheritance planning, business accounts, and joint accounts, making it attractive for people who want to treat Bitcoin like serious money. Users can buy Bitcoin instantly, set up automated savings, and send Bitcoin via on-chain or Lightning payments. On top of that, you can earn 3.8% Bitcoin interest on your cash. The app has a clean interface and is designed to be easy to use, earning high ratings on both iOS and Android.\\n\\nRiver's mission is to provide a trusted, high-quality experience for people who want to build wealth in Bitcoin without distractions. It aims to give users full control and transparency. While some users note strict ID verification and limited availability outside the U.S., River is praised for its reliability, personal customer service, and focus on security.",
+    "founded_in": "2019",
+    "website": "https://river.com",
+    "links": {
+      "ios": "https://apps.apple.com/us/app/river-buy-bitcoin-instantly/id1481139699",
+      "android": "https://play.google.com/store/apps/details?id=com.riverfinancial.river"
+    },
+    "countries": [
+      "US"
+    ],
+    "trust_chips": [
+      {
+        "text": "Bitcoin Interest on Cash",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "bitcoin-interest"
+      },
+      {
+        "text": "Beneficiary plans",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "beneficiary-plans"
+      },
+      {
+        "text": "Auto-withdraw",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "auto-withdraw"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "U.S. buyers who want high-touch custody plus bitcoin interest payouts.",
+      "consider_if": "You need concierge funding, River Link, and beneficiary planning under one login.",
+      "not_ideal_when": "You want self-custody or service outside the United States."
+    },
+    "howto": {
+      "title": "Getting started with River",
+      "steps": [
+        {
+          "id": "setup-install",
+          "title": "1. Create and verify your account",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Free",
+            "risk": "Medium"
+          },
+          "actions": [
+            "Sign up at river.com or install the River app from your app store.",
+            "Enter your legal name, address, Social Security number, and upload a government ID when prompted.",
+            "Turn on two-factor authentication inside Settings > Security before funding the account."
+          ],
+          "gotcha": "River stays custodial until you withdraw, so plan your exit path before you fund it."
+        },
+        {
+          "id": "setup-receive",
+          "title": "2. Fund with ACH, wire, or direct deposit",
+          "chips": {
+            "time": "~1-5 business days",
+            "cost": "Varies",
+            "risk": "Medium"
+          },
+          "actions": [
+            "Link your U.S. bank account via Plaid or copy your River routing and account numbers for payroll.",
+            "Schedule an ACH transfer or initiate a wire; wires usually clear in about one business day while ACH settles in roughly a week.",
+            "Watch the Funding tab; cash trades immediately but moves from pending to available once settlement finishes."
+          ],
+          "gotcha": "ACH withdrawals unlock after funds settle, which typically takes around seven days."
+        },
+        {
+          "id": "setup-pay",
+          "title": "3. Buy bitcoin and set your exit",
+          "chips": {
+            "time": "~5 min",
+            "cost": "0.99% -> 0.25% + network fees",
+            "risk": "Medium"
+          },
+          "actions": [
+            "Place an instant buy or create a zero-fee recurring order so future DCA runs without River's trading fee.",
+            "Enable Auto Withdraw or queue manual withdrawals to your hardware wallet once funds become available.",
+            "Test a Lightning send through River Link to confirm you can move sats off the platform on demand."
+          ],
+          "gotcha": "Zero-fee recurring buys skip fees after the first seven days but the bitcoin still sits in River custody until you withdraw."
+        }
+      ],
+      "totalTime": null,
+      "micro_faqs": [
+        {
+          "q": "How long before I can withdraw an ACH deposit?",
+          "a": "ACH cash trades instantly but River and Lead Bank release it for withdrawals after settlement, usually in about seven days."
+        },
+        {
+          "q": "Does all of my cash earn bitcoin interest?",
+          "a": "Once you enroll, every settled dollar in your cash balance accrues interest daily and River converts the payout to bitcoin each month."
+        },
+        {
+          "q": "Can River handle business or trust accounts?",
+          "a": "Yes. River offers business, private client, and beneficiary accounts; contact support to open the right profile."
+        }
+      ]
+    },
     "fees": {
       "intro": "Based on monthly trading volume",
       "tiers": [
@@ -3309,24 +4486,422 @@
     "dca": "Yes: Recurring orders are free",
     "payment_methods": [
       "Bank Transfer",
-      "Wire Transfer"
+      "Wire Transfer",
+      "Direct Deposit"
     ],
-    "custody_control": "Custodial",
-    "kyc_required": "Yes",
-    "open_source": "No",
-    "user_experience": "0.0",
-    "interface": "Mobile only",
-    "app_ratings": {
-      "ios": 4.9,
-      "android": 4.8
+    "fees_scenarios": [
+      {
+        "id": "fees-deposit",
+        "title": "Add cash",
+        "cost_today": "ACH: Free<br>Wire: Free from River (your bank may charge)<br>Direct deposit: Free",
+        "what_happens": "ACH trades instantly but remains pending until settlement clears. Wires usually post within one business day and direct deposits land each payday.",
+        "how_to_minimize": "Link your bank once, queue ACH transfers before you need the bitcoin, and use wires for larger amounts you want withdrawable faster.",
+        "learn_more": "ACH withdrawals unlock after settlement, typically around seven calendar days."
+      },
+      {
+        "id": "fees-buy",
+        "title": "Buy bitcoin",
+        "cost_today": "0.99% down to 0.25% as monthly volume increases",
+        "what_happens": "River applies its tiered fee across your combined buys and sells for the calendar month.",
+        "how_to_minimize": "Batch larger purchases, let zero-fee recurring buys run after the first week, and track your tier inside Settings.",
+        "learn_more": {
+          "type": "table",
+          "heading": "Fee tier thresholds (monthly volume)",
+          "source": "fees.tiers"
+        }
+      },
+      {
+        "id": "fees-withdraw",
+        "title": "Withdraw bitcoin",
+        "cost_today": "Lightning: Free<br>On-chain: Miner fee only (you pick the priority)<br>Auto-withdraw: Free via flexible tier (~24 hours)",
+        "what_happens": "Lightning sends settle instantly. On-chain withdrawals let you pick the fee tier, and auto-withdraw moves your balance after a short review window.",
+        "how_to_minimize": "Keep a Lightning wallet ready, test with a small send, and schedule larger on-chain withdrawals when fees are low.",
+        "learn_more": "ACH-funded bitcoin stays locked until settlement. Auto-withdraw queues for review before River broadcasts the transaction."
+      },
+      {
+        "id": "fees-bitcoin-interest",
+        "title": "Earn bitcoin interest on cash",
+        "cost_today": "No management fee. Current rate: 3.5% APY paid in bitcoin.",
+        "what_happens": "After you enroll, River converts daily cash interest to bitcoin and credits it to your balance monthly.",
+        "how_to_minimize": "Sweep the earned bitcoin to self-custody after each payout so you control the keys.",
+        "learn_more": "You can switch payouts back to USD if you prefer to limit additional custodial bitcoin exposure."
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "When can I withdraw an ACH deposit?",
+        "a": "Once River and Lead Bank mark your ACH transfer settled, usually about seven days after you initiate it, the funds move from pending to available and you can withdraw."
+      },
+      {
+        "q": "Do Lightning withdrawals include fees?",
+        "a": "River covers Lightning routing so you only pay the invoice amount. On-chain withdrawals pass through the miner fee for the priority you choose."
+      },
+      {
+        "q": "Can I opt out of bitcoin interest payouts?",
+        "a": "Yes. In Cash > Interest you can switch payouts to USD or unenroll entirely if you prefer not to receive bitcoin."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "term-full-reserve-custody",
+        "term": "Full-reserve custody",
+        "definition": "River keeps 100% of client bitcoin in multisig cold storage without lending it out, so assets and liabilities match at all times."
+      },
+      {
+        "id": "term-river-link",
+        "term": "River Link",
+        "definition": "A feature that lets you text a Lightning payment link so the recipient can claim sats to any Lightning or on-chain wallet."
+      },
+      {
+        "id": "term-forcefield",
+        "term": "ForceField",
+        "definition": "River's account protection layer that blocks outgoing transfers if your device, IP, or behavior look risky."
+      }
+    ],
+    "payment_methods_limits": {
+      "heading": "Payment methods & limits",
+      "methods": [
+        {
+          "id": "ach",
+          "name": "Bank Transfer (ACH)",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "Free",
+            "fee_link": "fees-deposit",
+            "speed": "~1-3 business days",
+            "withdraw": "After settlement (~7 days)"
+          },
+          "best_for": "Consistent dollar-cost averaging with no funding fee.",
+          "limits": {
+            "min_per_tx": "$10",
+            "max_per_tx": "Varies by account",
+            "max_per_day": "Varies by account",
+            "max_per_week": "Varies by account",
+            "withdraw_eligibility": "Available after settlement (~7 days)"
+          }
+        },
+        {
+          "id": "wire",
+          "name": "Wire Transfer",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "Free from River (bank may charge)",
+            "fee_link": "fees-deposit",
+            "speed": "~1 business day",
+            "withdraw": "Once funds post"
+          },
+          "best_for": "Large cash moves when you need withdrawal access sooner.",
+          "limits": {
+            "min_per_tx": "$1,000",
+            "max_per_tx": "Coordinate with River support",
+            "max_per_day": "Coordinate with River support",
+            "max_per_week": "Coordinate with River support",
+            "withdraw_eligibility": "Usually within one business day"
+          }
+        },
+        {
+          "id": "direct-deposit",
+          "name": "Direct Deposit",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "Free",
+            "fee_link": "fees-deposit",
+            "speed": "Each payday",
+            "withdraw": "After settlement (~2 business days)"
+          },
+          "best_for": "Automating paycheck-to-bitcoin flows without logging in every payday.",
+          "limits": {
+            "min_per_tx": "Employer dependent",
+            "max_per_tx": "Employer dependent",
+            "max_per_day": "Employer dependent",
+            "max_per_week": "Employer dependent",
+            "withdraw_eligibility": "Available after funds settle"
+          }
+        }
+      ]
     },
-    "profile": "Alex Leishman",
-    "description": "River helps U.S. based customers invest in Bitcoin simply and securely with a focus on long-term saving. Unlike many platforms, River holds all Bitcoin in full-reserve cold storage with multi-signature security and gives users transparency through real-time proof of reserves. This might sound inviting to people who don't want to hold Bitcoin in self-custody but it also means more centralization within Bitcoin.\\n\\nIt supports things like inheritance planning, business accounts, and joint accounts, making it attractive for people who want to treat Bitcoin like serious money. Users can buy Bitcoin instantly, set up automated savings, and send Bitcoin via on-chain or Lightning payments. On top of that, you can earn 3.8% Bitcoin interest on your cash. The app has a clean interface and is designed to be easy to use, earning high ratings on both iOS and Android.\\n\\nRiver's mission is to provide a trusted, high-quality experience for people who want to build wealth in Bitcoin without distractions. It aims to give users full control and transparency. While some users note strict ID verification and limited availability outside the U.S., River is praised for its reliability, personal customer service, and focus on security.",
-    "founded_in": "2019",
-    "website": "https://river.com",
-    "countries": [
-      "US"
-    ]
+    "compat_heading": "River features & limits",
+    "compat_tiles": [
+      {
+        "id": "bitcoin-interest",
+        "title": "Bitcoin Interest on Cash",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 3.5% APY</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Custodial exposure</span>",
+        "status": "works-caveat"
+      },
+      {
+        "id": "beneficiary-plans",
+        "title": "Beneficiary plans",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Assign heirs</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Guided handoff</span>",
+        "status": "works"
+      },
+      {
+        "id": "dca",
+        "title": "Dollar-cost averaging (DCA)",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Free after first week</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Daily, weekly, or monthly</span>",
+        "status": "works"
+      },
+      {
+        "id": "auto-withdraw",
+        "title": "Auto-withdraw",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Free (Flexible tier)</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Scheduled withdrawals</span>",
+        "status": "works"
+      }
+    ],
+    "compat_explainers": [
+      {
+        "id": "bitcoin-interest",
+        "why": "River pays 3.5% APY on idle cash and converts the interest to bitcoin each month. Your cash stays custodial during this time, which means trusting River's reserves without per-user on-chain proof. Some people use this for working capital while moving long-term holdings to self-custody; others prefer to avoid custodial yield arrangements entirely.",
+        "try": [
+          "In Cash, opt into Bitcoin Interest on Cash",
+          "River accrues interest daily and converts to bitcoin monthly",
+          "You can sweep earned sats to self-custody after each payout",
+          "Different people draw different lines about how much to keep custodial versus self-custodied"
+        ],
+        "gotcha": "Interest payouts stay custodial until you withdraw. You can set Auto-withdraw to sweep sats automatically or manage this manually based on your preferences."
+      },
+      {
+        "id": "beneficiary-plans",
+        "why": "Beneficiary plans let your heirs access your River account without hunting for passwords. River becomes a single point of access for those assets, which means your heirs inherit both the balance and the counterparty considerations that come with any custodial service.",
+        "try": [
+          "Open Settings > Beneficiaries and add trusted contacts",
+          "Define allocation rules for cash, bitcoin, and interest payouts",
+          "Share River's beneficiary instructions with your heirs"
+        ],
+        "gotcha": "This plan covers assets held on River. For holdings in self-custody, you'll want a separate inheritance plan that gives your heirs access to your keys and instructions."
+      },
+      {
+        "id": "dca",
+        "why": "Recurring buys let you build a bitcoin position without timing the market, though your sats stay custodial until you move them. You can pair this with Auto-withdraw to move sats to self-custody automatically, or manage withdrawals manually depending on what fits your workflow.",
+        "try": [
+          "Tap Buy Bitcoin, then select Recurring",
+          "Choose your schedule: daily, weekly, or monthly",
+          "Set your purchase amount and confirm",
+          "After the first week, all future orders skip fees—you can connect Auto-withdraw or withdraw manually"
+        ],
+        "gotcha": "Recurring buys stay fee-free after the first week, but bitcoin remains in River custody until you withdraw. Self-custody means you hold the keys directly rather than trusting River to hold them for you."
+      },
+      {
+        "id": "auto-withdraw",
+        "why": "When your balance hits a threshold you set, River automatically moves sats to your wallet using the free Flexible tier. This reduces the time your bitcoin sits in custody, though you give up some control over the exact timing and fee selection compared to manual withdrawals.",
+        "try": [
+          "Open Settings and tap Auto-withdraw",
+          "Set your threshold amount in sats",
+          "Add one or more payout addresses to your self-custody wallet",
+          "River queues the withdrawal within 24 hours once you cross the threshold"
+        ],
+        "gotcha": "Auto-withdrawals use the Flexible tier, which takes about 24 hours to confirm. ACH-funded bitcoin must settle first before any withdrawal can process."
+      }
+    ],
+    "self_custody": {
+      "heading": "Self-custody: withdraw safely",
+      "tiles": [
+        {
+          "id": "pick-wallet",
+          "title": "1. Pick a cold storage wallet",
+          "chips": {
+            "time": "~5 min",
+            "cost": "$0-$200",
+            "risk": "Low"
+          },
+          "why": "A hardware or paper wallet keeps your bitcoin offline so River cannot be a single point of failure.",
+          "actions": [
+            "Choose a hardware wallet or air-gapped setup from our store-it-safely guide.",
+            "Initialize the wallet, generate your seed phrase, and write it on durable material.",
+            "Store the seed in separate secure locations."
+          ],
+          "gotcha": "Do not photograph or upload the seed; digital copies expose you to remote theft."
+        },
+        {
+          "id": "make-receive-code",
+          "title": "2. Create a fresh receive address",
+          "chips": {
+            "time": "~2 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "why": "Fresh addresses limit the on-chain metadata River and other watchers can tie to you.",
+          "actions": [
+            "Connect your wallet to its companion app or desktop software.",
+            "Generate a new on-chain address and copy it carefully.",
+            "Verify the address on the hardware wallet screen before you use it."
+          ],
+          "gotcha": "Never reuse an address. Create a new one for every withdrawal."
+        },
+        {
+          "id": "test-small",
+          "title": "3. Send a small test amount",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Mining fee (~$1-$5)",
+            "risk": "Low"
+          },
+          "why": "Testing the process with a small amount confirms your withdrawal path before you move more value.",
+          "actions": [
+            "Tap Wallet > Send > Bitcoin address in the River app.",
+            "Paste your fresh address and send a small amount using the Standard fee tier.",
+            "Confirm the transaction arrived in your wallet before proceeding."
+          ],
+          "gotcha": "Flexible tier is free but can take around a day. Use Standard for predictable confirmation."
+        },
+        {
+          "id": "move-rest",
+          "title": "4. Withdraw the remaining balance",
+          "chips": {
+            "time": "~10-60 min",
+            "cost": "Mining fees (~$5-$50)",
+            "risk": "Low"
+          },
+          "why": "Finish the move to self-custody so River is no longer a custodial bottleneck for your savings.",
+          "actions": [
+            "Generate a new address for the rest of your withdrawal.",
+            "Use Auto Withdraw or send manually once your ACH or wire funds are available.",
+            "Label the transaction in your wallet and store the hardware device securely."
+          ],
+          "gotcha": "Auto Withdraw uses the flexible tier, so plan ahead if you need confirmed funds quickly."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Why bother with self-custody if River is full reserve?",
+          "a": "Full reserve reduces rehypothecation risk but you still rely on River's controls and jurisdiction. Self-custody gives you final settlement without counterparty risk."
+        },
+        {
+          "q": "Can I send to a Lightning wallet instead of on-chain?",
+          "a": "Yes. River supports Lightning withdrawals at no added fee, which is handy for topping up a mobile wallet before moving larger balances on-chain."
+        },
+        {
+          "q": "What happens to auto-withdrawals if fees spike?",
+          "a": "Auto-withdrawals default to the flexible tier. Pause or cancel them during high fee spikes and send manually with a fee tier that matches your urgency."
+        }
+      ]
+    },
+    "privacy_notes": {
+      "data_flows": [
+        "River and Lead Bank store the identity documents and banking details you provide during onboarding.",
+        "Transaction metadata, including Lightning invoices and on-chain addresses, remains in River logs for compliance."
+      ],
+      "recovery_drill": [
+        "Enable two-factor authentication and store backup codes offline before you fund the account.",
+        "If you lose access, contact support from your verified email and be ready to re-submit ID documents.",
+        "Review Limits and Security settings after recovery to ensure River restored your previous controls."
+      ],
+      "country_caveats": [
+        "River currently serves U.S. residents; availability in other jurisdictions is limited.",
+        "Direct deposit and ACH features require a U.S. bank relationship.",
+        "River may restrict features in unsupported states until it secures local licensing."
+      ]
+    },
+    "privacy": {
+      "section_title": "Privacy & Safety",
+      "data_flows": [
+        "River holds your personal information, banking details, and transaction history to comply with U.S. financial regulations.",
+        "Proof of Reserves publishes anonymized liability chunks, so outsiders cannot see account-level balances but can verify totals."
+      ],
+      "data_flows_do": "Export statements regularly and delete unneeded banking links if you change providers.",
+      "data_flows_dont": "Assume Lightning activity is private. River and routing peers still see invoices and timestamp metadata.",
+      "recovery": [
+        "Reset your password from the login screen and confirm the email link River sends.",
+        "Provide your ID again if support escalates the recovery request.",
+        "Once access is restored, review ForceField settings and regenerate backup codes."
+      ],
+      "recovery_do": "Store authenticator backup codes offline and keep your email secured with its own two-factor authentication.",
+      "recovery_dont": "Reuse the same password you keep on other services or postpone recovery after a suspected compromise.",
+      "withdrawal_policy": [
+        "Lightning withdrawals are free and instant once your cash or bitcoin is in the available balance.",
+        "On-chain withdrawals offer Priority, Standard, and Flexible tiers that pass through the miner fee you choose.",
+        "Cash wires originate from Lead Bank and may take one to two business days to reach your external account."
+      ],
+      "withdrawal_policy_do": "Plan large on-chain exits when mempool fees are quiet and confirm destination addresses offline.",
+      "withdrawal_policy_dont": "Leave large balances on River just to earn interest; sweep to self-custody on a cadence.",
+      "region": [
+        "River focuses on U.S. clients; confirm availability before you attempt to open an account abroad.",
+        "Some states or business types may face additional verification or limits until River completes licensing.",
+        "Direct deposit and interest products may be unavailable outside eligible jurisdictions."
+      ],
+      "micro_faqs": [
+        {
+          "q": "Does Proof of Reserves reveal my balance?",
+          "a": "No. River publishes aggregated liability data so you can verify totals without exposing individual accounts."
+        },
+        {
+          "q": "Can I delete my personal data?",
+          "a": "You can request data deletion once regulatory retention periods end; contact support for the latest policy."
+        },
+        {
+          "q": "What if I detect suspicious activity?",
+          "a": "Enable ForceField and contact River security immediately. They can freeze withdrawals while you update credentials."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "ForceField",
+          "def": "River's security control that adds device and behavior checks before large withdrawals."
+        },
+        {
+          "term": "Proof of Reserves tree",
+          "def": "The Merkle sum tree River uses so customers can verify total liabilities match on-chain assets."
+        },
+        {
+          "term": "Beneficiary plan",
+          "def": "An instruction set stored with River that lets designated heirs claim account assets after you pass away."
+        }
+      ],
+      "keywords": [
+        "River zero-fee recurring buys",
+        "River Bitcoin Interest on Cash",
+        "River Lightning withdrawals",
+        "River ForceField security",
+        "River Proof of Reserves",
+        "River beneficiary plan",
+        "River FDIC insured cash"
+      ]
+    },
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#kyc",
+      "compat": "#features",
+      "migration": "#withdrawal",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-08",
+    "trust": {
+      "cards": [
+        {
+          "id": "proof-of-reserves",
+          "fact": "Monthly Proof of Reserves reports",
+          "link_text": "Verify reserves",
+          "link_url": "https://river.com/reserves"
+        },
+        {
+          "id": "security",
+          "fact": "Multisig cold storage & security",
+          "link_text": "Security practices",
+          "link_url": "https://river.com/security"
+        },
+        {
+          "id": "financials",
+          "fact": "Corporate financial transparency",
+          "link_text": "Financials",
+          "link_url": "https://river.com/financials"
+        },
+        {
+          "id": "terms",
+          "fact": "Terms of service and legal docs",
+          "link_text": "Legal",
+          "link_url": "https://river.com/terms"
+        }
+      ]
+    }
   },
   {
     "name": "RoboSats",
@@ -4169,18 +5744,27 @@
     "type_of_platform": "Exchange",
     "faqs": [
       {
-        "q": "What is Swan Bitcoin?",
-        "a": "Swan is a Bitcoin savings platform with recurring buys, education and IRA products for U.S. users."
+        "q": "How do Swan's bitcoin purchase fees work?",
+        "a": "Swan waives fees on your first $10,000 in lifetime buys, then charges 1% on each additional buy or sell. Auto-withdrawals keep Swan Safe custody fees waived so you do not pay the optional 0.03% monthly charge."
       },
       {
-        "q": "Does Swan support automatic withdrawals?",
-        "a": "Yes. Swan encourages self‑custody and supports automatic withdrawals to your address."
+        "q": "When are ACH deposits available to withdraw from Swan?",
+        "a": "ACH purchases under $1,000 typically unlock in 10–15 days (closer to 5–10 days once your account is seasoned), while larger ACH purchases unlock in 20–30 days; wires and bitcoin deposits settle within about 24 hours. Use the “Available to withdraw” banner in your dashboard to see exact dates."
       },
       {
-        "q": "Where is Swan available?",
-        "a": "Swan primarily serves the U.S.; availability elsewhere is limited."
+        "q": "Does Swan charge for bitcoin withdrawals?",
+        "a": "Swan does not add a platform fee when you withdraw bitcoin; you simply pick the on-chain fee tier that matches the speed you want. USD wires carry a $15 fee with a $50,000 minimum if you move cash instead of bitcoin."
+      },
+      {
+        "q": "How do Swan auto-withdrawals work?",
+        "a": "Add a wallet address under Withdrawals, enable two-factor authentication, and set the on-chain balance threshold that fits your cadence. Once your unlocked balance crosses that mark, Swan queues an on-chain withdrawal to that address."
+      },
+      {
+        "q": "Who holds custody of bitcoin bought on Swan?",
+        "a": "Swan opens an individually titled account for you with regulated custodians Bakkt, BitGo, or Equity Trust, and those partners do not lend or rehypothecate customer coins. You can leave funds there temporarily or withdraw to your own wallet whenever you are ready."
       }
     ],
+    "supported_network": "Bitcoin (on-chain)",
     "features": {
       "WW": [
         {
@@ -4228,6 +5812,7 @@
       ]
     },
     "fees": {
+      "intro": "Zero-fee onboarding on the first $10,000 in lifetime buys, 1% after that, plus optional custody programs billed separately.",
       "tiers": [
         {
           "range": "up to $10,000",
@@ -4242,7 +5827,8 @@
     "dca": "Yes: but with fees after the first $10.000",
     "payment_methods": [
       "Bank Transfer",
-      "Wire Transfer"
+      "Wire Transfer",
+      "Bitcoin Transfer"
     ],
     "custody_control": "Custodial",
     "kyc_required": "Yes",
@@ -4254,12 +5840,510 @@
       "android": 4.6
     },
     "profile": "Cory Klippsten",
-    "description": "Swan Bitcoin, launched by Cory Klippsten and based in California, is a platform focused on making it easy for beginners to buy and save Bitcoin.\\n\\nWhat makes Swan distinct is its focus on self-custody support and education. It automatically withdraws BTC weekly to your own address and provides guides for self-custody, while also offering Swan Guard with fraud protection and identity verification tools. Swan prioritizes teaching users about Bitcoin's value for financial freedom. Swan also targets long-term savers by offering IRA products making Bitcoin tax-advantaged retirement savings easier.\\n\\nSwan offers zero-fee purchases on the first $10,000, a low 0.99% fee for recurring buys, and free withdrawals to personal wallets, encouraging self-custody. Its app is praised for its clean design and simple setup. However, some users report slow customer support and issues with account restrictions.\\n\\nIts vision is to onboard 10 million Bitcoin users by promoting Bitcoin as better money for a decentralized future.",
+    "description": "Swan Bitcoin, launched by Cory Klippsten and based in California, is a platform focused on making it easy for beginners to buy and save Bitcoin.\n\nWhat makes Swan distinct is its focus on self-custody support and education. It automatically withdraws BTC weekly to your own address and provides guides for self-custody, while also offering Swan Guard with fraud protection and identity verification tools. Swan prioritizes teaching users about Bitcoin's value for financial freedom. Swan also targets long-term savers by offering IRA products making Bitcoin tax-advantaged retirement savings easier.\n\nSwan offers zero-fee purchases on the first $10,000, a low 0.99% fee for recurring buys, and free withdrawals to personal wallets, encouraging self-custody. Its app is praised for its clean design and simple setup. However, some users report slow customer support and issues with account restrictions.\n\nIts vision is to onboard 10 million Bitcoin users by promoting Bitcoin as better money for a decentralized future.",
     "founded_in": "2019",
     "website": "https://www.swanbitcoin.com",
+    "links": {
+      "ios": "https://apps.apple.com/us/app/swan-bitcoin/id1576287352",
+      "android": "https://play.google.com/store/apps/details?id=com.swanbitcoin.android"
+    },
     "countries": [
       "US"
-    ]
+    ],
+    "recovery_method": "One-time passcode email login with optional authenticator app 2FA.",
+    "trust_chips": [
+      {
+        "text": "Swan Vault",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "swan-vault"
+      },
+      {
+        "text": "Swan Guard",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "swan-guard"
+      },
+      {
+        "text": "Auto-withdraw",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "auto-withdraw"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "Long-term bitcoin buyers who want zero fees on their first $10,000 and concierge paths into self-custody.",
+      "consider_if": "You value regulated custody partners, Swan Vault backups, or IRA automation alongside recurring buys.",
+      "not_ideal_when": "You need instant Lightning payments or want to avoid full KYC disclosures."
+    },
+    "howto": {
+      "title": "Getting started with Swan",
+      "steps": [
+        {
+          "id": "setup-install",
+          "title": "1. Create & verify",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Sign up at swanbitcoin.com or install the Swan app and enter your email to receive a one-time passcode.",
+            "Complete identity verification with your legal name, address, and government ID.",
+            "Turn on authenticator-based 2FA before funding so withdrawals stay protected."
+          ],
+          "gotcha": "Swan only supports customers over 18 with a U.S. government ID and an eligible bank account."
+        },
+        {
+          "id": "setup-pay",
+          "title": "2. Link your funding",
+          "chips": {
+            "time": "~5–30 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Open the main menu → Bank Accounts and add a U.S. checking account (ACH is required for transfers).",
+            "Double-check you entered the ACH routing number rather than the wire routing number.",
+            "For large buys, request wire instructions from the Funding section so your bank can send same-day cash."
+          ],
+          "gotcha": "Small fintech banks and savings-only accounts may be rejected by the account verification system."
+        },
+        {
+          "id": "setup-receive",
+          "title": "3. Buy & schedule withdrawal",
+          "why": "Automate your stacking while keeping a clear exit to self-custody.",
+          "chips": {
+            "time": "~5–20 min",
+            "cost": "0% on first $10k, 1% afterward + mining fee",
+            "risk": "Low"
+          },
+          "actions": [
+            "Start a one-time or recurring plan; Swan pulls ACH purchases on your chosen cadence.",
+            "Watch the “Available to withdraw” timeline so you know when ACH-funded bitcoin unlocks.",
+            "Add your wallet in Withdrawals and set auto-withdraw so sats leave custody as soon as they unlock."
+          ],
+          "gotcha": "ACH-funded bitcoin cannot move until its unlock window closes, even if you trigger auto-withdraw."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Can I fund Swan with a savings account?",
+          "a": "No. Swan requires a U.S. checking account that supports ACH transfers for recurring buys."
+        },
+        {
+          "q": "Where do I see my unlock dates?",
+          "a": "Open the dashboard banner labeled “Available to withdraw” to view the exact release schedule for each ACH purchase."
+        },
+        {
+          "q": "Do auto-withdrawals require 2FA?",
+          "a": "Yes. Swan asks you to enable two-factor authentication before it will approve a new withdrawal address or auto-withdraw rule."
+        }
+      ]
+    },
+    "fees_scenarios": [
+      {
+        "id": "fees-deposit",
+        "title": "Deposit cash or bitcoin",
+        "cost_today": "ACH: free<br>Wire: free from Swan (your bank may charge)<br>Bitcoin deposit: network fee only",
+        "what_happens": "ACH trades instantly but unlocks in roughly 10–30 days depending on amount and account history, while wires and bitcoin deposits settle within about 24 hours.",
+        "how_to_minimize": "Keep ACH amounts modest while your account is new, use wires for large transfers, and deposit bitcoin directly if you already hold custody.",
+        "learn_more": "Unlock timelines appear under the “Available to withdraw” banner in your Swan dashboard."
+      },
+      {
+        "id": "fees-buy",
+        "title": "Buy bitcoin",
+        "cost_today": "First $10,000 lifetime: 0%<br>After $10,000: 1% per buy or sell",
+        "what_happens": "Swan draws from your linked bank account, executes the buy, and bills trading fees through your bank rather than deducting from your bitcoin.",
+        "how_to_minimize": "Batch larger buys into wire transfers, enable recurring plans to stay disciplined, and use auto-withdraw to avoid Swan Safe custody fees.",
+        "learn_more": "Fees are charged monthly via ACH once purchases settle and cannot be taken from your bitcoin balance."
+      },
+      {
+        "id": "fees-withdraw",
+        "title": "Withdraw bitcoin",
+        "cost_today": "Bitcoin: mining fee you choose<br>USD wire: $15 fee (requires $50,000 minimum)",
+        "what_happens": "Once funds are unlocked you can trigger a manual send or leave auto-withdraw enabled to move the full balance on-chain.",
+        "how_to_minimize": "Plan withdrawals around the unlock calendar, keep a low-fee window open in your wallet, and reserve USD wires for large cash moves.",
+        "learn_more": "Auto-withdrawals run on-chain; Swan does not currently offer Lightning withdrawals."
+      },
+      {
+        "id": "fees-swan-safe",
+        "title": "Keep bitcoin in Swan Safe",
+        "cost_today": "0.03% of assets per month (waived with auto-withdraw enabled)",
+        "what_happens": "Swan invoices the custody fee via ACH once at least $1 has accrued unless you keep auto-withdraw turned on.",
+        "how_to_minimize": "Enable auto-withdraw, sweep funds to your own wallet, or upgrade to Swan Vault if you want collaborative multisig backups.",
+        "learn_more": "Fees pause automatically when auto-withdraw is turned on or your balance drops below the $1 billing threshold."
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "How are Swan fees collected?",
+        "a": "Trading, Swan Safe, Vault, and IRA fees are debited via ACH from your linked bank account; Swan never pulls them from your bitcoin balance."
+      },
+      {
+        "q": "Does turning on auto-withdraw waive Swan Safe fees?",
+        "a": "Yes. Swan Safe’s 0.03% monthly charge is automatically waived when you keep auto-withdraw enabled."
+      },
+      {
+        "q": "What does Swan Vault cost?",
+        "a": "Swan Vault runs at 0.02% of assets per month with a $30 minimum and $500 maximum, and includes a complimentary onboarding call."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "term-swan-safe-fee",
+        "term": "Swan Safe fee",
+        "definition": "An optional 0.03% monthly custody fee that is waived when you enable auto-withdraw or move funds to self-custody."
+      },
+      {
+        "id": "term-unlock-window",
+        "term": "Unlock window",
+        "definition": "The holding period Swan applies to ACH purchases before bitcoin or USD can leave custody; it ranges from 10 to 30 days depending on amount and history."
+      },
+      {
+        "id": "term-auto-withdraw-threshold",
+        "term": "Auto-withdraw threshold",
+        "definition": "The on-chain balance level you choose that tells Swan when to queue a full withdrawal to your saved wallet."
+      }
+    ],
+    "payment_methods_limits": {
+      "heading": "Payment methods & limits",
+      "methods": [
+        {
+          "id": "ach",
+          "name": "Bank Transfer (ACH)",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "Free",
+            "fee_link": "fees-deposit",
+            "speed": "Trades instantly, unlocks later",
+            "withdraw": "After unlock window"
+          },
+          "best_for": "Recurring buys from a U.S. checking account.",
+          "limits": {
+            "min_per_tx": "Varies by account history",
+            "max_per_tx": "Varies by account history",
+            "max_per_day": "Varies by account history",
+            "max_per_week": "Varies by account history",
+            "withdraw_eligibility": "Unlocks in 10–30 days based on amount"
+          }
+        },
+        {
+          "id": "wire",
+          "name": "Wire Transfer",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "No Swan fee (bank may charge)",
+            "fee_link": "fees-deposit",
+            "speed": "~1 business day",
+            "withdraw": "$15 fee + $50k minimum"
+          },
+          "best_for": "Large purchases that need faster unlocks than ACH.",
+          "limits": {
+            "min_per_tx": "Set by your bank",
+            "max_per_tx": "Set by your bank",
+            "max_per_day": "Set by your bank",
+            "max_per_week": "Set by your bank",
+            "withdraw_eligibility": "Typically within 24 hours after trade confirmation"
+          }
+        },
+        {
+          "id": "bitcoin",
+          "name": "Bitcoin Deposit",
+          "available": true,
+          "icon": "bitcoin",
+          "summary": {
+            "fee": "Network fee only",
+            "fee_link": "fees-deposit",
+            "speed": "1 block target",
+            "withdraw": "Immediately once deposited"
+          },
+          "best_for": "Moving externally held bitcoin into Swan Vault or Swan Safe.",
+          "limits": {
+            "min_per_tx": "Network dust limits apply",
+            "max_per_tx": "No posted maximum",
+            "max_per_day": "No posted maximum",
+            "max_per_week": "No posted maximum",
+            "withdraw_eligibility": "Available once the deposit confirms"
+          }
+        }
+      ]
+    },
+    "compat_heading": "Swan programs & limits",
+    "compat_tiles": [
+      {
+        "id": "swan-vault",
+        "title": "Swan Vault",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Assisted multisig security</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Concierge onboarding call</span>",
+        "status": "works-caveat"
+      },
+      {
+        "id": "swan-guard",
+        "title": "Swan Guard",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Segregated custody partners</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Fraud monitoring & alerts</span>",
+        "status": "works"
+      },
+      {
+        "id": "dca",
+        "title": "Dollar-cost averaging (DCA)",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Daily, weekly, or monthly pulls</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> First $10,000 fee-free</span>",
+        "status": "works"
+      },
+      {
+        "id": "auto-withdraw",
+        "title": "Auto-withdraw",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Sends full unlocked balance</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Runs on your schedule</span>",
+        "status": "works"
+      }
+    ],
+    "compat_explainers": [
+      {
+        "id": "swan-vault",
+        "why": "Collaborative multisig keeps your keys offline while Swan guides you through secure storage and inheritance planning.",
+        "try": [
+          "Schedule a Swan Vault onboarding call (included in the fee).",
+          "Set up your Jade signing device and register it with the Vault dashboard.",
+          "Store your recovery phrases in separate secure locations.",
+          "Practice a health check so you can sign independently of Swan if needed."
+        ],
+        "gotcha": "Swan Vault costs 0.02% per month with a $30 minimum and $500 maximum."
+      },
+      {
+        "id": "swan-guard",
+        "why": "Swan Guard layers fraud detection, withdrawal reviews, and segregated custody so you always know who can touch your bitcoin.",
+        "try": [
+          "Enable authenticator-based 2FA and passkey logins inside Security.",
+          "Turn on withdrawal notifications so you see every movement request.",
+          "Review the Custody screen to confirm whether Bakkt, BitGo, or Equity Trust holds your account."
+        ],
+        "gotcha": "Security alerts rely on accurate contact details, so keep your email and phone number current."
+      },
+      {
+        "id": "dca",
+        "why": "Automated buys take the emotion out of stacking while you plan your exit to self-custody.",
+        "try": [
+          "Choose daily, weekly, or monthly frequency from the Buy Bitcoin screen.",
+          "Keep ACH limits in mind if you schedule large recurring amounts.",
+          "Pair the plan with auto-withdraw so sats leave Swan as soon as they unlock."
+        ],
+        "gotcha": "After the first $10,000 in lifetime buys, every recurring purchase incurs the 1% trading fee."
+      },
+      {
+        "id": "auto-withdraw",
+        "why": "Auto-withdraw reduces counterparty risk by moving every unlocked sat to a wallet you control.",
+        "try": [
+          "Add a wallet in Withdrawals and validate the address with 2FA.",
+          "Set a threshold that aligns with your fee tolerance (smaller sends cost more in mining fees).",
+          "Monitor the queue after each ACH unlock so you know when the transaction broadcasts."
+        ],
+        "gotcha": "Auto-withdraw only moves unlocked balances; ACH funds still inside the holding window stay custodial until they clear."
+      }
+    ],
+    "self_custody": {
+      "heading": "Self-custody: withdraw safely",
+      "tiles": [
+        {
+          "id": "pick-wallet",
+          "title": "1. Pick a cold storage wallet",
+          "chips": {
+            "time": "~5 min",
+            "cost": "$0–$200",
+            "risk": "Low"
+          },
+          "why": "Cold storage keeps your bitcoin offline and resistant to hacks.",
+          "actions": [
+            "Choose a <a href=\"/store-it-safely.html\">hardware or multisig wallet</a> that fits your experience level.",
+            "Initialize the device, write down the seed phrase, and store it in two secure places.",
+            "Add your wallet software to a trusted computer so you can verify addresses later."
+          ],
+          "gotcha": "Never store your seed phrase in cloud storage or screenshots; paper or metal backups are safer."
+        },
+        {
+          "id": "make-receive-code",
+          "title": "2. Register a withdrawal address",
+          "chips": {
+            "time": "~3 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "why": "Registering a fresh address lets Swan route bitcoin directly to your custody.",
+          "actions": [
+            "Open your wallet software and generate a new receive address.",
+            "In Swan: go to Withdrawals → Wallets, paste the address, and validate it with 2FA.",
+            "Label the wallet so you recognize it during future withdrawals."
+          ],
+          "gotcha": "If you add an xpub, only use wallets you fully control; custodial wallets can break auto-withdraw rules."
+        },
+        {
+          "id": "test-small",
+          "title": "3. Send a test amount",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Mining fee (~$1–$5)",
+            "risk": "Low"
+          },
+          "why": "A small test verifies the address and your signing flow before you move larger balances.",
+          "actions": [
+            "Trigger a manual withdrawal for a small amount and pick the Standard fee tier.",
+            "Confirm the transaction in your wallet or on a block explorer.",
+            "Wait for confirmation before scheduling larger transfers."
+          ],
+          "gotcha": "Do not reuse addresses; generate a new one for every withdrawal to improve privacy."
+        },
+        {
+          "id": "move-rest",
+          "title": "4. Withdraw the remaining balance",
+          "chips": {
+            "time": "~10–60 min",
+            "cost": "Mining fee (~$5–$50)",
+            "risk": "Low"
+          },
+          "why": "Finishing the withdrawal puts every sat back under your sole control.",
+          "actions": [
+            "Choose the fee tier that fits your urgency: Priority, Standard, or Flexible.",
+            "Set or adjust your auto-withdraw threshold so future buys leave custody automatically.",
+            "Verify the final transaction and store your hardware wallet securely."
+          ],
+          "gotcha": "Flexible withdrawals can take up to 24 hours to broadcast; plan ahead if you need faster confirmation."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Can I stop using auto-withdraw after I sweep my balance?",
+          "a": "Yes. You can pause auto-withdraw anytime, but leaving it on keeps Swan Safe fees waived and shortens your custodial exposure."
+        },
+        {
+          "q": "What if I need help recovering a Swan Vault?",
+          "a": "Swan Vault includes concierge support and health checks so you can rehearse recovery before you ever need it."
+        },
+        {
+          "q": "Do I still need Swan Guard after I withdraw?",
+          "a": "Swan Guard continues to monitor your account for suspicious logins, but once bitcoin leaves custody those sats live entirely on your hardware wallet."
+        }
+      ]
+    },
+    "privacy_notes": {
+      "data_flows": [
+        "Swan stores the identity documents you submit for KYC along with your onboarding questionnaire responses.",
+        "Bank account details are shared with regulated payment processors so ACH and wire transfers can settle.",
+        "Custody partners maintain segregated accounts that keep your bitcoin separate from Swan’s corporate balance sheet."
+      ],
+      "recovery_drill": [
+        "Enable two-factor authentication and record backup codes before your first deposit.",
+        "Review your cookie and privacy settings at swan.com/privacy-policy if you want to limit optional data sharing."
+      ],
+      "country_caveats": [
+        "ACH funding and Swan Safe require a U.S. checking account; international customers typically use Swan Private via BitGo custody.",
+        "Advertising cookie sharing only happens when you opt in via the consent banner."
+      ]
+    },
+    "privacy": {
+      "section_title": "Privacy & Safety",
+      "data_flows": [
+        "Swan retains your legal name, address, date of birth, and government ID to satisfy AML and KYC obligations.",
+        "Connected bank and card data flows through regulated processors so ACH pulls and wires can clear.",
+        "Custody partners Bakkt, BitGo, and Equity Trust hold bitcoin in individually titled accounts and do not rehypothecate customer assets.",
+        "Cookie preferences control optional analytics and advertising sharing; you can edit them anytime at swan.com/privacy-policy."
+      ],
+      "data_flows_do": "Review the privacy-policy link and disable non-essential cookies if you prefer not to share behavioral data.",
+      "data_flows_dont": "Assume declining cookies removes regulatory obligations; KYC data must be retained regardless of marketing consent.",
+      "recovery": [
+        "Use the emailed one-time passcode to sign in, then add an authenticator app or passkey for stronger protection.",
+        "If you lose 2FA access, submit a recovery request with your ID so Swan support can re-enable your account."
+      ],
+      "recovery_do": "Store authenticator backup codes offline and secure your email with its own two-factor authentication.",
+      "recovery_dont": "Share passcodes or IDs over unsecured channels; always use the official support form.",
+      "withdrawal_policy": [
+        "ACH-funded bitcoin unlocks between 10 and 30 days depending on the purchase size and your account history.",
+        "Wire deposits and inbound bitcoin typically unlock within about 24 hours after the trade completes.",
+        "USD wire withdrawals incur a $15 fee and require a $50,000 minimum per transfer."
+      ],
+      "withdrawal_policy_do": "Check the Available to withdraw banner before scheduling a large withdrawal or auto-withdraw trigger.",
+      "withdrawal_policy_dont": "Expect on-chain withdrawals to leave immediately if the underlying ACH is still in its unlock window.",
+      "region": [
+        "Swan serves all 50 U.S. states and supports select international clients through Swan Private with BitGo custody.",
+        "ACH funding and Swan Safe remain limited to U.S. checking accounts that support ACH transfers."
+      ],
+      "micro_faqs": [
+        {
+          "q": "Does Swan sell my personal data?",
+          "a": "No. Swan states it never sells customer data and only shares with advertising partners when you opt in via the cookie banner."
+        },
+        {
+          "q": "How do I adjust my privacy settings?",
+          "a": "Visit swan.com/privacy-policy to review or change cookie and data sharing choices at any time."
+        },
+        {
+          "q": "Where is my bitcoin held while I wait to withdraw?",
+          "a": "Your bitcoin sits with regulated custodians Bakkt, BitGo, or Equity Trust until you move it to your own wallet."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Cookie banner",
+          "def": "The consent pop-up that lets you opt in or out of optional analytics and advertising data sharing."
+        },
+        {
+          "term": "Segregated custody",
+          "def": "Client assets are held in individually titled accounts, never commingled with Swan’s corporate funds."
+        },
+        {
+          "term": "2FA",
+          "def": "Two-factor authentication such as an authenticator app or passkey used to secure logins and withdrawals."
+        }
+      ],
+      "keywords": [
+        "Swan data retention",
+        "Swan cookie settings",
+        "Swan auto-withdraw security",
+        "Swan custody partners"
+      ]
+    },
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#kyc",
+      "compat": "#features",
+      "migration": "#withdrawal",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-08",
+    "trust": {
+      "cards": [
+        {
+          "id": "custody",
+          "fact": "Segregated accounts with Bakkt, BitGo, and Equity Trust",
+          "link_text": "Custody partners",
+          "link_url": "https://help.swanbitcoin.com/hc/en-us/articles/360050513913-Which-custodians-does-Swan-work-with"
+        },
+        {
+          "id": "activity",
+          "fact": "Realtime uptime and maintenance updates",
+          "link_text": "Status page",
+          "link_url": "https://swanbitcoin.statuspage.io/"
+        },
+        {
+          "id": "security",
+          "fact": "Swan Guard security overview and roadmap",
+          "link_text": "Security update",
+          "link_url": "https://www.swanbitcoin.com/product-updates/building-swan-guard-raising-the-standard-across-the-bitcoin-custody-spectrum/"
+        },
+        {
+          "id": "privacy_withdrawal",
+          "fact": "Data usage and privacy controls",
+          "link_text": "Data practices",
+          "link_url": "https://help.swanbitcoin.com/hc/en-us/articles/32946610794007-What-data-does-Swan-collect-do-you-sell-my-data"
+        }
+      ]
+    }
   },
   {
     "name": "Umbrel",

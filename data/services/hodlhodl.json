@@ -4,18 +4,27 @@
   "type_of_platform": "P2P",
   "faqs": [
     {
-      "q": "What is Hodl Hodl?",
-      "a": "Hodl Hodl is a peer‑to‑peer Bitcoin marketplace using multisig escrow so you trade directly with others without custodial risk."
+      "q": "How do Hodl Hodl trading fees work?",
+      "a": "Hodl Hodl caps its trading fee at 0.5% and splits it equally between the buyer and seller when the contract closes. You see the fee in the contract preview before you lock funds so you can decide whether the price still fits your trade."
     },
     {
-      "q": "Does Hodl Hodl require KYC?",
-      "a": "No. You can trade without KYC, though building reputation improves pricing and limits."
+      "q": "Does Hodl Hodl require KYC verification?",
+      "a": "Hodl Hodl lets you sign up with an email and start trading without submitting identity documents. Higher reputation still helps your pricing, so you can choose optional verification only if counterparties request it."
     },
     {
-      "q": "What payment methods are supported?",
-      "a": "Many methods are supported—bank transfer, Revolut, cash in person and more—depending on the seller and country."
+      "q": "How does Hodl Hodl multisig escrow keep trades secure?",
+      "a": "Each trade locks bitcoin in a unique 2-of-3 multisig address controlled by you, the counterparty, and Hodl Hodl support. If a dispute happens, either you or support can co-sign the release so the contract settles even if the site goes offline."
+    },
+    {
+      "q": "What payment methods can I use on Hodl Hodl?",
+      "a": "Sellers post over 1,000 payment methods ranging from bank transfers and Wise to cash in person, with availability filtered by currency and country. You can sort offers by payment type to match whatever rails you already trust."
+    },
+    {
+      "q": "What are Hodl Hodl trading limits and how do I increase them?",
+      "a": "New accounts start on the first limit tier with smaller trade caps until you complete contracts and earn reviews. As your reputation score climbs you unlock higher daily and lifetime limits, and you can request manual increases for high volume deals."
     }
   ],
+  "supported_network": "Bitcoin (on-chain multisig)",
   "features": {
     "WW": [
       {
@@ -44,8 +53,128 @@
       }
     ]
   },
+  "custody_control": "Non-custodial",
+  "kyc_required": "No",
+  "recovery_method": "Email login with optional 2FA, Trusted Devices, and support mediated account recovery",
+  "open_source": "No",
+  "user_experience": "0.0",
+  "interface": "Desktop only",
+  "app_ratings": {
+    "text": "No app available"
+  },
+  "profile": "Max Keidun",
+  "description": "Hodl Hodl is a peer-to-peer Bitcoin marketplace that removes the custodial step most exchanges require. When you buy or sell on a typical platform, the exchange holds your funds and decides when you can withdraw. That reintroduces the same counterparty risk Bitcoin was designed to eliminate. Hodl Hodl takes a different approach: each trade locks bitcoin in a 2-of-3 multisig escrow that you, the counterparty, and Hodl Hodl support control together. Neither side can move the funds alone, which means trades settle directly between wallets without Hodl Hodl ever holding custody. That shifts trust from a centralized company to verifiable on-chain contracts.\n\nYou can sign up with an email and start trading without submitting identity documents. Hodl Hodl supports over 100 fiat currencies and lets sellers post offers using bank transfers, cash in person, Revolut, PayPal, and other payment rails you already trust. Premiums vary by offer and tend to be higher for new accounts until you complete a few trades and build reputation. The platform uses a limit tier system: as your reputation score grows through successful contracts and reviews, you unlock higher daily and lifetime trading caps.\n\nThe web interface is straightforward. You filter offers by country, currency, and payment method, read the seller's instructions, and open a contract. Both parties chat inside the contract, upload payment proof, and coordinate the release once fiat clears. If something breaks, you can open a dispute and Hodl Hodl support co-signs the multisig based on the evidence. A Testnet environment lets you rehearse the full workflow with valueless coins before risking real sats, so you learn the escrow flow, chat prompts, and dispute process without capital at stake.\n\nHodl Hodl fits users who want non-custodial trading and are comfortable managing their own wallets, confirming payments, and negotiating premiums. You bring your own Bitcoin wallet to every trade, which means no withdrawal limits or custodial freezes. The trade-off is that you handle more of the process yourself compared to a custodial exchange that automates order matching and holds funds. Choose Hodl Hodl when self-custody and privacy matter more than instant card funding or automated recurring buys.",
+  "founded_in": "2018",
+  "website": "https://hodlhodl.com",
+  "links": {
+    "web": "https://hodlhodl.com"
+  },
+  "countries": [
+    "SA",
+    "EU",
+    "AF",
+    "AS",
+    "OC"
+  ],
+  "trust_chips": [
+    {
+      "text": "Multisig escrow contracts",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "multisig-escrow"
+    },
+    {
+      "text": "Testnet practice trading",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "testnet-practice"
+    },
+    {
+      "text": "Custom offer marketplace",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "custom-offers"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "Traders who want a non-custodial Bitcoin marketplace with multisig escrow and no KYC.",
+    "consider_if": "You are comfortable negotiating premiums, confirming fiat payments, and managing your own wallet.",
+    "not_ideal_when": "You need instant card funding, automated recurring buys, or regulated exchange assurances."
+  },
+  "howto": {
+    "title": "Getting started with Hodl Hodl",
+    "steps": [
+      {
+        "id": "setup-install",
+        "title": "1. Create and secure your account",
+        "chips": {
+          "time": "~5 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Visit hodlhodl.com and sign up with your email and a strong password.",
+          "Enable Two-Factor Authentication in Settings and register your trusted devices.",
+          "Review the trading guide so you understand the multisig escrow flow before posting offers."
+        ],
+        "gotcha": "Losing your 2FA device without backup codes can delay support mediated recovery."
+      },
+      {
+        "id": "setup-receive",
+        "title": "2. Find or create an offer",
+        "chips": {
+          "time": "~10-30 min",
+          "cost": "Free",
+          "risk": "Medium"
+        },
+        "actions": [
+          "Filter offers by country, currency, payment method, and price premium.",
+          "Read the seller's reputation, limit tier, and instructions before clicking Trade.",
+          "If no offer fits, create your own listing with your preferred terms and response window."
+        ],
+        "gotcha": "Counterparties respond faster when you stay in chat and confirm payments promptly."
+      },
+      {
+        "id": "setup-pay",
+        "title": "3. Complete the trade",
+        "why": "Settle the exchange while keeping bitcoin locked in escrow until payment clears.",
+        "chips": {
+          "time": "~15-60 min",
+          "cost": "Trading fee: 0.5% split",
+          "risk": "Medium"
+        },
+        "actions": [
+          "As the buyer, send the agreed fiat payment and upload proof inside the contract.",
+          "Wait for the seller to confirm receipt and release bitcoin from escrow to your address.",
+          "Double check the release transaction in your wallet or on a block explorer before closing the chat."
+        ],
+        "gotcha": "If the other party stalls, open a dispute so support can join the contract."
+      }
+    ],
+    "totalTime": null,
+    "micro_faqs": [
+      {
+        "q": "How long do Hodl Hodl contracts usually take?",
+        "a": "Most contracts settle within the payment window set by the seller, often under an hour for instant rails and longer for bank transfers."
+      },
+      {
+        "q": "Can I practice on Hodl Hodl before trading real bitcoin?",
+        "a": "Yes. Switch to the Testnet environment from the top menu and run mock trades with test coins until you are comfortable."
+      },
+      {
+        "q": "What happens if my counterparty disappears during a trade?",
+        "a": "Open a dispute from the contract and Hodl Hodl staff can co-sign the multisig to release funds once evidence is reviewed."
+      }
+    ]
+  },
   "fees": {
-    "intro": "<strong>0.5%</strong>"
+    "intro": "<strong>0.5%</strong>",
+    "tiers": [
+      {
+        "range": "All contracts",
+        "fee": "0.5% (split equally between buyer and seller)"
+      }
+    ]
   },
   "dca": "No",
   "payment_methods": [
@@ -56,23 +185,437 @@
     "SEPA",
     "PayPal"
   ],
-  "custody_control": "Non-custodial",
-  "kyc_required": "No",
-  "open_source": "No",
-  "user_experience": "0.0",
-  "interface": "Desktop only",
-  "app_ratings": {
-    "text": "No app available"
+  "fees_scenarios": [
+    {
+      "id": "fees-deposit",
+      "title": "Fund the escrow",
+      "cost_today": "On-chain mining fee paid by the seller",
+      "what_happens": "The seller sends bitcoin from their wallet into a unique Hodl Hodl 2-of-3 escrow address before the fiat transfer starts. Once the transaction confirms, both parties can move to the payment step.",
+      "how_to_minimize": "Batch escrow funding when you can and use mempool-based fee estimation to pick a low congestion window.",
+      "learn_more": "The escrow address and funding status are visible inside the contract timeline."
+    },
+    {
+      "id": "fees-buy",
+      "title": "Buy bitcoin",
+      "cost_today": "Trading fee: 0.5% split equally between both parties",
+      "what_happens": "Hodl Hodl deducts the fee from the release transaction once both sides confirm payment, so no custodial account ever holds your bitcoin.",
+      "how_to_minimize": "Build reputation and negotiate premiums with trusted traders to keep your all-in price close to spot.",
+      "learn_more": "Premiums vary by offer; review the contract summary before you lock in a trade."
+    },
+    {
+      "id": "fees-withdraw",
+      "title": "Release bitcoin",
+      "cost_today": "Bitcoin network fee chosen during release",
+      "what_happens": "When the seller unlocks the escrow, the release transaction broadcasts from the multisig address to the buyer's wallet. The seller picks the fee level based on current mempool conditions.",
+      "how_to_minimize": "Agree on fee levels before you trade and pick lower-fee windows when time allows.",
+      "learn_more": "You can review the fee slider under Contract -> Transaction fee before confirming the release."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "Who pays the bitcoin network fees on Hodl Hodl?",
+      "a": "The seller covers the on-chain fee to fund escrow and can choose the release fee, while the buyer only pays their own wallet fee if they move coins again."
+    },
+    {
+      "q": "When does Hodl Hodl charge the 0.5% fee?",
+      "a": "The fee is withheld from the escrow release once both parties confirm payment, so no extra invoice or deposit is needed."
+    },
+    {
+      "q": "Can I change the release fee after a contract starts?",
+      "a": "Yes. The seller can adjust the release fee inside the contract before broadcasting, and you both see the change in the chat history."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-multisig-escrow",
+      "term": "Multisig escrow",
+      "definition": "A 2-of-3 bitcoin address controlled by buyer, seller, and Hodl Hodl support that secures each trade."
+    },
+    {
+      "id": "term-trusted-devices",
+      "term": "Trusted Devices",
+      "definition": "A security setting that lets you approve browsers before they can sign in to your account."
+    },
+    {
+      "id": "term-limit-tier",
+      "term": "Limit tier",
+      "definition": "Hodl Hodl's reputation-based level that sets maximum contract sizes and open trades."
+    }
+  ],
+  "payment_methods_limits": {
+    "heading": "Payment methods & limits",
+    "methods": [
+      {
+        "id": "bank-transfer",
+        "name": "Bank transfer",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "Negotiated per offer",
+          "fee_link": "fees-buy",
+          "speed": "Same day to several days",
+          "withdraw": "Release after seller confirms receipt"
+        },
+        "best_for": "Larger trades when both parties can wait for bank settlement.",
+        "limits": {
+          "min_per_tx": "Set by the offer",
+          "max_per_tx": "Scales with your limit level",
+          "max_per_day": "Scales with your limit level",
+          "max_per_week": "Scales with your limit level",
+          "withdraw_eligibility": "Release triggered once fiat clears"
+        }
+      },
+      {
+        "id": "cash",
+        "name": "Cash in person",
+        "available": true,
+        "icon": "cash",
+        "summary": {
+          "fee": "Negotiated per offer",
+          "fee_link": "fees-buy",
+          "speed": "Immediate",
+          "withdraw": "Release on confirmation at the meeting"
+        },
+        "best_for": "Local trades when you want face-to-face settlement without banking rails.",
+        "limits": {}
+      },
+      {
+        "id": "online-wallet",
+        "name": "Online wallets (Revolut, Wise, PayPal)",
+        "available": true,
+        "icon": "card",
+        "summary": {
+          "fee": "Processor fees may apply",
+          "fee_link": "fees-buy",
+          "speed": "Minutes to hours",
+          "withdraw": "Release after the seller verifies the transfer"
+        },
+        "best_for": "Cross-border trades when both parties already use the same fintech apps.",
+        "limits": {
+          "min_per_tx": "Set by the offer",
+          "max_per_tx": "Follows platform limits and your Hodl Hodl tier",
+          "max_per_day": "Follows platform limits and your Hodl Hodl tier",
+          "max_per_week": "Follows platform limits and your Hodl Hodl tier",
+          "withdraw_eligibility": "Release after the online wallet shows the funds settled"
+        }
+      }
+    ]
   },
-  "profile": "Max Keidun",
-  "description": "Hodl Hodl is a peer-to-peer (p2p) Bitcoin trading and lending platform based in London that stands out by being fully non-custodial and privacy-focused. Instead of holding funds, it uses multisig escrow contracts, so users retain control of their Bitcoin until both parties agree to release it, shifting trust from the exchange to individual traders, as trades happen directly between user's Bitcoin wallets rather than a centralized entity.\\n\\nWhat separates Hodl Hodl from custodial platforms is its ability to let people trade without KYC (Know Your Customer) or central control, supporting over 100 currencies and various payment methods including cash, bank transfers, even PayPal. You do pay a higher premium on Bitcoin set by the seller, especially when you're a beginner and have to build a reputation on the platform.\\n\\nThe web-based interface is beginner-friendly, praised by users for easy signup without mandatory ID checks, though users note clunky navigation and scam risks from unresponsive traders. To unlock significant transaction amounts, users must build trust through reviews and completed trades, as higher limits depend on a strong reputation score.\\n\\nHodl Hodl's vision is to foster a decentralized Bitcoin economy, ideal for beginners who want self-custody and anonymity, but users should be careful, stay informed, and follow best practices during trades.",
-  "founded_in": "2018",
-  "website": "https://hodlhodl.com",
-  "countries": [
-    "SA",
-    "EU",
-    "AF",
-    "AS",
-    "OC"
-  ]
+  "compat_heading": "Hodl Hodl features & limits",
+  "compat_tiles": [
+    {
+      "id": "multisig-escrow",
+      "title": "Multisig escrow contracts",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 2-of-3 control</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Escrow visible on-chain</span>",
+      "status": "works"
+    },
+    {
+      "id": "testnet-practice",
+      "title": "Testnet practice trading",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Rehearse every step</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> No real sats at risk</span>",
+      "status": "works"
+    },
+    {
+      "id": "custom-offers",
+      "title": "Custom offer marketplace",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Set your own premiums</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Choose payment rails</span>",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "multisig-escrow",
+      "why": "Each Hodl Hodl trade locks bitcoin in a 2-of-3 multisig address controlled by you, the counterparty, and support, so neither party can move funds alone. You can verify the escrow address on-chain before sending fiat, keeping coins outside company custody while disputes still have a resolution path.",
+      "try": [
+        "Open the contract and copy the escrow address before you send fiat.",
+        "Check the address on a block explorer to confirm the funding transaction.",
+        "Share screenshots of the payment proof in chat so support can review if needed.",
+        "Release the coins only after you see the fiat payment cleared."
+      ],
+      "gotcha": "Escrow funding needs at least one on-chain confirmation before the buyer should send fiat."
+    },
+    {
+      "id": "testnet-practice",
+      "why": "Hodl Hodl's Testnet environment lets you rehearse trades with valueless coins before risking real sats, so you learn the escrow flow, chat prompts, and dispute process without capital at stake.",
+      "try": [
+        "Click Testnet in the header and open the practice marketplace.",
+        "Generate test bitcoin from the faucet link provided.",
+        "Run through a sample contract with a friend or trusted trader.",
+        "Review the chat and escrow steps so you know where evidence lives."
+      ],
+      "gotcha": "Remember that testnet coins have no value, so switch back to Mainnet when you are ready for real trades."
+    },
+    {
+      "id": "custom-offers",
+      "why": "Creating your own Hodl Hodl offer lets you set currency, payment method, premium, and working hours so buyers meet your terms instead of negotiating someone else's setup.",
+      "try": [
+        "Choose Create offer and select buy or sell.",
+        "Set the currency, minimum and maximum trade size, and allowed payment windows.",
+        "Add clear instructions so the other party knows how to pay.",
+        "Enable working hours or temporarily disable the offer when you are offline."
+      ],
+      "gotcha": "Offers auto-expire if you leave them inactive past the working hours you set."
+    }
+  ],
+  "migration": [
+    {
+      "id": "restore-same-wallet",
+      "title": "Restore Hodl Hodl on a new device",
+      "choose": "Use this when you get a new computer or browser and need to log back into your trading account.",
+      "time": "~5 min",
+      "cost": "Free",
+      "risk": "Low",
+      "steps": [
+        "Sign in at hodlhodl.com with your email and password.",
+        "Approve the login through Trusted Devices by confirming the email link.",
+        "Re-enable Two-Factor Authentication and verify that your active contracts appear correctly."
+      ],
+      "tips": "Keep backup codes handy so you can finish 2FA even if your authenticator app is unavailable.",
+      "gotcha": "If you remove the old device before adding the new one, support must reset access manually which can delay active trades."
+    },
+    {
+      "id": "move-to-onchain",
+      "title": "Hodl Hodl -> Long-term storage",
+      "choose": "Choose this when you want to move released bitcoin into cold storage after the contract settles.",
+      "time": "~10-30 min",
+      "cost": "Mining fee",
+      "risk": "Low",
+      "steps": [
+        "Wait for the escrow release to reach the number of confirmations you consider safe.",
+        "Open your cold storage wallet and generate a fresh receive address.",
+        "Send the received sats from your hot wallet to cold storage with an appropriate miner fee.",
+        "Label the transaction in both wallets so you can audit it later."
+      ],
+      "tips": "Plan for higher network fees during congestion so the sweep to cold storage confirms on your timeline.",
+      "gotcha": "Sending large amounts without a test transaction can be stressful, so consider a small rehearsal before moving your full balance."
+    },
+    {
+      "id": "switch-to-another-wallet",
+      "title": "Hodl Hodl -> Another hot wallet",
+      "choose": "Pick this when you want future trades to pay out to a different mobile or desktop wallet.",
+      "time": "~5-15 min",
+      "cost": "Mining fee",
+      "risk": "Medium",
+      "steps": [
+        "Install and secure the new wallet, then write down its seed phrase.",
+        "Generate a fresh receive address and update the default payout address in your Hodl Hodl profile.",
+        "Test the new wallet with a small release from Testnet or a micro trade.",
+        "Switch remaining contracts to the new address once you are confident everything works."
+      ],
+      "tips": "Keep the old wallet accessible until every open contract has settled to the new address.",
+      "gotcha": "Forgetting to update active contracts leaves payouts going to the previous wallet, so review each trade before the release."
+    }
+  ],
+  "self_custody": {
+    "heading": "Self-custody: withdraw safely",
+    "tiles": [
+      {
+        "id": "pick-wallet",
+        "title": "1. Pick a cold storage wallet",
+        "chips": {
+          "time": "~5 min",
+          "cost": "$0–$200",
+          "risk": "Low"
+        },
+        "why": "When you buy through Hodl Hodl, the bitcoin releases directly to an address you control.",
+        "actions": [
+          "Choose a <a href=\"/store-it-safely.html\">cold storage wallet</a> that fits your budget and skill level.",
+          "Buy and initialize your hardware wallet or install cold storage software.",
+          "Generate a new seed phrase and write it down on paper.",
+          "Store your seed phrase in a fireproof safe or safety deposit box."
+        ],
+        "gotcha": "Hardware wallets cost money but provide the highest security. Never store your seed phrase digitally."
+      },
+      {
+        "id": "make-receive-code",
+        "title": "2. Create a fresh receive address",
+        "chips": {
+          "time": "~2 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "why": "Each Hodl Hodl trade should pay out to a new address so counterparties cannot see your total holdings or link your trades together.",
+        "actions": [
+          "Connect your hardware wallet to a companion app or computer.",
+          "Generate a new receive address in your wallet software.",
+          "Copy the Bitcoin address (starts with bc1, 1, or 3).",
+          "Paste this address into your Hodl Hodl contract as the payout destination."
+        ],
+        "gotcha": "Never reuse Bitcoin addresses. Hardware wallets generate fresh addresses automatically for privacy."
+      },
+      {
+        "id": "test-small",
+        "title": "3. Test with a small trade",
+        "chips": {
+          "time": "~30-60 min",
+          "cost": "Trading fee + mining",
+          "risk": "Low"
+        },
+        "why": "Testing the full Hodl Hodl workflow with a small amount lets you verify escrow release, confirm your cold wallet receives correctly, and rehearse the payment proof steps before larger trades.",
+        "actions": [
+          "Find a small offer on Hodl Hodl (under $50 equivalent).",
+          "Enter your cold storage address as the payout destination.",
+          "Complete the trade and watch the release transaction confirm.",
+          "Verify in your hardware wallet that the bitcoin arrived at the correct address."
+        ],
+        "gotcha": "Premiums on small trades tend to be higher, but the cost is worth the confidence you gain."
+      },
+      {
+        "id": "move-rest",
+        "title": "4. Scale to larger purchases",
+        "chips": {
+          "time": "~30-90 min per trade",
+          "cost": "Trading fee + mining",
+          "risk": "Low"
+        },
+        "why": "Building reputation on Hodl Hodl through successful trades unlocks higher limits and access to better premiums.",
+        "actions": [
+          "Generate a fresh cold storage address for each new purchase.",
+          "Filter offers by reputation and premium to find trusted sellers.",
+          "Complete trades the same way you practiced, uploading payment proof promptly.",
+          "Leave feedback after each contract to grow your own reputation score."
+        ],
+        "gotcha": "Your limit tier controls maximum trade size, so expect to complete multiple smaller trades before unlocking larger amounts."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Why should I use cold storage for Hodl Hodl purchases?",
+        "a": "Hodl Hodl releases bitcoin directly to your address, so you never introduce custodial risk if you provide a cold storage destination from the start."
+      },
+      {
+        "q": "How do I verify my trade paid out correctly?",
+        "a": "Check your hardware wallet's transaction history or use a block explorer like mempool.space. The release transaction confirms within 10 minutes to a few hours depending on the fee."
+      },
+      {
+        "q": "What's the safest way to store my seed phrase?",
+        "a": "Write it on paper or metal and store copies in separate secure locations like a fireproof safe and safety deposit box. Never store it digitally."
+      }
+    ]
+  },
+  "privacy_notes": {
+    "data_flows": [
+      "Hodl Hodl stores your email, IP address, and optional verification documents for compliance requests.",
+      "Contract chat logs, attached payment proofs, and dispute notes stay on their servers so staff can arbitrate issues.",
+      "Every multisig escrow address lives on the public Bitcoin blockchain, so observers can see funding and release transactions."
+    ],
+    "recovery_drill": [
+      "Enable Two-Factor Authentication and save backup codes after you register.",
+      "Record the Trusted Device secret so you can approve new browsers quickly.",
+      "If locked out, email support from your registered address with contract IDs so they can reset access."
+    ],
+    "country_caveats": [
+      "Some payment methods only appear in specific countries or currencies; filter offers accordingly.",
+      "Local regulations may block certain rails or require you to confirm banking details with counterparties.",
+      "Hodl Hodl avoids holding fiat, so you must comply with your jurisdiction's tax reporting on peer-to-peer trades."
+    ]
+  },
+  "privacy": {
+    "section_title": "Privacy & Safety",
+    "data_flows": [
+      "Hodl Hodl keeps account data such as email, IP logs, and optional verification files on its servers.",
+      "Contract chats, payment attachments, and dispute evidence remain in their database to support arbitration.",
+      "Escrow transactions happen on-chain, so funding and release details are visible on the Bitcoin blockchain."
+    ],
+    "data_flows_do": "Use unique email aliases and enable 2FA to reduce the risk of account takeover.",
+    "data_flows_dont": "Share sensitive payment instructions in public chat rooms; keep them inside the contract thread only.",
+    "recovery": [
+      "Log in with your email and password, then approve the device through Trusted Devices.",
+      "If 2FA is enabled and you lost access, submit your backup code or contact support with contract evidence.",
+      "Once restored, review active contracts to confirm nothing changed during the lockout."
+    ],
+    "recovery_do": "Store backup codes offline and keep your recovery email secured with its own 2FA.",
+    "recovery_dont": "Delay contacting support if you suspect a compromise; disputes need timely evidence.",
+    "withdrawal_policy": [
+      "Escrow releases broadcast straight to the buyer's wallet once both parties confirm payment.",
+      "Release fees are selected by the seller inside the contract before broadcast.",
+      "There is no custodial withdrawal queue, so funds move as soon as the release transaction enters the mempool."
+    ],
+    "withdrawal_policy_do": "Agree on expected confirmation targets with your counterparty before the trade starts.",
+    "withdrawal_policy_dont": "Send fiat before the escrow funding transaction has at least one confirmation.",
+    "region": [
+      "Hodl Hodl operates globally, but certain fiat rails or currencies depend on local traders.",
+      "U.S. residents can trade but should review their state regulations on peer-to-peer bitcoin sales.",
+      "Some countries may require additional verification for high volume trades; check the limit tier policy."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Where can I delete my Hodl Hodl account data?",
+        "a": "Request deletion from support@hodlhodl.com and they will wipe your profile once all contracts close."
+      },
+      {
+        "q": "Does Hodl Hodl share my information with counterparties?",
+        "a": "You only share the details you put in the contract chat; the platform does not expose your email by default."
+      },
+      {
+        "q": "Can Hodl Hodl recover my bitcoin if I lose my wallet?",
+        "a": "No. You hold the receiving wallet, so keep backups because Hodl Hodl cannot reissue coins after release."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "Trusted Devices",
+        "def": "A security setting that lets you approve browsers before they can sign in to your account."
+      },
+      {
+        "term": "Escrow release",
+        "def": "The on-chain transaction that moves bitcoin from the 2-of-3 address to the buyer once payment clears."
+      },
+      {
+        "term": "Limit tier",
+        "def": "Your reputation-based level that sets maximum contract sizes and open trades."
+      }
+    ],
+    "keywords": [
+      "Hodl Hodl multisig escrow",
+      "Hodl Hodl no KYC",
+      "Hodl Hodl trading limits",
+      "Hodl Hodl testnet",
+      "Hodl Hodl reputation score",
+      "Hodl Hodl payment methods"
+    ]
+  },
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#methods",
+    "fees": "#fees",
+    "privacy": "#kyc",
+    "compat": "#features",
+    "migration": "#withdrawal",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-09",
+  "trust": {
+    "cards": [
+      {
+        "id": "security",
+        "fact": "Explains 2-of-3 multisig escrow and dispute process",
+        "link_text": "Security overview",
+        "link_url": "https://hodlhodl.com/faq/why-is-trading-on-hodl-hodl-secure"
+      },
+      {
+        "id": "privacy",
+        "fact": "Outlines data handling and retention policies",
+        "link_text": "Privacy policy",
+        "link_url": "https://hodlhodl.com/legal/privacy-policy"
+      },
+      {
+        "id": "terms",
+        "fact": "Covers marketplace rules and dispute resolution",
+        "link_text": "Terms of Service",
+        "link_url": "https://hodlhodl.com/legal/terms-and-conditions"
+      },
+      {
+        "id": "activity",
+        "fact": "Company and platform details",
+        "link_text": "About",
+        "link_url": "https://hodlhodl.com/about"
+      }
+    ]
+  }
 }

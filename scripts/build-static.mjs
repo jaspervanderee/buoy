@@ -1070,8 +1070,13 @@ ${cards.join("\n")}
           const bestForHtml = method.best_for ? `
         <p class="payment-card__best-for"><strong>Best for:</strong> ${escapeHtml(method.best_for)}</p>` : "";
           
-          // Build limits table
-          const limitsTable = `
+          // Only render limits table if at least one meaningful limit exists
+          const hasLimits = limits.min_per_tx || limits.max_per_tx || limits.max_per_day || 
+                            limits.max_per_week || limits.withdraw_eligibility;
+          
+          let limitsDetailsHtml = "";
+          if (hasLimits) {
+            const limitsTable = `
         <table class="limits-table">
           <tbody>
             ${limits.min_per_tx ? `<tr><th>Min per transaction</th><td>${escapeHtml(limits.min_per_tx)}</td></tr>` : ""}
@@ -1081,6 +1086,15 @@ ${cards.join("\n")}
             ${limits.withdraw_eligibility ? `<tr><th>Withdrawal eligibility</th><td>${escapeHtml(limits.withdraw_eligibility)}</td></tr>` : ""}
           </tbody>
         </table>`;
+            
+            limitsDetailsHtml = `
+        <details class="payment-details">
+          <summary>View limits & details</summary>
+          <div>
+            ${limitsTable}
+          </div>
+        </details>`;
+          }
           
           return `
       <div class="payment-card">
@@ -1088,13 +1102,7 @@ ${cards.join("\n")}
           <h3 class="payment-card__title">${escapeHtml(method.name)}</h3>
           <span class="svc-chip svc-chip--works">Available</span>
         </div>
-        ${summaryStats}${bestForHtml}
-        <details class="payment-details">
-          <summary>View limits & details</summary>
-          <div>
-            ${limitsTable}
-          </div>
-        </details>
+        ${summaryStats}${bestForHtml}${limitsDetailsHtml}
       </div>`;
         }).join("");
         
@@ -1469,42 +1477,56 @@ ${tileItems}
         if (!trust || !Array.isArray(trust.cards) || trust.cards.length === 0) return "";
         
         // Predefined card type mapping (icon paths and labels)
+        // CRITICAL: When adding trust cards to services, use ONLY these IDs
+        // This registry ensures consistent icons and labels across all service pages
         const cardTypeMap = {
-          update: {
+          "update": {
             label: "Last update",
             icon: "/images/update.svg"
           },
-          publisher: {
+          "publisher": {
             label: "Publisher",
             icon: "/images/publisher.svg"
           },
-          source: {
+          "source": {
             label: "Open source",
             icon: "/images/opensource.svg"
           },
-          activity: {
+          "activity": {
             label: "Development activity",
             icon: "/images/activity.svg"
           },
-          audit: {
+          "audit": {
             label: "Security audit",
             icon: "/images/audit.svg"
           },
-          custody: {
+          "custody": {
             label: "Custody & safeguarding",
             icon: "/images/insurance.svg"
           },
-          licenses: {
+          "licenses": {
             label: "Licenses & registrations",
             icon: "/images/license.svg"
           },
-          security: {
+          "security": {
             label: "Security & compliance",
             icon: "/images/security.svg"
           },
-          privacy_withdrawal: {
-            label: "Privacy & withdrawal policy",
+          "privacy": {
+            label: "Privacy policy",
             icon: "/images/privacy.svg"
+          },
+          "terms": {
+            label: "Terms & conditions",
+            icon: "/images/license.svg"
+          },
+          "financials": {
+            label: "Financials",
+            icon: "/images/bitcoin-backed-loan.svg"
+          },
+          "proof-of-reserves": {
+            label: "Proof of reserves",
+            icon: "/images/proof-of-reserve.svg"
           }
         };
         
