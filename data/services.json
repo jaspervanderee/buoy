@@ -671,16 +671,24 @@
     "type_of_platform": "Exchange",
     "faqs": [
       {
-        "q": "What is Bitonic?",
-        "a": "Bitonic is the Netherlands' oldest Bitcoin‑only broker, offering fast iDEAL and SEPA buys with automatic delivery to your wallet."
+        "q": "How do Bitonic's Auto Invest fees work?",
+        "a": "Bitonic waives the service charge on the first €250 you auto-invest each calendar month, then charges 0.89% on additional volume plus a €0.15 SEPA processing fee and the prevailing network fee."
       },
       {
-        "q": "Does Bitonic support recurring buys?",
-        "a": "Yes. Auto Invest allows recurring buys; fees may apply beyond the free monthly tier."
+        "q": "Does Bitonic send bitcoin directly to my wallet after each purchase?",
+        "a": "Yes. You can link a personal bitcoin address so every buy settles to your wallet or use bundled purchases to queue a larger payout that reduces miner fees."
       },
       {
-        "q": "Is Bitonic custodial?",
-        "a": "Bitonic is custodial for purchases, but encourages self‑custody and supports automatic withdrawals to your own wallet."
+        "q": "What payment methods can I use to buy bitcoin on Bitonic?",
+        "a": "Bitonic supports iDEAL and manual SEPA deposits for free, Bancontact and Easy SEPA at 0.5%, and bitcoin deposits without any surcharge."
+      },
+      {
+        "q": "How fast does Bitonic pay out when I sell bitcoin?",
+        "a": "Sales are reserved immediately and Bitonic submits the euro payout no later than the next business day, with an optional urgent transfer that costs 0.25% (minimum €7.50) for faster settlement."
+      },
+      {
+        "q": "What verification does Bitonic require to open an account?",
+        "a": "You choose a personal or business flow, accept the User Agreement, and provide identity documents, address details, and IBAN information so Bitonic can meet Dutch compliance rules."
       }
     ],
     "features": {
@@ -744,9 +752,509 @@
     "founded_in": "2012",
     "description": "Bitonic is the oldest and largest Bitcoin-only broker in the Netherlands, founded in 2012, with a reputation for reliability and simplicity. They offer fast, automatic Bitcoin delivery via iDEAL, SEPA, and Bancontact, and their fully automated system ensures quick transfers.\\n\\nIt stands out with its direct purchase model, selling Bitcoin from its own stock for instant delivery and transparent pricing, avoiding third-party intermediaries. Bitonic offers buying, selling, and saving Bitcoin via iDEAL, SEPA, or Bancontact and provide an Auto Invest savings feature, allowing users to easily set up recurring Bitcoin purchases, (though only up to €250 | 271,023 sats) and a business solution for Bitcoin payments.\\n\\nIts app, rated 4.5 stars on iOS, is praised for its clean, no-nonsense design, though some users report slow verification. The platform uses multi-signature cold storage for security and encourages self-custody with personal wallets.\\n\\nTheir vision focuses on making Bitcoin accessible and easy for Dutch and European users, backed by education through Bitonic Academy and news via Bitcoin.nl. Overall, Bitonic is ideal for beginners who want a reliable, no-altcoin platform in Europe, with fast transactions, clear pricing and a strong local support.",
     "website": "https://bitonic.nl",
+    "supported_network": "Bitcoin (on-chain)",
+    "recovery_method": "Email login with password resets via the account portal and support-assisted review when needed.",
+    "links": {
+      "ios": "https://apps.apple.com/nl/app/id1503179166",
+      "android": "https://play.google.com/store/apps/details?id=nl.bitonic.androidApp"
+    },
     "countries": [
       "EU"
-    ]
+    ],
+    "trust_chips": [
+      {
+        "text": "0% fee allowance",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "zero-fee-allowance"
+      },
+      {
+        "text": "Bundled purchases",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "bundled-purchases"
+      },
+      {
+        "text": "Auto-withdraw",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "auto-withdraw"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "Dutch and EU savers who want bitcoin-only buys with iDEAL and a fee-free monthly allowance.",
+      "consider_if": "You want bundled payouts that batch miner fees before moving sats to cold storage.",
+      "not_ideal_when": "You need Lightning withdrawals or non-EU payment rails."
+    },
+    "howto": {
+      "title": "Getting started with Bitonic",
+      "steps": [
+        {
+          "id": "setup-install",
+          "title": "1. Create and verify your account",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Visit Bitonic's Create account page and choose the personal or business flow.",
+            "Accept the User Agreement and appendices, then submit your email and password.",
+            "Upload the requested identity documents and confirm your IBAN so compliance can approve you."
+          ],
+          "gotcha": "Verification can require additional documents, so keep your ID and proof of address nearby."
+        },
+        {
+          "id": "setup-receive",
+          "title": "2. Link your bank and schedule funding",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Free-€0.15",
+            "risk": "Low"
+          },
+          "actions": [
+            "Add your EU bank account in the Bitonic app or dashboard.",
+            "For Auto Invest, set up a recurring SEPA transfer from your bank to Bitonic's IBAN.",
+            "If you prefer manual buys, prepare an iDEAL, Bancontact, or SEPA deposit to match your plan."
+          ],
+          "gotcha": "Manual SEPA deposits take about one business day to clear before you can withdraw the resulting bitcoin."
+        },
+        {
+          "id": "setup-pay",
+          "title": "3. Buy and move sats to your wallet",
+          "why": "Your goal is to convert euros to bitcoin and reduce time in custody.",
+          "chips": {
+            "time": "~5-30 min",
+            "cost": "Service fee + dynamic miner fee",
+            "risk": "Low"
+          },
+          "actions": [
+            "Choose Buy Bitcoin, enter your amount, or confirm your Auto Invest plan.",
+            "Select 'My own wallet' to paste a fresh address or keep funds in Bitonic temporarily.",
+            "Watch for the on-chain transaction and log it in your wallet once it confirms."
+          ],
+          "gotcha": "Dynamic miner fees apply to every withdrawal, and urgent euro payouts cost 0.25% (minimum €7.50)."
+        }
+      ],
+      "totalTime": null,
+      "micro_faqs": [
+        {
+          "q": "How long does Bitonic verification usually take?",
+          "a": "Most accounts are approved within minutes through the app, but manual review can extend the process if compliance needs extra documents."
+        },
+        {
+          "q": "When will my Auto Invest transfer convert to bitcoin?",
+          "a": "Bitonic converts your standing SEPA payment as soon as the transfer arrives, then emails a receipt detailing the rate, fee allowance, and miner fee."
+        },
+        {
+          "q": "Can I update my withdrawal address after scheduling a purchase?",
+          "a": "Yes. Edit the destination under Auto Invest or on the order form before the payout triggers so Bitonic pushes coins to the correct wallet."
+        }
+      ]
+    },
+    "fees_scenarios": [
+      {
+        "id": "fees-deposit",
+        "title": "Deposit cash",
+        "cost_today": "iDEAL: free<br>Manual SEPA: free<br>Easy SEPA: 0.5%<br>Bancontact: 0.5%<br>Bitcoin: free",
+        "what_happens": "iDEAL and Bancontact settle instantly, manual SEPA arrives within about one business day, and bitcoin deposits post as soon as the transaction confirms.",
+        "how_to_minimize": "Use iDEAL or manual SEPA for larger sums to avoid the 0.5% surcharge.",
+        "learn_more": "All deposit costs appear in the buy widget before you confirm."
+      },
+      {
+        "id": "fees-buy",
+        "title": "Buy bitcoin",
+        "cost_today": "1.0% service charge (Auto Invest: 0% up to €250/month, then 0.89%)",
+        "what_happens": "Bitonic sells from its own inventory at an all-in price that includes the service charge and any payment surcharge.",
+        "how_to_minimize": "Use Auto Invest to take advantage of the €250 monthly fee holiday or scale into OTC desk rates for larger orders.",
+        "learn_more": "OTC quotes start at 0.9% for €200,000 orders and drop further at higher tiers."
+      },
+      {
+        "id": "fees-withdraw",
+        "title": "Withdraw bitcoin or euros",
+        "cost_today": "Euro payout: free (urgent: 0.25%, minimum €7.50)<br>Bitcoin withdrawal: dynamic miner fee (targeting 3rd block)",
+        "what_happens": "Standard euro payouts go out the next business day. Bitcoin withdrawals include a dynamic miner fee with free RBF bumps if confirmation lags.",
+        "how_to_minimize": "Skip urgent payouts unless timing is critical and use bundled purchases to batch bitcoin withdrawals.",
+        "learn_more": "Urgent payouts are available up to €10,000; contact support for larger express transfers."
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "Does Bitonic charge for iDEAL deposits?",
+        "a": "No. iDEAL deposits are free and post instantly so you only pay the trading service charge."
+      },
+      {
+        "q": "How does Bitonic handle bitcoin withdrawal fees?",
+        "a": "Bitonic sets a dynamic miner fee that targets confirmation within three blocks and bumps it with Replace-By-Fee if confirmation lags."
+      },
+      {
+        "q": "When should I request an urgent euro payout?",
+        "a": "Use the urgent payout when you need funds within the hour; it costs 0.25% with a €7.50 minimum and is available up to €10,000."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "term-bundled-purchases",
+        "term": "Bundled purchases",
+        "definition": "An Auto Invest feature that accumulates fills until a satoshi threshold is reached, then sends one on-chain withdrawal to your chosen address."
+      },
+      {
+        "id": "term-auto-invest-allowance",
+        "term": "Auto Invest allowance",
+        "definition": "The €250/month window where Bitonic waives its Auto Invest service fee before reverting to the standard 0.89%."
+      },
+      {
+        "id": "term-urgent-payout",
+        "term": "Urgent payout",
+        "definition": "A manual euro transfer Bitonic offers for a 0.25% fee (minimum €7.50) to accelerate bank settlement."
+      }
+    ],
+    "payment_methods_limits": {
+      "heading": "Payment methods & limits",
+      "methods": [
+        {
+          "id": "ideal-bancontact",
+          "name": "iDEAL / Bancontact",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "iDEAL: free / Bancontact: 0.5%",
+            "fee_link": "fees-deposit",
+            "speed": "Instant",
+            "withdraw": "N/A"
+          },
+          "best_for": "Instant euro funding for Dutch and Belgian customers",
+          "limits": {
+            "min_per_tx": "Shown after verification",
+            "max_per_tx": "Shown after verification",
+            "max_per_day": "Shown after verification",
+            "max_per_week": "Shown after verification",
+            "withdraw_eligibility": "Available once your account passes compliance"
+          }
+        },
+        {
+          "id": "sepa",
+          "name": "SEPA transfer (manual or Easy)",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "Manual: free / Easy: 0.5%",
+            "fee_link": "fees-deposit",
+            "speed": "~1 business day",
+            "withdraw": "N/A"
+          },
+          "best_for": "Larger deposits that can wait a day to avoid surcharge",
+          "limits": {
+            "min_per_tx": "Shown after verification",
+            "max_per_tx": "Shown after verification",
+            "max_per_day": "Shown after verification",
+            "max_per_week": "Shown after verification",
+            "withdraw_eligibility": "Available once the transfer settles"
+          }
+        },
+        {
+          "id": "sepa-standing",
+          "name": "SEPA standing order (Auto Invest)",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "€0.15 processing + miner fee",
+            "fee_link": "fees-buy",
+            "speed": "~1 business day",
+            "withdraw": "Bundled payout"
+          },
+          "best_for": "Hands-off DCA with 0% fee on first €250/month",
+          "limits": {
+            "min_per_tx": "€5 recommended minimum",
+            "max_per_tx": "Set by your bank",
+            "max_per_day": "Set by your bank",
+            "max_per_week": "Set by your bank",
+            "withdraw_eligibility": "Triggers when bundle threshold hits"
+          }
+        },
+        {
+          "id": "bitcoin",
+          "name": "Bitcoin deposit",
+          "available": true,
+          "icon": "bitcoin",
+          "summary": {
+            "fee": "Free",
+            "fee_link": "fees-deposit",
+            "speed": "1+ confirmations",
+            "withdraw": "N/A"
+          },
+          "best_for": "Funding from another wallet or exchange",
+          "limits": {
+            "min_per_tx": "No minimum",
+            "max_per_tx": "No maximum",
+            "max_per_day": "No limit",
+            "max_per_week": "No limit",
+            "withdraw_eligibility": "Available after confirmation"
+          }
+        }
+      ]
+    },
+    "compat_heading": "Bitonic features & limits",
+    "compat_tiles": [
+      {
+        "id": "zero-fee-allowance",
+        "title": "0% fee allowance",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> First €250/month free</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> 0.89% beyond allowance</span>",
+        "status": "works-caveat"
+      },
+      {
+        "id": "bundled-purchases",
+        "title": "Bundled purchases",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Batch payouts automatically</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Fewer UTXOs & lower fees</span>",
+        "status": "works"
+      },
+      {
+        "id": "dca",
+        "title": "Dollar-cost averaging (DCA)",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Daily, weekly, or monthly</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Email receipts for every fill</span>",
+        "status": "works"
+      },
+      {
+        "id": "auto-withdraw",
+        "title": "Auto-withdraw",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Send straight to your wallet</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Keep Bitonic storage as a backup</span>",
+        "status": "works"
+      }
+    ],
+    "compat_explainers": [
+      {
+        "id": "zero-fee-allowance",
+        "why": "Bitonic waives service fees on the first €250 you auto-invest each month, so consistent DCA stays fee-free aside from miner costs.",
+        "try": [
+          "In your bank app, schedule a recurring SEPA transfer to your Bitonic Auto Invest IBAN.",
+          "Choose the investment plan amount in the Bitonic app and confirm the start date.",
+          "Monitor the first run to see the €0.00 service charge applied until you hit €250."
+        ],
+        "gotcha": "SEPA processing still costs €0.15 per transfer and network fees apply when Bitonic sends coins on-chain."
+      },
+      {
+        "id": "bundled-purchases",
+        "why": "Bundled purchases queue fills until your threshold hits, then broadcast one payout to cut miner fees and avoid dust.",
+        "try": [
+          "Open Auto Invest settings and enable bundled purchases.",
+          "Set the satoshi threshold that fits your withdrawal cadence.",
+          "Add the cold storage address where the batched payout should land."
+        ],
+        "gotcha": "Your bitcoin stays custodial until the bundle triggers, so pick a threshold that balances fee savings with exposure time."
+      },
+      {
+        "id": "dca",
+        "why": "Recurring buys convert SEPA arrivals to bitcoin automatically so you build a position without timing the market.",
+        "try": [
+          "Tap Auto Invest and choose Daily, Weekly, or Monthly frequency.",
+          "Enter the euro amount that fits your budget and confirm the plan.",
+          "Review email confirmations to track fills and remaining allowance."
+        ],
+        "gotcha": "Amounts above the free allowance incur the 0.89% service charge, so adjust your plan if you notice diminishing returns."
+      },
+      {
+        "id": "auto-withdraw",
+        "why": "Point every purchase to your wallet so coins settle on-chain immediately after payment clears.",
+        "try": [
+          "In Auto Invest or during a buy, choose \"My own wallet\" as the destination.",
+          "Paste a fresh address from your hardware or mobile wallet.",
+          "Confirm the payout and watch for the transaction once Bitonic processes your payment."
+        ],
+        "gotcha": "On-chain withdrawals rely on network congestion, so expect dynamic miner fees even when Bitonic covers RBF bumps."
+      }
+    ],
+    "self_custody": {
+      "heading": "Self-custody: withdraw safely",
+      "tiles": [
+        {
+          "id": "pick-wallet",
+          "title": "1. Choose your cold storage",
+          "chips": {
+            "time": "~5 min",
+            "cost": "€0-€200",
+            "risk": "Low"
+          },
+          "why": "Cold storage keeps bitcoin offline so exchange failures cannot touch it.",
+          "actions": [
+            "Pick a <a href=\"/store-it-safely.html\">hardware or multisig wallet</a> that matches your experience.",
+            "Initialize it offline and record the seed on paper or steel.",
+            "Store backups in separate safe locations."
+          ],
+          "gotcha": "Never photograph or email your seed phrase; offline copies are the only safe option."
+        },
+        {
+          "id": "make-receive-code",
+          "title": "2. Add wallet address to Bitonic",
+          "chips": {
+            "time": "~2 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "why": "Linking your address turns every purchase into an automatic withdrawal.",
+          "actions": [
+            "Generate a fresh receive address from your cold storage wallet.",
+            "In Bitonic, choose \"My own wallet\" and paste the address carefully.",
+            "Label the address in your wallet so you can confirm incoming funds later."
+          ],
+          "gotcha": "Double-check the pasted address and consider a second device for verification to avoid clipboard malware."
+        },
+        {
+          "id": "test-small",
+          "title": "3. Send a test withdrawal",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Dynamic miner fee",
+            "risk": "Low"
+          },
+          "why": "A small test confirms your address and workflow before larger amounts.",
+          "actions": [
+            "Buy a small amount of bitcoin or use part of your Auto Invest allowance.",
+            "Trigger a withdrawal to your fresh address and note the transaction ID.",
+            "Wait for one confirmation and verify the balance inside your wallet."
+          ],
+          "gotcha": "Choose a standard fee tier so the test confirms within an hour without overpaying."
+        },
+        {
+          "id": "move-rest",
+          "title": "4. Bundle and sweep the rest",
+          "chips": {
+            "time": "~10-60 min",
+            "cost": "Dynamic miner fee",
+            "risk": "Low"
+          },
+          "why": "Bundled purchases reduce miner fees while automating self-custody exits.",
+          "actions": [
+            "Enable bundled purchases in the Bitonic app and set your satoshi threshold.",
+            "Confirm the destination address before the bundle triggers.",
+            "After the sweep arrives, update your records and generate a new address for the next cycle."
+          ],
+          "gotcha": "While funds are bundling they remain on Bitonic, so choose a threshold that balances fee savings with your appetite for custodial exposure."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Do I need to reuse addresses for Auto Invest?",
+          "a": "No. Bitonic lets you update the destination before each payout, so you can rotate addresses to protect privacy."
+        },
+        {
+          "q": "How can I confirm my batched withdrawal arrived?",
+          "a": "Check your hardware wallet balance or look up the transaction ID on a block explorer once Bitonic emails the payout details."
+        },
+        {
+          "q": "What if I want to pause withdrawals for a while?",
+          "a": "Disable bundled purchases or switch the destination back to your Bitonic account, then re-enable external payouts when you're ready to sweep again."
+        }
+      ]
+    },
+    "privacy": {
+      "section_title": "Privacy & Safety",
+      "data_flows": [
+        "Bitonic stores all account and transaction data on self-managed servers located in the Netherlands.",
+        "Identity documents, IBAN details, and bitcoin addresses are collected to meet Dutch anti-money laundering requirements.",
+        "Matomo analytics runs on Bitonic infrastructure without third-party cookies, so usage data stays in-house.",
+        "Payment partners such as Mollie, Volt, Worldline, Mailgun, and MessageBird receive only the data needed to process transfers and communications."
+      ],
+      "data_flows_do": "Request a data export via privacy@bitonic.nl if you want a copy or correction of your records.",
+      "data_flows_dont": "Reuse the same password or send KYC documents outside Bitonic's encrypted upload flow.",
+      "recovery": [
+        "Use the password reset link on the login form to regain access to your account email.",
+        "Follow any additional verification prompts Bitonic requires before trading resumes.",
+        "Contact support with your legal documents if automated recovery fails or you change your primary email."
+      ],
+      "recovery_do": "Store updated contact details and keep two-factor authentication backups offline.",
+      "recovery_dont": "Wait until you need an urgent withdrawal before testing your recovery options.",
+      "withdrawal_policy": [
+        "Euro withdrawals are free by default and leave Bitonic no later than the next business day.",
+        "An urgent payout option costs 0.25% with a €7.50 minimum and is available up to €10,000 for faster settlement.",
+        "Bitcoin withdrawals include a dynamic miner fee aimed at third-block confirmation, and Bitonic will rebroadcast with Replace-By-Fee if needed."
+      ],
+      "withdrawal_policy_do": "Plan regular sweeps with bundled purchases or standard payouts to avoid the urgent transfer surcharge.",
+      "withdrawal_policy_dont": "Assume the urgent payout will cover amounts above €10,000 without contacting support first.",
+      "region": [
+        "Bitonic focuses on Dutch and EU customers and requires an EU IBAN for funding.",
+        "The company operates under Dutch regulation and is registered with De Nederlandsche Bank as a virtual asset service provider.",
+        "App availability and product access follow the listings in the Apple App Store and Google Play Store for supported regions."
+      ],
+      "micro_faqs": [
+        {
+          "q": "Can Bitonic delete my personal data?",
+          "a": "Yes. You can exercise GDPR rights to access, correct, or request deletion, subject to Dutch legal retention rules."
+        },
+        {
+          "q": "Where does Bitonic host its infrastructure?",
+          "a": "All infrastructure is self-built and hosted in the Netherlands to keep data under Dutch jurisdiction."
+        },
+        {
+          "q": "Does Bitonic share data with law enforcement?",
+          "a": "Bitonic only discloses personal data to authorities when a lawful request or statutory obligation requires it."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Bundled purchases threshold",
+          "def": "The satoshi amount you configure that triggers a single on-chain payout of accumulated Auto Invest buys."
+        },
+        {
+          "term": "Urgent payout",
+          "def": "A premium euro withdrawal that Bitonic processes manually for a 0.25% fee with a €7.50 minimum."
+        },
+        {
+          "term": "Replace-By-Fee (RBF)",
+          "def": "A protocol feature Bitonic uses to raise the miner fee if your withdrawal has not confirmed quickly enough."
+        }
+      ],
+      "keywords": [
+        "Bitonic Auto Invest fees",
+        "Bitonic bundled purchases",
+        "Bitonic urgent payout",
+        "Bitonic iDEAL bitcoin buy",
+        "Bitonic DNB registration",
+        "Bitonic privacy policy"
+      ]
+    },
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#kyc",
+      "compat": "#features",
+      "migration": "#withdrawal",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-09",
+    "trust": {
+      "cards": [
+        {
+          "id": "custody",
+          "fact": "Segregated foundation holds customer funds 1:1 with multisig cold storage.",
+          "link_text": "Security overview",
+          "link_url": "https://bitonic.nl/en/security"
+        },
+        {
+          "id": "licenses",
+          "fact": "Registered with De Nederlandsche Bank as virtual asset service provider.",
+          "link_text": "Licenses",
+          "link_url": "https://bitonic.nl/en/security"
+        },
+        {
+          "id": "privacy",
+          "fact": "GDPR-compliant with data stored on Dutch servers.",
+          "link_text": "Privacy policy",
+          "link_url": "https://bitonic.nl/en/privacy"
+        },
+        {
+          "id": "terms",
+          "fact": "User Agreement covers risks and personal/business account terms.",
+          "link_text": "User Agreement",
+          "link_url": "https://bitonic.nl/en/voorwaarden"
+        }
+      ]
+    }
   },
   {
     "name": "Breez",
@@ -5730,7 +6238,7 @@
           "link_url": "https://trust.strike.me/"
         },
         {
-          "id": "privacy_withdrawal",
+          "id": "privacy_notice",
           "fact": "Privacy notice October 2025",
           "link_text": "Privacy notice",
           "link_url": "https://strike.me/legal/privacy/"
