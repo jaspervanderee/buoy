@@ -4,18 +4,28 @@
   "type_of_platform": "P2P",
   "faqs": [
     {
-      "q": "What is Peach Bitcoin?",
-      "a": "Peach is a mobile peer‑to‑peer marketplace to buy and sell Bitcoin with non‑custodial multisig escrow."
+      "q": "How does Peach multisig escrow protect peer-to-peer trades?",
+      "a": "Each Peach trade starts with the seller locking sats in a 2-of-2 address that needs both the seller and Peach to co-sign the release. That prevents either party from moving the funds alone and lets Peach finish the release after roughly 4,320 blocks if a dispute stalls. You can copy the escrow address from the trade details and verify it on a block explorer before you send fiat."
     },
     {
-      "q": "Does Peach require KYC?",
-      "a": "No for smaller trades; limits and verification depend on region and payment method."
+      "q": "Does Peach require KYC verification for every trade?",
+      "a": "Peach operates under Swiss rules that allow KYC-free swaps up to about 1,000 CHF per person each day. That keeps small trades private while still meeting compliance. You can split larger purchases across days if you want to stay under the no-KYC threshold."
     },
     {
-      "q": "Which payment methods does Peach support?",
-      "a": "Many options including bank transfer, cash in person and regional fintech apps depending on your counterpart."
+      "q": "How do I back up my Peach account file safely?",
+      "a": "Peach keeps your wallet, contacts, and payment templates in an encrypted account file that lives on your phone. If you lose that file or forget the password, Peach cannot restore the wallet for you. You can export the backup from Settings > Backup and store it offline on an SD card, computer, or encrypted cloud folder."
+    },
+    {
+      "q": "Which payment methods can I use on Peach?",
+      "a": "Offers cover more than 100 rails ranging from SEPA, bank transfers, and Wise to gift cards and cash in person depending on your counterparty. That flexibility lets you meet peers where you already have accounts. You can filter offers by payment type so you only see options you trust."
+    },
+    {
+      "q": "What happens if my counterparty disappears during a trade?",
+      "a": "If the other party stops responding, you can open a dispute inside the trade chat so Peach mediators review the evidence. They can co-sign the escrow to release bitcoin to the buyer or seller once payment proof is clear, preventing funds from getting stuck. You can keep screenshots, receipts, and chat logs ready so disputes resolve quickly."
     }
   ],
+  "supported_network": "Bitcoin (on-chain multisig escrow)",
+  "recovery_method": "Encrypted account file and seed stored on your device; restore from backup file with your password",
   "features": {
     "WW": [
       {
@@ -69,7 +79,514 @@
   "description": "Peach Bitcoin is a mobile-only peer-to-peer platform for buying and selling Bitcoin. It stands out with its non-custodial model, using multi-signature escrow to secure trades without holding user funds, shifting trust to individual traders, and offering KYC-free (Know Your Customer) transactions up to 1,000 CHF daily, emphasizing privacy.\\n\\nUsers must build trust through reviews and completed trades to unlock higher transaction limits. It supports over 100 payment methods, including cash and gift cards, with a 2% fee for buyers and free selling.\\n\\nPeach's mission is to make peer-to-peer Bitcoin trading the standard, promoting financial freedom, with plans to enhance Lightning Network support and expand globally, especially in Latin America and Africa. The vision is to offer a private, on‑the‑go way to trade Bitcoin without heavy identity requirements, making it attractive to beginners who want control and privacy without overcomplicating the process. Beginners love its privacy and ease, but some find the mobile-only platform limiting.",
   "founded_in": "2022",
   "website": "https://peachbitcoin.com",
+  "links": {
+    "web": "https://peachbitcoin.com"
+  },
   "countries": [
     "WW"
-  ]
+  ],
+  "trust_chips": [
+    {
+      "text": "Device-held account file",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "device-account-file"
+    },
+    {
+      "text": "Multisig trade escrow",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "multisig-trade-escrow"
+    },
+    {
+      "text": "KYC-free daily limits",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "kyc-free-limits"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "Buyers who want a mobile, non-custodial peer marketplace with escrow and no routine KYC.",
+    "consider_if": "You already manage wallet backups and feel comfortable coordinating fiat payments directly with peers.",
+    "not_ideal_when": "You expect a desktop interface, automated recurring buys, or an intermediary that holds funds for you."
+  },
+  "howto": {
+    "title": "Getting started with Peach",
+    "steps": [
+      {
+        "id": "setup-install",
+        "title": "1. Install and create your account",
+        "chips": {
+          "time": "~5 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Download Peach from the official App Store, Google Play, or the APK page.",
+          "Set a strong password when the app creates your account file.",
+          "Enable biometric unlock and a screen lock on your phone before trading."
+        ],
+        "gotcha": "Peach cannot reset your password, so store it offline before you trade."
+      },
+      {
+        "id": "setup-receive",
+        "title": "2. Back up your Peach account file",
+        "chips": {
+          "time": "~5 min",
+          "cost": "Free",
+          "risk": "Medium"
+        },
+        "actions": [
+          "Open Settings > Backup and export your encrypted account file.",
+          "Copy the file to two storage locations you control, such as an SD card and a laptop.",
+          "Store the backup password separately from the file so a thief cannot unlock both."
+        ],
+        "gotcha": "Losing both the file and password means Peach cannot recover your sats."
+      },
+      {
+        "id": "setup-pay",
+        "title": "3. Complete a small test trade",
+        "why": "Practice the escrow flow before you scale up.",
+        "chips": {
+          "time": "~15-45 min",
+          "cost": "Trading fee: ~2%",
+          "risk": "Medium"
+        },
+        "actions": [
+          "Filter offers by country, currency, and the payment method you already trust.",
+          "Wait for the seller to fund escrow and confirm the transaction hash before paying.",
+          "Send a small amount of fiat, share proof in chat, and verify the bitcoin release in your wallet."
+        ],
+        "gotcha": "Keep chat inside the app so mediators can review the history if something goes wrong."
+      }
+    ],
+    "totalTime": null,
+    "micro_faqs": [
+      {
+        "q": "How long do Peach trades usually take?",
+        "a": "Most trades settle within the payment window set by the seller; instant rails close in minutes while bank transfers can take a business day or two."
+      },
+      {
+        "q": "Can I restore Peach after losing my phone?",
+        "a": "Yes. Install the app on a new device, import your backup file, and enter its password. Without the backup Peach cannot help."
+      },
+      {
+        "q": "Does Peach have a desktop app?",
+        "a": "Not yet. Peach is mobile-only today, so you need the iOS, Android, or APK build to post offers."
+      }
+    ]
+  },
+  "fees_scenarios": [
+    {
+      "id": "fees-deposit",
+      "title": "Fund the escrow",
+      "cost_today": "Seller pays the on-chain mining fee",
+      "what_happens": "The seller sends bitcoin into a unique 2-of-2 address shared with Peach before any fiat moves.",
+      "how_to_minimize": "Schedule escrow funding when the mempool is calm and use Peach's fee suggestion to avoid overpaying.",
+      "learn_more": "You can watch the funding transaction hash inside the trade timeline before you release any cash."
+    },
+    {
+      "id": "fees-buy",
+      "title": "Buy bitcoin",
+      "cost_today": "Buyer fee: ~2% per trade (seller free)",
+      "what_happens": "Peach deducts its marketplace fee from the release once both sides confirm fiat payment.",
+      "how_to_minimize": "Build reputation, compare premiums, and apply Peach Point rewards from referrals to offset part of the fee.",
+      "learn_more": "Referral rewards pay 42 sats per point. Request a payout ticket when you want to convert points to sats."
+    },
+    {
+      "id": "fees-withdraw",
+      "title": "Release bitcoin",
+      "cost_today": "Bitcoin network fee picked by the seller on release",
+      "what_happens": "When the seller co-signs, the release transaction leaves escrow to your address with the fee they selected.",
+      "how_to_minimize": "Agree on the fee level in chat and choose lower-fee windows when your payment rail can wait.",
+      "learn_more": "Escrow auto-unlocks after roughly 4,320 blocks so the buyer can still claim funds if the seller disappears."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "Who pays Peach's marketplace fee?",
+      "a": "Buyers cover the ~2% fee when the trade closes, while sellers only pay the mining fees to fund escrow."
+    },
+    {
+      "q": "Can I lower fees with Peach Points?",
+      "a": "Yes. Every 10,000 sats your referrals trade earns a Peach Point worth 42 sats, which you can request as a payout through support."
+    },
+    {
+      "q": "What if an escrow transaction gets stuck with a low fee?",
+      "a": "Peach's tutorials walk you through RBF and CPFP so the seller can bump the fee or you can craft a child transaction when confirmation stalls."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-account-file",
+      "term": "Account file",
+      "definition": "The encrypted bundle stored on your phone that holds Peach wallet keys, payment instructions, chats, and preferences."
+    },
+    {
+      "id": "term-peach-score",
+      "term": "Peach score",
+      "definition": "Your reputation rating based on counterparty feedback, disputes, and payment speed."
+    },
+    {
+      "id": "term-instant-trade",
+      "term": "Instant trade",
+      "definition": "A trade mode where the taker slides Instant Trade and the contract starts immediately without manual acceptance."
+    }
+  ],
+  "payment_methods_limits": {
+    "heading": "Payment methods & limits",
+    "methods": [
+      {
+        "id": "bank-transfer",
+        "name": "Bank transfer",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "Premium set by seller",
+          "fee_link": "fees-buy",
+          "speed": "Same day to several days",
+          "withdraw": "Release after seller confirms fiat"
+        },
+        "best_for": "Larger trades when both parties can wait for bank settlement.",
+        "limits": {
+          "min_per_tx": "Set in the offer",
+          "max_per_tx": "Scales with your Peach score",
+          "max_per_day": "Scales with your Peach score",
+          "max_per_week": "Scales with your Peach score",
+          "withdraw_eligibility": "Release after the seller marks payment received"
+        }
+      },
+      {
+        "id": "cash",
+        "name": "Cash in person",
+        "available": true,
+        "icon": "cash",
+        "summary": {
+          "fee": "Premium set by seller",
+          "fee_link": "fees-buy",
+          "speed": "Immediate",
+          "withdraw": "Release on confirmation at the meeting"
+        },
+        "best_for": "Local trades when you want face-to-face settlement without banking rails.",
+        "limits": {}
+      },
+      {
+        "id": "fintech",
+        "name": "Fintech apps (Wise, Revolut, Twint)",
+        "available": true,
+        "icon": "card",
+        "summary": {
+          "fee": "Processor fees may apply",
+          "fee_link": "fees-buy",
+          "speed": "Minutes to hours",
+          "withdraw": "Release once both apps show the transfer settled"
+        },
+        "best_for": "Cross-border deals when both parties use the same app.",
+        "limits": {
+          "min_per_tx": "Set in the offer",
+          "max_per_tx": "Depends on the app and your Peach score",
+          "max_per_day": "Depends on the app and your Peach score",
+          "max_per_week": "Depends on the app and your Peach score",
+          "withdraw_eligibility": "Release after screenshots confirm the transfer"
+        }
+      }
+    ]
+  },
+  "compat_heading": "Peach features & limits",
+  "compat_tiles": [
+    {
+      "id": "device-account-file",
+      "title": "Device-held account file",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Encrypted on your phone</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Export your own backup</span>",
+      "status": "works"
+    },
+    {
+      "id": "multisig-trade-escrow",
+      "title": "Multisig trade escrow",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Seller + Peach signatures</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Dispute fallback after 4,320 blocks</span>",
+      "status": "works"
+    },
+    {
+      "id": "kyc-free-limits",
+      "title": "KYC-free daily limits",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Up to ~1,000 CHF daily</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Stay private without ID</span>",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "device-account-file",
+      "why": "Peach stores your wallet state in an encrypted file that never leaves your phone. That keeps your keys, payment preferences, and chats under your control instead of on company servers. You can export the file to offline storage so a lost phone never strands your sats.",
+      "try": [
+        "Install Peach and create your account with a strong password.",
+        "Open Settings > Backup and tap Export account file.",
+        "Save the file to offline storage you control, such as an SD card or encrypted drive.",
+        "Label the backup with the date and keep the password in a separate safe place."
+      ],
+      "gotcha": "If you lose both the backup file and the password, Peach cannot restore your wallet."
+    },
+    {
+      "id": "multisig-trade-escrow",
+      "why": "Each trade locks bitcoin in a 2-of-2 address that needs the seller and Peach to sign before funds move. That stops unilateral withdrawals and gives disputes a path to resolution after roughly 4,320 blocks. You can verify the escrow on-chain before you send any money.",
+      "try": [
+        "Accept a match and wait for the seller's escrow transaction to appear.",
+        "Tap the transaction hash in the trade timeline to view it on a block explorer.",
+        "Send fiat only after the escrow shows at least one confirmation.",
+        "Upload payment proof and confirm release once the seller acknowledges receipt."
+      ],
+      "gotcha": "Never send fiat before escrow is funded and confirmed."
+    },
+    {
+      "id": "kyc-free-limits",
+      "why": "Swiss regulation lets Peach settle trades under about 1,000 CHF per day without collecting identity documents. That keeps small deals private while staying compliant. You can plan larger moves across several days if you want to remain in the no-KYC bracket.",
+      "try": [
+        "Check the trade amount before you lock it in so you stay under the daily allowance.",
+        "Track your total volume for the day as you complete multiple offers.",
+        "Split big purchases across several days when you prefer to avoid verification.",
+        "Contact Peach support ahead of time if you expect to exceed the threshold."
+      ],
+      "gotcha": "Crossing compliance triggers can pause new trades until you finish any required verification."
+    }
+  ],
+  "migration": [
+    {
+      "id": "restore-same-wallet",
+      "title": "Restore Peach on a new phone",
+      "choose": "Use this when you lose or replace your phone and need to load the same account file.",
+      "time": "~10 min",
+      "cost": "Free",
+      "risk": "Medium",
+      "steps": [
+        "Install Peach on the new device from the official download source.",
+        "Choose Restore account and select your saved Peach backup file.",
+        "Enter the backup password and wait for your wallet and chats to resync."
+      ],
+      "tips": "Keep the backup on offline storage so you can plug it into a new phone quickly.",
+      "gotcha": "Without the backup file and password Peach cannot recover your account."
+    },
+    {
+      "id": "move-to-onchain",
+      "title": "Peach -> Long-term storage",
+      "choose": "Use this when a trade settles and you want the sats secured in cold storage.",
+      "time": "~15 min",
+      "cost": "Mining fee",
+      "risk": "Low",
+      "steps": [
+        "Open your cold storage wallet and generate a fresh receive address.",
+        "In Peach, tap Wallet > Send, paste the address, and choose an appropriate miner fee.",
+        "Broadcast the sweep and wait for the transaction to confirm.",
+        "Label the transaction in both wallets so you can audit it later."
+      ],
+      "tips": "Check the mempool before you broadcast so you know which fee tier will confirm on your timeline.",
+      "gotcha": "Treat the Peach wallet as a hot wallet. Move large balances off your phone quickly."
+    },
+    {
+      "id": "switch-to-another-wallet",
+      "title": "Peach -> Another hot wallet",
+      "choose": "Pick this when you want to consolidate your Peach balance into a different mobile or desktop wallet.",
+      "time": "~10 min",
+      "cost": "Mining fee",
+      "risk": "Medium",
+      "steps": [
+        "Install and secure the new wallet, then write down its seed phrase.",
+        "After your next trade releases, tap Wallet > Send and paste the new wallet's address.",
+        "Review the miner fee and confirm the transaction.",
+        "Verify the receive in the new wallet before archiving the trade."
+      ],
+      "tips": "Test with a small transfer the first time you sweep to a new wallet.",
+      "gotcha": "Never reuse addresses in the destination wallet or counterparties can link multiple trades."
+    }
+  ],
+  "self_custody": {
+    "heading": "Self-custody: keep your coins",
+    "tiles": [
+      {
+        "id": "pick-wallet",
+        "title": "1. Pick a cold storage wallet",
+        "chips": {
+          "time": "~5 min",
+          "cost": "$0-$200",
+          "risk": "Low"
+        },
+        "why": "Cold storage keeps your sats offline once trades settle.",
+        "actions": [
+          "Choose a <a href=\"/store-it-safely.html\">hardware or multi-signature wallet</a> you trust.",
+          "Initialize the wallet and record the seed phrase on paper or metal.",
+          "Store the seed phrase in a secure, offline location."
+        ],
+        "gotcha": "Do not take photos of your seed phrase or store it in cloud accounts."
+      },
+      {
+        "id": "make-receive-code",
+        "title": "2. Create a fresh receive address",
+        "chips": {
+          "time": "~2 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "why": "Fresh addresses keep your trade history private.",
+        "actions": [
+          "Connect your cold wallet to its desktop or mobile companion app.",
+          "Generate a new on-chain receive address.",
+          "Copy the address carefully and double check the first and last characters."
+        ],
+        "gotcha": "Do not reuse addresses. A fresh address hides how many sats you already hold."
+      },
+      {
+        "id": "test-small",
+        "title": "3. Send a small test amount",
+        "chips": {
+          "time": "~10 min",
+          "cost": "Mining fee (~$1-$5)",
+          "risk": "Low"
+        },
+        "why": "Testing the path builds confidence before moving the full trade amount.",
+        "actions": [
+          "Once a Peach trade releases, tap Wallet > Send and paste your cold wallet address.",
+          "Send a small amount first and pick a fee that confirms within an hour.",
+          "Verify the receive on your cold wallet and on a block explorer."
+        ],
+        "gotcha": "If the test gets stuck, adjust the fee or use CPFP before moving the rest."
+      },
+      {
+        "id": "move-rest",
+        "title": "4. Move the remaining balance",
+        "chips": {
+          "time": "~15-60 min",
+          "cost": "Mining fee (~$5-$15)",
+          "risk": "Low"
+        },
+        "why": "Sweeping the balance keeps only spending money on your phone.",
+        "actions": [
+          "Generate another fresh address from cold storage.",
+          "Transfer the rest of the sats and pick a fee that matches your timeline.",
+          "Confirm the receive and archive the Peach trade once you verify the move."
+        ],
+        "gotcha": "Label the transaction so you remember which trade funded your cold storage address."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Why move coins off the Peach wallet?",
+        "a": "The Peach wallet lives on your phone, so sweeping to cold storage removes mobile device risk once trades settle."
+      },
+      {
+        "q": "How many confirmations should I wait before forwarding to cold storage?",
+        "a": "Most traders wait for one confirmation on the release and at least one more on the sweep, but you can choose higher thresholds for large trades."
+      },
+      {
+        "q": "Can I reuse the same cold storage address?",
+        "a": "No. Generate a fresh address each time to keep counterparties from linking your trades together."
+      }
+    ]
+  },
+  "privacy": {
+    "section_title": "Privacy & Safety",
+    "data_flows": [
+      "Peach stores a hashed version of your app ID and encrypted chats so the server can route trades without reading them.",
+      "Payment details stay end-to-end encrypted and only your counterparty can decrypt them unless a dispute opens.",
+      "Trade metadata like payment method, volume, and escrow addresses is logged to enforce Swiss AML thresholds.",
+      "Optional Firebase and Google Analytics run only if you opt in to diagnostics."
+    ],
+    "data_flows_do": "Export and update your backup file whenever you change phones or passwords.",
+    "data_flows_dont": "Assume Peach can reset your password or recover your wallet without the backup file.",
+    "recovery": [
+      "Install Peach on your new phone from the official source.",
+      "Choose Restore account and select the backup file you saved offline.",
+      "Enter the backup password and wait for the wallet to rescan."
+    ],
+    "recovery_do": "Keep at least two offline copies of the account file and test a restore when you have downtime.",
+    "recovery_dont": "Email the backup file or password to yourself where attackers could grab it.",
+    "withdrawal_policy": [
+      "Escrow releases need both the seller and Peach to co-sign before bitcoin leaves to the buyer.",
+      "If the seller disappears, Peach can release funds after roughly 4,320 blocks once evidence shows payment cleared.",
+      "Instant payment rails still wait on on-chain confirmation before escrow opens."
+    ],
+    "withdrawal_policy_do": "Hold on to receipts and screenshots until the release confirms on-chain.",
+    "withdrawal_policy_dont": "Expect Peach to shorten the dispute timer once the automatic release countdown starts.",
+    "region": [
+      "Peach is available wherever the mobile apps are listed, but payment rails vary by country.",
+      "The daily KYC-free allowance follows Swiss AML guidance of about 1,000 CHF equivalent.",
+      "Fintech rails like Revolut, Wise, or Twint require both parties to hold accounts in supported regions."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Can Peach see my payment details?",
+        "a": "No. They remain end-to-end encrypted and only become visible to mediators if you file a dispute."
+      },
+      {
+        "q": "Does Peach support Tor connections?",
+        "a": "Not yet. You need an IPv4 address or a private VPN when connecting your own node."
+      },
+      {
+        "q": "What analytics does Peach collect?",
+        "a": "Optional Firebase and Google Analytics events run only if you opt in, and you can leave them disabled."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "Escrow timeout",
+        "def": "The ~4,320 block window after which Peach can release funds if a trade stalls."
+      },
+      {
+        "term": "Peach account file",
+        "def": "The encrypted backup that contains your wallet keys, payment templates, and chat history."
+      },
+      {
+        "term": "Proof of payment",
+        "def": "Screenshots and bank references you upload so mediators can confirm the fiat transfer."
+      }
+    ],
+    "keywords": [
+      "Peach Bitcoin escrow",
+      "Peach account backup",
+      "Peach no KYC limit",
+      "Peach payment methods",
+      "Peach CPFP tutorial",
+      "Peach dispute process"
+    ]
+  },
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#methods",
+    "fees": "#fees",
+    "privacy": "#kyc",
+    "compat": "#features",
+    "migration": "#withdrawal",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-09",
+  "trust": {
+    "cards": [
+      {
+        "id": "licenses",
+        "fact": "Swiss Polyreg SRO membership and AML registration",
+        "link_text": "Compliance overview",
+        "link_url": "https://peachbitcoin.com/faq/privacy/"
+      },
+      {
+        "id": "security",
+        "fact": "Multisig escrow design and dispute handling",
+        "link_text": "Trading FAQ",
+        "link_url": "https://peachbitcoin.com/faq/trading/"
+      },
+      {
+        "id": "privacy",
+        "fact": "Data collection and encryption practices",
+        "link_text": "Privacy FAQ",
+        "link_url": "https://peachbitcoin.com/faq/privacy/"
+      },
+      {
+        "id": "terms",
+        "fact": "Terms and conditions updated by Peach",
+        "link_text": "Terms & conditions",
+        "link_url": "https://peachbitcoin.com/terms-and-conditions"
+      }
+    ]
+  }
 }
