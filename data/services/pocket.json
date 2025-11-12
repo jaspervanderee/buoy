@@ -2,18 +2,27 @@
   "name": "Pocket",
   "category": "Buy Bitcoin",
   "type_of_platform": "P2P",
+  "supported_network": "Bitcoin (on-chain)",
   "faqs": [
     {
-      "q": "What is Pocket Bitcoin?",
-      "a": "Pocket is a non‑custodial service for recurring buys that sends Bitcoin directly to your own wallet."
+      "q": "How does Pocket deliver bitcoin to my wallet?",
+      "a": "Pocket executes your buy on Kraken and broadcasts the payout straight to the address you confirmed, using the lowest mining fee it can attach. You can watch the transaction land in your wallet without waiting for a withdrawal queue."
     },
     {
-      "q": "Does Pocket require KYC?",
-      "a": "Pocket is KYC‑light; verification applies for larger purchases based on EU regulations."
+      "q": "What service fee does Pocket charge on each purchase?",
+      "a": "Pocket applies a 1.5% service fee that covers all operating costs without touching the exchange rate. You can confirm the calculation on the payout screen before your transfer settles."
     },
     {
-      "q": "Which regions does Pocket support?",
-      "a": "Pocket focuses on the EU, with support varying by country and bank."
+      "q": "How does Pocket manage bitcoin network fees?",
+      "a": "Pocket batches many customer payouts into one transaction so each order only pays a share of the mining fee, which usually lands around 500–1000 sats. You can reuse the same address for multiple transfers in a day when you want those payouts to share a fee."
+    },
+    {
+      "q": "Which exchange rate does Pocket pass through?",
+      "a": "Pocket routes every buy through Kraken at the live market price and passes that rate to you without a hidden spread. You can match their timestamp against Kraken's public order book for verification."
+    },
+    {
+      "q": "Can I schedule recurring buys that settle to my wallet?",
+      "a": "Pocket lets you set up one-off or auto-invest bank transfers that pay out directly to your own wallet instead of a custodial balance. You can build a position over time while staying in control of your keys."
     }
   ],
   "features": {
@@ -81,6 +90,395 @@
   },
   "profile": "David Knezic",
   "description": "Pocket Bitcoin stands out with its non-custodial model, sending Bitcoin directly to your wallet without holding funds, and a no-account, KYC-light approach for daily buys up to €1,000 | 0.01 BTC | 0.01 BTC, prioritizing privacy. It offers one-off or recurring buys via bank transfer, with a 1.5% fee and no withdrawal fees, supporting select hardware wallets like Trezor and Ledger with message signing.\\n\\nPocket's mission is to make Bitcoin ownership frictionless and private, promoting self-custody without complexity and with a vision to expand to a dozen more European countries and enhance wallet integrations.\\n\\nThe mobile app, and the web portal for managing orders and wallet settings, are praised for their simple interface and fast transactions, but some find the fees slightly high.",
+  "tl_dr": {
+    "best_for": "Buyers across the EU who want bank transfers to drop bitcoin straight into a wallet they control.",
+    "consider_if": "You value transparent fees and Kraken execution more than instant card funding.",
+    "not_ideal_when": "You need Lightning payouts or non-EU payment rails today."
+  },
+  "howto": {
+    "title": "Getting started with Pocket",
+    "steps": [
+      {
+        "id": "setup-install",
+        "title": "1. Create your Pocket order",
+        "chips": {
+          "time": "~5 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Visit pocketbitcoin.com and start a new one-off or auto-invest order.",
+          "Paste a fresh receive address from your wallet or upload the file Pocket requests to validate it.",
+          "Review the summary showing the 1.5% service fee and Kraken reference rate."
+        ],
+        "gotcha": "Use a new address for each long-term purchase so you do not expose your full balance."
+      },
+      {
+        "id": "setup-transfer",
+        "title": "2. Send your bank transfer",
+        "chips": {
+          "time": "~2 min",
+          "cost": "Depends on bank",
+          "risk": "Low"
+        },
+        "actions": [
+          "Log into your bank and send a SEPA transfer to Pocket's IBAN with the exact payment message shown.",
+          "Set the transfer as a standing order if you plan to auto-invest on a cadence.",
+          "Save the confirmation email so you can trace the payment if the bank asks for details."
+        ],
+        "gotcha": "Transfers that miss the payment message are refunded, so copy it exactly."
+      },
+      {
+        "id": "setup-receive",
+        "title": "3. Watch the payout in your wallet",
+        "chips": {
+          "time": "~10–60 min",
+          "cost": "Mining fee only",
+          "risk": "Low"
+        },
+        "actions": [
+          "Wait for Pocket's execution email that confirms your order ran on Kraken.",
+          "Open your wallet or a block explorer to see the incoming transaction Pocket broadcast.",
+          "Label the transaction so you can reconcile it with your bank transfer later."
+        ],
+        "gotcha": "High network congestion can slow confirmations even though the payout was broadcast."
+      }
+    ]
+  },
+  "fees_scenarios": [
+    {
+      "id": "fees-buy",
+      "title": "Buy bitcoin",
+      "cost_today": "Service fee: 1.5%",
+      "what_happens": "Pocket deducts the 1.5% service fee, executes the remaining balance on Kraken, and converts it to bitcoin before payout.",
+      "how_to_minimize": "Send fewer, larger transfers so the flat 1.5% covers more sats instead of lots of tiny buys.",
+      "learn_more": "The payout screen shows the Kraken price and timestamp so you can verify the execution."
+    },
+    {
+      "id": "fees-network",
+      "title": "Bitcoin network fee",
+      "cost_today": "Typically 500–1000 sats per payout",
+      "what_happens": "Pocket batches many customer payouts into one transaction so everyone shares the mining fee.",
+      "how_to_minimize": "If you fund multiple buys in a day to the same address, Pocket can combine them into one payout to reuse the fee.",
+      "learn_more": "Pocket publishes the miner fee on the receipt so you can see how much of the transaction cost you carried."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "Does Pocket hide a spread in the exchange rate?",
+      "a": "No. Pocket executes each order on Kraken and shows you the live rate they used so you can compare it to the public order book."
+    },
+    {
+      "q": "How big is the mining fee on a typical payout?",
+      "a": "Pocket reports that batching keeps most payouts in the 500–1000 sat range, which equals roughly 10–25 euro cents at recent prices."
+    },
+    {
+      "q": "Can multiple transfers share one mining fee?",
+      "a": "Yes. If you send several payments to the same address in one day, Pocket can include them in a single batched transaction so the fee is paid once."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-pocket-service-fee",
+      "term": "Pocket service fee",
+      "definition": "The flat 1.5% fee Pocket charges on every order before executing the buy on Kraken."
+    },
+    {
+      "id": "term-batched-payout",
+      "term": "Batched payout",
+      "definition": "Pocket's process of combining many customer payouts into one transaction so each order shares the mining fee."
+    },
+    {
+      "id": "term-kraken-reference-rate",
+      "term": "Kraken reference rate",
+      "definition": "The market price Pocket uses to execute your order and display on the payout receipt for verification."
+    }
+  ],
+  "payment_methods_limits": {
+    "heading": "Payment methods & limits",
+    "methods": [
+      {
+        "id": "sepa",
+        "name": "SEPA bank transfer",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "Usually free from EU banks",
+          "speed": "~1 business day",
+          "withdraw": "Not applicable"
+        },
+        "best_for": "Eurozone customers funding recurring buys from their primary bank.",
+        "limits": {
+          "min_per_tx": "Set by your bank",
+          "max_per_tx": "Set by your bank",
+          "max_per_day": "Set by your bank",
+          "max_per_week": "Set by your bank",
+          "withdraw_eligibility": "N/A"
+        }
+      },
+      {
+        "id": "chf-transfer",
+        "name": "CHF bank transfer",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "Usually free inside Switzerland",
+          "speed": "~1 business day",
+          "withdraw": "Not applicable"
+        },
+        "best_for": "Swiss customers wiring francs to Pocket's Swiss account.",
+        "limits": {
+          "min_per_tx": "Set by your bank",
+          "max_per_tx": "Set by your bank",
+          "max_per_day": "Set by your bank",
+          "max_per_week": "Set by your bank",
+          "withdraw_eligibility": "N/A"
+        }
+      }
+    ]
+  },
+  "compat_heading": "Pocket features & limits",
+  "compat_tiles": [
+    {
+      "id": "direct-to-wallet-payouts",
+      "title": "Direct-to-wallet payouts",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Self custody from day one</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> No platform balances</span>",
+      "status": "works"
+    },
+    {
+      "id": "batched-network-fees",
+      "title": "Batched network fees",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Shared mining cost</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Lower average sats spent</span>",
+      "status": "works"
+    },
+    {
+      "id": "kraken-price-pass-through",
+      "title": "Kraken price pass-through",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Live exchange rate</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Kraken dependency</span>",
+      "status": "works-caveat"
+    },
+    {
+      "id": "dca",
+      "title": "Dollar-cost averaging (DCA)",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Standing orders</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Auto-invest to your wallet</span>",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "direct-to-wallet-payouts",
+      "why": "Pocket never holds a custodial balance; every order pays straight to your address so your bitcoin stays under your control.",
+      "try": [
+        "Create a Pocket order and paste a fresh address from your wallet.",
+        "Confirm the payout email that shows the transaction ID once your bank transfer settles.",
+        "Open your wallet to verify the confirmed transaction and label it for your records."
+      ],
+      "gotcha": "If you rotate wallets, update your address before sending the next transfer so the payout does not land in an old account."
+    },
+    {
+      "id": "batched-network-fees",
+      "why": "Pocket combines many payouts into one transaction so each account shoulders only a fraction of the mining fee.",
+      "try": [
+        "Fund two buys on the same day to the same address and note that the miner fee only appears once.",
+        "Check the payout receipt to see how many outputs were included in the batched transaction.",
+        "Use a block explorer to view the transaction and confirm the shared fee Pocket paid."
+      ],
+      "gotcha": "During heavy mempool congestion, Pocket may still pay a higher fee to clear the batch promptly."
+    },
+    {
+      "id": "kraken-price-pass-through",
+      "why": "Pocket routes your fiat through Kraken and hands you the exact rate so you can prove there is no hidden spread. That still leans on Kraken staying online, so keep a backup payout plan if the exchange stalls.",
+      "try": [
+        "Compare the rate on your payout receipt with Kraken's historical price at the same minute.",
+        "Download the CSV export from the dashboard for your accountant or tax software.",
+        "Spot-check a past order to confirm that the fiat amount minus 1.5% matches the sats you received."
+      ],
+      "gotcha": "Kraken execution happens after your transfer reaches Pocket, so bank delays push the timestamp accordingly. If Kraken pauses trading, your payout waits until the venue comes back online."
+    },
+    {
+      "id": "dca",
+      "why": "Pocket lets you automate SEPA transfers so every run stacks sats in your own wallet without manual withdrawals.",
+      "try": [
+        "Set a standing order in your bank with the reference code Pocket provides.",
+        "Pick a cadence that matches your income cycle and review it in the Pocket dashboard.",
+        "Adjust the standing order amount when your budget changes so buys keep fitting your plan."
+      ],
+      "gotcha": "If you change the payout address, update the recurring order first so the next batch does not go to the old one."
+    }
+  ],
+  "trust_chips": [
+    {
+      "text": "Direct-to-wallet payouts",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "direct-to-wallet-payouts"
+    },
+    {
+      "text": "Batched network fees",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "batched-network-fees"
+    },
+    {
+      "text": "Dollar-cost averaging (DCA)",
+      "status": "positive",
+      "link_to": "dca"
+    }
+  ],
+  "self_custody": {
+    "heading": "Self-custody: receive safely",
+    "tiles": [
+      {
+        "id": "pick-wallet",
+        "title": "1. Pick your receive wallet",
+        "chips": {
+          "time": "~5 min",
+          "cost": "$0–$200",
+          "risk": "Low"
+        },
+        "why": "Pocket pays every order to your address, so you need a wallet capable of receiving bitcoin securely.",
+        "actions": [
+          "Choose a wallet you trust, such as a hardware wallet for long-term savings.",
+          "Update firmware or app versions so your wallet supports message signing if Pocket requests it.",
+          "Write down or engrave your seed phrase and store it offline in separate locations."
+        ],
+        "gotcha": "Never store the seed digitally; Pocket cannot help you recover it if it is lost."
+      },
+      {
+        "id": "make-receive-code",
+        "title": "2. Generate a fresh address",
+        "chips": {
+          "time": "~2 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "why": "Each order needs a fresh receive address so payouts stay private and trackable on your side.",
+        "actions": [
+          "Open your wallet and generate a new bech32 (bc1...) address.",
+          "Copy the address exactly or use the QR export Pocket provides.",
+          "Store the address reference so you can recognise matched payouts later."
+        ],
+        "gotcha": "Avoid reusing older addresses; Pocket's batch payouts make reused addresses easier to cluster."
+      },
+      {
+        "id": "test-small",
+        "title": "3. Start with a small order",
+        "chips": {
+          "time": "~1–2 days",
+          "cost": "Bank transfer fee",
+          "risk": "Low"
+        },
+        "why": "A test transfer confirms your bank message, payout address, and wallet notifications before scaling up.",
+        "actions": [
+          "Send a modest bank transfer using Pocket's reference code.",
+          "Wait for the execution email and confirm the sats appear in your wallet.",
+          "Check the transaction ID in a block explorer so you know what Pocket's receipts look like."
+        ],
+        "gotcha": "Your first transfer may settle slower if your bank flags the new beneficiary."
+      },
+      {
+        "id": "move-rest",
+        "title": "4. Automate your cadence",
+        "chips": {
+          "time": "~5 min",
+          "cost": "Bank transfer fee",
+          "risk": "Low"
+        },
+        "why": "Once you trust the flow, a standing order keeps stacking sats directly to cold storage without daily effort.",
+        "actions": [
+          "Create a recurring transfer that matches your budget and reuse the standing payment message.",
+          "Label each payout in your wallet so tax season is easier.",
+          "Rotate to a fresh address whenever you need to reset privacy or change wallets."
+        ],
+        "gotcha": "Update the standing order before changing addresses; banks batch instructions by business day."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Do I need a new address for every order?",
+        "a": "Pocket suggests fresh addresses for long-term privacy, but you can reuse the same one in a single day when you want payouts to share a mining fee."
+      },
+      {
+        "q": "Can Pocket pull bitcoin back if something goes wrong?",
+        "a": "No. Once the transaction confirms, only wallets with that seed can spend the sats, so double-check addresses before you send the bank transfer."
+      },
+      {
+        "q": "What if my bank blocks the transfer?",
+        "a": "Contact the bank with the invoice Pocket provides or try a different account. Pocket refunds unmatched transfers automatically."
+      }
+    ]
+  },
+  "privacy_notes": {
+    "data_flows": [
+      "Pocket stores the payout address you provide and the bank payment reference it assigns to your order.",
+      "Bank transfers expose your IBAN and name to Pocket's Swiss banking partner so they can match incoming payments."
+    ],
+    "recovery_drill": [
+      "Keep the order confirmation emails; they contain the reference code Pocket needs to trace payments.",
+      "If a payout seems delayed, share the bank transfer receipt and your address so Pocket support can find the transaction."
+    ],
+    "country_caveats": [
+      "Pocket currently serves EU and Swiss bank corridors; local availability depends on SEPA access.",
+      "Some banks require you to whitelist Pocket's IBAN before a standing order will execute."
+    ]
+  },
+  "privacy": {
+    "section_title": "Privacy & Safety",
+    "data_flows": [
+      "Pocket records your email, bank reference, and payout address so it can match transfers to bitcoin payouts.",
+      "Orders execute on Kraken, so the execution price is shared on receipts for transparency."
+    ],
+    "data_flows_do": "Review your order history in the dashboard and export CSV files for accounting.",
+    "data_flows_dont": "Assume bank transfers are private. Your bank still sees the recipient and amount.",
+    "recovery": [
+      "Use Pocket's support channel with your reference code if a bank transfer is delayed.",
+      "Retain your wallet's seed phrase because Pocket cannot resend bitcoin that already settled."
+    ],
+    "recovery_do": "Store payment confirmations and transaction IDs in the same secure folder as your accounting records.",
+    "recovery_dont": "Delete reference emails before your bank confirms the transfer settled.",
+    "withdrawal_policy": [
+      "Pocket pays bitcoin directly to your address; there are no internal accounts to withdraw from.",
+      "Network fees are deducted from each payout and displayed on the receipt."
+    ],
+    "withdrawal_policy_do": "Check the payout transaction ID before archiving the order.",
+    "withdrawal_policy_dont": "Expect Pocket to chase lost transactions if you provided an incorrect address."
+  },
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#methods",
+    "fees": "#fees",
+    "privacy": "#kyc",
+    "compat": "#features",
+    "migration": "#withdrawal",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "trust": {
+    "cards": [
+      {
+        "id": "security",
+        "fact": "Non-custodial payout overview",
+        "link_text": "Can Pocket access my bitcoin?",
+        "link_url": "https://pocketbitcoin.com/faq/can-pocket-access-my-bitcoin"
+      },
+      {
+        "id": "privacy",
+        "fact": "Privacy policy October 2025",
+        "link_text": "Privacy notice",
+        "link_url": "https://pocketbitcoin.com/policy/privacy"
+      },
+      {
+        "id": "terms",
+        "fact": "Terms & conditions for EU users",
+        "link_text": "Terms of service",
+        "link_url": "https://pocketbitcoin.com/policy/terms"
+      }
+    ]
+  },
   "founded_in": "2020",
   "website": "https://pocketbitcoin.com",
   "countries": [

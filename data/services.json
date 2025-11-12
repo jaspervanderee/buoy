@@ -534,16 +534,24 @@
     "type_of_platform": "P2P",
     "faqs": [
       {
-        "q": "What is Bisq?",
-        "a": "Bisq is a decentralized, open‑source desktop app for buying and selling bitcoin directly with other people over Tor using a non‑custodial wallet and no sign‑ups or KYC."
+        "q": "How do Bisq trading fees and BSQ discounts work?",
+        "a": "Bisq sets maker fees at 0.15% and taker fees at 1.15% when you pay in BTC, and the DAO halves each rate to 0.075% and 0.575% if you spend BSQ. You can choose the fee currency before confirming a trade and see the exact total on the review screen."
       },
       {
-        "q": "Does Bisq require KYC?",
-        "a": "No. Bisq has no accounts or sign‑ups and does not require KYC; trades are peer‑to‑peer with multisig security deposits."
+        "q": "What security deposit do Bisq trades require?",
+        "a": "Every trade locks both parties' refundable security deposits in a 2-of-2 multisig escrow alongside the trade amount. Deposit sizes vary by payment method and account signing stage, and Bisq shows the required amount before you accept an offer."
       },
       {
-        "q": "How are trades secured?",
-        "a": "Each trade locks refundable security deposits from both parties in a 2‑of‑2 multisig escrow; account‑age rules and signing raise limits over time to reduce chargeback risk."
+        "q": "Which payment methods can I use on Bisq worldwide?",
+        "a": "Bisq supports rails such as SEPA, Zelle, Wise, Revolut, and cash trades, each with its own settlement window and trade limit. You can filter the offer book by payment method to find rails that match your country."
+      },
+      {
+        "q": "Does Bisq require identity verification or accounts?",
+        "a": "Bisq runs over Tor with no central accounts or KYC, so your payment profiles and trade history stay on your computer. You share the needed details only with your counterparty during the trade."
+      },
+      {
+        "q": "How long do Bisq trades take to settle?",
+        "a": "A Bisq trade waits for the escrow transaction to confirm on-chain, then gives you a payment window that ranges from minutes on crypto rails to four to six days on fiat rails. Once both sides mark payment sent and received, the escrow releases and your deposit returns automatically."
       }
     ],
     "supported_network": "Bitcoin",
@@ -604,7 +612,547 @@
     "website": "https://bisq.network",
     "countries": [
       "WW"
-    ]
+    ],
+    "links": {
+      "mac": "https://bisq.network/downloads/",
+      "windows": "https://bisq.network/downloads/",
+      "linux": "https://bisq.network/downloads/",
+      "source": "https://github.com/bisq-network/bisq"
+    },
+    "trust_chips": [
+      {
+        "text": "Multisig security deposits",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "multisig-security-deposits"
+      },
+      {
+        "text": "BSQ fee discounts",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "bsq-fee-discounts"
+      },
+      {
+        "text": "Many fiat payment methods",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "payment-methods"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "People who want to buy or sell bitcoin peer-to-peer with refundable deposits instead of trusting an exchange.",
+      "consider_if": "You are ready to learn the deposit workflow and keep a small BTC balance on hand for fees and collateral.",
+      "not_ideal_when": "You need instant liquidity, mobile access, or trades without any on-chain confirmations."
+    },
+    "howto": {
+      "title": "Getting started with Bisq",
+      "steps": [
+        {
+          "id": "setup-install",
+          "title": "1. Install Bisq and connect over Tor",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Download Bisq from the official downloads page and verify the installer signature.",
+            "Install the app, let it connect to Tor, and create a password for your Bisq wallet.",
+            "Write down your seed words and store them offline before you start trading."
+          ],
+          "gotcha": "Bisq cannot recover your seed phrase or password if you lose them."
+        },
+        {
+          "id": "setup-receive",
+          "title": "2. Fund your Bisq wallet for deposits",
+          "chips": {
+            "time": "~20 min",
+            "cost": "Network fee",
+            "risk": "Medium"
+          },
+          "actions": [
+            "Open Funds > Receive funds and copy your Bisq bitcoin address.",
+            "Send a small amount of bitcoin from a wallet you control so you can cover security deposits and fees.",
+            "Wait for at least one confirmation; Bisq shows the balance once the transaction confirms."
+          ],
+          "gotcha": "Keep a buffer of sats in Bisq so new offers do not fail for lack of collateral."
+        },
+        {
+          "id": "setup-pay",
+          "title": "3. Take your first trade",
+          "chips": {
+            "time": "~30-90 min",
+            "cost": "Fees + deposit",
+            "risk": "Medium"
+          },
+          "actions": [
+            "Browse the offer book, filter by your payment method, and pick an offer with limits that fit.",
+            "Review the security deposit, fees, and payment window on the confirmation screen before you accept.",
+            "Follow Bisq's prompts to send the fiat payment, mark it as sent, and wait for the seller to release the escrow."
+          ],
+          "gotcha": "Stay online during the trade so you can respond quickly if a mediator contacts you."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "How much bitcoin should I keep in Bisq for deposits?",
+          "a": "Most fiat trades need roughly 0.01 BTC to cover the buyer deposit and fees, and Bisq shows the exact requirement before you accept the offer."
+        },
+        {
+          "q": "Do I need to leave Bisq running during a trade?",
+          "a": "Yes. Bisq relays chat messages and payout transactions over Tor, so staying online avoids mediation delays."
+        },
+        {
+          "q": "What if my payment method is not listed?",
+          "a": "You can create a new offer with your preferred method or revisit the market later; payment method availability depends on which peers are online."
+        }
+      ]
+    },
+    "fees_scenarios": [
+      {
+        "id": "fees-deposit",
+        "title": "Fund your Bisq wallet",
+        "cost_today": "On-chain mining fee you choose",
+        "what_happens": "You send bitcoin from an external wallet to Bisq so you can pay trading fees and security deposits.",
+        "how_to_minimize": "Fund when mempool fees are low or use a wallet that supports replace-by-fee if you need to bump the transaction.",
+        "learn_more": "Bisq recommends keeping a small buffer of sats ready for new trades."
+      },
+      {
+        "id": "fees-buy",
+        "title": "Take an offer",
+        "cost_today": "BTC fees: Maker 0.15% / Taker 1.15%<br>BSQ fees: Maker 0.075% / Taker 0.575%",
+        "what_happens": "Bisq charges maker and taker trading fees plus locks the refundable security deposit when you accept an offer.",
+        "how_to_minimize": "Hold BSQ to pay the discounted rate or post maker offers so you pay the lower side.",
+        "learn_more": "The Bisq DAO votes on fee parameters and the client updates the schedule automatically."
+      },
+      {
+        "id": "fees-security-deposit",
+        "title": "Post the security deposit",
+        "cost_today": "Refundable collateral: typically 15%-50% of trade size",
+        "what_happens": "Bisq locks both parties' deposits in the 2-of-2 escrow to incentivize delivery of the fiat payment.",
+        "how_to_minimize": "Complete account signing so Bisq can raise your limits with smaller collateral requirements.",
+        "learn_more": "Deposit ratios vary by payment method and appear on each offer screen."
+      },
+      {
+        "id": "fees-withdraw",
+        "title": "Withdraw to your wallet",
+        "cost_today": "On-chain mining fee estimated by Bisq",
+        "what_happens": "After a trade settles you can send your bitcoin to another wallet and pay the network fee once.",
+        "how_to_minimize": "Batch withdrawals or lower the fee slider if you can wait for slower confirmation.",
+        "learn_more": "Bisq lets you edit the withdrawal fee before broadcasting the transaction."
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "Who pays the mining fees in a Bisq trade?",
+        "a": "Makers pay the maker fee transaction while takers cover the deposit, payout, and taker fee transactions. Bisq lists each mining estimate before you confirm."
+      },
+      {
+        "q": "Do I ever lose my security deposit?",
+        "a": "Deposits return to you when the trade completes, but mediation or arbitration can distribute them if one side misses the deadline or breaks the rules."
+      },
+      {
+        "q": "What happens if BSQ's price moves after I accept an offer?",
+        "a": "The fee amount is locked in when you confirm the trade, so BSQ price changes afterward do not affect that order. You can convert more BSQ later if you plan to keep using the discount."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "security-deposit",
+        "term": "Security deposit",
+        "definition": "Refundable bitcoin collateral each side locks in Bisq's multisig escrow to keep trades honest."
+      },
+      {
+        "id": "account-signing",
+        "term": "Account signing",
+        "definition": "A reputation process where you complete smaller trades or provide signed bank details so Bisq can raise your limits and reduce required deposits."
+      },
+      {
+        "id": "bsq-token",
+        "term": "BSQ",
+        "definition": "A colored bitcoin token that funds the Bisq DAO and lets you pay trading fees at a discounted rate."
+      }
+    ],
+    "payment_methods_limits": {
+      "heading": "Payment methods & limits",
+      "methods": [
+        {
+          "id": "sepa",
+          "name": "SEPA Bank Transfer",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "Varies by bank",
+            "fee_link": "fees-buy",
+            "speed": "~2-6 days",
+            "withdraw": "Release after seller confirms payment"
+          },
+          "best_for": "Euro buyers who can wait for bank settlement in exchange for higher limits.",
+          "limits": {
+            "min_per_tx": "€10 equivalent",
+            "max_per_tx": "0.25 BTC to start (higher with account signing)",
+            "max_per_day": "Depends on Bisq account age",
+            "max_per_week": "Depends on Bisq account age",
+            "withdraw_eligibility": "Payout releases once the seller marks the transfer received."
+          }
+        },
+        {
+          "id": "zelle",
+          "name": "Zelle",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "Free",
+            "fee_link": "fees-buy",
+            "speed": "~minutes to same day",
+            "withdraw": "Release after seller verifies payment"
+          },
+          "best_for": "U.S. buyers who want fast bank transfers up to the starter limit.",
+          "limits": {
+            "min_per_tx": "$10 equivalent",
+            "max_per_tx": "0.25 BTC until your account ages in",
+            "max_per_day": "Subject to your bank's Zelle caps",
+            "max_per_week": "Subject to your bank's Zelle caps",
+            "withdraw_eligibility": "Seller must confirm funds within the four day trade window."
+          }
+        },
+        {
+          "id": "cash",
+          "name": "Cash in person",
+          "available": true,
+          "icon": "cash",
+          "summary": {
+            "fee": "No Bisq fee beyond trade fee",
+            "fee_link": "fees-buy",
+            "speed": "~same day meetup",
+            "withdraw": "Release once cash changes hands"
+          },
+          "best_for": "Local trades where you can meet safely and prefer no banking trail.",
+          "limits": {
+            "min_per_tx": "Set by the offer maker",
+            "max_per_tx": "Up to 0.5 BTC on signed accounts",
+            "max_per_day": "Depends on trusted counterparties",
+            "max_per_week": "Depends on trusted counterparties",
+            "withdraw_eligibility": "Confirm the cash in person before you co-sign the payout."
+          }
+        }
+      ]
+    },
+    "compat_heading": "Bisq features & limits",
+    "compat_tiles": [
+      {
+        "id": "multisig-security-deposits",
+        "title": "Multisig security deposits",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Refundable collateral</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 2-of-2 escrow</span>",
+        "status": "works"
+      },
+      {
+        "id": "bsq-fee-discounts",
+        "title": "BSQ fee discounts",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> ~50% off trading fees</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> DAO controlled</span>",
+        "status": "works"
+      },
+      {
+        "id": "payment-methods",
+        "title": "Many fiat payment methods",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Global bank rails</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Cash and crypto options</span>",
+        "status": "works"
+      },
+      {
+        "id": "self-custody-payouts",
+        "title": "Self-custody payouts",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Funds stay in your wallet</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Withdraw anytime</span>",
+        "status": "works"
+      }
+    ],
+    "compat_explainers": [
+      {
+        "id": "multisig-security-deposits",
+        "why": "Bisq keeps both sides honest by locking trade amounts and security deposits in a 2-of-2 multisig escrow that needs two signatures to release.",
+        "try": [
+          "Review the required deposit amount on the offer screen before you accept.",
+          "Keep enough bitcoin in your Bisq wallet so you can fund the deposit instantly.",
+          "Upload evidence quickly if a mediator requests proof during a dispute."
+        ],
+        "gotcha": "Deposits stay locked until both parties confirm payment or mediation resolves the case."
+      },
+      {
+        "id": "bsq-fee-discounts",
+        "why": "The Bisq DAO lets you pay trading fees in BSQ, cutting maker and taker rates roughly in half compared with paying in BTC.",
+        "try": [
+          "Buy BSQ through the built-in BSQ market before you take large trades.",
+          "Set BSQ as your preferred fee currency in Account settings.",
+          "Check the fee preview to confirm the discount before you confirm."
+        ],
+        "gotcha": "Keep some BTC available for fees if your BSQ balance runs out mid-trade."
+      },
+      {
+        "id": "payment-methods",
+        "why": "The offer book supports dozens of fiat rails and e-money apps so you can trade with counterparts who already use your preferred payment method.",
+        "try": [
+          "Open the Filters panel and select the payment methods you want to use.",
+          "Add your payment account under Account so you can take matching offers instantly.",
+          "Watch the trade window length and limits listed for each method."
+        ],
+        "gotcha": "Each payment method has its own deadlines; be sure you can deliver within the allowed window."
+      },
+      {
+        "id": "self-custody-payouts",
+        "why": "Bisq pays to a wallet you control, so completed trades leave you holding bitcoin outside any company custody.",
+        "try": [
+          "Let the payout land in Bisq's internal wallet, then withdraw to cold storage once the trade finishes.",
+          "Use a fresh address each time you move funds out of Bisq.",
+          "Export your transaction history if you need records for accounting."
+        ],
+        "gotcha": "If you withdraw with a low fee during congestion the confirmation can take longer, so plan ahead."
+      }
+    ],
+    "self_custody": {
+      "heading": "Self-custody: finish the trade safely",
+      "tiles": [
+        {
+          "id": "pick-wallet",
+          "title": "1. Pick a cold storage wallet",
+          "chips": {
+            "time": "~10 min",
+            "cost": "$0-$200",
+            "risk": "Low"
+          },
+          "why": "Bisq delivers bitcoin to you after the trade, so line up a wallet you control before taking larger offers.",
+          "actions": [
+            "Choose a hardware wallet or another cold storage option from our <a href=\"/store-it-safely.html\">wallet guide</a>.",
+            "Initialize it, write down the seed words, and test the device before you fund it.",
+            "Store backups in separate safe locations away from your computer."
+          ],
+          "gotcha": "Do not keep the only copy of your seed on the same computer that runs Bisq."
+        },
+        {
+          "id": "make-receive-code",
+          "title": "2. Create a fresh receive address",
+          "chips": {
+            "time": "~2 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "why": "Generating a new address for every Bisq withdrawal keeps your trade history private.",
+          "actions": [
+            "Open your self-custody wallet and generate a new bitcoin address.",
+            "Double-check the address on the hardware screen or software UI.",
+            "Copy and paste it into Bisq only when you are ready to withdraw."
+          ],
+          "gotcha": "Never reuse a withdrawal address; it links multiple trades together."
+        },
+        {
+          "id": "test-small",
+          "title": "3. Move a small test amount",
+          "chips": {
+            "time": "~10-30 min",
+            "cost": "Network fee",
+            "risk": "Low"
+          },
+          "why": "Testing with a small withdrawal lets you confirm your wallet setup before you move the full trade amount.",
+          "actions": [
+            "Withdraw a small amount from Bisq using the Standard fee level.",
+            "Watch the transaction confirm in both Bisq and your destination wallet.",
+            "Verify the amount on your hardware wallet screen or block explorer."
+          ],
+          "gotcha": "Wait for the transaction to confirm before deleting Bisq's local data or shutting down your machine."
+        },
+        {
+          "id": "move-rest",
+          "title": "4. Withdraw the remaining balance",
+          "chips": {
+            "time": "~10-60 min",
+            "cost": "Network fee",
+            "risk": "Low"
+          },
+          "why": "Finishing the withdrawal moves all escrowed bitcoin to the wallet you control, closing the loop on your trade.",
+          "actions": [
+            "Select Withdraw funds in Bisq and paste a fresh address from your cold storage wallet.",
+            "Choose a fee level that matches how fast you need confirmation.",
+            "Label the transaction in your wallet so you remember which trade it came from."
+          ],
+          "gotcha": "If you withdraw with the minimum fee during heavy mempool backlog, plan for a longer confirmation time."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Can I send Bisq payouts straight to my hardware wallet?",
+          "a": "Yes. Paste a fresh address from your hardware wallet when you withdraw, and confirm the address on the device screen before you broadcast."
+        },
+        {
+          "q": "How do I verify the escrow payout?",
+          "a": "Open the trade details to copy the transaction ID or view it inside Bisq, then check it in a block explorer such as mempool.space."
+        },
+        {
+          "q": "What if I need to export my Bisq wallet?",
+          "a": "Use Account > Backup to save an encrypted backup alongside your seed words before you move the funds."
+        }
+      ]
+    },
+    "privacy_notes": {
+      "data_flows": [
+        "Bisq stores your payment account data locally and encrypts it before sharing only with your counterparty and mediator.",
+        "All Bisq traffic routes over Tor, hiding your IP address from peers and network observers."
+      ],
+      "recovery_drill": [
+        "Use Account > Backup to export an encrypted archive of your data directory.",
+        "Store the backup and your seed words separately so you can restore Bisq on a new computer."
+      ],
+      "country_caveats": [
+        "Payment method availability depends on your region and the banks that support those rails.",
+        "Some fiat rails require longer trade windows to allow weekends and bank holidays."
+      ]
+    },
+    "privacy": {
+      "section_title": "Privacy & Safety",
+      "data_flows": [
+        "Bisq keeps your fiat account details on your device until you take a trade.",
+        "Trade chat logs and dispute messages travel through Tor and are only visible to the parties involved.",
+        "On-chain escrow transactions are public, so use fresh addresses to avoid linking trades."
+      ],
+      "data_flows_do": "Use a dedicated operating system account for Bisq and encrypt your computer disk.",
+      "data_flows_dont": "Share screenshots of your payment accounts outside Bisq's dispute chat.",
+      "recovery": [
+        "Restore on a new machine by installing Bisq, importing your encrypted backup, and entering your wallet seed.",
+        "Leave the app open so it can resync the DAO state and your trade history over Tor."
+      ],
+      "recovery_do": "Test your backup by restoring it on a spare machine when convenient.",
+      "recovery_dont": "Delete the old data directory before you confirm that the new install works.",
+      "withdrawal_policy": [
+        "Payout transactions broadcast once both parties sign, and you can view the transaction ID in the trade screen.",
+        "You choose the miner fee when withdrawing from the Bisq wallet to another address.",
+        "If a dispute pauses the payout, mediators or arbitrators can release funds once they review evidence."
+      ],
+      "withdrawal_policy_do": "Wait for the payout transaction to confirm before you reuse the same address.",
+      "withdrawal_policy_dont": "Mark fiat as received until the funds clear in your bank.",
+      "region": [
+        "Bisq runs worldwide, but each payment method has eligibility rules tied to local banking regulations.",
+        "Follow your country's banking compliance obligations when you send or receive fiat.",
+        "For crypto-to-crypto trades, you can stick to shorter settlement windows and avoid banking hours."
+      ],
+      "micro_faqs": [
+        {
+          "q": "Does Bisq see my payment data?",
+          "a": "No. The data lives on your machine and is only shared with the counterparty you trade with."
+        },
+        {
+          "q": "Can I use Bisq without Tor?",
+          "a": "No. Tor is mandatory and baked into the client, which is how Bisq keeps the network private and censorship resistant."
+        },
+        {
+          "q": "What should I do if a counterparty asks for extra ID?",
+          "a": "Refer them to the Bisq trade rules and involve a mediator instead of sharing documents outside the app."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "DAO state",
+          "def": "The governance data Bisq downloads over Tor so it can enforce DAO parameters like fees and security deposits."
+        },
+        {
+          "term": "Mediator",
+          "def": "A Bisq contributor who helps resolve fiat trade disputes before they escalate to arbitration."
+        }
+      ],
+      "keywords": [
+        "Bisq DAO",
+        "Bisq security deposit",
+        "Bisq BSQ fees",
+        "Bisq Tor network",
+        "Bisq payment methods"
+      ]
+    },
+    "migration": [
+      {
+        "id": "restore-same-wallet",
+        "title": "Restore Bisq on a new computer",
+        "choose": "Use this when you replace or wipe your machine but want to keep trading with the same Bisq identity.",
+        "time": "~20 min",
+        "cost": "Free",
+        "risk": "Medium",
+        "steps": [
+          "Install Bisq on the new computer from the official website.",
+          "Copy your encrypted backup and seed words to the new machine and restore them during setup.",
+          "Let Bisq resync over Tor before you resume trading, then remove the old copy once you verify it works."
+        ],
+        "tips": "Keep backups offline so you are not tempted to email or cloud-share them.",
+        "gotcha": "Running Bisq on two machines with the same keys at the same time can cause trade conflicts."
+      },
+      {
+        "id": "move-from-another-wallet",
+        "title": "Fund Bisq from another wallet",
+        "choose": "Use this when you want to move BTC into Bisq for deposits or BSQ purchases.",
+        "time": "~30 min",
+        "cost": "Network fee",
+        "risk": "Low",
+        "steps": [
+          "Open Funds > Receive funds in Bisq and copy the address or QR code.",
+          "Send the desired amount from your external wallet and include enough sats for trading fees.",
+          "Wait for on-chain confirmation before you take offers that need that balance."
+        ],
+        "tips": "Label the transaction in both wallets so you know which sats are earmarked for Bisq.",
+        "gotcha": "Using change from recently received coins may delay confirmation if the previous transaction is still pending."
+      },
+      {
+        "id": "move-to-onchain",
+        "title": "Withdraw Bisq funds to cold storage",
+        "choose": "Use this when you want to clear your Bisq balance into a long-term wallet.",
+        "time": "~10-60 min",
+        "cost": "Network fee",
+        "risk": "Low",
+        "steps": [
+          "From Funds > Send funds, paste a fresh address from your cold storage wallet.",
+          "Pick a miner fee that matches how soon you need the transaction to confirm.",
+          "Verify the transaction ID and keep Bisq open until it broadcasts."
+        ],
+        "tips": "Batch multiple trade payouts into one withdrawal when fees are high.",
+        "gotcha": "Closing Bisq before the transaction broadcasts can delay the withdrawal until you reopen the app."
+      }
+    ],
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#kyc",
+      "compat": "#features",
+      "migration": "#withdrawal",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-12",
+    "trust": {
+      "cards": [
+        {
+          "id": "source",
+          "fact": "Open-source desktop client and DAO code on GitHub",
+          "link_text": "GitHub repository",
+          "link_url": "https://github.com/bisq-network/bisq"
+        },
+        {
+          "id": "security",
+          "fact": "Security deposits, dispute process, and trade rules",
+          "link_text": "Security docs",
+          "link_url": "https://docs.bisq.network/trading-rules.html"
+        },
+        {
+          "id": "privacy",
+          "fact": "Privacy policy and data handling details",
+          "link_text": "Privacy policy",
+          "link_url": "https://bisq.network/privacy-policy/"
+        },
+        {
+          "id": "terms",
+          "fact": "Terms of use for Bisq contributors and traders",
+          "link_text": "Terms of use",
+          "link_url": "https://bisq.network/terms/"
+        }
+      ]
+    }
   },
   {
     "name": "Bitkey",
@@ -805,7 +1353,7 @@
           "gotcha": "Verification can require additional documents, so keep your ID and proof of address nearby."
         },
         {
-          "id": "setup-receive",
+          "id": "setup-pay",
           "title": "2. Link your bank and schedule funding",
           "chips": {
             "time": "~5 min",
@@ -820,7 +1368,7 @@
           "gotcha": "Manual SEPA deposits take about one business day to clear before you can withdraw the resulting bitcoin."
         },
         {
-          "id": "setup-pay",
+          "id": "setup-receive",
           "title": "3. Buy and move sats to your wallet",
           "why": "Your goal is to convert euros to bitcoin and reduce time in custody.",
           "chips": {
@@ -1776,18 +2324,27 @@
     "type_of_platform": "Non-custodial",
     "faqs": [
       {
-        "q": "What is Bull Bitcoin?",
-        "a": "Bull Bitcoin is a non‑custodial Bitcoin service that sends purchases directly to your own wallet and supports bill payments in Canada."
+        "q": "How do Bull Bitcoin's buy and sell rates include fees?",
+        "a": "Bull Bitcoin publishes an all-in CAD rate on its Rates page that already bakes in the spread, so the quote you confirm is what lands in your wallet. If you expect to cross $100,000 CAD in monthly volume you can request Bull Bitcoin Prime for tighter pricing."
       },
       {
-        "q": "Is KYC required at Bull Bitcoin?",
-        "a": "For buying and selling, identity verification applies by jurisdiction; the platform focuses on privacy and self‑custody."
+        "q": "How fast do Interac e-Transfer buys reach my wallet on Bull Bitcoin?",
+        "a": "As soon as Bull Bitcoin receives your Interac e-Transfer it broadcasts the payout over on-chain, Lightning, or Liquid, so the sats arrive within minutes. Pick the network before you confirm if you need instant Lightning delivery."
       },
       {
-        "q": "Where is Bull Bitcoin available?",
-        "a": "Canada is the primary market, with expanding international access and features available in select regions."
+        "q": "Does Bull Bitcoin require identity verification before I trade?",
+        "a": "Bull Bitcoin is a FINTRAC-regulated MSB, which means you verify your ID and account before funding or requesting CAD payouts. Completing that step keeps them compliant while every buy still settles straight to your wallet."
+      },
+      {
+        "q": "What payout options can I use when I sell bitcoin on Bull Bitcoin?",
+        "a": "Bull Bitcoin locks your sell rate the moment your bitcoin arrives and can send CAD to a bank account, Interac recipient, credit card, or more than 14,000 Canadian billers. You can route the payout to yourself or nominate a third-party recipient inside Canada."
+      },
+      {
+        "q": "Can Bull Bitcoin deliver bitcoin over Lightning or the Liquid Network?",
+        "a": "Bull Bitcoin lets you paste a Bitcoin address, Lightning invoice, or Liquid address when you place a buy, so it settles on the network you choose. Use on-chain for larger orders and Lightning or Liquid when speed matters."
       }
     ],
+    "supported_network": "Bitcoin (on-chain, Lightning, Liquid)",
     "features": {
       "WW": [
         {
@@ -1847,6 +2404,7 @@
     ],
     "custody_control": "Non-custodial",
     "kyc_required": "No",
+    "recovery_method": "Email login with optional 2FA and support-assisted resets",
     "open_source": "Yes",
     "user_experience": "0.0",
     "interface": "Mobile & Desktop",
@@ -1858,12 +2416,478 @@
     "description": "Bull Bitcoin is a Canadian Bitcoin exchange that stands out by being entirely non-custodial, meaning users must provide their own wallet and take full ownership of their Bitcoin. It allows users to buy Bitcoin directly to their own wallets, sell Bitcoin instantly without waiting for confirmations, and even pay bills, rent, and credit cards in Canada by converting Bitcoin to fiat without relying on traditional banks. This approach positions Bitcoin as a tool for everyday exchange, not just long-term saving.\\n\\nThe platform (the mobile app is in beta) is self-funded, Bitcoin-only, and deeply ideological, rejecting external investors. Its team identifies as cypherpunks, building open-source tools and promoting financial sovereignty. Bull Bitcoin's mission is to create sovereign individuals through uncompromising adherence to Bitcoin principles, making it attractive to users who want to align their actions with their values.\\n\\nBeginners find the platform easy to use, with a clean interface and responsive support, while advanced users appreciate its strong privacy stance and no-compromise philosophy. It's ideal for Canadians and expanding internationally for those who want full control over their Bitcoin without depending on custodians or legacy finance systems.",
     "founded_in": "2013",
     "website": "https://www.bullbitcoin.com",
+    "links": {
+      "web": "https://app.bullbitcoin.com/",
+      "support": "https://bitcoinsupport.com/"
+    },
     "countries": [
       "CA",
       "EU",
       "CR",
       "MX"
-    ]
+    ],
+    "trust_chips": [
+      {
+        "text": "Direct-to-wallet delivery",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "direct-to-wallet"
+      },
+      {
+        "text": "Bill Pay",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "bill-pay"
+      },
+      {
+        "text": "Dollar-cost averaging (DCA)",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "dca"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "Canadians who want non-custodial buys that land in their own wallet within minutes.",
+      "consider_if": "You need Lightning or Liquid settlement and want live human support before moving larger wire transfers.",
+      "not_ideal_when": "You are outside Bull Bitcoin's supported regions or prefer leaving funds on a custodial exchange."
+    },
+    "howto": {
+      "title": "Getting started with Bull Bitcoin",
+      "steps": [
+        {
+          "id": "setup-install",
+          "title": "1. Create & verify",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Head to bullbitcoin.com and create an account with your email and a strong password.",
+            "Complete the FINTRAC verification flow by submitting your government ID and answering the compliance questions.",
+            "Wait for the approval email; message the live chat if you do not hear back within a few hours."
+          ],
+          "gotcha": "Bull Bitcoin cannot accept funds until your verification clears."
+        },
+        {
+          "id": "setup-pay",
+          "title": "2. Add your wallet and fund with Interac",
+          "chips": {
+            "time": "~5-30 min",
+            "cost": "No fee",
+            "risk": "Low"
+          },
+          "actions": [
+            "From the dashboard, click Buy Bitcoin and paste a fresh on-chain address, Lightning invoice, or Liquid destination.",
+            "Send an Interac e-Transfer or request the wire instructions that match your order size.",
+            "Watch the Funding tab for confirmation that your payment arrived."
+          ],
+          "gotcha": "Interac transfers above 10,000 CAD require a wire, so plan large orders ahead."
+        },
+        {
+          "id": "setup-receive",
+          "title": "3. Confirm the payout",
+          "why": "See the bitcoin hit your wallet before turning on recurring buys.",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Network fee included",
+            "risk": "Low"
+          },
+          "actions": [
+            "Review the quoted rate and confirm the buy once your funding shows as pending.",
+            "Open your wallet or node to watch the incoming transaction Bull Bitcoin broadcasts.",
+            "Enable Recurring Buy if you want the same amount to repeat automatically."
+          ],
+          "gotcha": "Lightning invoices expire quickly; generate a fresh invoice if the order times out."
+        }
+      ],
+      "totalTime": null,
+      "micro_faqs": [
+        {
+          "q": "How long does Bull Bitcoin verification take?",
+          "a": "Most accounts approve within a few minutes during business hours; contact support if it takes longer than a day."
+        },
+        {
+          "q": "Can I change my payout address after placing an order?",
+          "a": "Cancel and recreate the order before the payout broadcasts, because Bull Bitcoin spends immediately once funding clears."
+        },
+        {
+          "q": "When do recurring buys run?",
+          "a": "They trigger after your chosen funding method settles, so keep your Interac or wire limits open before the scheduled date."
+        }
+      ]
+    },
+    "fees_scenarios": [
+      {
+        "id": "fees-deposit",
+        "title": "Fund your order",
+        "cost_today": "Interac e-Transfer: no fee<br>Wire transfer: your bank may charge<br>Account balance: no fee",
+        "what_happens": "Send Canadian dollars by Interac or wire; once Bull Bitcoin accepts the payment it credits your order and preps the payout.",
+        "how_to_minimize": "Use Interac for quick buys under 10,000 CAD and schedule wires for larger amounts or business transfers.",
+        "learn_more": "Interac deposits cap at 10,000 CAD per transfer, while wires have no maximum."
+      },
+      {
+        "id": "fees-buy",
+        "title": "Buy bitcoin",
+        "cost_today": "All-in spread: ~2% under $100,000 CAD<br>Prime volume: discounted pricing above $100,000 CAD",
+        "what_happens": "Bull Bitcoin publishes live buy rates and locks the price you confirm, then sends the resulting bitcoin to your wallet.",
+        "how_to_minimize": "Monitor the Rates page before sending funds and onboard with Bull Bitcoin Prime when you expect larger monthly volume.",
+        "learn_more": "Prime discounts unlock once your cumulative trades cross $100,000 CAD."
+      },
+      {
+        "id": "fees-sell",
+        "title": "Sell bitcoin",
+        "cost_today": "Interac e-Transfer: no fee<br>Bill payment: no fee<br>Wire transfer: no Bull Bitcoin fee (your bank may charge)",
+        "what_happens": "Bull Bitcoin locks the sell rate as soon as it sees your bitcoin, then delivers Canadian dollars to the payout option you chose.",
+        "how_to_minimize": "Use Lightning for smaller sells that need instant settlement and keep bill payments for merchants that accept e-Transfer timelines.",
+        "learn_more": "Lightning payins cap at 0.15 BTC per transaction; on-chain has no maximum."
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "Does Bull Bitcoin charge fees on Interac deposits?",
+        "a": "Bull Bitcoin accepts Interac and bill payments without platform fees, though your bank may add charges on large wires."
+      },
+      {
+        "q": "Do I pay mining fees when buying bitcoin on Bull Bitcoin?",
+        "a": "The quoted exchange rate already includes the network fee, so your payout broadcasts without an extra charge; you can choose Lightning for fee-free settlement."
+      },
+      {
+        "q": "When do Bull Bitcoin Prime discounts apply?",
+        "a": "Once your monthly volume crosses $100,000 CAD, the Prime desk offers tighter spreads and concierge wire support."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "term-non-custodial",
+        "term": "Non-custodial settlement",
+        "definition": "Bull Bitcoin sends every buy directly to the wallet or Lightning invoice you provide, so no bitcoin sits on the platform."
+      },
+      {
+        "id": "term-recurring-buy",
+        "term": "Recurring Buy",
+        "definition": "An automated purchase schedule that uses your bank funding and repeats at the cadence you set."
+      },
+      {
+        "id": "term-bull-bitcoin-prime",
+        "term": "Bull Bitcoin Prime",
+        "definition": "A concierge service for high-volume individuals and businesses that unlocks discounted rates above $100,000 CAD."
+      }
+    ],
+    "payment_methods_limits": {
+      "heading": "Payment methods & limits",
+      "methods": [
+        {
+          "id": "interac",
+          "name": "Interac e-Transfer",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "No fee",
+            "fee_link": "fees-deposit",
+            "speed": "Minutes once accepted",
+            "withdraw": "Bitcoin sends immediately"
+          },
+          "best_for": "Everyday buys up to 10,000 CAD per transfer.",
+          "limits": {
+            "min_per_tx": "$10 CAD",
+            "max_per_tx": "$10,000 CAD",
+            "max_per_day": "Follows your bank's Interac limit",
+            "max_per_week": "Follows your bank's Interac limit",
+            "withdraw_eligibility": "Orders broadcast after Bull Bitcoin accepts the transfer."
+          }
+        },
+        {
+          "id": "wire",
+          "name": "Bank wire (CAD)",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "No Bull Bitcoin fee",
+            "fee_link": "fees-deposit",
+            "speed": "Same or next business day",
+            "withdraw": "Bitcoin sends after settlement"
+          },
+          "best_for": "Large purchases above Interac limits and corporate onboarding.",
+          "limits": {
+            "min_per_tx": "$25 CAD",
+            "max_per_tx": "No maximum",
+            "max_per_day": "No maximum",
+            "max_per_week": "No maximum",
+            "withdraw_eligibility": "Wires settle same or next business day before the payout broadcasts."
+          }
+        },
+        {
+          "id": "lightning",
+          "name": "Lightning pay-in",
+          "available": true,
+          "icon": "lightning",
+          "summary": {
+            "fee": "No fee",
+            "fee_link": "fees-sell",
+            "speed": "Instant",
+            "withdraw": "CAD payout after lock-in"
+          },
+          "best_for": "Selling smaller amounts when you want near-instant Canadian dollar delivery.",
+          "limits": {
+            "min_per_tx": "No minimum",
+            "max_per_tx": "0.15 BTC",
+            "max_per_day": "0.15 BTC",
+            "max_per_week": "Contact support for higher limits",
+            "withdraw_eligibility": "CAD payout starts after your Lightning payment settles."
+          }
+        }
+      ]
+    },
+    "compat_heading": "Bull Bitcoin features & limits",
+    "compat_tiles": [
+      {
+        "id": "direct-to-wallet",
+        "title": "Direct-to-wallet delivery",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Self-custodial settlement</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> On-chain, Lightning, Liquid</span>",
+        "status": "works"
+      },
+      {
+        "id": "bill-pay",
+        "title": "Bill Pay",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 14,000+ Canadian billers</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Canada-only payouts</span>",
+        "status": "works-caveat"
+      },
+      {
+        "id": "dca",
+        "title": "Dollar-cost averaging (DCA)",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Schedule recurring buys</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Send straight to your wallet</span>",
+        "status": "works"
+      }
+    ],
+    "compat_explainers": [
+      {
+        "id": "direct-to-wallet",
+        "why": "Bull Bitcoin broadcasts every order to the address or invoice you provide, so you avoid leaving coins on an exchange. That keeps custody in your hands from the first purchase.",
+        "try": [
+          "Click Buy Bitcoin and choose on-chain, Lightning, or Liquid delivery.",
+          "Paste a fresh address or invoice from your wallet and confirm the amount.",
+          "Send your Interac or wire payment following the instructions on screen.",
+          "Watch your wallet or node for the incoming transaction once Bull Bitcoin accepts the funds."
+        ],
+        "gotcha": "Double-check the address or invoice because the payout broadcasts automatically once your payment clears."
+      },
+      {
+        "id": "bill-pay",
+        "why": "Bill Pay converts your bitcoin into CAD payments for credit cards, rent, and utilities, so you can settle legacy bills without touching a bank login.",
+        "try": [
+          "Open Sell Bitcoin and choose Bill Payment as the recipient type.",
+          "Search the directory of Canadian billers or enter the account number manually.",
+          "Confirm the CAD amount, then send bitcoin via on-chain, Lightning, or Liquid.",
+          "Bull Bitcoin remits the payment after your transaction confirms."
+        ],
+        "gotcha": "Bill Pay currently supports Canadian billers only, so confirm availability before you send the order."
+      },
+      {
+        "id": "dca",
+        "why": "Bull Bitcoin's recurring buy pulls from your bank funding and still sends the payout to your wallet, so you stack without leaving sats on the platform.",
+        "try": [
+          "Open Buy Bitcoin and choose Recurring Buy.",
+          "Set your amount, cadence, and preferred payout network.",
+          "Keep your bank limits open so each scheduled transfer clears."
+        ],
+        "gotcha": "Recurring buys trigger after each funding clears, so Interac caps can delay the schedule if you hit daily limits."
+      }
+    ],
+    "self_custody": {
+      "heading": "Self-custody: prepare before you buy",
+      "tiles": [
+        {
+          "id": "pick-wallet",
+          "title": "1. Pick a receiving wallet",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "why": "Bull Bitcoin sends every buy straight to your address, so you need a self-custodial wallet ready before you fund an order.",
+          "actions": [
+            "Choose a mobile or hardware wallet you control and write down the seed phrase.",
+            "Test a receive request inside the wallet so you know where to find new addresses.",
+            "Enable biometric or PIN locks so your phone or device stays secure."
+          ],
+          "gotcha": "Bull Bitcoin cannot pause a payout while you set up a wallet."
+        },
+        {
+          "id": "make-receive-code",
+          "title": "2. Generate a fresh receiving code",
+          "chips": {
+            "time": "~2 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "why": "Each Bull Bitcoin buy broadcasts immediately, so paste a new address or Lightning invoice every time.",
+          "actions": [
+            "Open your wallet and copy a fresh on-chain address, Lightning invoice, or Liquid destination.",
+            "Check the expiry time on Lightning invoices before you confirm the order.",
+            "Label the address in your wallet so you remember which buy it matches."
+          ],
+          "gotcha": "Lightning invoices expire quickly; generate a new one if the timer runs down."
+        },
+        {
+          "id": "test-small",
+          "title": "3. Test with a small buy",
+          "chips": {
+            "time": "~15 min",
+            "cost": "Spread included",
+            "risk": "Low"
+          },
+          "why": "A small order lets you prove your wallet and network choice before moving larger amounts.",
+          "actions": [
+            "Fund a small Interac or wire transfer and confirm the quote inside Buy Bitcoin.",
+            "Watch your wallet or node for the incoming transaction and mark it settled.",
+            "Note the time it took so you can plan larger orders with realistic expectations."
+          ],
+          "gotcha": "Keep your wallet online so you spot the incoming transaction right away."
+        },
+        {
+          "id": "move-rest",
+          "title": "4. Automate your routine",
+          "chips": {
+            "time": "~10 min",
+            "cost": "No fee",
+            "risk": "Low"
+          },
+          "why": "Recurring buys still pay out to your wallet, so match the cadence to your bank limits.",
+          "actions": [
+            "Enable Recurring Buy and choose daily, weekly, or monthly funding.",
+            "Align the amount with your Interac or wire limits so each transfer clears.",
+            "Set calendar reminders to review addresses and keep backups fresh."
+          ],
+          "gotcha": "Interac caps reset daily, while larger recurring buys may need a scheduled wire."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Can Bull Bitcoin hold my bitcoin if my wallet fails?",
+          "a": "No. Bull Bitcoin is non-custodial, so every buy needs a working address or invoice that you control."
+        },
+        {
+          "q": "How do I verify a Bull Bitcoin payout arrived?",
+          "a": "Open your wallet or node to confirm the incoming transaction or check a block explorer so you know the broadcast succeeded."
+        },
+        {
+          "q": "Can I switch between on-chain, Lightning, and Liquid payouts?",
+          "a": "Yes. Choose the network that fits each order and Bull Bitcoin settles using the details you provide."
+        }
+      ]
+    },
+    "privacy_notes": {
+      "data_flows": [
+        "Bull Bitcoin stores the identity documents and compliance answers you submit during FINTRAC verification.",
+        "Funding instructions, payout addresses, and invoices live in your account history alongside trade records."
+      ],
+      "recovery_drill": [
+        "Enable two-factor authentication and confirm your email before you fund the account.",
+        "If you lose access, contact support through the in-app chat with your ID to reopen the account."
+      ],
+      "country_caveats": [
+        "Interac e-Transfer, bill payments, and credit card payouts require a Canadian recipient.",
+        "International availability depends on the country-specific rails Bull Bitcoin is rolling out, so confirm support before onboarding."
+      ]
+    },
+    "privacy": {
+      "section_title": "Privacy & Safety",
+      "data_flows": [
+        "Bull Bitcoin keeps your legal name, address, and ID scans to satisfy Canadian AML requirements.",
+        "Payment instructions, addresses, and invoices you enter are retained for order history and compliance."
+      ],
+      "data_flows_do": "Use strong passwords, enable 2FA, and remove saved payout details you no longer need.",
+      "data_flows_dont": "Reuse Lightning invoices or on-chain addresses; generate fresh details so your activity stays compartmentalized.",
+      "recovery": [
+        "Reset your password from the login page and click the link sent to your verified email.",
+        "If you lose two-factor access, contact Bull Bitcoin support with your ID to reset it."
+      ],
+      "recovery_do": "Store authenticator backup codes offline and review recent sessions after recovery.",
+      "recovery_dont": "Share your ID documents outside the secure Bull Bitcoin support chat.",
+      "withdrawal_policy": [
+        "Bull Bitcoin sends bitcoin directly to the address or invoice you provide as soon as your funding clears.",
+        "Sell orders release CAD payouts after your transaction confirms on-chain or settles over Lightning or Liquid."
+      ],
+      "withdrawal_policy_do": "Double-check your destination details before you confirm because Bull Bitcoin broadcasts payouts automatically.",
+      "withdrawal_policy_dont": "Expect Bull Bitcoin to hold balances for later; it cannot warehouse bitcoin on your behalf.",
+      "region": [
+        "Canadian rails like Interac and domestic wires offer the fastest processing.",
+        "Users outside Canada should confirm supported funding and payout rails with Bull Bitcoin support."
+      ],
+      "micro_faqs": [
+        {
+          "q": "Does Bull Bitcoin keep my bitcoin in custody?",
+          "a": "No. Every buy or sell routes directly to the destination you provide, so there is no custodial balance to reclaim."
+        },
+        {
+          "q": "Where can I manage data export or deletion requests?",
+          "a": "Use the settings inside the Bull Bitcoin web app or contact support to arrange data exports or deletion once regulatory retention windows allow."
+        },
+        {
+          "q": "Can I trade without uploading ID?",
+          "a": "No. FINTRAC rules require verified identification before you can send funds or request CAD payouts."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "FINTRAC",
+          "def": "Canada's financial intelligence unit that licenses money services businesses such as Bull Bitcoin."
+        },
+        {
+          "term": "Non-custodial settlement",
+          "def": "A payout model where orders deliver straight to your wallet so the platform never holds your bitcoin."
+        },
+        {
+          "term": "Bill Pay",
+          "def": "Bull Bitcoin's service that converts your bitcoin into CAD payments for Canadian billers and credit cards."
+        }
+      ],
+      "keywords": [
+        "Bull Bitcoin FINTRAC",
+        "Bull Bitcoin Interac limits",
+        "Bull Bitcoin Lightning payout",
+        "Bull Bitcoin Bill Pay support",
+        "Bull Bitcoin recurring buy"
+      ]
+    },
+    "trust": {
+      "cards": [
+        {
+          "id": "security",
+          "fact": "In-house processing engine for on-chain, Lightning, and Liquid payouts.",
+          "link_text": "Security & operations",
+          "link_url": "https://www.bullbitcoin.com/buy#features"
+        },
+        {
+          "id": "licenses",
+          "fact": "FINTRAC MSB registration #M16730720 (Canada).",
+          "link_text": "Verify FINTRAC listing",
+          "link_url": "https://www10.fintrac-canafe.gc.ca/msb-esm/intro-eng.aspx"
+        },
+        {
+          "id": "privacy",
+          "fact": "Privacy policy detailing data handling and retention.",
+          "link_text": "Privacy policy",
+          "link_url": "https://www.bullbitcoin.com/privacy-policy"
+        }
+      ]
+    },
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#kyc",
+      "compat": "#features",
+      "migration": "#withdrawal",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-12"
   },
   {
     "name": "Fold",
@@ -3698,14 +4722,14 @@
             "risk": "Low"
           },
           "actions": [
-            "Download Peach from the official App Store, Google Play, or the APK page.",
+            "Download Peach from the official App Store (Testflight), Google Play, or the APK page.",
             "Set a strong password when the app creates your account file.",
             "Enable biometric unlock and a screen lock on your phone before trading."
           ],
           "gotcha": "Peach cannot reset your password, so store it offline before you trade."
         },
         {
-          "id": "setup-receive",
+          "id": "setup-pay",
           "title": "2. Back up your Peach account file",
           "chips": {
             "time": "~5 min",
@@ -3720,7 +4744,7 @@
           "gotcha": "Losing both the file and password means Peach cannot recover your sats."
         },
         {
-          "id": "setup-pay",
+          "id": "setup-receive",
           "title": "3. Complete a small test trade",
           "why": "Practice the escrow flow before you scale up.",
           "chips": {
@@ -4612,18 +5636,27 @@
     "name": "Pocket",
     "category": "Buy Bitcoin",
     "type_of_platform": "P2P",
+    "supported_network": "Bitcoin (on-chain)",
     "faqs": [
       {
-        "q": "What is Pocket Bitcoin?",
-        "a": "Pocket is a non‑custodial service for recurring buys that sends Bitcoin directly to your own wallet."
+        "q": "How does Pocket deliver bitcoin to my wallet?",
+        "a": "Pocket executes your buy on Kraken and broadcasts the payout straight to the address you confirmed, using the lowest mining fee it can attach. You can watch the transaction land in your wallet without waiting for a withdrawal queue."
       },
       {
-        "q": "Does Pocket require KYC?",
-        "a": "Pocket is KYC‑light; verification applies for larger purchases based on EU regulations."
+        "q": "What service fee does Pocket charge on each purchase?",
+        "a": "Pocket applies a 1.5% service fee that covers all operating costs without touching the exchange rate. You can confirm the calculation on the payout screen before your transfer settles."
       },
       {
-        "q": "Which regions does Pocket support?",
-        "a": "Pocket focuses on the EU, with support varying by country and bank."
+        "q": "How does Pocket manage bitcoin network fees?",
+        "a": "Pocket batches many customer payouts into one transaction so each order only pays a share of the mining fee, which usually lands around 500–1000 sats. You can reuse the same address for multiple transfers in a day when you want those payouts to share a fee."
+      },
+      {
+        "q": "Which exchange rate does Pocket pass through?",
+        "a": "Pocket routes every buy through Kraken at the live market price and passes that rate to you without a hidden spread. You can match their timestamp against Kraken's public order book for verification."
+      },
+      {
+        "q": "Can I schedule recurring buys that settle to my wallet?",
+        "a": "Pocket lets you set up one-off or auto-invest bank transfers that pay out directly to your own wallet instead of a custodial balance. You can build a position over time while staying in control of your keys."
       }
     ],
     "features": {
@@ -4691,6 +5724,395 @@
     },
     "profile": "David Knezic",
     "description": "Pocket Bitcoin stands out with its non-custodial model, sending Bitcoin directly to your wallet without holding funds, and a no-account, KYC-light approach for daily buys up to €1,000 | 0.01 BTC | 0.01 BTC, prioritizing privacy. It offers one-off or recurring buys via bank transfer, with a 1.5% fee and no withdrawal fees, supporting select hardware wallets like Trezor and Ledger with message signing.\\n\\nPocket's mission is to make Bitcoin ownership frictionless and private, promoting self-custody without complexity and with a vision to expand to a dozen more European countries and enhance wallet integrations.\\n\\nThe mobile app, and the web portal for managing orders and wallet settings, are praised for their simple interface and fast transactions, but some find the fees slightly high.",
+    "tl_dr": {
+      "best_for": "Buyers across the EU who want bank transfers to drop bitcoin straight into a wallet they control.",
+      "consider_if": "You value transparent fees and Kraken execution more than instant card funding.",
+      "not_ideal_when": "You need Lightning payouts or non-EU payment rails today."
+    },
+    "howto": {
+      "title": "Getting started with Pocket",
+      "steps": [
+        {
+          "id": "setup-install",
+          "title": "1. Create your Pocket order",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Visit pocketbitcoin.com and start a new one-off or auto-invest order.",
+            "Paste a fresh receive address from your wallet or upload the file Pocket requests to validate it.",
+            "Review the summary showing the 1.5% service fee and Kraken reference rate."
+          ],
+          "gotcha": "Use a new address for each long-term purchase so you do not expose your full balance."
+        },
+        {
+          "id": "setup-transfer",
+          "title": "2. Send your bank transfer",
+          "chips": {
+            "time": "~2 min",
+            "cost": "Depends on bank",
+            "risk": "Low"
+          },
+          "actions": [
+            "Log into your bank and send a SEPA transfer to Pocket's IBAN with the exact payment message shown.",
+            "Set the transfer as a standing order if you plan to auto-invest on a cadence.",
+            "Save the confirmation email so you can trace the payment if the bank asks for details."
+          ],
+          "gotcha": "Transfers that miss the payment message are refunded, so copy it exactly."
+        },
+        {
+          "id": "setup-receive",
+          "title": "3. Watch the payout in your wallet",
+          "chips": {
+            "time": "~10–60 min",
+            "cost": "Mining fee only",
+            "risk": "Low"
+          },
+          "actions": [
+            "Wait for Pocket's execution email that confirms your order ran on Kraken.",
+            "Open your wallet or a block explorer to see the incoming transaction Pocket broadcast.",
+            "Label the transaction so you can reconcile it with your bank transfer later."
+          ],
+          "gotcha": "High network congestion can slow confirmations even though the payout was broadcast."
+        }
+      ]
+    },
+    "fees_scenarios": [
+      {
+        "id": "fees-buy",
+        "title": "Buy bitcoin",
+        "cost_today": "Service fee: 1.5%",
+        "what_happens": "Pocket deducts the 1.5% service fee, executes the remaining balance on Kraken, and converts it to bitcoin before payout.",
+        "how_to_minimize": "Send fewer, larger transfers so the flat 1.5% covers more sats instead of lots of tiny buys.",
+        "learn_more": "The payout screen shows the Kraken price and timestamp so you can verify the execution."
+      },
+      {
+        "id": "fees-network",
+        "title": "Bitcoin network fee",
+        "cost_today": "Typically 500–1000 sats per payout",
+        "what_happens": "Pocket batches many customer payouts into one transaction so everyone shares the mining fee.",
+        "how_to_minimize": "If you fund multiple buys in a day to the same address, Pocket can combine them into one payout to reuse the fee.",
+        "learn_more": "Pocket publishes the miner fee on the receipt so you can see how much of the transaction cost you carried."
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "Does Pocket hide a spread in the exchange rate?",
+        "a": "No. Pocket executes each order on Kraken and shows you the live rate they used so you can compare it to the public order book."
+      },
+      {
+        "q": "How big is the mining fee on a typical payout?",
+        "a": "Pocket reports that batching keeps most payouts in the 500–1000 sat range, which equals roughly 10–25 euro cents at recent prices."
+      },
+      {
+        "q": "Can multiple transfers share one mining fee?",
+        "a": "Yes. If you send several payments to the same address in one day, Pocket can include them in a single batched transaction so the fee is paid once."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "term-pocket-service-fee",
+        "term": "Pocket service fee",
+        "definition": "The flat 1.5% fee Pocket charges on every order before executing the buy on Kraken."
+      },
+      {
+        "id": "term-batched-payout",
+        "term": "Batched payout",
+        "definition": "Pocket's process of combining many customer payouts into one transaction so each order shares the mining fee."
+      },
+      {
+        "id": "term-kraken-reference-rate",
+        "term": "Kraken reference rate",
+        "definition": "The market price Pocket uses to execute your order and display on the payout receipt for verification."
+      }
+    ],
+    "payment_methods_limits": {
+      "heading": "Payment methods & limits",
+      "methods": [
+        {
+          "id": "sepa",
+          "name": "SEPA bank transfer",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "Usually free from EU banks",
+            "speed": "~1 business day",
+            "withdraw": "Not applicable"
+          },
+          "best_for": "Eurozone customers funding recurring buys from their primary bank.",
+          "limits": {
+            "min_per_tx": "Set by your bank",
+            "max_per_tx": "Set by your bank",
+            "max_per_day": "Set by your bank",
+            "max_per_week": "Set by your bank",
+            "withdraw_eligibility": "N/A"
+          }
+        },
+        {
+          "id": "chf-transfer",
+          "name": "CHF bank transfer",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "Usually free inside Switzerland",
+            "speed": "~1 business day",
+            "withdraw": "Not applicable"
+          },
+          "best_for": "Swiss customers wiring francs to Pocket's Swiss account.",
+          "limits": {
+            "min_per_tx": "Set by your bank",
+            "max_per_tx": "Set by your bank",
+            "max_per_day": "Set by your bank",
+            "max_per_week": "Set by your bank",
+            "withdraw_eligibility": "N/A"
+          }
+        }
+      ]
+    },
+    "compat_heading": "Pocket features & limits",
+    "compat_tiles": [
+      {
+        "id": "direct-to-wallet-payouts",
+        "title": "Direct-to-wallet payouts",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Self custody from day one</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> No platform balances</span>",
+        "status": "works"
+      },
+      {
+        "id": "batched-network-fees",
+        "title": "Batched network fees",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Shared mining cost</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Lower average sats spent</span>",
+        "status": "works"
+      },
+      {
+        "id": "kraken-price-pass-through",
+        "title": "Kraken price pass-through",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Live exchange rate</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Kraken dependency</span>",
+        "status": "works-caveat"
+      },
+      {
+        "id": "dca",
+        "title": "Dollar-cost averaging (DCA)",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Standing orders</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Auto-invest to your wallet</span>",
+        "status": "works"
+      }
+    ],
+    "compat_explainers": [
+      {
+        "id": "direct-to-wallet-payouts",
+        "why": "Pocket never holds a custodial balance; every order pays straight to your address so your bitcoin stays under your control.",
+        "try": [
+          "Create a Pocket order and paste a fresh address from your wallet.",
+          "Confirm the payout email that shows the transaction ID once your bank transfer settles.",
+          "Open your wallet to verify the confirmed transaction and label it for your records."
+        ],
+        "gotcha": "If you rotate wallets, update your address before sending the next transfer so the payout does not land in an old account."
+      },
+      {
+        "id": "batched-network-fees",
+        "why": "Pocket combines many payouts into one transaction so each account shoulders only a fraction of the mining fee.",
+        "try": [
+          "Fund two buys on the same day to the same address and note that the miner fee only appears once.",
+          "Check the payout receipt to see how many outputs were included in the batched transaction.",
+          "Use a block explorer to view the transaction and confirm the shared fee Pocket paid."
+        ],
+        "gotcha": "During heavy mempool congestion, Pocket may still pay a higher fee to clear the batch promptly."
+      },
+      {
+        "id": "kraken-price-pass-through",
+        "why": "Pocket routes your fiat through Kraken and hands you the exact rate so you can prove there is no hidden spread. That still leans on Kraken staying online, so keep a backup payout plan if the exchange stalls.",
+        "try": [
+          "Compare the rate on your payout receipt with Kraken's historical price at the same minute.",
+          "Download the CSV export from the dashboard for your accountant or tax software.",
+          "Spot-check a past order to confirm that the fiat amount minus 1.5% matches the sats you received."
+        ],
+        "gotcha": "Kraken execution happens after your transfer reaches Pocket, so bank delays push the timestamp accordingly. If Kraken pauses trading, your payout waits until the venue comes back online."
+      },
+      {
+        "id": "dca",
+        "why": "Pocket lets you automate SEPA transfers so every run stacks sats in your own wallet without manual withdrawals.",
+        "try": [
+          "Set a standing order in your bank with the reference code Pocket provides.",
+          "Pick a cadence that matches your income cycle and review it in the Pocket dashboard.",
+          "Adjust the standing order amount when your budget changes so buys keep fitting your plan."
+        ],
+        "gotcha": "If you change the payout address, update the recurring order first so the next batch does not go to the old one."
+      }
+    ],
+    "trust_chips": [
+      {
+        "text": "Direct-to-wallet payouts",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "direct-to-wallet-payouts"
+      },
+      {
+        "text": "Batched network fees",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "batched-network-fees"
+      },
+      {
+        "text": "Dollar-cost averaging (DCA)",
+        "status": "positive",
+        "link_to": "dca"
+      }
+    ],
+    "self_custody": {
+      "heading": "Self-custody: receive safely",
+      "tiles": [
+        {
+          "id": "pick-wallet",
+          "title": "1. Pick your receive wallet",
+          "chips": {
+            "time": "~5 min",
+            "cost": "$0–$200",
+            "risk": "Low"
+          },
+          "why": "Pocket pays every order to your address, so you need a wallet capable of receiving bitcoin securely.",
+          "actions": [
+            "Choose a wallet you trust, such as a hardware wallet for long-term savings.",
+            "Update firmware or app versions so your wallet supports message signing if Pocket requests it.",
+            "Write down or engrave your seed phrase and store it offline in separate locations."
+          ],
+          "gotcha": "Never store the seed digitally; Pocket cannot help you recover it if it is lost."
+        },
+        {
+          "id": "make-receive-code",
+          "title": "2. Generate a fresh address",
+          "chips": {
+            "time": "~2 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "why": "Each order needs a fresh receive address so payouts stay private and trackable on your side.",
+          "actions": [
+            "Open your wallet and generate a new bech32 (bc1...) address.",
+            "Copy the address exactly or use the QR export Pocket provides.",
+            "Store the address reference so you can recognise matched payouts later."
+          ],
+          "gotcha": "Avoid reusing older addresses; Pocket's batch payouts make reused addresses easier to cluster."
+        },
+        {
+          "id": "test-small",
+          "title": "3. Start with a small order",
+          "chips": {
+            "time": "~1–2 days",
+            "cost": "Bank transfer fee",
+            "risk": "Low"
+          },
+          "why": "A test transfer confirms your bank message, payout address, and wallet notifications before scaling up.",
+          "actions": [
+            "Send a modest bank transfer using Pocket's reference code.",
+            "Wait for the execution email and confirm the sats appear in your wallet.",
+            "Check the transaction ID in a block explorer so you know what Pocket's receipts look like."
+          ],
+          "gotcha": "Your first transfer may settle slower if your bank flags the new beneficiary."
+        },
+        {
+          "id": "move-rest",
+          "title": "4. Automate your cadence",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Bank transfer fee",
+            "risk": "Low"
+          },
+          "why": "Once you trust the flow, a standing order keeps stacking sats directly to cold storage without daily effort.",
+          "actions": [
+            "Create a recurring transfer that matches your budget and reuse the standing payment message.",
+            "Label each payout in your wallet so tax season is easier.",
+            "Rotate to a fresh address whenever you need to reset privacy or change wallets."
+          ],
+          "gotcha": "Update the standing order before changing addresses; banks batch instructions by business day."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Do I need a new address for every order?",
+          "a": "Pocket suggests fresh addresses for long-term privacy, but you can reuse the same one in a single day when you want payouts to share a mining fee."
+        },
+        {
+          "q": "Can Pocket pull bitcoin back if something goes wrong?",
+          "a": "No. Once the transaction confirms, only wallets with that seed can spend the sats, so double-check addresses before you send the bank transfer."
+        },
+        {
+          "q": "What if my bank blocks the transfer?",
+          "a": "Contact the bank with the invoice Pocket provides or try a different account. Pocket refunds unmatched transfers automatically."
+        }
+      ]
+    },
+    "privacy_notes": {
+      "data_flows": [
+        "Pocket stores the payout address you provide and the bank payment reference it assigns to your order.",
+        "Bank transfers expose your IBAN and name to Pocket's Swiss banking partner so they can match incoming payments."
+      ],
+      "recovery_drill": [
+        "Keep the order confirmation emails; they contain the reference code Pocket needs to trace payments.",
+        "If a payout seems delayed, share the bank transfer receipt and your address so Pocket support can find the transaction."
+      ],
+      "country_caveats": [
+        "Pocket currently serves EU and Swiss bank corridors; local availability depends on SEPA access.",
+        "Some banks require you to whitelist Pocket's IBAN before a standing order will execute."
+      ]
+    },
+    "privacy": {
+      "section_title": "Privacy & Safety",
+      "data_flows": [
+        "Pocket records your email, bank reference, and payout address so it can match transfers to bitcoin payouts.",
+        "Orders execute on Kraken, so the execution price is shared on receipts for transparency."
+      ],
+      "data_flows_do": "Review your order history in the dashboard and export CSV files for accounting.",
+      "data_flows_dont": "Assume bank transfers are private. Your bank still sees the recipient and amount.",
+      "recovery": [
+        "Use Pocket's support channel with your reference code if a bank transfer is delayed.",
+        "Retain your wallet's seed phrase because Pocket cannot resend bitcoin that already settled."
+      ],
+      "recovery_do": "Store payment confirmations and transaction IDs in the same secure folder as your accounting records.",
+      "recovery_dont": "Delete reference emails before your bank confirms the transfer settled.",
+      "withdrawal_policy": [
+        "Pocket pays bitcoin directly to your address; there are no internal accounts to withdraw from.",
+        "Network fees are deducted from each payout and displayed on the receipt."
+      ],
+      "withdrawal_policy_do": "Check the payout transaction ID before archiving the order.",
+      "withdrawal_policy_dont": "Expect Pocket to chase lost transactions if you provided an incorrect address."
+    },
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#kyc",
+      "compat": "#features",
+      "migration": "#withdrawal",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "trust": {
+      "cards": [
+        {
+          "id": "security",
+          "fact": "Non-custodial payout overview",
+          "link_text": "Can Pocket access my bitcoin?",
+          "link_url": "https://pocketbitcoin.com/faq/can-pocket-access-my-bitcoin"
+        },
+        {
+          "id": "privacy",
+          "fact": "Privacy policy October 2025",
+          "link_text": "Privacy notice",
+          "link_url": "https://pocketbitcoin.com/policy/privacy"
+        },
+        {
+          "id": "terms",
+          "fact": "Terms & conditions for EU users",
+          "link_text": "Terms of service",
+          "link_url": "https://pocketbitcoin.com/policy/terms"
+        }
+      ]
+    },
     "founded_in": "2020",
     "website": "https://pocketbitcoin.com",
     "countries": [
@@ -5932,18 +7354,27 @@
     "name": "RoboSats",
     "category": "Buy Bitcoin",
     "type_of_platform": "P2P",
+    "supported_network": "Bitcoin (Lightning with optional swaps)",
     "faqs": [
       {
-        "q": "What is RoboSats?",
-        "a": "RoboSats is a privacy‑first, Lightning‑native peer‑to‑peer exchange to buy and sell bitcoin without accounts or KYC, primarily accessed over Tor."
+        "q": "How do RoboSats Lightning bonds and escrow work?",
+        "a": "Each contract starts with the maker posting a Lightning hold-invoice bond—defaults to ~3% of the trade—and the taker matching it when they join, while the seller locks the sats in a hold invoice escrow. That lock keeps funds frozen until both parties confirm fiat, which means you can complete the trade and reclaim everything or cancel during the timer if the peer stalls."
       },
       {
-        "q": "Does RoboSats require KYC?",
-        "a": "No. RoboSats has no registration or KYC; trades use one‑time robot identities tied to a secret token you control."
+        "q": "What fees does RoboSats charge on trades?",
+        "a": "RoboSats collects 0.2% per completed trade, split 0.1% to the maker and 0.1% to the taker when the hold invoice settles. That sits on top of whatever spread you negotiate, so you can tighten your offers to keep the total cost in sats low."
       },
       {
-        "q": "How does RoboSats escrow work?",
-        "a": "Both parties lock small Lightning bonds and the seller locks a Lightning hold‑invoice as escrow. After fiat is confirmed, sats are released."
+        "q": "Does RoboSats require KYC or accounts?",
+        "a": "Instead of accounts, RoboSats generates a one-time robot avatar from a secret token you control and stores only that token locally. That keeps your personal data off the coordinator, and you can rotate a fresh robot for every trade to keep orders unlinkable."
+      },
+      {
+        "q": "Which Lightning wallets work best with RoboSats?",
+        "a": "You need a Lightning wallet that can issue invoices and hold payments for a few minutes; RoboSats docs highlight Zeus, Blixt, Phoenix, Breez, Mutiny, and BlueWallet (LDK) because they keep the bond open until fiat clears. That support prevents premature expiry, and you can keep a second wallet with inbound liquidity ready if your main one is routing a large trade."
+      },
+      {
+        "q": "How are disputes handled if a counterparty does not release sats?",
+        "a": "If fiat fails, you hit Dispute in the chat, upload the payment proof, and the coordinator reviews both bond invoices plus your evidence. Their ruling routes the trade hold invoice either to you or the counterparty, so you can recover funds when you documented the fiat leg."
       }
     ],
     "features": {
@@ -5991,6 +7422,7 @@
     ],
     "custody_control": "Non-custodial",
     "kyc_required": "No",
+    "recovery_method": "Secret robot token you generate per session; keep it offline to reopen contracts or settle disputes",
     "open_source": "Yes",
     "user_experience": "0.0",
     "interface": "Mobile & Desktop",
@@ -6001,11 +7433,462 @@
     "description": "RoboSats is a privacy‑first, Lightning‑native peer‑to‑peer exchange for buying and selling bitcoin with fiat. It is open‑source, requires no registration or KYC, and runs primarily over Tor (with I2P and an Android app available). Each trade uses a one‑time “robot” identity tied to a secret token you control, and all peer chat is end‑to‑end encrypted with PGP. The flow is simple: make or take an order, both sides lock small Lightning bonds, the seller locks a Lightning hold‑invoice escrow, fiat moves, then sats are released.\n\nWhat separates RoboSats is how deeply privacy and safety are built into the mechanics rather than bolted on. One‑trade identities reduce linkability across orders, PGP‑sealed chat prevents metadata leakage, and Lightning hold invoices act as both escrow and fidelity bonds to discourage cancellations and fraud. Pricing is transparent and market‑relative, fees are low at 0.2% split between maker and taker, and optional on‑chain payouts are handled via swaps. Clear best‑practice guides help users pick lower‑risk fiat rails and avoid chargeback traps.\n\nThe ideal audience is anyone who wants fast, low‑fee, no‑KYC bitcoin for modest amounts and is comfortable using Tor and a compatible Lightning wallet. Trade sizes are tuned to what routes reliably on Lightning today, which suits frequent smaller buys and sells. The UI is straightforward once you learn the token/robot model, and the documentation walks through wallet compatibility, order timing, disputes, and payment‑method hygiene to keep trades quick and clean.\n\nRoboSats’ vision is to keep P2P bitcoin simple, private, and resilient, with a path toward a federated network of coordinators sharing a unified order book to reduce single‑operator risk while preserving the familiar UX.",
     "founded_in": "2022",
     "website": "https://robosats.com",
+    "links": {
+      "web": "https://robosats.com",
+      "github": "https://github.com/RoboSats/robosats",
+      "android": "https://github.com/RoboSats/robosats-android/releases"
+    },
     "countries": [
       "WW"
     ],
     "logo": "images/robosats.svg",
-    "founder_image": "images/founders/unknown.jpg"
+    "founder_image": "images/founders/unknown.jpg",
+    "trust_chips": [
+      {
+        "text": "Lightning hold-invoice escrow",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "lightning-escrow"
+      },
+      {
+        "text": "Robot token identities",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "robot-identities"
+      },
+      {
+        "text": "Tor-first access",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "tor-access"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "Buyers who want no-KYC Lightning trades for small to mid-sized amounts and are comfortable living inside Tor.",
+      "consider_if": "You value privacy enough to run a hold-invoice-capable wallet and double-check payment rails before committing fiat.",
+      "not_ideal_when": "You need large clips, fiat chargeback protection, or hands-on support from a regulated desk."
+    },
+    "howto": {
+      "title": "Getting started with RoboSats",
+      "steps": [
+        {
+          "id": "setup-install",
+          "title": "1. Spin up your robot over Tor",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Install Tor Browser (desktop) or run Orbot with a privacy browser on mobile, then open https://robosats.com or the onion listed in Quick Start.",
+            "Click Start to generate a robot avatar and let the coordinator hand you the secret token.",
+            "Copy the token into an offline password manager or notebook before you close the welcome dialog."
+          ],
+          "gotcha": "Lose that token and support cannot reopen the contract or disputes for that robot."
+        },
+        {
+          "id": "setup-receive",
+          "title": "2. Prep your Lightning wallet and bonds",
+          "chips": {
+            "time": "~3 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Open a Lightning wallet that supports hold invoices and confirm you have inbound liquidity for the trade size.",
+            "Decide whether you will make or take orders and review the default ~3% bond shown on the slider.",
+            "Keep the wallet unlocked so the bond invoice does not expire while you negotiate fiat details."
+          ],
+          "gotcha": "Hold invoices time out fast, so stay connected until the contract room opens."
+        },
+        {
+          "id": "setup-pay",
+          "title": "3. Settle the fiat leg and release sats",
+          "chips": {
+            "time": "~10-30 min",
+            "cost": "Lightning routing + payment rail fees",
+            "risk": "Medium"
+          },
+          "actions": [
+            "Make or take an order, pay the Lightning bond invoice, and wait for the chat room to unlock.",
+            "Exchange fiat instructions over the PGP-encrypted chat and send or confirm the payment through your chosen rail.",
+            "Mark fiat received and release the trade so the hold invoice settles to your wallet, then sweep the sats to your long-term stack or an on-chain swap if needed."
+          ],
+          "gotcha": "If a counterparty stalls, hit Dispute before the timer ends so the coordinator can review evidence."
+        }
+      ]
+    },
+    "fees_scenarios": [
+      {
+        "id": "fees-buy",
+        "title": "Post an order",
+        "cost_today": "Maker bond: defaults to ~3% (min 20,000 sats, adjustable to 20%)",
+        "what_happens": "RoboSats locks that bond in a Lightning hold invoice until the contract completes or you cancel.",
+        "how_to_minimize": "Lower the bond slider only when you trust the payment rail and keep orders short so capital is not locked for long.",
+        "learn_more": "See Quick Start → Contracts for bond calculations and timers."
+      },
+      {
+        "id": "fees-receive-lightning",
+        "title": "Take an order",
+        "cost_today": "Taker bond: matches the maker percentage (usually ~3%)",
+        "what_happens": "You pay the hold invoice when you join the order and get it back automatically once both sides confirm fiat.",
+        "how_to_minimize": "Join orders you can settle immediately to avoid timeout penalties and re-post fees.",
+        "learn_more": "Documentation explains countdown rules, refunds, and when bonds forfeit."
+      },
+      {
+        "id": "fees-send-lightning",
+        "title": "Trade fee",
+        "cost_today": "0.2% total (0.1% maker + 0.1% taker) charged when escrow settles",
+        "what_happens": "The coordinator collects the fee from the escrowed sats as the hold invoice finalizes.",
+        "how_to_minimize": "Place maker orders with tight spreads so you earn the spread instead of paying a wider markup.",
+        "learn_more": "Quick Start → Fees lists the split and how coordinator donations offset costs."
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "When do RoboSats bonds get refunded?",
+        "a": "Bonds auto-refund when both sides confirm fiat or if you cancel before the hold invoice is charged. That timer is enforced by the coordinator, so you can exit early if a counterparty disappears."
+      },
+      {
+        "q": "Can I change the maker bond percentage?",
+        "a": "Makers can slide the bond from 0% to 20% before publishing, with 3% as the default. Raising it discourages chargeback-prone rails, and you can lower it only when you trust the fiat method."
+      },
+      {
+        "q": "Who pays Lightning routing fees on RoboSats?",
+        "a": "Each side pays the routing cost on the Lightning invoices they settle, which is usually just a few sats. You can keep fees negligible by using well-connected wallets or running your own node."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "term-robot-token",
+        "term": "Robot token",
+        "definition": "The secret string RoboSats shows when you start a session; it restores your robot avatar, bonds, and dispute access."
+      },
+      {
+        "id": "term-hold-invoice",
+        "term": "Hold invoice",
+        "definition": "A Lightning invoice that reserves funds without settling until both parties meet a condition, used for bonds and trade escrow."
+      },
+      {
+        "id": "term-fidelity-bond",
+        "term": "Fidelity bond",
+        "definition": "The Lightning bond each peer posts to discourage cancellations or fraud and forfeits if they break the trade rules."
+      }
+    ],
+    "payment_methods_limits": {
+      "heading": "Payment methods & limits",
+      "methods": [
+        {
+          "id": "bank-transfer",
+          "name": "Bank transfer (SEPA / ACH equivalent)",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "Peer set",
+            "fee_link": "fees-trade",
+            "speed": "~1 business day",
+            "withdraw": "Dispute recourse depends on your bank"
+          },
+          "best_for": "Trades with documented fiat rails and a clear paper trail.",
+          "limits": {
+            "min_per_tx": "Set by maker (often ≥ 50,000 sats)",
+            "max_per_tx": "Set by maker; Lightning routes typically < 5,000,000 sats",
+            "max_per_day": "Varies by counterparties",
+            "max_per_week": "Varies by counterparties",
+            "withdraw_eligibility": "Once both parties mark fiat received"
+          }
+        },
+        {
+          "id": "revolut",
+          "name": "Revolut / Wise",
+          "available": true,
+          "icon": "app",
+          "summary": {
+            "fee": "Peer set",
+            "fee_link": "fees-trade",
+            "speed": "Minutes to hours",
+            "withdraw": "Subject to app limits and reviews"
+          },
+          "best_for": "Cross-border fast payments when both peers use the same fintech app."
+        },
+        {
+          "id": "cash",
+          "name": "Cash in person",
+          "available": true,
+          "icon": "cash",
+          "summary": {
+            "fee": "Peer set",
+            "fee_link": "fees-trade",
+            "speed": "Immediate",
+            "withdraw": "Bring exact change and verify bills"
+          },
+          "best_for": "Local trades with trusted meetups or repeat partners.",
+          "limits": {
+            "min_per_tx": "Negotiated between peers",
+            "max_per_tx": "Depends on comfort and local laws",
+            "max_per_day": "Negotiated between peers",
+            "max_per_week": "Negotiated between peers",
+            "withdraw_eligibility": "Once cash changes hands and both confirm in the app"
+          }
+        }
+      ]
+    },
+    "compat_heading": "RoboSats features & limits",
+    "compat_tiles": [
+      {
+        "id": "lightning-escrow",
+        "title": "Lightning hold-invoice escrow",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> No platform custody</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Bonds keep peers honest</span>",
+        "status": "works"
+      },
+      {
+        "id": "robot-identities",
+        "title": "Robot token identities",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> One-time avatars per trade</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Stored client-side only</span>",
+        "status": "works"
+      },
+      {
+        "id": "tor-access",
+        "title": "Tor-first access",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Onion routing by default</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Clearnet is fallback only</span>",
+        "status": "works-caveat"
+      }
+    ],
+    "compat_explainers": [
+      {
+        "id": "lightning-escrow",
+        "why": "When you publish an order, the sats stay in a Lightning hold invoice anchored to your wallet instead of a custodian. That means nothing moves until both sides mark the fiat leg complete, and the payout lands in your balance the instant the contract clears.",
+        "try": [
+          "Publish a maker order and pay the small bond invoice from your Lightning wallet.",
+          "Watch the seller post the trade hold invoice and confirm it appears in the contract timeline.",
+          "Mark fiat received so the hold invoice settles and routes sats straight to your wallet."
+        ],
+        "gotcha": "Keep your Lightning wallet online; hold invoices expire quickly if the coordinator has to wait."
+      },
+      {
+        "id": "robot-identities",
+        "why": "Each session mints a robot avatar from the token you save instead of an email or ID. That keeps every order tied to a disposable alias, and you can spin up a fresh robot for the next trade so past deals stay compartmentalized.",
+        "try": [
+          "Click Start to mint a robot and copy the token shown in the banner.",
+          "Store the token offline and use Recover robot if you switch browsers or devices mid-trade.",
+          "Generate a new robot before you post another order to keep prior trades unlinkable."
+        ],
+        "gotcha": "Misplacing the token severs dispute access for that robot, and support cannot restore it."
+      },
+      {
+        "id": "tor-access",
+        "why": "Routing the session through Tor bounces your packets through onion relays before they ever reach the coordinator. That keeps your IP and location out of the logs, with the clearnet bridge reserved as a last resort when Tor or I2P is blocked.",
+        "try": [
+          "Install Tor Browser or run Orbot/Onion Browser on mobile.",
+          "Navigate to robosats.com and let it redirect you to the current onion address.",
+          "Bookmark the onion inside Tor so you reconnect directly next time."
+        ],
+        "gotcha": "The clearnet gateway sits behind Cloudflare; stick to Tor when privacy is the priority."
+      }
+    ],
+    "self_custody": {
+      "heading": "Self-custody: withdraw safely",
+      "tiles": [
+        {
+          "id": "pick-wallet",
+          "title": "1. Pick a Lightning wallet with inbound liquidity",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "why": "Lightning wallets that support hold invoices keep RoboSats bonds alive while fiat clears.",
+          "actions": [
+            "Choose a wallet from the Quick Start list (Zeus, Blixt, Phoenix, Mutiny, Breez) or connect your own node.",
+            "Fund it with inbound liquidity that matches your target trade size.",
+            "Enable push notifications so you do not miss contract updates.",
+            "Write down your recovery seed or backup key before you trade."
+          ],
+          "gotcha": "Custodial wallets can cancel hold invoices unexpectedly; prefer non-custodial or hybrid wallets for larger trades."
+        },
+        {
+          "id": "make-receive-code",
+          "title": "2. Prepare a fresh Lightning invoice",
+          "chips": {
+            "time": "~2 min",
+            "cost": "Routing fee (few sats)",
+            "risk": "Low"
+          },
+          "why": "RoboSats pays the trade out to the invoice you present, so you control where the sats land.",
+          "actions": [
+            "Generate a Lightning invoice in your wallet once the contract room opens.",
+            "Check the expiry time and amount to confirm it matches the order.",
+            "Share only the invoice string inside the encrypted chat.",
+            "If you need on-chain, prepare a Boltz swap invoice before accepting the order."
+          ],
+          "gotcha": "Never reuse an invoice; the coordinator rejects duplicates to protect you from replay attacks."
+        },
+        {
+          "id": "test-small",
+          "title": "3. Run a small test trade",
+          "chips": {
+            "time": "~15 min",
+            "cost": "Bonds + minimal spread",
+            "risk": "Low"
+          },
+          "why": "Testing with a tiny order lets you confirm your wallet, Tor setup, and payment rail before scaling up.",
+          "actions": [
+            "Post or take a small trade (50,000-100,000 sats) with a rail you know well.",
+            "Verify the Lightning payout arrives instantly in your wallet.",
+            "Record the experience: bond timing, chat etiquette, and payout process.",
+            "Decide whether the peer deserves a trust note for future trades."
+          ],
+          "gotcha": "Skipping test trades raises the chance you discover a wallet or rail issue during a larger order."
+        },
+        {
+          "id": "move-rest",
+          "title": "4. Sweep profits to long-term storage",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Swap or on-chain fee",
+            "risk": "Low"
+          },
+          "why": "Moving sats off your hot Lightning wallet preserves sovereignty and limits coordinator exposure.",
+          "actions": [
+            "Use your wallet’s built-in swap (or Boltz) to move sats on-chain if you want cold storage.",
+            "Label the transaction with the RoboSats order ID for bookkeeping.",
+            "Consolidate to a hardware wallet or multisig when balances grow.",
+            "Archive the robot token with the trade receipt for future tax records."
+          ],
+          "gotcha": "Leaving large balances in a hot Lightning wallet invites device loss and liquidity drains."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Can RoboSats pay me on-chain instead of Lightning?",
+          "a": "RoboSats itself is Lightning-only, but you can set up a Boltz or Deezy swap after payout to land coins on-chain."
+        },
+        {
+          "q": "What if my Lightning invoice expires before the seller releases sats?",
+          "a": "Regenerate the invoice inside the room and ask the seller to repost; the coordinator keeps the bond active while you refresh it."
+        },
+        {
+          "q": "How do I confirm the sats arrived safely?",
+          "a": "Check your wallet balance and verify the payment hash matches the contract details; you can also watch it settle on your node or Lightning explorer."
+        }
+      ]
+    },
+    "privacy_notes": {
+      "data_flows": [
+        "The coordinator stores order size, currency code, payment tags, and hashed robot tokens until the contract closes.",
+        "Chat messages are encrypted end-to-end with per-contract PGP keys generated in your browser."
+      ],
+      "recovery_drill": [
+        "Export or write down your robot token before you leave the session so you can recover the contract.",
+        "Bookmark the Quick Start page for updated onion links in case the clearnet domain rotates.",
+        "If you lose the token, create a new robot and warn peers; old disputes cannot be reopened without it."
+      ],
+      "country_caveats": [
+        "Payment rails depend on counterparties; Revolut and Wise are common in Europe, while Zelle and Interac appear in North America.",
+        "Some jurisdictions scrutinize large Lightning payouts or cash trades, so check local regulations before trading."
+      ]
+    },
+    "privacy": {
+      "section_title": "Privacy & Safety",
+      "data_flows": [
+        "Open orders log the amount, fiat currency, price, and payment method tag alongside your robot token hash.",
+        "Your browser generates PGP keys for each contract so only you and the counterparty can read chat transcripts.",
+        "Using the clearnet gateway exposes metadata to Cloudflare, while Tor or I2P keeps IP data hidden."
+      ],
+      "data_flows_do": "Stay on Tor or I2P and clear local storage after you finish each robot session.",
+      "data_flows_dont": "Reuse the same robot token across multiple trades or share it in public rooms.",
+      "recovery": [
+        "Click Recover robot and paste your token to reopen the order on another device.",
+        "If a timer expires with no dispute, bonds release automatically to the wallets that posted them.",
+        "Attach screenshots or bank receipts inside the encrypted chat so the coordinator can review them during disputes."
+      ],
+      "recovery_do": "Store robot tokens offline with trade notes so you can respond quickly during a dispute.",
+      "recovery_dont": "Post the token or chat logs in public support channels.",
+      "withdrawal_policy": [
+        "Lightning payouts settle instantly once both sides mark the fiat transfer complete.",
+        "Optional Boltz swaps convert Lightning payouts to on-chain bitcoin with transparent swap fees.",
+        "If the coordinator rules in your favor after a dispute, the trade hold invoice routes directly to your wallet."
+      ],
+      "withdrawal_policy_do": "Keep your Lightning wallet connected until the hold invoice settles or the dispute resolves.",
+      "withdrawal_policy_dont": "Reuse Lightning invoices across different contracts; generate a fresh one every time.",
+      "region": [
+        "RoboSats is globally accessible, but fiat rails are set by makers and vary by region.",
+        "Android users can bundle Orbot with the RoboSats Android app; iOS users should pair Tor Browser with a desktop or secondary device.",
+        "Methods like Faster Payments, Zelle, or PIX require peers in the same jurisdiction, so confirm support before you accept an order."
+      ],
+      "micro_faqs": [
+        {
+          "q": "Does RoboSats log my IP address?",
+          "a": "When you use Tor or I2P the coordinator never sees your IP; only the optional clearnet gateway collects standard web logs."
+        },
+        {
+          "q": "Can I delete my robot data after a trade?",
+          "a": "Yes. Clear your browser storage or hit Delete robot, and only your local token copy remains."
+        },
+        {
+          "q": "What if the coordinator goes offline mid-trade?",
+          "a": "Trades pause until the coordinator returns; keep your wallet online and watch the RoboSats Matrix status channel for updates."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "PGP chat",
+          "def": "Each contract generates PGP key pairs so only the two peers can decrypt messages in the trade room."
+        },
+        {
+          "term": "Dispute timer",
+          "def": "The countdown that defines when a bond forfeits or a dispute can be escalated to the coordinator."
+        },
+        {
+          "term": "Coordinator",
+          "def": "The RoboSats server that matches orders, holds Lightning invoices, and arbitrates disputes without taking custody."
+        }
+      ],
+      "keywords": [
+        "RoboSats Lightning escrow",
+        "RoboSats Tor only",
+        "RoboSats robot token",
+        "RoboSats dispute process",
+        "RoboSats bond percentage"
+      ]
+    },
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#kyc",
+      "compat": "#features",
+      "migration": "#withdrawal",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-12",
+    "trust": {
+      "cards": [
+        {
+          "id": "source",
+          "fact": "Full codebase published under AGPL-3.0 license for anyone to audit, fork, and self-host.",
+          "link_text": "Source code",
+          "link_url": "https://github.com/RoboSats/robosats"
+        },
+        {
+          "id": "security",
+          "fact": "Privacy guide covers Tor access, PGP chat, and operational security expectations for every trade.",
+          "link_text": "Privacy guide",
+          "link_url": "https://learn.robosats.org/docs/private/"
+        },
+        {
+          "id": "terms",
+          "fact": "Non-custodial Lightning escrow is documented in the Quick Start so anyone can verify how funds stay outside the coordinator.",
+          "link_text": "How it works",
+          "link_url": "https://learn.robosats.org/docs/quick-start/"
+        }
+      ]
+    }
   },
   {
     "name": "Sparrow",

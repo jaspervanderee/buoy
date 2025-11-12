@@ -4,18 +4,27 @@
   "type_of_platform": "Non-custodial",
   "faqs": [
     {
-      "q": "What is Bull Bitcoin?",
-      "a": "Bull Bitcoin is a non‑custodial Bitcoin service that sends purchases directly to your own wallet and supports bill payments in Canada."
+      "q": "How do Bull Bitcoin's buy and sell rates include fees?",
+      "a": "Bull Bitcoin publishes an all-in CAD rate on its Rates page that already bakes in the spread, so the quote you confirm is what lands in your wallet. If you expect to cross $100,000 CAD in monthly volume you can request Bull Bitcoin Prime for tighter pricing."
     },
     {
-      "q": "Is KYC required at Bull Bitcoin?",
-      "a": "For buying and selling, identity verification applies by jurisdiction; the platform focuses on privacy and self‑custody."
+      "q": "How fast do Interac e-Transfer buys reach my wallet on Bull Bitcoin?",
+      "a": "As soon as Bull Bitcoin receives your Interac e-Transfer it broadcasts the payout over on-chain, Lightning, or Liquid, so the sats arrive within minutes. Pick the network before you confirm if you need instant Lightning delivery."
     },
     {
-      "q": "Where is Bull Bitcoin available?",
-      "a": "Canada is the primary market, with expanding international access and features available in select regions."
+      "q": "Does Bull Bitcoin require identity verification before I trade?",
+      "a": "Bull Bitcoin is a FINTRAC-regulated MSB, which means you verify your ID and account before funding or requesting CAD payouts. Completing that step keeps them compliant while every buy still settles straight to your wallet."
+    },
+    {
+      "q": "What payout options can I use when I sell bitcoin on Bull Bitcoin?",
+      "a": "Bull Bitcoin locks your sell rate the moment your bitcoin arrives and can send CAD to a bank account, Interac recipient, credit card, or more than 14,000 Canadian billers. You can route the payout to yourself or nominate a third-party recipient inside Canada."
+    },
+    {
+      "q": "Can Bull Bitcoin deliver bitcoin over Lightning or the Liquid Network?",
+      "a": "Bull Bitcoin lets you paste a Bitcoin address, Lightning invoice, or Liquid address when you place a buy, so it settles on the network you choose. Use on-chain for larger orders and Lightning or Liquid when speed matters."
     }
   ],
+  "supported_network": "Bitcoin (on-chain, Lightning, Liquid)",
   "features": {
     "WW": [
       {
@@ -75,6 +84,7 @@
   ],
   "custody_control": "Non-custodial",
   "kyc_required": "No",
+  "recovery_method": "Email login with optional 2FA and support-assisted resets",
   "open_source": "Yes",
   "user_experience": "0.0",
   "interface": "Mobile & Desktop",
@@ -86,10 +96,476 @@
   "description": "Bull Bitcoin is a Canadian Bitcoin exchange that stands out by being entirely non-custodial, meaning users must provide their own wallet and take full ownership of their Bitcoin. It allows users to buy Bitcoin directly to their own wallets, sell Bitcoin instantly without waiting for confirmations, and even pay bills, rent, and credit cards in Canada by converting Bitcoin to fiat without relying on traditional banks. This approach positions Bitcoin as a tool for everyday exchange, not just long-term saving.\\n\\nThe platform (the mobile app is in beta) is self-funded, Bitcoin-only, and deeply ideological, rejecting external investors. Its team identifies as cypherpunks, building open-source tools and promoting financial sovereignty. Bull Bitcoin's mission is to create sovereign individuals through uncompromising adherence to Bitcoin principles, making it attractive to users who want to align their actions with their values.\\n\\nBeginners find the platform easy to use, with a clean interface and responsive support, while advanced users appreciate its strong privacy stance and no-compromise philosophy. It's ideal for Canadians and expanding internationally for those who want full control over their Bitcoin without depending on custodians or legacy finance systems.",
   "founded_in": "2013",
   "website": "https://www.bullbitcoin.com",
+  "links": {
+    "web": "https://app.bullbitcoin.com/",
+    "support": "https://bitcoinsupport.com/"
+  },
   "countries": [
     "CA",
     "EU",
     "CR",
     "MX"
-  ]
+  ],
+  "trust_chips": [
+    {
+      "text": "Direct-to-wallet delivery",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "direct-to-wallet"
+    },
+    {
+      "text": "Bill Pay",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "bill-pay"
+    },
+    {
+      "text": "Dollar-cost averaging (DCA)",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "dca"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "Canadians who want non-custodial buys that land in their own wallet within minutes.",
+    "consider_if": "You need Lightning or Liquid settlement and want live human support before moving larger wire transfers.",
+    "not_ideal_when": "You are outside Bull Bitcoin's supported regions or prefer leaving funds on a custodial exchange."
+  },
+  "howto": {
+    "title": "Getting started with Bull Bitcoin",
+    "steps": [
+      {
+        "id": "setup-install",
+        "title": "1. Create & verify",
+        "chips": {
+          "time": "~10 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Head to bullbitcoin.com and create an account with your email and a strong password.",
+          "Complete the FINTRAC verification flow by submitting your government ID and answering the compliance questions.",
+          "Wait for the approval email; message the live chat if you do not hear back within a few hours."
+        ],
+        "gotcha": "Bull Bitcoin cannot accept funds until your verification clears."
+      },
+      {
+        "id": "setup-pay",
+        "title": "2. Add your wallet and fund with Interac",
+        "chips": {
+          "time": "~5-30 min",
+          "cost": "No fee",
+          "risk": "Low"
+        },
+        "actions": [
+          "From the dashboard, click Buy Bitcoin and paste a fresh on-chain address, Lightning invoice, or Liquid destination.",
+          "Send an Interac e-Transfer or request the wire instructions that match your order size.",
+          "Watch the Funding tab for confirmation that your payment arrived."
+        ],
+        "gotcha": "Interac transfers above 10,000 CAD require a wire, so plan large orders ahead."
+      },
+      {
+        "id": "setup-receive",
+        "title": "3. Confirm the payout",
+        "why": "See the bitcoin hit your wallet before turning on recurring buys.",
+        "chips": {
+          "time": "~10 min",
+          "cost": "Network fee included",
+          "risk": "Low"
+        },
+        "actions": [
+          "Review the quoted rate and confirm the buy once your funding shows as pending.",
+          "Open your wallet or node to watch the incoming transaction Bull Bitcoin broadcasts.",
+          "Enable Recurring Buy if you want the same amount to repeat automatically."
+        ],
+        "gotcha": "Lightning invoices expire quickly; generate a fresh invoice if the order times out."
+      }
+    ],
+    "totalTime": null,
+    "micro_faqs": [
+      {
+        "q": "How long does Bull Bitcoin verification take?",
+        "a": "Most accounts approve within a few minutes during business hours; contact support if it takes longer than a day."
+      },
+      {
+        "q": "Can I change my payout address after placing an order?",
+        "a": "Cancel and recreate the order before the payout broadcasts, because Bull Bitcoin spends immediately once funding clears."
+      },
+      {
+        "q": "When do recurring buys run?",
+        "a": "They trigger after your chosen funding method settles, so keep your Interac or wire limits open before the scheduled date."
+      }
+    ]
+  },
+  "fees_scenarios": [
+    {
+      "id": "fees-deposit",
+      "title": "Fund your order",
+      "cost_today": "Interac e-Transfer: no fee<br>Wire transfer: your bank may charge<br>Account balance: no fee",
+      "what_happens": "Send Canadian dollars by Interac or wire; once Bull Bitcoin accepts the payment it credits your order and preps the payout.",
+      "how_to_minimize": "Use Interac for quick buys under 10,000 CAD and schedule wires for larger amounts or business transfers.",
+      "learn_more": "Interac deposits cap at 10,000 CAD per transfer, while wires have no maximum."
+    },
+    {
+      "id": "fees-buy",
+      "title": "Buy bitcoin",
+      "cost_today": "All-in spread: ~2% under $100,000 CAD<br>Prime volume: discounted pricing above $100,000 CAD",
+      "what_happens": "Bull Bitcoin publishes live buy rates and locks the price you confirm, then sends the resulting bitcoin to your wallet.",
+      "how_to_minimize": "Monitor the Rates page before sending funds and onboard with Bull Bitcoin Prime when you expect larger monthly volume.",
+      "learn_more": "Prime discounts unlock once your cumulative trades cross $100,000 CAD."
+    },
+    {
+      "id": "fees-sell",
+      "title": "Sell bitcoin",
+      "cost_today": "Interac e-Transfer: no fee<br>Bill payment: no fee<br>Wire transfer: no Bull Bitcoin fee (your bank may charge)",
+      "what_happens": "Bull Bitcoin locks the sell rate as soon as it sees your bitcoin, then delivers Canadian dollars to the payout option you chose.",
+      "how_to_minimize": "Use Lightning for smaller sells that need instant settlement and keep bill payments for merchants that accept e-Transfer timelines.",
+      "learn_more": "Lightning payins cap at 0.15 BTC per transaction; on-chain has no maximum."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "Does Bull Bitcoin charge fees on Interac deposits?",
+      "a": "Bull Bitcoin accepts Interac and bill payments without platform fees, though your bank may add charges on large wires."
+    },
+    {
+      "q": "Do I pay mining fees when buying bitcoin on Bull Bitcoin?",
+      "a": "The quoted exchange rate already includes the network fee, so your payout broadcasts without an extra charge; you can choose Lightning for fee-free settlement."
+    },
+    {
+      "q": "When do Bull Bitcoin Prime discounts apply?",
+      "a": "Once your monthly volume crosses $100,000 CAD, the Prime desk offers tighter spreads and concierge wire support."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-non-custodial",
+      "term": "Non-custodial settlement",
+      "definition": "Bull Bitcoin sends every buy directly to the wallet or Lightning invoice you provide, so no bitcoin sits on the platform."
+    },
+    {
+      "id": "term-recurring-buy",
+      "term": "Recurring Buy",
+      "definition": "An automated purchase schedule that uses your bank funding and repeats at the cadence you set."
+    },
+    {
+      "id": "term-bull-bitcoin-prime",
+      "term": "Bull Bitcoin Prime",
+      "definition": "A concierge service for high-volume individuals and businesses that unlocks discounted rates above $100,000 CAD."
+    }
+  ],
+  "payment_methods_limits": {
+    "heading": "Payment methods & limits",
+    "methods": [
+      {
+        "id": "interac",
+        "name": "Interac e-Transfer",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "No fee",
+          "fee_link": "fees-deposit",
+          "speed": "Minutes once accepted",
+          "withdraw": "Bitcoin sends immediately"
+        },
+        "best_for": "Everyday buys up to 10,000 CAD per transfer.",
+        "limits": {
+          "min_per_tx": "$10 CAD",
+          "max_per_tx": "$10,000 CAD",
+          "max_per_day": "Follows your bank's Interac limit",
+          "max_per_week": "Follows your bank's Interac limit",
+          "withdraw_eligibility": "Orders broadcast after Bull Bitcoin accepts the transfer."
+        }
+      },
+      {
+        "id": "wire",
+        "name": "Bank wire (CAD)",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "No Bull Bitcoin fee",
+          "fee_link": "fees-deposit",
+          "speed": "Same or next business day",
+          "withdraw": "Bitcoin sends after settlement"
+        },
+        "best_for": "Large purchases above Interac limits and corporate onboarding.",
+        "limits": {
+          "min_per_tx": "$25 CAD",
+          "max_per_tx": "No maximum",
+          "max_per_day": "No maximum",
+          "max_per_week": "No maximum",
+          "withdraw_eligibility": "Wires settle same or next business day before the payout broadcasts."
+        }
+      },
+      {
+        "id": "lightning",
+        "name": "Lightning pay-in",
+        "available": true,
+        "icon": "lightning",
+        "summary": {
+          "fee": "No fee",
+          "fee_link": "fees-sell",
+          "speed": "Instant",
+          "withdraw": "CAD payout after lock-in"
+        },
+        "best_for": "Selling smaller amounts when you want near-instant Canadian dollar delivery.",
+        "limits": {
+          "min_per_tx": "No minimum",
+          "max_per_tx": "0.15 BTC",
+          "max_per_day": "0.15 BTC",
+          "max_per_week": "Contact support for higher limits",
+          "withdraw_eligibility": "CAD payout starts after your Lightning payment settles."
+        }
+      }
+    ]
+  },
+  "compat_heading": "Bull Bitcoin features & limits",
+  "compat_tiles": [
+    {
+      "id": "direct-to-wallet",
+      "title": "Direct-to-wallet delivery",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Self-custodial settlement</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> On-chain, Lightning, Liquid</span>",
+      "status": "works"
+    },
+    {
+      "id": "bill-pay",
+      "title": "Bill Pay",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 14,000+ Canadian billers</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Canada-only payouts</span>",
+      "status": "works-caveat"
+    },
+    {
+      "id": "dca",
+      "title": "Dollar-cost averaging (DCA)",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Schedule recurring buys</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Send straight to your wallet</span>",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "direct-to-wallet",
+      "why": "Bull Bitcoin broadcasts every order to the address or invoice you provide, so you avoid leaving coins on an exchange. That keeps custody in your hands from the first purchase.",
+      "try": [
+        "Click Buy Bitcoin and choose on-chain, Lightning, or Liquid delivery.",
+        "Paste a fresh address or invoice from your wallet and confirm the amount.",
+        "Send your Interac or wire payment following the instructions on screen.",
+        "Watch your wallet or node for the incoming transaction once Bull Bitcoin accepts the funds."
+      ],
+      "gotcha": "Double-check the address or invoice because the payout broadcasts automatically once your payment clears."
+    },
+    {
+      "id": "bill-pay",
+      "why": "Bill Pay converts your bitcoin into CAD payments for credit cards, rent, and utilities, so you can settle legacy bills without touching a bank login.",
+      "try": [
+        "Open Sell Bitcoin and choose Bill Payment as the recipient type.",
+        "Search the directory of Canadian billers or enter the account number manually.",
+        "Confirm the CAD amount, then send bitcoin via on-chain, Lightning, or Liquid.",
+        "Bull Bitcoin remits the payment after your transaction confirms."
+      ],
+      "gotcha": "Bill Pay currently supports Canadian billers only, so confirm availability before you send the order."
+    },
+    {
+      "id": "dca",
+      "why": "Bull Bitcoin's recurring buy pulls from your bank funding and still sends the payout to your wallet, so you stack without leaving sats on the platform.",
+      "try": [
+        "Open Buy Bitcoin and choose Recurring Buy.",
+        "Set your amount, cadence, and preferred payout network.",
+        "Keep your bank limits open so each scheduled transfer clears."
+      ],
+      "gotcha": "Recurring buys trigger after each funding clears, so Interac caps can delay the schedule if you hit daily limits."
+    }
+  ],
+  "self_custody": {
+    "heading": "Self-custody: prepare before you buy",
+    "tiles": [
+      {
+        "id": "pick-wallet",
+        "title": "1. Pick a receiving wallet",
+        "chips": {
+          "time": "~10 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "why": "Bull Bitcoin sends every buy straight to your address, so you need a self-custodial wallet ready before you fund an order.",
+        "actions": [
+          "Choose a mobile or hardware wallet you control and write down the seed phrase.",
+          "Test a receive request inside the wallet so you know where to find new addresses.",
+          "Enable biometric or PIN locks so your phone or device stays secure."
+        ],
+        "gotcha": "Bull Bitcoin cannot pause a payout while you set up a wallet."
+      },
+      {
+        "id": "make-receive-code",
+        "title": "2. Generate a fresh receiving code",
+        "chips": {
+          "time": "~2 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "why": "Each Bull Bitcoin buy broadcasts immediately, so paste a new address or Lightning invoice every time.",
+        "actions": [
+          "Open your wallet and copy a fresh on-chain address, Lightning invoice, or Liquid destination.",
+          "Check the expiry time on Lightning invoices before you confirm the order.",
+          "Label the address in your wallet so you remember which buy it matches."
+        ],
+        "gotcha": "Lightning invoices expire quickly; generate a new one if the timer runs down."
+      },
+      {
+        "id": "test-small",
+        "title": "3. Test with a small buy",
+        "chips": {
+          "time": "~15 min",
+          "cost": "Spread included",
+          "risk": "Low"
+        },
+        "why": "A small order lets you prove your wallet and network choice before moving larger amounts.",
+        "actions": [
+          "Fund a small Interac or wire transfer and confirm the quote inside Buy Bitcoin.",
+          "Watch your wallet or node for the incoming transaction and mark it settled.",
+          "Note the time it took so you can plan larger orders with realistic expectations."
+        ],
+        "gotcha": "Keep your wallet online so you spot the incoming transaction right away."
+      },
+      {
+        "id": "move-rest",
+        "title": "4. Automate your routine",
+        "chips": {
+          "time": "~10 min",
+          "cost": "No fee",
+          "risk": "Low"
+        },
+        "why": "Recurring buys still pay out to your wallet, so match the cadence to your bank limits.",
+        "actions": [
+          "Enable Recurring Buy and choose daily, weekly, or monthly funding.",
+          "Align the amount with your Interac or wire limits so each transfer clears.",
+          "Set calendar reminders to review addresses and keep backups fresh."
+        ],
+        "gotcha": "Interac caps reset daily, while larger recurring buys may need a scheduled wire."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Can Bull Bitcoin hold my bitcoin if my wallet fails?",
+        "a": "No. Bull Bitcoin is non-custodial, so every buy needs a working address or invoice that you control."
+      },
+      {
+        "q": "How do I verify a Bull Bitcoin payout arrived?",
+        "a": "Open your wallet or node to confirm the incoming transaction or check a block explorer so you know the broadcast succeeded."
+      },
+      {
+        "q": "Can I switch between on-chain, Lightning, and Liquid payouts?",
+        "a": "Yes. Choose the network that fits each order and Bull Bitcoin settles using the details you provide."
+      }
+    ]
+  },
+  "privacy_notes": {
+    "data_flows": [
+      "Bull Bitcoin stores the identity documents and compliance answers you submit during FINTRAC verification.",
+      "Funding instructions, payout addresses, and invoices live in your account history alongside trade records."
+    ],
+    "recovery_drill": [
+      "Enable two-factor authentication and confirm your email before you fund the account.",
+      "If you lose access, contact support through the in-app chat with your ID to reopen the account."
+    ],
+    "country_caveats": [
+      "Interac e-Transfer, bill payments, and credit card payouts require a Canadian recipient.",
+      "International availability depends on the country-specific rails Bull Bitcoin is rolling out, so confirm support before onboarding."
+    ]
+  },
+  "privacy": {
+    "section_title": "Privacy & Safety",
+    "data_flows": [
+      "Bull Bitcoin keeps your legal name, address, and ID scans to satisfy Canadian AML requirements.",
+      "Payment instructions, addresses, and invoices you enter are retained for order history and compliance."
+    ],
+    "data_flows_do": "Use strong passwords, enable 2FA, and remove saved payout details you no longer need.",
+    "data_flows_dont": "Reuse Lightning invoices or on-chain addresses; generate fresh details so your activity stays compartmentalized.",
+    "recovery": [
+      "Reset your password from the login page and click the link sent to your verified email.",
+      "If you lose two-factor access, contact Bull Bitcoin support with your ID to reset it."
+    ],
+    "recovery_do": "Store authenticator backup codes offline and review recent sessions after recovery.",
+    "recovery_dont": "Share your ID documents outside the secure Bull Bitcoin support chat.",
+    "withdrawal_policy": [
+      "Bull Bitcoin sends bitcoin directly to the address or invoice you provide as soon as your funding clears.",
+      "Sell orders release CAD payouts after your transaction confirms on-chain or settles over Lightning or Liquid."
+    ],
+    "withdrawal_policy_do": "Double-check your destination details before you confirm because Bull Bitcoin broadcasts payouts automatically.",
+    "withdrawal_policy_dont": "Expect Bull Bitcoin to hold balances for later; it cannot warehouse bitcoin on your behalf.",
+    "region": [
+      "Canadian rails like Interac and domestic wires offer the fastest processing.",
+      "Users outside Canada should confirm supported funding and payout rails with Bull Bitcoin support."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Does Bull Bitcoin keep my bitcoin in custody?",
+        "a": "No. Every buy or sell routes directly to the destination you provide, so there is no custodial balance to reclaim."
+      },
+      {
+        "q": "Where can I manage data export or deletion requests?",
+        "a": "Use the settings inside the Bull Bitcoin web app or contact support to arrange data exports or deletion once regulatory retention windows allow."
+      },
+      {
+        "q": "Can I trade without uploading ID?",
+        "a": "No. FINTRAC rules require verified identification before you can send funds or request CAD payouts."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "FINTRAC",
+        "def": "Canada's financial intelligence unit that licenses money services businesses such as Bull Bitcoin."
+      },
+      {
+        "term": "Non-custodial settlement",
+        "def": "A payout model where orders deliver straight to your wallet so the platform never holds your bitcoin."
+      },
+      {
+        "term": "Bill Pay",
+        "def": "Bull Bitcoin's service that converts your bitcoin into CAD payments for Canadian billers and credit cards."
+      }
+    ],
+    "keywords": [
+      "Bull Bitcoin FINTRAC",
+      "Bull Bitcoin Interac limits",
+      "Bull Bitcoin Lightning payout",
+      "Bull Bitcoin Bill Pay support",
+      "Bull Bitcoin recurring buy"
+    ]
+  },
+  "trust": {
+    "cards": [
+      {
+        "id": "security",
+        "fact": "In-house processing engine for on-chain, Lightning, and Liquid payouts.",
+        "link_text": "Security & operations",
+        "link_url": "https://www.bullbitcoin.com/buy#features"
+      },
+      {
+        "id": "licenses",
+        "fact": "FINTRAC MSB registration #M16730720 (Canada).",
+        "link_text": "Verify FINTRAC listing",
+        "link_url": "https://www10.fintrac-canafe.gc.ca/msb-esm/intro-eng.aspx"
+      },
+      {
+        "id": "privacy",
+        "fact": "Privacy policy detailing data handling and retention.",
+        "link_text": "Privacy policy",
+        "link_url": "https://www.bullbitcoin.com/privacy-policy"
+      }
+    ]
+  },
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#methods",
+    "fees": "#fees",
+    "privacy": "#kyc",
+    "compat": "#features",
+    "migration": "#withdrawal",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-12"
 }

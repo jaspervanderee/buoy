@@ -122,14 +122,14 @@
           "risk": "Low"
         },
         "actions": [
-          "Download Peach from the official App Store, Google Play, or the APK page.",
+          "Download Peach from the official App Store (Testflight), Google Play, or the APK page.",
           "Set a strong password when the app creates your account file.",
           "Enable biometric unlock and a screen lock on your phone before trading."
         ],
         "gotcha": "Peach cannot reset your password, so store it offline before you trade."
       },
       {
-        "id": "setup-receive",
+        "id": "setup-pay",
         "title": "2. Back up your Peach account file",
         "chips": {
           "time": "~5 min",
@@ -144,7 +144,7 @@
         "gotcha": "Losing both the file and password means Peach cannot recover your sats."
       },
       {
-        "id": "setup-pay",
+        "id": "setup-receive",
         "title": "3. Complete a small test trade",
         "why": "Practice the escrow flow before you scale up.",
         "chips": {

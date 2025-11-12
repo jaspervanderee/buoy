@@ -34,7 +34,7 @@ Jeff rarely states conclusions upfront. He **builds** to them by explaining how 
 
 ## Pattern 2: Analogy → Expand → Connect
 
-Jeff uses **concrete analogies** to make abstract concepts tangible, then expands the analogy across 3–4 sentences, then ties it back to Bitcoin/user action.
+Jeff uses **concrete analogies** to make abstract concepts tangible, then expands the analogy across 1–2 sentences, then ties it back to Bitcoin/user action.
 
 ### Structure:
 1. **Introduce simple analogy** (bakery, paper folding, monopoly game)
@@ -54,7 +54,7 @@ Jeff uses **concrete analogies** to make abstract concepts tangible, then expand
 
 **How to use:**
 - Pick a simple physical analogy everyone knows
-- Walk through it step-by-step (2–4 sentences)
+- Walk through it step-by-step (1–2 sentences)
 - Don't rush to the conclusion—let the reader *see* it
 - Then: "That's exactly what's happening with [Bitcoin/inflation/credit system]"
 

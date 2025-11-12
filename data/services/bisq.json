@@ -4,16 +4,24 @@
   "type_of_platform": "P2P",
   "faqs": [
     {
-      "q": "What is Bisq?",
-      "a": "Bisq is a decentralized, open‑source desktop app for buying and selling bitcoin directly with other people over Tor using a non‑custodial wallet and no sign‑ups or KYC."
+      "q": "How do Bisq trading fees and BSQ discounts work?",
+      "a": "Bisq sets maker fees at 0.15% and taker fees at 1.15% when you pay in BTC, and the DAO halves each rate to 0.075% and 0.575% if you spend BSQ. You can choose the fee currency before confirming a trade and see the exact total on the review screen."
     },
     {
-      "q": "Does Bisq require KYC?",
-      "a": "No. Bisq has no accounts or sign‑ups and does not require KYC; trades are peer‑to‑peer with multisig security deposits."
+      "q": "What security deposit do Bisq trades require?",
+      "a": "Every trade locks both parties' refundable security deposits in a 2-of-2 multisig escrow alongside the trade amount. Deposit sizes vary by payment method and account signing stage, and Bisq shows the required amount before you accept an offer."
     },
     {
-      "q": "How are trades secured?",
-      "a": "Each trade locks refundable security deposits from both parties in a 2‑of‑2 multisig escrow; account‑age rules and signing raise limits over time to reduce chargeback risk."
+      "q": "Which payment methods can I use on Bisq worldwide?",
+      "a": "Bisq supports rails such as SEPA, Zelle, Wise, Revolut, and cash trades, each with its own settlement window and trade limit. You can filter the offer book by payment method to find rails that match your country."
+    },
+    {
+      "q": "Does Bisq require identity verification or accounts?",
+      "a": "Bisq runs over Tor with no central accounts or KYC, so your payment profiles and trade history stay on your computer. You share the needed details only with your counterparty during the trade."
+    },
+    {
+      "q": "How long do Bisq trades take to settle?",
+      "a": "A Bisq trade waits for the escrow transaction to confirm on-chain, then gives you a payment window that ranges from minutes on crypto rails to four to six days on fiat rails. Once both sides mark payment sent and received, the escrow releases and your deposit returns automatically."
     }
   ],
   "supported_network": "Bitcoin",
@@ -74,5 +82,545 @@
   "website": "https://bisq.network",
   "countries": [
     "WW"
-  ]
+  ],
+  "links": {
+    "mac": "https://bisq.network/downloads/",
+    "windows": "https://bisq.network/downloads/",
+    "linux": "https://bisq.network/downloads/",
+    "source": "https://github.com/bisq-network/bisq"
+  },
+  "trust_chips": [
+    {
+      "text": "Multisig security deposits",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "multisig-security-deposits"
+    },
+    {
+      "text": "BSQ fee discounts",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "bsq-fee-discounts"
+    },
+    {
+      "text": "Many fiat payment methods",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "payment-methods"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "People who want to buy or sell bitcoin peer-to-peer with refundable deposits instead of trusting an exchange.",
+    "consider_if": "You are ready to learn the deposit workflow and keep a small BTC balance on hand for fees and collateral.",
+    "not_ideal_when": "You need instant liquidity, mobile access, or trades without any on-chain confirmations."
+  },
+  "howto": {
+    "title": "Getting started with Bisq",
+    "steps": [
+      {
+        "id": "setup-install",
+        "title": "1. Install Bisq and connect over Tor",
+        "chips": {
+          "time": "~10 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Download Bisq from the official downloads page and verify the installer signature.",
+          "Install the app, let it connect to Tor, and create a password for your Bisq wallet.",
+          "Write down your seed words and store them offline before you start trading."
+        ],
+        "gotcha": "Bisq cannot recover your seed phrase or password if you lose them."
+      },
+      {
+        "id": "setup-receive",
+        "title": "2. Fund your Bisq wallet for deposits",
+        "chips": {
+          "time": "~20 min",
+          "cost": "Network fee",
+          "risk": "Medium"
+        },
+        "actions": [
+          "Open Funds > Receive funds and copy your Bisq bitcoin address.",
+          "Send a small amount of bitcoin from a wallet you control so you can cover security deposits and fees.",
+          "Wait for at least one confirmation; Bisq shows the balance once the transaction confirms."
+        ],
+        "gotcha": "Keep a buffer of sats in Bisq so new offers do not fail for lack of collateral."
+      },
+      {
+        "id": "setup-pay",
+        "title": "3. Take your first trade",
+        "chips": {
+          "time": "~30-90 min",
+          "cost": "Fees + deposit",
+          "risk": "Medium"
+        },
+        "actions": [
+          "Browse the offer book, filter by your payment method, and pick an offer with limits that fit.",
+          "Review the security deposit, fees, and payment window on the confirmation screen before you accept.",
+          "Follow Bisq's prompts to send the fiat payment, mark it as sent, and wait for the seller to release the escrow."
+        ],
+        "gotcha": "Stay online during the trade so you can respond quickly if a mediator contacts you."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "How much bitcoin should I keep in Bisq for deposits?",
+        "a": "Most fiat trades need roughly 0.01 BTC to cover the buyer deposit and fees, and Bisq shows the exact requirement before you accept the offer."
+      },
+      {
+        "q": "Do I need to leave Bisq running during a trade?",
+        "a": "Yes. Bisq relays chat messages and payout transactions over Tor, so staying online avoids mediation delays."
+      },
+      {
+        "q": "What if my payment method is not listed?",
+        "a": "You can create a new offer with your preferred method or revisit the market later; payment method availability depends on which peers are online."
+      }
+    ]
+  },
+  "fees_scenarios": [
+    {
+      "id": "fees-deposit",
+      "title": "Fund your Bisq wallet",
+      "cost_today": "On-chain mining fee you choose",
+      "what_happens": "You send bitcoin from an external wallet to Bisq so you can pay trading fees and security deposits.",
+      "how_to_minimize": "Fund when mempool fees are low or use a wallet that supports replace-by-fee if you need to bump the transaction.",
+      "learn_more": "Bisq recommends keeping a small buffer of sats ready for new trades."
+    },
+    {
+      "id": "fees-buy",
+      "title": "Take an offer",
+      "cost_today": "BTC fees: Maker 0.15% / Taker 1.15%<br>BSQ fees: Maker 0.075% / Taker 0.575%",
+      "what_happens": "Bisq charges maker and taker trading fees plus locks the refundable security deposit when you accept an offer.",
+      "how_to_minimize": "Hold BSQ to pay the discounted rate or post maker offers so you pay the lower side.",
+      "learn_more": "The Bisq DAO votes on fee parameters and the client updates the schedule automatically."
+    },
+    {
+      "id": "fees-security-deposit",
+      "title": "Post the security deposit",
+      "cost_today": "Refundable collateral: typically 15%-50% of trade size",
+      "what_happens": "Bisq locks both parties' deposits in the 2-of-2 escrow to incentivize delivery of the fiat payment.",
+      "how_to_minimize": "Complete account signing so Bisq can raise your limits with smaller collateral requirements.",
+      "learn_more": "Deposit ratios vary by payment method and appear on each offer screen."
+    },
+    {
+      "id": "fees-withdraw",
+      "title": "Withdraw to your wallet",
+      "cost_today": "On-chain mining fee estimated by Bisq",
+      "what_happens": "After a trade settles you can send your bitcoin to another wallet and pay the network fee once.",
+      "how_to_minimize": "Batch withdrawals or lower the fee slider if you can wait for slower confirmation.",
+      "learn_more": "Bisq lets you edit the withdrawal fee before broadcasting the transaction."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "Who pays the mining fees in a Bisq trade?",
+      "a": "Makers pay the maker fee transaction while takers cover the deposit, payout, and taker fee transactions. Bisq lists each mining estimate before you confirm."
+    },
+    {
+      "q": "Do I ever lose my security deposit?",
+      "a": "Deposits return to you when the trade completes, but mediation or arbitration can distribute them if one side misses the deadline or breaks the rules."
+    },
+    {
+      "q": "What happens if BSQ's price moves after I accept an offer?",
+      "a": "The fee amount is locked in when you confirm the trade, so BSQ price changes afterward do not affect that order. You can convert more BSQ later if you plan to keep using the discount."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "security-deposit",
+      "term": "Security deposit",
+      "definition": "Refundable bitcoin collateral each side locks in Bisq's multisig escrow to keep trades honest."
+    },
+    {
+      "id": "account-signing",
+      "term": "Account signing",
+      "definition": "A reputation process where you complete smaller trades or provide signed bank details so Bisq can raise your limits and reduce required deposits."
+    },
+    {
+      "id": "bsq-token",
+      "term": "BSQ",
+      "definition": "A colored bitcoin token that funds the Bisq DAO and lets you pay trading fees at a discounted rate."
+    }
+  ],
+  "payment_methods_limits": {
+    "heading": "Payment methods & limits",
+    "methods": [
+      {
+        "id": "sepa",
+        "name": "SEPA Bank Transfer",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "Varies by bank",
+          "fee_link": "fees-buy",
+          "speed": "~2-6 days",
+          "withdraw": "Release after seller confirms payment"
+        },
+        "best_for": "Euro buyers who can wait for bank settlement in exchange for higher limits.",
+        "limits": {
+          "min_per_tx": "€10 equivalent",
+          "max_per_tx": "0.25 BTC to start (higher with account signing)",
+          "max_per_day": "Depends on Bisq account age",
+          "max_per_week": "Depends on Bisq account age",
+          "withdraw_eligibility": "Payout releases once the seller marks the transfer received."
+        }
+      },
+      {
+        "id": "zelle",
+        "name": "Zelle",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "Free",
+          "fee_link": "fees-buy",
+          "speed": "~minutes to same day",
+          "withdraw": "Release after seller verifies payment"
+        },
+        "best_for": "U.S. buyers who want fast bank transfers up to the starter limit.",
+        "limits": {
+          "min_per_tx": "$10 equivalent",
+          "max_per_tx": "0.25 BTC until your account ages in",
+          "max_per_day": "Subject to your bank's Zelle caps",
+          "max_per_week": "Subject to your bank's Zelle caps",
+          "withdraw_eligibility": "Seller must confirm funds within the four day trade window."
+        }
+      },
+      {
+        "id": "cash",
+        "name": "Cash in person",
+        "available": true,
+        "icon": "cash",
+        "summary": {
+          "fee": "No Bisq fee beyond trade fee",
+          "fee_link": "fees-buy",
+          "speed": "~same day meetup",
+          "withdraw": "Release once cash changes hands"
+        },
+        "best_for": "Local trades where you can meet safely and prefer no banking trail.",
+        "limits": {
+          "min_per_tx": "Set by the offer maker",
+          "max_per_tx": "Up to 0.5 BTC on signed accounts",
+          "max_per_day": "Depends on trusted counterparties",
+          "max_per_week": "Depends on trusted counterparties",
+          "withdraw_eligibility": "Confirm the cash in person before you co-sign the payout."
+        }
+      }
+    ]
+  },
+  "compat_heading": "Bisq features & limits",
+  "compat_tiles": [
+    {
+      "id": "multisig-security-deposits",
+      "title": "Multisig security deposits",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Refundable collateral</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 2-of-2 escrow</span>",
+      "status": "works"
+    },
+    {
+      "id": "bsq-fee-discounts",
+      "title": "BSQ fee discounts",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> ~50% off trading fees</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> DAO controlled</span>",
+      "status": "works"
+    },
+    {
+      "id": "payment-methods",
+      "title": "Many fiat payment methods",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Global bank rails</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Cash and crypto options</span>",
+      "status": "works"
+    },
+    {
+      "id": "self-custody-payouts",
+      "title": "Self-custody payouts",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Funds stay in your wallet</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Withdraw anytime</span>",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "multisig-security-deposits",
+      "why": "Bisq keeps both sides honest by locking trade amounts and security deposits in a 2-of-2 multisig escrow that needs two signatures to release.",
+      "try": [
+        "Review the required deposit amount on the offer screen before you accept.",
+        "Keep enough bitcoin in your Bisq wallet so you can fund the deposit instantly.",
+        "Upload evidence quickly if a mediator requests proof during a dispute."
+      ],
+      "gotcha": "Deposits stay locked until both parties confirm payment or mediation resolves the case."
+    },
+    {
+      "id": "bsq-fee-discounts",
+      "why": "The Bisq DAO lets you pay trading fees in BSQ, cutting maker and taker rates roughly in half compared with paying in BTC.",
+      "try": [
+        "Buy BSQ through the built-in BSQ market before you take large trades.",
+        "Set BSQ as your preferred fee currency in Account settings.",
+        "Check the fee preview to confirm the discount before you confirm."
+      ],
+      "gotcha": "Keep some BTC available for fees if your BSQ balance runs out mid-trade."
+    },
+    {
+      "id": "payment-methods",
+      "why": "The offer book supports dozens of fiat rails and e-money apps so you can trade with counterparts who already use your preferred payment method.",
+      "try": [
+        "Open the Filters panel and select the payment methods you want to use.",
+        "Add your payment account under Account so you can take matching offers instantly.",
+        "Watch the trade window length and limits listed for each method."
+      ],
+      "gotcha": "Each payment method has its own deadlines; be sure you can deliver within the allowed window."
+    },
+    {
+      "id": "self-custody-payouts",
+      "why": "Bisq pays to a wallet you control, so completed trades leave you holding bitcoin outside any company custody.",
+      "try": [
+        "Let the payout land in Bisq's internal wallet, then withdraw to cold storage once the trade finishes.",
+        "Use a fresh address each time you move funds out of Bisq.",
+        "Export your transaction history if you need records for accounting."
+      ],
+      "gotcha": "If you withdraw with a low fee during congestion the confirmation can take longer, so plan ahead."
+    }
+  ],
+  "self_custody": {
+    "heading": "Self-custody: finish the trade safely",
+    "tiles": [
+      {
+        "id": "pick-wallet",
+        "title": "1. Pick a cold storage wallet",
+        "chips": {
+          "time": "~10 min",
+          "cost": "$0-$200",
+          "risk": "Low"
+        },
+        "why": "Bisq delivers bitcoin to you after the trade, so line up a wallet you control before taking larger offers.",
+        "actions": [
+          "Choose a hardware wallet or another cold storage option from our <a href=\"/store-it-safely.html\">wallet guide</a>.",
+          "Initialize it, write down the seed words, and test the device before you fund it.",
+          "Store backups in separate safe locations away from your computer."
+        ],
+        "gotcha": "Do not keep the only copy of your seed on the same computer that runs Bisq."
+      },
+      {
+        "id": "make-receive-code",
+        "title": "2. Create a fresh receive address",
+        "chips": {
+          "time": "~2 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "why": "Generating a new address for every Bisq withdrawal keeps your trade history private.",
+        "actions": [
+          "Open your self-custody wallet and generate a new bitcoin address.",
+          "Double-check the address on the hardware screen or software UI.",
+          "Copy and paste it into Bisq only when you are ready to withdraw."
+        ],
+        "gotcha": "Never reuse a withdrawal address; it links multiple trades together."
+      },
+      {
+        "id": "test-small",
+        "title": "3. Move a small test amount",
+        "chips": {
+          "time": "~10-30 min",
+          "cost": "Network fee",
+          "risk": "Low"
+        },
+        "why": "Testing with a small withdrawal lets you confirm your wallet setup before you move the full trade amount.",
+        "actions": [
+          "Withdraw a small amount from Bisq using the Standard fee level.",
+          "Watch the transaction confirm in both Bisq and your destination wallet.",
+          "Verify the amount on your hardware wallet screen or block explorer."
+        ],
+        "gotcha": "Wait for the transaction to confirm before deleting Bisq's local data or shutting down your machine."
+      },
+      {
+        "id": "move-rest",
+        "title": "4. Withdraw the remaining balance",
+        "chips": {
+          "time": "~10-60 min",
+          "cost": "Network fee",
+          "risk": "Low"
+        },
+        "why": "Finishing the withdrawal moves all escrowed bitcoin to the wallet you control, closing the loop on your trade.",
+        "actions": [
+          "Select Withdraw funds in Bisq and paste a fresh address from your cold storage wallet.",
+          "Choose a fee level that matches how fast you need confirmation.",
+          "Label the transaction in your wallet so you remember which trade it came from."
+        ],
+        "gotcha": "If you withdraw with the minimum fee during heavy mempool backlog, plan for a longer confirmation time."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Can I send Bisq payouts straight to my hardware wallet?",
+        "a": "Yes. Paste a fresh address from your hardware wallet when you withdraw, and confirm the address on the device screen before you broadcast."
+      },
+      {
+        "q": "How do I verify the escrow payout?",
+        "a": "Open the trade details to copy the transaction ID or view it inside Bisq, then check it in a block explorer such as mempool.space."
+      },
+      {
+        "q": "What if I need to export my Bisq wallet?",
+        "a": "Use Account > Backup to save an encrypted backup alongside your seed words before you move the funds."
+      }
+    ]
+  },
+  "privacy_notes": {
+    "data_flows": [
+      "Bisq stores your payment account data locally and encrypts it before sharing only with your counterparty and mediator.",
+      "All Bisq traffic routes over Tor, hiding your IP address from peers and network observers."
+    ],
+    "recovery_drill": [
+      "Use Account > Backup to export an encrypted archive of your data directory.",
+      "Store the backup and your seed words separately so you can restore Bisq on a new computer."
+    ],
+    "country_caveats": [
+      "Payment method availability depends on your region and the banks that support those rails.",
+      "Some fiat rails require longer trade windows to allow weekends and bank holidays."
+    ]
+  },
+  "privacy": {
+    "section_title": "Privacy & Safety",
+    "data_flows": [
+      "Bisq keeps your fiat account details on your device until you take a trade.",
+      "Trade chat logs and dispute messages travel through Tor and are only visible to the parties involved.",
+      "On-chain escrow transactions are public, so use fresh addresses to avoid linking trades."
+    ],
+    "data_flows_do": "Use a dedicated operating system account for Bisq and encrypt your computer disk.",
+    "data_flows_dont": "Share screenshots of your payment accounts outside Bisq's dispute chat.",
+    "recovery": [
+      "Restore on a new machine by installing Bisq, importing your encrypted backup, and entering your wallet seed.",
+      "Leave the app open so it can resync the DAO state and your trade history over Tor."
+    ],
+    "recovery_do": "Test your backup by restoring it on a spare machine when convenient.",
+    "recovery_dont": "Delete the old data directory before you confirm that the new install works.",
+    "withdrawal_policy": [
+      "Payout transactions broadcast once both parties sign, and you can view the transaction ID in the trade screen.",
+      "You choose the miner fee when withdrawing from the Bisq wallet to another address.",
+      "If a dispute pauses the payout, mediators or arbitrators can release funds once they review evidence."
+    ],
+    "withdrawal_policy_do": "Wait for the payout transaction to confirm before you reuse the same address.",
+    "withdrawal_policy_dont": "Mark fiat as received until the funds clear in your bank.",
+    "region": [
+      "Bisq runs worldwide, but each payment method has eligibility rules tied to local banking regulations.",
+      "Follow your country's banking compliance obligations when you send or receive fiat.",
+      "For crypto-to-crypto trades, you can stick to shorter settlement windows and avoid banking hours."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Does Bisq see my payment data?",
+        "a": "No. The data lives on your machine and is only shared with the counterparty you trade with."
+      },
+      {
+        "q": "Can I use Bisq without Tor?",
+        "a": "No. Tor is mandatory and baked into the client, which is how Bisq keeps the network private and censorship resistant."
+      },
+      {
+        "q": "What should I do if a counterparty asks for extra ID?",
+        "a": "Refer them to the Bisq trade rules and involve a mediator instead of sharing documents outside the app."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "DAO state",
+        "def": "The governance data Bisq downloads over Tor so it can enforce DAO parameters like fees and security deposits."
+      },
+      {
+        "term": "Mediator",
+        "def": "A Bisq contributor who helps resolve fiat trade disputes before they escalate to arbitration."
+      }
+    ],
+    "keywords": [
+      "Bisq DAO",
+      "Bisq security deposit",
+      "Bisq BSQ fees",
+      "Bisq Tor network",
+      "Bisq payment methods"
+    ]
+  },
+  "migration": [
+    {
+      "id": "restore-same-wallet",
+      "title": "Restore Bisq on a new computer",
+      "choose": "Use this when you replace or wipe your machine but want to keep trading with the same Bisq identity.",
+      "time": "~20 min",
+      "cost": "Free",
+      "risk": "Medium",
+      "steps": [
+        "Install Bisq on the new computer from the official website.",
+        "Copy your encrypted backup and seed words to the new machine and restore them during setup.",
+        "Let Bisq resync over Tor before you resume trading, then remove the old copy once you verify it works."
+      ],
+      "tips": "Keep backups offline so you are not tempted to email or cloud-share them.",
+      "gotcha": "Running Bisq on two machines with the same keys at the same time can cause trade conflicts."
+    },
+    {
+      "id": "move-from-another-wallet",
+      "title": "Fund Bisq from another wallet",
+      "choose": "Use this when you want to move BTC into Bisq for deposits or BSQ purchases.",
+      "time": "~30 min",
+      "cost": "Network fee",
+      "risk": "Low",
+      "steps": [
+        "Open Funds > Receive funds in Bisq and copy the address or QR code.",
+        "Send the desired amount from your external wallet and include enough sats for trading fees.",
+        "Wait for on-chain confirmation before you take offers that need that balance."
+      ],
+      "tips": "Label the transaction in both wallets so you know which sats are earmarked for Bisq.",
+      "gotcha": "Using change from recently received coins may delay confirmation if the previous transaction is still pending."
+    },
+    {
+      "id": "move-to-onchain",
+      "title": "Withdraw Bisq funds to cold storage",
+      "choose": "Use this when you want to clear your Bisq balance into a long-term wallet.",
+      "time": "~10-60 min",
+      "cost": "Network fee",
+      "risk": "Low",
+      "steps": [
+        "From Funds > Send funds, paste a fresh address from your cold storage wallet.",
+        "Pick a miner fee that matches how soon you need the transaction to confirm.",
+        "Verify the transaction ID and keep Bisq open until it broadcasts."
+      ],
+      "tips": "Batch multiple trade payouts into one withdrawal when fees are high.",
+      "gotcha": "Closing Bisq before the transaction broadcasts can delay the withdrawal until you reopen the app."
+    }
+  ],
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#methods",
+    "fees": "#fees",
+    "privacy": "#kyc",
+    "compat": "#features",
+    "migration": "#withdrawal",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-12",
+  "trust": {
+    "cards": [
+      {
+        "id": "source",
+        "fact": "Open-source desktop client and DAO code on GitHub",
+        "link_text": "GitHub repository",
+        "link_url": "https://github.com/bisq-network/bisq"
+      },
+      {
+        "id": "security",
+        "fact": "Security deposits, dispute process, and trade rules",
+        "link_text": "Security docs",
+        "link_url": "https://docs.bisq.network/trading-rules.html"
+      },
+      {
+        "id": "privacy",
+        "fact": "Privacy policy and data handling details",
+        "link_text": "Privacy policy",
+        "link_url": "https://bisq.network/privacy-policy/"
+      },
+      {
+        "id": "terms",
+        "fact": "Terms of use for Bisq contributors and traders",
+        "link_text": "Terms of use",
+        "link_url": "https://bisq.network/terms/"
+      }
+    ]
+  }
 }

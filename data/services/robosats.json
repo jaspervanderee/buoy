@@ -2,18 +2,27 @@
   "name": "RoboSats",
   "category": "Buy Bitcoin",
   "type_of_platform": "P2P",
+  "supported_network": "Bitcoin (Lightning with optional swaps)",
   "faqs": [
     {
-      "q": "What is RoboSats?",
-      "a": "RoboSats is a privacy‑first, Lightning‑native peer‑to‑peer exchange to buy and sell bitcoin without accounts or KYC, primarily accessed over Tor."
+      "q": "How do RoboSats Lightning bonds and escrow work?",
+      "a": "Each contract starts with the maker posting a Lightning hold-invoice bond—defaults to ~3% of the trade—and the taker matching it when they join, while the seller locks the sats in a hold invoice escrow. That lock keeps funds frozen until both parties confirm fiat, which means you can complete the trade and reclaim everything or cancel during the timer if the peer stalls."
     },
     {
-      "q": "Does RoboSats require KYC?",
-      "a": "No. RoboSats has no registration or KYC; trades use one‑time robot identities tied to a secret token you control."
+      "q": "What fees does RoboSats charge on trades?",
+      "a": "RoboSats collects 0.2% per completed trade, split 0.1% to the maker and 0.1% to the taker when the hold invoice settles. That sits on top of whatever spread you negotiate, so you can tighten your offers to keep the total cost in sats low."
     },
     {
-      "q": "How does RoboSats escrow work?",
-      "a": "Both parties lock small Lightning bonds and the seller locks a Lightning hold‑invoice as escrow. After fiat is confirmed, sats are released."
+      "q": "Does RoboSats require KYC or accounts?",
+      "a": "Instead of accounts, RoboSats generates a one-time robot avatar from a secret token you control and stores only that token locally. That keeps your personal data off the coordinator, and you can rotate a fresh robot for every trade to keep orders unlinkable."
+    },
+    {
+      "q": "Which Lightning wallets work best with RoboSats?",
+      "a": "You need a Lightning wallet that can issue invoices and hold payments for a few minutes; RoboSats docs highlight Zeus, Blixt, Phoenix, Breez, Mutiny, and BlueWallet (LDK) because they keep the bond open until fiat clears. That support prevents premature expiry, and you can keep a second wallet with inbound liquidity ready if your main one is routing a large trade."
+    },
+    {
+      "q": "How are disputes handled if a counterparty does not release sats?",
+      "a": "If fiat fails, you hit Dispute in the chat, upload the payment proof, and the coordinator reviews both bond invoices plus your evidence. Their ruling routes the trade hold invoice either to you or the counterparty, so you can recover funds when you documented the fiat leg."
     }
   ],
   "features": {
@@ -61,6 +70,7 @@
   ],
   "custody_control": "Non-custodial",
   "kyc_required": "No",
+  "recovery_method": "Secret robot token you generate per session; keep it offline to reopen contracts or settle disputes",
   "open_source": "Yes",
   "user_experience": "0.0",
   "interface": "Mobile & Desktop",
@@ -71,9 +81,460 @@
   "description": "RoboSats is a privacy‑first, Lightning‑native peer‑to‑peer exchange for buying and selling bitcoin with fiat. It is open‑source, requires no registration or KYC, and runs primarily over Tor (with I2P and an Android app available). Each trade uses a one‑time “robot” identity tied to a secret token you control, and all peer chat is end‑to‑end encrypted with PGP. The flow is simple: make or take an order, both sides lock small Lightning bonds, the seller locks a Lightning hold‑invoice escrow, fiat moves, then sats are released.\n\nWhat separates RoboSats is how deeply privacy and safety are built into the mechanics rather than bolted on. One‑trade identities reduce linkability across orders, PGP‑sealed chat prevents metadata leakage, and Lightning hold invoices act as both escrow and fidelity bonds to discourage cancellations and fraud. Pricing is transparent and market‑relative, fees are low at 0.2% split between maker and taker, and optional on‑chain payouts are handled via swaps. Clear best‑practice guides help users pick lower‑risk fiat rails and avoid chargeback traps.\n\nThe ideal audience is anyone who wants fast, low‑fee, no‑KYC bitcoin for modest amounts and is comfortable using Tor and a compatible Lightning wallet. Trade sizes are tuned to what routes reliably on Lightning today, which suits frequent smaller buys and sells. The UI is straightforward once you learn the token/robot model, and the documentation walks through wallet compatibility, order timing, disputes, and payment‑method hygiene to keep trades quick and clean.\n\nRoboSats’ vision is to keep P2P bitcoin simple, private, and resilient, with a path toward a federated network of coordinators sharing a unified order book to reduce single‑operator risk while preserving the familiar UX.",
   "founded_in": "2022",
   "website": "https://robosats.com",
+  "links": {
+    "web": "https://robosats.com",
+    "github": "https://github.com/RoboSats/robosats",
+    "android": "https://github.com/RoboSats/robosats-android/releases"
+  },
   "countries": [
     "WW"
   ],
   "logo": "images/robosats.svg",
-  "founder_image": "images/founders/unknown.jpg"
+  "founder_image": "images/founders/unknown.jpg",
+  "trust_chips": [
+    {
+      "text": "Lightning hold-invoice escrow",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "lightning-escrow"
+    },
+    {
+      "text": "Robot token identities",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "robot-identities"
+    },
+    {
+      "text": "Tor-first access",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "tor-access"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "Buyers who want no-KYC Lightning trades for small to mid-sized amounts and are comfortable living inside Tor.",
+    "consider_if": "You value privacy enough to run a hold-invoice-capable wallet and double-check payment rails before committing fiat.",
+    "not_ideal_when": "You need large clips, fiat chargeback protection, or hands-on support from a regulated desk."
+  },
+  "howto": {
+    "title": "Getting started with RoboSats",
+    "steps": [
+      {
+        "id": "setup-install",
+        "title": "1. Spin up your robot over Tor",
+        "chips": {
+          "time": "~5 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Install Tor Browser (desktop) or run Orbot with a privacy browser on mobile, then open https://robosats.com or the onion listed in Quick Start.",
+          "Click Start to generate a robot avatar and let the coordinator hand you the secret token.",
+          "Copy the token into an offline password manager or notebook before you close the welcome dialog."
+        ],
+        "gotcha": "Lose that token and support cannot reopen the contract or disputes for that robot."
+      },
+      {
+        "id": "setup-receive",
+        "title": "2. Prep your Lightning wallet and bonds",
+        "chips": {
+          "time": "~3 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Open a Lightning wallet that supports hold invoices and confirm you have inbound liquidity for the trade size.",
+          "Decide whether you will make or take orders and review the default ~3% bond shown on the slider.",
+          "Keep the wallet unlocked so the bond invoice does not expire while you negotiate fiat details."
+        ],
+        "gotcha": "Hold invoices time out fast, so stay connected until the contract room opens."
+      },
+      {
+        "id": "setup-pay",
+        "title": "3. Settle the fiat leg and release sats",
+        "chips": {
+          "time": "~10-30 min",
+          "cost": "Lightning routing + payment rail fees",
+          "risk": "Medium"
+        },
+        "actions": [
+          "Make or take an order, pay the Lightning bond invoice, and wait for the chat room to unlock.",
+          "Exchange fiat instructions over the PGP-encrypted chat and send or confirm the payment through your chosen rail.",
+          "Mark fiat received and release the trade so the hold invoice settles to your wallet, then sweep the sats to your long-term stack or an on-chain swap if needed."
+        ],
+        "gotcha": "If a counterparty stalls, hit Dispute before the timer ends so the coordinator can review evidence."
+      }
+    ]
+  },
+  "fees_scenarios": [
+    {
+      "id": "fees-buy",
+      "title": "Post an order",
+      "cost_today": "Maker bond: defaults to ~3% (min 20,000 sats, adjustable to 20%)",
+      "what_happens": "RoboSats locks that bond in a Lightning hold invoice until the contract completes or you cancel.",
+      "how_to_minimize": "Lower the bond slider only when you trust the payment rail and keep orders short so capital is not locked for long.",
+      "learn_more": "See Quick Start → Contracts for bond calculations and timers."
+    },
+    {
+      "id": "receive-onchain",
+      "title": "Take an order",
+      "cost_today": "Taker bond: matches the maker percentage (usually ~3%)",
+      "what_happens": "You pay the hold invoice when you join the order and get it back automatically once both sides confirm fiat.",
+      "how_to_minimize": "Join orders you can settle immediately to avoid timeout penalties and re-post fees.",
+      "learn_more": "Documentation explains countdown rules, refunds, and when bonds forfeit."
+    },
+    {
+      "id": "fees-send-lightning",
+      "title": "Trade fee",
+      "cost_today": "0.2% total (0.1% maker + 0.1% taker) charged when escrow settles",
+      "what_happens": "The coordinator collects the fee from the escrowed sats as the hold invoice finalizes.",
+      "how_to_minimize": "Place maker orders with tight spreads so you earn the spread instead of paying a wider markup.",
+      "learn_more": "Quick Start → Fees lists the split and how coordinator donations offset costs."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "When do RoboSats bonds get refunded?",
+      "a": "Bonds auto-refund when both sides confirm fiat or if you cancel before the hold invoice is charged. That timer is enforced by the coordinator, so you can exit early if a counterparty disappears."
+    },
+    {
+      "q": "Can I change the maker bond percentage?",
+      "a": "Makers can slide the bond from 0% to 20% before publishing, with 3% as the default. Raising it discourages chargeback-prone rails, and you can lower it only when you trust the fiat method."
+    },
+    {
+      "q": "Who pays Lightning routing fees on RoboSats?",
+      "a": "Each side pays the routing cost on the Lightning invoices they settle, which is usually just a few sats. You can keep fees negligible by using well-connected wallets or running your own node."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-robot-token",
+      "term": "Robot token",
+      "definition": "The secret string RoboSats shows when you start a session; it restores your robot avatar, bonds, and dispute access."
+    },
+    {
+      "id": "term-hold-invoice",
+      "term": "Hold invoice",
+      "definition": "A Lightning invoice that reserves funds without settling until both parties meet a condition, used for bonds and trade escrow."
+    },
+    {
+      "id": "term-fidelity-bond",
+      "term": "Fidelity bond",
+      "definition": "The Lightning bond each peer posts to discourage cancellations or fraud and forfeits if they break the trade rules."
+    }
+  ],
+  "payment_methods_limits": {
+    "heading": "Payment methods & limits",
+    "methods": [
+      {
+        "id": "bank-transfer",
+        "name": "Bank transfer (SEPA / ACH equivalent)",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "Peer set",
+          "fee_link": "fees-trade",
+          "speed": "~1 business day",
+          "withdraw": "Dispute recourse depends on your bank"
+        },
+        "best_for": "Trades with documented fiat rails and a clear paper trail.",
+        "limits": {
+          "min_per_tx": "Set by maker (often ≥ 50,000 sats)",
+          "max_per_tx": "Set by maker; Lightning routes typically < 5,000,000 sats",
+          "max_per_day": "Varies by counterparties",
+          "max_per_week": "Varies by counterparties",
+          "withdraw_eligibility": "Once both parties mark fiat received"
+        }
+      },
+      {
+        "id": "revolut",
+        "name": "Revolut / Wise",
+        "available": true,
+        "icon": "app",
+        "summary": {
+          "fee": "Peer set",
+          "fee_link": "fees-trade",
+          "speed": "Minutes to hours",
+          "withdraw": "Subject to app limits and reviews"
+        },
+        "best_for": "Cross-border fast payments when both peers use the same fintech app.",
+        "limits": {
+          "min_per_tx": "Set by maker (often ≥ 50,000 sats)",
+          "max_per_tx": "Set by maker; Lightning routes typically < 5,000,000 sats",
+          "max_per_day": "Varies by counterparties",
+          "max_per_week": "Varies by counterparties",
+          "withdraw_eligibility": "Once both parties mark fiat received"
+        }
+      },
+      {
+        "id": "cash",
+        "name": "Cash in person",
+        "available": true,
+        "icon": "cash",
+        "summary": {
+          "fee": "Peer set",
+          "fee_link": "fees-trade",
+          "speed": "Immediate",
+          "withdraw": "Bring exact change and verify bills"
+        },
+        "best_for": "Local trades with trusted meetups or repeat partners."
+      }
+    ]
+  },
+  "compat_heading": "RoboSats features & limits",
+  "compat_tiles": [
+    {
+      "id": "lightning-escrow",
+      "title": "Lightning hold-invoice escrow",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> No platform custody</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Bonds keep peers honest</span>",
+      "status": "works"
+    },
+    {
+      "id": "robot-identities",
+      "title": "Robot token identities",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> One-time avatars per trade</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Stored client-side only</span>",
+      "status": "works"
+    },
+    {
+      "id": "tor-access",
+      "title": "Tor-first access",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Onion routing by default</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Clearnet is fallback only</span>",
+      "status": "works-caveat"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "lightning-escrow",
+      "why": "When you publish an order, the sats stay in a Lightning hold invoice anchored to your wallet instead of a custodian. That means nothing moves until both sides mark the fiat leg complete, and the payout lands in your balance the instant the contract clears.",
+      "try": [
+        "Publish a maker order and pay the small bond invoice from your Lightning wallet.",
+        "Watch the seller post the trade hold invoice and confirm it appears in the contract timeline.",
+        "Mark fiat received so the hold invoice settles and routes sats straight to your wallet."
+      ],
+      "gotcha": "Keep your Lightning wallet online; hold invoices expire quickly if the coordinator has to wait."
+    },
+    {
+      "id": "robot-identities",
+      "why": "Each session mints a robot avatar from the token you save instead of an email or ID. That keeps every order tied to a disposable alias, and you can spin up a fresh robot for the next trade so past deals stay compartmentalized.",
+      "try": [
+        "Click Start to mint a robot and copy the token shown in the banner.",
+        "Store the token offline and use Recover robot if you switch browsers or devices mid-trade.",
+        "Generate a new robot before you post another order to keep prior trades unlinkable."
+      ],
+      "gotcha": "Misplacing the token severs dispute access for that robot, and support cannot restore it."
+    },
+    {
+      "id": "tor-access",
+      "why": "Routing the session through Tor bounces your packets through onion relays before they ever reach the coordinator. That keeps your IP and location out of the logs, with the clearnet bridge reserved as a last resort when Tor or I2P is blocked.",
+      "try": [
+        "Install Tor Browser or run Orbot/Onion Browser on mobile.",
+        "Navigate to robosats.com and let it redirect you to the current onion address.",
+        "Bookmark the onion inside Tor so you reconnect directly next time."
+      ],
+      "gotcha": "The clearnet gateway sits behind Cloudflare; stick to Tor when privacy is the priority."
+    }
+  ],
+  "self_custody": {
+    "heading": "Self-custody: withdraw safely",
+    "tiles": [
+      {
+        "id": "pick-wallet",
+        "title": "1. Pick a Lightning wallet with inbound liquidity",
+        "chips": {
+          "time": "~5 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "why": "Lightning wallets that support hold invoices keep RoboSats bonds alive while fiat clears.",
+        "actions": [
+          "Choose a wallet from the Quick Start list (Zeus, Blixt, Phoenix, Mutiny, Breez) or connect your own node.",
+          "Fund it with inbound liquidity that matches your target trade size.",
+          "Enable push notifications so you do not miss contract updates.",
+          "Write down your recovery seed or backup key before you trade."
+        ],
+        "gotcha": "Custodial wallets can cancel hold invoices unexpectedly; prefer non-custodial or hybrid wallets for larger trades."
+      },
+      {
+        "id": "make-receive-code",
+        "title": "2. Prepare a fresh Lightning invoice",
+        "chips": {
+          "time": "~2 min",
+          "cost": "Routing fee (few sats)",
+          "risk": "Low"
+        },
+        "why": "RoboSats pays the trade out to the invoice you present, so you control where the sats land.",
+        "actions": [
+          "Generate a Lightning invoice in your wallet once the contract room opens.",
+          "Check the expiry time and amount to confirm it matches the order.",
+          "Share only the invoice string inside the encrypted chat.",
+          "If you need on-chain, prepare a Boltz swap invoice before accepting the order."
+        ],
+        "gotcha": "Never reuse an invoice; the coordinator rejects duplicates to protect you from replay attacks."
+      },
+      {
+        "id": "test-small",
+        "title": "3. Run a small test trade",
+        "chips": {
+          "time": "~15 min",
+          "cost": "Bonds + minimal spread",
+          "risk": "Low"
+        },
+        "why": "Testing with a tiny order lets you confirm your wallet, Tor setup, and payment rail before scaling up.",
+        "actions": [
+          "Post or take a small trade (50,000-100,000 sats) with a rail you know well.",
+          "Verify the Lightning payout arrives instantly in your wallet.",
+          "Record the experience: bond timing, chat etiquette, and payout process.",
+          "Decide whether the peer deserves a trust note for future trades."
+        ],
+        "gotcha": "Skipping test trades raises the chance you discover a wallet or rail issue during a larger order."
+      },
+      {
+        "id": "move-rest",
+        "title": "4. Sweep profits to long-term storage",
+        "chips": {
+          "time": "~10 min",
+          "cost": "Swap or on-chain fee",
+          "risk": "Low"
+        },
+        "why": "Moving sats off your hot Lightning wallet preserves sovereignty and limits coordinator exposure.",
+        "actions": [
+          "Use your wallet’s built-in swap (or Boltz) to move sats on-chain if you want cold storage.",
+          "Label the transaction with the RoboSats order ID for bookkeeping.",
+          "Consolidate to a hardware wallet or multisig when balances grow.",
+          "Archive the robot token with the trade receipt for future tax records."
+        ],
+        "gotcha": "Leaving large balances in a hot Lightning wallet invites device loss and liquidity drains."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Can RoboSats pay me on-chain instead of Lightning?",
+        "a": "RoboSats itself is Lightning-only, but you can set up a Boltz or Deezy swap after payout to land coins on-chain."
+      },
+      {
+        "q": "What if my Lightning invoice expires before the seller releases sats?",
+        "a": "Regenerate the invoice inside the room and ask the seller to repost; the coordinator keeps the bond active while you refresh it."
+      },
+      {
+        "q": "How do I confirm the sats arrived safely?",
+        "a": "Check your wallet balance and verify the payment hash matches the contract details; you can also watch it settle on your node or Lightning explorer."
+      }
+    ]
+  },
+  "privacy_notes": {
+    "data_flows": [
+      "The coordinator stores order size, currency code, payment tags, and hashed robot tokens until the contract closes.",
+      "Chat messages are encrypted end-to-end with per-contract PGP keys generated in your browser."
+    ],
+    "recovery_drill": [
+      "Export or write down your robot token before you leave the session so you can recover the contract.",
+      "Bookmark the Quick Start page for updated onion links in case the clearnet domain rotates.",
+      "If you lose the token, create a new robot and warn peers; old disputes cannot be reopened without it."
+    ],
+    "country_caveats": [
+      "Payment rails depend on counterparties; Revolut and Wise are common in Europe, while Zelle and Interac appear in North America.",
+      "Some jurisdictions scrutinize large Lightning payouts or cash trades, so check local regulations before trading."
+    ]
+  },
+  "privacy": {
+    "section_title": "Privacy & Safety",
+    "data_flows": [
+      "Open orders log the amount, fiat currency, price, and payment method tag alongside your robot token hash.",
+      "Your browser generates PGP keys for each contract so only you and the counterparty can read chat transcripts.",
+      "Using the clearnet gateway exposes metadata to Cloudflare, while Tor or I2P keeps IP data hidden."
+    ],
+    "data_flows_do": "Stay on Tor or I2P and clear local storage after you finish each robot session.",
+    "data_flows_dont": "Reuse the same robot token across multiple trades or share it in public rooms.",
+    "recovery": [
+      "Click Recover robot and paste your token to reopen the order on another device.",
+      "If a timer expires with no dispute, bonds release automatically to the wallets that posted them.",
+      "Attach screenshots or bank receipts inside the encrypted chat so the coordinator can review them during disputes."
+    ],
+    "recovery_do": "Store robot tokens offline with trade notes so you can respond quickly during a dispute.",
+    "recovery_dont": "Post the token or chat logs in public support channels.",
+    "withdrawal_policy": [
+      "Lightning payouts settle instantly once both sides mark the fiat transfer complete.",
+      "Optional Boltz swaps convert Lightning payouts to on-chain bitcoin with transparent swap fees.",
+      "If the coordinator rules in your favor after a dispute, the trade hold invoice routes directly to your wallet."
+    ],
+    "withdrawal_policy_do": "Keep your Lightning wallet connected until the hold invoice settles or the dispute resolves.",
+    "withdrawal_policy_dont": "Reuse Lightning invoices across different contracts; generate a fresh one every time.",
+    "region": [
+      "RoboSats is globally accessible, but fiat rails are set by makers and vary by region.",
+      "Android users can bundle Orbot with the RoboSats Android app; iOS users should pair Tor Browser with a desktop or secondary device.",
+      "Methods like Faster Payments, Zelle, or PIX require peers in the same jurisdiction, so confirm support before you accept an order."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Does RoboSats log my IP address?",
+        "a": "When you use Tor or I2P the coordinator never sees your IP; only the optional clearnet gateway collects standard web logs."
+      },
+      {
+        "q": "Can I delete my robot data after a trade?",
+        "a": "Yes. Clear your browser storage or hit Delete robot, and only your local token copy remains."
+      },
+      {
+        "q": "What if the coordinator goes offline mid-trade?",
+        "a": "Trades pause until the coordinator returns; keep your wallet online and watch the RoboSats Matrix status channel for updates."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "PGP chat",
+        "def": "Each contract generates PGP key pairs so only the two peers can decrypt messages in the trade room."
+      },
+      {
+        "term": "Dispute timer",
+        "def": "The countdown that defines when a bond forfeits or a dispute can be escalated to the coordinator."
+      },
+      {
+        "term": "Coordinator",
+        "def": "The RoboSats server that matches orders, holds Lightning invoices, and arbitrates disputes without taking custody."
+      }
+    ],
+    "keywords": [
+      "RoboSats Lightning escrow",
+      "RoboSats Tor only",
+      "RoboSats robot token",
+      "RoboSats dispute process",
+      "RoboSats bond percentage"
+    ]
+  },
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#methods",
+    "fees": "#fees",
+    "privacy": "#kyc",
+    "compat": "#features",
+    "migration": "#withdrawal",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-12",
+  "trust": {
+    "cards": [
+      {
+        "id": "source",
+        "fact": "Full codebase published under AGPL-3.0 license for anyone to audit, fork, and self-host.",
+        "link_text": "Source code",
+        "link_url": "https://github.com/RoboSats/robosats"
+      },
+      {
+        "id": "security",
+        "fact": "Privacy guide covers Tor access, PGP chat, and operational security expectations for every trade.",
+        "link_text": "Privacy guide",
+        "link_url": "https://learn.robosats.org/docs/private/"
+      },
+      {
+        "id": "terms",
+        "fact": "Non-custodial Lightning escrow is documented in the Quick Start so anyone can verify how funds stay outside the coordinator.",
+        "link_text": "How it works",
+        "link_url": "https://learn.robosats.org/docs/quick-start/"
+      }
+    ]
+  }
 }

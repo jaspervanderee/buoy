@@ -138,7 +138,7 @@
         "gotcha": "Verification can require additional documents, so keep your ID and proof of address nearby."
       },
       {
-        "id": "setup-receive",
+        "id": "setup-pay",
         "title": "2. Link your bank and schedule funding",
         "chips": {
           "time": "~5 min",
@@ -153,7 +153,7 @@
         "gotcha": "Manual SEPA deposits take about one business day to clear before you can withdraw the resulting bitcoin."
       },
       {
-        "id": "setup-pay",
+        "id": "setup-receive",
         "title": "3. Buy and move sats to your wallet",
         "why": "Your goal is to convert euros to bitcoin and reduce time in custody.",
         "chips": {

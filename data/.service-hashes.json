@@ -8,15 +8,15 @@
     "date": "2025-11-01"
   },
   "bisq": {
-    "hash": "27ad4ceb606cd9b8c36c6b84e9617ed2b48da3d0702e2aefd2359bfaf532c27d",
-    "date": "2025-11-07"
+    "hash": "2ac9f164da5ba78bb0f2d1566481472d1140f40207737c4ca921176ab388e0d2",
+    "date": "2025-11-12"
   },
   "bitkey": {
     "hash": "b411ea01361bdce4e0b77c809c342f2f1234083a168b62cdb3e04dc875944bce",
     "date": "2025-11-07"
   },
   "bitonic": {
-    "hash": "84b0ec86b49a87c8b49b036685df28ec1dde17109aef2b118121d1347f91b07b",
+    "hash": "15ad55d69c16c28bed3b6166561c81640b5ad78f2711052f9a9e05b29d2ddb73",
     "date": "2025-11-09"
   },
   "breez": {
@@ -28,8 +28,8 @@
     "date": "2025-11-07"
   },
   "bull-bitcoin": {
-    "hash": "d04a3041b023b7edbe64a98ba68c64082d167bd9e68cb281d9b9fc13882a84fd",
-    "date": "2025-11-07"
+    "hash": "0094552db14d9f6daf25fd2fd7c3a348959ab72bce655a0e39c50492a189c07a",
+    "date": "2025-11-12"
   },
   "fold": {
     "hash": "d0ebe78120ec11709f7ee51c2292a906ea0e622122c14f9f3b91a2193eb5ce9e",
@@ -56,7 +56,7 @@
     "date": "2025-11-07"
   },
   "peach": {
-    "hash": "6165084dd836411fa942d5f0b24cddb6832207f8a4852caa479566f13da9b039",
+    "hash": "257ae812242f69d0b40b6c515dca6b73d9b06185455b98c154fb39f3480bc4bf",
     "date": "2025-11-09"
   },
   "phoenix": {
@@ -64,8 +64,8 @@
     "date": "2025-10-03"
   },
   "pocket": {
-    "hash": "de036d3b6e2d545b1381550cbde89d06e8473a5d1bffa9eac2662b685dd13070",
-    "date": "2025-11-07"
+    "hash": "a893e802c409a6cc40ba642aa0546dadf2ceaa348cf999fc9a1f73eb96e6183f",
+    "date": "2025-11-12"
   },
   "relai": {
     "hash": "7df5f4bdd61d20d2e5402fadafd1d076f693e874092236cc8b218c1960554a16",
@@ -76,8 +76,8 @@
     "date": "2025-11-08"
   },
   "robosats": {
-    "hash": "f80067244ab78bcd5d6de780bbe99e73eb92fa6206a1252c6bd2aecc61f74958",
-    "date": "2025-11-07"
+    "hash": "86ba73ef2955bf2ab8961fb3246a4592c5b7f688a4b9b0e5db4891323b5e0c3b",
+    "date": "2025-11-12"
   },
   "sparrow": {
     "hash": "aa31fb34a45e16023fd05b5960e7ad0a28e1c081eabeb197bab339b3221facb9",
