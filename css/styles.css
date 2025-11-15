@@ -3896,7 +3896,7 @@ a.trust-chip:active {
 
 .stat-label {
   font-family: "Inter", sans-serif;
-  font-size: 0.75em;
+  font-size: 0.8em;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -5011,4 +5011,296 @@ main:has(.blog-list) h1 {
   .next-step-item {
     padding: 16px;
   }
+}
+
+/* ========================================
+   Compatibility Section (Hardware/OS/Standards/Integrations)
+   ======================================== */
+
+/* Hardware & OS cards: reuse payment-card styling */
+.compat-items-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.compat-items-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.compat-items-list li:last-child {
+  border-bottom: none;
+}
+
+/* Device list: tighter spacing, notes closer to title */
+.compat-items-list--devices li {
+  padding: 8px 0;
+  display: block;
+}
+
+.compat-items-list--devices li:first-child {
+  padding-top: 10px;
+}
+
+.compat-item-name {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+  margin-bottom: 6px;
+}
+
+.compat-item-note {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.compat-version {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.95em;
+  color: var(--text-muted);
+}
+
+/* Platform icons positioned on the right */
+.compat-items-list--platforms li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.compat-platform-icon {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Standards table */
+.compat-standards {
+  margin: 24px 0;
+}
+
+.compat-subsection-title {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 16px 0;
+}
+
+.compat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.95em;
+  background: var(--panel);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.compat-table thead {
+  background: var(--panel);
+}
+
+.compat-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 400;
+  color: var(--text-muted);
+  font-size: 0.85em;
+}
+
+.compat-table td {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.compat-table-standard {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.compat-table-support {
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.compat-support--yes {
+  color: #28a745;
+}
+
+.compat-support--partial {
+  color: #ffc107;
+}
+
+.compat-support--no {
+  color: #dc3545;
+}
+
+@media (prefers-color-scheme: dark) {
+  .compat-support--yes {
+    color: #4caf50;
+  }
+  
+  .compat-support--partial {
+    color: #ffeb3b;
+  }
+  
+  .compat-support--no {
+    color: #f44336;
+  }
+}
+
+.compat-table-notes {
+  color: var(--text-muted);
+  max-width: 400px;
+}
+
+/* Mobile: stack table for better readability */
+@media (max-width: 767px) {
+  .compat-table {
+    font-size: 0.9em;
+  }
+  
+  .compat-table thead {
+    display: none;
+  }
+  
+  .compat-table tr {
+    display: block;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .compat-table td {
+    display: block;
+    text-align: left;
+    padding: 10px 12px;
+    border: none;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .compat-table td:last-child {
+    border-bottom: none;
+  }
+  
+  .compat-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+    color: var(--text-muted);
+    font-size: 0.85em;
+    text-transform: uppercase;
+  }
+  
+  .compat-table-standard::before {
+    content: "Standard";
+  }
+  
+  .compat-table-support::before {
+    content: "Support";
+  }
+  
+  .compat-table-notes::before {
+    content: "Notes";
+  }
+}
+
+/* Advanced section: collapsible */
+.compat-advanced {
+  margin: 16px 0 0 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.compat-advanced summary {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 600;
+  padding: 12px 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease;
+  list-style: none;
+}
+
+.compat-advanced summary::-webkit-details-marker {
+  display: none;
+}
+
+.compat-advanced summary::before {
+  content: "\2193";
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  color: var(--accent);
+  margin-right: 8px;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.compat-advanced[open] summary::before {
+  transform: rotate(180deg);
+}
+
+.compat-advanced summary:hover {
+  background: var(--bg);
+}
+
+.compat-advanced-list {
+  padding: 16px;
+  margin: 0;
+  border-top: 1px solid var(--border);
+}
+
+.compat-advanced-list dt {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 12px;
+  font-size: 0.95em;
+}
+
+.compat-advanced-list dt:first-child {
+  margin-top: 0;
+}
+
+.compat-advanced-list dd {
+  font-family: "Ubuntu Mono", monospace;
+  color: var(--text-muted);
+  margin: 4px 0 0 0;
+  line-height: 1.5;
+  font-size: 0.9em;
+}
+
+/* Integrations */
+.compat-integrations {
+  margin: 24px 0;
+}
+
+.compat-integration-mode {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.95em;
+  color: var(--text);
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.compat-integration-caveat {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  color: var(--text-muted);
+  margin: 8px 0 0 0;
+  line-height: 1.5;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
 }

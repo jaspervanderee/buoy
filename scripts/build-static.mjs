@@ -1582,13 +1582,191 @@ ${tileItems}
 </section>`;
       };
 
-      const renderCompatibility = () => renderTileSection({
-        tiles: svc.compat_tiles,
-        explainers: svc.compat_explainers,
-        heading: svc.compat_heading,
-        learnLabel: svc.compat_learn_label,
-        sectionId: "compat"
-      });
+      const renderCompatibility = () => {
+        // New compatibility structure (hardware/OS/standards/integrations)
+        const compat = svc.compatibility;
+        if (compat && typeof compat === 'object') {
+          const sectionTitle = compat.section_title || "Compatibility";
+          const intro = compat.intro ? `<div class="feature-label sublabel">${escapeHtml(compat.intro)}</div>` : "";
+          const cards = [];
+          
+          // A) Hardware & OS cards
+          if (Array.isArray(compat.hardware_os)) {
+            compat.hardware_os.forEach(card => {
+              if (!card || !card.title) return;
+              
+              let cardContent = "";
+              let statusChipHtml = "";
+              
+              // Device items (e.g., hardware wallet models) - with status chip in header
+              if (Array.isArray(card.items) && card.items.length > 0) {
+                const itemsList = card.items.map(item => {
+                  // Extract status for chip in header
+                  const statusClass = item.status === 'verified' ? 'works' : item.status === 'vendor-claimed' ? 'setup' : 'notyet';
+                  const statusText = item.status === 'verified' ? 'Verified' : item.status === 'vendor-claimed' ? 'Vendor-claimed' : 'Unknown';
+                  statusChipHtml = `<span class="svc-chip svc-chip--${statusClass}">${statusText}</span>`;
+                  
+                  return `<li><div class="compat-item-name">${escapeHtml(item.name)}</div>${item.notes ? `<div class="compat-item-note">${escapeHtml(item.notes)}</div>` : ''}</li>`;
+                }).join("");
+                cardContent = `<ul class="compat-items-list compat-items-list--devices">${itemsList}</ul>`;
+              }
+              
+              // Platform list (e.g., iOS, Android, Desktop)
+              if (Array.isArray(card.platforms) && card.platforms.length > 0) {
+                const platformItems = card.platforms.map(platform => {
+                  if (platform.support === 'no') {
+                    return `<li><span class="compat-item-name">${escapeHtml(platform.name)}</span>${platform.notes ? ` <span class="compat-item-note">${escapeHtml(platform.notes)}</span>` : ''} <img src="/images/cross.svg" alt="" class="inline-icon compat-platform-icon" /></li>`;
+                  }
+                  const icon = platform.status === 'verified' ? '/images/checkmark.svg' : '/images/neutral.svg';
+                  return `<li><span class="compat-item-name">${escapeHtml(platform.name)}</span> <span class="compat-version">${escapeHtml(platform.version || '')}</span> <img src="${icon}" alt="" class="inline-icon compat-platform-icon" /></li>`;
+                }).join("");
+                cardContent = `<ul class="compat-items-list compat-items-list--platforms">${platformItems}</ul>`;
+              }
+              
+              // Connection methods (e.g., NFC, USB, QR) - with status chip
+              if (Array.isArray(card.methods) && card.methods.length > 0) {
+                // Find first verified method for status chip
+                const verifiedMethod = card.methods.find(m => m.status === 'verified');
+                if (verifiedMethod) {
+                  const statusClass = 'works';
+                  statusChipHtml = `<span class="svc-chip svc-chip--${statusClass}">Verified</span>`;
+                }
+                
+                const methodItems = card.methods.filter(m => m.status !== 'not-supported').map(method => {
+                  return `<li><strong>${escapeHtml(method.type)}</strong>${method.constraint ? `<br><span class="compat-item-note">${escapeHtml(method.constraint)}</span>` : ''}</li>`;
+                }).join("");
+                cardContent = `<ul class="compat-items-list">${methodItems}</ul>`;
+              }
+              
+              if (cardContent) {
+                // Use header structure with chip for device cards
+                if (statusChipHtml) {
+                  cards.push(`    <div class="payment-card" id="${card.id || ''}">
+      <div class="payment-card__header">
+        <h3 class="payment-card__title">${escapeHtml(card.title)}</h3>
+        ${statusChipHtml}
+      </div>
+      ${cardContent}
+    </div>`);
+                } else {
+                  cards.push(`    <div class="payment-card" id="${card.id || ''}">
+      <h3 class="payment-card__title">${escapeHtml(card.title)}</h3>
+      ${cardContent}
+    </div>`);
+                }
+              }
+            });
+          }
+          
+          const hardwareOsHtml = cards.length > 0 ? `  <div class="payment-cards">
+${cards.join("\n")}
+  </div>\n` : "";
+          
+          // B) Standards & keys table
+          let standardsHtml = "";
+          if (compat.standards && Array.isArray(compat.standards.table)) {
+            const rows = compat.standards.table.map(row => {
+              const supportClass = row.support === 'Yes' ? 'yes' : row.support === 'Partial' ? 'partial' : 'no';
+              const supportIcon = row.support === 'Yes' ? '/images/checkmark.svg' : row.support === 'Partial' ? '/images/neutral.svg' : '/images/cross.svg';
+              return `        <tr>
+          <td class="compat-table-standard">${escapeHtml(row.standard)}</td>
+          <td class="compat-table-support compat-support--${supportClass}"><img src="${supportIcon}" alt="" class="inline-icon" /> ${escapeHtml(row.support)}</td>
+          <td class="compat-table-notes">${escapeHtml(row.notes || '')}</td>
+        </tr>`;
+            }).join("\n");
+            
+            standardsHtml = `  <div class="compat-standards">
+    <h3 class="compat-subsection-title">Bitcoin standards & keys</h3>
+    <table class="compat-table">
+      <thead>
+        <tr>
+          <th class="stat-label">Standard</th>
+          <th class="stat-label">Support</th>
+          <th class="stat-label">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+${rows}
+      </tbody>
+    </table>
+  </div>\n`;
+            
+            // Advanced section (collapsible)
+            if (compat.standards.advanced) {
+              const adv = compat.standards.advanced;
+              const advItems = [];
+              if (adv.descriptors) {
+                advItems.push(`<dt>Descriptors</dt><dd><span class="compat-support--${adv.descriptors.support === 'Yes' ? 'yes' : adv.descriptors.support === 'Partial' ? 'partial' : 'no'}">${escapeHtml(adv.descriptors.support)}</span> — ${escapeHtml(adv.descriptors.notes || '')}</dd>`);
+              }
+              if (adv.psbt) {
+                advItems.push(`<dt>PSBT</dt><dd><span class="compat-support--${adv.psbt.support === 'Yes' ? 'yes' : adv.psbt.support === 'Partial' ? 'partial' : 'no'}">${escapeHtml(adv.psbt.support)}</span> — ${escapeHtml(adv.psbt.notes || '')}</dd>`);
+              }
+              if (adv.derivation_paths) {
+                advItems.push(`<dt>Derivation paths</dt><dd><span class="compat-support--${adv.derivation_paths.support === 'Yes' || adv.derivation_paths.support === 'Standard' ? 'yes' : adv.derivation_paths.support === 'Partial' ? 'partial' : 'no'}">${escapeHtml(adv.derivation_paths.support)}</span> — ${escapeHtml(adv.derivation_paths.notes || '')}</dd>`);
+              }
+              if (adv.output_descriptors) {
+                advItems.push(`<dt>Output descriptors</dt><dd><span class="compat-support--${adv.output_descriptors.support === 'Yes' ? 'yes' : adv.output_descriptors.support === 'Partial' ? 'partial' : 'no'}">${escapeHtml(adv.output_descriptors.support)}</span> — ${escapeHtml(adv.output_descriptors.notes || '')}</dd>`);
+              }
+              
+              if (advItems.length > 0) {
+                standardsHtml += `  <details class="compat-advanced">
+    <summary>Show advanced</summary>
+    <dl class="compat-advanced-list">
+${advItems.join("\n")}
+    </dl>
+  </details>\n`;
+              }
+            }
+          }
+          
+          // C) Works with (integrations)
+          let integrationsHtml = "";
+          if (compat.integrations && Array.isArray(compat.integrations.items) && compat.integrations.items.length > 0) {
+            const heading = compat.integrations.heading || "Works with…";
+            const intro = compat.integrations.intro ? `<div class="feature-label sublabel">${escapeHtml(compat.integrations.intro)}</div>` : "";
+            
+            const integrationCards = compat.integrations.items.map(item => {
+              const statusClass = item.status === 'verified' ? 'works' : item.status === 'vendor-claimed' ? 'setup' : 'notyet';
+              const statusText = item.status === 'verified' ? 'Verified' : item.status === 'vendor-claimed' ? 'Vendor-claimed' : 'Unknown';
+              return `      <div class="payment-card">
+        <div class="payment-card__header">
+          <h3 class="payment-card__title">${escapeHtml(item.name)}</h3>
+          <span class="svc-chip svc-chip--${statusClass}">${statusText}</span>
+        </div>
+        <p class="compat-integration-mode">${escapeHtml(item.mode)}</p>
+        ${item.caveat ? `<p class="compat-integration-caveat">${escapeHtml(item.caveat)}</p>` : ''}
+      </div>`;
+            }).join("\n");
+            
+            integrationsHtml = `  <div class="compat-integrations">
+    <h3 class="compat-subsection-title">${heading}</h3>
+    ${intro}
+    <div class="payment-cards">
+${integrationCards}
+    </div>
+  </div>\n`;
+          }
+          
+          // Skip entire section if no content
+          if (!hardwareOsHtml && !standardsHtml && !integrationsHtml) return "";
+          
+          return `
+<section id="compatibility" class="service-section" aria-labelledby="compatibility-label">
+  <h2 id="compatibility-label" class="feature-label">${sectionTitle}</h2>
+  ${intro}
+${hardwareOsHtml}${standardsHtml}${integrationsHtml}
+</section>`;
+        }
+        
+        // Fallback to old tile-based compatibility (for services not yet migrated)
+        return renderTileSection({
+          tiles: svc.compat_tiles,
+          explainers: svc.compat_explainers,
+          heading: svc.compat_heading,
+          learnLabel: svc.compat_learn_label,
+          sectionId: "compat"
+        });
+      };
 
       const renderRecovery = () => renderTileSection({
         tiles: svc.recovery_tiles,
@@ -1846,7 +2024,7 @@ ${cards.join("\n")}
         fees: "Fees: what you pay and when",
         payment_methods_limits: "Payment methods & limits",
         key_features: "Key features",
-        compat: svc.compat_heading || "Features",
+        compat: (svc.compatibility && svc.compatibility.section_title) ? svc.compatibility.section_title : (svc.compat_heading || "Features"),
         recovery: svc.recovery_heading || "Recovery",
         self_custody: svc.self_custody?.heading || "Self-custody: withdraw safely",
         migration: `Move your ${svc.name} wallet or funds`,
@@ -1883,7 +2061,7 @@ ${block}
         fees: { id: 'fees', label: 'Fees' },
         payment_methods_limits: { id: 'payment-methods', label: 'Methods' },
         key_features: { id: 'key-features', label: 'Features' },
-        compat: { id: 'compat', label: 'Features' },
+        compat: { id: (svc.compatibility && typeof svc.compatibility === 'object') ? 'compatibility' : 'compat', label: 'Compatibility' },
         recovery: { id: 'recovery', label: 'Recovery' },
         self_custody: { id: 'self-custody', label: 'Self-custody' },
         privacy: { id: 'privacy-safety', label: 'Privacy' },

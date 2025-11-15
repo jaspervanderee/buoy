@@ -137,7 +137,7 @@
 </nav>
 
 <nav class="jump-nav" aria-label="Jump to">
-  <a href="/services/bitkey.html#setup">Setup</a> • <a href="/services/bitkey.html#key-features">Features</a> • <a href="/services/bitkey.html#compat">Features</a> • <a href="/services/bitkey.html#recovery">Recovery</a> • <a href="/services/bitkey.html#inheritance">Inheritance</a> • <a href="/services/bitkey.html#privacy-safety">Privacy</a> • <a href="/services/bitkey.html#trust">Trust</a> • <a href="/services/bitkey.html#faq-heading">FAQs</a>
+  <a href="/services/bitkey.html#setup">Setup</a> • <a href="/services/bitkey.html#key-features">Features</a> • <a href="/services/bitkey.html#recovery">Recovery</a> • <a href="/services/bitkey.html#inheritance">Inheritance</a> • <a href="/services/bitkey.html#compatibility">Compatibility</a> • <a href="/services/bitkey.html#privacy-safety">Privacy</a> • <a href="/services/bitkey.html#trust">Trust</a> • <a href="/services/bitkey.html#faq-heading">FAQs</a>
 </nav>
   <!-- BUILD:START -->
 <div class="service-sticky-cta">
@@ -237,76 +237,6 @@
         <h3 class="feature-tile__title">What each key does</h3>
         
         <ul class="feature-tile__bullets"><li><strong>Mobile + server:</strong> Daily spends up to your limit</li><li><strong>Hardware + mobile:</strong> Bypass server; move any amount; change settings</li><li><strong>Hardware + server:</strong> Recover when phone is lost or replaced</li></ul><p class="feature-tile__footer"><strong>Good for:</strong> quick daily use. <strong>Trade-off:</strong> keep hardware key ready for exceptions.</p>
-      </div>
-  </div>
-</section>
-</details>
-<details class="section-accordion">
-  <summary>If this happens, can I still move my Bitcoin?</summary>
-
-<section id="compat" class="service-section">
-  <h2 class="feature-label">If this happens, can I still move my Bitcoin?</h2>
-  <div class="svc-compat__grid">
-
-      <div class="svc-compat__tile" id="lose-phone">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Lose phone</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        <div class="migration-meta"><span class="migration-meta-chip">~10 min</span></div>
-        <p class="svc-compat__benefit"></p>
-        <p class="svc-compat__why">An encrypted copy of your mobile key lives in your own cloud account, and your hardware key decrypts it. You can restore the wallet on a new phone without memorizing a seed phrase.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><ol><li>Install Bitkey on a new phone and sign into the same iCloud or Google Drive account.</li><li>Approve the cloud access prompt, then tap your hardware key to decrypt the backup.</li><li>Wait for the wallet to resync and verify the balance.</li></ol><p><strong>Gotcha:</strong> Cloud Recovery needs the hardware key, so keep it safe and separate from your phone.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="lose-hardware">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Lose hardware</h3>
-          <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
-        </div>
-        <div class="migration-meta"><span class="migration-meta-chip">7 days or instant</span></div>
-        <p class="svc-compat__benefit"></p>
-        <p class="svc-compat__why">Bitkey triggers a seven-day security hold when you report lost hardware, giving you time to cancel if someone else made the request. Recovery Contacts can vouch for you to skip the waiting period.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><ol><li>Open the app, start hardware recovery, and watch for SMS and email alerts confirming the request.</li><li>Wait seven days for the hold to clear, or share a code with your Recovery Contacts to speed it up.</li><li>Pair the new hardware key and transfer your wallet to the fresh device.</li></ol><p><strong>Gotcha:</strong> If you lose both phone and hardware, Recovery Contacts become your only path; invite them during setup.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="bitkey-attacks">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Bitkey compromised or offline</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        <div class="migration-meta"><span class="migration-meta-chip">~20 min</span></div>
-        <p class="svc-compat__benefit"></p>
-        <p class="svc-compat__why">Bitkey holds only one of three keys. You control two keys, so you can always move bitcoin without the server—either by co-signing with your mobile and hardware keys, or by using the Emergency Exit Kit if their infrastructure goes offline.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><ol><li>If the server is online: open the Bitkey app, generate a receive address in another wallet, and use your mobile key plus hardware key to co-sign the send.</li><li>If the server is offline or compromised: download the Emergency Exit Kit from Security hub, verify the SHA256 checksum, sideload the APK onto an Android device, tap your hardware key, and sweep your balance.</li><li>Confirm the transaction on-chain to complete the exit.</li></ol><p><strong>Gotcha:</strong> The Emergency Exit Kit only runs on Android, so plan access to an Android device before an emergency. Different people draw different lines about how much to keep with a third-party key holder; you can choose differently.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="lose-both">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Lose phone and hardware</h3>
-          <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
-        </div>
-        <div class="migration-meta"><span class="migration-meta-chip">~30 min + hold</span></div>
-        <p class="svc-compat__benefit"></p>
-        <p class="svc-compat__why">When you set up Bitkey, you can invite trusted contacts who download the app and agree to help you recover. If you lose your phone and hardware, your contacts verify a code inside their app so you can rebuild the wallet on new devices.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><ol><li>Download the Bitkey app on a new phone and start the recovery process for both devices.</li><li>Share a verification code with your Recovery Contacts through a separate channel.</li><li>Once they approve the request in their app, recover your mobile key from the cloud and pair a new hardware key.</li><li>Transfer your wallet balance to the fresh device setup.</li></ol><p><strong>Gotcha:</strong> Recovery Contacts are your only path when both devices are gone; invite them during initial setup and confirm they still have access annually.</p>
-          </div>
-        </details>
       </div>
   </div>
 </section>
@@ -443,6 +373,110 @@
       <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span>Do this: Keep beneficiary's device info current and confirm they can access their own Bitkey annually.</span></div></div>
     </div>
   </div>
+</section>
+</details>
+<details class="section-accordion">
+  <summary>Compatibility: what works with Bitkey</summary>
+
+<section id="compatibility" class="service-section" aria-labelledby="compatibility-label">
+  <h2 id="compatibility-label" class="feature-label">Compatibility: what works with Bitkey</h2>
+  <div class="feature-label sublabel">Where it runs, how it connects, and what standards it supports.</div>
+  <div class="payment-cards">
+    <div class="payment-card" id="devices">
+      <div class="payment-card__header">
+        <h3 class="payment-card__title">Bitkey hardware device</h3>
+        <span class="svc-chip svc-chip--works">Verified</span>
+      </div>
+      <ul class="compat-items-list compat-items-list--devices"><li><div class="compat-item-name">Bitkey hexagonal key</div><div class="compat-item-note">Secure element: Yes · Battery: No (NFC-powered) · Fingerprint sensor: Yes</div></li></ul>
+    </div>
+    <div class="payment-card" id="mobile-desktop">
+      <h3 class="payment-card__title">Mobile &amp; desktop</h3>
+      <ul class="compat-items-list compat-items-list--platforms"><li><span class="compat-item-name">iOS</span> <span class="compat-version">15.0+</span> <img src="/images/checkmark.svg" alt="" class="inline-icon compat-platform-icon" /></li><li><span class="compat-item-name">Android</span> <span class="compat-version">9.0+</span> <img src="/images/checkmark.svg" alt="" class="inline-icon compat-platform-icon" /></li><li><span class="compat-item-name">Desktop</span> <span class="compat-item-note">Mobile-only wallet; no desktop app</span> <img src="/images/cross.svg" alt="" class="inline-icon compat-platform-icon" /></li></ul>
+    </div>
+    <div class="payment-card" id="connections">
+      <div class="payment-card__header">
+        <h3 class="payment-card__title">Connection types</h3>
+        <span class="svc-chip svc-chip--works">Verified</span>
+      </div>
+      <ul class="compat-items-list"><li><strong>NFC</strong><br><span class="compat-item-note">Required for hardware key pairing and signing</span></li></ul>
+    </div>
+  </div>
+  <div class="compat-standards">
+    <h3 class="compat-subsection-title">Bitcoin standards & keys</h3>
+    <table class="compat-table">
+      <thead>
+        <tr>
+          <th class="stat-label">Standard</th>
+          <th class="stat-label">Support</th>
+          <th class="stat-label">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="compat-table-standard">BIP39</td>
+          <td class="compat-table-support compat-support--no"><img src="/images/cross.svg" alt="" class="inline-icon" /> No</td>
+          <td class="compat-table-notes">Bitkey replaces seed phrases with cloud-backed mobile key plus hardware key</td>
+        </tr>
+        <tr>
+          <td class="compat-table-standard">BIP32</td>
+          <td class="compat-table-support compat-support--yes"><img src="/images/checkmark.svg" alt="" class="inline-icon" /> Yes</td>
+          <td class="compat-table-notes">Hierarchical deterministic key derivation used internally</td>
+        </tr>
+        <tr>
+          <td class="compat-table-standard">BIP84</td>
+          <td class="compat-table-support compat-support--yes"><img src="/images/checkmark.svg" alt="" class="inline-icon" /> Yes</td>
+          <td class="compat-table-notes">Native SegWit (bc1) addresses</td>
+        </tr>
+        <tr>
+          <td class="compat-table-standard">BIP86</td>
+          <td class="compat-table-support compat-support--no"><img src="/images/cross.svg" alt="" class="inline-icon" /> No</td>
+          <td class="compat-table-notes">Taproot not yet supported</td>
+        </tr>
+        <tr>
+          <td class="compat-table-standard">Passphrase (BIP39)</td>
+          <td class="compat-table-support compat-support--no"><img src="/images/cross.svg" alt="" class="inline-icon" /> No</td>
+          <td class="compat-table-notes">Not applicable; no seed phrase model</td>
+        </tr>
+        <tr>
+          <td class="compat-table-standard">Miniscript</td>
+          <td class="compat-table-support compat-support--no"><img src="/images/cross.svg" alt="" class="inline-icon" /> No</td>
+          <td class="compat-table-notes">Uses proprietary 2-of-3 multisig implementation</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <details class="compat-advanced">
+    <summary>Show advanced</summary>
+    <dl class="compat-advanced-list">
+<dt>Descriptors</dt><dd><span class="compat-support--no">No</span> — Descriptor export not supported</dd>
+<dt>PSBT</dt><dd><span class="compat-support--no">No</span> — Uses proprietary signing protocol between app and hardware</dd>
+<dt>Derivation paths</dt><dd><span class="compat-support--yes">Standard</span> — Internal SegWit paths (not user-configurable)</dd>
+<dt>Output descriptors</dt><dd><span class="compat-support--no">No</span> — Does not expose output descriptors</dd>
+    </dl>
+  </details>
+  <div class="compat-integrations">
+    <h3 class="compat-subsection-title">Works with…</h3>
+    <div class="feature-label sublabel">Bitkey is a self-contained system; integrations are limited by design to preserve security and simplicity.</div>
+    <div class="payment-cards">
+      <div class="payment-card">
+        <div class="payment-card__header">
+          <h3 class="payment-card__title">Your Bitcoin node</h3>
+          <span class="svc-chip svc-chip--works">Verified</span>
+        </div>
+        <p class="compat-integration-mode">Electrum or full node connection</p>
+        <p class="compat-integration-caveat">Configure in Advanced settings; keeps balance and history private</p>
+      </div>
+      <div class="payment-card">
+        <div class="payment-card__header">
+          <h3 class="payment-card__title">Emergency Exit Kit</h3>
+          <span class="svc-chip svc-chip--works">Verified</span>
+        </div>
+        <p class="compat-integration-mode">Standalone Android APK for offline recovery</p>
+        <p class="compat-integration-caveat">Android only; sideload APK; requires hardware key</p>
+      </div>
+    </div>
+  </div>
+
 </section>
 </details>
 <details class="section-accordion">

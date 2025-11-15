@@ -1543,84 +1543,145 @@
         }
       ]
     },
-    "compat_heading": "If this happens, can I still move my Bitcoin?",
-    "compat_tiles": [
-      {
-        "id": "lose-phone",
-        "title": "Lose phone",
-        "status": "works",
-        "chips": {
-          "time": "~10 min"
+    "compatibility": {
+      "section_title": "Compatibility: what works with Bitkey",
+      "intro": "Where it runs, how it connects, and what standards it supports.",
+      "hardware_os": [
+        {
+          "id": "devices",
+          "title": "Bitkey hardware device",
+          "items": [
+            {
+              "name": "Bitkey hexagonal key",
+              "status": "verified",
+              "notes": "Secure element: Yes · Battery: No (NFC-powered) · Fingerprint sensor: Yes"
+            }
+          ]
+        },
+        {
+          "id": "mobile-desktop",
+          "title": "Mobile & desktop",
+          "platforms": [
+            {
+              "name": "iOS",
+              "version": "15.0+",
+              "status": "verified"
+            },
+            {
+              "name": "Android",
+              "version": "9.0+",
+              "status": "verified"
+            },
+            {
+              "name": "Desktop",
+              "support": "no",
+              "notes": "Mobile-only wallet; no desktop app"
+            }
+          ]
+        },
+        {
+          "id": "connections",
+          "title": "Connection types",
+          "methods": [
+            {
+              "type": "NFC",
+              "status": "verified",
+              "constraint": "Required for hardware key pairing and signing"
+            },
+            {
+              "type": "USB",
+              "status": "not-supported"
+            },
+            {
+              "type": "QR",
+              "status": "not-supported"
+            },
+            {
+              "type": "Bluetooth",
+              "status": "not-supported"
+            }
+          ]
+        }
+      ],
+      "standards": {
+        "table": [
+          {
+            "standard": "BIP39",
+            "support": "No",
+            "notes": "Bitkey replaces seed phrases with cloud-backed mobile key plus hardware key",
+            "status": "verified"
+          },
+          {
+            "standard": "BIP32",
+            "support": "Yes",
+            "notes": "Hierarchical deterministic key derivation used internally",
+            "status": "verified"
+          },
+          {
+            "standard": "BIP84",
+            "support": "Yes",
+            "notes": "Native SegWit (bc1) addresses",
+            "status": "verified"
+          },
+          {
+            "standard": "BIP86",
+            "support": "No",
+            "notes": "Taproot not yet supported",
+            "status": "verified"
+          },
+          {
+            "standard": "Passphrase (BIP39)",
+            "support": "No",
+            "notes": "Not applicable; no seed phrase model",
+            "status": "verified"
+          },
+          {
+            "standard": "Miniscript",
+            "support": "No",
+            "notes": "Uses proprietary 2-of-3 multisig implementation",
+            "status": "verified"
+          }
+        ],
+        "advanced": {
+          "descriptors": {
+            "support": "No",
+            "notes": "Descriptor export not supported"
+          },
+          "psbt": {
+            "support": "No",
+            "notes": "Uses proprietary signing protocol between app and hardware"
+          },
+          "derivation_paths": {
+            "support": "Standard",
+            "notes": "Internal SegWit paths (not user-configurable)"
+          },
+          "output_descriptors": {
+            "support": "No",
+            "notes": "Does not expose output descriptors"
+          }
         }
       },
-      {
-        "id": "lose-hardware",
-        "title": "Lose hardware",
-        "status": "works-caveat",
-        "chips": {
-          "time": "7 days or instant"
-        }
-      },
-      {
-        "id": "bitkey-attacks",
-        "title": "Bitkey compromised or offline",
-        "status": "works",
-        "chips": {
-          "time": "~20 min"
-        }
-      },
-      {
-        "id": "lose-both",
-        "title": "Lose phone and hardware",
-        "status": "works-caveat",
-        "chips": {
-          "time": "~30 min + hold"
-        }
+      "integrations": {
+        "heading": "Works with…",
+        "intro": "Bitkey is a self-contained system; integrations are limited by design to preserve security and simplicity.",
+        "items": [
+          {
+            "name": "Your Bitcoin node",
+            "logo": "bitcoin-node",
+            "mode": "Electrum or full node connection",
+            "status": "verified",
+            "caveat": "Configure in Advanced settings; keeps balance and history private"
+          },
+          {
+            "name": "Emergency Exit Kit",
+            "logo": "android",
+            "mode": "Standalone Android APK for offline recovery",
+            "status": "verified",
+            "caveat": "Android only; sideload APK; requires hardware key"
+          }
+        ]
       }
-    ],
-    "compat_explainers": [
-      {
-        "id": "lose-phone",
-        "why": "An encrypted copy of your mobile key lives in your own cloud account, and your hardware key decrypts it. You can restore the wallet on a new phone without memorizing a seed phrase.",
-        "how": [
-          "Install Bitkey on a new phone and sign into the same iCloud or Google Drive account.",
-          "Approve the cloud access prompt, then tap your hardware key to decrypt the backup.",
-          "Wait for the wallet to resync and verify the balance."
-        ],
-        "gotcha": "Cloud Recovery needs the hardware key, so keep it safe and separate from your phone."
-      },
-      {
-        "id": "lose-hardware",
-        "why": "Bitkey triggers a seven-day security hold when you report lost hardware, giving you time to cancel if someone else made the request. Recovery Contacts can vouch for you to skip the waiting period.",
-        "how": [
-          "Open the app, start hardware recovery, and watch for SMS and email alerts confirming the request.",
-          "Wait seven days for the hold to clear, or share a code with your Recovery Contacts to speed it up.",
-          "Pair the new hardware key and transfer your wallet to the fresh device."
-        ],
-        "gotcha": "If you lose both phone and hardware, Recovery Contacts become your only path; invite them during setup."
-      },
-      {
-        "id": "bitkey-attacks",
-        "why": "Bitkey holds only one of three keys. You control two keys, so you can always move bitcoin without the server—either by co-signing with your mobile and hardware keys, or by using the Emergency Exit Kit if their infrastructure goes offline.",
-        "how": [
-          "If the server is online: open the Bitkey app, generate a receive address in another wallet, and use your mobile key plus hardware key to co-sign the send.",
-          "If the server is offline or compromised: download the Emergency Exit Kit from Security hub, verify the SHA256 checksum, sideload the APK onto an Android device, tap your hardware key, and sweep your balance.",
-          "Confirm the transaction on-chain to complete the exit."
-        ],
-        "gotcha": "The Emergency Exit Kit only runs on Android, so plan access to an Android device before an emergency. Different people draw different lines about how much to keep with a third-party key holder; you can choose differently."
-      },
-      {
-        "id": "lose-both",
-        "why": "When you set up Bitkey, you can invite trusted contacts who download the app and agree to help you recover. If you lose your phone and hardware, your contacts verify a code inside their app so you can rebuild the wallet on new devices.",
-        "how": [
-          "Download the Bitkey app on a new phone and start the recovery process for both devices.",
-          "Share a verification code with your Recovery Contacts through a separate channel.",
-          "Once they approve the request in their app, recover your mobile key from the cloud and pair a new hardware key.",
-          "Transfer your wallet balance to the fresh device setup."
-        ],
-        "gotcha": "Recovery Contacts are your only path when both devices are gone; invite them during initial setup and confirm they still have access annually."
-      }
-    ],
+    },
     "migration": [
       {
         "id": "restore-same-wallet",
