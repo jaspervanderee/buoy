@@ -363,14 +363,19 @@ html = html.replace('</head>', urlShim + '</head>');
       // Render table for service page with mode: "service" to exclude legacy rows (Platform, Supported Networks, Features, Custody & Control block)
       const tableHtml = await renderTableHTML(svc, svc.category, { mode: "service" });
 
-      const defaultOrder = ["tldr", "setup", "fees", "payment_methods_limits", "key_features", "compat", "migration", "privacy", "trust", "profile"];
+      const defaultOrder = ["tldr", "setup", "fees", "payment_methods_limits", "key_features", "compat", "recovery", "migration", "privacy", "trust", "profile"];
       let order = Array.isArray(svc.section_order) && svc.section_order.length
-        ? svc.section_order.filter((key) => defaultOrder.includes(key) || key === "self_custody" || key === "payment_methods_limits" || key === "key_features")
+        ? svc.section_order.filter((key) => defaultOrder.includes(key) || key === "self_custody" || key === "payment_methods_limits" || key === "key_features" || key === "recovery")
         : defaultOrder;
       
       // For Buy Bitcoin services, replace migration with self_custody
       if (svc.category === "Buy Bitcoin") {
         order = order.map(key => key === "migration" ? "self_custody" : key);
+      }
+      
+      // For Store it safely services, use custody-focused order
+      if (svc.category === "Store it safely") {
+        order = ["tldr", "setup", "fees", "key_features", "recovery", "inheritance", "compat", "privacy", "trust", "profile"];
       }
 
       const sectionBlocks = [];
@@ -427,6 +432,11 @@ html = html.replace('</head>', urlShim + '</head>');
       const renderSetup = () => {
         const howto = svc.howto;
         if (!howto || !Array.isArray(howto.steps) || howto.steps.length === 0) return "";
+        
+        // Use custom title for "Store it safely" services, default to "Getting started" for others
+        const setupHeading = (svc.category === "Store it safely" && howto.title) 
+          ? howto.title 
+          : "Getting started";
         
         const tileItems = howto.steps.map((step) => {
           const tileId = step.id || slugify(step.title || "");
@@ -538,7 +548,7 @@ ${faqItems}
         
         return `
 <section id="setup" class="service-section">
-  <h2 class="feature-label">Getting started</h2>
+  <h2 class="feature-label">${setupHeading}</h2>
   <div class="svc-compat__grid">
 ${tileItems}
   </div>${microFaqHtml}
@@ -781,6 +791,111 @@ ${scenariosHtml}${microFaqHtml}${keyTermsHtml}
 <section id="fees" class="service-section">
   <h2 class="feature-label">Fees</h2>
 ${blocks}
+</section>`;
+      };
+
+      const renderInheritance = () => {
+        // Only render for Store it safely category
+        if (svc.category !== "Store it safely") return "";
+        
+        const inheritance = svc.inheritance;
+        if (!inheritance || typeof inheritance !== 'object') return "";
+        
+        const sectionTitle = inheritance.section_title || "Inheritance: pass it on safely";
+        
+        // Intro as sublabel (not white tile)
+        const introHtml = inheritance.intro 
+          ? `  <div class="feature-label sublabel">${inheritance.intro}</div>\n` 
+          : "";
+        
+        const tiles = [];
+        
+        // Render each card as a compat-style tile with status chip
+        if (Array.isArray(inheritance.cards)) {
+          inheritance.cards.forEach(card => {
+            if (!card || !card.title) return;
+            
+            // Status chip mapping
+            const statusMap = {
+              "action": { class: "svc-chip--works", text: "Action" },
+              "process": { class: "svc-chip--setup", text: "Process" },
+              "emergency": { class: "svc-chip--notyet", text: "Emergency" }
+            };
+            const statusInfo = statusMap[card.status] || { class: "svc-chip--setup", text: card.status };
+            
+            // Meta chips (time, priority, etc.)
+            const metaChips = [];
+            if (card.chips) {
+              Object.entries(card.chips).forEach(([key, value]) => {
+                metaChips.push(`<span class="migration-meta-chip">${value}</span>`);
+              });
+            }
+            const metaHtml = metaChips.length > 0 
+              ? `<div class="migration-meta">${metaChips.join("")}</div>` 
+              : "";
+            
+            // Why/mechanism explanation (visible)
+            const whyHtml = card.why ? `<p class="svc-compat__why">${card.why}</p>` : "";
+            
+            // Prereqs (if present)
+            const prereqsHtml = card.prereqs ? `<p class="inheritance-prereqs"><strong>You'll need:</strong> ${card.prereqs}</p>` : "";
+            
+            // Steps list (visible, no collapse)
+            let stepsHtml = "";
+            if (Array.isArray(card.steps) && card.steps.length > 0) {
+              const stepItems = card.steps.map((step, idx) => `<li>${step}</li>`).join("");
+              stepsHtml = `<ol class="inheritance-steps">${stepItems}</ol>`;
+            }
+            
+            // Scenarios (for "If plans break" card) - issue and path on separate lines
+            let scenariosHtml = "";
+            if (Array.isArray(card.scenarios) && card.scenarios.length > 0) {
+              const scenarioItems = card.scenarios.map(scenario => {
+                return `<div class="inheritance-scenario">
+        <strong>${scenario.issue}:</strong><br>
+        ${scenario.path}
+      </div>`;
+              }).join("");
+              scenariosHtml = `<div class="inheritance-scenarios">${scenarioItems}</div>`;
+            }
+            
+            // Outcome or timeline
+            const outcomeHtml = card.outcome ? `<p class="inheritance-outcome"><strong>Outcome:</strong> ${card.outcome}</p>` : "";
+            const timelineHtml = card.timeline ? `<p class="inheritance-timeline">${card.timeline}</p>` : "";
+            const feesHtml = card.fees ? `<p class="inheritance-fees">${card.fees}</p>` : "";
+            
+            // Action (for all cards now - action-first endings)
+            const actionHtml = card.action 
+              ? `<div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span>${card.action}</span></div></div>`
+              : "";
+            
+            tiles.push(`    <div class="svc-compat__tile inheritance-tile inheritance-tile--${card.status}" id="${card.id}">
+      <div class="svc-compat__header">
+        <h3 class="svc-compat__title">${card.title}</h3>
+        <span class="svc-chip ${statusInfo.class}">${statusInfo.text}</span>
+      </div>
+      ${metaHtml}
+      ${whyHtml}
+      ${prereqsHtml}
+      ${stepsHtml}
+      ${scenariosHtml}
+      ${outcomeHtml}
+      ${timelineHtml}
+      ${feesHtml}
+      ${actionHtml}
+    </div>`);
+          });
+        }
+        
+        // Skip if no tiles
+        if (tiles.length === 0) return "";
+        
+        return `
+<section id="inheritance" class="service-section" aria-labelledby="inheritance-label">
+  <h2 id="inheritance-label" class="feature-label">${sectionTitle}</h2>
+${introHtml}  <div class="svc-compat__grid">
+${tiles.join("\n")}
+  </div>
 </section>`;
       };
 
@@ -1132,11 +1247,30 @@ ${methodCards}
             ? `<div class="migration-meta">${metaChips.join("")}</div>` 
             : "";
           
+          // Support new bullet + footer format
+          let contentHtml = "";
+          if (Array.isArray(feature.bullets) && feature.bullets.length > 0) {
+            // Render as bullet list
+            const bulletItems = feature.bullets.map(bullet => `<li>${bullet}</li>`).join("");
+            contentHtml = `<ul class="feature-tile__bullets">${bulletItems}</ul>`;
+            
+            // Add footer if present
+            if (feature.footer) {
+              contentHtml += `<p class="feature-tile__footer">${feature.footer}</p>`;
+            }
+          } else if (feature.description) {
+            // Legacy format: paragraph description
+            contentHtml = `<p class="feature-tile__description">${escapeHtml(feature.description)}</p>`;
+          }
+          
+          // Add id attribute if present
+          const idAttr = feature.id ? ` id="${escapeHtml(feature.id)}"` : "";
+          
           return `
-      <div class="feature-tile">
+      <div class="feature-tile"${idAttr}>
         <h3 class="feature-tile__title">${escapeHtml(feature.title)}</h3>
         ${metaHtml}
-        <p class="feature-tile__description">${escapeHtml(feature.description)}</p>
+        ${contentHtml}
       </div>`;
         }).join("");
         
@@ -1333,14 +1467,16 @@ ${tileItems}
 </section>`;
       };
 
-      const renderCompatibility = () => {
-        const tiles = Array.isArray(svc.compat_tiles) ? svc.compat_tiles : [];
-        const explainers = Array.isArray(svc.compat_explainers) ? svc.compat_explainers : [];
+      // Generic tile-based section renderer (used for compat, recovery, etc.)
+      const renderTileSection = (config) => {
+        const tiles = Array.isArray(config.tiles) ? config.tiles : [];
+        const explainers = Array.isArray(config.explainers) ? config.explainers : [];
         
         if (!tiles.length) return "";
         
-        const heading = svc.compat_heading || "";
-        const learnLabel = svc.compat_learn_label || "Show steps";
+        const heading = config.heading || "";
+        const learnLabel = config.learnLabel || "Show steps";
+        const sectionId = config.sectionId || "section";
         
         // Helper: convert Unicode symbols to HTML icons
         const renderBenefitWithIcons = (text) => {
@@ -1367,7 +1503,8 @@ ${tileItems}
             works: "Works",
             "works-caveat": "Works, with caveat",
             setup: "Needs setup",
-            notyet: "Not yet"
+            notyet: "Not yet",
+            "not-working": "Not working"
           };
           const statusText = statusMap[tile.status] || tile.status;
           const statusClass = `svc-chip svc-chip--${tile.status}`;
@@ -1384,25 +1521,34 @@ ${tileItems}
         </div>`;
           }
           
+          // Meta chips (time only for tiles)
+          const metaChips = [];
+          if (tile.chips && tile.chips.time) {
+            metaChips.push(`<span class="migration-meta-chip">${tile.chips.time}</span>`);
+          }
+          const metaHtml = metaChips.length > 0 
+            ? `<div class="migration-meta">${metaChips.join("")}</div>` 
+            : "";
+          
           // Find matching explainer
           const explainer = explainerMap[tile.id];
           
-          // Pull "Why it matters" outside collapsible, keep Try/Gotcha inside
+          // Pull "Why it matters" outside collapsible, keep How/Gotcha inside
           let whyHtml = "";
           let detailsContent = "";
           
           if (explainer && explainer.why) {
             whyHtml = `<p class="svc-compat__why">${explainer.why}</p>`;
             
-            const tryList = Array.isArray(explainer.try) && explainer.try.length > 0
-              ? `<p><strong>Try it:</strong></p><ol>${explainer.try.map(step => `<li>${step}</li>`).join("")}</ol>`
+            const howList = Array.isArray(explainer.how) && explainer.how.length > 0
+              ? `<ol>${explainer.how.map(step => `<li>${step}</li>`).join("")}</ol>`
               : "";
             
             const gotchaHtml = explainer.gotcha ? `<p><strong>Gotcha:</strong> ${explainer.gotcha}</p>` : "";
             
-            // Only include Try/Gotcha in collapsible
-            if (tryList || gotchaHtml) {
-              detailsContent = `${tryList}${gotchaHtml}`;
+            // Only include How/Gotcha in collapsible
+            if (howList || gotchaHtml) {
+              detailsContent = `${howList}${gotchaHtml}`;
             }
           }
           
@@ -1420,6 +1566,7 @@ ${tileItems}
           <h3 class="svc-compat__title">${tile.title}</h3>
           <span class="${statusClass}">${statusText}</span>
         </div>
+        ${metaHtml}
         <p class="svc-compat__benefit">${renderBenefitWithIcons(tile.benefit)}</p>
         ${whyHtml}
         ${noteHtml}${detailsHtml}
@@ -1427,13 +1574,29 @@ ${tileItems}
         }).join("");
         
         return `
-<section id="compat" class="service-section">
+<section id="${sectionId}" class="service-section">
   ${heading ? `<h2 class="feature-label">${heading}</h2>` : ""}
   <div class="svc-compat__grid">
 ${tileItems}
   </div>
 </section>`;
       };
+
+      const renderCompatibility = () => renderTileSection({
+        tiles: svc.compat_tiles,
+        explainers: svc.compat_explainers,
+        heading: svc.compat_heading,
+        learnLabel: svc.compat_learn_label,
+        sectionId: "compat"
+      });
+
+      const renderRecovery = () => renderTileSection({
+        tiles: svc.recovery_tiles,
+        explainers: svc.recovery_explainers,
+        heading: svc.recovery_heading,
+        learnLabel: svc.recovery_learn_label,
+        sectionId: "recovery"
+      });
 
       // Render dedicated sticky bar for service pages (not used on compare pages)
       const renderServiceStickyCTA = (service) => {
@@ -1664,7 +1827,9 @@ ${cards.join("\n")}
         payment_methods_limits: renderPaymentMethods,
         key_features: renderKeyFeatures,
         privacy: renderPrivacy,
+        inheritance: renderInheritance,
         compat: renderCompatibility,
+        recovery: renderRecovery,
         migration: renderMigration,
         self_custody: renderSelfCustody,
         trust: renderTrustSection,
@@ -1677,14 +1842,16 @@ ${cards.join("\n")}
       // Section titles for mobile accordions
       const sectionTitles = {
         profile: "Profile",
-        setup: "Getting started",
+        setup: (svc.category === "Store it safely" && svc.howto?.title) ? svc.howto.title : "Getting started",
         fees: "Fees: what you pay and when",
         payment_methods_limits: "Payment methods & limits",
         key_features: "Key features",
         compat: svc.compat_heading || "Features",
+        recovery: svc.recovery_heading || "Recovery",
         self_custody: svc.self_custody?.heading || "Self-custody: withdraw safely",
         migration: `Move your ${svc.name} wallet or funds`,
         privacy: svc.privacy?.section_title || "Privacy & Safety",
+        inheritance: svc.inheritance?.section_title || "Inheritance: pass it on safely",
         trust: "Release & Trust"
       };
       
@@ -1717,8 +1884,10 @@ ${block}
         payment_methods_limits: { id: 'payment-methods', label: 'Methods' },
         key_features: { id: 'key-features', label: 'Features' },
         compat: { id: 'compat', label: 'Features' },
+        recovery: { id: 'recovery', label: 'Recovery' },
         self_custody: { id: 'self-custody', label: 'Self-custody' },
         privacy: { id: 'privacy-safety', label: 'Privacy' },
+        inheritance: { id: 'inheritance', label: 'Inheritance' },
         migration: { id: 'migration', label: 'Migration' },
         trust: { id: 'trust', label: 'Trust' }
       };

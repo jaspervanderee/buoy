@@ -1160,16 +1160,24 @@
     "type_of_platform": "Physical device (hardware wallet) + mobile app",
     "faqs": [
       {
-        "q": "What is Bitkey?",
-        "a": "Bitkey is a 2‑of‑3 multisig wallet combining a mobile app, hardware device, and cloud backup to make self‑custody simple for beginners."
+        "q": "How does Bitkey's 2-of-3 key system keep my bitcoin safe?",
+        "a": "Bitkey splits control between the mobile key on your phone, a fingerprint hardware key, and a server key, and every send or security change needs two signatures. That means Block can never move funds alone while you still have a path to recover coins if one device fails."
       },
       {
-        "q": "Do I need to memorize a seed phrase?",
-        "a": "No. Bitkey replaces traditional seed phrases with device pairing and an encrypted cloud backup for recovery."
+        "q": "What is Bitkey's Cloud Recovery flow if I lose my phone?",
+        "a": "The Bitkey app stores an encrypted copy of your mobile key inside your iCloud or Google Drive account, and the hardware key decrypts it. Install Bitkey on a new phone, sign into the same cloud account, tap the hardware key, and your wallet restores without seed phrases."
       },
       {
-        "q": "Can I connect Bitkey to my own node?",
-        "a": "Yes. Bitkey supports connecting to your own Bitcoin node for improved privacy and verification."
+        "q": "What happens when my Bitkey hardware is lost or damaged?",
+        "a": "Start hardware recovery in the app and Bitkey triggers a seven-day security waiting period while SMS and email alerts confirm the request. After the hold, pair a replacement device or invite Recovery Contacts to approve sooner so you can co-sign again."
+      },
+      {
+        "q": "How do Recovery Contacts help if I lose my phone and hardware?",
+        "a": "You can pre-approve trusted contacts in the Bitkey app, and they install Bitkey, accept your invite, and agree to vouch for you. If both keys disappear, you share a code with them, they verify it inside their app, and that lets you rebuild your wallet on new hardware."
+      },
+      {
+        "q": "When would I use the Bitkey Emergency Exit Kit?",
+        "a": "The Emergency Exit Kit is a signed Android utility plus an encrypted mobile key backup stored in your cloud drive. If Bitkey's infrastructure ever goes offline, you sideload the kit, tap your hardware key, and sweep your bitcoin to any address you control."
       }
     ],
     "supported_network": "Bitcoin",
@@ -1209,9 +1217,672 @@
     "description": "Bitkey is a mobile and hardware wallet developed by Block and designed for people new to Bitcoin who want simple, secure self-custody. The system combines a phone app with a wireless hardware device and an encrypted cloud backup, using a 2-of-3 multisig model to keep users in control of their funds. This structure allows users to recover access even if they lose their phone or the device, adding safety without relying on seed phrases.\\n\\nThe hardware, a sleek hexagonal device with a fingerprint sensor and NFC for phone pairing, eliminates the need for complex seed phrases, making it user-friendly. Sending Bitcoin requires both your phone and the Bitkey device, while smaller transactions can be approved using just your phone and Bitkey's server key if you've set spending limits. This balance appeals to people who want more security than just a phone wallet but don't want the complexity of most hardware wallets.\\n\\nUsers can set daily spending limits for app-only transactions, adding flexibility. The setup is quick, often taking just 5 minutes, and the app's clean interface is intuitive. The app allows Bitcoin purchases, shows balance in both sats and fiat, and offers recovery through trusted contacts in case of loss. It also lacks a screen, meaning you can't visually verify addresses on the hardware itself.\\n\\nBitkey's mission is to bring secure Bitcoin ownership to a global audience, especially those new to Bitcoin, by removing friction and avoiding the pitfalls of traditional backups. Their future vision includes broader international support, expanded wallet functionality, and continued emphasis on open-source development and user control. For beginners, Bitkey offers a straightforward, secure way to own Bitcoin with a polished user experience, though advanced users may want more flexibility.",
     "founded_in": "2024",
     "website": "https://bitkey.world",
+    "links": {
+      "web": "https://bitkey.world/en-US/how-it-works"
+    },
     "countries": [
       "WW"
-    ]
+    ],
+    "trust_chips": [
+      {
+        "text": "2-of-3 multisig",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "multisig-policy"
+      },
+      {
+        "text": "Emergency Exit Kit",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "bitkey-attacks"
+      },
+      {
+        "text": "Recovery Contacts",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "lose-both"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "Bitcoin savers who want Block's hardware + app bundle so they can hold two of three keys without memorizing a seed phrase.",
+      "consider_if": "You want NFC hardware, cloud backups, Recovery Contacts, inheritance tooling, and an emergency exit if Block ever goes dark.",
+      "not_ideal_when": "You prefer a screen-based hardware wallet, DIY multisig, or Lightning support today."
+    },
+    "howto": {
+      "title": "Set up your Bitkey vault",
+      "steps": [
+        {
+          "id": "vault-policy",
+          "title": "1. Choose policy & secure keys/backups",
+          "chips": {
+            "time": "~15 min",
+            "cost": "Included",
+            "risk": "Low"
+          },
+          "actions": [
+            "Pair the hardware key via NFC, enroll your fingerprint, and verify the encrypted mobile key backup saved to your cloud drive.",
+            "Document who holds which key: mobile key on your phone, hardware key offline, Bitkey's server key as the third signer.",
+            "Record where the hardware key and cloud backup live, and store instructions separately so one break-in cannot grab both."
+          ],
+          "gotcha": "The hardware key has no screen; always confirm addresses on your phone or connected node."
+        },
+        {
+          "id": "vault-proof",
+          "title": "2. Prove the setup",
+          "chips": {
+            "time": "~20 min",
+            "cost": "Mining fee",
+            "risk": "Low"
+          },
+          "actions": [
+            "Generate a receive address, send a small test (~10k sats), and wait for Security hub to confirm the deposit.",
+            "Simulate one failure: run Cloud Recovery on a spare phone, start hardware replacement to see the seven-day hold, or test the Emergency Exit Kit offline.",
+            "Wipe the spare device after the drill and log what you learned in your vault documentation."
+          ],
+          "gotcha": "Skipping the drill leaves recovery timing a mystery; practice now so you trust it under pressure."
+        },
+        {
+          "id": "vault-ops",
+          "title": "3. Operationalize safety",
+          "chips": {
+            "time": "~20 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Set mobile send limits so only pocket money leaves with the phone; larger amounts require the hardware key or Recovery Contacts.",
+            "Enable push, SMS, and email alerts for sends, recovery attempts, and inheritance events.",
+            "Invite your Inheritance beneficiary, document the six-month timer, and store key locations plus contact instructions in a safe place."
+          ],
+          "gotcha": "Stale instructions turn convenience into a choke point; update the log when you travel or rotate devices."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Does Bitkey require me to write down a seed phrase?",
+          "a": "No. Bitkey replaces seed phrases with the hardware key plus an encrypted mobile key backup stored in your own iCloud or Google Drive account."
+        },
+        {
+          "q": "Can Bitkey connect to my own Bitcoin node?",
+          "a": "Yes. Advanced settings let you point the app at your full node or Electrum server so addresses and history sync privately."
+        },
+        {
+          "q": "Do I need an Android phone for the Emergency Exit Kit?",
+          "a": "The kit runs on Android, so keep access to a spare Android device even if your daily driver is iOS."
+        }
+      ]
+    },
+    "key_features": {
+      "heading": "Your key policy (who holds which keys)",
+      "features": [
+        {
+          "id": "multisig-policy",
+          "title": "Default policy: 2-of-3 multisig",
+          "bullets": [
+            "<strong>Who holds keys:</strong> Phone (mobile) · Hardware device · Provider server",
+            "<strong>1 key can:</strong> View balance / prepare only — no spending",
+            "<strong>2 keys required for:</strong> Spends, limit changes, recovery, inheritance"
+          ],
+          "footer": "<strong>Good for:</strong> assisted self-custody without a seed. <strong>Trade-off:</strong> hardware key needed for big moves or outages."
+        },
+        {
+          "title": "What each key does",
+          "bullets": [
+            "<strong>Mobile + server:</strong> Daily spends up to your limit",
+            "<strong>Hardware + mobile:</strong> Bypass server; move any amount; change settings",
+            "<strong>Hardware + server:</strong> Recover when phone is lost or replaced"
+          ],
+          "footer": "<strong>Good for:</strong> quick daily use. <strong>Trade-off:</strong> keep hardware key ready for exceptions."
+        }
+      ]
+    },
+    "dca": "No",
+    "payment_methods": [
+      "Bitcoin on-chain"
+    ],
+    "payment_methods_limits": {
+      "heading": "Keys & security actions",
+      "methods": [
+        {
+          "id": "mobile-key",
+          "name": "Mobile key (app)",
+          "available": true,
+          "icon": "app",
+          "summary": {
+            "fee": "Free",
+            "speed": "Instant up to your daily limit",
+            "withdraw": "Hardware key required beyond the limit"
+          },
+          "best_for": "Daily spending and balance monitoring.",
+          "limits": {
+            "min_per_tx": "$1 equivalent (you set the floor)",
+            "max_per_tx": "Matches the mobile limit you configure",
+            "max_per_day": "Matches your limit reset window",
+            "max_per_week": "Matches your limit reset window",
+            "withdraw_eligibility": "Hardware key or Recovery Contacts unlock higher amounts"
+          }
+        },
+        {
+          "id": "hardware-key",
+          "name": "Hardware key",
+          "available": true,
+          "icon": "bitcoin",
+          "summary": {
+            "fee": "Included",
+            "speed": "NFC tap in seconds",
+            "withdraw": "Required for limit changes and large spends"
+          },
+          "best_for": "Approving savings moves, safety settings, and inheritance or emergency workflows.",
+          "limits": {
+            "min_per_tx": "No minimum once paired",
+            "max_per_tx": "Unlimited (physical possession required)",
+            "max_per_day": "Unlimited with hardware present",
+            "max_per_week": "Unlimited with hardware present",
+            "withdraw_eligibility": "Keep the device charged and nearby to co-sign"
+          }
+        },
+        {
+          "id": "server-key",
+          "name": "Server key",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "Included",
+            "speed": "Always online backup signer",
+            "withdraw": "Never signs without the hardware or mobile key"
+          },
+          "best_for": "Backing up mobile spends while keeping final control with you.",
+          "limits": {
+            "min_per_tx": "Follows the mobile limit you set",
+            "max_per_tx": "Stops at the mobile limit",
+            "max_per_day": "Stops at the mobile limit",
+            "max_per_week": "Stops at the mobile limit",
+            "withdraw_eligibility": "Requires either the hardware key or Recovery Contacts to act"
+          }
+        }
+      ]
+    },
+    "recovery_heading": "If this happens, can I still move my Bitcoin?",
+    "recovery_tiles": [
+      {
+        "id": "lose-phone",
+        "title": "Lose phone",
+        "status": "works",
+        "chips": {
+          "time": "~10 min"
+        }
+      },
+      {
+        "id": "lose-hardware",
+        "title": "Lose hardware",
+        "status": "works-caveat",
+        "chips": {
+          "time": "7 days or instant"
+        }
+      },
+      {
+        "id": "bitkey-attacks",
+        "title": "Bitkey compromised or offline",
+        "status": "works",
+        "chips": {
+          "time": "~20 min"
+        }
+      },
+      {
+        "id": "lose-both",
+        "title": "Lose phone and hardware",
+        "status": "works-caveat",
+        "chips": {
+          "time": "~30 min + hold"
+        }
+      }
+    ],
+    "recovery_explainers": [
+      {
+        "id": "lose-phone",
+        "why": "An encrypted copy of your mobile key lives in your own cloud account, and your hardware key decrypts it. You can restore the wallet on a new phone without memorizing a seed phrase.",
+        "how": [
+          "Install Bitkey on a new phone and sign into the same iCloud or Google Drive account.",
+          "Approve the cloud access prompt, then tap your hardware key to decrypt the backup.",
+          "Wait for the wallet to resync and verify the balance."
+        ],
+        "gotcha": "Cloud Recovery needs the hardware key, so keep it safe and separate from your phone."
+      },
+      {
+        "id": "lose-hardware",
+        "why": "Bitkey triggers a seven-day security hold when you report lost hardware, giving you time to cancel if someone else made the request. Recovery Contacts can vouch for you to skip the waiting period.",
+        "how": [
+          "Open the app, start hardware recovery, and watch for SMS and email alerts confirming the request.",
+          "Wait seven days for the hold to clear, or share a code with your Recovery Contacts to speed it up.",
+          "Pair the new hardware key and transfer your wallet to the fresh device."
+        ],
+        "gotcha": "If you lose both phone and hardware, Recovery Contacts become your only path; invite them during setup."
+      },
+      {
+        "id": "bitkey-attacks",
+        "why": "Bitkey holds only one of three keys. You control two keys, so you can always move bitcoin without the server—either by co-signing with your mobile and hardware keys, or by using the Emergency Exit Kit if their infrastructure goes offline.",
+        "how": [
+          "If the server is online: open the Bitkey app, generate a receive address in another wallet, and use your mobile key plus hardware key to co-sign the send.",
+          "If the server is offline or compromised: download the Emergency Exit Kit from Security hub, verify the SHA256 checksum, sideload the APK onto an Android device, tap your hardware key, and sweep your balance.",
+          "Confirm the transaction on-chain to complete the exit."
+        ],
+        "gotcha": "The Emergency Exit Kit only runs on Android, so plan access to an Android device before an emergency. Different people draw different lines about how much to keep with a third-party key holder; you can choose differently."
+      },
+      {
+        "id": "lose-both",
+        "why": "When you set up Bitkey, you can invite trusted contacts who download the app and agree to help you recover. If you lose your phone and hardware, your contacts verify a code inside their app so you can rebuild the wallet on new devices.",
+        "how": [
+          "Download the Bitkey app on a new phone and start the recovery process for both devices.",
+          "Share a verification code with your Recovery Contacts through a separate channel.",
+          "Once they approve the request in their app, recover your mobile key from the cloud and pair a new hardware key.",
+          "Transfer your wallet balance to the fresh device setup."
+        ],
+        "gotcha": "Recovery Contacts are your only path when both devices are gone; invite them during initial setup and confirm they still have access annually."
+      }
+    ],
+    "inheritance": {
+      "section_title": "Inheritance: pass it on safely",
+      "intro": "Set this up once; your beneficiary gets a clear, documented path.",
+      "cards": [
+        {
+          "id": "inheritance-setup",
+          "title": "1. Set up today",
+          "status": "action",
+          "chips": {
+            "time": "~20 min"
+          },
+          "why": "Your beneficiary must have their own Bitkey hardware wallet to accept the invitation and later claim funds.",
+          "steps": [
+            "Open Security hub in Bitkey app and invite your beneficiary",
+            "Wait for them to accept using their own Bitkey device",
+            "Document where your hardware key and cloud backup live",
+            "Store a one-page note with locations in a safe place",
+            "Tell beneficiary where to find the note when needed"
+          ],
+          "action": "Do this: Complete setup now so your beneficiary can act when the time comes."
+        },
+        {
+          "id": "inheritance-when-passes",
+          "title": "2. When someone passes",
+          "status": "process",
+          "chips": {
+            "time": "6-month hold"
+          },
+          "prereqs": "Beneficiary's own Bitkey device · access to instructions you left",
+          "steps": [
+            "Beneficiary opens their Bitkey app and starts inheritance claim",
+            "Six-month security hold begins; you receive alerts if alive",
+            "After hold clears unchallenged, encrypted App Key transfers to beneficiary",
+            "Beneficiary accesses wallet and sweeps funds to their own storage"
+          ],
+          "timeline": "Six-month waiting period from claim start to access. Network fees may apply for final sweep.",
+          "action": "Do this: Make sure your beneficiary has their own Bitkey before you need this feature."
+        },
+        {
+          "id": "inheritance-breaks",
+          "title": "3. If plans break",
+          "status": "emergency",
+          "chips": {
+            "fallback": "Backup paths"
+          },
+          "scenarios": [
+            {
+              "issue": "Beneficiary lost their Bitkey device",
+              "path": "They must complete device replacement flow before claiming; adds time to process"
+            },
+            {
+              "issue": "Original owner alerts were ignored",
+              "path": "Claim proceeds after six-month hold; alerts may not reach deceased owner"
+            },
+            {
+              "issue": "Both phones and hardware keys gone",
+              "path": "Recovery Contacts can help rebuild access before inheritance claim starts"
+            }
+          ],
+          "action": "Do this: Keep beneficiary's device info current and confirm they can access their own Bitkey annually."
+        }
+      ]
+    },
+    "compat_heading": "If this happens, can I still move my Bitcoin?",
+    "compat_tiles": [
+      {
+        "id": "lose-phone",
+        "title": "Lose phone",
+        "status": "works",
+        "chips": {
+          "time": "~10 min"
+        }
+      },
+      {
+        "id": "lose-hardware",
+        "title": "Lose hardware",
+        "status": "works-caveat",
+        "chips": {
+          "time": "7 days or instant"
+        }
+      },
+      {
+        "id": "bitkey-attacks",
+        "title": "Bitkey compromised or offline",
+        "status": "works",
+        "chips": {
+          "time": "~20 min"
+        }
+      },
+      {
+        "id": "lose-both",
+        "title": "Lose phone and hardware",
+        "status": "works-caveat",
+        "chips": {
+          "time": "~30 min + hold"
+        }
+      }
+    ],
+    "compat_explainers": [
+      {
+        "id": "lose-phone",
+        "why": "An encrypted copy of your mobile key lives in your own cloud account, and your hardware key decrypts it. You can restore the wallet on a new phone without memorizing a seed phrase.",
+        "how": [
+          "Install Bitkey on a new phone and sign into the same iCloud or Google Drive account.",
+          "Approve the cloud access prompt, then tap your hardware key to decrypt the backup.",
+          "Wait for the wallet to resync and verify the balance."
+        ],
+        "gotcha": "Cloud Recovery needs the hardware key, so keep it safe and separate from your phone."
+      },
+      {
+        "id": "lose-hardware",
+        "why": "Bitkey triggers a seven-day security hold when you report lost hardware, giving you time to cancel if someone else made the request. Recovery Contacts can vouch for you to skip the waiting period.",
+        "how": [
+          "Open the app, start hardware recovery, and watch for SMS and email alerts confirming the request.",
+          "Wait seven days for the hold to clear, or share a code with your Recovery Contacts to speed it up.",
+          "Pair the new hardware key and transfer your wallet to the fresh device."
+        ],
+        "gotcha": "If you lose both phone and hardware, Recovery Contacts become your only path; invite them during setup."
+      },
+      {
+        "id": "bitkey-attacks",
+        "why": "Bitkey holds only one of three keys. You control two keys, so you can always move bitcoin without the server—either by co-signing with your mobile and hardware keys, or by using the Emergency Exit Kit if their infrastructure goes offline.",
+        "how": [
+          "If the server is online: open the Bitkey app, generate a receive address in another wallet, and use your mobile key plus hardware key to co-sign the send.",
+          "If the server is offline or compromised: download the Emergency Exit Kit from Security hub, verify the SHA256 checksum, sideload the APK onto an Android device, tap your hardware key, and sweep your balance.",
+          "Confirm the transaction on-chain to complete the exit."
+        ],
+        "gotcha": "The Emergency Exit Kit only runs on Android, so plan access to an Android device before an emergency. Different people draw different lines about how much to keep with a third-party key holder; you can choose differently."
+      },
+      {
+        "id": "lose-both",
+        "why": "When you set up Bitkey, you can invite trusted contacts who download the app and agree to help you recover. If you lose your phone and hardware, your contacts verify a code inside their app so you can rebuild the wallet on new devices.",
+        "how": [
+          "Download the Bitkey app on a new phone and start the recovery process for both devices.",
+          "Share a verification code with your Recovery Contacts through a separate channel.",
+          "Once they approve the request in their app, recover your mobile key from the cloud and pair a new hardware key.",
+          "Transfer your wallet balance to the fresh device setup."
+        ],
+        "gotcha": "Recovery Contacts are your only path when both devices are gone; invite them during initial setup and confirm they still have access annually."
+      }
+    ],
+    "migration": [
+      {
+        "id": "restore-same-wallet",
+        "title": "Restore Bitkey on a new phone",
+        "choose": "Use this when your phone is lost or replaced but the hardware key is still safe.",
+        "time": "~10 min",
+        "cost": "Free",
+        "risk": "Low",
+        "steps": [
+          "Install Bitkey on the new phone from the official app store and sign in with the same email and Apple ID or Google account.",
+          "Approve the cloud access prompt so Bitkey can fetch the encrypted mobile key backup.",
+          "Unlock the hardware key with your fingerprint, tap it to the phone, and wait for the wallet to resync."
+        ],
+        "tips": "Run this drill at least once a year so you trust the flow under pressure.",
+        "gotcha": "If the cloud backup is outdated the restore will fail, so keep an eye on the Security hub timestamp."
+      },
+      {
+        "id": "move-from-another-wallet",
+        "title": "Another wallet → Bitkey",
+        "choose": "Choose this when you are migrating from a custodial app or a single-signature hardware wallet into Bitkey's assisted multisig.",
+        "time": "~15-30 min",
+        "cost": "Mining fee",
+        "risk": "Low",
+        "steps": [
+          "Generate a receive address inside Bitkey and label the source wallet you are leaving.",
+          "Withdraw a small amount from the old wallet to confirm Bitkey receives and displays it.",
+          "Move the remaining balance in one or two batches, matching miner fees to network conditions.",
+          "Lower your mobile spending limit after the migration so daily spends stay conservative."
+        ],
+        "tips": "Retire the old wallet or mark it as watch-only to avoid accidentally reusing addresses.",
+        "gotcha": "Bitkey is on-chain only, so keep a separate Lightning wallet if you were using Lightning previously."
+      },
+      {
+        "id": "move-to-onchain",
+        "title": "Bitkey → Another wallet",
+        "choose": "Pick this when you want to sweep savings into a different cold storage setup or collaborative multisig.",
+        "time": "~10-30 min",
+        "cost": "Mining fee",
+        "risk": "Low",
+        "steps": [
+          "Open the destination wallet, verify its receive address on a trusted screen, and copy it into Bitkey.",
+          "Raise the mobile limit only if necessary, then tap the hardware key to approve the send.",
+          "Wait for on-chain confirmations and tag the move inside Security hub for future audits.",
+          "Lower the mobile limit again and update your emergency plan to point to the new wallet."
+        ],
+        "tips": "If you expect to move large sums, rehearse the Emergency Exit Kit so you know the fallback path.",
+        "gotcha": "Large sends require the hardware key; plan logistics before you travel without it."
+      }
+    ],
+    "self_custody": {
+      "heading": "Self-custody: withdraw safely",
+      "tiles": [
+        {
+          "id": "pick-wallet",
+          "title": "1. Initialize your Bitkey kit",
+          "chips": {
+            "time": "~10 min",
+            "cost": "$149",
+            "risk": "Low"
+          },
+          "why": "Bitkey hands you two keys so you can co-sign without memorizing a seed phrase.",
+          "actions": [
+            "Unbox the hardware key, magnetic stand, and cable, then charge the device fully.",
+            "Pair it with your phone via NFC, enroll your fingerprint, and label the device inside Security hub.",
+            "Store the hardware key in its stand or a fireproof safe when you are not using it.",
+            "Turn on push, SMS, and email alerts so you notice any unauthorized activity."
+          ],
+          "gotcha": "The hardware key has no screen, so always confirm addresses on your phone or a connected node."
+        },
+        {
+          "id": "make-receive-code",
+          "title": "2. Generate a fresh receive address",
+          "chips": {
+            "time": "~2 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "why": "Bitkey derives bc1 addresses from your mobile key so each deposit is easy to audit in Security hub.",
+          "actions": [
+            "Open Receive in the app and copy the address shown.",
+            "Share it with the exchange or wallet you are withdrawing from and note the memo for future reference.",
+            "Wait for the confirmation counter to reach your threshold before marking the deposit as available.",
+            "Generate a new address for every additional deposit to protect privacy."
+          ],
+          "gotcha": "Never reuse addresses; Bitkey makes new ones instantly so there is no reason to recycle."
+        },
+        {
+          "id": "test-small",
+          "title": "3. Rehearse recovery flows",
+          "chips": {
+            "time": "~15 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "why": "Running Cloud Recovery or Emergency Exit drills while the balance is tiny proves you can rebuild the wallet under pressure.",
+          "actions": [
+            "Install Bitkey on a spare phone, sign into your cloud account, and confirm the backup appears.",
+            "Tap the hardware key to decrypt the backup, then wipe the spare phone so it cannot spend.",
+            "Download the Emergency Exit Kit, verify the checksum, and store it with your instructions.",
+            "Document which Android device you will use if you ever need to run the kit."
+          ],
+          "gotcha": "Remove the spare phone from trusted devices after the drill so it cannot silently authorize spends."
+        },
+        {
+          "id": "move-rest",
+          "title": "4. Document exit ramps",
+          "chips": {
+            "time": "~30 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "why": "Writing down the Emergency Exit, Recovery Contacts, and Inheritance steps keeps coins recoverable even if you are offline.",
+          "actions": [
+            "List the locations of your hardware key, Android device, and cloud backup link in a secure document.",
+            "Share recovery instructions with your trusted contacts and confirm they completed the invite flow.",
+            "Invite your beneficiary via the Inheritance feature and note the six-month hold in your estate plan.",
+            "Review the plan quarterly and after every firmware update to confirm nothing drifted."
+          ],
+          "gotcha": "Treat the instructions like a bearer asset; anyone with both the instructions and hardware could attempt a recovery."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "What if I lose both my phone and hardware key?",
+          "a": "Use the Recovery Contacts you set up; they verify a code inside their Bitkey app so you can rebuild the wallet on new hardware."
+        },
+        {
+          "q": "Can I plug Bitkey into a computer instead of using NFC?",
+          "a": "No. The hardware key only talks over NFC so you avoid USB attack surfaces; keep an NFC-capable phone handy."
+        },
+        {
+          "q": "How often should I refresh backups?",
+          "a": "Security hub shows the latest backup timestamp; run a backup after every firmware update or whenever you add contacts."
+        }
+      ]
+    },
+    "privacy_notes": {
+      "data_flows": [
+        "Bitkey stores your shipping details and email to deliver the hardware kit and send security alerts.",
+        "The app writes an encrypted copy of your mobile key to your personal iCloud or Google Drive account; only your hardware key can decrypt it.",
+        "Security hub logs device metadata, Recovery Contacts, and inheritance invites so you can audit changes later."
+      ],
+      "recovery_drill": [
+        "Schedule a quarterly Cloud Recovery drill with a spare phone.",
+        "Verify the Emergency Exit Kit checksum and store it with your instructions.",
+        "Ping your Recovery Contacts annually so you know they can still help."
+      ],
+      "country_caveats": [
+        "Bitkey hardware availability rolls out region by region; confirm your country in the Bitkey Store before ordering.",
+        "Emergency Exit Kit instructions are currently English only.",
+        "Some cloud features require access to Google Drive or iCloud; plan alternatives if those services are restricted in your region."
+      ]
+    },
+    "privacy": {
+      "section_title": "Privacy & Safety",
+      "data_flows": [
+        "Bitkey keeps your email, shipping address, and notification preferences to deliver hardware and security alerts.",
+        "Encrypted mobile key backups live in your own cloud account; Bitkey cannot read them without your hardware key.",
+        "Recovery Contacts and inheritance requests are stored with timestamps so you can review who has access."
+      ],
+      "data_flows_do": "Label every device inside Security hub and enable all alert channels so you notice suspicious activity.",
+      "data_flows_dont": "Do not store your Emergency Exit instructions in a shared cloud folder that anyone can read.",
+      "recovery": [
+        "Cloud Recovery: install the app on a new phone, sign into your cloud account, and tap the hardware key to decrypt the backup.",
+        "Hardware recovery: start the process in the app, wait out the seven-day security hold (or have Recovery Contacts approve sooner), then pair the replacement device.",
+        "Lost phone + hardware: contact your Recovery Contacts, have them verify the code, and rebuild the wallet on brand-new hardware."
+      ],
+      "recovery_do": "Keep your hardware key charged and your Recovery Contacts updated so recovery paths stay available.",
+      "recovery_dont": "Ignore SMS or email notifications about recovery events; respond quickly so attackers cannot complete the hold.",
+      "withdrawal_policy": [
+        "All sends are on-chain, so transactions become irreversible once the network confirms them.",
+        "Mobile spending limits cap how much can leave your phone without the hardware key.",
+        "The Emergency Exit Kit provides a last-resort sweep if Bitkey's servers are offline, but it still requires your hardware key."
+      ],
+      "withdrawal_policy_do": "Keep mobile limits low when traveling and raise them only when the hardware key is in reach.",
+      "withdrawal_policy_dont": "Do not approve large sends while you are offline or distracted; wait until you can review the address carefully.",
+      "region": [
+        "Bitkey currently sells hardware in select countries; check the store for the latest list.",
+        "Apps are available in the Apple App Store and Google Play where regional compliance allows.",
+        "Emergency Exit Kit instructions assume access to Google Drive or iCloud and an Android device."
+      ],
+      "micro_faqs": [
+        {
+          "q": "Can Bitkey see my balances or transactions?",
+          "a": "No. Keys stay on your devices and Bitkey cannot sign without you; the app can connect to your own node for extra privacy."
+        },
+        {
+          "q": "Who gets notified if someone starts a recovery?",
+          "a": "You receive push, SMS, and email alerts, and any Recovery Contacts you designated see the request in their app."
+        },
+        {
+          "q": "Does Bitkey keep my biometric data?",
+          "a": "Fingerprints stay on the hardware key; Bitkey only tracks whether biometrics are enabled."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Security hub",
+          "def": "The Bitkey app dashboard that shows device status, backups, inheritance invites, and emergency tools."
+        },
+        {
+          "term": "Recovery Contacts",
+          "def": "Trusted people you invite who can verify your identity and help rebuild the wallet if you lose both keys."
+        },
+        {
+          "term": "Emergency Exit Kit",
+          "def": "A signed Android app plus your encrypted mobile key that lets you move funds if Bitkey's servers go offline."
+        }
+      ],
+      "keywords": [
+        "Bitkey multisig",
+        "Bitkey Cloud Recovery",
+        "Bitkey Emergency Exit Kit",
+        "Bitkey Recovery Contacts",
+        "Bitkey inheritance feature",
+        "Bitkey hardware wallet"
+      ]
+    },
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#privacy",
+      "inheritance": "#inheritance",
+      "compat": "#features",
+      "migration": "#withdrawal",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-14",
+    "trust": {
+      "cards": [
+        {
+          "id": "security",
+          "fact": "Security & recovery docs",
+          "link_text": "Help center",
+          "link_url": "https://support.bitkey.world/hc/en-us/categories/11308448277652-Bitkey-Help-Content"
+        },
+        {
+          "id": "activity",
+          "fact": "Release notes",
+          "link_text": "Latest updates",
+          "link_url": "https://support.bitkey.world/hc/en-us/categories/14103990390548-Release-notes"
+        },
+        {
+          "id": "privacy",
+          "fact": "Privacy notice",
+          "link_text": "Privacy policy",
+          "link_url": "https://bitkey.world/en-US/legal/privacy-notice"
+        },
+        {
+          "id": "terms",
+          "fact": "Terms of service",
+          "link_text": "Terms",
+          "link_url": "https://bitkey.world/en-US/legal/terms-of-service"
+        }
+      ]
+    }
   },
   {
     "name": "Bitonic",
@@ -7528,7 +8199,7 @@
         "learn_more": "See Quick Start → Contracts for bond calculations and timers."
       },
       {
-        "id": "fees-receive-lightning",
+        "id": "receive-onchain",
         "title": "Take an order",
         "cost_today": "Taker bond: matches the maker percentage (usually ~3%)",
         "what_happens": "You pay the hold invoice when you join the order and get it back automatically once both sides confirm fiat.",
@@ -7609,7 +8280,14 @@
             "speed": "Minutes to hours",
             "withdraw": "Subject to app limits and reviews"
           },
-          "best_for": "Cross-border fast payments when both peers use the same fintech app."
+          "best_for": "Cross-border fast payments when both peers use the same fintech app.",
+          "limits": {
+            "min_per_tx": "Set by maker (often ≥ 50,000 sats)",
+            "max_per_tx": "Set by maker; Lightning routes typically < 5,000,000 sats",
+            "max_per_day": "Varies by counterparties",
+            "max_per_week": "Varies by counterparties",
+            "withdraw_eligibility": "Once both parties mark fiat received"
+          }
         },
         {
           "id": "cash",
@@ -7622,14 +8300,7 @@
             "speed": "Immediate",
             "withdraw": "Bring exact change and verify bills"
           },
-          "best_for": "Local trades with trusted meetups or repeat partners.",
-          "limits": {
-            "min_per_tx": "Negotiated between peers",
-            "max_per_tx": "Depends on comfort and local laws",
-            "max_per_day": "Negotiated between peers",
-            "max_per_week": "Negotiated between peers",
-            "withdraw_eligibility": "Once cash changes hands and both confirm in the app"
-          }
+          "best_for": "Local trades with trusted meetups or repeat partners."
         }
       ]
     },

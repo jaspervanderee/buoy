@@ -305,12 +305,13 @@
           <h3 class="svc-compat__title">Pay with Lightning</h3>
           <span class="svc-chip svc-chip--works">Works</span>
         </div>
+        
         <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Invoices</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Pay links</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Lightning Address</span></span></p>
         <p class="svc-compat__why">Phoenix natively routes payments over Lightning with low fees (0.4% + 4 sat).</p>
         
         <details class="compat-details">
           <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Try it:</strong></p><ol><li>Scan or paste any Lightning invoice, QR, or address</li><li>Review the amount and routing fee</li><li>Confirm and payment settles instantly</li></ol><p><strong>Gotcha:</strong> For very large payments, adjust the maximum fee cap in Settings → Channel management before sending.</p>
+          <div><p><strong>Gotcha:</strong> For very large payments, adjust the maximum fee cap in Settings → Channel management before sending.</p>
           </div>
         </details>
       </div>
@@ -322,12 +323,13 @@
           <h3 class="svc-compat__title">Pay on-chain</h3>
           <span class="svc-chip svc-chip--works">Works</span>
         </div>
+        
         <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Send to Bitcoin addresses</span></span></p>
         <p class="svc-compat__why">You can send to regular Bitcoin addresses by closing channels or using swap-out.</p>
         
         <details class="compat-details">
           <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Try it:</strong></p><ol><li>Paste a Bitcoin address in the Send field</li><li>Phoenix routes via on-chain (swap-out or channel close)</li><li>Confirm and wait for blockchain confirmations</li></ol><p><strong>Gotcha:</strong> On-chain sends incur mining fees that vary with network congestion. Check mempool.space first.</p>
+          <div><p><strong>Gotcha:</strong> On-chain sends incur mining fees that vary with network congestion. Check mempool.space first.</p>
           </div>
         </details>
       </div>
@@ -339,12 +341,13 @@
           <h3 class="svc-compat__title">Receive on Lightning</h3>
           <span class="svc-chip svc-chip--works">Works</span>
         </div>
+        
         <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Invoices</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Pay links</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Auto-opens channels</span></span></p>
         <p class="svc-compat__why">Phoenix automatically manages channels so you can receive without manual setup.</p>
         
         <details class="compat-details">
           <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Try it:</strong></p><ol><li>Tap Receive and generate a Lightning invoice</li><li>Share the QR or invoice with the payer</li><li>Phoenix opens or resizes channels if needed (≈1% + mining fee for large receives)</li></ol><p><strong>Gotcha:</strong> First receive or large amounts may trigger channel creation/splice-in, costing ~1,000 sat + current mining fee.</p>
+          <div><p><strong>Gotcha:</strong> First receive or large amounts may trigger channel creation/splice-in, costing ~1,000 sat + current mining fee.</p>
           </div>
         </details>
       </div>
@@ -356,12 +359,13 @@
           <h3 class="svc-compat__title">Receive on-chain</h3>
           <span class="svc-chip svc-chip--works">Works</span>
         </div>
+        
         <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Converts to Lightning</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 3 confirmations</span></span></p>
         <p class="svc-compat__why">You can receive Bitcoin from exchanges and other on-chain wallets; Phoenix converts to Lightning.</p>
         
         <details class="compat-details">
           <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Try it:</strong></p><ol><li>Tap Receive → Bitcoin address</li><li>Share the address with the sender</li><li>After 3 confirmations, Phoenix swaps funds into your Lightning channel automatically</li></ol><p><strong>Gotcha:</strong> Phoenix waits 3 confirmations before swapping on-chain funds to Lightning. Set a swap fee limit in Settings.</p>
+          <div><p><strong>Gotcha:</strong> Phoenix waits 3 confirmations before swapping on-chain funds to Lightning. Set a swap fee limit in Settings.</p>
           </div>
         </details>
       </div>

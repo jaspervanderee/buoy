@@ -217,9 +217,9 @@
           <div><p>See Quick Start → Contracts for bond calculations and timers.</p></div>
         </details>
     </article>
-    <article class="fee-card" id="fees-receive-lightning">
+    <article class="fee-card" id="receive-onchain">
       <div class="svc-compat__illustration">
-        <img src="/images/illustration/receive.svg" alt="Receive on Lightning" loading="lazy" />
+        <img src="/images/illustration/receive-on-chain.svg" alt="Receive on-chain" loading="lazy" />
       </div>
       <h3 class="fee-card__title">Take an order</h3>
       <p class="fee-card__cost"><strong>Taker bond: matches the maker percentage (usually ~3%)</strong></p>
@@ -346,6 +346,21 @@
           </div>
         </div>
         <p class="payment-card__best-for"><strong>Best for:</strong> Cross-border fast payments when both peers use the same fintech app.</p>
+        <details class="payment-details">
+          <summary>View limits & details</summary>
+          <div>
+            
+        <table class="limits-table">
+          <tbody>
+            <tr><th>Min per transaction</th><td>Set by maker (often ≥ 50,000 sats)</td></tr>
+            <tr><th>Max per transaction</th><td>Set by maker; Lightning routes typically &lt; 5,000,000 sats</td></tr>
+            <tr><th>Max per day</th><td>Varies by counterparties</td></tr>
+            <tr><th>Max per week</th><td>Varies by counterparties</td></tr>
+            <tr><th>Withdrawal eligibility</th><td>Once both parties mark fiat received</td></tr>
+          </tbody>
+        </table>
+          </div>
+        </details>
       </div>
       <div class="payment-card">
         <div class="payment-card__header">
@@ -368,21 +383,6 @@
           </div>
         </div>
         <p class="payment-card__best-for"><strong>Best for:</strong> Local trades with trusted meetups or repeat partners.</p>
-        <details class="payment-details">
-          <summary>View limits & details</summary>
-          <div>
-            
-        <table class="limits-table">
-          <tbody>
-            <tr><th>Min per transaction</th><td>Negotiated between peers</td></tr>
-            <tr><th>Max per transaction</th><td>Depends on comfort and local laws</td></tr>
-            <tr><th>Max per day</th><td>Negotiated between peers</td></tr>
-            <tr><th>Max per week</th><td>Negotiated between peers</td></tr>
-            <tr><th>Withdrawal eligibility</th><td>Once cash changes hands and both confirm in the app</td></tr>
-          </tbody>
-        </table>
-          </div>
-        </details>
       </div>
   </div>
 </section>
@@ -399,12 +399,13 @@
           <h3 class="svc-compat__title">Lightning hold-invoice escrow</h3>
           <span class="svc-chip svc-chip--works">Works</span>
         </div>
+        
         <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> No platform custody</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Bonds keep peers honest</span></span></p>
         <p class="svc-compat__why">When you publish an order, the sats stay in a Lightning hold invoice anchored to your wallet instead of a custodian. That means nothing moves until both sides mark the fiat leg complete, and the payout lands in your balance the instant the contract clears.</p>
         
         <details class="compat-details">
           <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Try it:</strong></p><ol><li>Publish a maker order and pay the small bond invoice from your Lightning wallet.</li><li>Watch the seller post the trade hold invoice and confirm it appears in the contract timeline.</li><li>Mark fiat received so the hold invoice settles and routes sats straight to your wallet.</li></ol><p><strong>Gotcha:</strong> Keep your Lightning wallet online; hold invoices expire quickly if the coordinator has to wait.</p>
+          <div><p><strong>Gotcha:</strong> Keep your Lightning wallet online; hold invoices expire quickly if the coordinator has to wait.</p>
           </div>
         </details>
       </div>
@@ -413,12 +414,13 @@
           <h3 class="svc-compat__title">Robot token identities</h3>
           <span class="svc-chip svc-chip--works">Works</span>
         </div>
+        
         <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> One-time avatars per trade</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Stored client-side only</span></span></p>
         <p class="svc-compat__why">Each session mints a robot avatar from the token you save instead of an email or ID. That keeps every order tied to a disposable alias, and you can spin up a fresh robot for the next trade so past deals stay compartmentalized.</p>
         
         <details class="compat-details">
           <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Try it:</strong></p><ol><li>Click Start to mint a robot and copy the token shown in the banner.</li><li>Store the token offline and use Recover robot if you switch browsers or devices mid-trade.</li><li>Generate a new robot before you post another order to keep prior trades unlinkable.</li></ol><p><strong>Gotcha:</strong> Misplacing the token severs dispute access for that robot, and support cannot restore it.</p>
+          <div><p><strong>Gotcha:</strong> Misplacing the token severs dispute access for that robot, and support cannot restore it.</p>
           </div>
         </details>
       </div>
@@ -427,12 +429,13 @@
           <h3 class="svc-compat__title">Tor-first access</h3>
           <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
         </div>
+        
         <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Onion routing by default</span> <span class="icon-text-pair"><img src="/images/warning.svg" class="inline-icon" alt=""> Clearnet is fallback only</span></span></p>
         <p class="svc-compat__why">Routing the session through Tor bounces your packets through onion relays before they ever reach the coordinator. That keeps your IP and location out of the logs, with the clearnet bridge reserved as a last resort when Tor or I2P is blocked.</p>
         
         <details class="compat-details">
           <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Try it:</strong></p><ol><li>Install Tor Browser or run Orbot/Onion Browser on mobile.</li><li>Navigate to robosats.com and let it redirect you to the current onion address.</li><li>Bookmark the onion inside Tor so you reconnect directly next time.</li></ol><p><strong>Gotcha:</strong> The clearnet gateway sits behind Cloudflare; stick to Tor when privacy is the priority.</p>
+          <div><p><strong>Gotcha:</strong> The clearnet gateway sits behind Cloudflare; stick to Tor when privacy is the priority.</p>
           </div>
         </details>
       </div>
