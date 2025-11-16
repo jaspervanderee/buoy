@@ -3657,7 +3657,7 @@ a.trust-chip:active {
   width: 100%;
   border-collapse: collapse;
   font-family: "Ubuntu Mono", monospace;
-  font-size: 0.95em;
+  font-size: 1em;
   margin-top: 8px;
 }
 
@@ -4902,7 +4902,7 @@ main:has(.blog-list) h1 {
 .inheritance-timeline,
 .inheritance-fees {
   font-family: "Ubuntu Mono", monospace;
-  font-size: 0.95em;
+  font-size: 1em;
   line-height: 1.5;
   margin: 12px 0 0 0;
   padding: 12px;
@@ -4979,7 +4979,7 @@ main:has(.blog-list) h1 {
 /* Mobile: stack tiles vertically with clear visual flow */
 @media (max-width: 767px) {
   .inheritance-intro {
-    font-size: 0.95em;
+    font-size: 1em;
     padding: 12px;
   }
   
@@ -5010,6 +5010,292 @@ main:has(.blog-list) h1 {
   
   .next-step-item {
     padding: 16px;
+  }
+}
+
+/* === Costs & Ongoing Obligations Section === */
+
+/* Intro paragraph: Jeff's voice pattern (mechanism first) */
+.costs-intro {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+  padding: 16px;
+  background: var(--panel);
+  border-radius: 4px;
+  color: var(--text);
+}
+
+/* Summary stats: plain tiles without outer container */
+.costs-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 0 0 24px 0;
+}
+
+.costs-summary__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  text-align: center;
+  background: var(--panel);
+  border-radius: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .costs-summary__item--highlight {
+    border-color: #4caf50;
+  }
+}
+
+.costs-summary__label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75em;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.costs-summary__value {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.costs-summary__item--highlight .costs-summary__value {
+  color: #28a745;
+  font-size: 1.3em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .costs-summary__item--highlight .costs-summary__value {
+    color: #4caf50;
+  }
+}
+
+/* Cost cards grid */
+.costs-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 0 0 32px 0;
+}
+
+.costs-card {
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 20px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.costs-card__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 16px 0;
+}
+
+/* Cost items list */
+.costs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.costs-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 6px;
+  border-left: 3px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.costs-item__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.costs-item__name {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+}
+
+.costs-amount {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.costs-note {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.8em;
+  color: var(--text-muted);
+  line-height: 1.4;
+  padding-left: 12px;
+}
+
+/* Highlight styles for free/included items */
+.costs-item--free,
+.costs-item--included {
+  background: #f0f9f4;
+  border-left-color: #28a745;
+}
+
+@media (prefers-color-scheme: dark) {
+  .costs-item--free,
+  .costs-item--included {
+    background: rgba(76, 175, 80, 0.1);
+    border-left-color: #4caf50;
+  }
+}
+
+.costs-item--free .costs-amount,
+.costs-item--included .costs-amount {
+  color: #28a745;
+  font-size: 1.2em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .costs-item--free .costs-amount,
+  .costs-item--included .costs-amount {
+    color: #4caf50;
+  }
+}
+
+/* Add checkmark icon for free items */
+.costs-item--free .costs-amount::before,
+.costs-item--included .costs-amount::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url('/images/checkmark.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+
+/* Scenario cards: structured, scannable */
+.scenario-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.scenario-card {
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 16px;
+  transition: all 0.2s ease;
+  scroll-margin-top: 250px;
+}
+
+
+.scenario-card__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.scenario-what {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  color: var(--text);
+  margin: 0 0 16px 0;
+}
+
+/* Scenario details: structured grid for quick scanning */
+.scenario-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  padding: 12px 0 0 0;
+  border-top: 1px solid var(--border);
+}
+
+.scenario-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.scenario-detail__label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.scenario-detail__value {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+/* Desktop breakpoints */
+@media (min-width: 768px) {
+  .costs-intro {
+    padding: 20px;
+    margin: 0 0 28px 0;
+  }
+  
+  .costs-summary {
+    margin: 0 0 28px 0;
+  }
+  
+  .costs-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 0 0 36px 0;
+  }
+  
+  .costs-card {
+    padding: 24px;
+  }
+  
+  .scenario-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 12px;
+  }
+  
+  .scenario-card {
+    padding: 20px;
+  }
+  
+  .scenario-details {
+    gap: 16px;
   }
 }
 
@@ -5064,7 +5350,7 @@ main:has(.blog-list) h1 {
 
 .compat-version {
   font-family: "Ubuntu Mono", monospace;
-  font-size: 0.95em;
+  font-size: 1em;
   color: var(--text-muted);
 }
 
@@ -5097,7 +5383,7 @@ main:has(.blog-list) h1 {
   width: 100%;
   border-collapse: collapse;
   font-family: "Ubuntu Mono", monospace;
-  font-size: 0.95em;
+  font-size: 1em;
   background: var(--panel);
   border-radius: 8px;
   overflow: hidden;
@@ -5112,7 +5398,7 @@ main:has(.blog-list) h1 {
   text-align: left;
   font-weight: 400;
   color: var(--text-muted);
-  font-size: 0.85em;
+  font-size: 0.8em;
 }
 
 .compat-table td {
@@ -5199,7 +5485,7 @@ main:has(.blog-list) h1 {
     display: block;
     margin-bottom: 4px;
     color: var(--text-muted);
-    font-size: 0.85em;
+    font-size: 0.8em;
     text-transform: uppercase;
   }
   
@@ -5267,7 +5553,7 @@ main:has(.blog-list) h1 {
   font-weight: 600;
   color: var(--text);
   margin-top: 12px;
-  font-size: 0.95em;
+  font-size: 1em;
 }
 
 .compat-advanced-list dt:first-child {
@@ -5289,7 +5575,7 @@ main:has(.blog-list) h1 {
 
 .compat-integration-mode {
   font-family: "Ubuntu Mono", monospace;
-  font-size: 0.95em;
+  font-size: 1em;
   color: var(--text);
   margin: 8px 0;
   line-height: 1.5;

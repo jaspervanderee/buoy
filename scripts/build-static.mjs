@@ -375,7 +375,7 @@ html = html.replace('</head>', urlShim + '</head>');
       
       // For Store it safely services, use custody-focused order
       if (svc.category === "Store it safely") {
-        order = ["tldr", "setup", "fees", "key_features", "recovery", "inheritance", "compat", "privacy", "trust", "profile"];
+        order = ["tldr", "setup", "fees", "key_features", "recovery", "inheritance", "compat", "costs", "privacy", "trust", "profile"];
       }
 
       const sectionBlocks = [];
@@ -1283,6 +1283,137 @@ ${featureTiles}
 </section>`;
       };
 
+      const renderCosts = () => {
+        // Only render for Store it safely category
+        if (svc.category !== "Store it safely") return "";
+        
+        const costsData = svc.costs;
+        if (!costsData || typeof costsData !== 'object') return "";
+        
+        const sectionTitle = costsData.section_title || "Costs & ongoing obligations";
+        
+        // Render intro explanation (Jeff's voice: mechanism first)
+        const introHtml = costsData.intro ? `<p class="costs-intro">${escapeHtml(costsData.intro)}</p>` : "";
+        
+        // Render summary stats box
+        let summaryStatsHtml = "";
+        if (costsData.summary_stats) {
+          const stats = costsData.summary_stats;
+          summaryStatsHtml = `
+  <div class="costs-summary">
+    ${stats.upfront ? `<div class="costs-summary__item">
+      <span class="costs-summary__label">One-time</span>
+      <span class="costs-summary__value">${escapeHtml(stats.upfront)}</span>
+    </div>` : ''}
+    ${stats.monthly ? `<div class="costs-summary__item costs-summary__item--highlight">
+      <span class="costs-summary__label">Monthly</span>
+      <span class="costs-summary__value">${escapeHtml(stats.monthly)}</span>
+    </div>` : ''}
+    ${stats.per_transaction ? `<div class="costs-summary__item">
+      <span class="costs-summary__label">Per transaction</span>
+      <span class="costs-summary__value">${escapeHtml(stats.per_transaction)}</span>
+    </div>` : ''}
+  </div>`;
+        }
+        
+        let upfrontHtml = "";
+        let ongoingHtml = "";
+        
+        // Render upfront costs block with highlights
+        if (costsData.upfront && Array.isArray(costsData.upfront.items) && costsData.upfront.items.length > 0) {
+          const upfrontItems = costsData.upfront.items.map(item => {
+            const highlightClass = item.highlight ? ` costs-item--${item.highlight}` : "";
+            const amountHtml = item.amount ? `<span class="costs-amount">${escapeHtml(item.amount)}</span>` : "";
+            const noteHtml = item.note ? `<span class="costs-note">${escapeHtml(item.note)}</span>` : "";
+            return `<li class="costs-item${highlightClass}">
+      <div class="costs-item__main">
+        <span class="costs-item__name">${escapeHtml(item.name)}</span>
+        ${amountHtml}
+      </div>
+      ${noteHtml}
+    </li>`;
+          }).join("");
+          
+          upfrontHtml = `
+    <div class="costs-card">
+      <h3 class="costs-card__title">${escapeHtml(costsData.upfront.title || "What you pay once")}</h3>
+      <ul class="costs-list">${upfrontItems}</ul>
+    </div>`;
+        }
+        
+        // Render ongoing costs block with highlights
+        if (costsData.ongoing && Array.isArray(costsData.ongoing.items) && costsData.ongoing.items.length > 0) {
+          const ongoingItems = costsData.ongoing.items.map(item => {
+            const highlightClass = item.highlight ? ` costs-item--${item.highlight}` : "";
+            const amountHtml = item.amount ? `<span class="costs-amount">${escapeHtml(item.amount)}</span>` : "";
+            const noteHtml = item.note ? `<span class="costs-note">${escapeHtml(item.note)}</span>` : "";
+            return `<li class="costs-item${highlightClass}">
+      <div class="costs-item__main">
+        <span class="costs-item__name">${escapeHtml(item.name)}</span>
+        ${amountHtml}
+      </div>
+      ${noteHtml}
+    </li>`;
+          }).join("");
+          
+          ongoingHtml = `
+    <div class="costs-card">
+      <h3 class="costs-card__title">${escapeHtml(costsData.ongoing.title || "What you pay ongoing")}</h3>
+      <ul class="costs-list">${ongoingItems}</ul>
+    </div>`;
+        }
+        
+        const costBlocksHtml = (upfrontHtml || ongoingHtml) ? `  <div class="costs-cards">
+${upfrontHtml}${ongoingHtml}
+  </div>\n` : "";
+        
+        // Render scenario cards with improved structure
+        let scenariosHtml = "";
+        if (Array.isArray(costsData.scenarios) && costsData.scenarios.length > 0) {
+          const scenarioTiles = costsData.scenarios.map(scenario => {
+            const anchorId = scenario.id || slugify(scenario.title || "");
+            
+            // Build scenario details
+            const whatHtml = scenario.what ? `<p class="scenario-what">${escapeHtml(scenario.what)}</p>` : "";
+            
+            const detailsHtml = `
+      <div class="scenario-details">
+        ${scenario.cost ? `<div class="scenario-detail">
+          <span class="scenario-detail__label">Cost</span>
+          <span class="scenario-detail__value">${escapeHtml(scenario.cost)}</span>
+        </div>` : ''}
+        ${scenario.time ? `<div class="scenario-detail">
+          <span class="scenario-detail__label">Time</span>
+          <span class="scenario-detail__value">${escapeHtml(scenario.time)}</span>
+        </div>` : ''}
+        ${scenario.frequency ? `<div class="scenario-detail">
+          <span class="scenario-detail__label">Frequency</span>
+          <span class="scenario-detail__value">${escapeHtml(scenario.frequency)}</span>
+        </div>` : ''}
+      </div>`;
+            
+            return `
+      <div class="scenario-card" id="${anchorId}">
+        <h3 class="scenario-card__title">${escapeHtml(scenario.title)}</h3>
+        ${whatHtml}
+        ${detailsHtml}
+      </div>`;
+          }).join("");
+          
+          scenariosHtml = `  <div class="scenario-cards">
+${scenarioTiles}
+  </div>`;
+        }
+        
+        if (!introHtml && !summaryStatsHtml && !costBlocksHtml && !scenariosHtml) return "";
+        
+        return `
+<section id="costs" class="service-section section-costs">
+  <h2 class="feature-label">${sectionTitle}</h2>
+${introHtml}${summaryStatsHtml}${costBlocksHtml}${scenariosHtml}
+</section>`;
+      };
+
       const renderMigration = () => {
         const items = Array.isArray(svc.migration) ? svc.migration : [];
         
@@ -2004,6 +2135,7 @@ ${cards.join("\n")}
         fees: renderFees,
         payment_methods_limits: renderPaymentMethods,
         key_features: renderKeyFeatures,
+        costs: renderCosts,
         privacy: renderPrivacy,
         inheritance: renderInheritance,
         compat: renderCompatibility,
@@ -2024,6 +2156,7 @@ ${cards.join("\n")}
         fees: "Fees: what you pay and when",
         payment_methods_limits: "Payment methods & limits",
         key_features: "Key features",
+        costs: svc.costs?.section_title || "Costs & ongoing obligations",
         compat: (svc.compatibility && svc.compatibility.section_title) ? svc.compatibility.section_title : (svc.compat_heading || "Features"),
         recovery: svc.recovery_heading || "Recovery",
         self_custody: svc.self_custody?.heading || "Self-custody: withdraw safely",
@@ -2061,6 +2194,7 @@ ${block}
         fees: { id: 'fees', label: 'Fees' },
         payment_methods_limits: { id: 'payment-methods', label: 'Methods' },
         key_features: { id: 'key-features', label: 'Features' },
+        costs: { id: 'costs', label: 'Costs' },
         compat: { id: (svc.compatibility && typeof svc.compatibility === 'object') ? 'compatibility' : 'compat', label: 'Compatibility' },
         recovery: { id: 'recovery', label: 'Recovery' },
         self_custody: { id: 'self-custody', label: 'Self-custody' },

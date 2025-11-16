@@ -526,6 +526,102 @@
       ]
     }
   },
+  "costs": {
+    "section_title": "Costs & ongoing obligations",
+    "intro": "Bitkey charges you once for the hardware. After that, Block covers the server infrastructure so you hold two keys without recurring fees. The only variable costs come from Bitcoin network mining fees when you move funds.",
+    "summary_stats": {
+      "upfront": "$149 + shipping",
+      "monthly": "$0",
+      "per_transaction": "Mining fees only"
+    },
+    "upfront": {
+      "title": "What you pay once",
+      "items": [
+        {
+          "name": "Bitkey hardware device",
+          "amount": "$149",
+          "note": "Includes secure element, fingerprint sensor, NFC pairing"
+        },
+        {
+          "name": "Shipping (within US)",
+          "amount": "$0",
+          "highlight": "free"
+        },
+        {
+          "name": "International shipping",
+          "amount": "Varies",
+          "note": "Check Bitkey Store for your region"
+        }
+      ]
+    },
+    "ongoing": {
+      "title": "What you pay ongoing",
+      "items": [
+        {
+          "name": "Monthly subscription",
+          "amount": "$0",
+          "highlight": "free",
+          "note": "No membership tiers or premium features"
+        },
+        {
+          "name": "Server key co-signing",
+          "amount": "$0",
+          "highlight": "included",
+          "note": "Block covers infrastructure costs"
+        },
+        {
+          "name": "Cloud backup storage",
+          "amount": "$0",
+          "highlight": "free",
+          "note": "Uses your existing iCloud or Google Drive"
+        },
+        {
+          "name": "Recovery assistance",
+          "amount": "$0",
+          "highlight": "included",
+          "note": "7-day security hold or Recovery Contacts approval"
+        }
+      ]
+    },
+    "scenarios": [
+      {
+        "id": "setup-vault",
+        "title": "Set up a new vault",
+        "what": "Pair hardware key, enroll fingerprint, verify cloud backup.",
+        "who_pays": "You",
+        "cost": "$0",
+        "time": "~15 min",
+        "frequency": "Once"
+      },
+      {
+        "id": "rotate-keys",
+        "title": "Replace lost or damaged hardware",
+        "what": "Seven-day security hold confirms the request, then pair new device.",
+        "who_pays": "You + Network",
+        "cost": "$149 replacement + mining fee",
+        "time": "7 days hold or instant with Recovery Contacts",
+        "frequency": "As needed"
+      },
+      {
+        "id": "emergency-recovery",
+        "title": "Emergency Exit if Bitkey goes offline",
+        "what": "Sideload Android APK, tap hardware key, sweep to new wallet.",
+        "who_pays": "Network",
+        "cost": "Mining fee only",
+        "time": "~20 min",
+        "frequency": "If provider is unavailable"
+      },
+      {
+        "id": "inheritance-claim",
+        "title": "Inheritance transfer to beneficiary",
+        "what": "Beneficiary waits 6-month hold, then receives encrypted key and sweeps funds.",
+        "who_pays": "Network",
+        "cost": "Mining fee only (inheritance service included)",
+        "time": "6 months + ~20 min",
+        "frequency": "Once"
+      }
+    ]
+  },
   "migration": [
     {
       "id": "restore-same-wallet",
