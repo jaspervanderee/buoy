@@ -551,107 +551,63 @@
     </li></ul>
     </div>
   </div>
-  <div class="scenario-cards">
 
-      <div class="scenario-card" id="setup-vault">
-        <h3 class="scenario-card__title">Set up a new vault</h3>
-        <p class="scenario-what">Pair hardware key, enroll fingerprint, verify cloud backup.</p>
-        
-      <div class="scenario-details">
-        <div class="scenario-detail">
-          <span class="scenario-detail__label">Cost</span>
-          <span class="scenario-detail__value">$0</span>
-        </div>
-        <div class="scenario-detail">
-          <span class="scenario-detail__label">Time</span>
-          <span class="scenario-detail__value">~15 min</span>
-        </div>
-        <div class="scenario-detail">
-          <span class="scenario-detail__label">Frequency</span>
-          <span class="scenario-detail__value">Once</span>
-        </div>
-      </div>
-      </div>
-      <div class="scenario-card" id="rotate-keys">
-        <h3 class="scenario-card__title">Replace lost or damaged hardware</h3>
-        <p class="scenario-what">Seven-day security hold confirms the request, then pair new device.</p>
-        
-      <div class="scenario-details">
-        <div class="scenario-detail">
-          <span class="scenario-detail__label">Cost</span>
-          <span class="scenario-detail__value">$149 replacement + mining fee</span>
-        </div>
-        <div class="scenario-detail">
-          <span class="scenario-detail__label">Time</span>
-          <span class="scenario-detail__value">7 days hold or instant with Recovery Contacts</span>
-        </div>
-        <div class="scenario-detail">
-          <span class="scenario-detail__label">Frequency</span>
-          <span class="scenario-detail__value">As needed</span>
-        </div>
-      </div>
-      </div>
-      <div class="scenario-card" id="emergency-recovery">
-        <h3 class="scenario-card__title">Emergency Exit if Bitkey goes offline</h3>
-        <p class="scenario-what">Sideload Android APK, tap hardware key, sweep to new wallet.</p>
-        
-      <div class="scenario-details">
-        <div class="scenario-detail">
-          <span class="scenario-detail__label">Cost</span>
-          <span class="scenario-detail__value">Mining fee only</span>
-        </div>
-        <div class="scenario-detail">
-          <span class="scenario-detail__label">Time</span>
-          <span class="scenario-detail__value">~20 min</span>
-        </div>
-        <div class="scenario-detail">
-          <span class="scenario-detail__label">Frequency</span>
-          <span class="scenario-detail__value">If provider is unavailable</span>
-        </div>
-      </div>
-      </div>
-      <div class="scenario-card" id="inheritance-claim">
-        <h3 class="scenario-card__title">Inheritance transfer to beneficiary</h3>
-        <p class="scenario-what">Beneficiary waits 6-month hold, then receives encrypted key and sweeps funds.</p>
-        
-      <div class="scenario-details">
-        <div class="scenario-detail">
-          <span class="scenario-detail__label">Cost</span>
-          <span class="scenario-detail__value">Mining fee only (inheritance service included)</span>
-        </div>
-        <div class="scenario-detail">
-          <span class="scenario-detail__label">Time</span>
-          <span class="scenario-detail__value">6 months + ~20 min</span>
-        </div>
-        <div class="scenario-detail">
-          <span class="scenario-detail__label">Frequency</span>
-          <span class="scenario-detail__value">Once</span>
-        </div>
-      </div>
-      </div>
-  </div>
 </section>
 </details>
 <details class="section-accordion">
-  <summary>Privacy & Safety</summary>
+  <summary>Privacy & jurisdiction</summary>
 
-<section id="privacy-safety" class="service-section" aria-labelledby="privacy-safety-label">
-  <h2 id="privacy-safety-label" class="feature-label">Privacy & Safety</h2>
-  <div class="privacy-cards">
-    <div class="privacy-card" id="data-flows">
-      <h3>Who can see what when you use Bitkey</h3>
-      <ul><li>Bitkey keeps your email, shipping address, and notification preferences to deliver hardware and security alerts.</li><li>Encrypted mobile key backups live in your own cloud account; Bitkey cannot read them without your hardware key.</li><li><a href="#recovery-contacts" class="glossary-link" data-term="Recovery Contacts">Recovery Contacts</a> and inheritance requests are stored with timestamps so you can review who has access.</li></ul>
-      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> Label every device inside <a href="#security-hub" class="glossary-link" data-term="Security hub">Security hub</a> and enable all alert channels so you notice suspicious activity.</span></div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> Do not store your Emergency Exit instructions in a shared cloud folder that anyone can read.</span></div></div>
+<section id="privacy" class="service-section" aria-labelledby="privacy-label">
+  <h2 id="privacy-label" class="feature-label">Privacy & jurisdiction</h2>
+  <div class="svc-compat__grid">
+    <div class="svc-compat__tile" id="privacy-data">
+    <div class="svc-compat__header">
+      <h3 class="svc-compat__title">What Block collects & where it lives</h3>
     </div>
-    <div class="privacy-card" id="recovery">
-      <h3>Lost your phone? How Bitkey recovery works</h3>
-      <ul><li>Cloud Recovery: install the app on a new phone, sign into your cloud account, and tap the hardware key to decrypt the backup.</li><li>Hardware recovery: start the process in the app, wait out the seven-day security hold (or have <a href="#recovery-contacts" class="glossary-link" data-term="Recovery Contacts">Recovery Contacts</a> approve sooner), then pair the replacement device.</li><li>Lost phone + hardware: contact your <a href="#recovery-contacts" class="glossary-link" data-term="Recovery Contacts">Recovery Contacts</a>, have them verify the code, and rebuild the wallet on brand-new hardware.</li></ul>
-      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> Keep your hardware key charged and your <a href="#recovery-contacts" class="glossary-link" data-term="Recovery Contacts">Recovery Contacts</a> updated so recovery paths stay available.</span></div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> Ignore SMS or email notifications about recovery events; respond quickly so attackers cannot complete the hold.</span></div></div>
+    <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt="">Your keys stay with you</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt="">Encrypted cloud backup</span></p>    <p class="svc-compat__why">Bitkey minimizes data collection to what's required for shipping hardware and sending security alerts. Your keys and transaction history never reach Block's servers.</p>    <p class="svc-compat__summary">When you buy Bitkey, Block stores your email and shipping address to deliver the hardware and send recovery alerts. The mobile key backup lives encrypted in your iCloud or Google Drive—Block holds no keys to decrypt it without your hardware device.</p>    <ul class="privacy-card__list">
+      <li><strong>Stays on your device:</strong> Private keys · Fingerprint templates · Transaction signing</li>
+      <li><strong>Your cloud (encrypted):</strong> Mobile key backup in iCloud/Google Drive · Only your hardware key can decrypt</li>
+      <li><strong>Block's servers:</strong> Email · Shipping address · Device serial · Recovery Contact invites · Inheritance assignments</li>
+      <li><strong>Optional logging:</strong> App sign-ins (timestamp, IP) · Pairing events · Security-hold starts · Limit changes</li>
+    </ul>    <details class="compat-details">
+      <summary data-closed-text="What about transaction history?" data-open-text="Hide details">What about transaction history?</summary>
+      <div>
+        <p>If you use Block's default node, your balance queries and address lookups are visible to Block. Connect your own Bitcoin node in Advanced settings to keep history fully private. The Emergency Exit Kit runs entirely offline—no server contact once you sideload the APK.</p>
+      </div>
+    </details>
+  </div>
+    <div class="svc-compat__tile" id="privacy-jurisdiction">
+    <div class="svc-compat__header">
+      <h3 class="svc-compat__title">Jurisdiction: what that means for you</h3>
     </div>
-    <div class="privacy-card" id="availability">
-      <h3>Availability &amp; safe installs</h3>
-      <ul><li>Bitkey currently sells hardware in select countries; check the store for the latest list.</li><li>Apps are available in the Apple App Store and Google Play where regional compliance allows.</li><li><a href="#emergency-exit-kit" class="glossary-link" data-term="Emergency Exit Kit">Emergency Exit Kit</a> instructions assume access to Google Drive or iCloud and an Android device.</li></ul>
+    <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt="">No KYC required</span></p>    <p class="svc-compat__why">Block, Inc. operates Bitkey servers from the United States, which means US laws govern legal requests and export controls. Block can provide account metadata if compelled but cannot decrypt your cloud backup or access your on-chain keys.</p>    <p class="svc-compat__summary">US jurisdiction means Block must respond to lawful requests for account email, device metadata, and recovery logs. Your encrypted backup and private keys remain inaccessible to Block. Hardware may trigger customs questions in export-controlled regions.</p>    <ul class="privacy-card__list">
+      <li><strong>Provider:</strong> Block, Inc. (US-based) · Subject to US legal process and export rules</li>
+      <li><strong>Can be compelled:</strong> Account email · Device serial · Recovery/inheritance timestamps</li>
+      <li><strong>Cannot access:</strong> Your private keys · Encrypted cloud backup · On-chain transaction history</li>
+      <li><strong>Travel consideration:</strong> Hardware may attract customs attention in sanctioned jurisdictions</li>
+    </ul>    <details class="compat-details">
+      <summary data-closed-text="What if I need to move funds without the hardware?" data-open-text="Hide details">What if I need to move funds without the hardware?</summary>
+      <div>
+        <p>Use <a href="/services/bitkey.html#lose-phone">Cloud Recovery</a> to restore your mobile key on a new phone, or run the <a href="/services/bitkey.html#bitkey-attacks">Emergency Exit Kit</a> offline on Android to sweep funds if Block's servers are unavailable. Both paths require your hardware key. See <a href="/services/bitkey.html#inheritance">Inheritance section</a> for the six-month beneficiary claim process.</p>
+      </div>
+    </details>
+  </div>
+    <div class="svc-compat__tile" id="privacy-controls">
+    <div class="svc-compat__header">
+      <h3 class="svc-compat__title">Your controls</h3>
     </div>
+    <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt="">Review anytime</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt="">Export or delete</span></p>    <p class="svc-compat__why"><a href="/services/bitkey.html#security-hub" class="glossary-link" data-term="Security hub">Security hub</a> shows everything Block stores about your wallet. You can request data export or account deletion, and your cloud backups live in your own Drive/iCloud where you control them directly.</p>    <ul class="privacy-card__list">
+      <li><strong><a href="/services/bitkey.html#security-hub" class="glossary-link" data-term="Security hub">Security hub</a>:</strong> View paired devices · Backup timestamps · <a href="/services/bitkey.html#recovery-contacts" class="glossary-link" data-term="Recovery Contacts">Recovery Contacts</a> · Beneficiary assignments</li>
+      <li><strong>Notifications:</strong> Toggle push, SMS, email alerts individually · One channel required for security events</li>
+      <li><strong>Data requests:</strong> Email support for account export or deletion · Cloud backups deletable in your Drive/iCloud</li>
+      <li><strong>Node privacy:</strong> Connect your Bitcoin node in Advanced settings to hide balance queries from Block</li>
+    </ul>    <details class="compat-details">
+      <summary data-closed-text="Does Block publish transparency reports?" data-open-text="Hide details">Does Block publish transparency reports?</summary>
+      <div>
+        <p>Block has not published Bitkey-specific transparency reporting yet. Check Block's corporate disclosures for aggregate legal-request statistics. Security hub logs device additions, limit changes, and recovery attempts, but there's no public audit API.</p>
+      </div>
+    </details>
+  </div>
   </div>
     <div class="micro-faqs">
       <h3 class="micro-faqs__title">Quick answers</h3>
@@ -659,19 +615,19 @@
       <details class="micro-faq-item" id="can-bitkey-see-my-balances-or-transactions">
         <summary>Can Bitkey see my balances or transactions?</summary>
         <div>
-          <p>No. Keys stay on your devices and Bitkey cannot sign without you; the app can connect to your own node for extra privacy.</p>
+          <p>Only if you use their default node. Keys stay on your devices and Bitkey cannot sign without you; connect your own node for full privacy.</p>
         </div>
       </details>
       <details class="micro-faq-item" id="who-gets-notified-if-someone-starts-a-recovery">
         <summary>Who gets notified if someone starts a recovery?</summary>
         <div>
-          <p>You receive push, SMS, and email alerts, and any Recovery Contacts you designated see the request in their app.</p>
+          <p>You receive push, SMS, and email alerts immediately, and any Recovery Contacts you designated see the request in their app.</p>
         </div>
       </details>
       <details class="micro-faq-item" id="does-bitkey-keep-my-biometric-data">
         <summary>Does Bitkey keep my biometric data?</summary>
         <div>
-          <p>Fingerprints stay on the hardware key; Bitkey only tracks whether biometrics are enabled.</p>
+          <p>No. Fingerprints stay on the hardware key's secure element; Block only tracks whether biometrics are enabled, not the template itself.</p>
         </div>
       </details>
       </div>
@@ -1074,6 +1030,63 @@
   
   // Run when hash changes (clicking jump links, back/forward)
   window.addEventListener('hashchange', openAccordionForHash);
+})();
+</script>
+<!-- Open glossary when clicking glossary links -->
+<script>
+(function() {
+  function openGlossaryForHash(hash) {
+    // Use provided hash or get from URL
+    const targetHash = hash || window.location.hash;
+    if (!targetHash) return;
+    
+    try {
+      // Check if hash target is inside a collapsed mini-glossary
+      const target = document.querySelector(targetHash);
+      if (!target) return;
+      
+      const glossary = target.closest('.mini-glossary');
+      if (glossary && !glossary.open) {
+        glossary.open = true;
+        // Small delay to let details open before scrolling
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      } else if (target) {
+        // Glossary already open, just scroll
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    } catch (e) {
+      // Invalid selector, ignore
+    }
+  }
+  
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { openGlossaryForHash(); });
+  } else {
+    openGlossaryForHash();
+  }
+  
+  // Run when hash changes
+  window.addEventListener('hashchange', function() { openGlossaryForHash(); });
+  
+  // Intercept clicks on glossary links
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a.glossary-link');
+    if (link) {
+      e.preventDefault();
+      // Extract hash from href
+      const href = link.getAttribute('href');
+      const hash = href ? href.split('#')[1] : null;
+      if (hash) {
+        // Update URL hash
+        window.location.hash = hash;
+        // Open glossary immediately
+        openGlossaryForHash('#' + hash);
+      }
+    }
+  });
 })();
 </script>
 </body>

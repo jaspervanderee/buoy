@@ -483,6 +483,63 @@
   window.addEventListener('hashchange', openAccordionForHash);
 })();
 </script>
+<!-- Open glossary when clicking glossary links -->
+<script>
+(function() {
+  function openGlossaryForHash(hash) {
+    // Use provided hash or get from URL
+    const targetHash = hash || window.location.hash;
+    if (!targetHash) return;
+    
+    try {
+      // Check if hash target is inside a collapsed mini-glossary
+      const target = document.querySelector(targetHash);
+      if (!target) return;
+      
+      const glossary = target.closest('.mini-glossary');
+      if (glossary && !glossary.open) {
+        glossary.open = true;
+        // Small delay to let details open before scrolling
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      } else if (target) {
+        // Glossary already open, just scroll
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    } catch (e) {
+      // Invalid selector, ignore
+    }
+  }
+  
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { openGlossaryForHash(); });
+  } else {
+    openGlossaryForHash();
+  }
+  
+  // Run when hash changes
+  window.addEventListener('hashchange', function() { openGlossaryForHash(); });
+  
+  // Intercept clicks on glossary links
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a.glossary-link');
+    if (link) {
+      e.preventDefault();
+      // Extract hash from href
+      const href = link.getAttribute('href');
+      const hash = href ? href.split('#')[1] : null;
+      if (hash) {
+        // Update URL hash
+        window.location.hash = hash;
+        // Open glossary immediately
+        openGlossaryForHash('#' + hash);
+      }
+    }
+  });
+})();
+</script>
 </body>
 </html>
 

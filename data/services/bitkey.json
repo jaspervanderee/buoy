@@ -582,45 +582,7 @@
           "note": "7-day security hold or Recovery Contacts approval"
         }
       ]
-    },
-    "scenarios": [
-      {
-        "id": "setup-vault",
-        "title": "Set up a new vault",
-        "what": "Pair hardware key, enroll fingerprint, verify cloud backup.",
-        "who_pays": "You",
-        "cost": "$0",
-        "time": "~15 min",
-        "frequency": "Once"
-      },
-      {
-        "id": "rotate-keys",
-        "title": "Replace lost or damaged hardware",
-        "what": "Seven-day security hold confirms the request, then pair new device.",
-        "who_pays": "You + Network",
-        "cost": "$149 replacement + mining fee",
-        "time": "7 days hold or instant with Recovery Contacts",
-        "frequency": "As needed"
-      },
-      {
-        "id": "emergency-recovery",
-        "title": "Emergency Exit if Bitkey goes offline",
-        "what": "Sideload Android APK, tap hardware key, sweep to new wallet.",
-        "who_pays": "Network",
-        "cost": "Mining fee only",
-        "time": "~20 min",
-        "frequency": "If provider is unavailable"
-      },
-      {
-        "id": "inheritance-claim",
-        "title": "Inheritance transfer to beneficiary",
-        "what": "Beneficiary waits 6-month hold, then receives encrypted key and sweeps funds.",
-        "who_pays": "Network",
-        "cost": "Mining fee only (inheritance service included)",
-        "time": "6 months + ~20 min",
-        "frequency": "Once"
-      }
-    ]
+    }
   },
   "migration": [
     {
@@ -776,45 +738,65 @@
     ]
   },
   "privacy": {
-    "section_title": "Privacy & Safety",
-    "data_flows": [
-      "Bitkey keeps your email, shipping address, and notification preferences to deliver hardware and security alerts.",
-      "Encrypted mobile key backups live in your own cloud account; Bitkey cannot read them without your hardware key.",
-      "Recovery Contacts and inheritance requests are stored with timestamps so you can review who has access."
-    ],
-    "data_flows_do": "Label every device inside Security hub and enable all alert channels so you notice suspicious activity.",
-    "data_flows_dont": "Do not store your Emergency Exit instructions in a shared cloud folder that anyone can read.",
-    "recovery": [
-      "Cloud Recovery: install the app on a new phone, sign into your cloud account, and tap the hardware key to decrypt the backup.",
-      "Hardware recovery: start the process in the app, wait out the seven-day security hold (or have Recovery Contacts approve sooner), then pair the replacement device.",
-      "Lost phone + hardware: contact your Recovery Contacts, have them verify the code, and rebuild the wallet on brand-new hardware."
-    ],
-    "recovery_do": "Keep your hardware key charged and your Recovery Contacts updated so recovery paths stay available.",
-    "recovery_dont": "Ignore SMS or email notifications about recovery events; respond quickly so attackers cannot complete the hold.",
-    "withdrawal_policy": [
-      "All sends are on-chain, so transactions become irreversible once the network confirms them.",
-      "Mobile spending limits cap how much can leave your phone without the hardware key.",
-      "The Emergency Exit Kit provides a last-resort sweep if Bitkey's servers are offline, but it still requires your hardware key."
-    ],
-    "withdrawal_policy_do": "Keep mobile limits low when traveling and raise them only when the hardware key is in reach.",
-    "withdrawal_policy_dont": "Do not approve large sends while you are offline or distracted; wait until you can review the address carefully.",
-    "region": [
-      "Bitkey currently sells hardware in select countries; check the store for the latest list.",
-      "Apps are available in the Apple App Store and Google Play where regional compliance allows.",
-      "Emergency Exit Kit instructions assume access to Google Drive or iCloud and an Android device."
+    "section_title": "Privacy & jurisdiction",
+    "tiles": [
+      {
+        "id": "privacy-data",
+        "title": "What Block collects & where it lives",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\">Your keys stay with you</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\">Encrypted cloud backup</span>",
+        "why": "Bitkey minimizes data collection to what's required for shipping hardware and sending security alerts. Your keys and transaction history never reach Block's servers.",
+        "summary": "When you buy Bitkey, Block stores your email and shipping address to deliver the hardware and send recovery alerts. The mobile key backup lives encrypted in your iCloud or Google Drive—Block holds no keys to decrypt it without your hardware device.",
+        "bullets": [
+          "<strong>Stays on your device:</strong> Private keys · Fingerprint templates · Transaction signing",
+          "<strong>Your cloud (encrypted):</strong> Mobile key backup in iCloud/Google Drive · Only your hardware key can decrypt",
+          "<strong>Block's servers:</strong> Email · Shipping address · Device serial · Recovery Contact invites · Inheritance assignments",
+          "<strong>Optional logging:</strong> App sign-ins (timestamp, IP) · Pairing events · Security-hold starts · Limit changes"
+        ],
+        "explainer_summary": "What about transaction history?",
+        "explainer_text": "<p>If you use Block's default node, your balance queries and address lookups are visible to Block. Connect your own Bitcoin node in Advanced settings to keep history fully private. The Emergency Exit Kit runs entirely offline—no server contact once you sideload the APK.</p>"
+      },
+      {
+        "id": "privacy-jurisdiction",
+        "title": "Jurisdiction: what that means for you",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\">No KYC required</span>",
+        "why": "Block, Inc. operates Bitkey servers from the United States, which means US laws govern legal requests and export controls. Block can provide account metadata if compelled but cannot decrypt your cloud backup or access your on-chain keys.",
+        "summary": "US jurisdiction means Block must respond to lawful requests for account email, device metadata, and recovery logs. Your encrypted backup and private keys remain inaccessible to Block. Hardware may trigger customs questions in export-controlled regions.",
+        "bullets": [
+          "<strong>Provider:</strong> Block, Inc. (US-based) · Subject to US legal process and export rules",
+          "<strong>Can be compelled:</strong> Account email · Device serial · Recovery/inheritance timestamps",
+          "<strong>Cannot access:</strong> Your private keys · Encrypted cloud backup · On-chain transaction history",
+          "<strong>Travel consideration:</strong> Hardware may attract customs attention in sanctioned jurisdictions"
+        ],
+        "explainer_summary": "What if I need to move funds without the hardware?",
+        "explainer_text": "<p>Use <a href=\"#lose-phone\">Cloud Recovery</a> to restore your mobile key on a new phone, or run the <a href=\"#bitkey-attacks\">Emergency Exit Kit</a> offline on Android to sweep funds if Block's servers are unavailable. Both paths require your hardware key. See <a href=\"#inheritance\">Inheritance section</a> for the six-month beneficiary claim process.</p>"
+      },
+      {
+        "id": "privacy-controls",
+        "title": "Your controls",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\">Review anytime</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\">Export or delete</span>",
+        "why": "Security hub shows everything Block stores about your wallet. You can request data export or account deletion, and your cloud backups live in your own Drive/iCloud where you control them directly.",
+        "bullets": [
+          "<strong>Security hub:</strong> View paired devices · Backup timestamps · Recovery Contacts · Beneficiary assignments",
+          "<strong>Notifications:</strong> Toggle push, SMS, email alerts individually · One channel required for security events",
+          "<strong>Data requests:</strong> Email support for account export or deletion · Cloud backups deletable in your Drive/iCloud",
+          "<strong>Node privacy:</strong> Connect your Bitcoin node in Advanced settings to hide balance queries from Block"
+        ],
+        "explainer_summary": "Does Block publish transparency reports?",
+        "explainer_text": "<p>Block has not published Bitkey-specific transparency reporting yet. Check Block's corporate disclosures for aggregate legal-request statistics. Security hub logs device additions, limit changes, and recovery attempts, but there's no public audit API.</p>"
+      }
     ],
     "micro_faqs": [
       {
         "q": "Can Bitkey see my balances or transactions?",
-        "a": "No. Keys stay on your devices and Bitkey cannot sign without you; the app can connect to your own node for extra privacy."
+        "a": "Only if you use their default node. Keys stay on your devices and Bitkey cannot sign without you; connect your own node for full privacy."
       },
       {
         "q": "Who gets notified if someone starts a recovery?",
-        "a": "You receive push, SMS, and email alerts, and any Recovery Contacts you designated see the request in their app."
+        "a": "You receive push, SMS, and email alerts immediately, and any Recovery Contacts you designated see the request in their app."
       },
       {
         "q": "Does Bitkey keep my biometric data?",
-        "a": "Fingerprints stay on the hardware key; Bitkey only tracks whether biometrics are enabled."
+        "a": "No. Fingerprints stay on the hardware key's secure element; Block only tracks whether biometrics are enabled, not the template itself."
       }
     ],
     "glossary": [

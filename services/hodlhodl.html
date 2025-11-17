@@ -561,8 +561,8 @@
 <details class="section-accordion">
   <summary>Privacy & Safety</summary>
 
-<section id="privacy-safety" class="service-section" aria-labelledby="privacy-safety-label">
-  <h2 id="privacy-safety-label" class="feature-label">Privacy & Safety</h2>
+<section id="privacy" class="service-section" aria-labelledby="privacy-label">
+  <h2 id="privacy-label" class="feature-label">Privacy & Safety</h2>
   <div class="privacy-cards">
     <div class="privacy-card" id="data-flows">
       <h3>Who can see what when you use Hodlhodl</h3>
@@ -571,12 +571,12 @@
     </div>
     <div class="privacy-card" id="recovery">
       <h3>Lost your phone? How Hodlhodl recovery works</h3>
-      <ul><li>Log in with your email and password, then approve the device through <a href="#trusted-devices" class="glossary-link" data-term="Trusted Devices">Trusted Devices</a>.</li><li>If 2FA is enabled and you lost access, submit your backup code or contact support with contract evidence.</li><li>Once restored, review active contracts to confirm nothing changed during the lockout.</li></ul>
+      <ul><li>Log in with your email and password, then approve the device through <a href="/services/hodlhodl.html#trusted-devices" class="glossary-link" data-term="Trusted Devices">Trusted Devices</a>.</li><li>If 2FA is enabled and you lost access, submit your backup code or contact support with contract evidence.</li><li>Once restored, review active contracts to confirm nothing changed during the lockout.</li></ul>
       <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> Store backup codes offline and keep your recovery email secured with its own 2FA.</span></div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> Delay contacting support if you suspect a compromise; disputes need timely evidence.</span></div></div>
     </div>
     <div class="privacy-card" id="availability">
       <h3>Availability &amp; safe installs</h3>
-      <ul><li>Hodl Hodl operates globally, but certain fiat rails or currencies depend on local traders.</li><li>U.S. residents can trade but should review their state regulations on peer-to-peer bitcoin sales.</li><li>Some countries may require additional verification for high volume trades; check the <a href="#limit-tier" class="glossary-link" data-term="Limit tier">limit tier</a> policy.</li></ul>
+      <ul><li>Hodl Hodl operates globally, but certain fiat rails or currencies depend on local traders.</li><li>U.S. residents can trade but should review their state regulations on peer-to-peer bitcoin sales.</li><li>Some countries may require additional verification for high volume trades; check the <a href="/services/hodlhodl.html#limit-tier" class="glossary-link" data-term="Limit tier">limit tier</a> policy.</li></ul>
     </div>
   </div>
     <div class="micro-faqs">
@@ -1054,6 +1054,63 @@
   
   // Run when hash changes (clicking jump links, back/forward)
   window.addEventListener('hashchange', openAccordionForHash);
+})();
+</script>
+<!-- Open glossary when clicking glossary links -->
+<script>
+(function() {
+  function openGlossaryForHash(hash) {
+    // Use provided hash or get from URL
+    const targetHash = hash || window.location.hash;
+    if (!targetHash) return;
+    
+    try {
+      // Check if hash target is inside a collapsed mini-glossary
+      const target = document.querySelector(targetHash);
+      if (!target) return;
+      
+      const glossary = target.closest('.mini-glossary');
+      if (glossary && !glossary.open) {
+        glossary.open = true;
+        // Small delay to let details open before scrolling
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      } else if (target) {
+        // Glossary already open, just scroll
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    } catch (e) {
+      // Invalid selector, ignore
+    }
+  }
+  
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { openGlossaryForHash(); });
+  } else {
+    openGlossaryForHash();
+  }
+  
+  // Run when hash changes
+  window.addEventListener('hashchange', function() { openGlossaryForHash(); });
+  
+  // Intercept clicks on glossary links
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a.glossary-link');
+    if (link) {
+      e.preventDefault();
+      // Extract hash from href
+      const href = link.getAttribute('href');
+      const hash = href ? href.split('#')[1] : null;
+      if (hash) {
+        // Update URL hash
+        window.location.hash = hash;
+        // Open glossary immediately
+        openGlossaryForHash('#' + hash);
+      }
+    }
+  });
 })();
 </script>
 </body>

@@ -445,17 +445,17 @@
 <details class="section-accordion">
   <summary>Privacy & Safety</summary>
 
-<section id="privacy-safety" class="service-section" aria-labelledby="privacy-safety-label">
-  <h2 id="privacy-safety-label" class="feature-label">Privacy & Safety</h2>
+<section id="privacy" class="service-section" aria-labelledby="privacy-label">
+  <h2 id="privacy-label" class="feature-label">Privacy & Safety</h2>
   <div class="privacy-cards">
     <div class="privacy-card" id="data-flows">
       <h3>Who can see what when you use Phoenix</h3>
-      <ul><li>Phoenix connects to ACINQ's Lightning node to route payments. Today, ACINQ can see who you pay and the amount needed to deliver your payment.</li><li>On-chain transactions are public by design; reuse of addresses can link activity.</li><li>Use your own <a href="#electrum-server" class="glossary-link" data-term="Electrum server">Electrum server</a> (Settings) to limit what third parties learn about your addresses and balances.</li><li>Lightning peers still observe timing/amount metadata needed for routing.</li></ul>
-      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> Connect your own <a href="#electrum-server" class="glossary-link" data-term="Electrum server">Electrum server</a> if privacy matters.</span></div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> Assume Lightning is fully private. Some metadata still leaks via peers.</span></div></div>
+      <ul><li>Phoenix connects to ACINQ's Lightning node to route payments. Today, ACINQ can see who you pay and the amount needed to deliver your payment.</li><li>On-chain transactions are public by design; reuse of addresses can link activity.</li><li>Use your own <a href="/services/phoenix.html#electrum-server" class="glossary-link" data-term="Electrum server">Electrum server</a> (Settings) to limit what third parties learn about your addresses and balances.</li><li>Lightning peers still observe timing/amount metadata needed for routing.</li></ul>
+      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> Connect your own <a href="/services/phoenix.html#electrum-server" class="glossary-link" data-term="Electrum server">Electrum server</a> if privacy matters.</span></div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> Assume Lightning is fully private. Some metadata still leaks via peers.</span></div></div>
     </div>
     <div class="privacy-card" id="recovery">
       <h3>Lost your phone? How Phoenix recovery works</h3>
-      <ul><li>Your 12-word seed lives only on your phone. ACINQ can't recover it for you. Channel states are encrypted and synced so they can be restored.</li><li>Standard restore: install Phoenix → Restore my wallet → enter seed → keep the phone online while channels resync.</li><li>If Phoenix/ACINQ is unavailable: Settings → Danger zone → <a href="#force-close" class="glossary-link" data-term="Force close">Force close</a> channels. After ~720 blocks, funds appear in the <a href="#final-wallet" class="glossary-link" data-term="Final wallet">Final wallet</a>; then sweep on-chain.</li></ul>
+      <ul><li>Your 12-word seed lives only on your phone. ACINQ can't recover it for you. Channel states are encrypted and synced so they can be restored.</li><li>Standard restore: install Phoenix → Restore my wallet → enter seed → keep the phone online while channels resync.</li><li>If Phoenix/ACINQ is unavailable: Settings → Danger zone → <a href="/services/phoenix.html#force-close" class="glossary-link" data-term="Force close">Force close</a> channels. After ~720 blocks, funds appear in the <a href="/services/phoenix.html#final-wallet" class="glossary-link" data-term="Final wallet">Final wallet</a>; then sweep on-chain.</li></ul>
       <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> Store your seed offline and test a small restore when convenient.</span></div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> Run Phoenix on two phones at the same time.</span></div></div>
     </div>
     <div class="privacy-card" id="availability">
@@ -884,6 +884,63 @@
   
   // Run when hash changes (clicking jump links, back/forward)
   window.addEventListener('hashchange', openAccordionForHash);
+})();
+</script>
+<!-- Open glossary when clicking glossary links -->
+<script>
+(function() {
+  function openGlossaryForHash(hash) {
+    // Use provided hash or get from URL
+    const targetHash = hash || window.location.hash;
+    if (!targetHash) return;
+    
+    try {
+      // Check if hash target is inside a collapsed mini-glossary
+      const target = document.querySelector(targetHash);
+      if (!target) return;
+      
+      const glossary = target.closest('.mini-glossary');
+      if (glossary && !glossary.open) {
+        glossary.open = true;
+        // Small delay to let details open before scrolling
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      } else if (target) {
+        // Glossary already open, just scroll
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    } catch (e) {
+      // Invalid selector, ignore
+    }
+  }
+  
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { openGlossaryForHash(); });
+  } else {
+    openGlossaryForHash();
+  }
+  
+  // Run when hash changes
+  window.addEventListener('hashchange', function() { openGlossaryForHash(); });
+  
+  // Intercept clicks on glossary links
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a.glossary-link');
+    if (link) {
+      e.preventDefault();
+      // Extract hash from href
+      const href = link.getAttribute('href');
+      const hash = href ? href.split('#')[1] : null;
+      if (hash) {
+        // Update URL hash
+        window.location.hash = hash;
+        // Open glossary immediately
+        openGlossaryForHash('#' + hash);
+      }
+    }
+  });
 })();
 </script>
 </body>

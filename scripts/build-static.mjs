@@ -940,7 +940,7 @@ ${tiles.join("\n")}
                 // Only link the first occurrence in each text block
                 if (!matched) {
                   matched = true;
-                  return `<a href="#${anchor}" class="glossary-link" data-term="${escapeHtml(term)}">${match}</a>`;
+                  return `<a href="/services/${slug}.html#${anchor}" class="glossary-link" data-term="${escapeHtml(term)}">${match}</a>`;
                 }
                 return match;
               });
@@ -949,47 +949,109 @@ ${tiles.join("\n")}
             return result;
           };
           
-          const cards = [];
+          // Helper to fix internal anchor links to use full paths (for <base href="/" />)
+          const fixInternalLinks = (html) => {
+            if (!html) return html;
+            // Convert href="#anchor" to href="/services/slug.html#anchor"
+            return html.replace(/href=["']#([^"']+)["']/g, `href="/services/${slug}.html#$1"`);
+          };
           
-          // Card 1: Data flows
-          if (Array.isArray(privacy.data_flows) && privacy.data_flows.length > 0) {
-            const bullets = privacy.data_flows.slice(0, 4).map(item => `<li>${linkGlossaryTerms(item)}</li>`).join("");
-            let dodonts = "";
-            if (privacy.data_flows_do || privacy.data_flows_dont) {
-              const doItem = privacy.data_flows_do ? `<div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> ${linkGlossaryTerms(privacy.data_flows_do)}</span></div>` : "";
-              const dontItem = privacy.data_flows_dont ? `<div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> ${linkGlossaryTerms(privacy.data_flows_dont)}</span></div>` : "";
-              dodonts = `<div class="dodont-strip">${doItem}${dontItem}</div>`;
-            }
-            cards.push(`    <div class="privacy-card" id="data-flows">
+          const cards = [];
+          let usesNewTileFormat = false; // Track which format is being used
+          
+          // NEW: Support flexible tiles array using compat tile structure
+          if (Array.isArray(privacy.tiles)) {
+            usesNewTileFormat = true;
+            privacy.tiles.forEach(tile => {
+              if (!tile.id || !tile.title) return;
+              
+              // Build benefit line (icon-text pairs at top)
+              const benefitHtml = tile.benefit ? `    <p class="svc-compat__benefit">${tile.benefit}</p>` : "";
+              
+              // Build why paragraph (mechanism explanation)
+              const whyHtml = tile.why ? `    <p class="svc-compat__why">${fixInternalLinks(linkGlossaryTerms(tile.why))}</p>` : "";
+              
+              // Build summary paragraph (optional additional context)
+              const summaryHtml = tile.summary ? `    <p class="svc-compat__summary">${fixInternalLinks(linkGlossaryTerms(tile.summary))}</p>` : "";
+              
+              // Build bullets list (scannable key points)
+              let bulletsHtml = "";
+              if (Array.isArray(tile.bullets) && tile.bullets.length > 0) {
+                const bulletItems = tile.bullets.map(item => `      <li>${fixInternalLinks(linkGlossaryTerms(item))}</li>`).join("\n");
+                bulletsHtml = `    <ul class="privacy-card__list">
+${bulletItems}
+    </ul>`;
+              }
+              
+              // Build collapsible explainer (progressive disclosure)
+              let explainerHtml = "";
+              if (tile.explainer_summary && tile.explainer_text) {
+                explainerHtml = `    <details class="compat-details">
+      <summary data-closed-text="${escapeHtml(tile.explainer_summary)}" data-open-text="Hide details">${escapeHtml(tile.explainer_summary)}</summary>
+      <div>
+        ${fixInternalLinks(tile.explainer_text)}
+      </div>
+    </details>`;
+              }
+              
+              // Build do/don't strip if present
+              let dodonts = "";
+              if (tile.do_text || tile.dont_text) {
+                const doItem = tile.do_text ? `<div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> ${linkGlossaryTerms(tile.do_text)}</span></div>` : "";
+                const dontItem = tile.dont_text ? `<div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> ${linkGlossaryTerms(tile.dont_text)}</span></div>` : "";
+                dodonts = `    <div class="dodont-strip">${doItem}${dontItem}</div>`;
+              }
+              
+              // Assemble tile using compat structure
+              cards.push(`    <div class="svc-compat__tile" id="${tile.id}">
+    <div class="svc-compat__header">
+      <h3 class="svc-compat__title">${tile.title}</h3>
+    </div>
+${benefitHtml}${whyHtml}${summaryHtml}${bulletsHtml}${explainerHtml}${dodonts}
+  </div>`);
+            });
+          } else {
+            // LEGACY: Fall back to old fixed structure
+            // Card 1: Data flows
+            if (Array.isArray(privacy.data_flows) && privacy.data_flows.length > 0) {
+              const bullets = privacy.data_flows.slice(0, 4).map(item => `<li>${fixInternalLinks(linkGlossaryTerms(item))}</li>`).join("");
+              let dodonts = "";
+              if (privacy.data_flows_do || privacy.data_flows_dont) {
+                const doItem = privacy.data_flows_do ? `<div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> ${fixInternalLinks(linkGlossaryTerms(privacy.data_flows_do))}</span></div>` : "";
+                const dontItem = privacy.data_flows_dont ? `<div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> ${fixInternalLinks(linkGlossaryTerms(privacy.data_flows_dont))}</span></div>` : "";
+                dodonts = `<div class="dodont-strip">${doItem}${dontItem}</div>`;
+              }
+              cards.push(`    <div class="privacy-card" id="data-flows">
       <h3>Who can see what when you use ${svc.name}</h3>
       <ul>${bullets}</ul>
       ${dodonts}
     </div>`);
-          }
-          
-          // Card 2: Recovery
-          if (Array.isArray(privacy.recovery) && privacy.recovery.length > 0) {
-            const bullets = privacy.recovery.slice(0, 4).map(item => `<li>${linkGlossaryTerms(item)}</li>`).join("");
-            let dodonts = "";
-            if (privacy.recovery_do || privacy.recovery_dont) {
-              const doItem = privacy.recovery_do ? `<div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> ${linkGlossaryTerms(privacy.recovery_do)}</span></div>` : "";
-              const dontItem = privacy.recovery_dont ? `<div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> ${linkGlossaryTerms(privacy.recovery_dont)}</span></div>` : "";
-              dodonts = `<div class="dodont-strip">${doItem}${dontItem}</div>`;
             }
-            cards.push(`    <div class="privacy-card" id="recovery">
+            
+            // Card 2: Recovery
+            if (Array.isArray(privacy.recovery) && privacy.recovery.length > 0) {
+              const bullets = privacy.recovery.slice(0, 4).map(item => `<li>${fixInternalLinks(linkGlossaryTerms(item))}</li>`).join("");
+              let dodonts = "";
+              if (privacy.recovery_do || privacy.recovery_dont) {
+                const doItem = privacy.recovery_do ? `<div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> ${fixInternalLinks(linkGlossaryTerms(privacy.recovery_do))}</span></div>` : "";
+                const dontItem = privacy.recovery_dont ? `<div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> ${fixInternalLinks(linkGlossaryTerms(privacy.recovery_dont))}</span></div>` : "";
+                dodonts = `<div class="dodont-strip">${doItem}${dontItem}</div>`;
+              }
+              cards.push(`    <div class="privacy-card" id="recovery">
       <h3>Lost your phone? How ${svc.name} recovery works</h3>
       <ul>${bullets}</ul>
       ${dodonts}
     </div>`);
-          }
-          
-          // Card 3: Availability / Region
-          if (Array.isArray(privacy.region) && privacy.region.length > 0) {
-            const bullets = privacy.region.slice(0, 4).map(item => `<li>${linkGlossaryTerms(item)}</li>`).join("");
-            cards.push(`    <div class="privacy-card" id="availability">
+            }
+            
+            // Card 3: Availability / Region
+            if (Array.isArray(privacy.region) && privacy.region.length > 0) {
+              const bullets = privacy.region.slice(0, 4).map(item => `<li>${fixInternalLinks(linkGlossaryTerms(item))}</li>`).join("");
+              cards.push(`    <div class="privacy-card" id="availability">
       <h3>Availability &amp; safe installs</h3>
       <ul>${bullets}</ul>
     </div>`);
+            }
           }
           
           // Micro-FAQs (each item individually collapsible, like brand FAQ)
@@ -1034,11 +1096,12 @@ ${glossaryItems}
           if (cards.length === 0 && !microFaqsHtml && !glossaryHtml) return "";
           
           const sectionTitle = privacy.section_title || "Privacy & Safety";
+          const containerClass = usesNewTileFormat ? "svc-compat__grid" : "privacy-cards";
           
           return `
-<section id="privacy-safety" class="service-section" aria-labelledby="privacy-safety-label">
-  <h2 id="privacy-safety-label" class="feature-label">${sectionTitle}</h2>
-  <div class="privacy-cards">
+<section id="privacy" class="service-section" aria-labelledby="privacy-label">
+  <h2 id="privacy-label" class="feature-label">${sectionTitle}</h2>
+  <div class="${containerClass}">
 ${cards.join("\n")}
   </div>${microFaqsHtml}${glossaryHtml}
 </section>`;
@@ -1128,7 +1191,9 @@ ${cards.join("\n")}
         return `
 <section id="privacy" class="service-section">
   <h2 class="feature-label">Privacy &amp; Safety</h2>
+  <div class="privacy-cards">
 ${cards.join("\n")}
+  </div>
 </section>`;
       };
 
@@ -1367,50 +1432,12 @@ ${featureTiles}
 ${upfrontHtml}${ongoingHtml}
   </div>\n` : "";
         
-        // Render scenario cards with improved structure
-        let scenariosHtml = "";
-        if (Array.isArray(costsData.scenarios) && costsData.scenarios.length > 0) {
-          const scenarioTiles = costsData.scenarios.map(scenario => {
-            const anchorId = scenario.id || slugify(scenario.title || "");
-            
-            // Build scenario details
-            const whatHtml = scenario.what ? `<p class="scenario-what">${escapeHtml(scenario.what)}</p>` : "";
-            
-            const detailsHtml = `
-      <div class="scenario-details">
-        ${scenario.cost ? `<div class="scenario-detail">
-          <span class="scenario-detail__label">Cost</span>
-          <span class="scenario-detail__value">${escapeHtml(scenario.cost)}</span>
-        </div>` : ''}
-        ${scenario.time ? `<div class="scenario-detail">
-          <span class="scenario-detail__label">Time</span>
-          <span class="scenario-detail__value">${escapeHtml(scenario.time)}</span>
-        </div>` : ''}
-        ${scenario.frequency ? `<div class="scenario-detail">
-          <span class="scenario-detail__label">Frequency</span>
-          <span class="scenario-detail__value">${escapeHtml(scenario.frequency)}</span>
-        </div>` : ''}
-      </div>`;
-            
-            return `
-      <div class="scenario-card" id="${anchorId}">
-        <h3 class="scenario-card__title">${escapeHtml(scenario.title)}</h3>
-        ${whatHtml}
-        ${detailsHtml}
-      </div>`;
-          }).join("");
-          
-          scenariosHtml = `  <div class="scenario-cards">
-${scenarioTiles}
-  </div>`;
-        }
-        
-        if (!introHtml && !summaryStatsHtml && !costBlocksHtml && !scenariosHtml) return "";
+        if (!introHtml && !summaryStatsHtml && !costBlocksHtml) return "";
         
         return `
 <section id="costs" class="service-section section-costs">
   <h2 class="feature-label">${sectionTitle}</h2>
-${introHtml}${summaryStatsHtml}${costBlocksHtml}${scenariosHtml}
+${introHtml}${summaryStatsHtml}${costBlocksHtml}
 </section>`;
       };
 
@@ -2673,6 +2700,63 @@ ${sectionsHtml}`;
   
   // Run when hash changes (clicking jump links, back/forward)
   window.addEventListener('hashchange', openAccordionForHash);
+})();
+</script>
+<!-- Open glossary when clicking glossary links -->
+<script>
+(function() {
+  function openGlossaryForHash(hash) {
+    // Use provided hash or get from URL
+    const targetHash = hash || window.location.hash;
+    if (!targetHash) return;
+    
+    try {
+      // Check if hash target is inside a collapsed mini-glossary
+      const target = document.querySelector(targetHash);
+      if (!target) return;
+      
+      const glossary = target.closest('.mini-glossary');
+      if (glossary && !glossary.open) {
+        glossary.open = true;
+        // Small delay to let details open before scrolling
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      } else if (target) {
+        // Glossary already open, just scroll
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    } catch (e) {
+      // Invalid selector, ignore
+    }
+  }
+  
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { openGlossaryForHash(); });
+  } else {
+    openGlossaryForHash();
+  }
+  
+  // Run when hash changes
+  window.addEventListener('hashchange', function() { openGlossaryForHash(); });
+  
+  // Intercept clicks on glossary links
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a.glossary-link');
+    if (link) {
+      e.preventDefault();
+      // Extract hash from href
+      const href = link.getAttribute('href');
+      const hash = href ? href.split('#')[1] : null;
+      if (hash) {
+        // Update URL hash
+        window.location.hash = hash;
+        // Open glossary immediately
+        openGlossaryForHash('#' + hash);
+      }
+    }
+  });
 })();
 </script>
 `;

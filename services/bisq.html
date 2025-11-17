@@ -588,8 +588,8 @@
 <details class="section-accordion">
   <summary>Privacy & Safety</summary>
 
-<section id="privacy-safety" class="service-section" aria-labelledby="privacy-safety-label">
-  <h2 id="privacy-safety-label" class="feature-label">Privacy & Safety</h2>
+<section id="privacy" class="service-section" aria-labelledby="privacy-label">
+  <h2 id="privacy-label" class="feature-label">Privacy & Safety</h2>
   <div class="privacy-cards">
     <div class="privacy-card" id="data-flows">
       <h3>Who can see what when you use Bisq</h3>
@@ -598,7 +598,7 @@
     </div>
     <div class="privacy-card" id="recovery">
       <h3>Lost your phone? How Bisq recovery works</h3>
-      <ul><li>Restore on a new machine by installing Bisq, importing your encrypted backup, and entering your wallet seed.</li><li>Leave the app open so it can resync the <a href="#dao-state" class="glossary-link" data-term="DAO state">DAO state</a> and your trade history over Tor.</li></ul>
+      <ul><li>Restore on a new machine by installing Bisq, importing your encrypted backup, and entering your wallet seed.</li><li>Leave the app open so it can resync the <a href="/services/bisq.html#dao-state" class="glossary-link" data-term="DAO state">DAO state</a> and your trade history over Tor.</li></ul>
       <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> Test your backup by restoring it on a spare machine when convenient.</span></div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> Delete the old data directory before you confirm that the new install works.</span></div></div>
     </div>
     <div class="privacy-card" id="availability">
@@ -1079,6 +1079,63 @@
   
   // Run when hash changes (clicking jump links, back/forward)
   window.addEventListener('hashchange', openAccordionForHash);
+})();
+</script>
+<!-- Open glossary when clicking glossary links -->
+<script>
+(function() {
+  function openGlossaryForHash(hash) {
+    // Use provided hash or get from URL
+    const targetHash = hash || window.location.hash;
+    if (!targetHash) return;
+    
+    try {
+      // Check if hash target is inside a collapsed mini-glossary
+      const target = document.querySelector(targetHash);
+      if (!target) return;
+      
+      const glossary = target.closest('.mini-glossary');
+      if (glossary && !glossary.open) {
+        glossary.open = true;
+        // Small delay to let details open before scrolling
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      } else if (target) {
+        // Glossary already open, just scroll
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    } catch (e) {
+      // Invalid selector, ignore
+    }
+  }
+  
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() { openGlossaryForHash(); });
+  } else {
+    openGlossaryForHash();
+  }
+  
+  // Run when hash changes
+  window.addEventListener('hashchange', function() { openGlossaryForHash(); });
+  
+  // Intercept clicks on glossary links
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a.glossary-link');
+    if (link) {
+      e.preventDefault();
+      // Extract hash from href
+      const href = link.getAttribute('href');
+      const hash = href ? href.split('#')[1] : null;
+      if (hash) {
+        // Update URL hash
+        window.location.hash = hash;
+        // Open glossary immediately
+        openGlossaryForHash('#' + hash);
+      }
+    }
+  });
 })();
 </script>
 </body>

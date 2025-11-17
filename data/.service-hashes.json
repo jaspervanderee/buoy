@@ -4,23 +4,23 @@
     "date": "2025-11-07"
   },
   "aqua": {
-    "hash": "9b6a817f688e3584d041e4812921637f0168287862e634068825e7bb11af30dc",
+    "hash": "60635bec670e746f4996d7460a0b4e25403cf65bf4bbeea043ebb5acc1d6ad92",
     "date": "2025-11-01"
   },
   "bisq": {
-    "hash": "f1e1b8223f00741eccf1b017e17db224677dc0f888318a896c15dd5017d88a57",
+    "hash": "1fe986785e7c054181feda5825ff56f1a5ef1835b84812dbf87b0411567c106a",
     "date": "2025-11-12"
   },
   "bitkey": {
-    "hash": "0995e20d104c4fdc169c2b6302328bf12d80086e25bd8c26ff2bd809b5b14d34",
+    "hash": "51d651a57b0c04203eb15b744db05395e503d80a458d4cc6d3c5e541fecd0ee0",
     "date": "2025-11-14"
   },
   "bitonic": {
-    "hash": "7019f69a615e7c272c664dbeec9884ad9d63eabcc48b1feb9c02405f9c8545a7",
+    "hash": "2343e2ebd62c245afab7479350402d254be35e0c1d3866ecfff40ebce22fdeff",
     "date": "2025-11-09"
   },
   "breez": {
-    "hash": "4e59eb17debf476682edb5754762b4637df2660ebda0181a425878a39588b303",
+    "hash": "39411b68fddaa639282f80d074b8acea09deb8daaf93a78c695536c8c6a970a1",
     "date": "2025-11-01"
   },
   "btc-pay": {
@@ -28,15 +28,15 @@
     "date": "2025-11-07"
   },
   "bull-bitcoin": {
-    "hash": "564748c28ca437728f376f4e1d56116ae0f6fd7d38fe6ab20d3a8ab9ca5702ce",
+    "hash": "6b2d04b947631b2f7f942d7cd96fe6b4dffd924ef3325a92e66aed28cee3173e",
     "date": "2025-11-12"
   },
   "fold": {
-    "hash": "844f69929d841692151529057e929d9c6d59899dcdacf0c08441a84968732099",
+    "hash": "c2fe26f48758701601be65674df33987e1c6d1d8ec852e3f8970e2d7d717e9ad",
     "date": "2025-11-01"
   },
   "hodlhodl": {
-    "hash": "6276e1bcfd41965f3af04c457d5cdf6b5d1c1433448002f90d67aeed37bed292",
+    "hash": "adede0df822d9c2bc93f7fccd06f2b4f75d3209e5b8b12552a4f88968514dd2f",
     "date": "2025-11-09"
   },
   "lightspark": {
@@ -44,8 +44,8 @@
     "date": "2025-11-07"
   },
   "muun": {
-    "hash": "813c56f4707b0f1e0f8db8808165d538569d36bdfeeee55ac99f5faa25ca0c49",
-    "date": "2025-11-14"
+    "hash": "0f430de4a0e2b71ab9114b58db7a5148094ce01852e55423faba1dde888c3f78",
+    "date": "2025-11-16"
   },
   "mynode": {
     "hash": "f8817761704a4a9dd622da7d35b018cc9fbcd4ba015b92d317f6e5a4cb54184a",
@@ -56,27 +56,27 @@
     "date": "2025-11-07"
   },
   "peach": {
-    "hash": "6c413af6725acbf112cbcc2dec2d7ac99a48e1d3d77cf8d985d4acfddea5f588",
+    "hash": "abe37fecd098e20579b1e9d044aed79aa24648ab5e097ec7aab15935dec87b80",
     "date": "2025-11-09"
   },
   "phoenix": {
-    "hash": "2dd85e58a914734eb465d480a2f3ae3fc4fdf398d6214fe2c3c882fca680eb73",
+    "hash": "2b34ca639ceba45f226ebce041df6a66a747e5f393003bf3417d3b57c412e8c7",
     "date": "2025-10-03"
   },
   "pocket": {
-    "hash": "da273e0a137e875280c155bcdbea12229a5d3f3803c91b130ca5eeedec8697c7",
-    "date": "2025-11-14"
+    "hash": "eb09983146c9cea5215d5d476709e3601c5983a352ce3a32605abf9fd29d1fad",
+    "date": "2025-11-16"
   },
   "relai": {
-    "hash": "c70285dbcd817df7447ff2a8abdf19e320c5f50163f79d989a82b48a9badb4c6",
+    "hash": "4f1d66343c46bbd97df8315a81780ecca1eb20fe1286c08da70d92f01532d1b0",
     "date": "2025-11-08"
   },
   "river": {
-    "hash": "b839f766c39242d75cc928dff1d1b1ce76e611f334e6b96cdec0d986978c6c00",
+    "hash": "cd3f7602723fe57df04370c9753c5134e143d6dd8876a9ee365745a40af2c70b",
     "date": "2025-11-08"
   },
   "robosats": {
-    "hash": "dd07c951a22d5ae7dcd16876ee06d0602815688b52cb3b14ed7424444e7070a6",
+    "hash": "0fce7aa9318e9ac9f9351a5e426819df542603225f90925b8793e4451425d971",
     "date": "2025-11-12"
   },
   "sparrow": {
@@ -88,11 +88,11 @@
     "date": "2025-11-07"
   },
   "strike": {
-    "hash": "8c0fe9b97d47b17fe1b6055540c4d5e27f299db39819eb097a7e3426032c0085",
+    "hash": "57215da42016fff658dec0129770fe2dbf08530ba1cd9519edf7eb1a989145f1",
     "date": "2025-11-01"
   },
   "swan": {
-    "hash": "2a8db609fea2f892430ea0303cf01ddd3b02f4d9d718cb8b939b9540cb8eea26",
+    "hash": "48c6f20278a6b5b7eb3bcd7263e279e10488898d43fda6f85f6bf5457f4144fe",
     "date": "2025-11-08"
   },
   "umbrel": {
