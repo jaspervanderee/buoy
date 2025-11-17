@@ -1340,68 +1340,6 @@
     "payment_methods": [
       "Bitcoin on-chain"
     ],
-    "payment_methods_limits": {
-      "heading": "Keys & security actions",
-      "methods": [
-        {
-          "id": "mobile-key",
-          "name": "Mobile key (app)",
-          "available": true,
-          "icon": "app",
-          "summary": {
-            "fee": "Free",
-            "speed": "Instant up to your daily limit",
-            "withdraw": "Hardware key required beyond the limit"
-          },
-          "best_for": "Daily spending and balance monitoring.",
-          "limits": {
-            "min_per_tx": "$1 equivalent (you set the floor)",
-            "max_per_tx": "Matches the mobile limit you configure",
-            "max_per_day": "Matches your limit reset window",
-            "max_per_week": "Matches your limit reset window",
-            "withdraw_eligibility": "Hardware key or Recovery Contacts unlock higher amounts"
-          }
-        },
-        {
-          "id": "hardware-key",
-          "name": "Hardware key",
-          "available": true,
-          "icon": "bitcoin",
-          "summary": {
-            "fee": "Included",
-            "speed": "NFC tap in seconds",
-            "withdraw": "Required for limit changes and large spends"
-          },
-          "best_for": "Approving savings moves, safety settings, and inheritance or emergency workflows.",
-          "limits": {
-            "min_per_tx": "No minimum once paired",
-            "max_per_tx": "Unlimited (physical possession required)",
-            "max_per_day": "Unlimited with hardware present",
-            "max_per_week": "Unlimited with hardware present",
-            "withdraw_eligibility": "Keep the device charged and nearby to co-sign"
-          }
-        },
-        {
-          "id": "server-key",
-          "name": "Server key",
-          "available": true,
-          "icon": "bank",
-          "summary": {
-            "fee": "Included",
-            "speed": "Always online backup signer",
-            "withdraw": "Never signs without the hardware or mobile key"
-          },
-          "best_for": "Backing up mobile spends while keeping final control with you.",
-          "limits": {
-            "min_per_tx": "Follows the mobile limit you set",
-            "max_per_tx": "Stops at the mobile limit",
-            "max_per_day": "Stops at the mobile limit",
-            "max_per_week": "Stops at the mobile limit",
-            "withdraw_eligibility": "Requires either the hardware key or Recovery Contacts to act"
-          }
-        }
-      ]
-    },
     "recovery_heading": "If this happens, can I still move my Bitcoin?",
     "recovery_tiles": [
       {
@@ -1739,159 +1677,6 @@
           }
         ]
       }
-    },
-    "migration": [
-      {
-        "id": "restore-same-wallet",
-        "title": "Restore Bitkey on a new phone",
-        "choose": "Use this when your phone is lost or replaced but the hardware key is still safe.",
-        "time": "~10 min",
-        "cost": "Free",
-        "risk": "Low",
-        "steps": [
-          "Install Bitkey on the new phone from the official app store and sign in with the same email and Apple ID or Google account.",
-          "Approve the cloud access prompt so Bitkey can fetch the encrypted mobile key backup.",
-          "Unlock the hardware key with your fingerprint, tap it to the phone, and wait for the wallet to resync."
-        ],
-        "tips": "Run this drill at least once a year so you trust the flow under pressure.",
-        "gotcha": "If the cloud backup is outdated the restore will fail, so keep an eye on the Security hub timestamp."
-      },
-      {
-        "id": "move-from-another-wallet",
-        "title": "Another wallet → Bitkey",
-        "choose": "Choose this when you are migrating from a custodial app or a single-signature hardware wallet into Bitkey's assisted multisig.",
-        "time": "~15-30 min",
-        "cost": "Mining fee",
-        "risk": "Low",
-        "steps": [
-          "Generate a receive address inside Bitkey and label the source wallet you are leaving.",
-          "Withdraw a small amount from the old wallet to confirm Bitkey receives and displays it.",
-          "Move the remaining balance in one or two batches, matching miner fees to network conditions.",
-          "Lower your mobile spending limit after the migration so daily spends stay conservative."
-        ],
-        "tips": "Retire the old wallet or mark it as watch-only to avoid accidentally reusing addresses.",
-        "gotcha": "Bitkey is on-chain only, so keep a separate Lightning wallet if you were using Lightning previously."
-      },
-      {
-        "id": "move-to-onchain",
-        "title": "Bitkey → Another wallet",
-        "choose": "Pick this when you want to sweep savings into a different cold storage setup or collaborative multisig.",
-        "time": "~10-30 min",
-        "cost": "Mining fee",
-        "risk": "Low",
-        "steps": [
-          "Open the destination wallet, verify its receive address on a trusted screen, and copy it into Bitkey.",
-          "Raise the mobile limit only if necessary, then tap the hardware key to approve the send.",
-          "Wait for on-chain confirmations and tag the move inside Security hub for future audits.",
-          "Lower the mobile limit again and update your emergency plan to point to the new wallet."
-        ],
-        "tips": "If you expect to move large sums, rehearse the Emergency Exit Kit so you know the fallback path.",
-        "gotcha": "Large sends require the hardware key; plan logistics before you travel without it."
-      }
-    ],
-    "self_custody": {
-      "heading": "Self-custody: withdraw safely",
-      "tiles": [
-        {
-          "id": "pick-wallet",
-          "title": "1. Initialize your Bitkey kit",
-          "chips": {
-            "time": "~10 min",
-            "cost": "$149",
-            "risk": "Low"
-          },
-          "why": "Bitkey hands you two keys so you can co-sign without memorizing a seed phrase.",
-          "actions": [
-            "Unbox the hardware key, magnetic stand, and cable, then charge the device fully.",
-            "Pair it with your phone via NFC, enroll your fingerprint, and label the device inside Security hub.",
-            "Store the hardware key in its stand or a fireproof safe when you are not using it.",
-            "Turn on push, SMS, and email alerts so you notice any unauthorized activity."
-          ],
-          "gotcha": "The hardware key has no screen, so always confirm addresses on your phone or a connected node."
-        },
-        {
-          "id": "make-receive-code",
-          "title": "2. Generate a fresh receive address",
-          "chips": {
-            "time": "~2 min",
-            "cost": "Free",
-            "risk": "Low"
-          },
-          "why": "Bitkey derives bc1 addresses from your mobile key so each deposit is easy to audit in Security hub.",
-          "actions": [
-            "Open Receive in the app and copy the address shown.",
-            "Share it with the exchange or wallet you are withdrawing from and note the memo for future reference.",
-            "Wait for the confirmation counter to reach your threshold before marking the deposit as available.",
-            "Generate a new address for every additional deposit to protect privacy."
-          ],
-          "gotcha": "Never reuse addresses; Bitkey makes new ones instantly so there is no reason to recycle."
-        },
-        {
-          "id": "test-small",
-          "title": "3. Rehearse recovery flows",
-          "chips": {
-            "time": "~15 min",
-            "cost": "Free",
-            "risk": "Low"
-          },
-          "why": "Running Cloud Recovery or Emergency Exit drills while the balance is tiny proves you can rebuild the wallet under pressure.",
-          "actions": [
-            "Install Bitkey on a spare phone, sign into your cloud account, and confirm the backup appears.",
-            "Tap the hardware key to decrypt the backup, then wipe the spare phone so it cannot spend.",
-            "Download the Emergency Exit Kit, verify the checksum, and store it with your instructions.",
-            "Document which Android device you will use if you ever need to run the kit."
-          ],
-          "gotcha": "Remove the spare phone from trusted devices after the drill so it cannot silently authorize spends."
-        },
-        {
-          "id": "move-rest",
-          "title": "4. Document exit ramps",
-          "chips": {
-            "time": "~30 min",
-            "cost": "Free",
-            "risk": "Low"
-          },
-          "why": "Writing down the Emergency Exit, Recovery Contacts, and Inheritance steps keeps coins recoverable even if you are offline.",
-          "actions": [
-            "List the locations of your hardware key, Android device, and cloud backup link in a secure document.",
-            "Share recovery instructions with your trusted contacts and confirm they completed the invite flow.",
-            "Invite your beneficiary via the Inheritance feature and note the six-month hold in your estate plan.",
-            "Review the plan quarterly and after every firmware update to confirm nothing drifted."
-          ],
-          "gotcha": "Treat the instructions like a bearer asset; anyone with both the instructions and hardware could attempt a recovery."
-        }
-      ],
-      "micro_faqs": [
-        {
-          "q": "What if I lose both my phone and hardware key?",
-          "a": "Use the Recovery Contacts you set up; they verify a code inside their Bitkey app so you can rebuild the wallet on new hardware."
-        },
-        {
-          "q": "Can I plug Bitkey into a computer instead of using NFC?",
-          "a": "No. The hardware key only talks over NFC so you avoid USB attack surfaces; keep an NFC-capable phone handy."
-        },
-        {
-          "q": "How often should I refresh backups?",
-          "a": "Security hub shows the latest backup timestamp; run a backup after every firmware update or whenever you add contacts."
-        }
-      ]
-    },
-    "privacy_notes": {
-      "data_flows": [
-        "Bitkey stores your shipping details and email to deliver the hardware kit and send security alerts.",
-        "The app writes an encrypted copy of your mobile key to your personal iCloud or Google Drive account; only your hardware key can decrypt it.",
-        "Security hub logs device metadata, Recovery Contacts, and inheritance invites so you can audit changes later."
-      ],
-      "recovery_drill": [
-        "Schedule a quarterly Cloud Recovery drill with a spare phone.",
-        "Verify the Emergency Exit Kit checksum and store it with your instructions.",
-        "Ping your Recovery Contacts annually so you know they can still help."
-      ],
-      "country_caveats": [
-        "Bitkey hardware availability rolls out region by region; confirm your country in the Bitkey Store before ordering.",
-        "Emergency Exit Kit instructions are currently English only.",
-        "Some cloud features require access to Google Drive or iCloud; plan alternatives if those services are restricted in your region."
-      ]
     },
     "privacy": {
       "section_title": "Privacy & jurisdiction",
@@ -9329,22 +9114,6 @@
         }
       ]
     },
-    "privacy_notes": {
-      "data_flows": [
-        "Strike stores the personal information and identity documents you submit during sign up to meet AML and KYC rules.",
-        "Bank and card details are shared with regulated payment processors so your deposits and withdrawals can settle."
-      ],
-      "recovery_drill": [
-        "Enable two-factor authentication and confirm your email before funding the account.",
-        "If you lose access, open the app on a trusted device and follow the in-app recovery prompts or contact support with your ID.",
-        "Review the Account > Limits view after recovery to confirm Strike restored your previous limits."
-      ],
-      "country_caveats": [
-        "ACH, Bill Pay, and Strike Instant are currently limited to U.S. customers.",
-        "Wire deposits and withdrawals require a U.S. bank that supports Fedwire.",
-        "Availability and payment options differ by country; confirm support inside the Strike app store listing."
-      ]
-    },
     "privacy": {
       "section_title": "Privacy & Safety",
       "data_flows": [
@@ -10210,16 +9979,24 @@
     "type_of_platform": "Desktop wallet",
     "faqs": [
       {
-        "q": "What is Wasabi Wallet?",
-        "a": "Wasabi is an open‑source, non‑custodial desktop wallet focused on privacy with built‑in CoinJoin."
+        "q": "Can I still use CoinJoin with Wasabi Wallet in 2025?",
+        "a": "The zkSNACKs coordinator shut down June 1, 2024, so the default CoinJoin option is no longer available. Wasabi continues as a privacy-focused wallet with Tor, coin control, and PayJoin. Community-run coordinators may emerge."
       },
       {
-        "q": "Does Wasabi work over Tor?",
-        "a": "Yes. Wasabi routes traffic over Tor and uses compact filters to protect your IP and balance privacy."
+        "q": "Does Wasabi Wallet always run over Tor?",
+        "a": "The desktop app launches with Tor routing and client-side block filters so your IP address and balances never hit a third-party server. You can toggle Tor off for troubleshooting, but privacy drops immediately when you do."
       },
       {
-        "q": "Is Wasabi beginner‑friendly?",
-        "a": "Wasabi offers a clear interface, but privacy features like CoinJoin may require learning for new users."
+        "q": "Can Wasabi Wallet connect to hardware wallets or my own node?",
+        "a": "Wasabi talks to the open-source Hardware Wallet Interface and can point at Bitcoin Core or Electrum, which keeps signing on dedicated devices while your node answers address lookups. Turn those integrations on if you want end-to-end self verification."
+      },
+      {
+        "q": "What fees should I expect when using Wasabi Wallet?",
+        "a": "The software is free, every transaction still pays the standard mining fee, and CoinJoin rounds add roughly a 0.3% coordinator fee for inputs above 0.01 BTC while smaller inputs only pay miners. You can delay mixes or spend unmixed coins when privacy is less critical."
+      },
+      {
+        "q": "What do I need to recover a Wasabi Wallet?",
+        "a": "Wasabi encrypts your wallet with the 12-word seed plus the optional passphrase, so you must restore with both pieces to regain control. Store them separately and test a dry-run recovery before you trust the wallet with real savings."
       }
     ],
     "supported_network": "Bitcoin",
@@ -10263,6 +10040,663 @@
     "website": "https://wasabiwallet.io",
     "countries": [
       "WW"
-    ]
+    ],
+    "trust_chips": [
+      {
+        "text": "Tor and client filters",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "tor-client-filters"
+      },
+      {
+        "text": "Coin control and PayJoin",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "coin-labels"
+      },
+      {
+        "text": "CoinJoin (availability varies)",
+        "status": "neutral",
+        "variant": "differentiator",
+        "link_to": "coinjoin-availability"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "Privacy-focused bitcoiners who want a self-custodial desktop wallet with Tor routing, coin control, and PayJoin support.",
+      "consider_if": "You value mandatory labeling, open-source code, hardware wallet integration, and the option to connect your own node.",
+      "not_ideal_when": "You need a mobile app, built-in CoinJoin (zkSNACKs coordinator shut down June 2024), or Lightning support."
+    },
+    "howto": {
+      "title": "Set up your Wasabi wallet",
+      "steps": [
+        {
+          "id": "setup-install",
+          "title": "1. Install and create your wallet",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Download Wasabi from wasabiwallet.io or build it from source, then verify the package signature.",
+            "Create a new wallet, record the 12 recovery words, and set a strong passphrase that only you know.",
+            "Confirm the words inside the app so you know the backup is correct before depositing any sats."
+          ],
+          "gotcha": "You need both the seed words and the passphrase to spend later, so store them in different safe places."
+        },
+        {
+          "id": "setup-receive",
+          "title": "2. Label every deposit",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Open Receive, describe who knows this address, and let Wasabi generate a fresh bc1 address.",
+            "Share the address with your exchange or payer and wait for on-chain confirmations in the History tab.",
+            "Mark the coin with meaningful labels so you remember which observers know about it when you spend later."
+          ],
+          "gotcha": "Reusing addresses exposes your graph to every counterparty, so rely on Wasabi's labeling workflow."
+        },
+        {
+          "id": "setup-pay",
+          "title": "3. Practice sending privately",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Mining fee",
+            "risk": "Low"
+          },
+          "actions": [
+            "Use Send to craft a transaction, select which coins to spend, and review the fee estimate.",
+            "Authorize the send with your passphrase and watch it broadcast to the network.",
+            "Note which observers now know about the recipient address so your labels stay accurate."
+          ],
+          "gotcha": "CoinJoin was available via the zkSNACKs coordinator until June 2024; community coordinators may still operate."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Can I still use CoinJoin with Wasabi Wallet?",
+          "a": "The zkSNACKs coordinator shut down June 1, 2024. Wasabi continues as a regular wallet with Tor, coin control, and PayJoin. Community coordinators may emerge."
+        },
+        {
+          "q": "Does Wasabi require a seed phrase and passphrase?",
+          "a": "Yes. Write down the 12 words and store the passphrase separately; you need both to spend or recover your Bitcoin."
+        },
+        {
+          "q": "Can Wasabi connect to my own Bitcoin node?",
+          "a": "Yes. Point Wasabi at your Bitcoin Core or Electrum server in settings so address lookups and filters stay private."
+        }
+      ]
+    },
+    "key_features": {
+      "heading": "Who holds your keys & what privacy you get",
+      "features": [
+        {
+          "id": "custody-model",
+          "title": "Self-custody (you hold the keys)",
+          "bullets": [
+            "<strong>Non-custodial:</strong> Private keys stay on your device, encrypted with your passphrase.",
+            "<strong>12-word seed:</strong> Standard BIP39 recovery words plus optional passphrase let you restore on any machine.",
+            "<strong>Hardware option:</strong> Pair Coldcard, Trezor, Ledger via Hardware Wallet Interface so signing stays offline."
+          ],
+          "footer": "<strong>Good for:</strong> Full control without third-party risk. <strong>Trade-off:</strong> You alone manage backups and passphrases."
+        },
+        {
+          "id": "tor-client-filters",
+          "title": "Tor and client filters",
+          "bullets": [
+            "<strong>Always-on Tor:</strong> Network calls route through Tor by default, hiding your IP from servers.",
+            "<strong>Compact block filters:</strong> The app downloads filters and scans them locally so your addresses never leave the machine.",
+            "<strong>Node option:</strong> Point Wasabi at your own Bitcoin Core or Electrum server for full self-verification."
+          ],
+          "footer": "<strong>Good for:</strong> Users who want privacy without extra VPN layers. <strong>Trade-off:</strong> Tor adds latency when the network is busy."
+        },
+        {
+          "id": "coinjoin-availability",
+          "title": "CoinJoin (availability varies)",
+          "bullets": [
+            "<strong>zkSNACKs coordinator shutdown:</strong> The default coordinator closed June 1, 2024. Wasabi continues as a regular wallet with coin control and PayJoin.",
+            "<strong>Community coordinators:</strong> Third-party coordinators may operate; check forums and GitHub for current options.",
+            "<strong>Open-source protocol:</strong> WabiSabi is public, so anyone can run a coordinator if demand returns."
+          ],
+          "footer": "<strong>Good for:</strong> Understanding current privacy options. <strong>Trade-off:</strong> CoinJoin requires an active coordinator."
+        },
+        {
+          "id": "coin-labels",
+          "title": "Coin control and PayJoin",
+          "bullets": [
+            "<strong>Mandatory labeling:</strong> Every address and coin carries the observers you list so you can avoid accidental linkages later.",
+            "<strong>Manual coin selection:</strong> Spend view lets you choose exactly which coins fund a payment.",
+            "<strong>PayJoin support:</strong> Send interactive PayJoin transactions (BIP78) to break common-input-ownership heuristics when the recipient supports it."
+          ],
+          "footer": "<strong>Good for:</strong> Advanced spend policies and privacy-conscious transactions. <strong>Trade-off:</strong> Requires discipline; sloppy labels break the model."
+        }
+      ]
+    },
+    "payment_methods": [
+      "Bitcoin on-chain"
+    ],
+    "recovery_heading": "If this happens, can I still move my Bitcoin?",
+    "recovery_tiles": [
+      {
+        "id": "lose-laptop",
+        "title": "Lose laptop",
+        "status": "works",
+        "chips": {
+          "time": "~15 min"
+        }
+      },
+      {
+        "id": "lose-seed",
+        "title": "Lose seed words",
+        "status": "works-caveat",
+        "chips": {
+          "time": "Plan ahead"
+        }
+      },
+      {
+        "id": "forget-passphrase",
+        "title": "Forget passphrase",
+        "status": "works-caveat",
+        "chips": {
+          "time": "Only while wallet stays unlocked"
+        }
+      },
+      {
+        "id": "coordinator-down",
+        "title": "Coordinator offline",
+        "status": "works",
+        "chips": {
+          "time": "Minutes"
+        }
+      }
+    ],
+    "recovery_explainers": [
+      {
+        "id": "lose-laptop",
+        "why": "Wallet files live on your computer, but the seed phrase and passphrase recreate everything on a fresh install.",
+        "how": [
+          "Install Wasabi on a new machine and choose Recover wallet.",
+          "Enter the 12 words plus the exact passphrase to unlock the keys.",
+          "Let the wallet rescan filters; your balance reappears once sync completes."
+        ],
+        "gotcha": "Restoring on a new device invalidates the old install, so wipe or destroy the lost machine if it resurfaces."
+      },
+      {
+        "id": "lose-seed",
+        "why": "The 12 words are the root of every key, so without them you cannot recreate the wallet.",
+        "how": [
+          "If the wallet is still open, generate a new wallet immediately and move funds there.",
+          "Export labels and history to help with bookkeeping before you sweep.",
+          "Store the new seed in duplicate fire-resistant locations."
+        ],
+        "gotcha": "There is no recovery without the seed, so test backups before you deposit life-changing amounts."
+      },
+      {
+        "id": "forget-passphrase",
+        "why": "Wasabi encrypts secrets with the optional passphrase, so the seed alone is insufficient once you set it.",
+        "how": [
+          "If you still have the wallet unlocked, open Wallet Manager and change the passphrase to something memorable.",
+          "Record the new passphrase alongside—but separate from—the seed words.",
+          "Sweep funds into a fresh wallet if you suspect the old passphrase leaked."
+        ],
+        "gotcha": "If you lose the passphrase and the wallet is locked, the coins are gone; there is no brute-force option."
+      },
+      {
+        "id": "coordinator-down",
+        "why": "CoinJoin needs a coordinator, but your keys are local so you can still spend on-chain or point to another coordinator.",
+        "how": [
+          "Pause Auto CoinJoin and send coins on-chain like any other wallet.",
+          "Switch to a community coordinator or run your own if you need immediate mixes.",
+          "Reconnect to the default coordinator once it is back online."
+        ],
+        "gotcha": "CoinJoin pauses while the coordinator is offline, so plan mixes ahead of deadlines."
+      }
+    ],
+    "inheritance": {
+      "section_title": "Inheritance: choose your path",
+      "intro": "Wasabi never holds your keys, so the inheritance path you choose determines how your heirs will recover the bitcoin. Each approach carries different trade-offs between security, convenience, and execution complexity.",
+      "cards": [
+        {
+          "id": "inheritance-diy-singlesig",
+          "title": "DIY single-sig (your current setup)",
+          "status": "path-basic",
+          "chips": {
+            "setup": "Document locations"
+          },
+          "why": "When you control a single seed plus passphrase, heirs need both pieces and clear instructions to restore the wallet. This works when you trust one person to find everything and execute carefully.",
+          "requirements": [
+            "Written seed phrase location",
+            "Passphrase location (stored separately)",
+            "Wasabi installation guide",
+            "Wallet label export"
+          ],
+          "risk_note": "Single point of failure: if one piece is lost or the executor makes a mistake, funds can be locked or swept incorrectly.",
+          "action": "Do this: Write a one-page instruction sheet today and store it where your executor can find it when needed."
+        },
+        {
+          "id": "inheritance-diy-multisig",
+          "title": "DIY multisig (stronger resilience)",
+          "status": "path-advanced",
+          "chips": {
+            "setup": "Requires wallet migration"
+          },
+          "why": "A 2-of-3 or 3-of-5 multisig setup splits control across multiple keys held by you, family members, or trusted contacts. One lost key does not lock the funds, and no single person can move coins alone.",
+          "requirements": [
+            "Migrate Wasabi funds to multisig wallet (Sparrow, Electrum, Specter)",
+            "Distribute keys to different people or locations",
+            "Document the quorum policy (which keys must co-sign)",
+            "Provide restore instructions for each key holder"
+          ],
+          "risk_note": "Setup complexity: requires understanding multisig wallets, secure key distribution, and coordination among multiple parties.",
+          "action": "Do this: Research multisig wallets, test a small setup, then migrate your main holdings when confident."
+        },
+        {
+          "id": "inheritance-provider-assisted",
+          "title": "Provider-assisted (easiest execution)",
+          "status": "path-guided",
+          "chips": {
+            "setup": "Requires wallet migration"
+          },
+          "why": "Services like Unchained Capital, Casa, or Nunchuk offer assisted multisig where they hold one key and provide inheritance tooling. Your heirs follow a documented claim process, and the provider co-signs after verifying identity and waiting period.",
+          "requirements": [
+            "Migrate Wasabi funds to assisted multisig provider",
+            "Complete provider's inheritance setup flow",
+            "Designate beneficiaries within the provider's platform",
+            "Document access credentials and waiting periods"
+          ],
+          "risk_note": "Provider dependency: introduces counterparty risk, KYC data retention, and reliance on the provider's infrastructure staying online.",
+          "action": "Do this: Compare assisted multisig providers, understand their custody models, and decide if convenience justifies the trade-offs."
+        },
+        {
+          "id": "inheritance-checklist",
+          "title": "Preparation checklist (all paths)",
+          "status": "checklist",
+          "chips": {
+            "applies": "Every approach"
+          },
+          "checklist_sections": [
+            {
+              "heading": "What to prepare",
+              "items": [
+                "One-page instruction sheet with step-by-step recovery process",
+                "Location of seed phrase backup (but not the seed itself)",
+                "Location of passphrase (stored separately from seed)",
+                "Wallet software installation links and version notes",
+                "Exported wallet labels if using coin control",
+                "Contact information for technical help if executor gets stuck"
+              ]
+            },
+            {
+              "heading": "What NOT to include",
+              "items": [
+                "Never write seed phrases in the instruction document itself",
+                "Never email or cloud-sync seed phrases unencrypted",
+                "Never store seed and passphrase in the same physical location",
+                "Never assume executor knows how Bitcoin wallets work"
+              ]
+            },
+            {
+              "heading": "Legal considerations",
+              "items": [
+                "Inheritance instructions are not a legal will; consult an estate attorney",
+                "Some jurisdictions treat bitcoin as property requiring probate",
+                "Executor may need legal authority before accessing safe deposit boxes or password managers",
+                "Tax implications vary by jurisdiction; document basis and acquisition dates"
+              ]
+            }
+          ],
+          "action": "Do this: Complete one section per week until the full checklist is documented and stored safely."
+        }
+      ]
+    },
+    "compatibility": {
+      "section_title": "Compatibility: what works with Wasabi",
+      "intro": "Where the desktop app runs, which hardware it pairs with, and which standards it understands.",
+      "hardware_os": [
+        {
+          "id": "desktop",
+          "title": "Desktop operating systems",
+          "platforms": [
+            {
+              "name": "Windows",
+              "version": "10+",
+              "status": "verified"
+            },
+            {
+              "name": "macOS",
+              "version": "12+ (Apple Silicon & Intel)",
+              "status": "verified"
+            },
+            {
+              "name": "Linux",
+              "version": "Ubuntu/Debian/Fedora",
+              "status": "verified"
+            }
+          ]
+        },
+        {
+          "id": "hardware",
+          "title": "Hardware wallets via HWI",
+          "items": [
+            {
+              "name": "Coldcard",
+              "status": "verified",
+              "notes": "USB or microSD via Hardware Wallet Interface"
+            },
+            {
+              "name": "Trezor",
+              "status": "verified",
+              "notes": "Model One and T support via HWI"
+            },
+            {
+              "name": "Ledger",
+              "status": "verified",
+              "notes": "Nano S/X supported; confirm addresses on-device"
+            },
+            {
+              "name": "Generic HWI devices",
+              "status": "works-caveat",
+              "notes": "Requires latest HWI binaries and firmware"
+            }
+          ]
+        },
+        {
+          "id": "connections",
+          "title": "Connection types",
+          "methods": [
+            {
+              "type": "Tor",
+              "status": "verified",
+              "constraint": "Enabled by default for every network call"
+            },
+            {
+              "type": "Cleared TCP",
+              "status": "works-caveat",
+              "constraint": "Can disable Tor for debugging; privacy decreases"
+            },
+            {
+              "type": "Bitcoin Core RPC",
+              "status": "verified",
+              "constraint": "Point Wasabi at your own node for block filters"
+            },
+            {
+              "type": "Electrum server",
+              "status": "verified",
+              "constraint": "Use your own Electrum endpoint over Tor"
+            }
+          ]
+        }
+      ],
+      "standards": {
+        "table": [
+          {
+            "standard": "BIP39",
+            "support": "Yes",
+            "notes": "12 or 24-word seeds with optional passphrase",
+            "status": "verified"
+          },
+          {
+            "standard": "BIP32",
+            "support": "Yes",
+            "notes": "HD derivation with account structure stored in wallet file",
+            "status": "verified"
+          },
+          {
+            "standard": "BIP84",
+            "support": "Yes",
+            "notes": "Native SegWit (bc1) receive and change addresses",
+            "status": "verified"
+          },
+          {
+            "standard": "BIP86",
+            "support": "Partial",
+            "notes": "Taproot receive supported; CoinJoin still SegWit v0",
+            "status": "works-caveat"
+          },
+          {
+            "standard": "PayJoin (BIP78)",
+            "support": "Yes",
+            "notes": "Optional PayJoin send and receive integration",
+            "status": "verified"
+          }
+        ],
+        "advanced": {
+          "descriptors": {
+            "support": "Yes",
+            "notes": "Wallet file stores output descriptors; export via JSON"
+          },
+          "psbt": {
+            "support": "Yes",
+            "notes": "Used for hardware wallet signing and offline workflows"
+          },
+          "derivation_paths": {
+            "support": "Standard",
+            "notes": "m/84'/0'/0' for mainnet; testnet paths available"
+          },
+          "output_descriptors": {
+            "support": "No",
+            "notes": "Descriptors stay inside Wasabi; no UI export yet"
+          }
+        }
+      },
+      "integrations": {
+        "heading": "Works with…",
+        "intro": "Pair Wasabi with other privacy and verification tools.",
+        "items": [
+          {
+            "name": "Bitcoin Core",
+            "logo": "bitcoin-node",
+            "mode": "Full node backend",
+            "status": "verified",
+            "caveat": "Needs compact filter indexing (BIP158) enabled"
+          },
+          {
+            "name": "Electrum personal server",
+            "logo": "electrum",
+            "mode": "Private address lookups",
+            "status": "verified",
+            "caveat": "Run over Tor to keep IP private"
+          },
+          {
+            "name": "Hardware Wallet Interface",
+            "logo": "hardware",
+            "mode": "Bridge to Coldcard, Trezor, Ledger, KeepKey",
+            "status": "verified",
+            "caveat": "Requires device firmware that supports PSBT"
+          },
+          {
+            "name": "PayJoin endpoints",
+            "logo": "payjoin",
+            "mode": "Interactive PayJoin on compatible merchants",
+            "status": "works-caveat",
+            "caveat": "Counterparty must support BIP78"
+          }
+        ]
+      }
+    },
+    "costs": {
+      "section_title": "Costs & ongoing obligations",
+      "intro": "The software is free and open-source. You pay only Bitcoin network mining fees when you send transactions.",
+      "summary_stats": {
+        "upfront": "$0",
+        "monthly": "$0",
+        "per_transaction": "Mining fees only (CoinJoin coordinator shut down June 2024)"
+      },
+      "upfront": {
+        "title": "What you pay once",
+        "items": [
+          {
+            "name": "Wasabi download",
+            "amount": "$0",
+            "note": "Open-source MIT-licensed software"
+          },
+          {
+            "name": "Optional hardware wallet",
+            "amount": "$79-$200",
+            "note": "Coldcard, Trezor, Ledger, or similar"
+          },
+          {
+            "name": "Backup materials",
+            "amount": "$10-$100",
+            "note": "Steel plates, notebooks, or fireproof bags"
+          }
+        ]
+      },
+      "ongoing": {
+        "title": "What you pay ongoing",
+        "items": [
+          {
+            "name": "Bitcoin mining fees",
+            "amount": "Dynamic",
+            "highlight": "network dependent",
+            "note": "Applies to every on-chain send"
+          },
+          {
+            "name": "Tor bandwidth",
+            "amount": "$0",
+            "highlight": "included",
+            "note": "Your ISP's data plan covers the traffic"
+          },
+          {
+            "name": "CoinJoin coordinator fee",
+            "amount": "N/A",
+            "highlight": "discontinued",
+            "note": "zkSNACKs coordinator shut down June 1, 2024"
+          }
+        ]
+      }
+    },
+    "privacy": {
+      "section_title": "Privacy & jurisdiction",
+      "tiles": [
+        {
+          "id": "privacy-data",
+          "title": "What Wasabi collects & where it lives",
+          "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\">No accounts</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\">Tor routing</span>",
+          "why": "Wasabi keeps everything client-side so using the wallet never requires sharing identity data.",
+          "summary": "Wallet creation, balances, and labels stay on your machine. Tor plus client-side block filters keep IP addresses and addresses away from coordinators or servers.",
+          "bullets": [
+            "<strong>Stays on your device:</strong> Seed words, passphrase, labels, history, coin selection",
+            "<strong>Tor tunnel:</strong> All network calls are proxied unless you explicitly disable Tor",
+            "<strong>No coordinator dependency:</strong> zkSNACKs coordinator shut down June 2024; wallet continues as regular Bitcoin wallet",
+            "<strong>No accounts:</strong> Wasabi never asks for email, phone, or identity"
+          ],
+          "explainer_summary": "What happened to CoinJoin?",
+          "explainer_text": "<p>The zkSNACKs coordinator closed June 1, 2024 ([blog post](https://blog.wasabiwallet.website/zksnacks-is-discontinuing-its-coinjoin-coordination-service-1st-of-june/)). Wasabi continues with Tor, coin control, and PayJoin. Community coordinators may still operate.</p>"
+        },
+        {
+          "id": "privacy-jurisdiction",
+          "title": "Jurisdiction: zkSNACKs Ltd. (Gibraltar)",
+          "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\">Open-source</span>",
+          "why": "Wasabi is published by zkSNACKs Ltd., a Gibraltar-registered company subject to local laws but the wallet itself runs without accounts.",
+          "summary": "Legal requests can target the website, yet the wallet is open-source so you can compile it yourself and verify the code independently.",
+          "bullets": [
+            "<strong>Provider:</strong> zkSNACKs Ltd., Gibraltar (EU-linked jurisdiction)",
+            "<strong>Can be compelled:</strong> Website analytics or support inquiries if retained",
+            "<strong>Cannot access:</strong> Your private keys, seed, labels, or balances",
+            "<strong>Option:</strong> Run Wasabi over Tor bridges or connect your own node for maximum privacy"
+          ],
+          "explainer_summary": "Does the coordinator shutdown affect my coins?",
+          "explainer_text": "<p>No. Your keys stay local. The coordinator only facilitated CoinJoin mixing, which was optional. You can still receive, send, and store bitcoin normally.</p>"
+        },
+        {
+          "id": "privacy-controls",
+          "title": "Your controls",
+          "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\">Open code</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\">Client-side labels</span>",
+          "why": "You can audit every release, export data for bookkeeping, and decide which coordinators or nodes to trust.",
+          "bullets": [
+            "<strong>Open-source:</strong> MIT-licensed codebase on GitHub with reproducible builds",
+            "<strong>Node choice:</strong> Point at your own Bitcoin Core or Electrum server",
+            "<strong>Label export:</strong> Save and encrypt your labels for audits or migrations",
+            "<strong>Coordinator choice:</strong> Connect to community or self-hosted coordinators"
+          ],
+          "summary": "Transparency plus user-configurable backends let you keep verification close to home.",
+          "explainer_summary": "Can I audit releases?",
+          "explainer_text": "<p>Yes. Wasabi publishes deterministic build hashes and PGP signatures for every release so you can reproduce the binaries yourself.</p>"
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Does Wasabi require KYC?",
+          "a": "No. You download the app, create a wallet, and start using it with no personal data."
+        },
+        {
+          "q": "Can anyone freeze my Wasabi funds?",
+          "a": "No. Keys stay on your device and the wallet is non-custodial, so only you control spending."
+        },
+        {
+          "q": "Where are labels stored?",
+          "a": "Inside your encrypted wallet file. Export them manually if you need off-device backups."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "WabiSabi",
+          "def": "Wasabi's flexible CoinJoin protocol that allows variable output amounts."
+        },
+        {
+          "term": "Compact block filters",
+          "def": "Client-side block summaries (BIP158) that let wallets sync privately."
+        },
+        {
+          "term": "PayJoin",
+          "def": "An interactive transaction where sender and receiver both contribute inputs to break heuristics."
+        }
+      ],
+      "keywords": [
+        "Wasabi Wallet CoinJoin",
+        "Wasabi Tor routing",
+        "Wasabi hardware wallet",
+        "Wasabi privacy labels",
+        "WabiSabi coordinator"
+      ]
+    },
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#privacy",
+      "inheritance": "#inheritance",
+      "compat": "#features",
+      "migration": "#withdrawal",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-17",
+    "trust": {
+      "cards": [
+        {
+          "id": "security",
+          "fact": "Deterministic builds, client-side filters, and Tor-by-default networking",
+          "link_text": "Security guide",
+          "link_url": "https://docs.wasabiwallet.io/using-wasabi/WalletGeneration.html"
+        },
+        {
+          "id": "activity",
+          "fact": "Active development on GitHub with frequent releases and audits",
+          "link_text": "Release notes",
+          "link_url": "https://github.com/zkSNACKs/WalletWasabi/releases"
+        },
+        {
+          "id": "privacy",
+          "fact": "No-account model with dedicated privacy notice",
+          "link_text": "Privacy policy",
+          "link_url": "https://wasabiwallet.io/privacy-policy"
+        },
+        {
+          "id": "terms",
+          "fact": "Terms of service published by zkSNACKs Ltd.",
+          "link_text": "Terms of service",
+          "link_url": "https://wasabiwallet.io/terms-of-service"
+        }
+      ]
+    }
   }
 ]

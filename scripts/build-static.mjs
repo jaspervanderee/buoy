@@ -815,11 +815,15 @@ ${blocks}
           inheritance.cards.forEach(card => {
             if (!card || !card.title) return;
             
-            // Status chip mapping
+            // Status chip mapping - extended for path types
             const statusMap = {
               "action": { class: "svc-chip--works", text: "Action" },
               "process": { class: "svc-chip--setup", text: "Process" },
-              "emergency": { class: "svc-chip--notyet", text: "Emergency" }
+              "emergency": { class: "svc-chip--notyet", text: "Emergency" },
+              "path-basic": { class: "svc-chip--path-basic", text: "Basic path" },
+              "path-advanced": { class: "svc-chip--path-advanced", text: "Advanced" },
+              "path-guided": { class: "svc-chip--path-guided", text: "Guided" },
+              "checklist": { class: "svc-chip--checklist", text: "Checklist" }
             };
             const statusInfo = statusMap[card.status] || { class: "svc-chip--setup", text: card.status };
             
@@ -837,6 +841,18 @@ ${blocks}
             // Why/mechanism explanation (visible)
             const whyHtml = card.why ? `<p class="svc-compat__why">${card.why}</p>` : "";
             
+            // Requirements (for path cards)
+            let requirementsHtml = "";
+            if (Array.isArray(card.requirements) && card.requirements.length > 0) {
+              const reqItems = card.requirements.map(req => `<li>${req}</li>`).join("");
+              requirementsHtml = `<div class="inheritance-requirements"><strong>What's required:</strong><ul>${reqItems}</ul></div>`;
+            }
+            
+            // Risk note (for path cards)
+            const riskNoteHtml = card.risk_note 
+              ? `<div class="inheritance-risk-note"><span class="risk-chip">Risk</span> ${card.risk_note}</div>`
+              : "";
+            
             // Prereqs (if present)
             const prereqsHtml = card.prereqs ? `<p class="inheritance-prereqs"><strong>You'll need:</strong> ${card.prereqs}</p>` : "";
             
@@ -845,6 +861,19 @@ ${blocks}
             if (Array.isArray(card.steps) && card.steps.length > 0) {
               const stepItems = card.steps.map((step, idx) => `<li>${step}</li>`).join("");
               stepsHtml = `<ol class="inheritance-steps">${stepItems}</ol>`;
+            }
+            
+            // Checklist sections (for checklist card)
+            let checklistHtml = "";
+            if (Array.isArray(card.checklist_sections) && card.checklist_sections.length > 0) {
+              const sections = card.checklist_sections.map(section => {
+                const items = section.items.map(item => `<li>${item}</li>`).join("");
+                return `<div class="checklist-section">
+        <h4 class="checklist-heading">${section.heading}</h4>
+        <ul class="checklist-items">${items}</ul>
+      </div>`;
+              }).join("");
+              checklistHtml = `<div class="inheritance-checklist">${sections}</div>`;
             }
             
             // Scenarios (for "If plans break" card) - issue and path on separate lines
@@ -876,8 +905,11 @@ ${blocks}
       </div>
       ${metaHtml}
       ${whyHtml}
+      ${requirementsHtml}
+      ${riskNoteHtml}
       ${prereqsHtml}
       ${stepsHtml}
+      ${checklistHtml}
       ${scenariosHtml}
       ${outcomeHtml}
       ${timelineHtml}

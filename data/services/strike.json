@@ -512,22 +512,6 @@
       }
     ]
   },
-  "privacy_notes": {
-    "data_flows": [
-      "Strike stores the personal information and identity documents you submit during sign up to meet AML and KYC rules.",
-      "Bank and card details are shared with regulated payment processors so your deposits and withdrawals can settle."
-    ],
-    "recovery_drill": [
-      "Enable two-factor authentication and confirm your email before funding the account.",
-      "If you lose access, open the app on a trusted device and follow the in-app recovery prompts or contact support with your ID.",
-      "Review the Account > Limits view after recovery to confirm Strike restored your previous limits."
-    ],
-    "country_caveats": [
-      "ACH, Bill Pay, and Strike Instant are currently limited to U.S. customers.",
-      "Wire deposits and withdrawals require a U.S. bank that supports Fedwire.",
-      "Availability and payment options differ by country; confirm support inside the Strike app store listing."
-    ]
-  },
   "privacy": {
     "section_title": "Privacy & Safety",
     "data_flows": [
