@@ -1527,12 +1527,12 @@
               "constraint": "Required for hardware key pairing and signing"
             },
             {
-              "type": "USB",
-              "status": "not-supported"
+              "type": "Your Bitcoin node",
+              "constraint": "Electrum or full node connection"
             },
             {
-              "type": "QR",
-              "status": "not-supported"
+              "type": "Emergency Exit Kit",
+              "constraint": "Standalone Android APK for offline recovery"
             },
             {
               "type": "Bluetooth",
@@ -1598,26 +1598,6 @@
             "notes": "Does not expose output descriptors"
           }
         }
-      },
-      "integrations": {
-        "heading": "Works with…",
-        "intro": "Bitkey is a self-contained system; integrations are limited by design to preserve security and simplicity.",
-        "items": [
-          {
-            "name": "Your Bitcoin node",
-            "logo": "bitcoin-node",
-            "mode": "Electrum or full node connection",
-            "status": "verified",
-            "caveat": "Configure in Advanced settings; keeps balance and history private"
-          },
-          {
-            "name": "Emergency Exit Kit",
-            "logo": "android",
-            "mode": "Standalone Android APK for offline recovery",
-            "status": "verified",
-            "caveat": "Android only; sideload APK; requires hardware key"
-          }
-        ]
       }
     },
     "costs": {
@@ -10257,12 +10237,13 @@
     ],
     "inheritance": {
       "section_title": "Inheritance: choose your path",
-      "intro": "Wasabi never holds your keys, so the inheritance path you choose determines how your heirs will recover the bitcoin. Each approach carries different trade-offs between security, convenience, and execution complexity.",
+      "intro": "Wasabi is self-custody and has no built-in inheritance service; choose a path below.",
       "cards": [
         {
           "id": "inheritance-diy-singlesig",
-          "title": "DIY single-sig (your current setup)",
+          "title": "1. DIY single-sig",
           "status": "path-basic",
+          "status_text": "You only",
           "chips": {
             "setup": "Document locations"
           },
@@ -10273,19 +10254,20 @@
             "Wasabi installation guide",
             "Wallet label export"
           ],
-          "risk_note": "Single point of failure: if one piece is lost or the executor makes a mistake, funds can be locked or swept incorrectly.",
+          "risk_note": "Single point of failure: if one piece is lost or the executor makes a mistake, funds can be locked or swept incorrectly. Use for small amounts only.",
           "action": "Do this: Write a one-page instruction sheet today and store it where your executor can find it when needed."
         },
         {
           "id": "inheritance-diy-multisig",
-          "title": "DIY multisig (stronger resilience)",
+          "title": "2. DIY multisig",
           "status": "path-advanced",
+          "status_text": "Small group",
           "chips": {
             "setup": "Requires wallet migration"
           },
-          "why": "A 2-of-3 or 3-of-5 multisig setup splits control across multiple keys held by you, family members, or trusted contacts. One lost key does not lock the funds, and no single person can move coins alone.",
+          "why": "A 2-of-3 or 3-of-5 multisig setup (<a href=\"/services/bitkey.html\">Bitkey</a>, <a href=\"/services/sparrow.html\">Sparrow</a>) splits control across multiple keys held by you, family members, or trusted contacts. One lost key does not lock the funds, and no single person can move coins alone.",
           "requirements": [
-            "Migrate Wasabi funds to multisig wallet (Sparrow, Electrum, Specter)",
+            "Migrate Wasabi funds to multisig wallet",
             "Distribute keys to different people or locations",
             "Document the quorum policy (which keys must co-sign)",
             "Provide restore instructions for each key holder"
@@ -10295,12 +10277,13 @@
         },
         {
           "id": "inheritance-provider-assisted",
-          "title": "Provider-assisted (easiest execution)",
+          "title": "3. Provider-assisted",
           "status": "path-guided",
+          "status_text": "Provider",
           "chips": {
             "setup": "Requires wallet migration"
           },
-          "why": "Services like Unchained Capital, Casa, or Nunchuk offer assisted multisig where they hold one key and provide inheritance tooling. Your heirs follow a documented claim process, and the provider co-signs after verifying identity and waiting period.",
+          "why": "Services like <a href=\"/services/unchained.html\">Unchained</a> or <a href=\"/services/anchorwatch.html\">AnchorWatch</a> offer assisted multisig where they hold one key and provide inheritance tooling. Your heirs follow a documented claim process, and the provider co-signs after verifying identity and waiting period.",
           "requirements": [
             "Migrate Wasabi funds to assisted multisig provider",
             "Complete provider's inheritance setup flow",
@@ -10309,46 +10292,6 @@
           ],
           "risk_note": "Provider dependency: introduces counterparty risk, KYC data retention, and reliance on the provider's infrastructure staying online.",
           "action": "Do this: Compare assisted multisig providers, understand their custody models, and decide if convenience justifies the trade-offs."
-        },
-        {
-          "id": "inheritance-checklist",
-          "title": "Preparation checklist (all paths)",
-          "status": "checklist",
-          "chips": {
-            "applies": "Every approach"
-          },
-          "checklist_sections": [
-            {
-              "heading": "What to prepare",
-              "items": [
-                "One-page instruction sheet with step-by-step recovery process",
-                "Location of seed phrase backup (but not the seed itself)",
-                "Location of passphrase (stored separately from seed)",
-                "Wallet software installation links and version notes",
-                "Exported wallet labels if using coin control",
-                "Contact information for technical help if executor gets stuck"
-              ]
-            },
-            {
-              "heading": "What NOT to include",
-              "items": [
-                "Never write seed phrases in the instruction document itself",
-                "Never email or cloud-sync seed phrases unencrypted",
-                "Never store seed and passphrase in the same physical location",
-                "Never assume executor knows how Bitcoin wallets work"
-              ]
-            },
-            {
-              "heading": "Legal considerations",
-              "items": [
-                "Inheritance instructions are not a legal will; consult an estate attorney",
-                "Some jurisdictions treat bitcoin as property requiring probate",
-                "Executor may need legal authority before accessing safe deposit boxes or password managers",
-                "Tax implications vary by jurisdiction; document basis and acquisition dates"
-              ]
-            }
-          ],
-          "action": "Do this: Complete one section per week until the full checklist is documented and stored safely."
         }
       ]
     },
@@ -10481,40 +10424,6 @@
             "notes": "Descriptors stay inside Wasabi; no UI export yet"
           }
         }
-      },
-      "integrations": {
-        "heading": "Works with…",
-        "intro": "Pair Wasabi with other privacy and verification tools.",
-        "items": [
-          {
-            "name": "Bitcoin Core",
-            "logo": "bitcoin-node",
-            "mode": "Full node backend",
-            "status": "verified",
-            "caveat": "Needs compact filter indexing (BIP158) enabled"
-          },
-          {
-            "name": "Electrum personal server",
-            "logo": "electrum",
-            "mode": "Private address lookups",
-            "status": "verified",
-            "caveat": "Run over Tor to keep IP private"
-          },
-          {
-            "name": "Hardware Wallet Interface",
-            "logo": "hardware",
-            "mode": "Bridge to Coldcard, Trezor, Ledger, KeepKey",
-            "status": "verified",
-            "caveat": "Requires device firmware that supports PSBT"
-          },
-          {
-            "name": "PayJoin endpoints",
-            "logo": "payjoin",
-            "mode": "Interactive PayJoin on compatible merchants",
-            "status": "works-caveat",
-            "caveat": "Counterparty must support BIP78"
-          }
-        ]
       }
     },
     "costs": {

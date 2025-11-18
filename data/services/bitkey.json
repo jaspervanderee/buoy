@@ -371,12 +371,12 @@
             "constraint": "Required for hardware key pairing and signing"
           },
           {
-            "type": "USB",
-            "status": "not-supported"
+            "type": "Your Bitcoin node",
+            "constraint": "Electrum or full node connection"
           },
           {
-            "type": "QR",
-            "status": "not-supported"
+            "type": "Emergency Exit Kit",
+            "constraint": "Standalone Android APK for offline recovery"
           },
           {
             "type": "Bluetooth",
@@ -442,26 +442,6 @@
           "notes": "Does not expose output descriptors"
         }
       }
-    },
-    "integrations": {
-      "heading": "Works with…",
-      "intro": "Bitkey is a self-contained system; integrations are limited by design to preserve security and simplicity.",
-      "items": [
-        {
-          "name": "Your Bitcoin node",
-          "logo": "bitcoin-node",
-          "mode": "Electrum or full node connection",
-          "status": "verified",
-          "caveat": "Configure in Advanced settings; keeps balance and history private"
-        },
-        {
-          "name": "Emergency Exit Kit",
-          "logo": "android",
-          "mode": "Standalone Android APK for offline recovery",
-          "status": "verified",
-          "caveat": "Android only; sideload APK; requires hardware key"
-        }
-      ]
     }
   },
   "costs": {

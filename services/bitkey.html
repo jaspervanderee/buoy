@@ -399,7 +399,10 @@
       <ul class="compat-items-list compat-items-list--devices"><li><div class="compat-item-name">Bitkey hexagonal key</div><div class="compat-item-note">Secure element: Yes · Battery: No (NFC-powered) · Fingerprint sensor: Yes</div></li></ul>
     </div>
     <div class="payment-card" id="mobile-desktop">
-      <h3 class="payment-card__title">Mobile &amp; desktop</h3>
+      <div class="payment-card__header">
+        <h3 class="payment-card__title">Mobile &amp; desktop</h3>
+        
+      </div>
       <ul class="compat-items-list compat-items-list--platforms"><li><span class="compat-item-name">iOS</span> <span class="compat-version">15.0+</span> <img src="/images/checkmark.svg" alt="" class="inline-icon compat-platform-icon" /></li><li><span class="compat-item-name">Android</span> <span class="compat-version">9.0+</span> <img src="/images/checkmark.svg" alt="" class="inline-icon compat-platform-icon" /></li><li><span class="compat-item-name">Desktop</span> <span class="compat-item-note">Mobile-only wallet; no desktop app</span> <img src="/images/cross.svg" alt="" class="inline-icon compat-platform-icon" /></li></ul>
     </div>
     <div class="payment-card" id="connections">
@@ -407,7 +410,7 @@
         <h3 class="payment-card__title">Connection types</h3>
         <span class="svc-chip svc-chip--works">Verified</span>
       </div>
-      <ul class="compat-items-list"><li><strong>NFC</strong><br><span class="compat-item-note">Required for hardware key pairing and signing</span></li></ul>
+      <ul class="compat-items-list"><li><strong>NFC</strong><br><span class="compat-item-note">Required for hardware key pairing and signing</span></li><li><strong>Your Bitcoin node</strong><br><span class="compat-item-note">Electrum or full node connection</span></li><li><strong>Emergency Exit Kit</strong><br><span class="compat-item-note">Standalone Android APK for offline recovery</span></li></ul>
     </div>
   </div>
   <div class="compat-standards">
@@ -463,28 +466,6 @@
 <dt>Output descriptors</dt><dd><span class="compat-support--no">No</span> — Does not expose output descriptors</dd>
     </dl>
   </details>
-  <div class="compat-integrations">
-    <h3 class="compat-subsection-title">Works with…</h3>
-    <div class="feature-label sublabel">Bitkey is a self-contained system; integrations are limited by design to preserve security and simplicity.</div>
-    <div class="payment-cards">
-      <div class="payment-card">
-        <div class="payment-card__header">
-          <h3 class="payment-card__title">Your Bitcoin node</h3>
-          <span class="svc-chip svc-chip--works">Verified</span>
-        </div>
-        <p class="compat-integration-mode">Electrum or full node connection</p>
-        <p class="compat-integration-caveat">Configure in Advanced settings; keeps balance and history private</p>
-      </div>
-      <div class="payment-card">
-        <div class="payment-card__header">
-          <h3 class="payment-card__title">Emergency Exit Kit</h3>
-          <span class="svc-chip svc-chip--works">Verified</span>
-        </div>
-        <p class="compat-integration-mode">Standalone Android APK for offline recovery</p>
-        <p class="compat-integration-caveat">Android only; sideload APK; requires hardware key</p>
-      </div>
-    </div>
-  </div>
 
 </section>
 </details>

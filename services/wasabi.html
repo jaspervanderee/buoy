@@ -326,17 +326,17 @@
 
 <section id="inheritance" class="service-section" aria-labelledby="inheritance-label">
   <h2 id="inheritance-label" class="feature-label">Inheritance: choose your path</h2>
-  <div class="feature-label sublabel">Wasabi never holds your keys, so the inheritance path you choose determines how your heirs will recover the bitcoin. Each approach carries different trade-offs between security, convenience, and execution complexity.</div>
+  <div class="feature-label sublabel">Wasabi is self-custody and has no built-in inheritance service; choose a path below.</div>
   <div class="svc-compat__grid">
     <div class="svc-compat__tile inheritance-tile inheritance-tile--path-basic" id="inheritance-diy-singlesig">
       <div class="svc-compat__header">
-        <h3 class="svc-compat__title">DIY single-sig (your current setup)</h3>
-        <span class="svc-chip svc-chip--path-basic">Basic path</span>
+        <h3 class="svc-compat__title">1. DIY single-sig</h3>
+        <span class="svc-chip svc-chip--path-basic">You only</span>
       </div>
       <div class="migration-meta"><span class="migration-meta-chip">Document locations</span></div>
       <p class="svc-compat__why">When you control a single seed plus passphrase, heirs need both pieces and clear instructions to restore the wallet. This works when you trust one person to find everything and execute carefully.</p>
       <div class="inheritance-requirements"><strong>What's required:</strong><ul><li>Written seed phrase location</li><li>Passphrase location (stored separately)</li><li>Wasabi installation guide</li><li>Wallet label export</li></ul></div>
-      <div class="inheritance-risk-note"><span class="risk-chip">Risk</span> Single point of failure: if one piece is lost or the executor makes a mistake, funds can be locked or swept incorrectly.</div>
+      <div class="inheritance-risk-note"><span class="risk-chip">Risk</span> Single point of failure: if one piece is lost or the executor makes a mistake, funds can be locked or swept incorrectly. Use for small amounts only.</div>
       
       
       
@@ -348,12 +348,12 @@
     </div>
     <div class="svc-compat__tile inheritance-tile inheritance-tile--path-advanced" id="inheritance-diy-multisig">
       <div class="svc-compat__header">
-        <h3 class="svc-compat__title">DIY multisig (stronger resilience)</h3>
-        <span class="svc-chip svc-chip--path-advanced">Advanced</span>
+        <h3 class="svc-compat__title">2. DIY multisig</h3>
+        <span class="svc-chip svc-chip--path-advanced">Small group</span>
       </div>
       <div class="migration-meta"><span class="migration-meta-chip">Requires wallet migration</span></div>
-      <p class="svc-compat__why">A 2-of-3 or 3-of-5 multisig setup splits control across multiple keys held by you, family members, or trusted contacts. One lost key does not lock the funds, and no single person can move coins alone.</p>
-      <div class="inheritance-requirements"><strong>What's required:</strong><ul><li>Migrate Wasabi funds to multisig wallet (Sparrow, Electrum, Specter)</li><li>Distribute keys to different people or locations</li><li>Document the quorum policy (which keys must co-sign)</li><li>Provide restore instructions for each key holder</li></ul></div>
+      <p class="svc-compat__why">A 2-of-3 or 3-of-5 multisig setup (<a href="/services/bitkey.html">Bitkey</a>, <a href="/services/sparrow.html">Sparrow</a>) splits control across multiple keys held by you, family members, or trusted contacts. One lost key does not lock the funds, and no single person can move coins alone.</p>
+      <div class="inheritance-requirements"><strong>What's required:</strong><ul><li>Migrate Wasabi funds to multisig wallet</li><li>Distribute keys to different people or locations</li><li>Document the quorum policy (which keys must co-sign)</li><li>Provide restore instructions for each key holder</li></ul></div>
       <div class="inheritance-risk-note"><span class="risk-chip">Risk</span> Setup complexity: requires understanding multisig wallets, secure key distribution, and coordination among multiple parties.</div>
       
       
@@ -366,11 +366,11 @@
     </div>
     <div class="svc-compat__tile inheritance-tile inheritance-tile--path-guided" id="inheritance-provider-assisted">
       <div class="svc-compat__header">
-        <h3 class="svc-compat__title">Provider-assisted (easiest execution)</h3>
-        <span class="svc-chip svc-chip--path-guided">Guided</span>
+        <h3 class="svc-compat__title">3. Provider-assisted</h3>
+        <span class="svc-chip svc-chip--path-guided">Provider</span>
       </div>
       <div class="migration-meta"><span class="migration-meta-chip">Requires wallet migration</span></div>
-      <p class="svc-compat__why">Services like Unchained Capital, Casa, or Nunchuk offer assisted multisig where they hold one key and provide inheritance tooling. Your heirs follow a documented claim process, and the provider co-signs after verifying identity and waiting period.</p>
+      <p class="svc-compat__why">Services like <a href="/services/unchained.html">Unchained</a> or <a href="/services/anchorwatch.html">AnchorWatch</a> offer assisted multisig where they hold one key and provide inheritance tooling. Your heirs follow a documented claim process, and the provider co-signs after verifying identity and waiting period.</p>
       <div class="inheritance-requirements"><strong>What's required:</strong><ul><li>Migrate Wasabi funds to assisted multisig provider</li><li>Complete provider's inheritance setup flow</li><li>Designate beneficiaries within the provider's platform</li><li>Document access credentials and waiting periods</li></ul></div>
       <div class="inheritance-risk-note"><span class="risk-chip">Risk</span> Provider dependency: introduces counterparty risk, KYC data retention, and reliance on the provider's infrastructure staying online.</div>
       
@@ -381,33 +381,6 @@
       
       
       <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span>Do this: Compare assisted multisig providers, understand their custody models, and decide if convenience justifies the trade-offs.</span></div></div>
-    </div>
-    <div class="svc-compat__tile inheritance-tile inheritance-tile--checklist" id="inheritance-checklist">
-      <div class="svc-compat__header">
-        <h3 class="svc-compat__title">Preparation checklist (all paths)</h3>
-        <span class="svc-chip svc-chip--checklist">Checklist</span>
-      </div>
-      <div class="migration-meta"><span class="migration-meta-chip">Every approach</span></div>
-      
-      
-      
-      
-      
-      <div class="inheritance-checklist"><div class="checklist-section">
-        <h4 class="checklist-heading">What to prepare</h4>
-        <ul class="checklist-items"><li>One-page instruction sheet with step-by-step recovery process</li><li>Location of seed phrase backup (but not the seed itself)</li><li>Location of passphrase (stored separately from seed)</li><li>Wallet software installation links and version notes</li><li>Exported wallet labels if using coin control</li><li>Contact information for technical help if executor gets stuck</li></ul>
-      </div><div class="checklist-section">
-        <h4 class="checklist-heading">What NOT to include</h4>
-        <ul class="checklist-items"><li>Never write seed phrases in the instruction document itself</li><li>Never email or cloud-sync seed phrases unencrypted</li><li>Never store seed and passphrase in the same physical location</li><li>Never assume executor knows how Bitcoin wallets work</li></ul>
-      </div><div class="checklist-section">
-        <h4 class="checklist-heading">Legal considerations</h4>
-        <ul class="checklist-items"><li>Inheritance instructions are not a legal will; consult an estate attorney</li><li>Some jurisdictions treat bitcoin as property requiring probate</li><li>Executor may need legal authority before accessing safe deposit boxes or password managers</li><li>Tax implications vary by jurisdiction; document basis and acquisition dates</li></ul>
-      </div></div>
-      
-      
-      
-      
-      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span>Do this: Complete one section per week until the full checklist is documented and stored safely.</span></div></div>
     </div>
   </div>
 </section>
@@ -420,13 +393,16 @@
   <div class="feature-label sublabel">Where the desktop app runs, which hardware it pairs with, and which standards it understands.</div>
   <div class="payment-cards">
     <div class="payment-card" id="desktop">
-      <h3 class="payment-card__title">Desktop operating systems</h3>
+      <div class="payment-card__header">
+        <h3 class="payment-card__title">Desktop operating systems</h3>
+        
+      </div>
       <ul class="compat-items-list compat-items-list--platforms"><li><span class="compat-item-name">Windows</span> <span class="compat-version">10+</span> <img src="/images/checkmark.svg" alt="" class="inline-icon compat-platform-icon" /></li><li><span class="compat-item-name">macOS</span> <span class="compat-version">12+ (Apple Silicon &amp; Intel)</span> <img src="/images/checkmark.svg" alt="" class="inline-icon compat-platform-icon" /></li><li><span class="compat-item-name">Linux</span> <span class="compat-version">Ubuntu/Debian/Fedora</span> <img src="/images/checkmark.svg" alt="" class="inline-icon compat-platform-icon" /></li></ul>
     </div>
     <div class="payment-card" id="hardware">
       <div class="payment-card__header">
         <h3 class="payment-card__title">Hardware wallets via HWI</h3>
-        <span class="svc-chip svc-chip--notyet">Unknown</span>
+        <span class="svc-chip svc-chip--works">Verified</span>
       </div>
       <ul class="compat-items-list compat-items-list--devices"><li><div class="compat-item-name">Coldcard</div><div class="compat-item-note">USB or microSD via Hardware Wallet Interface</div></li><li><div class="compat-item-name">Trezor</div><div class="compat-item-note">Model One and T support via HWI</div></li><li><div class="compat-item-name">Ledger</div><div class="compat-item-note">Nano S/X supported; confirm addresses on-device</div></li><li><div class="compat-item-name">Generic HWI devices</div><div class="compat-item-note">Requires latest HWI binaries and firmware</div></li></ul>
     </div>
@@ -486,44 +462,6 @@
 <dt>Output descriptors</dt><dd><span class="compat-support--no">No</span> — Descriptors stay inside Wasabi; no UI export yet</dd>
     </dl>
   </details>
-  <div class="compat-integrations">
-    <h3 class="compat-subsection-title">Works with…</h3>
-    <div class="feature-label sublabel">Pair Wasabi with other privacy and verification tools.</div>
-    <div class="payment-cards">
-      <div class="payment-card">
-        <div class="payment-card__header">
-          <h3 class="payment-card__title">Bitcoin Core</h3>
-          <span class="svc-chip svc-chip--works">Verified</span>
-        </div>
-        <p class="compat-integration-mode">Full node backend</p>
-        <p class="compat-integration-caveat">Needs compact filter indexing (BIP158) enabled</p>
-      </div>
-      <div class="payment-card">
-        <div class="payment-card__header">
-          <h3 class="payment-card__title">Electrum personal server</h3>
-          <span class="svc-chip svc-chip--works">Verified</span>
-        </div>
-        <p class="compat-integration-mode">Private address lookups</p>
-        <p class="compat-integration-caveat">Run over Tor to keep IP private</p>
-      </div>
-      <div class="payment-card">
-        <div class="payment-card__header">
-          <h3 class="payment-card__title">Hardware Wallet Interface</h3>
-          <span class="svc-chip svc-chip--works">Verified</span>
-        </div>
-        <p class="compat-integration-mode">Bridge to Coldcard, Trezor, Ledger, KeepKey</p>
-        <p class="compat-integration-caveat">Requires device firmware that supports PSBT</p>
-      </div>
-      <div class="payment-card">
-        <div class="payment-card__header">
-          <h3 class="payment-card__title">PayJoin endpoints</h3>
-          <span class="svc-chip svc-chip--notyet">Unknown</span>
-        </div>
-        <p class="compat-integration-mode">Interactive PayJoin on compatible merchants</p>
-        <p class="compat-integration-caveat">Counterparty must support BIP78</p>
-      </div>
-    </div>
-  </div>
 
 </section>
 </details>

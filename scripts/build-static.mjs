@@ -826,6 +826,10 @@ ${blocks}
               "checklist": { class: "svc-chip--checklist", text: "Checklist" }
             };
             const statusInfo = statusMap[card.status] || { class: "svc-chip--setup", text: card.status };
+            // Allow custom status text override via status_text field
+            if (card.status_text) {
+              statusInfo.text = card.status_text;
+            }
             
             // Meta chips (time, priority, etc.)
             const metaChips = [];
@@ -1790,12 +1794,15 @@ ${tileItems}
               
               // Device items (e.g., hardware wallet models) - with status chip in header
               if (Array.isArray(card.items) && card.items.length > 0) {
+                // Determine overall status: prefer "verified" if any item is verified
+                const hasVerified = card.items.some(item => item.status === 'verified');
+                const hasVendorClaimed = card.items.some(item => item.status === 'vendor-claimed');
+                
+                const statusClass = hasVerified ? 'works' : hasVendorClaimed ? 'setup' : 'notyet';
+                const statusText = hasVerified ? 'Verified' : hasVendorClaimed ? 'Vendor-claimed' : 'Unknown';
+                statusChipHtml = `<span class="svc-chip svc-chip--${statusClass}">${statusText}</span>`;
+                
                 const itemsList = card.items.map(item => {
-                  // Extract status for chip in header
-                  const statusClass = item.status === 'verified' ? 'works' : item.status === 'vendor-claimed' ? 'setup' : 'notyet';
-                  const statusText = item.status === 'verified' ? 'Verified' : item.status === 'vendor-claimed' ? 'Vendor-claimed' : 'Unknown';
-                  statusChipHtml = `<span class="svc-chip svc-chip--${statusClass}">${statusText}</span>`;
-                  
                   return `<li><div class="compat-item-name">${escapeHtml(item.name)}</div>${item.notes ? `<div class="compat-item-note">${escapeHtml(item.notes)}</div>` : ''}</li>`;
                 }).join("");
                 cardContent = `<ul class="compat-items-list compat-items-list--devices">${itemsList}</ul>`;
@@ -1829,21 +1836,14 @@ ${tileItems}
               }
               
               if (cardContent) {
-                // Use header structure with chip for device cards
-                if (statusChipHtml) {
-                  cards.push(`    <div class="payment-card" id="${card.id || ''}">
+                // Always use header structure for consistent alignment
+                cards.push(`    <div class="payment-card" id="${card.id || ''}">
       <div class="payment-card__header">
         <h3 class="payment-card__title">${escapeHtml(card.title)}</h3>
         ${statusChipHtml}
       </div>
       ${cardContent}
     </div>`);
-                } else {
-                  cards.push(`    <div class="payment-card" id="${card.id || ''}">
-      <h3 class="payment-card__title">${escapeHtml(card.title)}</h3>
-      ${cardContent}
-    </div>`);
-                }
               }
             });
           }
@@ -1909,42 +1909,14 @@ ${advItems.join("\n")}
             }
           }
           
-          // C) Works with (integrations)
-          let integrationsHtml = "";
-          if (compat.integrations && Array.isArray(compat.integrations.items) && compat.integrations.items.length > 0) {
-            const heading = compat.integrations.heading || "Works with…";
-            const intro = compat.integrations.intro ? `<div class="feature-label sublabel">${escapeHtml(compat.integrations.intro)}</div>` : "";
-            
-            const integrationCards = compat.integrations.items.map(item => {
-              const statusClass = item.status === 'verified' ? 'works' : item.status === 'vendor-claimed' ? 'setup' : 'notyet';
-              const statusText = item.status === 'verified' ? 'Verified' : item.status === 'vendor-claimed' ? 'Vendor-claimed' : 'Unknown';
-              return `      <div class="payment-card">
-        <div class="payment-card__header">
-          <h3 class="payment-card__title">${escapeHtml(item.name)}</h3>
-          <span class="svc-chip svc-chip--${statusClass}">${statusText}</span>
-        </div>
-        <p class="compat-integration-mode">${escapeHtml(item.mode)}</p>
-        ${item.caveat ? `<p class="compat-integration-caveat">${escapeHtml(item.caveat)}</p>` : ''}
-      </div>`;
-            }).join("\n");
-            
-            integrationsHtml = `  <div class="compat-integrations">
-    <h3 class="compat-subsection-title">${heading}</h3>
-    ${intro}
-    <div class="payment-cards">
-${integrationCards}
-    </div>
-  </div>\n`;
-          }
-          
           // Skip entire section if no content
-          if (!hardwareOsHtml && !standardsHtml && !integrationsHtml) return "";
+          if (!hardwareOsHtml && !standardsHtml) return "";
           
           return `
 <section id="compatibility" class="service-section" aria-labelledby="compatibility-label">
   <h2 id="compatibility-label" class="feature-label">${sectionTitle}</h2>
   ${intro}
-${hardwareOsHtml}${standardsHtml}${integrationsHtml}
+${hardwareOsHtml}${standardsHtml}
 </section>`;
         }
         
