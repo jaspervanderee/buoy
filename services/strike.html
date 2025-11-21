@@ -137,7 +137,7 @@
 </nav>
 
 <nav class="jump-nav" aria-label="Jump to">
-  <a href="/services/strike.html#setup">Setup</a> • <a href="/services/strike.html#fees">Fees</a> • <a href="/services/strike.html#payment-methods">Methods</a> • <a href="/services/strike.html#compat">Compatibility</a> • <a href="/services/strike.html#self-custody">Self-custody</a> • <a href="/services/strike.html#privacy-safety">Privacy</a> • <a href="/services/strike.html#trust">Trust</a> • <a href="/services/strike.html#faq-heading">FAQs</a>
+  <a href="/services/strike.html#setup">Setup</a> • <a href="/services/strike.html#fees">Fees</a> • <a href="/services/strike.html#compat">Compatibility</a> • <a href="/services/strike.html#payment-methods">Methods</a> • <a href="/services/strike.html#self-custody">Self-custody</a> • <a href="/services/strike.html#privacy-safety">Privacy</a> • <a href="/services/strike.html#trust">Trust</a> • <a href="/services/strike.html#faq-heading">FAQs</a>
 </nav>
   <!-- BUILD:START -->
 <div class="service-sticky-cta">
@@ -168,7 +168,7 @@
   <summary>Getting started</summary>
 
 <section id="setup" class="service-section">
-  <h2 class="feature-label">Getting started</h2>
+  <h2 class="feature-label">Getting started with Strike</h2>
   <div class="svc-compat__grid">
 
       <div class="svc-compat__tile" id="setup-install">
@@ -178,7 +178,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">1. Create & verify</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~10 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~10 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Install Strike from App Store or Google Play and sign up with your email</li><li>Submit your government ID photo and provide your legal name, address, and SSN</li><li>Wait for verification to complete—contact support if it takes longer than 24 hours</li></ol>
         <p><strong>Gotcha:</strong> Limits stay conservative until verification clears.</p>
       </div>
@@ -189,7 +190,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">2. Fund (ACH / card / SEPA)</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~1 min (card) / ~1 day (wire) / ~5 biz days (ACH)</span><span class="migration-meta-chip">Cost: Varies</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~1 min (card) / ~1 day (wire) / ~5 biz days (ACH)</span><span class="migration-meta-chip">Cost: Varies</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Open Account → Payment methods and link your bank via Plaid or add a debit card</li><li>Review your deposit limits for ACH, card, or wire before funding</li><li>Deposit cash—ACH trades instantly but stays pending ~5 business days before withdrawal</li></ol>
         <p><strong>Gotcha:</strong> ACH sits in pending ~5 biz days before you can withdraw.</p>
       </div>
@@ -200,7 +202,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">3. Buy & withdraw</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~1–30 min</span><span class="migration-meta-chip">Cost: 0.99%→0.39% + mining (on-chain)</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~1–30 min</span><span class="migration-meta-chip">Cost: 0.99%→0.39% + mining (on-chain)</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Tap Buy Bitcoin, enter an amount, or set up a recurring purchase to dollar-cost average</li><li>Test withdrawal: tap Bitcoin → Send, scan a Lightning invoice or paste a Bitcoin address, and send a small amount (~$5–$10)</li><li>Once verified, send the rest—Lightning is instant and free; on-chain offers Priority (~10 min), Standard (~1 hour), or Flexible (~24 hours, free)</li></ol>
         <p><strong>Gotcha:</strong> Flexible on-chain is free but ~24h; Standard ~1h.</p>
       </div>
@@ -328,6 +331,76 @@
 </section>
 </details>
 <details class="section-accordion">
+  <summary>Strike features & limits</summary>
+
+<section id="compat" class="service-section">
+  <h2 class="feature-label">Strike features & limits</h2>
+  <div class="svc-compat__grid">
+
+      <div class="svc-compat__tile" id="bill-pay">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Bill Pay</h3>
+          <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Live on bitcoin</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Auto-pay from paycheck</span></span></p>
+        <p class="svc-compat__why">Pay bills directly from your Strike balance while maintaining bitcoin exposure. Convert your paycheck to bitcoin via direct deposit, then let Strike handle rent, utilities, and credit cards automatically.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Paying bills from your bitcoin balance triggers a taxable event—Strike sells bitcoin to cover each payment. Custodial setup: you still hold counterparty risk while funds sit on Strike.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="bitcoin-loans">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Bitcoin-backed loans</h3>
+          <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 9.5% APR</span> <span class="icon-text-pair"><img src="/images/warning.svg" class="inline-icon" alt=""> Liquidation risk</span></span></p>
+        <p class="svc-compat__why">Access cash without selling your bitcoin. You retain ownership and future upside while Strike holds your bitcoin as collateral.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> If bitcoin's price drops below the liquidation threshold, Strike may sell your collateral to cover the loan. Loan availability and minimums vary by state. You give up self-custody while bitcoin sits as collateral.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="dca">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Dollar-cost averaging (DCA)</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Free after first cycle</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Daily, weekly, or monthly</span></span></p>
+        <p class="svc-compat__why">Set up recurring purchases to automatically buy bitcoin at regular intervals, building your position over time without timing the market.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> The first recurring purchase includes the standard Strike fee. All subsequent orders in the same schedule are fee-free.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="auto-withdraw">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Auto-withdraw</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Free (Flexible tier)</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 12-hour cancel window</span></span></p>
+        <p class="svc-compat__why">Automatically move your bitcoin to self-custody once your balance reaches a threshold you set, reducing time on exchange.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Auto-withdrawals use the free Flexible tier, which can take up to 24 hours to confirm. You can cancel during the 12-hour window before broadcast.</p>
+          </div>
+        </details>
+      </div>
+  </div>
+</section>
+</details>
+<details class="section-accordion">
   <summary>Payment methods & limits</summary>
 
 <section id="payment-methods" class="service-section">
@@ -451,76 +524,6 @@
           <span class="svc-chip svc-chip--notyet">Not available</span>
         </div>
         <p class="payment-card__body">Strike does not currently support Lightning deposits to fund your cash balance</p>
-      </div>
-  </div>
-</section>
-</details>
-<details class="section-accordion">
-  <summary>Strike features & limits</summary>
-
-<section id="compat" class="service-section">
-  <h2 class="feature-label">Strike features & limits</h2>
-  <div class="svc-compat__grid">
-
-      <div class="svc-compat__tile" id="bill-pay">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Bill Pay</h3>
-          <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Live on bitcoin</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Auto-pay from paycheck</span></span></p>
-        <p class="svc-compat__why">Pay bills directly from your Strike balance while maintaining bitcoin exposure. Convert your paycheck to bitcoin via direct deposit, then let Strike handle rent, utilities, and credit cards automatically.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Paying bills from your bitcoin balance triggers a taxable event—Strike sells bitcoin to cover each payment. Custodial setup: you still hold counterparty risk while funds sit on Strike.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="bitcoin-loans">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Bitcoin-backed loans</h3>
-          <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 9.5% APR</span> <span class="icon-text-pair"><img src="/images/warning.svg" class="inline-icon" alt=""> Liquidation risk</span></span></p>
-        <p class="svc-compat__why">Access cash without selling your bitcoin. You retain ownership and future upside while Strike holds your bitcoin as collateral.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> If bitcoin's price drops below the liquidation threshold, Strike may sell your collateral to cover the loan. Loan availability and minimums vary by state. You give up self-custody while bitcoin sits as collateral.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="dca">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Dollar-cost averaging (DCA)</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Free after first cycle</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Daily, weekly, or monthly</span></span></p>
-        <p class="svc-compat__why">Set up recurring purchases to automatically buy bitcoin at regular intervals, building your position over time without timing the market.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> The first recurring purchase includes the standard Strike fee. All subsequent orders in the same schedule are fee-free.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="auto-withdraw">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Auto-withdraw</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Free (Flexible tier)</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 12-hour cancel window</span></span></p>
-        <p class="svc-compat__why">Automatically move your bitcoin to self-custody once your balance reaches a threshold you set, reducing time on exchange.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Auto-withdrawals use the free Flexible tier, which can take up to 24 hours to confirm. You can cancel during the 12-hour window before broadcast.</p>
-          </div>
-        </details>
       </div>
   </div>
 </section>

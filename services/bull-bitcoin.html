@@ -137,7 +137,7 @@
 </nav>
 
 <nav class="jump-nav" aria-label="Jump to">
-  <a href="/services/bull-bitcoin.html#setup">Setup</a> • <a href="/services/bull-bitcoin.html#fees">Fees</a> • <a href="/services/bull-bitcoin.html#payment-methods">Methods</a> • <a href="/services/bull-bitcoin.html#compat">Compatibility</a> • <a href="/services/bull-bitcoin.html#self-custody">Self-custody</a> • <a href="/services/bull-bitcoin.html#privacy-safety">Privacy</a> • <a href="/services/bull-bitcoin.html#trust">Trust</a> • <a href="/services/bull-bitcoin.html#faq-heading">FAQs</a>
+  <a href="/services/bull-bitcoin.html#setup">Setup</a> • <a href="/services/bull-bitcoin.html#fees">Fees</a> • <a href="/services/bull-bitcoin.html#compat">Compatibility</a> • <a href="/services/bull-bitcoin.html#payment-methods">Methods</a> • <a href="/services/bull-bitcoin.html#self-custody">Self-custody</a> • <a href="/services/bull-bitcoin.html#privacy-safety">Privacy</a> • <a href="/services/bull-bitcoin.html#trust">Trust</a> • <a href="/services/bull-bitcoin.html#faq-heading">FAQs</a>
 </nav>
   <!-- BUILD:START -->
 <div class="service-sticky-cta">
@@ -168,14 +168,15 @@
   <summary>Getting started</summary>
 
 <section id="setup" class="service-section">
-  <h2 class="feature-label">Getting started</h2>
+  <h2 class="feature-label">Getting started with Bull Bitcoin</h2>
   <div class="svc-compat__grid">
 
       <div class="svc-compat__tile" id="setup-install">
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">1. Create & verify</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~10 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~10 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Head to bullbitcoin.com and create an account with your email and a strong password.</li><li>Complete the FINTRAC verification flow by submitting your government ID and answering the compliance questions.</li><li>Wait for the approval email; message the live chat if you do not hear back within a few hours.</li></ol>
         <p><strong>Gotcha:</strong> Bull Bitcoin cannot accept funds until your verification clears.</p>
       </div>
@@ -183,7 +184,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">2. Add your wallet and fund with Interac</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~5-30 min</span><span class="migration-meta-chip">Cost: No fee</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~5-30 min</span><span class="migration-meta-chip">Cost: No fee</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>From the dashboard, click Buy Bitcoin and paste a fresh on-chain address, Lightning invoice, or Liquid destination.</li><li>Send an Interac e-Transfer or request the wire instructions that match your order size.</li><li>Watch the Funding tab for confirmation that your payment arrived.</li></ol>
         <p><strong>Gotcha:</strong> Interac transfers above 10,000 CAD require a wire, so plan large orders ahead.</p>
       </div>
@@ -191,7 +193,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">3. Confirm the payout</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~10 min</span><span class="migration-meta-chip">Cost: Network fee included</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~10 min</span><span class="migration-meta-chip">Cost: Network fee included</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Review the quoted rate and confirm the buy once your funding shows as pending.</li><li>Open your wallet or node to watch the incoming transaction Bull Bitcoin broadcasts.</li><li>Enable Recurring Buy if you want the same amount to repeat automatically.</li></ol>
         <p><strong>Gotcha:</strong> Lightning invoices expire quickly; generate a fresh invoice if the order times out.</p>
       </div>
@@ -299,6 +302,61 @@
     </dl>
   </details>
 
+</section>
+</details>
+<details class="section-accordion">
+  <summary>Bull Bitcoin features & limits</summary>
+
+<section id="compat" class="service-section">
+  <h2 class="feature-label">Bull Bitcoin features & limits</h2>
+  <div class="svc-compat__grid">
+
+      <div class="svc-compat__tile" id="direct-to-wallet">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Direct-to-wallet delivery</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Self-custodial settlement</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> On-chain, Lightning, Liquid</span></span></p>
+        <p class="svc-compat__why">Bull Bitcoin broadcasts every order to the address or invoice you provide, so you avoid leaving coins on an exchange. That keeps custody in your hands from the first purchase.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Double-check the address or invoice because the payout broadcasts automatically once your payment clears.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="bill-pay">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Bill Pay</h3>
+          <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 14,000+ Canadian billers</span> <span class="icon-text-pair"><img src="/images/warning.svg" class="inline-icon" alt=""> Canada-only payouts</span></span></p>
+        <p class="svc-compat__why">Bill Pay converts your bitcoin into CAD payments for credit cards, rent, and utilities, so you can settle legacy bills without touching a bank login.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Bill Pay currently supports Canadian billers only, so confirm availability before you send the order.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="dca">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Dollar-cost averaging (DCA)</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Schedule recurring buys</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Send straight to your wallet</span></span></p>
+        <p class="svc-compat__why">Bull Bitcoin's recurring buy pulls from your bank funding and still sends the payout to your wallet, so you stack without leaving sats on the platform.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Recurring buys trigger after each funding clears, so Interac caps can delay the schedule if you hit daily limits.</p>
+          </div>
+        </details>
+      </div>
+  </div>
 </section>
 </details>
 <details class="section-accordion">
@@ -416,61 +474,6 @@
             <tr><th>Withdrawal eligibility</th><td>CAD payout starts after your Lightning payment settles.</td></tr>
           </tbody>
         </table>
-          </div>
-        </details>
-      </div>
-  </div>
-</section>
-</details>
-<details class="section-accordion">
-  <summary>Bull Bitcoin features & limits</summary>
-
-<section id="compat" class="service-section">
-  <h2 class="feature-label">Bull Bitcoin features & limits</h2>
-  <div class="svc-compat__grid">
-
-      <div class="svc-compat__tile" id="direct-to-wallet">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Direct-to-wallet delivery</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Self-custodial settlement</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> On-chain, Lightning, Liquid</span></span></p>
-        <p class="svc-compat__why">Bull Bitcoin broadcasts every order to the address or invoice you provide, so you avoid leaving coins on an exchange. That keeps custody in your hands from the first purchase.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Double-check the address or invoice because the payout broadcasts automatically once your payment clears.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="bill-pay">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Bill Pay</h3>
-          <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 14,000+ Canadian billers</span> <span class="icon-text-pair"><img src="/images/warning.svg" class="inline-icon" alt=""> Canada-only payouts</span></span></p>
-        <p class="svc-compat__why">Bill Pay converts your bitcoin into CAD payments for credit cards, rent, and utilities, so you can settle legacy bills without touching a bank login.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Bill Pay currently supports Canadian billers only, so confirm availability before you send the order.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="dca">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Dollar-cost averaging (DCA)</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Schedule recurring buys</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Send straight to your wallet</span></span></p>
-        <p class="svc-compat__why">Bull Bitcoin's recurring buy pulls from your bank funding and still sends the payout to your wallet, so you stack without leaving sats on the platform.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Recurring buys trigger after each funding clears, so Interac caps can delay the schedule if you hit daily limits.</p>
           </div>
         </details>
       </div>

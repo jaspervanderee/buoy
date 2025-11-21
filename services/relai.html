@@ -137,7 +137,7 @@
 </nav>
 
 <nav class="jump-nav" aria-label="Jump to">
-  <a href="/services/relai.html#setup">Setup</a> • <a href="/services/relai.html#fees">Fees</a> • <a href="/services/relai.html#payment-methods">Methods</a> • <a href="/services/relai.html#compat">Compatibility</a> • <a href="/services/relai.html#self-custody">Self-custody</a> • <a href="/services/relai.html#privacy-safety">Privacy</a> • <a href="/services/relai.html#trust">Trust</a> • <a href="/services/relai.html#faq-heading">FAQs</a>
+  <a href="/services/relai.html#setup">Setup</a> • <a href="/services/relai.html#fees">Fees</a> • <a href="/services/relai.html#compat">Compatibility</a> • <a href="/services/relai.html#payment-methods">Methods</a> • <a href="/services/relai.html#self-custody">Self-custody</a> • <a href="/services/relai.html#privacy-safety">Privacy</a> • <a href="/services/relai.html#trust">Trust</a> • <a href="/services/relai.html#faq-heading">FAQs</a>
 </nav>
   <!-- BUILD:START -->
 <div class="service-sticky-cta">
@@ -168,14 +168,15 @@
   <summary>Getting started</summary>
 
 <section id="setup" class="service-section">
-  <h2 class="feature-label">Getting started</h2>
+  <h2 class="feature-label">Getting started with Relai</h2>
   <div class="svc-compat__grid">
 
       <div class="svc-compat__tile" id="setup-install">
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">1. Create & verify</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~10 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~10 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Install Relai from the App Store or Google Play and create your wallet.</li><li>Write your 12-word recovery phrase on paper, confirm it in-app, and store it safely offline.</li><li>Complete the ID verification Relai requests so you can fund larger orders without delay.</li></ol>
         <p><strong>Gotcha:</strong> Never take a photo of the recovery phrase or store it in email.</p>
       </div>
@@ -183,7 +184,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">2. Fund (SEPA / card)</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~5 min (card) / ~1-2 biz days (SEPA)</span><span class="migration-meta-chip">Cost: Varies</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~5 min (card) / ~1-2 biz days (SEPA)</span><span class="migration-meta-chip">Cost: Varies</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Tap the + button, choose Buy, then add your SEPA bank account or a card for instant funding.</li><li>If you pick SEPA, copy the Relai IBAN exactly and initiate the transfer from the same-name bank account.</li><li>For cards, complete the 3-D Secure approval and confirm you accept the ~3% processor fee.</li></ol>
         <p><strong>Gotcha:</strong> SEPA transfers must match the currency quoted in the order or your bank may reverse the payment.</p>
       </div>
@@ -191,7 +193,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">3. Buy & withdraw</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: Instant with cards / ~10–30 min after SEPA posts</span><span class="migration-meta-chip">Cost: 1% fee (0.9% with invite) + spread</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: Instant with cards / ~10–30 min after SEPA posts</span><span class="migration-meta-chip">Cost: 1% fee (0.9% with invite) + spread</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        
         <ol><li>Set a one-time amount or schedule an auto-invest plan and review the fee summary.</li><li>Leave delivery on the in-app wallet or toggle external wallet to paste a hardware wallet address.</li><li>Confirm the order; Relai covers the mining fee and broadcasts the transaction once the payment clears.</li></ol>
         <p><strong>Gotcha:</strong> Auto-invest stays free only on your first active plan up to 100 CHF/€ each month.</p>
       </div>
@@ -305,6 +308,61 @@
 </section>
 </details>
 <details class="section-accordion">
+  <summary>Relai features & limits</summary>
+
+<section id="compat" class="service-section">
+  <h2 class="feature-label">Relai features & limits</h2>
+  <div class="svc-compat__grid">
+
+      <div class="svc-compat__tile" id="direct-to-wallet">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Direct-to-wallet delivery</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Self-custodial settlement</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Mining fee covered on buys</span></span></p>
+        <p class="svc-compat__why">Relai keeps your bitcoin in the self-custodial wallet on your device, so buys land on-chain without waiting for withdrawal windows.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> SEPA orders broadcast only after the transfer arrives, and network congestion can still slow confirmation even though Relai covers the fee.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="hardware-wallet-connect">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Hardware wallet connect</h3>
+          <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> BitBox, Ledger, Trezor</span> <span class="icon-text-pair"><img src="/images/warning.svg" class="inline-icon" alt=""> Desktop signing required</span></span></p>
+        <p class="svc-compat__why">Linking a hardware wallet lets you combine Relai's easy buys with cold storage security.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Hardware wallet signing requires the Relai web app on a desktop browser; mobile browsers cannot pass the USB signature yet.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="dca">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Dollar-cost averaging (DCA)</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Weekly or monthly</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> First plan up to 100 CHF/€ is 0%</span></span></p>
+        <p class="svc-compat__why">Recurring buys help you stack sats consistently while keeping custody on your phone.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Only your first active plan up to 100 CHF/€ per month stays fee-free; extra volume reverts to the 1% service fee.</p>
+          </div>
+        </details>
+      </div>
+  </div>
+</section>
+</details>
+<details class="section-accordion">
   <summary>Payment methods & limits</summary>
 
 <section id="payment-methods" class="service-section">
@@ -391,61 +449,6 @@
           <span class="svc-chip svc-chip--notyet">Not available</span>
         </div>
         <p class="payment-card__body">Relai does not support Lightning deposits; all buys settle on-chain.</p>
-      </div>
-  </div>
-</section>
-</details>
-<details class="section-accordion">
-  <summary>Relai features & limits</summary>
-
-<section id="compat" class="service-section">
-  <h2 class="feature-label">Relai features & limits</h2>
-  <div class="svc-compat__grid">
-
-      <div class="svc-compat__tile" id="direct-to-wallet">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Direct-to-wallet delivery</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Self-custodial settlement</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Mining fee covered on buys</span></span></p>
-        <p class="svc-compat__why">Relai keeps your bitcoin in the self-custodial wallet on your device, so buys land on-chain without waiting for withdrawal windows.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> SEPA orders broadcast only after the transfer arrives, and network congestion can still slow confirmation even though Relai covers the fee.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="hardware-wallet-connect">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Hardware wallet connect</h3>
-          <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> BitBox, Ledger, Trezor</span> <span class="icon-text-pair"><img src="/images/warning.svg" class="inline-icon" alt=""> Desktop signing required</span></span></p>
-        <p class="svc-compat__why">Linking a hardware wallet lets you combine Relai's easy buys with cold storage security.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Hardware wallet signing requires the Relai web app on a desktop browser; mobile browsers cannot pass the USB signature yet.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="dca">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Dollar-cost averaging (DCA)</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Weekly or monthly</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> First plan up to 100 CHF/€ is 0%</span></span></p>
-        <p class="svc-compat__why">Recurring buys help you stack sats consistently while keeping custody on your phone.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Only your first active plan up to 100 CHF/€ per month stays fee-free; extra volume reverts to the 1% service fee.</p>
-          </div>
-        </details>
       </div>
   </div>
 </section>

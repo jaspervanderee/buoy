@@ -137,7 +137,7 @@
 </nav>
 
 <nav class="jump-nav" aria-label="Jump to">
-  <a href="/services/bisq.html#setup">Setup</a> • <a href="/services/bisq.html#fees">Fees</a> • <a href="/services/bisq.html#payment-methods">Methods</a> • <a href="/services/bisq.html#compat">Compatibility</a> • <a href="/services/bisq.html#self-custody">Self-custody</a> • <a href="/services/bisq.html#privacy-safety">Privacy</a> • <a href="/services/bisq.html#trust">Trust</a> • <a href="/services/bisq.html#faq-heading">FAQs</a>
+  <a href="/services/bisq.html#setup">Setup</a> • <a href="/services/bisq.html#fees">Fees</a> • <a href="/services/bisq.html#compat">Compatibility</a> • <a href="/services/bisq.html#payment-methods">Methods</a> • <a href="/services/bisq.html#self-custody">Self-custody</a> • <a href="/services/bisq.html#privacy-safety">Privacy</a> • <a href="/services/bisq.html#trust">Trust</a> • <a href="/services/bisq.html#faq-heading">FAQs</a>
 </nav>
   <!-- BUILD:START -->
 <div class="service-sticky-cta">
@@ -168,14 +168,15 @@
   <summary>Getting started</summary>
 
 <section id="setup" class="service-section">
-  <h2 class="feature-label">Getting started</h2>
+  <h2 class="feature-label">Getting started with Bisq</h2>
   <div class="svc-compat__grid">
 
       <div class="svc-compat__tile" id="setup-install">
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">1. Install Bisq and connect over Tor</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~10 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~10 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Download Bisq from the official downloads page and verify the installer signature.</li><li>Install the app, let it connect to Tor, and create a password for your Bisq wallet.</li><li>Write down your seed words and store them offline before you start trading.</li></ol>
         <p><strong>Gotcha:</strong> Bisq cannot recover your seed phrase or password if you lose them.</p>
       </div>
@@ -183,7 +184,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">2. Fund your Bisq wallet for deposits</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~20 min</span><span class="migration-meta-chip">Cost: Network fee</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~20 min</span><span class="migration-meta-chip">Cost: Network fee</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        
         <ol><li>Open Funds > Receive funds and copy your Bisq bitcoin address.</li><li>Send a small amount of bitcoin from a wallet you control so you can cover security deposits and fees.</li><li>Wait for at least one confirmation; Bisq shows the balance once the transaction confirms.</li></ol>
         <p><strong>Gotcha:</strong> Keep a buffer of sats in Bisq so new offers do not fail for lack of collateral.</p>
       </div>
@@ -191,7 +193,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">3. Take your first trade</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~30-90 min</span><span class="migration-meta-chip">Cost: Fees + deposit</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~30-90 min</span><span class="migration-meta-chip">Cost: Fees + deposit</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        
         <ol><li>Browse the offer book, filter by your payment method, and pick an offer with limits that fit.</li><li>Review the security deposit, fees, and payment window on the confirmation screen before you accept.</li><li>Follow Bisq's prompts to send the fiat payment, mark it as sent, and wait for the seller to release the escrow.</li></ol>
         <p><strong>Gotcha:</strong> Stay online during the trade so you can respond quickly if a mediator contacts you.</p>
       </div>
@@ -263,6 +266,19 @@
           <div><p>Deposit ratios vary by payment method and appear on each offer screen.</p></div>
         </details>
     </article>
+    <article class="fee-card" id="fees-withdraw">
+      <div class="svc-compat__illustration">
+        <img src="/images/illustration/move-to-another-wallet.svg" alt="Withdraw bitcoin" loading="lazy" />
+      </div>
+      <h3 class="fee-card__title">Withdraw to your wallet</h3>
+      <p class="fee-card__cost"><strong>On-chain mining fee estimated by Bisq</strong></p>
+      <p class="fee-card__what">What happens:<br>After a trade settles you can send your bitcoin to another wallet and pay the network fee once.</p>
+      <p class="fee-card__how">Save money:<br>Batch withdrawals or lower the fee slider if you can wait for slower confirmation.</p>
+        <details class="fee-card__learn-more">
+          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
+          <div><p>Bisq lets you edit the withdrawal fee before broadcasting the transaction.</p></div>
+        </details>
+    </article>
   </div>
   <div class="fee-quick-answers">
     <h3 class="fee-quick-answers__title">Quick answers</h3>
@@ -299,6 +315,76 @@
     </dl>
   </details>
 
+</section>
+</details>
+<details class="section-accordion">
+  <summary>Bisq features & limits</summary>
+
+<section id="compat" class="service-section">
+  <h2 class="feature-label">Bisq features & limits</h2>
+  <div class="svc-compat__grid">
+
+      <div class="svc-compat__tile" id="multisig-security-deposits">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Multisig security deposits</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Refundable collateral</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 2-of-2 escrow</span></span></p>
+        <p class="svc-compat__why">Bisq keeps both sides honest by locking trade amounts and security deposits in a 2-of-2 multisig escrow that needs two signatures to release.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Deposits stay locked until both parties confirm payment or mediation resolves the case.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="bsq-fee-discounts">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">BSQ fee discounts</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> ~50% off trading fees</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> DAO controlled</span></span></p>
+        <p class="svc-compat__why">The Bisq DAO lets you pay trading fees in BSQ, cutting maker and taker rates roughly in half compared with paying in BTC.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Keep some BTC available for fees if your BSQ balance runs out mid-trade.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="payment-methods">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Many fiat payment methods</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Global bank rails</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Cash and crypto options</span></span></p>
+        <p class="svc-compat__why">The offer book supports dozens of fiat rails and e-money apps so you can trade with counterparts who already use your preferred payment method.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Each payment method has its own deadlines; be sure you can deliver within the allowed window.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="self-custody-payouts">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Self-custody payouts</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Funds stay in your wallet</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Withdraw anytime</span></span></p>
+        <p class="svc-compat__why">Bisq pays to a wallet you control, so completed trades leave you holding bitcoin outside any company custody.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> If you withdraw with a low fee during congestion the confirmation can take longer, so plan ahead.</p>
+          </div>
+        </details>
+      </div>
+  </div>
 </section>
 </details>
 <details class="section-accordion">
@@ -416,76 +502,6 @@
             <tr><th>Withdrawal eligibility</th><td>Confirm the cash in person before you co-sign the payout.</td></tr>
           </tbody>
         </table>
-          </div>
-        </details>
-      </div>
-  </div>
-</section>
-</details>
-<details class="section-accordion">
-  <summary>Bisq features & limits</summary>
-
-<section id="compat" class="service-section">
-  <h2 class="feature-label">Bisq features & limits</h2>
-  <div class="svc-compat__grid">
-
-      <div class="svc-compat__tile" id="multisig-security-deposits">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Multisig security deposits</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Refundable collateral</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 2-of-2 escrow</span></span></p>
-        <p class="svc-compat__why">Bisq keeps both sides honest by locking trade amounts and security deposits in a 2-of-2 multisig escrow that needs two signatures to release.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Deposits stay locked until both parties confirm payment or mediation resolves the case.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="bsq-fee-discounts">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">BSQ fee discounts</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> ~50% off trading fees</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> DAO controlled</span></span></p>
-        <p class="svc-compat__why">The Bisq DAO lets you pay trading fees in BSQ, cutting maker and taker rates roughly in half compared with paying in BTC.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Keep some BTC available for fees if your BSQ balance runs out mid-trade.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="payment-methods">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Many fiat payment methods</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Global bank rails</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Cash and crypto options</span></span></p>
-        <p class="svc-compat__why">The offer book supports dozens of fiat rails and e-money apps so you can trade with counterparts who already use your preferred payment method.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Each payment method has its own deadlines; be sure you can deliver within the allowed window.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="self-custody-payouts">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Self-custody payouts</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Funds stay in your wallet</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Withdraw anytime</span></span></p>
-        <p class="svc-compat__why">Bisq pays to a wallet you control, so completed trades leave you holding bitcoin outside any company custody.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> If you withdraw with a low fee during congestion the confirmation can take longer, so plan ahead.</p>
           </div>
         </details>
       </div>

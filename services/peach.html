@@ -137,7 +137,7 @@
 </nav>
 
 <nav class="jump-nav" aria-label="Jump to">
-  <a href="/services/peach.html#setup">Setup</a> • <a href="/services/peach.html#fees">Fees</a> • <a href="/services/peach.html#payment-methods">Methods</a> • <a href="/services/peach.html#compat">Compatibility</a> • <a href="/services/peach.html#self-custody">Self-custody</a> • <a href="/services/peach.html#privacy-safety">Privacy</a> • <a href="/services/peach.html#trust">Trust</a> • <a href="/services/peach.html#faq-heading">FAQs</a>
+  <a href="/services/peach.html#setup">Setup</a> • <a href="/services/peach.html#fees">Fees</a> • <a href="/services/peach.html#compat">Compatibility</a> • <a href="/services/peach.html#payment-methods">Methods</a> • <a href="/services/peach.html#self-custody">Self-custody</a> • <a href="/services/peach.html#privacy-safety">Privacy</a> • <a href="/services/peach.html#trust">Trust</a> • <a href="/services/peach.html#faq-heading">FAQs</a>
 </nav>
   <!-- BUILD:START -->
 <div class="service-sticky-cta">
@@ -168,7 +168,7 @@
   <summary>Getting started</summary>
 
 <section id="setup" class="service-section">
-  <h2 class="feature-label">Getting started</h2>
+  <h2 class="feature-label">Getting started with Peach</h2>
   <div class="svc-compat__grid">
 
       <div class="svc-compat__tile" id="setup-install">
@@ -178,7 +178,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">1. Install and create your account</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~5 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~5 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Download Peach from the official App Store (Testflight), Google Play, or the APK page.</li><li>Set a strong password when the app creates your account file.</li><li>Enable biometric unlock and a screen lock on your phone before trading.</li></ol>
         <p><strong>Gotcha:</strong> Peach cannot reset your password, so store it offline before you trade.</p>
       </div>
@@ -189,7 +190,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">2. Back up your Peach account file</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~5 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~5 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        
         <ol><li>Open Settings > Backup and export your encrypted account file.</li><li>Copy the file to two storage locations you control, such as an SD card and a laptop.</li><li>Store the backup password separately from the file so a thief cannot unlock both.</li></ol>
         <p><strong>Gotcha:</strong> Losing both the file and password means Peach cannot recover your sats.</p>
       </div>
@@ -200,7 +202,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">3. Complete a small test trade</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~15-45 min</span><span class="migration-meta-chip">Cost: Trading fee: ~2%</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~15-45 min</span><span class="migration-meta-chip">Cost: Trading fee: ~2%</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        
         <ol><li>Filter offers by country, currency, and the payment method you already trust.</li><li>Wait for the seller to fund escrow and confirm the transaction hash before paying.</li><li>Send a small amount of fiat, share proof in chat, and verify the bitcoin release in your wallet.</li></ol>
         <p><strong>Gotcha:</strong> Keep chat inside the app so mediators can review the history if something goes wrong.</p>
       </div>
@@ -314,6 +317,61 @@
 </section>
 </details>
 <details class="section-accordion">
+  <summary>Peach features & limits</summary>
+
+<section id="compat" class="service-section">
+  <h2 class="feature-label">Peach features & limits</h2>
+  <div class="svc-compat__grid">
+
+      <div class="svc-compat__tile" id="device-account-file">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Device-held account file</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Encrypted on your phone</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Export your own backup</span></span></p>
+        <p class="svc-compat__why">Peach stores your wallet state in an encrypted file that never leaves your phone. That keeps your keys, payment preferences, and chats under your control instead of on company servers. You can export the file to offline storage so a lost phone never strands your sats.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> If you lose both the backup file and the password, Peach cannot restore your wallet.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="multisig-trade-escrow">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Multisig trade escrow</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Seller + Peach signatures</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Dispute fallback after 4,320 blocks</span></span></p>
+        <p class="svc-compat__why">Each trade locks bitcoin in a 2-of-2 address that needs the seller and Peach to sign before funds move. That stops unilateral withdrawals and gives disputes a path to resolution after roughly 4,320 blocks. You can verify the escrow on-chain before you send any money.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Never send fiat before escrow is funded and confirmed.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="kyc-free-limits">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">KYC-free daily limits</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Up to ~1,000 CHF daily</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Stay private without ID</span></span></p>
+        <p class="svc-compat__why">Swiss regulation lets Peach settle trades under about 1,000 CHF per day without collecting identity documents. That keeps small deals private while staying compliant. You can plan larger moves across several days if you want to remain in the no-KYC bracket.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Crossing compliance triggers can pause new trades until you finish any required verification.</p>
+          </div>
+        </details>
+      </div>
+  </div>
+</section>
+</details>
+<details class="section-accordion">
   <summary>Payment methods & limits</summary>
 
 <section id="payment-methods" class="service-section">
@@ -413,61 +471,6 @@
             <tr><th>Withdrawal eligibility</th><td>Release after screenshots confirm the transfer</td></tr>
           </tbody>
         </table>
-          </div>
-        </details>
-      </div>
-  </div>
-</section>
-</details>
-<details class="section-accordion">
-  <summary>Peach features & limits</summary>
-
-<section id="compat" class="service-section">
-  <h2 class="feature-label">Peach features & limits</h2>
-  <div class="svc-compat__grid">
-
-      <div class="svc-compat__tile" id="device-account-file">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Device-held account file</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Encrypted on your phone</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Export your own backup</span></span></p>
-        <p class="svc-compat__why">Peach stores your wallet state in an encrypted file that never leaves your phone. That keeps your keys, payment preferences, and chats under your control instead of on company servers. You can export the file to offline storage so a lost phone never strands your sats.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> If you lose both the backup file and the password, Peach cannot restore your wallet.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="multisig-trade-escrow">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Multisig trade escrow</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Seller + Peach signatures</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Dispute fallback after 4,320 blocks</span></span></p>
-        <p class="svc-compat__why">Each trade locks bitcoin in a 2-of-2 address that needs the seller and Peach to sign before funds move. That stops unilateral withdrawals and gives disputes a path to resolution after roughly 4,320 blocks. You can verify the escrow on-chain before you send any money.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Never send fiat before escrow is funded and confirmed.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="kyc-free-limits">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">KYC-free daily limits</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Up to ~1,000 CHF daily</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Stay private without ID</span></span></p>
-        <p class="svc-compat__why">Swiss regulation lets Peach settle trades under about 1,000 CHF per day without collecting identity documents. That keeps small deals private while staying compliant. You can plan larger moves across several days if you want to remain in the no-KYC bracket.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Crossing compliance triggers can pause new trades until you finish any required verification.</p>
           </div>
         </details>
       </div>

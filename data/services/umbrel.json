@@ -1,54 +1,587 @@
 {
   "name": "Umbrel",
   "category": "Run my own node",
-  "type_of_platform": "Home server as software and / or hardware",
+  "type_of_platform": "Home server OS & optional hardware",
   "faqs": [
     {
-      "q": "What is Umbrel?",
-      "a": "Umbrel is a user‑friendly home server OS to self‑host Bitcoin/Lightning nodes and 100+ apps via a one‑click App Store."
+      "q": "What hardware does Umbrel officially support?",
+      "a": "Umbrel Home ships with pre-configured hardware, but you can flash the same umbrelOS image onto Raspberry Pi 5/4 kits or x86 mini-PCs with at least 8 GB RAM and SSD storage."
     },
     {
-      "q": "Is Umbrel open source?",
-      "a": "Umbrel is source‑available rather than fully open‑source; many apps are open‑source."
+      "q": "How are Lightning channel backups handled?",
+      "a": "Umbrel can generate static channel backup (SCB) files from the Lightning dashboard and also stores encrypted copies under `/home/umbrel/umbrel/lnd/data/chain/bitcoin/mainnet/channel.backup`, so you can restore after hardware failures."
     },
     {
-      "q": "Does Umbrel support remote access?",
-      "a": "Yes. Umbrel supports secure remote access via Tor and Tailscale VPN."
+      "q": "What about the default password?",
+      "a": "Every Umbrel instance ships with `moneyprintergobrrr` as the default dashboard password; change it on first boot and generate unique credentials for Thunderhub or other apps that keep their own login store."
     }
   ],
+  "supported_network": "Bitcoin full node, Lightning, and 100+ self-hosted apps",
   "features": {
     "WW": [
       {
-        "text": "Simple self-hosted node OS",
+        "text": "One-click installs for Bitcoin Core, Lightning, Electrs, BTCPay, Mempool, Immich, Home Assistant, and more",
         "status": "positive"
       },
       {
-        "text": "Polished macOS-style interface",
+        "text": "Built-in Tor routing with optional Tailscale VPN for remote access",
         "status": "positive"
       },
       {
-        "text": "Remote access via Tor or Tailscale VPN",
+        "text": "Guided system and Lightning backups",
         "status": "positive"
       },
       {
-        "text": "Source-available license (not fully open-source)",
+        "text": "Source-available license and centralized updates",
         "status": "negative"
       },
       {
-        "text": "No HTTPS by default",
+        "text": "HTTP-only dashboard unless you front it with HTTPS yourself",
         "status": "negative"
       }
     ]
   },
-  "price": "$299 for hardware device",
+  "custody_control": "Self-hosted (you run the node and keys locally)",
+  "kyc_required": "No",
+  "recovery_method": "System backup archive + Lightning static channel backup",
+  "open_source": "Source-available (PolyForm Noncommercial 1.0.0)",
   "user_experience": "0.0",
-  "interface": "Desktop only",
-  "support": "Community forums",
+  "interface": "Web dashboard",
+  "app_ratings": {
+    "ios": null,
+    "android": null
+  },
   "profile": "Luke Childs & Mayank Chhabra",
-  "description": "Umbrel is a user-friendly, plug‑and‑play home server OS primarily designed to run Bitcoin and Lightning nodes. It supports the official Umbrel Home hardware and installation on Raspberry Pi or x86 machines. What sets it apart is its polished, macOS‑style interface with a one‑click App Store for installing things like Bitcoin Core, LND, Electrum Rust Server, mempool explorer, and various self‑hosted apps like Nextcloud, Plex, Pi‑Hole, Home Assistant, and AI models. The setup process is straightforward—just plug in, set a password, install apps, and sync—which makes it accessible for non‑technical users.\\n\\nWhat truly distinguishes Umbrel is its elegant design and focus on broad self‑hosting beyond just Bitcoin. The dashboard offers real‑time system stats, customizable widgets, seamless updates, and integrations for VPN access via Tailscale or TOR. The App Store's curated ecosystem of over 100 vetted, containerized apps makes complex tasks like running blockchain explorers or home automation easy—without requiring command‑line work. This polished UX lowers the bar for users who want to self‑host smartly.\\n\\nIn terms of community and support, Umbrel has an active user base and support channels via chat and forums. However, discussions also mention that Umbrel uses unencrypted HTTP by default and lacks HTTPS, which could pose risks on exposed LANs. More privacy‑focused alternatives like Citadel and StartOS offer full HTTPS and fully open‑source licensing.\\n\\nUmbrel is aimed at users seeking a seamless, beautiful entry point into self‑sovereign Bitcoin and home‑server use. Its vision is to expand the personal server experience by enabling anyone to host their own apps, AI, media, and nodes with minimal friction. But it trades off some transparency and technical control—its source‑available license, lack of HTTPS out of the box, and centralized update model may concern advanced or privacy‑focused users. In sum, Umbrel offers a delightful, low‑barrier way to participate in Bitcoin sovereignty and self‑hosting, though some might prefer more open or secure setups if they prioritize full technical autonomy.",
+  "description": "Umbrel bundles Bitcoin Core, Lightning daemons, and a catalog of home-server apps into a single dashboard you host on your own hardware. Because your node verifies blocks locally, you no longer depend on third-party APIs for mempool data or wallet balances, and the App Store manages containers for tools like Electrs, Mempool, BTCPay, or even photo libraries without touching the command line.\n\nThat convenience comes with trade-offs. Umbrel keeps its UI on HTTP inside your LAN, uses a source-available license, and manages updates centrally, so you inherit their defaults unless you harden the stack with Tor-only access, VLAN isolation, and custom reverse proxies. You can export backups, disable telemetry, and lock down SSH, but long-term safety still depends on how you provision hardware, power, and backups.\n\nUse Umbrel when you want a polished, guided path into running your own Bitcoin stack alongside other self-hosted services. If you need reproducible builds, deterministic updates, or air-gapped security policies, treat Umbrel as a starter kit and graduate to a more open stack once you’re comfortable maintaining the moving pieces.",
   "founded_in": "2019",
   "website": "https://umbrel.com",
+  "links": {
+    "download": "https://github.com/getumbrel/umbrel/releases/latest",
+    "docs": "https://github.com/getumbrel/umbrel/wiki",
+    "hardware": "https://umbrel.com/umbrel-home"
+  },
   "countries": [
     "WW"
-  ]
+  ],
+  "trust_chips": [
+    {
+      "text": "Source-available",
+      "status": "informational"
+    },
+    {
+      "text": "Tor remote access",
+      "status": "positive"
+    },
+    {
+      "text": "No cloud custody",
+      "status": "positive"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "People who want a guided home server to run Bitcoin, Lightning, and household apps without SSH.",
+    "consider_if": "You like plug-and-play UX but still want Tor routing, Electrs, and containerized services under your roof.",
+    "not_ideal_when": "You require fully open-source licensing, HTTPS-by-default, or granular control over every dependency."
+  },
+  "howto": {
+    "title": "Installation matrix",
+    "steps": [
+      {
+        "id": "flash-pi-image",
+        "title": "1. Flash umbrelOS for Raspberry Pi",
+        "chips": {
+          "setup_time": "~30 min",
+          "cost": "Existing Pi + SSD",
+          "risk": "Medium (hardware prep)"
+        },
+        "sync_time": "~5–6 days on Pi 4, leave device on.",
+        "actions": [
+          "Download the <a href=\"https://github.com/getumbrel/umbrel/releases/latest\" target=\"_blank\">latest umbrelOS</a> `.img.xz` from GitHub Releases",
+          "Flash it to a fast microSD using Balena Etcher and plug in your USB 3.0 SSD for blockchain data",
+          "Attach Ethernet before first boot so the node can reach peers immediately"
+        ],
+        "gotcha": "Slow microSD cards throttle sync speed; favor A2-rated or better."
+      },
+      {
+        "id": "first-boot-sync",
+        "title": "2. First boot & start syncing",
+        "chips": {
+          "setup_time": "~15 min setup",
+          "cost": "Free",
+          "risk": "Low (follow prompts)"
+        },
+        "actions": [
+          "Visit `umbrel.local` or the IP, accept onboarding, and replace the default password",
+          "Install Bitcoin Core and Lightning from the App Store and start the sync",
+          "Leave the device on; initial sync on Pi can take 4–6 days depending on peers"
+        ],
+        "gotcha": "Do not send funds until Bitcoin Core shows 100% synchronization."
+      },
+      {
+        "id": "install-x86",
+        "title": "3. Install on an x86 mini PC",
+        "chips": {
+          "setup_time": "~25 min",
+          "cost": "Mini PC + SSD",
+          "risk": "Medium (full disk install)"
+        },
+        "sync_time": "~12–18 hours on N100, leave device on.",
+        "actions": [
+          "Write the umbrelOS ISO to a USB stick, boot your Intel/AMD mini PC, and follow the guided installer",
+          "Select the SSD as the target disk; the installer partitions and provisions services automatically",
+          "Keep Ethernet connected for the first sync—expect 12–18 hour initial block download"
+        ],
+        "gotcha": "The installer wipes the entire target disk; back up any existing data first."
+      },
+      {
+        "id": "docker-vm",
+        "title": "4. Run inside a Linux VM or Docker host",
+        "chips": {
+          "setup_time": "~20 min",
+          "cost": "Existing server",
+          "risk": "High (manual tuning)"
+        },
+        "sync_time": "Varies by host CPU/Disk.",
+        "actions": [
+          "Provision a Debian/Ubuntu host with Docker and compose, then run the official curl installer with `--install-path` pointing to your storage volume",
+          "Expose port 3000 only inside your LAN; route remote access through Tor or a VPN instead of opening it on the internet",
+          "Snapshot the VM before major upgrades so you can roll back quickly"
+        ],
+        "gotcha": "Umbrel expects direct disk access; thin-provisioned volumes can bottleneck IBD."
+      }
+    ],
+    "totalTime": null,
+    "micro_faqs": [
+      {
+        "q": "Can I reuse an external SSD that already holds blockchain data?",
+        "a": "Yes. Copy the existing `bitcoin` directory into `/home/umbrel/umbrel/bitcoin` before first boot to save days of syncing."
+      },
+      {
+        "q": "Does Umbrel require a static IP?",
+        "a": "No, but reserving a DHCP lease keeps Onion links, Electrs endpoints, and wallet connections predictable."
+      }
+    ]
+  },
+  "fees_section_title": "Costs & speed of operation",
+  "fees_scenarios": [
+    {
+      "id": "initial-sync",
+      "title": "Initial sync time",
+      "cost_value": "5–6 days",
+      "cost_context": "on Pi 4 (or ~12h on Mini-PC)",
+      "badge": "One-time",
+      "what_happens": "Bitcoin Core verifies every block from genesis on your hardware (CPU + disk-IO bound).",
+      "how_to_minimize": "Leave it on, use wired Ethernet, and prefer SSDs over HDDs.",
+      "learn_more": "Pause heavy App Store installs until Bitcoin Core reaches tip; Lightning depends on a fully synced node."
+    },
+    {
+      "id": "disk-growth",
+      "title": "Disk growth",
+      "cost_value": "550 GB",
+      "cost_context": "currently + 5–7 GB/month",
+      "badge": "Storage",
+      "what_happens": "Full-history nodes store the entire blockchain plus Lightning databases, logs, and app containers on your local drive.",
+      "how_to_minimize": "Allocate at least a 1 TB SSD for full archival, or enable pruning to fit on smaller drives.",
+      "learn_more": "Keep >15% free space in `/home/umbrel/umbrel/bitcoin/blocks` so compaction never stalls."
+    },
+    {
+      "id": "power-draw",
+      "title": "Power consumption",
+      "cost_value": "10–30 W",
+      "cost_context": "~$1.30–$3.90 / month",
+      "badge": "Monthly",
+      "what_happens": "Your node stays online 24/7 to verify blocks and route payments, drawing continuous power.",
+      "how_to_minimize": "Use efficient N100 hardware or under-volt your Pi to keep carrying costs low.",
+      "learn_more": "Pair the node with a smart plug or UPS that reports load so you can budget uptime."
+    },
+    {
+      "id": "bandwidth",
+      "title": "Bandwidth requirements",
+      "cost_value": "600 GB",
+      "cost_context": "initial download + 30GB/mo",
+      "badge": "Network",
+      "what_happens": "The node peers with the network to relay blocks and gossip, using significant upstream bandwidth.",
+      "how_to_minimize": "Use a wired connection and set upload caps in Bitcoin Core if your ISP limits data.",
+      "learn_more": "ISPs with 1 TB caps may throttle after long IBD sessions; consider fiber or business-class plans."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "Can I pause the initial block download without corrupting data?",
+      "a": "Yes. Shut down from Settings → System before powering off; Bitcoin Core resumes where it left off as long as the SSD stays connected."
+    },
+    {
+      "q": "What happens when my SSD fills up?",
+      "a": "Umbrel warns you at ~85% usage. Add a larger disk and migrate the `/home/umbrel/umbrel` directory before the drive hits 100% or Bitcoin Core will halt."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-scb",
+      "term": "Static channel backup (SCB)",
+      "definition": "Encrypted snapshot of your Lightning channels you import if the node fails."
+    },
+    {
+      "id": "term-ibd",
+      "term": "Initial block download (IBD)",
+      "definition": "The first sync where Bitcoin Core verifies every block since 2009."
+    },
+    {
+      "id": "term-ups",
+      "term": "Uninterruptible power supply (UPS)",
+      "definition": "Battery pack that keeps the node online long enough for safe shutdowns."
+    }
+  ],
+  "privacy_notes": {
+    "data_flows": [
+      "Umbrel’s dashboard communicates over HTTP on your LAN; Tor remote access tunnels traffic through `.onion` addresses instead.",
+      "App Store containers may expose additional ports—review each app’s notes before forwarding anything.",
+      "Optional telemetry is off by default; leave it disabled if you want zero data leaving home."
+    ],
+    "recovery_drill": [
+      "Download the system backup plus `channel.backup` whenever you add channels or apps.",
+      "Test restores on spare hardware or a VM so you’re confident the archive works before you need it."
+    ],
+    "country_caveats": [
+      "Hardware availability varies by region; DIY installs work anywhere you can source a Pi or mini PC.",
+      "ISPs running CGNAT block inbound ports—lean on Tor or VPN tunnels for remote access."
+    ]
+  },
+  "privacy": {
+    "section_title": "Network & Privacy",
+    "data_flows": [
+      "The dashboard listens on HTTP inside your LAN; remote access should route over Tor or a VPN tunnel to avoid exposing logins.",
+      "Each App Store container may open additional ports—review them before forwarding anything past your firewall.",
+      "Umbrel’s optional telemetry is opt-in; leave it disabled if you want the node completely local."
+    ],
+    "data_flows_do": "Keep the device behind a router, enable Tor remote access, and rotate credentials that ship with defaults.",
+    "data_flows_dont": "Expose `umbrel.local:80` directly to the internet or reuse the same password across Thunderhub, Lightning Terminal, and the base OS.",
+    "recovery": [
+      "System backups live under `Settings → Backup`; store a copy off-device together with your Lightning SCB file.",
+      "To restore, flash the latest image, drop your backup archive plus `channel.backup` into `/home/umbrel/umbrel/backups`, and follow the wizard.",
+      "If the hardware dies without a recent SCB, force-close channels from peers or use watchtower data where available."
+    ],
+    "recovery_do": "Test restores on spare hardware or a VM so you understand the flow before an outage.",
+    "recovery_dont": "Rely solely on Umbrel’s cloud-encrypted SCB—keep your own copy.",
+    "region": [
+      "Umbrel runs entirely on your hardware, so jurisdictional limits tie to hardware import rules rather than app access.",
+      "Tor helps when your ISP uses CGNAT; you can still reach the node remotely without opening ports."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Does Umbrel support HTTPS?",
+        "a": "Not out of the box; front it with Caddy, Traefik, or Tailscale funnel if you need TLS and granular access control."
+      },
+      {
+        "q": "Can ISPs see what I'm hosting?",
+        "a": "They see encrypted Bitcoin traffic and Tor circuits, but not the app data itself—still, avoid exposing clearnet ports."
+      },
+      {
+        "q": "Where are SSH keys stored?",
+        "a": "Umbrel disables SSH by default; when enabled, keys live under `/home/umbrel/.ssh` so you can rotate them like any Linux host."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "CGNAT",
+        "def": "Carrier-grade NAT that prevents inbound port forwards; Tor or VPN tunnels bypass it."
+      },
+      {
+        "term": "SCB",
+        "def": "Static Channel Backup—an encrypted snapshot of your Lightning channels you need after catastrophic loss."
+      }
+    ],
+    "keywords": [
+      "Umbrel privacy",
+      "Tor remote access",
+      "Umbrel backups",
+      "Umbrel HTTPS",
+      "Umbrel SSH"
+    ]
+  },
+  "compat_heading": "Lightning & App support",
+  "compat_tiles": [
+    {
+      "id": "btc-core",
+      "title": "Bitcoin Core",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Full node</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Prune option</span>",
+      "status": "works"
+    },
+    {
+      "id": "lightning-daemons",
+      "title": "Lightning",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> LND default</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> CLN via community app</span>",
+      "status": "works-caveat"
+    },
+    {
+      "id": "electrum-stack",
+      "title": "Electrum / Electrs",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Electrs</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> EPS</span>",
+      "status": "works"
+    },
+    {
+      "id": "app-store",
+      "title": "App Marketplace",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 100+ apps</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 1-click updates</span>",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "btc-core",
+      "why": "Bitcoin Core runs as a managed container with pruning support so you can trade disk space for faster syncs when needed.",
+      "try": [
+        "Install Bitcoin Core from the App Store and watch the sync percentage on the dashboard",
+        "Toggle pruning under Advanced settings if you must run on 200 GB disks"
+      ],
+      "gotcha": "Pruned nodes cannot serve the full blockchain to Electrs; keep at least 1 TB for full-history mode."
+    },
+    {
+      "id": "lightning-daemons",
+      "why": "Umbrel ships with LND by default for compatibility with Zeus, Thunderhub, and Lightning Terminal, while Core Lightning arrives via community apps if you prefer plugin-based workflows.",
+      "try": [
+        "Install Lightning from the App Store after Bitcoin Core reaches tip",
+        "Pair Zeus or Zap over Tor by scanning the QR from Umbrel’s Lightning page"
+      ],
+      "gotcha": "Switching between LND and CLN requires closing channels or migrating SCBs; plan before deleting containers."
+    },
+    {
+      "id": "electrum-stack",
+      "why": "Electrs indexes your chain locally so Sparrow, Specter, or BlueWallet can query your node without leaking addresses.",
+      "try": [
+        "Install Electrs, wait for the index to build, then point Sparrow at `umbrel.local:50002` over SSL",
+        "Enable EPS if you need hardware wallet airgap workflows"
+      ],
+      "gotcha": "Electrs needs as much disk as Bitcoin Core plus ~150 GB index overhead."
+    },
+    {
+      "id": "app-store",
+      "why": "The curated marketplace lets you add services like Nextcloud, Immich, or Home Assistant alongside Bitcoin tooling without Docker compose files.",
+      "try": [
+        "Browse the App Store, pick a service, and click Install",
+        "Pin widgets to the dashboard to monitor resource usage"
+      ],
+      "gotcha": "Apps share the same SSD; monitor disk space before syncing photo libraries or AI models."
+    }
+  ],
+  "migration": [
+    {
+      "id": "reuse-existing-node",
+      "title": "Reuse an existing Bitcoin data directory",
+      "choose": "Use this when migrating from another node so you don’t redownload the chain.",
+      "time": "~1–3 hours (copy dependent)",
+      "cost": "Free",
+      "risk": "Medium",
+      "steps": [
+        "Shut down the old node cleanly and copy `blocks` + `chainstate` to external storage.",
+        "Place the data inside `/home/umbrel/umbrel/bitcoin` and ensure ownership belongs to the `umbrel` user.",
+        "Boot Umbrel; it verifies the data and resumes at the tip before enabling Lightning."
+      ],
+      "tips": "Match the pruning mode—full-history data cannot satisfy a pruned configuration.",
+      "gotcha": "Power-loss during the copy can corrupt LevelDB files; verify with `bitcoin-cli -datadir=... getblockcount` before moving on."
+    },
+    {
+      "id": "lightning-migration",
+      "title": "Migrate Lightning channels",
+      "choose": "Use this to recover LND channels after hardware failure or when moving stacks.",
+      "time": "~30–90 min",
+      "cost": "Mining fees for closes",
+      "risk": "Medium",
+      "steps": [
+        "Export SCBs (or a full data directory) from the old node before powering it down.",
+        "On Umbrel, open Lightning → Restore, upload the SCB, and wait for on-chain settlements.",
+        "If both nodes are alive, drain channels to cold storage and cooperatively close to minimize fees."
+      ],
+      "tips": "Never run two LND nodes with the same seed simultaneously—channel states will diverge.",
+      "gotcha": "SCBs only recover balances, not channel states; expect forced closes that take ~720 blocks."
+    },
+    {
+      "id": "disk-upgrade",
+      "title": "Upgrade to a larger SSD",
+      "choose": "Use when you’re running low on disk space and need more headroom.",
+      "time": "~1–2 hours",
+      "cost": "New SSD",
+      "risk": "Low",
+      "steps": [
+        "Shut down Umbrel and clone `/home/umbrel/umbrel` to the new drive with `rsync -aHAX`.",
+        "Update `/etc/fstab` or the bootloader to point at the new disk UUID.",
+        "Boot, confirm services run, then wipe the old drive once backups are safe."
+      ],
+      "tips": "Use powered USB enclosures for NVMe drives to avoid brownouts mid-sync.",
+      "gotcha": "Forgetting to update mount points leaves Umbrel writing to the old disk—double-check before syncing."
+    }
+  ],
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#hardware",
+    "fees": "#costs",
+    "privacy": "#network",
+    "compat": "#apps",
+    "migration": "#migration",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-21",
+  "trust": {
+    "cards": [
+      {
+        "id": "release",
+        "fact": "Latest umbrelOS build: November 2025",
+        "link_text": "Changelog",
+        "link_url": "https://github.com/getumbrel/umbrel/releases"
+      },
+      {
+        "id": "source",
+        "fact": "Source-available under PolyForm NC 1.0.0",
+        "link_text": "GitHub repo",
+        "link_url": "https://github.com/getumbrel/umbrel"
+      },
+      {
+        "id": "docs",
+        "fact": "DIY vs Umbrel Home feature matrix",
+        "link_text": "Wiki",
+        "link_url": "https://github.com/getumbrel/umbrel/wiki/umbrelOS-on-Umbrel-Home-vs.-DIY"
+      },
+      {
+        "id": "community",
+        "fact": "Active help threads on Umbrel Community forum",
+        "link_text": "Forum",
+        "link_url": "https://community.umbrel.com/t/getting-started-with-your-umbrel/3555"
+      }
+    ],
+    "summary": "Umbrel makes Bitcoin node management accessible but relies on a source-available license for its dashboard. While the underlying Bitcoin Core and LND binaries are open source, the orchestration layer is not fully FOSS, which some purists avoid. However, for home users, it removes significant technical barriers while keeping data local."
+  },
+  "hardware_bom": {
+    "heading": "Hardware BOM & capacity planning",
+    "builds": [
+      {
+        "id": "budget-pi",
+        "name": "Budget Pi kit",
+        "use_case": "Learning, personal routing, light app usage",
+        "parts": [
+          "Raspberry Pi 5 or 4 (8 GB RAM)",
+          "1 TB NVMe SSD in USB 3.2 enclosure",
+          "Active cooling case or fan hat",
+          "15W USB-C power supply"
+        ],
+        "estimates": {
+          "sync_time": "~5–6 days initial sync",
+          "noise": "Low (fan under 30 dB)",
+          "wattage": "10–12 W idle / 15 W sync"
+        }
+      },
+      {
+        "id": "quiet-mini-pc",
+        "name": "Quiet mini-PC",
+        "use_case": "Daily Lightning use, Electrs, media apps",
+        "parts": [
+          "Intel N100 / N305 mini PC with 16 GB RAM",
+          "2 TB NVMe SSD",
+          "Silent heatpipe chassis",
+          "Battery-backed NVMe enclosure for backups"
+        ],
+        "estimates": {
+          "sync_time": "~12–18 hours initial sync",
+          "noise": "Silent/fanless",
+          "wattage": "20–25 W idle / 30 W sync"
+        }
+      },
+      {
+        "id": "power-user",
+        "name": "Power user workstation",
+        "use_case": "Routing, BTCPay merchants, AI / media workloads",
+        "parts": [
+          "Ryzen 7 / Intel i7 SFF box with 32 GB RAM",
+          "4 TB NVMe or SATA SSD (mirrored)",
+          "Managed switch + VLAN-aware router",
+          "UPS with network card"
+        ],
+        "estimates": {
+          "sync_time": "~8–10 hours initial sync",
+          "noise": "Depends on fans (aim <35 dB)",
+          "wattage": "45 W idle / 70 W peak"
+        }
+      }
+    ]
+  },
+  "power_uptime": {
+    "metrics": [
+      {
+        "label": "Idle draw (Pi build)",
+        "value": "10–12 W",
+        "notes": "~$1.30 per month at $0.18/kWh"
+      },
+      {
+        "label": "Idle draw (mini PC)",
+        "value": "20–25 W",
+        "notes": "~$3.25 per month"
+      },
+      {
+        "label": "Load spikes",
+        "value": "Up to 70 W on power-user rigs",
+        "notes": "Budget UPS capacity accordingly"
+      }
+    ],
+    "ups_guidance": [
+      "Pi builds can run for ~45 minutes on a 300 VA UPS—long enough for clean shutdowns during outages.",
+      "Mini PCs benefit from 600–1000 VA UPS units so Electrs indexing or Lightning gossip doesn’t crash mid-write.",
+      "Use smart UPS models to trigger automatic shutdowns via USB or network cards."
+    ],
+    "safe_shutdown": "Always shut down from Settings → System or `sudo poweroff` before cutting power; abrupt loss risks database corruption in Bitcoin Core, Electrs, and Lightning."
+  },
+  "maintenance": {
+    "cadence": "Umbrel ships OS and App Store updates roughly monthly, with security fixes pushed as needed.",
+    "tasks": [
+      {
+        "title": "Apply updates",
+        "details": "Watch for the orange badge in the dashboard; click Update, wait for reboot, and confirm Bitcoin Core resumes sync."
+      },
+      {
+        "title": "Back up configs",
+        "details": "Export system backup archives plus the `channel.backup` file whenever you add channels or apps."
+      },
+      {
+        "title": "Check disk health",
+        "details": "Run SMART checks quarterly and replace SSDs before write endurance fails."
+      }
+    ],
+    "configs": [
+      "Umbrel keeps Docker data under `/home/umbrel/umbrel`; rsync that directory to offline storage for full snapshots.",
+      "Per-app settings live inside their volumes—note locations before pruning apps."
+    ]
+  },
+  "security_model": {
+    "overview": "Umbrel assumes a trusted LAN with password-protected web UI, optional Tor remote access, and disabled-by-default SSH.",
+    "quick_wins": [
+      "Change the default `moneyprintergobrrr` password immediately and store it in a password manager.",
+      "Enable two-factor auth on Tor gateways like Tailscale or Cloudflare Tunnel if you expose the dashboard remotely.",
+      "Segment the node onto its own VLAN or dedicated Wi-Fi SSID so IoT devices never reach it directly."
+    ],
+    "hardening": [
+      "Enable SSH only when needed and restrict it to key-based logins.",
+      "Mount disks with LUKS or hardware encryption if the device lives outside your home.",
+      "Audit installed apps; remove anything you no longer run to reduce attack surface."
+    ]
+  },
+  "integrations": {
+    "wallets": [
+      "Sparrow / Specter via Electrs or EPS",
+      "Zeus, Thunderhub, Lightning Terminal over Tor",
+      "BlueWallet watch-only via Electrum server"
+    ],
+    "merchant_stack": [
+      "BTCPay Server with LND backend",
+      "LNBits or Cashu mints for custodial wallets",
+      "Ride the Lightning for POS-style flows"
+    ],
+    "explorers_and_tools": [
+      "Mempool.space instance for fee monitoring",
+      "Samourai Whirlpool CLI (community app)",
+      "Home Assistant, Nextcloud, Immich for day-one household value"
+    ],
+    "notes": "Most integrations are one-click App Store installs; others require pointing external clients at your node’s Tor hidden services."
+  }
 }

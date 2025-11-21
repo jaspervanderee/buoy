@@ -137,7 +137,7 @@
 </nav>
 
 <nav class="jump-nav" aria-label="Jump to">
-  <a href="/services/hodlhodl.html#setup">Setup</a> • <a href="/services/hodlhodl.html#fees">Fees</a> • <a href="/services/hodlhodl.html#payment-methods">Methods</a> • <a href="/services/hodlhodl.html#compat">Compatibility</a> • <a href="/services/hodlhodl.html#self-custody">Self-custody</a> • <a href="/services/hodlhodl.html#privacy-safety">Privacy</a> • <a href="/services/hodlhodl.html#trust">Trust</a> • <a href="/services/hodlhodl.html#faq-heading">FAQs</a>
+  <a href="/services/hodlhodl.html#setup">Setup</a> • <a href="/services/hodlhodl.html#fees">Fees</a> • <a href="/services/hodlhodl.html#compat">Compatibility</a> • <a href="/services/hodlhodl.html#payment-methods">Methods</a> • <a href="/services/hodlhodl.html#self-custody">Self-custody</a> • <a href="/services/hodlhodl.html#privacy-safety">Privacy</a> • <a href="/services/hodlhodl.html#trust">Trust</a> • <a href="/services/hodlhodl.html#faq-heading">FAQs</a>
 </nav>
   <!-- BUILD:START -->
 <div class="service-sticky-cta">
@@ -168,14 +168,15 @@
   <summary>Getting started</summary>
 
 <section id="setup" class="service-section">
-  <h2 class="feature-label">Getting started</h2>
+  <h2 class="feature-label">Getting started with Hodl Hodl</h2>
   <div class="svc-compat__grid">
 
       <div class="svc-compat__tile" id="setup-install">
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">1. Create and secure your account</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~5 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~5 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Visit hodlhodl.com and sign up with your email and a strong password.</li><li>Enable Two-Factor Authentication in Settings and register your trusted devices.</li><li>Review the trading guide so you understand the multisig escrow flow before posting offers.</li></ol>
         <p><strong>Gotcha:</strong> Losing your 2FA device without backup codes can delay support mediated recovery.</p>
       </div>
@@ -183,7 +184,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">2. Find or create an offer</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~10-30 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~10-30 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        
         <ol><li>Filter offers by country, currency, payment method, and price premium.</li><li>Read the seller's reputation, limit tier, and instructions before clicking Trade.</li><li>If no offer fits, create your own listing with your preferred terms and response window.</li></ol>
         <p><strong>Gotcha:</strong> Counterparties respond faster when you stay in chat and confirm payments promptly.</p>
       </div>
@@ -191,7 +193,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">3. Complete the trade</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~15-60 min</span><span class="migration-meta-chip">Cost: Trading fee: 0.5% split</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~15-60 min</span><span class="migration-meta-chip">Cost: Trading fee: 0.5% split</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        
         <ol><li>As the buyer, send the agreed fiat payment and upload proof inside the contract.</li><li>Wait for the seller to confirm receipt and release bitcoin from escrow to your address.</li><li>Double check the release transaction in your wallet or on a block explorer before closing the chat.</li></ol>
         <p><strong>Gotcha:</strong> If the other party stalls, open a dispute so support can join the contract.</p>
       </div>
@@ -305,6 +308,61 @@
 </section>
 </details>
 <details class="section-accordion">
+  <summary>Hodl Hodl features & limits</summary>
+
+<section id="compat" class="service-section">
+  <h2 class="feature-label">Hodl Hodl features & limits</h2>
+  <div class="svc-compat__grid">
+
+      <div class="svc-compat__tile" id="multisig-escrow">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Multisig escrow contracts</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 2-of-3 control</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Escrow visible on-chain</span></span></p>
+        <p class="svc-compat__why">Each Hodl Hodl trade locks bitcoin in a 2-of-3 multisig address controlled by you, the counterparty, and support, so neither party can move funds alone. You can verify the escrow address on-chain before sending fiat, keeping coins outside company custody while disputes still have a resolution path.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Escrow funding needs at least one on-chain confirmation before the buyer should send fiat.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="testnet-practice">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Testnet practice trading</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Rehearse every step</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> No real sats at risk</span></span></p>
+        <p class="svc-compat__why">Hodl Hodl's Testnet environment lets you rehearse trades with valueless coins before risking real sats, so you learn the escrow flow, chat prompts, and dispute process without capital at stake.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Remember that testnet coins have no value, so switch back to Mainnet when you are ready for real trades.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="custom-offers">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Custom offer marketplace</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Set your own premiums</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Choose payment rails</span></span></p>
+        <p class="svc-compat__why">Creating your own Hodl Hodl offer lets you set currency, payment method, premium, and working hours so buyers meet your terms instead of negotiating someone else's setup.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Offers auto-expire if you leave them inactive past the working hours you set.</p>
+          </div>
+        </details>
+      </div>
+  </div>
+</section>
+</details>
+<details class="section-accordion">
   <summary>Payment methods & limits</summary>
 
 <section id="payment-methods" class="service-section">
@@ -404,61 +462,6 @@
             <tr><th>Withdrawal eligibility</th><td>Release after the online wallet shows the funds settled</td></tr>
           </tbody>
         </table>
-          </div>
-        </details>
-      </div>
-  </div>
-</section>
-</details>
-<details class="section-accordion">
-  <summary>Hodl Hodl features & limits</summary>
-
-<section id="compat" class="service-section">
-  <h2 class="feature-label">Hodl Hodl features & limits</h2>
-  <div class="svc-compat__grid">
-
-      <div class="svc-compat__tile" id="multisig-escrow">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Multisig escrow contracts</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 2-of-3 control</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Escrow visible on-chain</span></span></p>
-        <p class="svc-compat__why">Each Hodl Hodl trade locks bitcoin in a 2-of-3 multisig address controlled by you, the counterparty, and support, so neither party can move funds alone. You can verify the escrow address on-chain before sending fiat, keeping coins outside company custody while disputes still have a resolution path.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Escrow funding needs at least one on-chain confirmation before the buyer should send fiat.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="testnet-practice">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Testnet practice trading</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Rehearse every step</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> No real sats at risk</span></span></p>
-        <p class="svc-compat__why">Hodl Hodl's Testnet environment lets you rehearse trades with valueless coins before risking real sats, so you learn the escrow flow, chat prompts, and dispute process without capital at stake.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Remember that testnet coins have no value, so switch back to Mainnet when you are ready for real trades.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="custom-offers">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Custom offer marketplace</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Set your own premiums</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Choose payment rails</span></span></p>
-        <p class="svc-compat__why">Creating your own Hodl Hodl offer lets you set currency, payment method, premium, and working hours so buyers meet your terms instead of negotiating someone else's setup.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Offers auto-expire if you leave them inactive past the working hours you set.</p>
           </div>
         </details>
       </div>

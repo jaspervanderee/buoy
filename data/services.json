@@ -5,16 +5,24 @@
     "type_of_platform": "Collaborative custody",
     "faqs": [
       {
-        "q": "What is AnchorWatch?",
-        "a": "AnchorWatch provides insured, collaborative custody with multisig vaults designed for long‑term bitcoin storage and inheritance."
+        "q": "How does AnchorWatch's Trident vault insurance work?",
+        "a": "AnchorWatch locks each deposit inside a Trident 2-of-3 multisig vault that maps to a Lloyd's-backed policy, so coverage follows the exact UTXO you fund. If you permanently lose control under the policy terms, you can file a claim instead of eating the loss."
       },
       {
-        "q": "Is AnchorWatch insured?",
-        "a": "Yes. Policies are designed to cover bitcoin in AnchorWatch vaults with 1:1 insurance."
+        "q": "What does AnchorWatch charge for custody insurance?",
+        "a": "Premiums run roughly 0.55%–2% of the insured value per year and are paid up front in USD. A Trident Services Fee of up to 0.25% annually (first $250k waived) is billed monthly so you can size coverage to your treasury."
       },
       {
-        "q": "Does AnchorWatch require KYC?",
-        "a": "Yes. As a regulated provider AnchorWatch requires identity verification."
+        "q": "How fast can I move bitcoin out of an AnchorWatch vault?",
+        "a": "You prepare and sign the spend in Trident, submit your evidence package, and AnchorWatch usually clears compliance plus its signature within one to two business days. Plan larger withdrawals ahead so insurance controls never become a surprise bottleneck."
+      },
+      {
+        "q": "Does AnchorWatch require KYC and where is it available?",
+        "a": "Yes. AnchorWatch underwrites regulated US policies, so onboarding requires identity documents or KYB packages and they currently insure only US-based clients."
+      },
+      {
+        "q": "How are customer keys and funds segregated at AnchorWatch?",
+        "a": "You generate your own keys on factory-sealed devices, and each vault has a unique output descriptor that proves funds are never commingled with other policyholders. You can verify segregation on-chain before depositing sats."
       }
     ],
     "supported_network": "Bitcoin",
@@ -74,6 +82,7 @@
     },
     "price": "Custom pricing",
     "custody_control": "Collaborative custody (insurance multisig)",
+    "kyc_required": "Yes",
     "recovery_method": "Time-locked multisig recovery",
     "open_source": "No",
     "node_connect": "No",
@@ -83,12 +92,559 @@
       "text": "No app available"
     },
     "profile": "Robert Hamilton & Becca Rubenfeld",
-    "description": "AnchorWatch is a U.S.-based bitcoin custody and insurance provider trying to bridge traditional insurance with Bitcoin-native custody, delivering peace of mind by offering an elegant, turnkey solution for long‑term bitcoin holders and corporate treasuries seeking secure, insured, and inheritance‑ready custody.\n\nWhat separates AnchorWatch is their unique integration of protocol-level multisig vaults with time-locked recovery and insurance. Users hold a multi-signature key set alongside AnchorWatch; both are required to sign transactions, and over time additional recovery mechanisms activate to handle key-loss, death, or coercion scenarios.\n\nUser reviews and discussions (e.g. from the Build With Bitcoin transcript) emphasize AnchorWatch's layered approach: the combination of vault tech and insurance addresses both technical and human vulnerabilities. The service also supports inheritance planning—time-locked access for heirs without cumbersome \"treasure maps\". This focus on estate continuity is cited as a major differentiator, especially for non‑technical beneficiaries.\n\nTheir future vision includes expanding beyond U.S. customers, offering bespoke large-value enterprise policies, and exploring Bitcoin-denominated insurance.",
+    "description": "AnchorWatch is a U.S.-based bitcoin custody and insurance provider trying to bridge traditional insurance with Bitcoin-native custody, delivering peace of mind by offering an elegant, turnkey solution for long-term bitcoin holders and corporate treasuries seeking secure, insured, and inheritance-ready custody.\n\nWhat separates AnchorWatch is their unique integration of protocol-level multisig vaults with time-locked recovery and insurance. Users hold a multi-signature key set alongside AnchorWatch; both are required to sign transactions, and over time additional recovery mechanisms activate to handle key-loss, death, or coercion scenarios.\n\nUser reviews and discussions (e.g. from the Build With Bitcoin transcript) emphasize AnchorWatch's layered approach: the combination of vault tech and insurance addresses both technical and human vulnerabilities. The service also supports inheritance planning—time-locked access for heirs without cumbersome \"treasure maps\". This focus on estate continuity is cited as a major differentiator, especially for non-technical beneficiaries.\n\nTheir future vision includes expanding beyond U.S. customers, offering bespoke large-value enterprise policies, and exploring Bitcoin-denominated insurance.",
     "founded_in": "2022",
     "website": "https://anchorwatch.com",
+    "links": {
+      "web": "https://www.anchorwatch.com/faq"
+    },
     "countries": [
       "US"
-    ]
+    ],
+    "trust_chips": [
+      {
+        "text": "Insurance-backed Trident vaults",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "insured-multisig"
+      },
+      {
+        "text": "Time-locked recovery script",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "timelocked-recovery"
+      },
+      {
+        "text": "Inheritance-ready claims",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "inheritance-claims"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "AnchorWatch pairs Trident multisig vaults with Lloyd's-backed insurance so US treasuries and families can keep keys cold without giving up coverage. Choose it when you want estate, audit, and compliance workflows around long-term bitcoin.",
+      "consider_if": "The service adds a compliance desk to every spend, which means you must plan withdrawals ahead of time. Consider it if you want that oversight plus access to insurance-grade recovery tooling.",
+      "not_ideal_when": "Because AnchorWatch must sign each spend, you trade speed for assurance. It's not ideal when you need instant, global, or anonymous control."
+    },
+    "howto": {
+      "title": "Set up your AnchorWatch vault",
+      "steps": [
+        {
+          "id": "vault-policy",
+          "title": "1. Choose policy & secure keys",
+          "chips": {
+            "time": "~60 min",
+            "cost": "Varies",
+            "risk": "Low"
+          },
+          "actions": [
+            "Meet AnchorWatch underwriting, review coverage tiers, and set the USD limit you want insured.",
+            "Complete KYC or KYB, sign the engagement letter, and receive the factory-sealed signing devices they ship.",
+            "Generate your customer keys during the onboarding call so AnchorWatch never sees the seed material."
+          ],
+          "gotcha": "Insurance underwriting requires US residency or entity registration plus identity verification."
+        },
+        {
+          "id": "vault-proof",
+          "title": "2. Build and test the vault",
+          "chips": {
+            "time": "~45 min",
+            "cost": "Mining fee",
+            "risk": "Low"
+          },
+          "actions": [
+            "Configure the Trident miniscript policy, label each signer, and review the vault's output descriptor together.",
+            "Send a small test deposit, confirm it on your own node, and log the insured UTXO ID provided in the policy.",
+            "Document the recovery script and store redundant copies offline for board reviews."
+          ],
+          "gotcha": "Skipping the descriptor review means you cannot independently prove the vault's policy later."
+        },
+        {
+          "id": "vault-ops",
+          "title": "3. Operationalize compliance & inheritance",
+          "chips": {
+            "time": "~30 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Define compliance contacts so AnchorWatch knows who can request co-signatures and who gets alerts.",
+            "Set withdrawal workflows, including evidence AnchorWatch needs before it signs and the one-to-two business day window.",
+            "Add beneficiaries or board-approved heirs in Trident so inheritance and insurance claims share paperwork."
+          ],
+          "gotcha": "Transactions requested outside the documented workflow are delayed until compliance can verify them."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Do I have to use Trident to be insured by AnchorWatch?",
+          "a": "Yes. The insurance is bound to Trident's miniscript vault so AnchorWatch can verify keys and sign when policy terms are met."
+        },
+        {
+          "q": "How fast does AnchorWatch co-sign transactions?",
+          "a": "After you sign and submit supporting evidence, AnchorWatch usually completes compliance checks and adds its signature within one to two business days."
+        },
+        {
+          "q": "What if every customer key is lost?",
+          "a": "AnchorWatch can invoke the time-locked recovery path with its emergency partner, or you can file a claim that covers the permanent loss if policy conditions are met."
+        }
+      ]
+    },
+    "key_features": {
+      "heading": "Your insured policy (who signs and when)",
+      "features": [
+        {
+          "id": "insured-multisig",
+          "title": "Insurance-backed Trident vaults",
+          "bullets": [
+            "<strong>Who holds keys:</strong> You keep two customer-controlled devices, AnchorWatch keeps its own signer set, and an emergency partner stays offline until needed.",
+            "<strong>Policy terms:</strong> Each insured vault corresponds to a specific UTXO and policy number, so loss calculations stay 1:1.",
+            "<strong>When it signs:</strong> AnchorWatch co-signs once compliance evidence is reviewed, typically within one to two business days."
+          ],
+          "footer": "<strong>Good for:</strong> Long-term storage that needs institutional approvals. <strong>Trade-off:</strong> Movements wait on AnchorWatch availability."
+        },
+        {
+          "id": "timelocked-recovery",
+          "title": "Time-locked recovery script",
+          "bullets": [
+            "<strong>Miniscript path:</strong> Trident encodes a timelock that lets AnchorWatch and its emergency partner rebuild access if customer keys disappear.",
+            "<strong>Recovery script:</strong> You receive descriptors so you can spend through Bitcoin Core even if Trident is offline.",
+            "<strong>Insurance tie-in:</strong> Manual recovery can avoid deductibles and keep coverage intact."
+          ],
+          "footer": "<strong>Good for:</strong> Estate planning or key-loss response. <strong>Trade-off:</strong> Timelocks add waiting periods before funds move."
+        }
+      ]
+    },
+    "dca": "No",
+    "payment_methods": [
+      "Bitcoin on-chain"
+    ],
+    "recovery_heading": "If this happens, can I still move my Bitcoin?",
+    "recovery_tiles": [
+      {
+        "id": "lose-device",
+        "title": "Lose one signing device",
+        "status": "works",
+        "chips": {
+          "time": "~1 business day"
+        }
+      },
+      {
+        "id": "anchorwatch-offline",
+        "title": "AnchorWatch service interruption",
+        "status": "works-caveat",
+        "chips": {
+          "time": "Timelock (per policy)"
+        }
+      },
+      {
+        "id": "coercion-event",
+        "title": "Coercion or theft attempt",
+        "status": "works",
+        "chips": {
+          "time": "Immediate"
+        }
+      },
+      {
+        "id": "lose-all-keys",
+        "title": "Lose every customer key",
+        "status": "works-caveat",
+        "chips": {
+          "time": "Timelock + claim"
+        }
+      }
+    ],
+    "recovery_explainers": [
+      {
+        "id": "lose-device",
+        "why": "Trident is 2-of-3, so you and AnchorWatch still have a quorum if one customer device fails.",
+        "how": [
+          "Notify AnchorWatch support and document when the device was lost or destroyed.",
+          "Schedule a replacement call so they can ship a new sealed signer and walk you through key generation.",
+          "Update the vault records and insurance schedule so the new key is reflected."
+        ],
+        "gotcha": "AnchorWatch needs evidence that the lost key cannot be recovered before issuing new hardware."
+      },
+      {
+        "id": "anchorwatch-offline",
+        "why": "You hold the recovery script and descriptors, so a timelock path lets you spend without AnchorWatch if they are unreachable.",
+        "how": [
+          "Load the recovery script into Bitcoin Core or another compatible wallet.",
+          "Wait for the policy's timelock window, then use your remaining keys plus the emergency partner to co-sign.",
+          "Sweep funds to a destination you control and notify AnchorWatch once channels reopen."
+        ],
+        "gotcha": "Bypassing AnchorWatch during an outage may impact insurance, so log every step and inform them once possible."
+      },
+      {
+        "id": "coercion-event",
+        "why": "AnchorWatch will not sign until compliance clears the request, giving you time to halt a coerced withdrawal and trigger insurance steps.",
+        "how": [
+          "Refuse to sign the outgoing transaction and alert AnchorWatch via their emergency contact.",
+          "Provide incident evidence (police report, affidavits) so they can freeze signatures.",
+          "Work with them to either rebuild access via the recovery partner or initiate a claim if keys were compromised."
+        ],
+        "gotcha": "Policies require timely reporting of coercion events; delays can affect coverage."
+      },
+      {
+        "id": "lose-all-keys",
+        "why": "A miniscript time-locked path plus AnchorWatch's emergency signer lets them rebuild control, and the insurance policy covers any permanent loss that remains.",
+        "how": [
+          "Report the loss immediately and provide documentation proving the keys are unrecoverable.",
+          "AnchorWatch and the emergency partner wait out the preset timelock, then co-sign a recovery spend.",
+          "If recovery fails, AnchorWatch files the Lloyd's-backed claim on your behalf using your evidence packet."
+        ],
+        "gotcha": "Claims include a 10% or 25% deductible, so full reimbursement depends on the policy option you selected."
+      }
+    ],
+    "inheritance": {
+      "section_title": "Inheritance: pass it on safely",
+      "intro": "Insurance paperwork and vault workflows align so heirs are not guessing when the time comes.",
+      "cards": [
+        {
+          "id": "inheritance-setup",
+          "title": "1. Stage the policy",
+          "status": "action",
+          "chips": {
+            "time": "~60 min"
+          },
+          "why": "Beneficiaries need to be named inside Trident and on the policy so compliance can verify them later.",
+          "steps": [
+            "Gather legal documents (trust, corporate resolutions) before the onboarding call.",
+            "List beneficiaries or board designees in Trident and in the insurance schedule.",
+            "Store recovery scripts plus instructions in separate, access-controlled locations.",
+            "Review the plan annually with AnchorWatch so contacts and documents stay current."
+          ],
+          "action": "Do this: Align legal paperwork, Trident assignments, and insurance records at the same time."
+        },
+        {
+          "id": "inheritance-claims",
+          "title": "2. Inheritance-ready claims",
+          "status": "process",
+          "chips": {
+            "time": "Varies (claim + review)"
+          },
+          "prereqs": "Beneficiary identity docs · Recovery script · Policy paperwork",
+          "steps": [
+            "Beneficiary contacts AnchorWatch with proof of death or corporate instruction.",
+            "AnchorWatch triggers its compliance review and informs Lloyd's if a claim is likely.",
+            "Once the waiting period clears, AnchorWatch co-signs or releases instructions so heirs can move funds.",
+            "Any deductible is applied before remaining sats settle to the beneficiary-controlled vault."
+          ],
+          "timeline": "Expect compliance plus insurer review before coins move; publish timelines in corporate policy manuals.",
+          "action": "Do this: Keep beneficiaries in the loop so they know how to contact AnchorWatch when needed."
+        },
+        {
+          "id": "inheritance-fallback",
+          "title": "3. If plans break",
+          "status": "emergency",
+          "chips": {
+            "fallback": "Recovery paths"
+          },
+          "scenarios": [
+            {
+              "issue": "Beneficiary lost documents",
+              "path": "AnchorWatch pauses signatures until replacement affidavits arrive."
+            },
+            {
+              "issue": "Corporate designee is disputed",
+              "path": "Board minutes or court orders must clarify who controls the account before funds move."
+            },
+            {
+              "issue": "AnchorWatch unreachable",
+              "path": "Execute the recovery script via timelock, then present records once service resumes."
+            }
+          ],
+          "action": "Do this: Record fallback contacts plus emergency communication channels in your continuity binder."
+        }
+      ]
+    },
+    "compatibility": {
+      "section_title": "Compatibility: what works with AnchorWatch",
+      "intro": "Know which hardware, browsers, and standards the Trident vault expects before underwriting.",
+      "hardware_os": [
+        {
+          "id": "devices",
+          "title": "Signing hardware",
+          "items": [
+            {
+              "name": "AnchorWatch-supplied devices",
+              "status": "verified",
+              "notes": "Factory-sealed hardware shipped during onboarding; kept offline except when signing."
+            },
+            {
+              "name": "Customer-provided HSMs",
+              "status": "works-caveat",
+              "notes": "Custom setups require AnchorWatch review so the policy still tracks signatures."
+            }
+          ]
+        },
+        {
+          "id": "dashboard",
+          "title": "Trident dashboard & desktop",
+          "platforms": [
+            {
+              "name": "Web",
+              "version": "Latest Chrome, Firefox, Safari",
+              "status": "verified"
+            },
+            {
+              "name": "Mobile browsers",
+              "support": "limited",
+              "notes": "Monitoring only; signing happens on dedicated hardware."
+            }
+          ]
+        },
+        {
+          "id": "connections",
+          "title": "Connection types",
+          "methods": [
+            {
+              "type": "Offline signing",
+              "status": "verified",
+              "constraint": "Signing devices stay air-gapped except when exchanging PSBT files."
+            },
+            {
+              "type": "Client node verification",
+              "status": "verified",
+              "constraint": "Use the output descriptor to watch the vault from your own node."
+            },
+            {
+              "type": "AnchorWatch compliance portal",
+              "status": "verified",
+              "constraint": "Web-based evidence uploads with audit logging"
+            }
+          ]
+        }
+      ],
+      "standards": {
+        "table": [
+          {
+            "standard": "BIP39",
+            "support": "Yes",
+            "notes": "Customer devices use standard seed phrases",
+            "status": "verified"
+          },
+          {
+            "standard": "BIP32",
+            "support": "Yes",
+            "notes": "Hierarchical deterministic derivation for vault paths",
+            "status": "verified"
+          },
+          {
+            "standard": "Miniscript",
+            "support": "Yes",
+            "notes": "Enables time-locked recovery paths",
+            "status": "verified"
+          },
+          {
+            "standard": "Output descriptors",
+            "support": "Yes",
+            "notes": "Customers receive descriptors for independent verification",
+            "status": "verified"
+          }
+        ],
+        "advanced": {
+          "descriptors": {
+            "support": "Yes",
+            "notes": "AnchorWatch emails descriptors plus Recovery Script during onboarding"
+          },
+          "psbt": {
+            "support": "Yes",
+            "notes": "PSBT handoffs move between Trident, customer devices, and AnchorWatch"
+          },
+          "derivation_paths": {
+            "support": "Custom",
+            "notes": "Policy-specific paths documented inside the recovery script"
+          },
+          "output_descriptors": {
+            "support": "Yes",
+            "notes": "Used for on-chain audits and cold recovery drills"
+          }
+        }
+      }
+    },
+    "costs": {
+      "section_title": "Costs & ongoing obligations",
+      "intro": "AnchorWatch bills like an insurance carrier: premiums are paid up front, while the Trident Services Fee covers custody tech and support.",
+      "summary_stats": {
+        "upfront": "Premium: 0.55%–2% of insured value (paid in USD)",
+        "monthly": "TSF: up to 0.25% annually after the first $250k",
+        "per_transaction": "Compliance signing: one transaction per quarter included"
+      },
+      "upfront": {
+        "title": "What you pay once",
+        "items": [
+          {
+            "name": "Onboarding fee",
+            "amount": "Refundable",
+            "note": "Returned if underwriting declines coverage"
+          },
+          {
+            "name": "Annual insurance premium",
+            "amount": "0.55%–2% of coverage",
+            "note": "Paid at policy start in USD"
+          },
+          {
+            "name": "Signing hardware shipment",
+            "amount": "Included",
+            "highlight": "included",
+            "note": "Factory-sealed devices mailed after underwriting"
+          }
+        ]
+      },
+      "ongoing": {
+        "title": "What you pay ongoing",
+        "items": [
+          {
+            "name": "Trident Services Fee",
+            "amount": "Up to 0.25% annually",
+            "highlight": "varies",
+            "note": "Billed monthly on balances above $250k"
+          },
+          {
+            "name": "Compliance signatures",
+            "amount": "Included quarterly",
+            "highlight": "included",
+            "note": "Additional signatures priced per event"
+          },
+          {
+            "name": "Deductible",
+            "amount": "10% or 25% of claim",
+            "note": "Selected during policy setup"
+          }
+        ]
+      }
+    },
+    "privacy": {
+      "section_title": "Privacy & jurisdiction",
+      "tiles": [
+        {
+          "id": "privacy-data",
+          "title": "What AnchorWatch collects & where it lives",
+          "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Keys stay offline</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Segregated records</span>",
+          "why": "Insurance carriers need KYC data and policy evidence, but key material never leaves your hardware.",
+          "summary": "AnchorWatch stores identity docs, policy forms, and transaction evidence on US servers with audit logs. Signing keys remain on the devices you control, and descriptors plus recovery scripts live in the secure portal you download during onboarding.",
+          "bullets": [
+            "<strong>Stays on devices:</strong> Customer seed phrases · AnchorWatch signer keys · Hardware PINs",
+            "<strong>Customer portal:</strong> Recovery scripts · Output descriptors · Audit-ready statements",
+            "<strong>AnchorWatch servers:</strong> KYC/KYB packets · Insurance paperwork · Compliance evidence",
+            "<strong>Logs:</strong> Signer requests · Support tickets · Claim documentation"
+          ],
+          "explainer_summary": "Can I audit my stored data?",
+          "explainer_text": "<p>Yes. The Trident portal lets you download policy records plus descriptors anytime, and AnchorWatch will export or delete KYC records once regulatory retention windows expire.</p>"
+        },
+        {
+          "id": "privacy-jurisdiction",
+          "title": "Jurisdiction: what that means for you",
+          "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> US-regulated</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Lloyd's backing</span>",
+          "why": "Policies are written on Lloyd's of London paper but administered from the US, so American insurance law applies.",
+          "summary": "AnchorWatch must respond to lawful US data or subpoena requests and keeps complaint channels through Arch Insurance and Lloyd's. Insurance coverage extends only to US persons or entities today, so cross-border clients need separate arrangements.",
+          "bullets": [
+            "<strong>Provider:</strong> AnchorWatch Inc. (US) with Lloyd's syndicate backing",
+            "<strong>Can be compelled:</strong> Policy details · Compliance notes · Communication logs",
+            "<strong>Can't access:</strong> Customer-held keys · Offline recovery phrases",
+            "<strong>Complaints:</strong> Arch Insurance (US) or Lloyd's (UK) escalation paths"
+          ],
+          "explainer_summary": "What if a court wants to freeze funds?",
+          "explainer_text": "<p>AnchorWatch can refuse to sign or alert you if a lawful order arrives, but they cannot move funds without your key. You decide whether to cooperate or move funds via the recovery path.</p>"
+        },
+        {
+          "id": "privacy-controls",
+          "title": "Your controls",
+          "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Review anytime</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Export or delete</span>",
+          "why": "Insurance-grade recordkeeping still gives you transparency so you can right-size what AnchorWatch stores.",
+          "summary": "The Trident portal keeps every signature request, descriptor update, and beneficiary change in one log so you never lose track. Data export and deletion workflows live in the same place, so you can keep only what regulators require.",
+          "bullets": [
+            "<strong>Portal access:</strong> Download policy docs, descriptors, and transaction logs whenever needed",
+            "<strong>Notifications:</strong> Customize incident and signature alerts for email, SMS, or phone",
+            "<strong>Data requests:</strong> Submit export/delete tickets once retention obligations end",
+            "<strong>Audit trail:</strong> Every support touch is logged for SOC and insurance reviews"
+          ],
+          "explainer_summary": "How long are records kept?",
+          "explainer_text": "<p>Insurance rules require keeping KYC and claim files for statutory periods (often 5–7 years). AnchorWatch deletes or returns data after that window if you ask.</p>"
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "What personal data does AnchorWatch store?",
+          "a": "They keep KYC/KYB packets, policy paperwork, and compliance evidence but never your private keys."
+        },
+        {
+          "q": "Can I monitor the vault without AnchorWatch?",
+          "a": "Yes. Use the output descriptor with your own node or explorer to verify balances independently."
+        },
+        {
+          "q": "How do I request data deletion?",
+          "a": "Email support with your policy number once statutory retention periods expire, and they purge or return the files."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Trident Services Fee",
+          "def": "Monthly charge that funds custody tech, compliance support, and the AnchorWatch signer infrastructure."
+        },
+        {
+          "term": "Recovery script",
+          "def": "Descriptor plus instructions that let you spend directly via Bitcoin Core if AnchorWatch is offline."
+        },
+        {
+          "term": "Specie coverage",
+          "def": "Insurance category AnchorWatch uses to cover physical assets like bitcoin held in cold storage."
+        }
+      ],
+      "keywords": [
+        "AnchorWatch insurance",
+        "AnchorWatch Trident",
+        "Bitcoin custody insurance",
+        "Lloyd's of London bitcoin policy",
+        "Collaborative custody",
+        "Bitcoin inheritance insurance"
+      ]
+    },
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#privacy",
+      "inheritance": "#inheritance",
+      "compat": "#features",
+      "migration": "#withdrawal",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-21",
+    "trust": {
+      "cards": [
+        {
+          "id": "security",
+          "fact": "Trident vaults and code audited by Halborn, Doyensec, and Blockstream cryptographers.",
+          "link_text": "Security FAQ",
+          "link_url": "https://www.anchorwatch.com/faq?page=1"
+        },
+        {
+          "id": "custody",
+          "fact": "Insurance policies are 100% backed by Lloyd's of London A+ rated syndicates.",
+          "link_text": "Coverage details",
+          "link_url": "https://www.anchorwatch.com/faq?page=1"
+        },
+        {
+          "id": "privacy",
+          "fact": "Privacy policy explains how KYC, compliance, and complaint data are handled in the US.",
+          "link_text": "Privacy policy",
+          "link_url": "https://www.anchorwatch.com/privacy-policy"
+        },
+        {
+          "id": "terms",
+          "fact": "Terms, complaints, and Arch Insurance contacts are published for policyholders.",
+          "link_text": "Terms & complaints",
+          "link_url": "https://www.anchorwatch.com/terms"
+        }
+      ]
+    }
   },
   {
     "name": "Aqua",
@@ -8471,16 +9027,24 @@
     "type_of_platform": "Desktop wallet",
     "faqs": [
       {
-        "q": "What is Sparrow Wallet?",
-        "a": "Sparrow is a powerful non‑custodial desktop wallet with advanced coin control and hardware wallet support."
+        "q": "How does Sparrow connect to my Bitcoin node?",
+        "a": "Sparrow talks to Bitcoin Core or an Electrum server to fetch your balance and broadcast transactions. If you use a public server, you share your privacy with that operator. Connecting to your own node means you validate the chain yourself and leak no data to third parties. You can configure this in the Server settings tab immediately."
       },
       {
-        "q": "Does Sparrow support my own node?",
-        "a": "Yes. Sparrow connects to Bitcoin Core or your own Electrum server, including over Tor."
+        "q": "Does Sparrow support hardware wallets?",
+        "a": "Yes. Sparrow acts as the interface (watch-only wallet) for your hardware device. That means your private keys never touch the internet-connected computer, preventing malware from stealing your funds. You can connect almost any hardware wallet via USB or air-gapped via QR code/SD card to sign transactions securely."
       },
       {
-        "q": "Is Sparrow open source?",
-        "a": "Yes. Sparrow is open‑source and actively maintained."
+        "q": "Can I mix my coins with Sparrow?",
+        "a": "Sparrow integrates Whirlpool to break the link between your past and future transactions. Most wallets leave a transparent trail on the blockchain that surveillance firms track. Mixing mathematically severs those links by combining your inputs with others. You can mix your funds directly within the app to regain your financial privacy."
+      },
+      {
+        "q": "Is Sparrow a hot wallet or a cold wallet?",
+        "a": "It can be either, depending on how you set it up. If you create a software wallet with keys on your computer, it is a hot wallet suitable for small amounts. If you connect a hardware device like a Coldcard, Sparrow becomes a cold storage interface. That flexibility lets you use the same software for daily spending and deep cold storage."
+      },
+      {
+        "q": "Why is coin control important in Sparrow?",
+        "a": "Coin control reveals the individual chunks of bitcoin (UTXOs) that make up your balance. Without it, wallets automatically merge coins, potentially linking private non-KYC funds with public KYC funds. Sparrow lets you label and select specific coins for every spend. That means you maintain the privacy boundaries you have built."
       }
     ],
     "supported_network": "Bitcoin",
@@ -8523,12 +9087,500 @@
       "text": "No app available"
     },
     "profile": "Craig Raw",
-    "description": "Sparrow Wallet is a desktop Bitcoin wallet designed to give users full control over their bitcoin. It was created by developer Craig Raw and is open-source, privacy-focused, and ideal for both beginners and advanced users. The wallet works on Windows, macOS, and Linux.\\n\\nWhat separates Sparrow from other wallets is its balance between simplicity and advanced features. Beginners can start with a basic hot wallet setup and gradually explore more complex features like hardware wallet integration, multisig vaults, and UTXO control—all within the same interface. It gives users direct visibility into how Bitcoin works, showing transaction details, input and output flows, and allowing for precise control over fees and coin selection. This level of transparency helps users understand and manage their funds more deliberately.\\n\\nUser reviews highlight how Sparrow scales with you as you learn. It is refered to as the most powerful and versatile Bitcoin wallet, and users praise its clean layout, customizable setup, and educational value. Despite its many features, the app's interface is considered clear and organized once users get past the initial learning curve.\\n\\nSparrow's vision is to offer users complete sovereignty over their bitcoin. It avoids mobile compromises and instead focuses on a desktop experience that can integrate with cold storage, your own node, and advanced privacy tools. For beginners who want to grow into more advanced use cases without switching wallets, Sparrow offers a flexible and educational path to full control.",
+    "description": "Sparrow Wallet is a desktop Bitcoin wallet designed to give users full control over their bitcoin. It was created by developer Craig Raw and is open-source, privacy-focused, and ideal for both beginners and advanced users. The wallet works on Windows, macOS, and Linux.\n\nWhat separates Sparrow from other wallets is its balance between simplicity and advanced features. Beginners can start with a basic hot wallet setup and gradually explore more complex features like hardware wallet integration, multisig vaults, and UTXO control—all within the same interface. It gives users direct visibility into how Bitcoin works, showing transaction details, input and output flows, and allowing for precise control over fees and coin selection. This level of transparency helps users understand and manage their funds more deliberately.\n\nUser reviews highlight how Sparrow scales with you as you learn. It is refered to as the most powerful and versatile Bitcoin wallet, and users praise its clean layout, customizable setup, and educational value. Despite its many features, the app's interface is considered clear and organized once users get past the initial learning curve.\n\nSparrow's vision is to offer users complete sovereignty over their bitcoin. It avoids mobile compromises and instead focuses on a desktop experience that can integrate with cold storage, your own node, and advanced privacy tools. For beginners who want to grow into more advanced use cases without switching wallets, Sparrow offers a flexible and educational path to full control.",
     "founded_in": "2020",
     "website": "https://sparrowwallet.com",
     "countries": [
       "WW"
-    ]
+    ],
+    "links": {
+      "web": "https://sparrowwallet.com/docs/"
+    },
+    "trust_chips": [
+      {
+        "text": "Coin control",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "coin-control"
+      },
+      {
+        "text": "Built-in mixing",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "privacy-mixing"
+      },
+      {
+        "text": "Airgapped signing",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "hardware-connect"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "Desktop users who want full control over their UTXOs, privacy, and hardware wallet connections.",
+      "consider_if": "You want to mix your coins with Whirlpool or connect easily to your own node.",
+      "not_ideal_when": "You need a mobile wallet or prefer a simplified interface without technical details."
+    },
+    "howto": {
+      "title": "Set up your Sparrow wallet",
+      "steps": [
+        {
+          "id": "setup-install",
+          "title": "1. Install and verify",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Download Sparrow for your OS (Windows, Mac, Linux) and verify the PGP signature.",
+            "Install the application and open the Welcome wizard.",
+            "Choose your server connection: Public server (easiest) or Private Electrum/Core (private)."
+          ],
+          "gotcha": "Public servers see your transaction history. Connect to your own node for full privacy."
+        },
+        {
+          "id": "setup-wallet",
+          "title": "2. Create your wallet",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Select 'New Wallet' and choose a meaningful name.",
+            "Pick your policy (Single Signature or Multi Signature) and script type (Native Segwit recommended).",
+            "Select 'New or Imported Software Wallet' for a hot wallet, or 'Connected Hardware Wallet' for cold storage."
+          ],
+          "gotcha": "Write down your seed words on paper. Never save them digitally or take a photo."
+        },
+        {
+          "id": "setup-receive",
+          "title": "3. Receive and control",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Click 'Get Next Address' in the Receive tab to generate a clean address.",
+            "Send a small test amount to verify everything works.",
+            "Use the UTXOs tab to see and label your new coins once they arrive."
+          ],
+          "gotcha": "Always verify the address on your hardware device screen if using one."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Do I need a hardware wallet to use Sparrow?",
+          "a": "No. You can create a 'hot' software wallet secured by a password on your computer. However, for large amounts, pairing Sparrow with a hardware wallet keeps keys offline and much safer."
+        },
+        {
+          "q": "What happens if my computer crashes?",
+          "a": "Your funds are on the blockchain, not in the software. As long as you have your 12 or 24-word seed phrase written down, you can restore your wallet on any other computer."
+        },
+        {
+          "q": "Can I connect to my Umbrel/Start9 node?",
+          "a": "Yes. Sparrow connects easily to private nodes via local network or Tor. This gives you the strongest privacy model possible."
+        }
+      ]
+    },
+    "key_features": {
+      "heading": "Who holds your keys & what privacy you get",
+      "features": [
+        {
+          "id": "coin-control",
+          "title": "Coin control",
+          "bullets": [
+            "<strong>Visualize UTXOs:</strong> See every individual coin chunk, freeze the ones you don't want to spend, and prioritize others.",
+            "<strong>Mandatory labeling:</strong> Sparrow encourages labeling every address so you know exactly where funds came from.",
+            "<strong>Privacy barriers:</strong> Prevent accidentally merging KYC coins with non-KYC coins by selecting inputs manually."
+          ],
+          "footer": "<strong>Good for:</strong> Advanced privacy management. <strong>Trade-off:</strong> Requires manual effort for every transaction."
+        },
+        {
+          "id": "privacy-mixing",
+          "title": "Built-in mixing",
+          "bullets": [
+            "<strong>Whirlpool integration:</strong> Mix your coins with others in a decentralized way to break blockchain links.",
+            "<strong>Post-mix tools:</strong> Automatically separates mixed coins into a dedicated account for safe spending.",
+            "<strong>No extra software:</strong> Run the mixing cycle directly within the Sparrow interface."
+          ],
+          "footer": "<strong>Good for:</strong> Regaining fungibility. <strong>Trade-off:</strong> Mixing fees and mining fees apply."
+        },
+        {
+          "id": "hardware-connect",
+          "title": "Airgapped signing",
+          "bullets": [
+            "<strong>No direct connection:</strong> Pass transactions via QR code or SD card so your hardware wallet never touches the computer.",
+            "<strong>Watch-only mode:</strong> Sparrow builds the transaction; your offline device signs it.",
+            "<strong>Broad support:</strong> Works natively with Coldcard, Jade, Passport, and Keystone via QR standards."
+          ],
+          "footer": "<strong>Good for:</strong> Maximum security against malware. <strong>Trade-off:</strong> Slower workflow than USB connection."
+        },
+        {
+          "id": "keystore-policies",
+          "title": "Flexible security policies",
+          "bullets": [
+            "<strong>Single Signature:</strong> Standard wallet type; one seed controls everything.",
+            "<strong>Multi Signature:</strong> Combine keys (e.g., Coldcard + Ledger + Paper) to require M-of-N signatures.",
+            "<strong>Gap limits:</strong> Customizable gap limits for scanning large or complex wallet histories."
+          ],
+          "footer": "<strong>Good for:</strong> Scaling from beginner to expert vaults without switching software."
+        }
+      ]
+    },
+    "dca": "No",
+    "payment_methods": [
+      "Bitcoin on-chain",
+      "PayJoin"
+    ],
+    "recovery_heading": "If this happens, can I still move my Bitcoin?",
+    "recovery_tiles": [
+      {
+        "id": "lose-computer",
+        "title": "Lose computer",
+        "status": "works",
+        "chips": {
+          "time": "~15 min"
+        }
+      },
+      {
+        "id": "lose-seed",
+        "title": "Lose seed words",
+        "status": "works-caveat",
+        "chips": {
+          "time": "Plan ahead"
+        }
+      }
+    ],
+    "recovery_explainers": [
+      {
+        "id": "lose-computer",
+        "why": "Sparrow is just an interface. Your bitcoin lives on the blockchain, secured by your private keys. That means the software or computer can be destroyed without losing funds, as long as you have your backup.",
+        "how": [
+          "Install Sparrow on a new computer.",
+          "Select 'Import Wallet' and choose your keystore type (Mnemonic or Hardware).",
+          "Enter your 12/24 words or connect your hardware device to regain access."
+        ],
+        "gotcha": "You must use the same derivation path and script type (e.g., Native Segwit) to see your history."
+      },
+      {
+        "id": "lose-seed",
+        "why": "If you lose your seed phrase but still have the working wallet file and password, you can move funds immediately. If you lose both the seed and the wallet access, the bitcoin is gone forever.",
+        "how": [
+          "Open Sparrow and use your password to unlock the wallet.",
+          "Immediately create a new wallet with a new seed phrase.",
+          "Transfer all funds from the compromised wallet to the new one."
+        ],
+        "gotcha": "There is no 'forgot password' or customer support reset. You are the bank."
+      }
+    ],
+    "inheritance": {
+      "section_title": "Inheritance: choose your path",
+      "intro": "Sparrow is a self-custody tool with no built-in inheritance service; choose a path below.",
+      "cards": [
+        {
+          "id": "inheritance-diy-singlesig",
+          "title": "1. DIY single-sig",
+          "status": "path-basic",
+          "status_text": "You only",
+          "chips": {
+            "setup": "Document locations"
+          },
+          "why": "When you control a single seed plus passphrase, heirs need both pieces and clear instructions to restore the wallet. This works when you trust one person to find everything and execute carefully.",
+          "requirements": [
+            "Written seed phrase location",
+            "Passphrase location (stored separately)",
+            "Sparrow installation guide",
+            "Wallet label export"
+          ],
+          "risk_note": "Single point of failure: if one piece is lost or the executor makes a mistake, funds can be locked or swept incorrectly. Use for small amounts only.",
+          "action": "Do this: Write a one-page instruction sheet today and store it where your executor can find it when needed."
+        },
+        {
+          "id": "inheritance-diy-multisig",
+          "title": "2. DIY multisig",
+          "status": "path-advanced",
+          "status_text": "Small group",
+          "chips": {
+            "setup": "Requires wallet migration"
+          },
+          "why": "A 2-of-3 or 3-of-5 multisig setup splits control across multiple keys held by you, family members, or trusted contacts. One lost key does not lock the funds, and no single person can move coins alone.",
+          "requirements": [
+            "Create multisig wallet in Sparrow",
+            "Distribute keys to different people or locations",
+            "Document the quorum policy (which keys must co-sign)",
+            "Provide restore instructions for each key holder"
+          ],
+          "risk_note": "Setup complexity: requires understanding multisig wallets, secure key distribution, and coordination among multiple parties.",
+          "action": "Do this: Research multisig wallets, test a small setup, then migrate your main holdings when confident."
+        },
+        {
+          "id": "inheritance-provider-assisted",
+          "title": "3. Provider-assisted",
+          "status": "path-guided",
+          "status_text": "Provider",
+          "chips": {
+            "setup": "Requires wallet migration"
+          },
+          "why": "Services like Unchained or AnchorWatch offer assisted multisig where they hold one key and provide inheritance tooling. Your heirs follow a documented claim process, and the provider co-signs after verifying identity.",
+          "requirements": [
+            "Migrate Sparrow funds to assisted multisig provider",
+            "Complete provider's inheritance setup flow",
+            "Designate beneficiaries within the platform",
+            "Document access credentials"
+          ],
+          "risk_note": "Provider dependency: introduces counterparty risk and KYC, but removes the burden of full technical management from heirs.",
+          "action": "Do this: Compare assisted multisig providers if your heirs are not technical."
+        }
+      ]
+    },
+    "compatibility": {
+      "section_title": "Compatibility: what works with Sparrow",
+      "intro": "Sparrow is a coordinator that connects your keys, your node, and the network.",
+      "hardware_os": [
+        {
+          "id": "os-support",
+          "title": "Operating Systems",
+          "platforms": [
+            {
+              "name": "Windows",
+              "version": "10+",
+              "status": "verified"
+            },
+            {
+              "name": "macOS",
+              "version": "10.13+ (Intel/Silicon)",
+              "status": "verified"
+            },
+            {
+              "name": "Linux",
+              "version": "Debian/RPM/Tar",
+              "status": "verified"
+            }
+          ]
+        },
+        {
+          "id": "hardware-support",
+          "title": "Hardware Wallets",
+          "platforms": [
+            {
+              "name": "Coldcard",
+              "status": "verified",
+              "notes": "Airgapped via SD or USB"
+            },
+            {
+              "name": "Trezor",
+              "status": "verified"
+            },
+            {
+              "name": "Ledger",
+              "status": "verified"
+            },
+            {
+              "name": "BitBox02",
+              "status": "verified"
+            },
+            {
+              "name": "Jade",
+              "status": "verified",
+              "notes": "QR mode supported"
+            },
+            {
+              "name": "Passport",
+              "status": "verified",
+              "notes": "QR airgapped"
+            },
+            {
+              "name": "SeedSigner",
+              "status": "verified",
+              "notes": "QR airgapped"
+            }
+          ]
+        }
+      ],
+      "standards": {
+        "table": [
+          {
+            "standard": "BIP39",
+            "support": "Yes",
+            "notes": "Standard 12/24 word seeds",
+            "status": "verified"
+          },
+          {
+            "standard": "PSBT",
+            "support": "Yes",
+            "notes": "BIP174 for airgapped signing",
+            "status": "verified"
+          },
+          {
+            "standard": "Taproot",
+            "support": "Yes",
+            "notes": "Send and receive to P2TR",
+            "status": "verified"
+          },
+          {
+            "standard": "Whirlpool",
+            "support": "Yes",
+            "notes": "Built-in Chaumian CoinJoin",
+            "status": "verified"
+          },
+          {
+            "standard": "PayJoin",
+            "support": "Yes",
+            "notes": "BIP78 support",
+            "status": "verified"
+          },
+          {
+            "standard": "Tor",
+            "support": "Yes",
+            "notes": "Built-in proxy",
+            "status": "verified"
+          }
+        ],
+        "advanced": {
+          "descriptors": {
+            "support": "Yes",
+            "notes": "Full import/export support"
+          },
+          "psbt": {
+            "support": "Yes",
+            "notes": "Advanced editing and composition"
+          },
+          "derivation_paths": {
+            "support": "Customizable",
+            "notes": "Full control over paths"
+          },
+          "output_descriptors": {
+            "support": "Yes",
+            "notes": "View and export wallet descriptors"
+          }
+        }
+      }
+    },
+    "costs": {
+      "section_title": "Costs & ongoing obligations",
+      "intro": "Sparrow is free open-source software. You pay only the necessary network fees to miners.",
+      "summary_stats": {
+        "upfront": "$0",
+        "monthly": "$0",
+        "per_transaction": "Mining fees"
+      },
+      "upfront": {
+        "title": "What you pay once",
+        "items": [
+          {
+            "name": "Sparrow Wallet software",
+            "amount": "$0",
+            "highlight": "free",
+            "note": "Open source (Apache 2.0)"
+          }
+        ]
+      },
+      "ongoing": {
+        "title": "What you pay ongoing",
+        "items": [
+          {
+            "name": "Network mining fees",
+            "amount": "Varies",
+            "note": "Paid to miners to process transactions"
+          },
+          {
+            "name": "Whirlpool fees (optional)",
+            "amount": "Varies",
+            "note": "If you choose to mix coins (Pool fee + mining fee)"
+          }
+        ]
+      }
+    },
+    "privacy": {
+      "section_title": "Privacy & jurisdiction",
+      "tiles": [
+        {
+          "id": "privacy-data",
+          "title": "What Sparrow collects & where it lives",
+          "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> No KYC</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Tor support</span>",
+          "why": "Sparrow is client-side software. It collects no data on its own, but your connection method determines who sees your activity.",
+          "summary": "If you connect to a public server, the operator sees your IP and addresses. If you connect to your own node, no one sees anything. Sparrow stores all labels and wallet data locally on your machine.",
+          "bullets": [
+            "<strong>Public Server:</strong> Shares IP and transaction interest with server operator.",
+            "<strong>Private Node:</strong> Zero leaks; you validate your own transactions.",
+            "<strong>Tor Proxy:</strong> Built-in toggle to route traffic through Tor for anonymity.",
+            "<strong>Local Data:</strong> Wallet files are encrypted on your disk; no cloud sync."
+          ],
+          "explainer_summary": "Does Sparrow track me?",
+          "explainer_text": "<p>No. The software is open source and has no analytics or tracking code. However, the <em>server</em> you connect to can see your requests. Use a private node or Tor to prevent this.</p>"
+        },
+        {
+          "id": "privacy-jurisdiction",
+          "title": "Jurisdiction",
+          "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Self-sovereign</span>",
+          "why": "Sparrow is software you run, not a service you log into. There is no company holding your data or funds, so there is no jurisdiction to compel.",
+          "summary": "Because Sparrow is a standalone desktop application, it falls under the jurisdiction of wherever you physically are. There is no central server to subpoena and no user database to breach.",
+          "bullets": [
+            "<strong>No Account:</strong> You don't sign up or provide email.",
+            "<strong>No Custody:</strong> You hold the keys; Sparrow is just the tool.",
+            "<strong>No Servers:</strong> Developers cannot disable your wallet or freeze funds."
+          ],
+          "explainer_summary": "Can Sparrow freeze my funds?",
+          "explainer_text": "<p>No. Sparrow has no control over your keys or the Bitcoin network. Even if the website disappeared, your installed software would keep working, and your seed phrase would work in other wallets.</p>"
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Is Sparrow anonymous?",
+          "a": "The software identifies you in no way. However, on-chain transactions are public. Use Whirlpool and Tor within Sparrow to maximize anonymity."
+        },
+        {
+          "q": "Does Sparrow report to tax authorities?",
+          "a": "No. Sparrow does not know who you are and has no data to report. You are responsible for your own compliance."
+        }
+      ]
+    },
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#privacy",
+      "compat": "#features",
+      "migration": "#withdrawal",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-19",
+    "trust": {
+      "cards": [
+        {
+          "id": "source",
+          "fact": "Open source code",
+          "link_text": "View on GitHub",
+          "link_url": "https://github.com/sparrowwallet/sparrow"
+        },
+        {
+          "id": "security",
+          "fact": "Signed releases (PGP)",
+          "link_text": "Verify signatures",
+          "link_url": "https://sparrowwallet.com/download/"
+        },
+        {
+          "id": "licenses",
+          "fact": "Apache 2.0 License",
+          "link_text": "View license",
+          "link_url": "https://github.com/sparrowwallet/sparrow/blob/master/LICENSE"
+        },
+        {
+          "id": "activity",
+          "fact": "Active development",
+          "link_text": "Release history",
+          "link_url": "https://github.com/sparrowwallet/sparrow/releases"
+        }
+      ]
+    }
   },
   {
     "name": "Start9",
@@ -9815,56 +10867,589 @@
   {
     "name": "Umbrel",
     "category": "Run my own node",
-    "type_of_platform": "Home server as software and / or hardware",
+    "type_of_platform": "Home server OS & optional hardware",
     "faqs": [
       {
-        "q": "What is Umbrel?",
-        "a": "Umbrel is a user‑friendly home server OS to self‑host Bitcoin/Lightning nodes and 100+ apps via a one‑click App Store."
+        "q": "What hardware does Umbrel officially support?",
+        "a": "Umbrel Home ships with pre-configured hardware, but you can flash the same umbrelOS image onto Raspberry Pi 5/4 kits or x86 mini-PCs with at least 8 GB RAM and SSD storage."
       },
       {
-        "q": "Is Umbrel open source?",
-        "a": "Umbrel is source‑available rather than fully open‑source; many apps are open‑source."
+        "q": "How are Lightning channel backups handled?",
+        "a": "Umbrel can generate static channel backup (SCB) files from the Lightning dashboard and also stores encrypted copies under `/home/umbrel/umbrel/lnd/data/chain/bitcoin/mainnet/channel.backup`, so you can restore after hardware failures."
       },
       {
-        "q": "Does Umbrel support remote access?",
-        "a": "Yes. Umbrel supports secure remote access via Tor and Tailscale VPN."
+        "q": "What about the default password?",
+        "a": "Every Umbrel instance ships with `moneyprintergobrrr` as the default dashboard password; change it on first boot and generate unique credentials for Thunderhub or other apps that keep their own login store."
       }
     ],
+    "supported_network": "Bitcoin full node, Lightning, and 100+ self-hosted apps",
     "features": {
       "WW": [
         {
-          "text": "Simple self-hosted node OS",
+          "text": "One-click installs for Bitcoin Core, Lightning, Electrs, BTCPay, Mempool, Immich, Home Assistant, and more",
           "status": "positive"
         },
         {
-          "text": "Polished macOS-style interface",
+          "text": "Built-in Tor routing with optional Tailscale VPN for remote access",
           "status": "positive"
         },
         {
-          "text": "Remote access via Tor or Tailscale VPN",
+          "text": "Guided system and Lightning backups",
           "status": "positive"
         },
         {
-          "text": "Source-available license (not fully open-source)",
+          "text": "Source-available license and centralized updates",
           "status": "negative"
         },
         {
-          "text": "No HTTPS by default",
+          "text": "HTTP-only dashboard unless you front it with HTTPS yourself",
           "status": "negative"
         }
       ]
     },
-    "price": "$299 for hardware device",
+    "custody_control": "Self-hosted (you run the node and keys locally)",
+    "kyc_required": "No",
+    "recovery_method": "System backup archive + Lightning static channel backup",
+    "open_source": "Source-available (PolyForm Noncommercial 1.0.0)",
     "user_experience": "0.0",
-    "interface": "Desktop only",
-    "support": "Community forums",
+    "interface": "Web dashboard",
+    "app_ratings": {
+      "ios": null,
+      "android": null
+    },
     "profile": "Luke Childs & Mayank Chhabra",
-    "description": "Umbrel is a user-friendly, plug‑and‑play home server OS primarily designed to run Bitcoin and Lightning nodes. It supports the official Umbrel Home hardware and installation on Raspberry Pi or x86 machines. What sets it apart is its polished, macOS‑style interface with a one‑click App Store for installing things like Bitcoin Core, LND, Electrum Rust Server, mempool explorer, and various self‑hosted apps like Nextcloud, Plex, Pi‑Hole, Home Assistant, and AI models. The setup process is straightforward—just plug in, set a password, install apps, and sync—which makes it accessible for non‑technical users.\\n\\nWhat truly distinguishes Umbrel is its elegant design and focus on broad self‑hosting beyond just Bitcoin. The dashboard offers real‑time system stats, customizable widgets, seamless updates, and integrations for VPN access via Tailscale or TOR. The App Store's curated ecosystem of over 100 vetted, containerized apps makes complex tasks like running blockchain explorers or home automation easy—without requiring command‑line work. This polished UX lowers the bar for users who want to self‑host smartly.\\n\\nIn terms of community and support, Umbrel has an active user base and support channels via chat and forums. However, discussions also mention that Umbrel uses unencrypted HTTP by default and lacks HTTPS, which could pose risks on exposed LANs. More privacy‑focused alternatives like Citadel and StartOS offer full HTTPS and fully open‑source licensing.\\n\\nUmbrel is aimed at users seeking a seamless, beautiful entry point into self‑sovereign Bitcoin and home‑server use. Its vision is to expand the personal server experience by enabling anyone to host their own apps, AI, media, and nodes with minimal friction. But it trades off some transparency and technical control—its source‑available license, lack of HTTPS out of the box, and centralized update model may concern advanced or privacy‑focused users. In sum, Umbrel offers a delightful, low‑barrier way to participate in Bitcoin sovereignty and self‑hosting, though some might prefer more open or secure setups if they prioritize full technical autonomy.",
+    "description": "Umbrel bundles Bitcoin Core, Lightning daemons, and a catalog of home-server apps into a single dashboard you host on your own hardware. Because your node verifies blocks locally, you no longer depend on third-party APIs for mempool data or wallet balances, and the App Store manages containers for tools like Electrs, Mempool, BTCPay, or even photo libraries without touching the command line.\n\nThat convenience comes with trade-offs. Umbrel keeps its UI on HTTP inside your LAN, uses a source-available license, and manages updates centrally, so you inherit their defaults unless you harden the stack with Tor-only access, VLAN isolation, and custom reverse proxies. You can export backups, disable telemetry, and lock down SSH, but long-term safety still depends on how you provision hardware, power, and backups.\n\nUse Umbrel when you want a polished, guided path into running your own Bitcoin stack alongside other self-hosted services. If you need reproducible builds, deterministic updates, or air-gapped security policies, treat Umbrel as a starter kit and graduate to a more open stack once you’re comfortable maintaining the moving pieces.",
     "founded_in": "2019",
     "website": "https://umbrel.com",
+    "links": {
+      "download": "https://github.com/getumbrel/umbrel/releases/latest",
+      "docs": "https://github.com/getumbrel/umbrel/wiki",
+      "hardware": "https://umbrel.com/umbrel-home"
+    },
     "countries": [
       "WW"
-    ]
+    ],
+    "trust_chips": [
+      {
+        "text": "Source-available",
+        "status": "informational"
+      },
+      {
+        "text": "Tor remote access",
+        "status": "positive"
+      },
+      {
+        "text": "No cloud custody",
+        "status": "positive"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "People who want a guided home server to run Bitcoin, Lightning, and household apps without SSH.",
+      "consider_if": "You like plug-and-play UX but still want Tor routing, Electrs, and containerized services under your roof.",
+      "not_ideal_when": "You require fully open-source licensing, HTTPS-by-default, or granular control over every dependency."
+    },
+    "howto": {
+      "title": "Installation matrix",
+      "steps": [
+        {
+          "id": "flash-pi-image",
+          "title": "1. Flash umbrelOS for Raspberry Pi",
+          "chips": {
+            "setup_time": "~30 min",
+            "cost": "Existing Pi + SSD",
+            "risk": "Medium (hardware prep)"
+          },
+          "sync_time": "~5–6 days on Pi 4, leave device on.",
+          "actions": [
+            "Download the <a href=\"https://github.com/getumbrel/umbrel/releases/latest\" target=\"_blank\">latest umbrelOS</a> `.img.xz` from GitHub Releases",
+            "Flash it to a fast microSD using Balena Etcher and plug in your USB 3.0 SSD for blockchain data",
+            "Attach Ethernet before first boot so the node can reach peers immediately"
+          ],
+          "gotcha": "Slow microSD cards throttle sync speed; favor A2-rated or better."
+        },
+        {
+          "id": "first-boot-sync",
+          "title": "2. First boot & start syncing",
+          "chips": {
+            "setup_time": "~15 min setup",
+            "cost": "Free",
+            "risk": "Low (follow prompts)"
+          },
+          "actions": [
+            "Visit `umbrel.local` or the IP, accept onboarding, and replace the default password",
+            "Install Bitcoin Core and Lightning from the App Store and start the sync",
+            "Leave the device on; initial sync on Pi can take 4–6 days depending on peers"
+          ],
+          "gotcha": "Do not send funds until Bitcoin Core shows 100% synchronization."
+        },
+        {
+          "id": "install-x86",
+          "title": "3. Install on an x86 mini PC",
+          "chips": {
+            "setup_time": "~25 min",
+            "cost": "Mini PC + SSD",
+            "risk": "Medium (full disk install)"
+          },
+          "sync_time": "~12–18 hours on N100, leave device on.",
+          "actions": [
+            "Write the umbrelOS ISO to a USB stick, boot your Intel/AMD mini PC, and follow the guided installer",
+            "Select the SSD as the target disk; the installer partitions and provisions services automatically",
+            "Keep Ethernet connected for the first sync—expect 12–18 hour initial block download"
+          ],
+          "gotcha": "The installer wipes the entire target disk; back up any existing data first."
+        },
+        {
+          "id": "docker-vm",
+          "title": "4. Run inside a Linux VM or Docker host",
+          "chips": {
+            "setup_time": "~20 min",
+            "cost": "Existing server",
+            "risk": "High (manual tuning)"
+          },
+          "sync_time": "Varies by host CPU/Disk.",
+          "actions": [
+            "Provision a Debian/Ubuntu host with Docker and compose, then run the official curl installer with `--install-path` pointing to your storage volume",
+            "Expose port 3000 only inside your LAN; route remote access through Tor or a VPN instead of opening it on the internet",
+            "Snapshot the VM before major upgrades so you can roll back quickly"
+          ],
+          "gotcha": "Umbrel expects direct disk access; thin-provisioned volumes can bottleneck IBD."
+        }
+      ],
+      "totalTime": null,
+      "micro_faqs": [
+        {
+          "q": "Can I reuse an external SSD that already holds blockchain data?",
+          "a": "Yes. Copy the existing `bitcoin` directory into `/home/umbrel/umbrel/bitcoin` before first boot to save days of syncing."
+        },
+        {
+          "q": "Does Umbrel require a static IP?",
+          "a": "No, but reserving a DHCP lease keeps Onion links, Electrs endpoints, and wallet connections predictable."
+        }
+      ]
+    },
+    "fees_section_title": "Costs & speed of operation",
+    "fees_scenarios": [
+      {
+        "id": "initial-sync",
+        "title": "Initial sync time",
+        "cost_value": "5–6 days",
+        "cost_context": "on Pi 4 (or ~12h on Mini-PC)",
+        "badge": "One-time",
+        "what_happens": "Bitcoin Core verifies every block from genesis on your hardware (CPU + disk-IO bound).",
+        "how_to_minimize": "Leave it on, use wired Ethernet, and prefer SSDs over HDDs.",
+        "learn_more": "Pause heavy App Store installs until Bitcoin Core reaches tip; Lightning depends on a fully synced node."
+      },
+      {
+        "id": "disk-growth",
+        "title": "Disk growth",
+        "cost_value": "550 GB",
+        "cost_context": "currently + 5–7 GB/month",
+        "badge": "Storage",
+        "what_happens": "Full-history nodes store the entire blockchain plus Lightning databases, logs, and app containers on your local drive.",
+        "how_to_minimize": "Allocate at least a 1 TB SSD for full archival, or enable pruning to fit on smaller drives.",
+        "learn_more": "Keep >15% free space in `/home/umbrel/umbrel/bitcoin/blocks` so compaction never stalls."
+      },
+      {
+        "id": "power-draw",
+        "title": "Power consumption",
+        "cost_value": "10–30 W",
+        "cost_context": "~$1.30–$3.90 / month",
+        "badge": "Monthly",
+        "what_happens": "Your node stays online 24/7 to verify blocks and route payments, drawing continuous power.",
+        "how_to_minimize": "Use efficient N100 hardware or under-volt your Pi to keep carrying costs low.",
+        "learn_more": "Pair the node with a smart plug or UPS that reports load so you can budget uptime."
+      },
+      {
+        "id": "bandwidth",
+        "title": "Bandwidth requirements",
+        "cost_value": "600 GB",
+        "cost_context": "initial download + 30GB/mo",
+        "badge": "Network",
+        "what_happens": "The node peers with the network to relay blocks and gossip, using significant upstream bandwidth.",
+        "how_to_minimize": "Use a wired connection and set upload caps in Bitcoin Core if your ISP limits data.",
+        "learn_more": "ISPs with 1 TB caps may throttle after long IBD sessions; consider fiber or business-class plans."
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "Can I pause the initial block download without corrupting data?",
+        "a": "Yes. Shut down from Settings → System before powering off; Bitcoin Core resumes where it left off as long as the SSD stays connected."
+      },
+      {
+        "q": "What happens when my SSD fills up?",
+        "a": "Umbrel warns you at ~85% usage. Add a larger disk and migrate the `/home/umbrel/umbrel` directory before the drive hits 100% or Bitcoin Core will halt."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "term-scb",
+        "term": "Static channel backup (SCB)",
+        "definition": "Encrypted snapshot of your Lightning channels you import if the node fails."
+      },
+      {
+        "id": "term-ibd",
+        "term": "Initial block download (IBD)",
+        "definition": "The first sync where Bitcoin Core verifies every block since 2009."
+      },
+      {
+        "id": "term-ups",
+        "term": "Uninterruptible power supply (UPS)",
+        "definition": "Battery pack that keeps the node online long enough for safe shutdowns."
+      }
+    ],
+    "privacy_notes": {
+      "data_flows": [
+        "Umbrel’s dashboard communicates over HTTP on your LAN; Tor remote access tunnels traffic through `.onion` addresses instead.",
+        "App Store containers may expose additional ports—review each app’s notes before forwarding anything.",
+        "Optional telemetry is off by default; leave it disabled if you want zero data leaving home."
+      ],
+      "recovery_drill": [
+        "Download the system backup plus `channel.backup` whenever you add channels or apps.",
+        "Test restores on spare hardware or a VM so you’re confident the archive works before you need it."
+      ],
+      "country_caveats": [
+        "Hardware availability varies by region; DIY installs work anywhere you can source a Pi or mini PC.",
+        "ISPs running CGNAT block inbound ports—lean on Tor or VPN tunnels for remote access."
+      ]
+    },
+    "privacy": {
+      "section_title": "Network & Privacy",
+      "data_flows": [
+        "The dashboard listens on HTTP inside your LAN; remote access should route over Tor or a VPN tunnel to avoid exposing logins.",
+        "Each App Store container may open additional ports—review them before forwarding anything past your firewall.",
+        "Umbrel’s optional telemetry is opt-in; leave it disabled if you want the node completely local."
+      ],
+      "data_flows_do": "Keep the device behind a router, enable Tor remote access, and rotate credentials that ship with defaults.",
+      "data_flows_dont": "Expose `umbrel.local:80` directly to the internet or reuse the same password across Thunderhub, Lightning Terminal, and the base OS.",
+      "recovery": [
+        "System backups live under `Settings → Backup`; store a copy off-device together with your Lightning SCB file.",
+        "To restore, flash the latest image, drop your backup archive plus `channel.backup` into `/home/umbrel/umbrel/backups`, and follow the wizard.",
+        "If the hardware dies without a recent SCB, force-close channels from peers or use watchtower data where available."
+      ],
+      "recovery_do": "Test restores on spare hardware or a VM so you understand the flow before an outage.",
+      "recovery_dont": "Rely solely on Umbrel’s cloud-encrypted SCB—keep your own copy.",
+      "region": [
+        "Umbrel runs entirely on your hardware, so jurisdictional limits tie to hardware import rules rather than app access.",
+        "Tor helps when your ISP uses CGNAT; you can still reach the node remotely without opening ports."
+      ],
+      "micro_faqs": [
+        {
+          "q": "Does Umbrel support HTTPS?",
+          "a": "Not out of the box; front it with Caddy, Traefik, or Tailscale funnel if you need TLS and granular access control."
+        },
+        {
+          "q": "Can ISPs see what I'm hosting?",
+          "a": "They see encrypted Bitcoin traffic and Tor circuits, but not the app data itself—still, avoid exposing clearnet ports."
+        },
+        {
+          "q": "Where are SSH keys stored?",
+          "a": "Umbrel disables SSH by default; when enabled, keys live under `/home/umbrel/.ssh` so you can rotate them like any Linux host."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "CGNAT",
+          "def": "Carrier-grade NAT that prevents inbound port forwards; Tor or VPN tunnels bypass it."
+        },
+        {
+          "term": "SCB",
+          "def": "Static Channel Backup—an encrypted snapshot of your Lightning channels you need after catastrophic loss."
+        }
+      ],
+      "keywords": [
+        "Umbrel privacy",
+        "Tor remote access",
+        "Umbrel backups",
+        "Umbrel HTTPS",
+        "Umbrel SSH"
+      ]
+    },
+    "compat_heading": "Lightning & App support",
+    "compat_tiles": [
+      {
+        "id": "btc-core",
+        "title": "Bitcoin Core",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Full node</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Prune option</span>",
+        "status": "works"
+      },
+      {
+        "id": "lightning-daemons",
+        "title": "Lightning",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> LND default</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> CLN via community app</span>",
+        "status": "works-caveat"
+      },
+      {
+        "id": "electrum-stack",
+        "title": "Electrum / Electrs",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Electrs</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> EPS</span>",
+        "status": "works"
+      },
+      {
+        "id": "app-store",
+        "title": "App Marketplace",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 100+ apps</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> 1-click updates</span>",
+        "status": "works"
+      }
+    ],
+    "compat_explainers": [
+      {
+        "id": "btc-core",
+        "why": "Bitcoin Core runs as a managed container with pruning support so you can trade disk space for faster syncs when needed.",
+        "try": [
+          "Install Bitcoin Core from the App Store and watch the sync percentage on the dashboard",
+          "Toggle pruning under Advanced settings if you must run on 200 GB disks"
+        ],
+        "gotcha": "Pruned nodes cannot serve the full blockchain to Electrs; keep at least 1 TB for full-history mode."
+      },
+      {
+        "id": "lightning-daemons",
+        "why": "Umbrel ships with LND by default for compatibility with Zeus, Thunderhub, and Lightning Terminal, while Core Lightning arrives via community apps if you prefer plugin-based workflows.",
+        "try": [
+          "Install Lightning from the App Store after Bitcoin Core reaches tip",
+          "Pair Zeus or Zap over Tor by scanning the QR from Umbrel’s Lightning page"
+        ],
+        "gotcha": "Switching between LND and CLN requires closing channels or migrating SCBs; plan before deleting containers."
+      },
+      {
+        "id": "electrum-stack",
+        "why": "Electrs indexes your chain locally so Sparrow, Specter, or BlueWallet can query your node without leaking addresses.",
+        "try": [
+          "Install Electrs, wait for the index to build, then point Sparrow at `umbrel.local:50002` over SSL",
+          "Enable EPS if you need hardware wallet airgap workflows"
+        ],
+        "gotcha": "Electrs needs as much disk as Bitcoin Core plus ~150 GB index overhead."
+      },
+      {
+        "id": "app-store",
+        "why": "The curated marketplace lets you add services like Nextcloud, Immich, or Home Assistant alongside Bitcoin tooling without Docker compose files.",
+        "try": [
+          "Browse the App Store, pick a service, and click Install",
+          "Pin widgets to the dashboard to monitor resource usage"
+        ],
+        "gotcha": "Apps share the same SSD; monitor disk space before syncing photo libraries or AI models."
+      }
+    ],
+    "migration": [
+      {
+        "id": "reuse-existing-node",
+        "title": "Reuse an existing Bitcoin data directory",
+        "choose": "Use this when migrating from another node so you don’t redownload the chain.",
+        "time": "~1–3 hours (copy dependent)",
+        "cost": "Free",
+        "risk": "Medium",
+        "steps": [
+          "Shut down the old node cleanly and copy `blocks` + `chainstate` to external storage.",
+          "Place the data inside `/home/umbrel/umbrel/bitcoin` and ensure ownership belongs to the `umbrel` user.",
+          "Boot Umbrel; it verifies the data and resumes at the tip before enabling Lightning."
+        ],
+        "tips": "Match the pruning mode—full-history data cannot satisfy a pruned configuration.",
+        "gotcha": "Power-loss during the copy can corrupt LevelDB files; verify with `bitcoin-cli -datadir=... getblockcount` before moving on."
+      },
+      {
+        "id": "lightning-migration",
+        "title": "Migrate Lightning channels",
+        "choose": "Use this to recover LND channels after hardware failure or when moving stacks.",
+        "time": "~30–90 min",
+        "cost": "Mining fees for closes",
+        "risk": "Medium",
+        "steps": [
+          "Export SCBs (or a full data directory) from the old node before powering it down.",
+          "On Umbrel, open Lightning → Restore, upload the SCB, and wait for on-chain settlements.",
+          "If both nodes are alive, drain channels to cold storage and cooperatively close to minimize fees."
+        ],
+        "tips": "Never run two LND nodes with the same seed simultaneously—channel states will diverge.",
+        "gotcha": "SCBs only recover balances, not channel states; expect forced closes that take ~720 blocks."
+      },
+      {
+        "id": "disk-upgrade",
+        "title": "Upgrade to a larger SSD",
+        "choose": "Use when you’re running low on disk space and need more headroom.",
+        "time": "~1–2 hours",
+        "cost": "New SSD",
+        "risk": "Low",
+        "steps": [
+          "Shut down Umbrel and clone `/home/umbrel/umbrel` to the new drive with `rsync -aHAX`.",
+          "Update `/etc/fstab` or the bootloader to point at the new disk UUID.",
+          "Boot, confirm services run, then wipe the old drive once backups are safe."
+        ],
+        "tips": "Use powered USB enclosures for NVMe drives to avoid brownouts mid-sync.",
+        "gotcha": "Forgetting to update mount points leaves Umbrel writing to the old disk—double-check before syncing."
+      }
+    ],
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#hardware",
+      "fees": "#costs",
+      "privacy": "#network",
+      "compat": "#apps",
+      "migration": "#migration",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-21",
+    "trust": {
+      "cards": [
+        {
+          "id": "release",
+          "fact": "Latest umbrelOS build: November 2025",
+          "link_text": "Changelog",
+          "link_url": "https://github.com/getumbrel/umbrel/releases"
+        },
+        {
+          "id": "source",
+          "fact": "Source-available under PolyForm NC 1.0.0",
+          "link_text": "GitHub repo",
+          "link_url": "https://github.com/getumbrel/umbrel"
+        },
+        {
+          "id": "docs",
+          "fact": "DIY vs Umbrel Home feature matrix",
+          "link_text": "Wiki",
+          "link_url": "https://github.com/getumbrel/umbrel/wiki/umbrelOS-on-Umbrel-Home-vs.-DIY"
+        },
+        {
+          "id": "community",
+          "fact": "Active help threads on Umbrel Community forum",
+          "link_text": "Forum",
+          "link_url": "https://community.umbrel.com/t/getting-started-with-your-umbrel/3555"
+        }
+      ],
+      "summary": "Umbrel makes Bitcoin node management accessible but relies on a source-available license for its dashboard. While the underlying Bitcoin Core and LND binaries are open source, the orchestration layer is not fully FOSS, which some purists avoid. However, for home users, it removes significant technical barriers while keeping data local."
+    },
+    "hardware_bom": {
+      "heading": "Hardware BOM & capacity planning",
+      "builds": [
+        {
+          "id": "budget-pi",
+          "name": "Budget Pi kit",
+          "use_case": "Learning, personal routing, light app usage",
+          "parts": [
+            "Raspberry Pi 5 or 4 (8 GB RAM)",
+            "1 TB NVMe SSD in USB 3.2 enclosure",
+            "Active cooling case or fan hat",
+            "15W USB-C power supply"
+          ],
+          "estimates": {
+            "sync_time": "~5–6 days initial sync",
+            "noise": "Low (fan under 30 dB)",
+            "wattage": "10–12 W idle / 15 W sync"
+          }
+        },
+        {
+          "id": "quiet-mini-pc",
+          "name": "Quiet mini-PC",
+          "use_case": "Daily Lightning use, Electrs, media apps",
+          "parts": [
+            "Intel N100 / N305 mini PC with 16 GB RAM",
+            "2 TB NVMe SSD",
+            "Silent heatpipe chassis",
+            "Battery-backed NVMe enclosure for backups"
+          ],
+          "estimates": {
+            "sync_time": "~12–18 hours initial sync",
+            "noise": "Silent/fanless",
+            "wattage": "20–25 W idle / 30 W sync"
+          }
+        },
+        {
+          "id": "power-user",
+          "name": "Power user workstation",
+          "use_case": "Routing, BTCPay merchants, AI / media workloads",
+          "parts": [
+            "Ryzen 7 / Intel i7 SFF box with 32 GB RAM",
+            "4 TB NVMe or SATA SSD (mirrored)",
+            "Managed switch + VLAN-aware router",
+            "UPS with network card"
+          ],
+          "estimates": {
+            "sync_time": "~8–10 hours initial sync",
+            "noise": "Depends on fans (aim <35 dB)",
+            "wattage": "45 W idle / 70 W peak"
+          }
+        }
+      ]
+    },
+    "power_uptime": {
+      "metrics": [
+        {
+          "label": "Idle draw (Pi build)",
+          "value": "10–12 W",
+          "notes": "~$1.30 per month at $0.18/kWh"
+        },
+        {
+          "label": "Idle draw (mini PC)",
+          "value": "20–25 W",
+          "notes": "~$3.25 per month"
+        },
+        {
+          "label": "Load spikes",
+          "value": "Up to 70 W on power-user rigs",
+          "notes": "Budget UPS capacity accordingly"
+        }
+      ],
+      "ups_guidance": [
+        "Pi builds can run for ~45 minutes on a 300 VA UPS—long enough for clean shutdowns during outages.",
+        "Mini PCs benefit from 600–1000 VA UPS units so Electrs indexing or Lightning gossip doesn’t crash mid-write.",
+        "Use smart UPS models to trigger automatic shutdowns via USB or network cards."
+      ],
+      "safe_shutdown": "Always shut down from Settings → System or `sudo poweroff` before cutting power; abrupt loss risks database corruption in Bitcoin Core, Electrs, and Lightning."
+    },
+    "maintenance": {
+      "cadence": "Umbrel ships OS and App Store updates roughly monthly, with security fixes pushed as needed.",
+      "tasks": [
+        {
+          "title": "Apply updates",
+          "details": "Watch for the orange badge in the dashboard; click Update, wait for reboot, and confirm Bitcoin Core resumes sync."
+        },
+        {
+          "title": "Back up configs",
+          "details": "Export system backup archives plus the `channel.backup` file whenever you add channels or apps."
+        },
+        {
+          "title": "Check disk health",
+          "details": "Run SMART checks quarterly and replace SSDs before write endurance fails."
+        }
+      ],
+      "configs": [
+        "Umbrel keeps Docker data under `/home/umbrel/umbrel`; rsync that directory to offline storage for full snapshots.",
+        "Per-app settings live inside their volumes—note locations before pruning apps."
+      ]
+    },
+    "security_model": {
+      "overview": "Umbrel assumes a trusted LAN with password-protected web UI, optional Tor remote access, and disabled-by-default SSH.",
+      "quick_wins": [
+        "Change the default `moneyprintergobrrr` password immediately and store it in a password manager.",
+        "Enable two-factor auth on Tor gateways like Tailscale or Cloudflare Tunnel if you expose the dashboard remotely.",
+        "Segment the node onto its own VLAN or dedicated Wi-Fi SSID so IoT devices never reach it directly."
+      ],
+      "hardening": [
+        "Enable SSH only when needed and restrict it to key-based logins.",
+        "Mount disks with LUKS or hardware encryption if the device lives outside your home.",
+        "Audit installed apps; remove anything you no longer run to reduce attack surface."
+      ]
+    },
+    "integrations": {
+      "wallets": [
+        "Sparrow / Specter via Electrs or EPS",
+        "Zeus, Thunderhub, Lightning Terminal over Tor",
+        "BlueWallet watch-only via Electrum server"
+      ],
+      "merchant_stack": [
+        "BTCPay Server with LND backend",
+        "LNBits or Cashu mints for custodial wallets",
+        "Ride the Lightning for POS-style flows"
+      ],
+      "explorers_and_tools": [
+        "Mempool.space instance for fee monitoring",
+        "Samourai Whirlpool CLI (community app)",
+        "Home Assistant, Nextcloud, Immich for day-one household value"
+      ],
+      "notes": "Most integrations are one-click App Store installs; others require pointing external clients at your node’s Tor hidden services."
+    }
   },
   {
     "name": "Unchained",
@@ -9872,16 +11457,24 @@
     "type_of_platform": "Collaborative custody",
     "faqs": [
       {
-        "q": "What is Unchained?",
-        "a": "Unchained provides collaborative custody (2‑of‑3 multisig) with concierge onboarding and inheritance support."
+        "q": "How does Unchained's 2-of-3 collaborative custody work?",
+        "a": "You hold two private keys on separate hardware wallets, and Unchained holds a third backup key. Moving funds requires two signatures, which means you maintain full control (using your two keys) while Unchained can help you recover funds (using their key plus one of yours) if you lose a device."
       },
       {
-        "q": "Does Unchained require KYC?",
-        "a": "Yes. As a regulated U.S. service, identity verification is required."
+        "q": "What happens if Unchained goes out of business?",
+        "a": "Since you hold two of the three keys, you can always move your bitcoin without Unchained's permission or participation. You can use their open-source tool, Caravan, or other multisig wallets like Sparrow to recover your funds using your own keys and backup file."
       },
       {
-        "q": "Who is Unchained for?",
-        "a": "Individuals and businesses who want recovery‑friendly self‑custody with professional assistance when needed."
+        "q": "Does Unchained require KYC documents?",
+        "a": "Yes. Because Unchained is a regulated US financial institution that offers trading, IRAs, and loans, you must provide identity verification (drivers license, SSN) to open an account, even for the basic vault service."
+      },
+      {
+        "q": "Can I use my existing hardware wallets with Unchained?",
+        "a": "Yes. Unchained supports most major devices including Trezor, Coldcard, and Ledger. You don't need to buy special hardware; you just export the public keys from your existing devices to build the vault."
+      },
+      {
+        "q": "How does the Unchained Inheritance Protocol work?",
+        "a": "You designate a beneficiary and customized plan today. If you pass away, Unchained guides your beneficiary through a secure verification process and uses their backup key to co-sign a transaction, transferring the funds to them without requiring you to share your private keys while you are alive."
       }
     ],
     "supported_network": "Bitcoin",
@@ -9946,12 +11539,522 @@
       "android": "Not available"
     },
     "profile": "Dhruv Bansal & Joe Kelly",
-    "description": "Unchained is a Bitcoin financial services company focused on helping individuals and businesses secure their Bitcoin through collaborative custody. Their main product is a multisig vault that uses a 2-of-3 key setup, where the user holds two keys and Unchained holds the third. This setup allows users to maintain full control over their Bitcoin while enabling Unchained to assist in recovery if needed, without ever having unilateral access to the funds.\\n\\nWhat makes Unchained unique is its emphasis on combining technical security with user support. Unlike standard hardware wallet setups that rely on a single point of failure, Unchained's model is resistant to user error and device loss. Even if you lose 75% of your devices or backups, you can still recover your funds with Unchained's help. Their system also facilitates inheritance by allowing next of kin to recover funds with proper documentation, making it especially appealing for those thinking about long-term wealth protection.\\n\\nUnchained users appreciate the guided onboarding, live support, and optional concierge services that simplify the complex process of setting up multisig. The platform integrates with popular hardware wallets, and allows users to manage their funds through Unchained's dashboard or export and interact with their vault using open-source tools. The ability to spend from your vault without relying on the Unchained website gives users additional peace of mind.\\n\\nThe company's long-term vision is to build a robust financial ecosystem based on Bitcoin-native tools, including multisig-secured lending, inheritance planning, and business services. While the setup requires ID verification and Unchained knows the vault balances, many users view this trade-off as acceptable in exchange for improved recovery options and strong operational security.\\n\\nUnchained is best suited for those seeking to remove single points of failure in their Bitcoin custody, want professional assistance when needed, and value redundancy and inheritance planning—all while retaining full self-custody.",
+    "description": "Unchained is a Bitcoin financial services company focused on helping individuals and businesses secure their Bitcoin through collaborative custody. Their main product is a multisig vault that uses a 2-of-3 key setup, where the user holds two keys and Unchained holds the third. This setup allows users to maintain full control over their Bitcoin while enabling Unchained to assist in recovery if needed, without ever having unilateral access to the funds.\n\nWhat makes Unchained unique is its emphasis on combining technical security with user support. Unlike standard hardware wallet setups that rely on a single point of failure, Unchained's model is resistant to user error and device loss. Even if you lose 75% of your devices or backups, you can still recover your funds with Unchained's help. Their system also facilitates inheritance by allowing next of kin to recover funds with proper documentation, making it especially appealing for those thinking about long-term wealth protection.\n\nUnchained users appreciate the guided onboarding, live support, and optional concierge services that simplify the complex process of setting up multisig. The platform integrates with popular hardware wallets, and allows users to manage their funds through Unchained's dashboard or export and interact with their vault using open-source tools. The ability to spend from your vault without relying on the Unchained website gives users additional peace of mind.\n\nThe company's long-term vision is to build a robust financial ecosystem based on Bitcoin-native tools, including multisig-secured lending, inheritance planning, and business services. While the setup requires ID verification and Unchained knows the vault balances, many users view this trade-off as acceptable in exchange for improved recovery options and strong operational security.\n\nUnchained is best suited for those seeking to remove single points of failure in their Bitcoin custody, want professional assistance when needed, and value redundancy and inheritance planning—all while retaining full self-custody.",
     "founded_in": "2016",
     "website": "https://unchained.com",
     "countries": [
       "US"
-    ]
+    ],
+    "price": "Varies by service",
+    "kyc_required": "Yes",
+    "links": {
+      "web": "https://unchained.com/vaults"
+    },
+    "trust_chips": [
+      {
+        "text": "Collaborative custody",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "multisig-policy"
+      },
+      {
+        "text": "Inheritance Protocol",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "inheritance-setup"
+      },
+      {
+        "text": "Unchained IRA",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "unchained-ira"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "Savers with significant wealth who want the security of multisig but want a partner to help with setup, recovery, and inheritance.",
+      "consider_if": "You worry about losing your seed phrases or want to enable your heirs to inherit bitcoin without mastering technical custody themselves.",
+      "not_ideal_when": "You require absolute privacy (no KYC) or want to hold small amounts where the setup effort and fees outweigh the benefits."
+    },
+    "howto": {
+      "title": "Set up your Unchained vault",
+      "steps": [
+        {
+          "id": "setup-account",
+          "title": "1. Create account & verify identity",
+          "chips": {
+            "time": "~10 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Sign up on the Unchained website and complete the identity verification (KYC) process.",
+            "Set up 2FA and security questions to protect your login access.",
+            "Choose between the Standard Vault (DIY) or Concierge Onboarding (guided)."
+          ],
+          "gotcha": "Unchained is a regulated US financial institution, so you cannot use the service anonymously."
+        },
+        {
+          "id": "setup-keys",
+          "title": "2. Upload your keys",
+          "chips": {
+            "time": "~15 min",
+            "cost": "Included",
+            "risk": "Low"
+          },
+          "actions": [
+            "Connect your hardware wallets (Trezor, Coldcard, or Ledger) to your computer.",
+            "Export the extended public key (xpub) from each device to the Unchained dashboard.",
+            "Name each key clearly (e.g., 'Trezor Safe 3 - Home', 'Coldcard - Office') so you know which device is which."
+          ],
+          "gotcha": "You are only sharing public keys. Your private keys never leave your hardware devices."
+        },
+        {
+          "id": "setup-vault",
+          "title": "3. Build the vault",
+          "chips": {
+            "time": "~5 min",
+            "cost": "Network fee",
+            "risk": "Low"
+          },
+          "actions": [
+            "Confirm the 2-of-3 configuration: Key A (yours) + Key B (yours) + Key C (Unchained).",
+            "Download the vault configuration file (backup info) and store it separately from your devices.",
+            "Generate a receive address and deposit a small amount to test the setup."
+          ],
+          "gotcha": "Always perform a test withdrawal with your two keys before depositing your full stack."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Do I need two different hardware wallet brands?",
+          "a": "It is recommended but not required. Using different brands (e.g., Trezor and Coldcard) protects you if a bug is found in one manufacturer's software."
+        },
+        {
+          "q": "Can Unchained move my money?",
+          "a": "No. Unchained holds only one key. Moving funds requires two keys, so they cannot transact without your signature."
+        },
+        {
+          "q": "What is the Concierge Onboarding fee?",
+          "a": "Concierge Onboarding is a paid service (typically one-time fee) where an expert guides you through every step on a video call. Standard DIY setup is free."
+        }
+      ]
+    },
+    "key_features": {
+      "heading": "Collaborative custody & services",
+      "features": [
+        {
+          "id": "multisig-policy",
+          "title": "The 2-of-3 Model",
+          "bullets": [
+            "<strong>Who holds keys:</strong> You (Key 1) · You (Key 2) · Unchained (Key 3)",
+            "<strong>2 keys required:</strong> You can sign with your two keys to move funds anytime.",
+            "<strong>Unchained's role:</strong> They hold the 3rd key to help you recover if you lose one of yours."
+          ],
+          "footer": "<strong>Good for:</strong> eliminating single points of failure. <strong>Trade-off:</strong> setup is more complex than a single wallet."
+        },
+        {
+          "title": "Failure protection",
+          "bullets": [
+            "<strong>Lose 1 key:</strong> Use your remaining key + Unchained's key to move funds to a new setup.",
+            "<strong>Lose Unchained:</strong> Use your two keys + external recovery tool (Caravan) to move funds.",
+            "<strong>Lose 2 keys:</strong> Funds are lost. You must protect your two keys/seeds."
+          ],
+          "footer": "<strong>Good for:</strong> peace of mind. <strong>Trade-off:</strong> you still have responsibility to secure your own keys."
+        },
+        {
+          "id": "unchained-ira",
+          "title": "Unchained IRA",
+          "description": "You can hold real bitcoin keys in a tax-advantaged IRA. Unlike ETF products where you own an IOU, Unchained IRAs let you hold 2-of-3 keys for the bitcoin in your retirement account.",
+          "footer": "<strong>Good for:</strong> tax-free growth with key control. <strong>Trade-off:</strong> annual fees apply."
+        },
+        {
+          "id": "dca",
+          "title": "Dollar-cost averaging (DCA)",
+          "description": "You can set up recurring buys that deposit directly into your multisig vault. That removes the step of manually withdrawing from an exchange every week.",
+          "footer": "<strong>Good for:</strong> automated accumulation. <strong>Trade-off:</strong> trading fees apply."
+        }
+      ]
+    },
+    "dca": "Yes",
+    "payment_methods": [
+      "Bank transfer (ACH)",
+      "Wire transfer",
+      "Bitcoin on-chain"
+    ],
+    "recovery_heading": "If this happens, can I still move my Bitcoin?",
+    "recovery_tiles": [
+      {
+        "id": "lose-one-key",
+        "title": "Lose one device",
+        "status": "works",
+        "chips": {
+          "time": "Assisted"
+        }
+      },
+      {
+        "id": "unchained-down",
+        "title": "Unchained disappears",
+        "status": "works",
+        "chips": {
+          "time": "DIY"
+        }
+      },
+      {
+        "id": "inherit-funds",
+        "title": "I pass away",
+        "status": "works",
+        "chips": {
+          "time": "Protocol"
+        }
+      },
+      {
+        "id": "lose-two-keys",
+        "title": "Lose two devices",
+        "status": "not-working",
+        "chips": {
+          "time": "Lost"
+        }
+      }
+    ],
+    "recovery_explainers": [
+      {
+        "id": "lose-one-key",
+        "why": "In a 2-of-3 setup, you only need two keys to move funds. If you lose one of your hardware wallets, you still have one working key, and Unchained holds the third key.",
+        "how": [
+          "Contact Unchained support to request a co-signing session.",
+          "Use your remaining hardware wallet to sign the transaction.",
+          "Unchained uses their key to provide the second signature.",
+          "Move funds to a new vault with new keys."
+        ],
+        "gotcha": "This requires verifying your identity with Unchained so they know it's really you asking."
+      },
+      {
+        "id": "unchained-down",
+        "why": "You hold two keys, which is a quorum. If Unchained's website goes offline or the company closes, you can use open-source tools to spend your bitcoin without them.",
+        "how": [
+          "Download Caravan (Unchained's open-source coordinator) or use Sparrow Wallet.",
+          "Load your vault configuration file (saved during setup).",
+          "Connect your two hardware wallets and sign the transaction.",
+          "Broadcast the transaction to the bitcoin network."
+        ],
+        "gotcha": "You must save your vault configuration file (JSON) externally; without it, rebuilding the vault logic is difficult."
+      },
+      {
+        "id": "inherit-funds",
+        "why": "Unchained's Inheritance Protocol establishes a plan before you die. Your beneficiary gets their own key or identity verification path, and Unchained provides the second signature.",
+        "how": [
+          "Set up the Inheritance Protocol plan and designate beneficiaries.",
+          "Beneficiaries contact Unchained with proof of death.",
+          "After a security hold, Unchained helps them recover funds using the pre-arranged keys.",
+          "Funds move to the beneficiary's control."
+        ],
+        "gotcha": "This is a paid add-on service, but it prevents your coins from being lost if your heirs can't find your seeds."
+      },
+      {
+        "id": "lose-two-keys",
+        "why": "A 2-of-3 multisig vault requires two keys to move funds. If you lose access to both of your hardware wallets (and their seed phrase backups), Unchained's single key is not enough to move the money.",
+        "how": [
+          "There is no recovery path.",
+          "Unchained cannot access the funds alone.",
+          "The bitcoin remains on the address forever, unspendable."
+        ],
+        "gotcha": "Collaborative custody protects against single-key loss, not total negligence. Backup your seed phrases."
+      }
+    ],
+    "inheritance": {
+      "section_title": "Inheritance: pass it on safely",
+      "intro": "Unchained offers a formal protocol to ensure your bitcoin reaches your heirs without sharing your private keys today.",
+      "cards": [
+        {
+          "id": "inheritance-setup",
+          "title": "1. Create the plan",
+          "status": "action",
+          "chips": {
+            "time": "Consultation"
+          },
+          "why": "Standard wills don't work for private keys. If you don't plan, your heirs might find the device but not the PIN, or throw it away entirely.",
+          "steps": [
+            "Sign up for Unchained Inheritance Protocol",
+            "Designate beneficiaries and verification rules",
+            "Unchained helps you structure the key handoff"
+          ],
+          "action": "Do this: Treat inheritance as a separate security model, not just a password sharing exercise."
+        },
+        {
+          "id": "inheritance-process",
+          "title": "2. The recovery process",
+          "status": "process",
+          "chips": {
+            "time": "Variable"
+          },
+          "prereqs": "Proof of death · Beneficiary ID",
+          "steps": [
+            "Beneficiary notifies Unchained support",
+            "Unchained verifies death certificate and identity",
+            "Unchained provides the 2nd signature to move funds"
+          ],
+          "timeline": "Depends on the security layers you choose during setup.",
+          "action": "Do this: ensuring your beneficiaries know who to call is as important as the technical setup."
+        },
+        {
+          "id": "inheritance-breaks",
+          "title": "3. If plans break",
+          "status": "emergency",
+          "chips": {
+            "fallback": "Backup paths"
+          },
+          "scenarios": [
+            {
+              "issue": "Unchained disappears",
+              "path": "Beneficiary needs your 2 keys + vault file to recover externally; plan for this."
+            },
+            {
+              "issue": "Beneficiary forgets",
+              "path": "Unchained cannot initiate contact; you must tell them where to look."
+            }
+          ],
+          "action": "Do this: Leave a 'break glass' instruction letter with your 2 keys in a safety deposit box or attorney's hands."
+        }
+      ]
+    },
+    "compatibility": {
+      "section_title": "Compatibility: what works with Unchained",
+      "intro": "You bring the keys; Unchained brings the vault logic.",
+      "hardware_os": [
+        {
+          "id": "devices",
+          "title": "Supported hardware",
+          "items": [
+            {
+              "name": "Trezor",
+              "status": "verified",
+              "notes": "Model One, Model T, Safe 3, Safe 5"
+            },
+            {
+              "name": "Coldcard",
+              "status": "verified",
+              "notes": "Mk3, Mk4, Q1"
+            },
+            {
+              "name": "Ledger",
+              "status": "verified",
+              "notes": "Nano S/X/S Plus, Flex, Stax"
+            },
+            {
+              "name": "BitBox02",
+              "status": "verified",
+              "notes": "Multi edition only (check support)"
+            }
+          ]
+        },
+        {
+          "id": "browsers",
+          "title": "Platform access",
+          "platforms": [
+            {
+              "name": "Web Dashboard",
+              "status": "verified",
+              "notes": "Chrome, Firefox, Brave, Safari"
+            },
+            {
+              "name": "Mobile App",
+              "status": "verified",
+              "notes": "iOS and Android (view-only or signing)"
+            }
+          ]
+        }
+      ],
+      "standards": {
+        "table": [
+          {
+            "standard": "BIP39",
+            "support": "Yes",
+            "notes": "Standard seed phrases used by supported hardware",
+            "status": "verified"
+          },
+          {
+            "standard": "BIP32",
+            "support": "Yes",
+            "notes": "HD wallets supported",
+            "status": "verified"
+          },
+          {
+            "standard": "PSBT",
+            "support": "Yes",
+            "notes": "Partially Signed Bitcoin Transactions for air-gapped signing",
+            "status": "verified"
+          },
+          {
+            "standard": "Multisig",
+            "support": "Yes",
+            "notes": "Standard P2WSH (Native Segwit) multisig",
+            "status": "verified"
+          }
+        ],
+        "advanced": {
+          "descriptors": {
+            "support": "Yes",
+            "notes": "Caravan uses standard descriptors"
+          },
+          "psbt": {
+            "support": "Yes",
+            "notes": "Full support for SD card / QR signing"
+          }
+        }
+      }
+    },
+    "costs": {
+      "section_title": "Costs & ongoing obligations",
+      "intro": "Unchained charges for value-added services like Concierge Onboarding and IRAs, while the standard vault software is often free to use if you bring your own devices.",
+      "summary_stats": {
+        "upfront": "Hardware cost + optional concierge",
+        "monthly": "$0 (Standard Vault)",
+        "per_transaction": "Mining fees"
+      },
+      "upfront": {
+        "title": "What you pay once",
+        "items": [
+          {
+            "name": "Hardware wallets",
+            "amount": "$60-$200 each",
+            "note": "You need two devices (e.g., Trezor, Coldcard)"
+          },
+          {
+            "name": "Concierge Onboarding",
+            "amount": "$250+",
+            "note": "Optional: Includes 1-on-1 video setup and training",
+            "highlight": "recommended"
+          }
+        ]
+      },
+      "ongoing": {
+        "title": "What you pay ongoing",
+        "items": [
+          {
+            "name": "Standard Vault",
+            "amount": "$0/yr",
+            "highlight": "free",
+            "note": "Basic multisig custody software"
+          },
+          {
+            "name": "Unchained IRA",
+            "amount": "$250/yr",
+            "note": "If you open a retirement account"
+          },
+          {
+            "name": "Inheritance Protocol",
+            "amount": "$250/yr",
+            "note": "If you add inheritance protection"
+          }
+        ]
+      }
+    },
+    "privacy": {
+      "section_title": "Privacy & jurisdiction",
+      "tiles": [
+        {
+          "id": "privacy-data",
+          "title": "What Unchained collects & where it lives",
+          "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Regulated US entity</span>",
+          "why": "Unchained is a financial institution, which means they must collect full KYC info. They also know your vault balances because you share your public keys with their platform.",
+          "summary": "You must provide ID, SSN, and address to open an account. Unchained stores your extended public keys (xpubs), which allows them to see your entire transaction history and balance, though they cannot spend funds.",
+          "bullets": [
+            "<strong>Personal Data:</strong> Full Name · Address · SSN · ID Scan",
+            "<strong>Financial Data:</strong> Public keys (xpubs) · Vault Balance · Transaction History",
+            "<strong>Control:</strong> They cannot spend your funds (they only hold 1 key)"
+          ],
+          "explainer_summary": "Can I use Unchained anonymously?",
+          "explainer_text": "<p>No. Unchained complies with US banking regulations (BSA/AML). If privacy is your primary goal, a DIY multisig setup with Sparrow Wallet or Specter is a better fit, though it lacks the recovery support Unchained provides.</p>"
+        },
+        {
+          "id": "privacy-jurisdiction",
+          "title": "Jurisdiction: US Law",
+          "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> US-based</span>",
+          "why": "Unchained operates under US law. This provides legal protections but also means they must comply with court orders or government requests for data.",
+          "summary": "Your funds are protected by the 2-of-3 key structure, so the government cannot compel Unchained to seize your funds (Unchained can't sign alone). However, Unchained can be compelled to freeze their key or hand over your personal data.",
+          "bullets": [
+            "<strong>Entity:</strong> Unchained Capital, Inc. (US)",
+            "<strong>Seizure risk:</strong> Low (Unchained cannot move funds alone)",
+            "<strong>Data risk:</strong> Unchained must comply with subpoenas for user data"
+          ],
+          "explainer_summary": "What if the government orders a freeze?",
+          "explainer_text": "<p>If Unchained is ordered to freeze your account, they can refuse to sign with their key. However, because you hold two keys, you can simply bypass them and move your funds using Caravan or another wallet tool. This is the power of collaborative custody.</p>"
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Can Unchained see my balance?",
+          "a": "Yes. To provide the dashboard interface, Unchained needs your public keys, which reveals your balance and history."
+        },
+        {
+          "q": "Does Unchained sell my data?",
+          "a": "Unchained states they do not sell client data. They use it for providing their services and compliance."
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Collaborative Custody",
+          "def": "A security model where control is shared between the user and a partner, ensuring no single party has total control."
+        },
+        {
+          "term": "Quorum",
+          "def": "The number of keys required to sign a transaction. In Unchained's case, the quorum is 2-of-3."
+        },
+        {
+          "term": "Caravan",
+          "def": "Unchained's open-source multisig coordinator tool that allows you to recover funds without their website."
+        }
+      ],
+      "keywords": [
+        "Unchained Capital multisig",
+        "Bitcoin collaborative custody",
+        "Unchained IRA",
+        "Unchained inheritance",
+        "2-of-3 multisig vault"
+      ]
+    },
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#methods",
+      "fees": "#fees",
+      "privacy": "#privacy",
+      "inheritance": "#inheritance",
+      "compat": "#features",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "trust": {
+      "cards": [
+        {
+          "id": "security",
+          "fact": "SOC 2 Type 1 Compliant",
+          "link_text": "Security practices",
+          "link_url": "https://unchained.com/security"
+        },
+        {
+          "id": "proof-of-reserves",
+          "fact": "On-chain verification",
+          "link_text": "Verify ownership",
+          "link_url": "https://unchained.com/blog/proof-of-reserves-collaborative-custody/"
+        },
+        {
+          "id": "activity",
+          "fact": "Caravan open source code",
+          "link_text": "GitHub Repo",
+          "link_url": "https://github.com/unchained-capital/caravan"
+        },
+        {
+          "id": "terms",
+          "fact": "Client agreements",
+          "link_text": "Legal docs",
+          "link_url": "https://unchained.com/legal"
+        }
+      ]
+    }
   },
   {
     "name": "Wasabi",

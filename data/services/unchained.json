@@ -4,16 +4,24 @@
   "type_of_platform": "Collaborative custody",
   "faqs": [
     {
-      "q": "What is Unchained?",
-      "a": "Unchained provides collaborative custody (2‑of‑3 multisig) with concierge onboarding and inheritance support."
+      "q": "How does Unchained's 2-of-3 collaborative custody work?",
+      "a": "You hold two private keys on separate hardware wallets, and Unchained holds a third backup key. Moving funds requires two signatures, which means you maintain full control (using your two keys) while Unchained can help you recover funds (using their key plus one of yours) if you lose a device."
     },
     {
-      "q": "Does Unchained require KYC?",
-      "a": "Yes. As a regulated U.S. service, identity verification is required."
+      "q": "What happens if Unchained goes out of business?",
+      "a": "Since you hold two of the three keys, you can always move your bitcoin without Unchained's permission or participation. You can use their open-source tool, Caravan, or other multisig wallets like Sparrow to recover your funds using your own keys and backup file."
     },
     {
-      "q": "Who is Unchained for?",
-      "a": "Individuals and businesses who want recovery‑friendly self‑custody with professional assistance when needed."
+      "q": "Does Unchained require KYC documents?",
+      "a": "Yes. Because Unchained is a regulated US financial institution that offers trading, IRAs, and loans, you must provide identity verification (drivers license, SSN) to open an account, even for the basic vault service."
+    },
+    {
+      "q": "Can I use my existing hardware wallets with Unchained?",
+      "a": "Yes. Unchained supports most major devices including Trezor, Coldcard, and Ledger. You don't need to buy special hardware; you just export the public keys from your existing devices to build the vault."
+    },
+    {
+      "q": "How does the Unchained Inheritance Protocol work?",
+      "a": "You designate a beneficiary and customized plan today. If you pass away, Unchained guides your beneficiary through a secure verification process and uses their backup key to co-sign a transaction, transferring the funds to them without requiring you to share your private keys while you are alive."
     }
   ],
   "supported_network": "Bitcoin",
@@ -78,10 +86,520 @@
     "android": "Not available"
   },
   "profile": "Dhruv Bansal & Joe Kelly",
-  "description": "Unchained is a Bitcoin financial services company focused on helping individuals and businesses secure their Bitcoin through collaborative custody. Their main product is a multisig vault that uses a 2-of-3 key setup, where the user holds two keys and Unchained holds the third. This setup allows users to maintain full control over their Bitcoin while enabling Unchained to assist in recovery if needed, without ever having unilateral access to the funds.\\n\\nWhat makes Unchained unique is its emphasis on combining technical security with user support. Unlike standard hardware wallet setups that rely on a single point of failure, Unchained's model is resistant to user error and device loss. Even if you lose 75% of your devices or backups, you can still recover your funds with Unchained's help. Their system also facilitates inheritance by allowing next of kin to recover funds with proper documentation, making it especially appealing for those thinking about long-term wealth protection.\\n\\nUnchained users appreciate the guided onboarding, live support, and optional concierge services that simplify the complex process of setting up multisig. The platform integrates with popular hardware wallets, and allows users to manage their funds through Unchained's dashboard or export and interact with their vault using open-source tools. The ability to spend from your vault without relying on the Unchained website gives users additional peace of mind.\\n\\nThe company's long-term vision is to build a robust financial ecosystem based on Bitcoin-native tools, including multisig-secured lending, inheritance planning, and business services. While the setup requires ID verification and Unchained knows the vault balances, many users view this trade-off as acceptable in exchange for improved recovery options and strong operational security.\\n\\nUnchained is best suited for those seeking to remove single points of failure in their Bitcoin custody, want professional assistance when needed, and value redundancy and inheritance planning—all while retaining full self-custody.",
+  "description": "Unchained is a Bitcoin financial services company focused on helping individuals and businesses secure their Bitcoin through collaborative custody. Their main product is a multisig vault that uses a 2-of-3 key setup, where the user holds two keys and Unchained holds the third. This setup allows users to maintain full control over their Bitcoin while enabling Unchained to assist in recovery if needed, without ever having unilateral access to the funds.\n\nWhat makes Unchained unique is its emphasis on combining technical security with user support. Unlike standard hardware wallet setups that rely on a single point of failure, Unchained's model is resistant to user error and device loss. Even if you lose 75% of your devices or backups, you can still recover your funds with Unchained's help. Their system also facilitates inheritance by allowing next of kin to recover funds with proper documentation, making it especially appealing for those thinking about long-term wealth protection.\n\nUnchained users appreciate the guided onboarding, live support, and optional concierge services that simplify the complex process of setting up multisig. The platform integrates with popular hardware wallets, and allows users to manage their funds through Unchained's dashboard or export and interact with their vault using open-source tools. The ability to spend from your vault without relying on the Unchained website gives users additional peace of mind.\n\nThe company's long-term vision is to build a robust financial ecosystem based on Bitcoin-native tools, including multisig-secured lending, inheritance planning, and business services. While the setup requires ID verification and Unchained knows the vault balances, many users view this trade-off as acceptable in exchange for improved recovery options and strong operational security.\n\nUnchained is best suited for those seeking to remove single points of failure in their Bitcoin custody, want professional assistance when needed, and value redundancy and inheritance planning—all while retaining full self-custody.",
   "founded_in": "2016",
   "website": "https://unchained.com",
   "countries": [
     "US"
-  ]
+  ],
+  "price": "Varies by service",
+  "kyc_required": "Yes",
+  "links": {
+    "web": "https://unchained.com/vaults"
+  },
+  "trust_chips": [
+    {
+      "text": "Collaborative custody",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "multisig-policy"
+    },
+    {
+      "text": "Inheritance Protocol",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "inheritance-setup"
+    },
+    {
+      "text": "Unchained IRA",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "unchained-ira"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "Savers with significant wealth who want the security of multisig but want a partner to help with setup, recovery, and inheritance.",
+    "consider_if": "You worry about losing your seed phrases or want to enable your heirs to inherit bitcoin without mastering technical custody themselves.",
+    "not_ideal_when": "You require absolute privacy (no KYC) or want to hold small amounts where the setup effort and fees outweigh the benefits."
+  },
+  "howto": {
+    "title": "Set up your Unchained vault",
+    "steps": [
+      {
+        "id": "setup-account",
+        "title": "1. Create account & verify identity",
+        "chips": {
+          "time": "~10 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Sign up on the Unchained website and complete the identity verification (KYC) process.",
+          "Set up 2FA and security questions to protect your login access.",
+          "Choose between the Standard Vault (DIY) or Concierge Onboarding (guided)."
+        ],
+        "gotcha": "Unchained is a regulated US financial institution, so you cannot use the service anonymously."
+      },
+      {
+        "id": "setup-keys",
+        "title": "2. Upload your keys",
+        "chips": {
+          "time": "~15 min",
+          "cost": "Included",
+          "risk": "Low"
+        },
+        "actions": [
+          "Connect your hardware wallets (Trezor, Coldcard, or Ledger) to your computer.",
+          "Export the extended public key (xpub) from each device to the Unchained dashboard.",
+          "Name each key clearly (e.g., 'Trezor Safe 3 - Home', 'Coldcard - Office') so you know which device is which."
+        ],
+        "gotcha": "You are only sharing public keys. Your private keys never leave your hardware devices."
+      },
+      {
+        "id": "setup-vault",
+        "title": "3. Build the vault",
+        "chips": {
+          "time": "~5 min",
+          "cost": "Network fee",
+          "risk": "Low"
+        },
+        "actions": [
+          "Confirm the 2-of-3 configuration: Key A (yours) + Key B (yours) + Key C (Unchained).",
+          "Download the vault configuration file (backup info) and store it separately from your devices.",
+          "Generate a receive address and deposit a small amount to test the setup."
+        ],
+        "gotcha": "Always perform a test withdrawal with your two keys before depositing your full stack."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Do I need two different hardware wallet brands?",
+        "a": "It is recommended but not required. Using different brands (e.g., Trezor and Coldcard) protects you if a bug is found in one manufacturer's software."
+      },
+      {
+        "q": "Can Unchained move my money?",
+        "a": "No. Unchained holds only one key. Moving funds requires two keys, so they cannot transact without your signature."
+      },
+      {
+        "q": "What is the Concierge Onboarding fee?",
+        "a": "Concierge Onboarding is a paid service (typically one-time fee) where an expert guides you through every step on a video call. Standard DIY setup is free."
+      }
+    ]
+  },
+  "key_features": {
+    "heading": "Collaborative custody & services",
+    "features": [
+      {
+        "id": "multisig-policy",
+        "title": "The 2-of-3 Model",
+        "bullets": [
+          "<strong>Who holds keys:</strong> You (Key 1) · You (Key 2) · Unchained (Key 3)",
+          "<strong>2 keys required:</strong> You can sign with your two keys to move funds anytime.",
+          "<strong>Unchained's role:</strong> They hold the 3rd key to help you recover if you lose one of yours."
+        ],
+        "footer": "<strong>Good for:</strong> eliminating single points of failure. <strong>Trade-off:</strong> setup is more complex than a single wallet."
+      },
+      {
+        "title": "Failure protection",
+        "bullets": [
+          "<strong>Lose 1 key:</strong> Use your remaining key + Unchained's key to move funds to a new setup.",
+          "<strong>Lose Unchained:</strong> Use your two keys + external recovery tool (Caravan) to move funds.",
+          "<strong>Lose 2 keys:</strong> Funds are lost. You must protect your two keys/seeds."
+        ],
+        "footer": "<strong>Good for:</strong> peace of mind. <strong>Trade-off:</strong> you still have responsibility to secure your own keys."
+      },
+      {
+        "id": "unchained-ira",
+        "title": "Unchained IRA",
+        "description": "You can hold real bitcoin keys in a tax-advantaged IRA. Unlike ETF products where you own an IOU, Unchained IRAs let you hold 2-of-3 keys for the bitcoin in your retirement account.",
+        "footer": "<strong>Good for:</strong> tax-free growth with key control. <strong>Trade-off:</strong> annual fees apply."
+      },
+      {
+        "id": "dca",
+        "title": "Dollar-cost averaging (DCA)",
+        "description": "You can set up recurring buys that deposit directly into your multisig vault. That removes the step of manually withdrawing from an exchange every week.",
+        "footer": "<strong>Good for:</strong> automated accumulation. <strong>Trade-off:</strong> trading fees apply."
+      }
+    ]
+  },
+  "dca": "Yes",
+  "payment_methods": [
+    "Bank transfer (ACH)",
+    "Wire transfer",
+    "Bitcoin on-chain"
+  ],
+  "recovery_heading": "If this happens, can I still move my Bitcoin?",
+  "recovery_tiles": [
+    {
+      "id": "lose-one-key",
+      "title": "Lose one device",
+      "status": "works",
+      "chips": {
+        "time": "Assisted"
+      }
+    },
+    {
+      "id": "unchained-down",
+      "title": "Unchained disappears",
+      "status": "works",
+      "chips": {
+        "time": "DIY"
+      }
+    },
+    {
+      "id": "inherit-funds",
+      "title": "I pass away",
+      "status": "works",
+      "chips": {
+        "time": "Protocol"
+      }
+    },
+    {
+      "id": "lose-two-keys",
+      "title": "Lose two devices",
+      "status": "not-working",
+      "chips": {
+        "time": "Lost"
+      }
+    }
+  ],
+  "recovery_explainers": [
+    {
+      "id": "lose-one-key",
+      "why": "In a 2-of-3 setup, you only need two keys to move funds. If you lose one of your hardware wallets, you still have one working key, and Unchained holds the third key.",
+      "how": [
+        "Contact Unchained support to request a co-signing session.",
+        "Use your remaining hardware wallet to sign the transaction.",
+        "Unchained uses their key to provide the second signature.",
+        "Move funds to a new vault with new keys."
+      ],
+      "gotcha": "This requires verifying your identity with Unchained so they know it's really you asking."
+    },
+    {
+      "id": "unchained-down",
+      "why": "You hold two keys, which is a quorum. If Unchained's website goes offline or the company closes, you can use open-source tools to spend your bitcoin without them.",
+      "how": [
+        "Download Caravan (Unchained's open-source coordinator) or use Sparrow Wallet.",
+        "Load your vault configuration file (saved during setup).",
+        "Connect your two hardware wallets and sign the transaction.",
+        "Broadcast the transaction to the bitcoin network."
+      ],
+      "gotcha": "You must save your vault configuration file (JSON) externally; without it, rebuilding the vault logic is difficult."
+    },
+    {
+      "id": "inherit-funds",
+      "why": "Unchained's Inheritance Protocol establishes a plan before you die. Your beneficiary gets their own key or identity verification path, and Unchained provides the second signature.",
+      "how": [
+        "Set up the Inheritance Protocol plan and designate beneficiaries.",
+        "Beneficiaries contact Unchained with proof of death.",
+        "After a security hold, Unchained helps them recover funds using the pre-arranged keys.",
+        "Funds move to the beneficiary's control."
+      ],
+      "gotcha": "This is a paid add-on service, but it prevents your coins from being lost if your heirs can't find your seeds."
+    },
+    {
+      "id": "lose-two-keys",
+      "why": "A 2-of-3 multisig vault requires two keys to move funds. If you lose access to both of your hardware wallets (and their seed phrase backups), Unchained's single key is not enough to move the money.",
+      "how": [
+        "There is no recovery path.",
+        "Unchained cannot access the funds alone.",
+        "The bitcoin remains on the address forever, unspendable."
+      ],
+      "gotcha": "Collaborative custody protects against single-key loss, not total negligence. Backup your seed phrases."
+    }
+  ],
+  "inheritance": {
+    "section_title": "Inheritance: pass it on safely",
+    "intro": "Unchained offers a formal protocol to ensure your bitcoin reaches your heirs without sharing your private keys today.",
+    "cards": [
+      {
+        "id": "inheritance-setup",
+        "title": "1. Create the plan",
+        "status": "action",
+        "chips": {
+          "time": "Consultation"
+        },
+        "why": "Standard wills don't work for private keys. If you don't plan, your heirs might find the device but not the PIN, or throw it away entirely.",
+        "steps": [
+          "Sign up for Unchained Inheritance Protocol",
+          "Designate beneficiaries and verification rules",
+          "Unchained helps you structure the key handoff"
+        ],
+        "action": "Do this: Treat inheritance as a separate security model, not just a password sharing exercise."
+      },
+      {
+        "id": "inheritance-process",
+        "title": "2. The recovery process",
+        "status": "process",
+        "chips": {
+          "time": "Variable"
+        },
+        "prereqs": "Proof of death · Beneficiary ID",
+        "steps": [
+          "Beneficiary notifies Unchained support",
+          "Unchained verifies death certificate and identity",
+          "Unchained provides the 2nd signature to move funds"
+        ],
+        "timeline": "Depends on the security layers you choose during setup.",
+        "action": "Do this: ensuring your beneficiaries know who to call is as important as the technical setup."
+      },
+      {
+        "id": "inheritance-breaks",
+        "title": "3. If plans break",
+        "status": "emergency",
+        "chips": {
+          "fallback": "Backup paths"
+        },
+        "scenarios": [
+          {
+            "issue": "Unchained disappears",
+            "path": "Beneficiary needs your 2 keys + vault file to recover externally; plan for this."
+          },
+          {
+            "issue": "Beneficiary forgets",
+            "path": "Unchained cannot initiate contact; you must tell them where to look."
+          }
+        ],
+        "action": "Do this: Leave a 'break glass' instruction letter with your 2 keys in a safety deposit box or attorney's hands."
+      }
+    ]
+  },
+  "compatibility": {
+    "section_title": "Compatibility: what works with Unchained",
+    "intro": "You bring the keys; Unchained brings the vault logic.",
+    "hardware_os": [
+      {
+        "id": "devices",
+        "title": "Supported hardware",
+        "items": [
+          {
+            "name": "Trezor",
+            "status": "verified",
+            "notes": "Model One, Model T, Safe 3, Safe 5"
+          },
+          {
+            "name": "Coldcard",
+            "status": "verified",
+            "notes": "Mk3, Mk4, Q1"
+          },
+          {
+            "name": "Ledger",
+            "status": "verified",
+            "notes": "Nano S/X/S Plus, Flex, Stax"
+          },
+          {
+            "name": "BitBox02",
+            "status": "verified",
+            "notes": "Multi edition only (check support)"
+          }
+        ]
+      },
+      {
+        "id": "browsers",
+        "title": "Platform access",
+        "platforms": [
+          {
+            "name": "Web Dashboard",
+            "status": "verified",
+            "notes": "Chrome, Firefox, Brave, Safari"
+          },
+          {
+            "name": "Mobile App",
+            "status": "verified",
+            "notes": "iOS and Android (view-only or signing)"
+          }
+        ]
+      }
+    ],
+    "standards": {
+      "table": [
+        {
+          "standard": "BIP39",
+          "support": "Yes",
+          "notes": "Standard seed phrases used by supported hardware",
+          "status": "verified"
+        },
+        {
+          "standard": "BIP32",
+          "support": "Yes",
+          "notes": "HD wallets supported",
+          "status": "verified"
+        },
+        {
+          "standard": "PSBT",
+          "support": "Yes",
+          "notes": "Partially Signed Bitcoin Transactions for air-gapped signing",
+          "status": "verified"
+        },
+        {
+          "standard": "Multisig",
+          "support": "Yes",
+          "notes": "Standard P2WSH (Native Segwit) multisig",
+          "status": "verified"
+        }
+      ],
+      "advanced": {
+        "descriptors": {
+          "support": "Yes",
+          "notes": "Caravan uses standard descriptors"
+        },
+        "psbt": {
+          "support": "Yes",
+          "notes": "Full support for SD card / QR signing"
+        }
+      }
+    }
+  },
+  "costs": {
+    "section_title": "Costs & ongoing obligations",
+    "intro": "Unchained charges for value-added services like Concierge Onboarding and IRAs, while the standard vault software is often free to use if you bring your own devices.",
+    "summary_stats": {
+      "upfront": "Hardware cost + optional concierge",
+      "monthly": "$0 (Standard Vault)",
+      "per_transaction": "Mining fees"
+    },
+    "upfront": {
+      "title": "What you pay once",
+      "items": [
+        {
+          "name": "Hardware wallets",
+          "amount": "$60-$200 each",
+          "note": "You need two devices (e.g., Trezor, Coldcard)"
+        },
+        {
+          "name": "Concierge Onboarding",
+          "amount": "$250+",
+          "note": "Optional: Includes 1-on-1 video setup and training",
+          "highlight": "recommended"
+        }
+      ]
+    },
+    "ongoing": {
+      "title": "What you pay ongoing",
+      "items": [
+        {
+          "name": "Standard Vault",
+          "amount": "$0/yr",
+          "highlight": "free",
+          "note": "Basic multisig custody software"
+        },
+        {
+          "name": "Unchained IRA",
+          "amount": "$250/yr",
+          "note": "If you open a retirement account"
+        },
+        {
+          "name": "Inheritance Protocol",
+          "amount": "$250/yr",
+          "note": "If you add inheritance protection"
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "section_title": "Privacy & jurisdiction",
+    "tiles": [
+      {
+        "id": "privacy-data",
+        "title": "What Unchained collects & where it lives",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Regulated US entity</span>",
+        "why": "Unchained is a financial institution, which means they must collect full KYC info. They also know your vault balances because you share your public keys with their platform.",
+        "summary": "You must provide ID, SSN, and address to open an account. Unchained stores your extended public keys (xpubs), which allows them to see your entire transaction history and balance, though they cannot spend funds.",
+        "bullets": [
+          "<strong>Personal Data:</strong> Full Name · Address · SSN · ID Scan",
+          "<strong>Financial Data:</strong> Public keys (xpubs) · Vault Balance · Transaction History",
+          "<strong>Control:</strong> They cannot spend your funds (they only hold 1 key)"
+        ],
+        "explainer_summary": "Can I use Unchained anonymously?",
+        "explainer_text": "<p>No. Unchained complies with US banking regulations (BSA/AML). If privacy is your primary goal, a DIY multisig setup with Sparrow Wallet or Specter is a better fit, though it lacks the recovery support Unchained provides.</p>"
+      },
+      {
+        "id": "privacy-jurisdiction",
+        "title": "Jurisdiction: US Law",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> US-based</span>",
+        "why": "Unchained operates under US law. This provides legal protections but also means they must comply with court orders or government requests for data.",
+        "summary": "Your funds are protected by the 2-of-3 key structure, so the government cannot compel Unchained to seize your funds (Unchained can't sign alone). However, Unchained can be compelled to freeze their key or hand over your personal data.",
+        "bullets": [
+          "<strong>Entity:</strong> Unchained Capital, Inc. (US)",
+          "<strong>Seizure risk:</strong> Low (Unchained cannot move funds alone)",
+          "<strong>Data risk:</strong> Unchained must comply with subpoenas for user data"
+        ],
+        "explainer_summary": "What if the government orders a freeze?",
+        "explainer_text": "<p>If Unchained is ordered to freeze your account, they can refuse to sign with their key. However, because you hold two keys, you can simply bypass them and move your funds using Caravan or another wallet tool. This is the power of collaborative custody.</p>"
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Can Unchained see my balance?",
+        "a": "Yes. To provide the dashboard interface, Unchained needs your public keys, which reveals your balance and history."
+      },
+      {
+        "q": "Does Unchained sell my data?",
+        "a": "Unchained states they do not sell client data. They use it for providing their services and compliance."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "Collaborative Custody",
+        "def": "A security model where control is shared between the user and a partner, ensuring no single party has total control."
+      },
+      {
+        "term": "Quorum",
+        "def": "The number of keys required to sign a transaction. In Unchained's case, the quorum is 2-of-3."
+      },
+      {
+        "term": "Caravan",
+        "def": "Unchained's open-source multisig coordinator tool that allows you to recover funds without their website."
+      }
+    ],
+    "keywords": [
+      "Unchained Capital multisig",
+      "Bitcoin collaborative custody",
+      "Unchained IRA",
+      "Unchained inheritance",
+      "2-of-3 multisig vault"
+    ]
+  },
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#methods",
+    "fees": "#fees",
+    "privacy": "#privacy",
+    "inheritance": "#inheritance",
+    "compat": "#features",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "trust": {
+    "cards": [
+      {
+        "id": "security",
+        "fact": "SOC 2 Type 1 Compliant",
+        "link_text": "Security practices",
+        "link_url": "https://unchained.com/security"
+      },
+      {
+        "id": "proof-of-reserves",
+        "fact": "On-chain verification",
+        "link_text": "Verify ownership",
+        "link_url": "https://unchained.com/blog/proof-of-reserves-collaborative-custody/"
+      },
+      {
+        "id": "activity",
+        "fact": "Caravan open source code",
+        "link_text": "GitHub Repo",
+        "link_url": "https://github.com/unchained-capital/caravan"
+      },
+      {
+        "id": "terms",
+        "fact": "Client agreements",
+        "link_text": "Legal docs",
+        "link_url": "https://unchained.com/legal"
+      }
+    ]
+  }
 }

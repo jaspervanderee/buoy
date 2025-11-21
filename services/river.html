@@ -137,7 +137,7 @@
 </nav>
 
 <nav class="jump-nav" aria-label="Jump to">
-  <a href="/services/river.html#setup">Setup</a> • <a href="/services/river.html#fees">Fees</a> • <a href="/services/river.html#payment-methods">Methods</a> • <a href="/services/river.html#compat">Compatibility</a> • <a href="/services/river.html#self-custody">Self-custody</a> • <a href="/services/river.html#privacy-safety">Privacy</a> • <a href="/services/river.html#trust">Trust</a> • <a href="/services/river.html#faq-heading">FAQs</a>
+  <a href="/services/river.html#setup">Setup</a> • <a href="/services/river.html#fees">Fees</a> • <a href="/services/river.html#compat">Compatibility</a> • <a href="/services/river.html#payment-methods">Methods</a> • <a href="/services/river.html#self-custody">Self-custody</a> • <a href="/services/river.html#privacy-safety">Privacy</a> • <a href="/services/river.html#trust">Trust</a> • <a href="/services/river.html#faq-heading">FAQs</a>
 </nav>
   <!-- BUILD:START -->
 <div class="service-sticky-cta">
@@ -168,14 +168,15 @@
   <summary>Getting started</summary>
 
 <section id="setup" class="service-section">
-  <h2 class="feature-label">Getting started</h2>
+  <h2 class="feature-label">Getting started with River</h2>
   <div class="svc-compat__grid">
 
       <div class="svc-compat__tile" id="setup-install">
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">1. Create and verify your account</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~10 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~10 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        
         <ol><li>Sign up at river.com or install the River app from your app store.</li><li>Enter your legal name, address, Social Security number, and upload a government ID when prompted.</li><li>Turn on two-factor authentication inside Settings > Security before funding the account.</li></ol>
         <p><strong>Gotcha:</strong> River stays custodial until you withdraw, so plan your exit path before you fund it.</p>
       </div>
@@ -183,7 +184,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">2. Fund with ACH, wire, or direct deposit</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~1-5 business days</span><span class="migration-meta-chip">Cost: Varies</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~1-5 business days</span><span class="migration-meta-chip">Cost: Varies</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        
         <ol><li>Link your U.S. bank account via Plaid or copy your River routing and account numbers for payroll.</li><li>Schedule an ACH transfer or initiate a wire; wires usually clear in about one business day while ACH settles in roughly a week.</li><li>Watch the Funding tab; cash trades immediately but moves from pending to available once settlement finishes.</li></ol>
         <p><strong>Gotcha:</strong> ACH withdrawals unlock after funds settle, which typically takes around seven days.</p>
       </div>
@@ -191,7 +193,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">3. Buy bitcoin and set your exit</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~5 min</span><span class="migration-meta-chip">Cost: 0.99% -> 0.25% + network fees</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~5 min</span><span class="migration-meta-chip">Cost: 0.99% -> 0.25% + network fees</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        
         <ol><li>Place an instant buy or create a zero-fee recurring order so future DCA runs without River's trading fee.</li><li>Enable Auto Withdraw or queue manual withdrawals to your hardware wallet once funds become available.</li><li>Test a Lightning send through River Link to confirm you can move sats off the platform on demand.</li></ol>
         <p><strong>Gotcha:</strong> Zero-fee recurring buys skip fees after the first seven days but the bitcoin still sits in River custody until you withdraw.</p>
       </div>
@@ -276,6 +279,16 @@
           <div><p>ACH-funded bitcoin stays locked until settlement. Auto-withdraw queues for review before River broadcasts the transaction.</p></div>
         </details>
     </article>
+    <article class="fee-card" id="fees-bitcoin-interest">
+      <h3 class="fee-card__title">Earn bitcoin interest on cash</h3>
+      <p class="fee-card__cost"><strong>No management fee. Current rate: 3.5% APY paid in bitcoin.</strong></p>
+      <p class="fee-card__what">What happens:<br>After you enroll, River converts daily cash interest to bitcoin and credits it to your balance monthly.</p>
+      <p class="fee-card__how">Save money:<br>Sweep the earned bitcoin to self-custody after each payout so you control the keys.</p>
+        <details class="fee-card__learn-more">
+          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
+          <div><p>You can switch payouts back to USD if you prefer to limit additional custodial bitcoin exposure.</p></div>
+        </details>
+    </article>
   </div>
   <div class="fee-quick-answers">
     <h3 class="fee-quick-answers__title">Quick answers</h3>
@@ -312,6 +325,76 @@
     </dl>
   </details>
 
+</section>
+</details>
+<details class="section-accordion">
+  <summary>River features & limits</summary>
+
+<section id="compat" class="service-section">
+  <h2 class="feature-label">River features & limits</h2>
+  <div class="svc-compat__grid">
+
+      <div class="svc-compat__tile" id="bitcoin-interest">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Bitcoin Interest on Cash</h3>
+          <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 3.5% APY</span> <span class="icon-text-pair"><img src="/images/warning.svg" class="inline-icon" alt=""> Custodial exposure</span></span></p>
+        <p class="svc-compat__why">River pays 3.5% APY on idle cash and converts the interest to bitcoin each month. Your cash stays custodial during this time, which means trusting River's reserves without per-user on-chain proof. Some people use this for working capital while moving long-term holdings to self-custody; others prefer to avoid custodial yield arrangements entirely.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Interest payouts stay custodial until you withdraw. You can set Auto-withdraw to sweep sats automatically or manage this manually based on your preferences.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="beneficiary-plans">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Beneficiary plans</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Assign heirs</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Guided handoff</span></span></p>
+        <p class="svc-compat__why">Beneficiary plans let your heirs access your River account without hunting for passwords. River becomes a single point of access for those assets, which means your heirs inherit both the balance and the counterparty considerations that come with any custodial service.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> This plan covers assets held on River. For holdings in self-custody, you'll want a separate inheritance plan that gives your heirs access to your keys and instructions.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="dca">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Dollar-cost averaging (DCA)</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Free after first week</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Daily, weekly, or monthly</span></span></p>
+        <p class="svc-compat__why">Recurring buys let you build a bitcoin position without timing the market, though your sats stay custodial until you move them. You can pair this with Auto-withdraw to move sats to self-custody automatically, or manage withdrawals manually depending on what fits your workflow.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Recurring buys stay fee-free after the first week, but bitcoin remains in River custody until you withdraw. Self-custody means you hold the keys directly rather than trusting River to hold them for you.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="auto-withdraw">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Auto-withdraw</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Free (Flexible tier)</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Scheduled withdrawals</span></span></p>
+        <p class="svc-compat__why">When your balance hits a threshold you set, River automatically moves sats to your wallet using the free Flexible tier. This reduces the time your bitcoin sits in custody, though you give up some control over the exact timing and fee selection compared to manual withdrawals.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Auto-withdrawals use the Flexible tier, which takes about 24 hours to confirm. ACH-funded bitcoin must settle first before any withdrawal can process.</p>
+          </div>
+        </details>
+      </div>
+  </div>
 </section>
 </details>
 <details class="section-accordion">
@@ -429,76 +512,6 @@
             <tr><th>Withdrawal eligibility</th><td>Available after funds settle</td></tr>
           </tbody>
         </table>
-          </div>
-        </details>
-      </div>
-  </div>
-</section>
-</details>
-<details class="section-accordion">
-  <summary>River features & limits</summary>
-
-<section id="compat" class="service-section">
-  <h2 class="feature-label">River features & limits</h2>
-  <div class="svc-compat__grid">
-
-      <div class="svc-compat__tile" id="bitcoin-interest">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Bitcoin Interest on Cash</h3>
-          <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> 3.5% APY</span> <span class="icon-text-pair"><img src="/images/warning.svg" class="inline-icon" alt=""> Custodial exposure</span></span></p>
-        <p class="svc-compat__why">River pays 3.5% APY on idle cash and converts the interest to bitcoin each month. Your cash stays custodial during this time, which means trusting River's reserves without per-user on-chain proof. Some people use this for working capital while moving long-term holdings to self-custody; others prefer to avoid custodial yield arrangements entirely.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Interest payouts stay custodial until you withdraw. You can set Auto-withdraw to sweep sats automatically or manage this manually based on your preferences.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="beneficiary-plans">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Beneficiary plans</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Assign heirs</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Guided handoff</span></span></p>
-        <p class="svc-compat__why">Beneficiary plans let your heirs access your River account without hunting for passwords. River becomes a single point of access for those assets, which means your heirs inherit both the balance and the counterparty considerations that come with any custodial service.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> This plan covers assets held on River. For holdings in self-custody, you'll want a separate inheritance plan that gives your heirs access to your keys and instructions.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="dca">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Dollar-cost averaging (DCA)</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Free after first week</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Daily, weekly, or monthly</span></span></p>
-        <p class="svc-compat__why">Recurring buys let you build a bitcoin position without timing the market, though your sats stay custodial until you move them. You can pair this with Auto-withdraw to move sats to self-custody automatically, or manage withdrawals manually depending on what fits your workflow.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Recurring buys stay fee-free after the first week, but bitcoin remains in River custody until you withdraw. Self-custody means you hold the keys directly rather than trusting River to hold them for you.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="auto-withdraw">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Auto-withdraw</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Free (Flexible tier)</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Scheduled withdrawals</span></span></p>
-        <p class="svc-compat__why">When your balance hits a threshold you set, River automatically moves sats to your wallet using the free Flexible tier. This reduces the time your bitcoin sits in custody, though you give up some control over the exact timing and fee selection compared to manual withdrawals.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Auto-withdrawals use the Flexible tier, which takes about 24 hours to confirm. ACH-funded bitcoin must settle first before any withdrawal can process.</p>
           </div>
         </details>
       </div>

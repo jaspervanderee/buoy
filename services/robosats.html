@@ -137,7 +137,7 @@
 </nav>
 
 <nav class="jump-nav" aria-label="Jump to">
-  <a href="/services/robosats.html#setup">Setup</a> • <a href="/services/robosats.html#fees">Fees</a> • <a href="/services/robosats.html#payment-methods">Methods</a> • <a href="/services/robosats.html#compat">Compatibility</a> • <a href="/services/robosats.html#self-custody">Self-custody</a> • <a href="/services/robosats.html#privacy-safety">Privacy</a> • <a href="/services/robosats.html#trust">Trust</a> • <a href="/services/robosats.html#faq-heading">FAQs</a>
+  <a href="/services/robosats.html#setup">Setup</a> • <a href="/services/robosats.html#fees">Fees</a> • <a href="/services/robosats.html#compat">Compatibility</a> • <a href="/services/robosats.html#payment-methods">Methods</a> • <a href="/services/robosats.html#self-custody">Self-custody</a> • <a href="/services/robosats.html#privacy-safety">Privacy</a> • <a href="/services/robosats.html#trust">Trust</a> • <a href="/services/robosats.html#faq-heading">FAQs</a>
 </nav>
   <!-- BUILD:START -->
 <div class="service-sticky-cta">
@@ -168,14 +168,15 @@
   <summary>Getting started</summary>
 
 <section id="setup" class="service-section">
-  <h2 class="feature-label">Getting started</h2>
+  <h2 class="feature-label">Getting started with RoboSats</h2>
   <div class="svc-compat__grid">
 
       <div class="svc-compat__tile" id="setup-install">
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">1. Spin up your robot over Tor</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~5 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~5 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Install Tor Browser (desktop) or run Orbot with a privacy browser on mobile, then open https://robosats.com or the onion listed in Quick Start.</li><li>Click Start to generate a robot avatar and let the coordinator hand you the secret token.</li><li>Copy the token into an offline password manager or notebook before you close the welcome dialog.</li></ol>
         <p><strong>Gotcha:</strong> Lose that token and support cannot reopen the contract or disputes for that robot.</p>
       </div>
@@ -183,7 +184,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">2. Prep your Lightning wallet and bonds</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~3 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~3 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Open a Lightning wallet that supports hold invoices and confirm you have inbound liquidity for the trade size.</li><li>Decide whether you will make or take orders and review the default ~3% bond shown on the slider.</li><li>Keep the wallet unlocked so the bond invoice does not expire while you negotiate fiat details.</li></ol>
         <p><strong>Gotcha:</strong> Hold invoices time out fast, so stay connected until the contract room opens.</p>
       </div>
@@ -191,7 +193,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">3. Settle the fiat leg and release sats</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~10-30 min</span><span class="migration-meta-chip">Cost: Lightning routing + payment rail fees</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~10-30 min</span><span class="migration-meta-chip">Cost: Lightning routing + payment rail fees</span><span class="migration-meta-chip">Risk: Medium</span></div>
+        
         <ol><li>Make or take an order, pay the Lightning bond invoice, and wait for the chat room to unlock.</li><li>Exchange fiat instructions over the PGP-encrypted chat and send or confirm the payment through your chosen rail.</li><li>Mark fiat received and release the trade so the hold invoice settles to your wallet, then sweep the sats to your long-term stack or an on-chain swap if needed.</li></ol>
         <p><strong>Gotcha:</strong> If a counterparty stalls, hit Dispute before the timer ends so the coordinator can review evidence.</p>
       </div>
@@ -279,6 +282,61 @@
     </dl>
   </details>
 
+</section>
+</details>
+<details class="section-accordion">
+  <summary>RoboSats features & limits</summary>
+
+<section id="compat" class="service-section">
+  <h2 class="feature-label">RoboSats features & limits</h2>
+  <div class="svc-compat__grid">
+
+      <div class="svc-compat__tile" id="lightning-escrow">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Lightning hold-invoice escrow</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> No platform custody</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Bonds keep peers honest</span></span></p>
+        <p class="svc-compat__why">When you publish an order, the sats stay in a Lightning hold invoice anchored to your wallet instead of a custodian. That means nothing moves until both sides mark the fiat leg complete, and the payout lands in your balance the instant the contract clears.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Keep your Lightning wallet online; hold invoices expire quickly if the coordinator has to wait.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="robot-identities">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Robot token identities</h3>
+          <span class="svc-chip svc-chip--works">Works</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> One-time avatars per trade</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Stored client-side only</span></span></p>
+        <p class="svc-compat__why">Each session mints a robot avatar from the token you save instead of an email or ID. That keeps every order tied to a disposable alias, and you can spin up a fresh robot for the next trade so past deals stay compartmentalized.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> Misplacing the token severs dispute access for that robot, and support cannot restore it.</p>
+          </div>
+        </details>
+      </div>
+      <div class="svc-compat__tile" id="tor-access">
+        <div class="svc-compat__header">
+          <h3 class="svc-compat__title">Tor-first access</h3>
+          <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
+        </div>
+        
+        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Onion routing by default</span> <span class="icon-text-pair"><img src="/images/warning.svg" class="inline-icon" alt=""> Clearnet is fallback only</span></span></p>
+        <p class="svc-compat__why">Routing the session through Tor bounces your packets through onion relays before they ever reach the coordinator. That keeps your IP and location out of the logs, with the clearnet bridge reserved as a last resort when Tor or I2P is blocked.</p>
+        
+        <details class="compat-details">
+          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
+          <div><p><strong>Gotcha:</strong> The clearnet gateway sits behind Cloudflare; stick to Tor when privacy is the priority.</p>
+          </div>
+        </details>
+      </div>
+  </div>
 </section>
 </details>
 <details class="section-accordion">
@@ -383,61 +441,6 @@
           </div>
         </div>
         <p class="payment-card__best-for"><strong>Best for:</strong> Local trades with trusted meetups or repeat partners.</p>
-      </div>
-  </div>
-</section>
-</details>
-<details class="section-accordion">
-  <summary>RoboSats features & limits</summary>
-
-<section id="compat" class="service-section">
-  <h2 class="feature-label">RoboSats features & limits</h2>
-  <div class="svc-compat__grid">
-
-      <div class="svc-compat__tile" id="lightning-escrow">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Lightning hold-invoice escrow</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> No platform custody</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Bonds keep peers honest</span></span></p>
-        <p class="svc-compat__why">When you publish an order, the sats stay in a Lightning hold invoice anchored to your wallet instead of a custodian. That means nothing moves until both sides mark the fiat leg complete, and the payout lands in your balance the instant the contract clears.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Keep your Lightning wallet online; hold invoices expire quickly if the coordinator has to wait.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="robot-identities">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Robot token identities</h3>
-          <span class="svc-chip svc-chip--works">Works</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> One-time avatars per trade</span> <span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Stored client-side only</span></span></p>
-        <p class="svc-compat__why">Each session mints a robot avatar from the token you save instead of an email or ID. That keeps every order tied to a disposable alias, and you can spin up a fresh robot for the next trade so past deals stay compartmentalized.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> Misplacing the token severs dispute access for that robot, and support cannot restore it.</p>
-          </div>
-        </details>
-      </div>
-      <div class="svc-compat__tile" id="tor-access">
-        <div class="svc-compat__header">
-          <h3 class="svc-compat__title">Tor-first access</h3>
-          <span class="svc-chip svc-chip--works-caveat">Works, with caveat</span>
-        </div>
-        
-        <p class="svc-compat__benefit"><span class="icon-text-pair"><img src="/images/checkmark.svg" class="inline-icon" alt=""> Onion routing by default</span> <span class="icon-text-pair"><img src="/images/warning.svg" class="inline-icon" alt=""> Clearnet is fallback only</span></span></p>
-        <p class="svc-compat__why">Routing the session through Tor bounces your packets through onion relays before they ever reach the coordinator. That keeps your IP and location out of the logs, with the clearnet bridge reserved as a last resort when Tor or I2P is blocked.</p>
-        
-        <details class="compat-details">
-          <summary data-open-text="Hide steps" data-closed-text="Show steps">Show steps</summary>
-          <div><p><strong>Gotcha:</strong> The clearnet gateway sits behind Cloudflare; stick to Tor when privacy is the priority.</p>
-          </div>
-        </details>
       </div>
   </div>
 </section>

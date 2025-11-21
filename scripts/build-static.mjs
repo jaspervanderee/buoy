@@ -363,9 +363,9 @@ html = html.replace('</head>', urlShim + '</head>');
       // Render table for service page with mode: "service" to exclude legacy rows (Platform, Supported Networks, Features, Custody & Control block)
       const tableHtml = await renderTableHTML(svc, svc.category, { mode: "service" });
 
-      const defaultOrder = ["tldr", "setup", "fees", "payment_methods_limits", "key_features", "compat", "recovery", "migration", "privacy", "trust", "profile"];
+      const defaultOrder = ["tldr", "setup", "fees", "hardware_bom", "power_uptime", "compat", "integrations", "maintenance", "security_model", "payment_methods_limits", "key_features", "recovery", "migration", "privacy", "trust", "profile"];
       let order = Array.isArray(svc.section_order) && svc.section_order.length
-        ? svc.section_order.filter((key) => defaultOrder.includes(key) || key === "self_custody" || key === "payment_methods_limits" || key === "key_features" || key === "recovery")
+        ? svc.section_order.filter((key) => defaultOrder.includes(key) || key === "self_custody" || key === "payment_methods_limits" || key === "key_features" || key === "recovery" || key === "hardware_bom" || key === "power_uptime" || key === "maintenance" || key === "security_model" || key === "integrations")
         : defaultOrder;
       
       // For Buy Bitcoin services, replace migration with self_custody
@@ -436,7 +436,7 @@ html = html.replace('</head>', urlShim + '</head>');
         // Use custom title for "Store it safely" services, default to "Getting started" for others
         const setupHeading = (svc.category === "Store it safely" && howto.title) 
           ? howto.title 
-          : "Getting started";
+          : howto.title || "Getting started";
         
         const tileItems = howto.steps.map((step) => {
           const tileId = step.id || slugify(step.title || "");
@@ -488,15 +488,21 @@ html = html.replace('</head>', urlShim + '</head>');
         </div>`;
           }
           
-          // Meta chips (time, cost, risk)
+          // Meta chips (time/setup_time, cost, risk/difficulty)
           const metaChips = [];
           if (step.chips) {
-            if (step.chips.time) metaChips.push(`<span class="migration-meta-chip">Time: ${step.chips.time}</span>`);
+            if (step.chips.setup_time || step.chips.time) metaChips.push(`<span class="migration-meta-chip">Setup time: ${step.chips.setup_time || step.chips.time}</span>`);
             if (step.chips.cost) metaChips.push(`<span class="migration-meta-chip">Cost: ${step.chips.cost}</span>`);
             if (step.chips.risk) metaChips.push(`<span class="migration-meta-chip">Risk: ${step.chips.risk}</span>`);
+            if (step.chips.difficulty) metaChips.push(`<span class="migration-meta-chip">Difficulty: ${step.chips.difficulty}</span>`);
           }
           const metaHtml = metaChips.length > 0 
             ? `<div class="migration-meta">${metaChips.join("")}</div>` 
+            : "";
+            
+          // Sync time line (separate line)
+          const syncTimeHtml = step.sync_time 
+            ? `<p class="sync-time-line"><strong>Initial sync:</strong> ${step.sync_time}</p>` 
             : "";
           
           // Actions list (visible, max 3 items)
@@ -515,6 +521,7 @@ html = html.replace('</head>', urlShim + '</head>');
           <h3 class="svc-compat__title">${step.title}</h3>
         </div>
         ${metaHtml}
+        ${syncTimeHtml}
         ${actionsHtml}
         ${gotchaHtml}
       </div>`;
@@ -613,7 +620,7 @@ ${tileItems}
           if (Array.isArray(svc.fees_scenarios) && svc.fees_scenarios.length > 0) {
             const validScenarios = svc.fees_scenarios
               .filter(s => s && hasContent(s.title))
-              .slice(0, 3);
+              .slice(0, 4);
             
             if (validScenarios.length > 0) {
               const scenarioCards = validScenarios.map((scenario) => {
@@ -692,11 +699,49 @@ ${tileItems}
                   }
                 }
                 
+                // Determine label for the "how" section
+                // If custom title exists (Node pages), use "Optimization:", otherwise default to "Save money:"
+                const howLabel = svc.fees_section_title ? "Optimization" : "Save money";
+                
+                // Check if this is a "node-style" card with structured data
+                const isNodeCard = !!scenario.cost_value;
+                
+                if (isNodeCard) {
+                  const badge = scenario.badge ? `<span class="fee-card__badge">${escapeHtml(scenario.badge)}</span>` : "";
+                  const context = scenario.cost_context ? `<span class="fee-card__context">${escapeHtml(scenario.cost_context)}</span>` : "";
+                  
+                  return `    <article class="fee-card fee-card--node" id="${id}">
+      <div class="fee-card__header">
+        <h3 class="fee-card__title">${title}</h3>
+        ${badge}
+      </div>
+      
+      <div class="fee-card__hero">
+        <span class="fee-card__value">${escapeHtml(scenario.cost_value)}</span>
+        ${context}
+      </div>
+      
+      <div class="fee-card__body">
+        <div class="fee-card__section">
+          <span class="fee-card__label">THE MECHANICS</span>
+          <p>${what}</p>
+        </div>
+        
+        <div class="fee-card__section fee-card__section--action">
+          <span class="fee-card__label">${howLabel.toUpperCase()}</span>
+          <p>${how}</p>
+        </div>
+      </div>
+      
+      ${learnHtml}
+    </article>`;
+                }
+
                 return `    <article class="fee-card" id="${id}">${illustrationHtml}
       <h3 class="fee-card__title">${title}</h3>
       ${cost ? `<p class="fee-card__cost"><strong>${cost}</strong></p>` : ""}
       ${what ? `<p class="fee-card__what">What happens:<br>${what}</p>` : ""}
-      ${how ? `<p class="fee-card__how">Save money:<br>${how}</p>` : ""}${learnHtml}
+      ${how ? `<p class="fee-card__how">${howLabel}:<br>${how}</p>` : ""}${learnHtml}
     </article>`;
               }).join("\n");
               
@@ -758,9 +803,11 @@ ${termItems}
           // Skip entire section if no content at all
           if (!scenariosHtml && !microFaqHtml && !keyTermsHtml) return "";
           
+          const feesTitle = svc.fees_section_title || `Fees${feesDateLabel}: what you pay and when`;
+          
           return `
 <section id="fees" class="service-section section-fees">
-  <h2 class="fees-title">Fees${feesDateLabel}: what you pay and when</h2>
+  <h2 class="fees-title">${feesTitle}</h2>
 ${scenariosHtml}${microFaqHtml}${keyTermsHtml}
 </section>`;
         }
@@ -791,6 +838,203 @@ ${scenariosHtml}${microFaqHtml}${keyTermsHtml}
 <section id="fees" class="service-section">
   <h2 class="feature-label">Fees</h2>
 ${blocks}
+</section>`;
+      };
+
+      const renderHardwareBom = () => {
+        if (!svc.hardware_bom || !Array.isArray(svc.hardware_bom.builds)) return "";
+        
+        const heading = svc.hardware_bom.heading || "Hardware BOM";
+        const builds = svc.hardware_bom.builds;
+        
+        const buildCards = builds.map(build => {
+          const estimates = build.estimates || {};
+          const partsList = Array.isArray(build.parts) 
+            ? build.parts.map(p => `<li>${escapeHtml(p)}</li>`).join('') 
+            : '';
+            
+          return `
+      <div class="hardware-build-card" id="${build.id}">
+        <div class="hardware-build-header">
+          <h3>${escapeHtml(build.name)}</h3>
+          <p class="hardware-use-case">${escapeHtml(build.use_case)}</p>
+        </div>
+        <div class="hardware-parts">
+          <h4>Parts list</h4>
+          <ul>${partsList}</ul>
+        </div>
+        <div class="hardware-estimates">
+          <div class="hardware-stat">
+            <span class="stat-label">Sync Time</span>
+            <span class="stat-value">${escapeHtml(estimates.sync_time || 'N/A')}</span>
+          </div>
+          <div class="hardware-stat">
+            <span class="stat-label">Noise</span>
+            <span class="stat-value">${escapeHtml(estimates.noise || 'N/A')}</span>
+          </div>
+          <div class="hardware-stat">
+            <span class="stat-label">Power</span>
+            <span class="stat-value">${escapeHtml(estimates.wattage || 'N/A')}</span>
+          </div>
+        </div>
+      </div>`;
+        }).join('');
+        
+        return `
+<section id="hardware" class="service-section">
+  <h2 class="feature-label">${heading}</h2>
+  <div class="hardware-grid">
+    ${buildCards}
+  </div>
+</section>`;
+      };
+
+      const renderPowerUptime = () => {
+        if (!svc.power_uptime) return "";
+        const data = svc.power_uptime;
+        
+        // Render metrics table
+        let metricsHtml = "";
+        if (Array.isArray(data.metrics)) {
+          const rows = data.metrics.map(m => `
+            <tr>
+              <td>${escapeHtml(m.label)}</td>
+              <td><strong>${escapeHtml(m.value)}</strong></td>
+              <td>${escapeHtml(m.notes)}</td>
+            </tr>`).join('');
+          metricsHtml = `
+          <div class="power-metrics">
+            <table class="compat-table">
+              <thead><tr><th>Metric</th><th>Value</th><th>Notes</th></tr></thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>`;
+        }
+        
+        // UPS Guidance
+        let upsHtml = "";
+        if (Array.isArray(data.ups_guidance)) {
+          upsHtml = `
+          <div class="power-block">
+            <h3>UPS Guidance</h3>
+            <ul>${data.ups_guidance.map(i => `<li>${escapeHtml(i)}</li>`).join('')}</ul>
+          </div>`;
+        }
+        
+        // Safe Shutdown
+        let shutdownHtml = "";
+        if (data.safe_shutdown) {
+          shutdownHtml = `
+          <div class="power-block power-shutdown">
+            <h3>Safe Shutdown</h3>
+            <p>${escapeHtml(data.safe_shutdown)}</p>
+          </div>`;
+        }
+        
+        return `
+<section id="power" class="service-section">
+  <h2 class="feature-label">Power & Uptime</h2>
+  ${metricsHtml}
+  <div class="power-guidance-grid">
+    ${upsHtml}
+    ${shutdownHtml}
+  </div>
+</section>`;
+      };
+
+      const renderMaintenance = () => {
+        if (!svc.maintenance) return "";
+        const data = svc.maintenance;
+        
+        const cadenceHtml = data.cadence ? `<p class="maintenance-cadence"><strong>Update cadence:</strong> ${escapeHtml(data.cadence)}</p>` : "";
+        
+        let tasksHtml = "";
+        if (Array.isArray(data.tasks)) {
+          tasksHtml = `<div class="maintenance-tasks">
+            ${data.tasks.map(t => `
+              <div class="maintenance-task">
+                <h4>${escapeHtml(t.title)}</h4>
+                <p>${escapeHtml(t.details)}</p>
+              </div>`).join('')}
+          </div>`;
+        }
+        
+        let configsHtml = "";
+        if (Array.isArray(data.configs)) {
+          configsHtml = `<div class="maintenance-configs">
+            <h3>Config Locations</h3>
+            <ul>${data.configs.map(c => `<li>${escapeHtml(c)}</li>`).join('')}</ul>
+          </div>`;
+        }
+        
+        return `
+<section id="maintenance" class="service-section">
+  <h2 class="feature-label">Maintenance</h2>
+  ${cadenceHtml}
+  ${tasksHtml}
+  ${configsHtml}
+</section>`;
+      };
+
+      const renderSecurityModel = () => {
+        if (!svc.security_model) return "";
+        const data = svc.security_model;
+        
+        const overviewHtml = data.overview ? `<p class="security-overview">${escapeHtml(data.overview)}</p>` : "";
+        
+        let winsHtml = "";
+        if (Array.isArray(data.quick_wins)) {
+          winsHtml = `<div class="security-block">
+            <h3>Quick Wins</h3>
+            <ul>${data.quick_wins.map(w => `<li>${escapeHtml(w)}</li>`).join('')}</ul>
+          </div>`;
+        }
+        
+        let hardeningHtml = "";
+        if (Array.isArray(data.hardening)) {
+          hardeningHtml = `<div class="security-block">
+            <h3>Hardening</h3>
+            <ul>${data.hardening.map(h => `<li>${escapeHtml(h)}</li>`).join('')}</ul>
+          </div>`;
+        }
+        
+        return `
+<section id="security" class="service-section">
+  <h2 class="feature-label">Security Model</h2>
+  ${overviewHtml}
+  <div class="security-grid">
+    ${winsHtml}
+    ${hardeningHtml}
+  </div>
+</section>`;
+      };
+
+      const renderIntegrations = () => {
+        if (!svc.integrations) return "";
+        const data = svc.integrations;
+        
+        const renderList = (title, items) => {
+          if (!Array.isArray(items) || !items.length) return "";
+          return `<div class="integration-group">
+            <h3>${title}</h3>
+            <ul>${items.map(i => `<li>${escapeHtml(i)}</li>`).join('')}</ul>
+          </div>`;
+        };
+        
+        const walletsHtml = renderList("Connect Wallets", data.wallets);
+        const merchantHtml = renderList("Merchant Stack", data.merchant_stack);
+        const toolsHtml = renderList("Explorers & Tools", data.explorers_and_tools);
+        const notesHtml = data.notes ? `<p class="integration-notes">${escapeHtml(data.notes)}</p>` : "";
+        
+        return `
+<section id="integrations" class="service-section">
+  <h2 class="feature-label">Integrations</h2>
+  <div class="integrations-grid">
+    ${walletsHtml}
+    ${merchantHtml}
+    ${toolsHtml}
+  </div>
+  ${notesHtml}
 </section>`;
       };
 
@@ -1393,6 +1637,13 @@ ${featureTiles}
         
         const sectionTitle = costsData.section_title || "Costs & ongoing obligations";
         
+        // Helper to detect if a cost value should be highlighted (green/$0)
+        const isZeroCost = (val) => {
+          if (!val) return false;
+          const v = String(val).trim().toLowerCase();
+          return v === '$0' || v === 'free' || v === '0';
+        };
+
         // Render intro explanation (Jeff's voice: mechanism first)
         const introHtml = costsData.intro ? `<p class="costs-intro">${escapeHtml(costsData.intro)}</p>` : "";
         
@@ -1400,17 +1651,24 @@ ${featureTiles}
         let summaryStatsHtml = "";
         if (costsData.summary_stats) {
           const stats = costsData.summary_stats;
+          
+          const getSummaryClass = (val) => {
+            return isZeroCost(val) 
+              ? "costs-summary__item costs-summary__item--highlight" 
+              : "costs-summary__item";
+          };
+
           summaryStatsHtml = `
   <div class="costs-summary">
-    ${stats.upfront ? `<div class="costs-summary__item">
+    ${stats.upfront ? `<div class="${getSummaryClass(stats.upfront)}">
       <span class="costs-summary__label">One-time</span>
       <span class="costs-summary__value">${escapeHtml(stats.upfront)}</span>
     </div>` : ''}
-    ${stats.monthly ? `<div class="costs-summary__item costs-summary__item--highlight">
+    ${stats.monthly ? `<div class="${getSummaryClass(stats.monthly)}">
       <span class="costs-summary__label">Monthly</span>
       <span class="costs-summary__value">${escapeHtml(stats.monthly)}</span>
     </div>` : ''}
-    ${stats.per_transaction ? `<div class="costs-summary__item">
+    ${stats.per_transaction ? `<div class="${getSummaryClass(stats.per_transaction)}">
       <span class="costs-summary__label">Per transaction</span>
       <span class="costs-summary__value">${escapeHtml(stats.per_transaction)}</span>
     </div>` : ''}
@@ -1423,7 +1681,13 @@ ${featureTiles}
         // Render upfront costs block with highlights
         if (costsData.upfront && Array.isArray(costsData.upfront.items) && costsData.upfront.items.length > 0) {
           const upfrontItems = costsData.upfront.items.map(item => {
-            const highlightClass = item.highlight ? ` costs-item--${item.highlight}` : "";
+            // Auto-highlight if amount is $0/Free, unless explicit highlight is set
+            let highlight = item.highlight;
+            if (!highlight && isZeroCost(item.amount)) {
+              highlight = "free";
+            }
+            
+            const highlightClass = highlight ? ` costs-item--${highlight}` : "";
             const amountHtml = item.amount ? `<span class="costs-amount">${escapeHtml(item.amount)}</span>` : "";
             const noteHtml = item.note ? `<span class="costs-note">${escapeHtml(item.note)}</span>` : "";
             return `<li class="costs-item${highlightClass}">
@@ -1445,7 +1709,13 @@ ${featureTiles}
         // Render ongoing costs block with highlights
         if (costsData.ongoing && Array.isArray(costsData.ongoing.items) && costsData.ongoing.items.length > 0) {
           const ongoingItems = costsData.ongoing.items.map(item => {
-            const highlightClass = item.highlight ? ` costs-item--${item.highlight}` : "";
+            // Auto-highlight if amount is $0/Free, unless explicit highlight is set
+            let highlight = item.highlight;
+            if (!highlight && isZeroCost(item.amount)) {
+              highlight = "free";
+            }
+
+            const highlightClass = highlight ? ` costs-item--${highlight}` : "";
             const amountHtml = item.amount ? `<span class="costs-amount">${escapeHtml(item.amount)}</span>` : "";
             const noteHtml = item.note ? `<span class="costs-note">${escapeHtml(item.note)}</span>` : "";
             return `<li class="costs-item${highlightClass}">
@@ -2164,6 +2434,11 @@ ${cards.join("\n")}
         tldr: renderTlDr,
         setup: renderSetup,
         fees: renderFees,
+        hardware_bom: renderHardwareBom,
+        power_uptime: renderPowerUptime,
+        maintenance: renderMaintenance,
+        security_model: renderSecurityModel,
+        integrations: renderIntegrations,
         payment_methods_limits: renderPaymentMethods,
         key_features: renderKeyFeatures,
         costs: renderCosts,
@@ -2185,6 +2460,11 @@ ${cards.join("\n")}
         profile: "Profile",
         setup: (svc.category === "Store it safely" && svc.howto?.title) ? svc.howto.title : "Getting started",
         fees: "Fees: what you pay and when",
+        hardware_bom: "Hardware BOM",
+        power_uptime: "Power & Uptime",
+        maintenance: "Maintenance",
+        security_model: "Security Model",
+        integrations: "Integrations",
         payment_methods_limits: "Payment methods & limits",
         key_features: "Key features",
         costs: svc.costs?.section_title || "Costs & ongoing obligations",
@@ -2223,6 +2503,11 @@ ${block}
       const jumpToMap = {
         setup: { id: 'setup', label: 'Setup' },
         fees: { id: 'fees', label: 'Fees' },
+        hardware_bom: { id: 'hardware', label: 'Hardware' },
+        power_uptime: { id: 'power', label: 'Power' },
+        maintenance: { id: 'maintenance', label: 'Updates' },
+        security_model: { id: 'security', label: 'Security' },
+        integrations: { id: 'integrations', label: 'Integrations' },
         payment_methods_limits: { id: 'payment-methods', label: 'Methods' },
         key_features: { id: 'key-features', label: 'Features' },
         costs: { id: 'costs', label: 'Costs' },

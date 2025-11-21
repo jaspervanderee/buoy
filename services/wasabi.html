@@ -175,7 +175,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">1. Install and create your wallet</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~10 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~10 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Download Wasabi from wasabiwallet.io or build it from source, then verify the package signature.</li><li>Create a new wallet, record the 12 recovery words, and set a strong passphrase that only you know.</li><li>Confirm the words inside the app so you know the backup is correct before depositing any sats.</li></ol>
         <p><strong>Gotcha:</strong> You need both the seed words and the passphrase to spend later, so store them in different safe places.</p>
       </div>
@@ -183,7 +184,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">2. Label every deposit</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~5 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~5 min</span><span class="migration-meta-chip">Cost: Free</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Open Receive, describe who knows this address, and let Wasabi generate a fresh bc1 address.</li><li>Share the address with your exchange or payer and wait for on-chain confirmations in the History tab.</li><li>Mark the coin with meaningful labels so you remember which observers know about it when you spend later.</li></ol>
         <p><strong>Gotcha:</strong> Reusing addresses exposes your graph to every counterparty, so rely on Wasabi's labeling workflow.</p>
       </div>
@@ -191,7 +193,8 @@
         <div class="svc-compat__header">
           <h3 class="svc-compat__title">3. Practice sending privately</h3>
         </div>
-        <div class="migration-meta"><span class="migration-meta-chip">Time: ~10 min</span><span class="migration-meta-chip">Cost: Mining fee</span><span class="migration-meta-chip">Risk: Low</span></div>
+        <div class="migration-meta"><span class="migration-meta-chip">Setup time: ~10 min</span><span class="migration-meta-chip">Cost: Mining fee</span><span class="migration-meta-chip">Risk: Low</span></div>
+        
         <ol><li>Use Send to craft a transaction, select which coins to spend, and review the fee estimate.</li><li>Authorize the send with your passphrase and watch it broadcast to the network.</li><li>Note which observers now know about the recipient address so your labels stay accurate.</li></ol>
         <p><strong>Gotcha:</strong> CoinJoin was available via the zkSNACKs coordinator until June 2024; community coordinators may still operate.</p>
       </div>
@@ -472,7 +475,7 @@
   <h2 class="feature-label">Costs & ongoing obligations</h2>
 <p class="costs-intro">The software is free and open-source. You pay only Bitcoin network mining fees when you send transactions.</p>
   <div class="costs-summary">
-    <div class="costs-summary__item">
+    <div class="costs-summary__item costs-summary__item--highlight">
       <span class="costs-summary__label">One-time</span>
       <span class="costs-summary__value">$0</span>
     </div>
@@ -488,7 +491,7 @@
 
     <div class="costs-card">
       <h3 class="costs-card__title">What you pay once</h3>
-      <ul class="costs-list"><li class="costs-item">
+      <ul class="costs-list"><li class="costs-item costs-item--free">
       <div class="costs-item__main">
         <span class="costs-item__name">Wasabi download</span>
         <span class="costs-amount">$0</span>

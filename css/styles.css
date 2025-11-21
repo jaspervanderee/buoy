@@ -3601,6 +3601,105 @@ a.trust-chip:active {
   border-color: var(--accent);
 }
 
+/* === Node Fee Card Redesign === */
+.fee-card--node {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--panel);
+}
+
+.fee-card--node .fee-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.fee-card--node .fee-card__title {
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.fee-card__badge {
+  background: var(--border);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.7em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.fee-card--node .fee-card__hero {
+  margin-bottom: 16px;
+}
+
+.fee-card__value {
+  display: block;
+  font-size: 1.8em;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+}
+
+.fee-card__context {
+  display: block;
+  font-size: 0.9em;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.fee-card--node .fee-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1; /* Push footer down */
+}
+
+.fee-card__section {
+  font-size: 0.95em;
+}
+
+.fee-card__label {
+  display: block;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.fee-card__section p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.fee-card__section--action {
+  background: var(--bg);
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 3px solid var(--accent);
+}
+
+@media (prefers-color-scheme: dark) {
+  .fee-card__section--action {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Learn More override for Node cards */
+.fee-card--node .fee-card__learn-more {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
 /* .fee-card__title - now using universal .card-title utility above */
 
 /* Fee card body text - base styles from .mono-text utility, only overrides here */

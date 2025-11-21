@@ -4,16 +4,24 @@
   "type_of_platform": "Collaborative custody",
   "faqs": [
     {
-      "q": "What is AnchorWatch?",
-      "a": "AnchorWatch provides insured, collaborative custody with multisig vaults designed for long‑term bitcoin storage and inheritance."
+      "q": "How does AnchorWatch's Trident vault insurance work?",
+      "a": "AnchorWatch locks each deposit inside a Trident 2-of-3 multisig vault that maps to a Lloyd's-backed policy, so coverage follows the exact UTXO you fund. If you permanently lose control under the policy terms, you can file a claim instead of eating the loss."
     },
     {
-      "q": "Is AnchorWatch insured?",
-      "a": "Yes. Policies are designed to cover bitcoin in AnchorWatch vaults with 1:1 insurance."
+      "q": "What does AnchorWatch charge for custody insurance?",
+      "a": "Premiums run roughly 0.55%–2% of the insured value per year and are paid up front in USD. A Trident Services Fee of up to 0.25% annually (first $250k waived) is billed monthly so you can size coverage to your treasury."
     },
     {
-      "q": "Does AnchorWatch require KYC?",
-      "a": "Yes. As a regulated provider AnchorWatch requires identity verification."
+      "q": "How fast can I move bitcoin out of an AnchorWatch vault?",
+      "a": "You prepare and sign the spend in Trident, submit your evidence package, and AnchorWatch usually clears compliance plus its signature within one to two business days. Plan larger withdrawals ahead so insurance controls never become a surprise bottleneck."
+    },
+    {
+      "q": "Does AnchorWatch require KYC and where is it available?",
+      "a": "Yes. AnchorWatch underwrites regulated US policies, so onboarding requires identity documents or KYB packages and they currently insure only US-based clients."
+    },
+    {
+      "q": "How are customer keys and funds segregated at AnchorWatch?",
+      "a": "You generate your own keys on factory-sealed devices, and each vault has a unique output descriptor that proves funds are never commingled with other policyholders. You can verify segregation on-chain before depositing sats."
     }
   ],
   "supported_network": "Bitcoin",
@@ -73,6 +81,7 @@
   },
   "price": "Custom pricing",
   "custody_control": "Collaborative custody (insurance multisig)",
+  "kyc_required": "Yes",
   "recovery_method": "Time-locked multisig recovery",
   "open_source": "No",
   "node_connect": "No",
@@ -82,10 +91,553 @@
     "text": "No app available"
   },
   "profile": "Robert Hamilton & Becca Rubenfeld",
-  "description": "AnchorWatch is a U.S.-based bitcoin custody and insurance provider trying to bridge traditional insurance with Bitcoin-native custody, delivering peace of mind by offering an elegant, turnkey solution for long‑term bitcoin holders and corporate treasuries seeking secure, insured, and inheritance‑ready custody.\n\nWhat separates AnchorWatch is their unique integration of protocol-level multisig vaults with time-locked recovery and insurance. Users hold a multi-signature key set alongside AnchorWatch; both are required to sign transactions, and over time additional recovery mechanisms activate to handle key-loss, death, or coercion scenarios.\n\nUser reviews and discussions (e.g. from the Build With Bitcoin transcript) emphasize AnchorWatch's layered approach: the combination of vault tech and insurance addresses both technical and human vulnerabilities. The service also supports inheritance planning—time-locked access for heirs without cumbersome \"treasure maps\". This focus on estate continuity is cited as a major differentiator, especially for non‑technical beneficiaries.\n\nTheir future vision includes expanding beyond U.S. customers, offering bespoke large-value enterprise policies, and exploring Bitcoin-denominated insurance.",
+  "description": "AnchorWatch is a U.S.-based bitcoin custody and insurance provider trying to bridge traditional insurance with Bitcoin-native custody, delivering peace of mind by offering an elegant, turnkey solution for long-term bitcoin holders and corporate treasuries seeking secure, insured, and inheritance-ready custody.\n\nWhat separates AnchorWatch is their unique integration of protocol-level multisig vaults with time-locked recovery and insurance. Users hold a multi-signature key set alongside AnchorWatch; both are required to sign transactions, and over time additional recovery mechanisms activate to handle key-loss, death, or coercion scenarios.\n\nUser reviews and discussions (e.g. from the Build With Bitcoin transcript) emphasize AnchorWatch's layered approach: the combination of vault tech and insurance addresses both technical and human vulnerabilities. The service also supports inheritance planning—time-locked access for heirs without cumbersome \"treasure maps\". This focus on estate continuity is cited as a major differentiator, especially for non-technical beneficiaries.\n\nTheir future vision includes expanding beyond U.S. customers, offering bespoke large-value enterprise policies, and exploring Bitcoin-denominated insurance.",
   "founded_in": "2022",
   "website": "https://anchorwatch.com",
+  "links": {
+    "web": "https://www.anchorwatch.com/faq"
+  },
   "countries": [
     "US"
-  ]
+  ],
+  "trust_chips": [
+    {
+      "text": "Insurance-backed Trident vaults",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "insured-multisig"
+    },
+    {
+      "text": "Time-locked recovery script",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "timelocked-recovery"
+    },
+    {
+      "text": "Inheritance-ready claims",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "inheritance-claims"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "AnchorWatch pairs Trident multisig vaults with Lloyd's-backed insurance so US treasuries and families can keep keys cold without giving up coverage. Choose it when you want estate, audit, and compliance workflows around long-term bitcoin.",
+    "consider_if": "The service adds a compliance desk to every spend, which means you must plan withdrawals ahead of time. Consider it if you want that oversight plus access to insurance-grade recovery tooling.",
+    "not_ideal_when": "Because AnchorWatch must sign each spend, you trade speed for assurance. It's not ideal when you need instant, global, or anonymous control."
+  },
+  "howto": {
+    "title": "Set up your AnchorWatch vault",
+    "steps": [
+      {
+        "id": "vault-policy",
+        "title": "1. Choose policy & secure keys",
+        "chips": {
+          "time": "~60 min",
+          "cost": "Varies",
+          "risk": "Low"
+        },
+        "actions": [
+          "Meet AnchorWatch underwriting, review coverage tiers, and set the USD limit you want insured.",
+          "Complete KYC or KYB, sign the engagement letter, and receive the factory-sealed signing devices they ship.",
+          "Generate your customer keys during the onboarding call so AnchorWatch never sees the seed material."
+        ],
+        "gotcha": "Insurance underwriting requires US residency or entity registration plus identity verification."
+      },
+      {
+        "id": "vault-proof",
+        "title": "2. Build and test the vault",
+        "chips": {
+          "time": "~45 min",
+          "cost": "Mining fee",
+          "risk": "Low"
+        },
+        "actions": [
+          "Configure the Trident miniscript policy, label each signer, and review the vault's output descriptor together.",
+          "Send a small test deposit, confirm it on your own node, and log the insured UTXO ID provided in the policy.",
+          "Document the recovery script and store redundant copies offline for board reviews."
+        ],
+        "gotcha": "Skipping the descriptor review means you cannot independently prove the vault's policy later."
+      },
+      {
+        "id": "vault-ops",
+        "title": "3. Operationalize compliance & inheritance",
+        "chips": {
+          "time": "~30 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Define compliance contacts so AnchorWatch knows who can request co-signatures and who gets alerts.",
+          "Set withdrawal workflows, including evidence AnchorWatch needs before it signs and the one-to-two business day window.",
+          "Add beneficiaries or board-approved heirs in Trident so inheritance and insurance claims share paperwork."
+        ],
+        "gotcha": "Transactions requested outside the documented workflow are delayed until compliance can verify them."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Do I have to use Trident to be insured by AnchorWatch?",
+        "a": "Yes. The insurance is bound to Trident's miniscript vault so AnchorWatch can verify keys and sign when policy terms are met."
+      },
+      {
+        "q": "How fast does AnchorWatch co-sign transactions?",
+        "a": "After you sign and submit supporting evidence, AnchorWatch usually completes compliance checks and adds its signature within one to two business days."
+      },
+      {
+        "q": "What if every customer key is lost?",
+        "a": "AnchorWatch can invoke the time-locked recovery path with its emergency partner, or you can file a claim that covers the permanent loss if policy conditions are met."
+      }
+    ]
+  },
+  "key_features": {
+    "heading": "Your insured policy (who signs and when)",
+    "features": [
+      {
+        "id": "insured-multisig",
+        "title": "Insurance-backed Trident vaults",
+        "bullets": [
+          "<strong>Who holds keys:</strong> You keep two customer-controlled devices, AnchorWatch keeps its own signer set, and an emergency partner stays offline until needed.",
+          "<strong>Policy terms:</strong> Each insured vault corresponds to a specific UTXO and policy number, so loss calculations stay 1:1.",
+          "<strong>When it signs:</strong> AnchorWatch co-signs once compliance evidence is reviewed, typically within one to two business days."
+        ],
+        "footer": "<strong>Good for:</strong> Long-term storage that needs institutional approvals. <strong>Trade-off:</strong> Movements wait on AnchorWatch availability."
+      },
+      {
+        "id": "timelocked-recovery",
+        "title": "Time-locked recovery script",
+        "bullets": [
+          "<strong>Miniscript path:</strong> Trident encodes a timelock that lets AnchorWatch and its emergency partner rebuild access if customer keys disappear.",
+          "<strong>Recovery script:</strong> You receive descriptors so you can spend through Bitcoin Core even if Trident is offline.",
+          "<strong>Insurance tie-in:</strong> Manual recovery can avoid deductibles and keep coverage intact."
+        ],
+        "footer": "<strong>Good for:</strong> Estate planning or key-loss response. <strong>Trade-off:</strong> Timelocks add waiting periods before funds move."
+      }
+    ]
+  },
+  "dca": "No",
+  "payment_methods": [
+    "Bitcoin on-chain"
+  ],
+  "recovery_heading": "If this happens, can I still move my Bitcoin?",
+  "recovery_tiles": [
+    {
+      "id": "lose-device",
+      "title": "Lose one signing device",
+      "status": "works",
+      "chips": {
+        "time": "~1 business day"
+      }
+    },
+    {
+      "id": "anchorwatch-offline",
+      "title": "AnchorWatch service interruption",
+      "status": "works-caveat",
+      "chips": {
+        "time": "Timelock (per policy)"
+      }
+    },
+    {
+      "id": "coercion-event",
+      "title": "Coercion or theft attempt",
+      "status": "works",
+      "chips": {
+        "time": "Immediate"
+      }
+    },
+    {
+      "id": "lose-all-keys",
+      "title": "Lose every customer key",
+      "status": "works-caveat",
+      "chips": {
+        "time": "Timelock + claim"
+      }
+    }
+  ],
+  "recovery_explainers": [
+    {
+      "id": "lose-device",
+      "why": "Trident is 2-of-3, so you and AnchorWatch still have a quorum if one customer device fails.",
+      "how": [
+        "Notify AnchorWatch support and document when the device was lost or destroyed.",
+        "Schedule a replacement call so they can ship a new sealed signer and walk you through key generation.",
+        "Update the vault records and insurance schedule so the new key is reflected."],
+      "gotcha": "AnchorWatch needs evidence that the lost key cannot be recovered before issuing new hardware."
+    },
+    {
+      "id": "anchorwatch-offline",
+      "why": "You hold the recovery script and descriptors, so a timelock path lets you spend without AnchorWatch if they are unreachable.",
+      "how": [
+        "Load the recovery script into Bitcoin Core or another compatible wallet.",
+        "Wait for the policy's timelock window, then use your remaining keys plus the emergency partner to co-sign.",
+        "Sweep funds to a destination you control and notify AnchorWatch once channels reopen."],
+      "gotcha": "Bypassing AnchorWatch during an outage may impact insurance, so log every step and inform them once possible."
+    },
+    {
+      "id": "coercion-event",
+      "why": "AnchorWatch will not sign until compliance clears the request, giving you time to halt a coerced withdrawal and trigger insurance steps.",
+      "how": [
+        "Refuse to sign the outgoing transaction and alert AnchorWatch via their emergency contact.",
+        "Provide incident evidence (police report, affidavits) so they can freeze signatures.",
+        "Work with them to either rebuild access via the recovery partner or initiate a claim if keys were compromised."],
+      "gotcha": "Policies require timely reporting of coercion events; delays can affect coverage."
+    },
+    {
+      "id": "lose-all-keys",
+      "why": "A miniscript time-locked path plus AnchorWatch's emergency signer lets them rebuild control, and the insurance policy covers any permanent loss that remains.",
+      "how": [
+        "Report the loss immediately and provide documentation proving the keys are unrecoverable.",
+        "AnchorWatch and the emergency partner wait out the preset timelock, then co-sign a recovery spend.",
+        "If recovery fails, AnchorWatch files the Lloyd's-backed claim on your behalf using your evidence packet."],
+      "gotcha": "Claims include a 10% or 25% deductible, so full reimbursement depends on the policy option you selected."
+    }
+  ],
+  "inheritance": {
+    "section_title": "Inheritance: pass it on safely",
+    "intro": "Insurance paperwork and vault workflows align so heirs are not guessing when the time comes.",
+    "cards": [
+      {
+        "id": "inheritance-setup",
+        "title": "1. Stage the policy",
+        "status": "action",
+        "chips": {
+          "time": "~60 min"
+        },
+        "why": "Beneficiaries need to be named inside Trident and on the policy so compliance can verify them later.",
+        "steps": [
+          "Gather legal documents (trust, corporate resolutions) before the onboarding call.",
+          "List beneficiaries or board designees in Trident and in the insurance schedule.",
+          "Store recovery scripts plus instructions in separate, access-controlled locations.",
+          "Review the plan annually with AnchorWatch so contacts and documents stay current."
+        ],
+        "action": "Do this: Align legal paperwork, Trident assignments, and insurance records at the same time."
+      },
+      {
+        "id": "inheritance-claims",
+        "title": "2. Inheritance-ready claims",
+        "status": "process",
+        "chips": {
+          "time": "Varies (claim + review)"
+        },
+        "prereqs": "Beneficiary identity docs · Recovery script · Policy paperwork",
+        "steps": [
+          "Beneficiary contacts AnchorWatch with proof of death or corporate instruction.",
+          "AnchorWatch triggers its compliance review and informs Lloyd's if a claim is likely.",
+          "Once the waiting period clears, AnchorWatch co-signs or releases instructions so heirs can move funds.",
+          "Any deductible is applied before remaining sats settle to the beneficiary-controlled vault."
+        ],
+        "timeline": "Expect compliance plus insurer review before coins move; publish timelines in corporate policy manuals.",
+        "action": "Do this: Keep beneficiaries in the loop so they know how to contact AnchorWatch when needed."
+      },
+      {
+        "id": "inheritance-fallback",
+        "title": "3. If plans break",
+        "status": "emergency",
+        "chips": {
+          "fallback": "Recovery paths"
+        },
+        "scenarios": [
+          {
+            "issue": "Beneficiary lost documents",
+            "path": "AnchorWatch pauses signatures until replacement affidavits arrive."
+          },
+          {
+            "issue": "Corporate designee is disputed",
+            "path": "Board minutes or court orders must clarify who controls the account before funds move."
+          },
+          {
+            "issue": "AnchorWatch unreachable",
+            "path": "Execute the recovery script via timelock, then present records once service resumes."
+          }
+        ],
+        "action": "Do this: Record fallback contacts plus emergency communication channels in your continuity binder."
+      }
+    ]
+  },
+  "compatibility": {
+    "section_title": "Compatibility: what works with AnchorWatch",
+    "intro": "Know which hardware, browsers, and standards the Trident vault expects before underwriting.",
+    "hardware_os": [
+      {
+        "id": "devices",
+        "title": "Signing hardware",
+        "items": [
+          {
+            "name": "AnchorWatch-supplied devices",
+            "status": "verified",
+            "notes": "Factory-sealed hardware shipped during onboarding; kept offline except when signing."
+          },
+          {
+            "name": "Customer-provided HSMs",
+            "status": "works-caveat",
+            "notes": "Custom setups require AnchorWatch review so the policy still tracks signatures."
+          }
+        ]
+      },
+      {
+        "id": "dashboard",
+        "title": "Trident dashboard & desktop",
+        "platforms": [
+          {
+            "name": "Web",
+            "version": "Latest Chrome, Firefox, Safari",
+            "status": "verified"
+          },
+          {
+            "name": "Mobile browsers",
+            "support": "limited",
+            "notes": "Monitoring only; signing happens on dedicated hardware."
+          }
+        ]
+      },
+      {
+        "id": "connections",
+        "title": "Connection types",
+        "methods": [
+          {
+            "type": "Offline signing",
+            "status": "verified",
+            "constraint": "Signing devices stay air-gapped except when exchanging PSBT files."
+          },
+          {
+            "type": "Client node verification",
+            "status": "verified",
+            "constraint": "Use the output descriptor to watch the vault from your own node."
+          },
+          {
+            "type": "AnchorWatch compliance portal",
+            "status": "verified",
+            "constraint": "Web-based evidence uploads with audit logging"
+          }
+        ]
+      }
+    ],
+    "standards": {
+      "table": [
+        {
+          "standard": "BIP39",
+          "support": "Yes",
+          "notes": "Customer devices use standard seed phrases",
+          "status": "verified"
+        },
+        {
+          "standard": "BIP32",
+          "support": "Yes",
+          "notes": "Hierarchical deterministic derivation for vault paths",
+          "status": "verified"
+        },
+        {
+          "standard": "Miniscript",
+          "support": "Yes",
+          "notes": "Enables time-locked recovery paths",
+          "status": "verified"
+        },
+        {
+          "standard": "Output descriptors",
+          "support": "Yes",
+          "notes": "Customers receive descriptors for independent verification",
+          "status": "verified"
+        }
+      ],
+      "advanced": {
+        "descriptors": {
+          "support": "Yes",
+          "notes": "AnchorWatch emails descriptors plus Recovery Script during onboarding"
+        },
+        "psbt": {
+          "support": "Yes",
+          "notes": "PSBT handoffs move between Trident, customer devices, and AnchorWatch"
+        },
+        "derivation_paths": {
+          "support": "Custom",
+          "notes": "Policy-specific paths documented inside the recovery script"
+        },
+        "output_descriptors": {
+          "support": "Yes",
+          "notes": "Used for on-chain audits and cold recovery drills"
+        }
+      }
+    }
+  },
+  "costs": {
+    "section_title": "Costs & ongoing obligations",
+    "intro": "AnchorWatch bills like an insurance carrier: premiums are paid up front, while the Trident Services Fee covers custody tech and support.",
+    "summary_stats": {
+      "upfront": "Premium: 0.55%–2% of insured value (paid in USD)",
+      "monthly": "TSF: up to 0.25% annually after the first $250k",
+      "per_transaction": "Compliance signing: one transaction per quarter included"
+    },
+    "upfront": {
+      "title": "What you pay once",
+      "items": [
+        {
+          "name": "Onboarding fee",
+          "amount": "Refundable",
+          "note": "Returned if underwriting declines coverage"
+        },
+        {
+          "name": "Annual insurance premium",
+          "amount": "0.55%–2% of coverage",
+          "note": "Paid at policy start in USD"
+        },
+        {
+          "name": "Signing hardware shipment",
+          "amount": "Included",
+          "highlight": "included",
+          "note": "Factory-sealed devices mailed after underwriting"
+        }
+      ]
+    },
+    "ongoing": {
+      "title": "What you pay ongoing",
+      "items": [
+        {
+          "name": "Trident Services Fee",
+          "amount": "Up to 0.25% annually",
+          "highlight": "varies",
+          "note": "Billed monthly on balances above $250k"
+        },
+        {
+          "name": "Compliance signatures",
+          "amount": "Included quarterly",
+          "highlight": "included",
+          "note": "Additional signatures priced per event"
+        },
+        {
+          "name": "Deductible",
+          "amount": "10% or 25% of claim",
+          "note": "Selected during policy setup"
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "section_title": "Privacy & jurisdiction",
+    "tiles": [
+      {
+        "id": "privacy-data",
+        "title": "What AnchorWatch collects & where it lives",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Keys stay offline</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Segregated records</span>",
+        "why": "Insurance carriers need KYC data and policy evidence, but key material never leaves your hardware.",
+        "summary": "AnchorWatch stores identity docs, policy forms, and transaction evidence on US servers with audit logs. Signing keys remain on the devices you control, and descriptors plus recovery scripts live in the secure portal you download during onboarding.",
+        "bullets": [
+          "<strong>Stays on devices:</strong> Customer seed phrases · AnchorWatch signer keys · Hardware PINs",
+          "<strong>Customer portal:</strong> Recovery scripts · Output descriptors · Audit-ready statements",
+          "<strong>AnchorWatch servers:</strong> KYC/KYB packets · Insurance paperwork · Compliance evidence",
+          "<strong>Logs:</strong> Signer requests · Support tickets · Claim documentation"
+        ],
+        "explainer_summary": "Can I audit my stored data?",
+        "explainer_text": "<p>Yes. The Trident portal lets you download policy records plus descriptors anytime, and AnchorWatch will export or delete KYC records once regulatory retention windows expire.</p>"
+      },
+      {
+        "id": "privacy-jurisdiction",
+        "title": "Jurisdiction: what that means for you",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> US-regulated</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Lloyd's backing</span>",
+        "why": "Policies are written on Lloyd's of London paper but administered from the US, so American insurance law applies.",
+        "summary": "AnchorWatch must respond to lawful US data or subpoena requests and keeps complaint channels through Arch Insurance and Lloyd's. Insurance coverage extends only to US persons or entities today, so cross-border clients need separate arrangements.",
+        "bullets": [
+          "<strong>Provider:</strong> AnchorWatch Inc. (US) with Lloyd's syndicate backing",
+          "<strong>Can be compelled:</strong> Policy details · Compliance notes · Communication logs",
+          "<strong>Can't access:</strong> Customer-held keys · Offline recovery phrases",
+          "<strong>Complaints:</strong> Arch Insurance (US) or Lloyd's (UK) escalation paths"
+        ],
+        "explainer_summary": "What if a court wants to freeze funds?",
+        "explainer_text": "<p>AnchorWatch can refuse to sign or alert you if a lawful order arrives, but they cannot move funds without your key. You decide whether to cooperate or move funds via the recovery path.</p>"
+      },
+      {
+        "id": "privacy-controls",
+        "title": "Your controls",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Review anytime</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Export or delete</span>",
+        "why": "Insurance-grade recordkeeping still gives you transparency so you can right-size what AnchorWatch stores.",
+        "summary": "The Trident portal keeps every signature request, descriptor update, and beneficiary change in one log so you never lose track. Data export and deletion workflows live in the same place, so you can keep only what regulators require.",
+        "bullets": [
+          "<strong>Portal access:</strong> Download policy docs, descriptors, and transaction logs whenever needed",
+          "<strong>Notifications:</strong> Customize incident and signature alerts for email, SMS, or phone",
+          "<strong>Data requests:</strong> Submit export/delete tickets once retention obligations end",
+          "<strong>Audit trail:</strong> Every support touch is logged for SOC and insurance reviews"
+        ],
+        "explainer_summary": "How long are records kept?",
+        "explainer_text": "<p>Insurance rules require keeping KYC and claim files for statutory periods (often 5–7 years). AnchorWatch deletes or returns data after that window if you ask.</p>"
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "What personal data does AnchorWatch store?",
+        "a": "They keep KYC/KYB packets, policy paperwork, and compliance evidence but never your private keys."
+      },
+      {
+        "q": "Can I monitor the vault without AnchorWatch?",
+        "a": "Yes. Use the output descriptor with your own node or explorer to verify balances independently."
+      },
+      {
+        "q": "How do I request data deletion?",
+        "a": "Email support with your policy number once statutory retention periods expire, and they purge or return the files."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "Trident Services Fee",
+        "def": "Monthly charge that funds custody tech, compliance support, and the AnchorWatch signer infrastructure."
+      },
+      {
+        "term": "Recovery script",
+        "def": "Descriptor plus instructions that let you spend directly via Bitcoin Core if AnchorWatch is offline."
+      },
+      {
+        "term": "Specie coverage",
+        "def": "Insurance category AnchorWatch uses to cover physical assets like bitcoin held in cold storage."
+      }
+    ],
+    "keywords": [
+      "AnchorWatch insurance",
+      "AnchorWatch Trident",
+      "Bitcoin custody insurance",
+      "Lloyd's of London bitcoin policy",
+      "Collaborative custody",
+      "Bitcoin inheritance insurance"
+    ]
+  },
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#methods",
+    "fees": "#fees",
+    "privacy": "#privacy",
+    "inheritance": "#inheritance",
+    "compat": "#features",
+    "migration": "#withdrawal",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-21",
+  "trust": {
+    "cards": [
+      {
+        "id": "security",
+        "fact": "Trident vaults and code audited by Halborn, Doyensec, and Blockstream cryptographers.",
+        "link_text": "Security FAQ",
+        "link_url": "https://www.anchorwatch.com/faq?page=1"
+      },
+      {
+        "id": "custody",
+        "fact": "Insurance policies are 100% backed by Lloyd's of London A+ rated syndicates.",
+        "link_text": "Coverage details",
+        "link_url": "https://www.anchorwatch.com/faq?page=1"
+      },
+      {
+        "id": "privacy",
+        "fact": "Privacy policy explains how KYC, compliance, and complaint data are handled in the US.",
+        "link_text": "Privacy policy",
+        "link_url": "https://www.anchorwatch.com/privacy-policy"
+      },
+      {
+        "id": "terms",
+        "fact": "Terms, complaints, and Arch Insurance contacts are published for policyholders.",
+        "link_text": "Terms & complaints",
+        "link_url": "https://www.anchorwatch.com/terms"
+      }
+    ]
+  }
 }

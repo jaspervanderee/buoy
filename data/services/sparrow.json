@@ -4,16 +4,24 @@
   "type_of_platform": "Desktop wallet",
   "faqs": [
     {
-      "q": "What is Sparrow Wallet?",
-      "a": "Sparrow is a powerful non‑custodial desktop wallet with advanced coin control and hardware wallet support."
+      "q": "How does Sparrow connect to my Bitcoin node?",
+      "a": "Sparrow talks to Bitcoin Core or an Electrum server to fetch your balance and broadcast transactions. If you use a public server, you share your privacy with that operator. Connecting to your own node means you validate the chain yourself and leak no data to third parties. You can configure this in the Server settings tab immediately."
     },
     {
-      "q": "Does Sparrow support my own node?",
-      "a": "Yes. Sparrow connects to Bitcoin Core or your own Electrum server, including over Tor."
+      "q": "Does Sparrow support hardware wallets?",
+      "a": "Yes. Sparrow acts as the interface (watch-only wallet) for your hardware device. That means your private keys never touch the internet-connected computer, preventing malware from stealing your funds. You can connect almost any hardware wallet via USB or air-gapped via QR code/SD card to sign transactions securely."
     },
     {
-      "q": "Is Sparrow open source?",
-      "a": "Yes. Sparrow is open‑source and actively maintained."
+      "q": "Can I mix my coins with Sparrow?",
+      "a": "Sparrow integrates Whirlpool to break the link between your past and future transactions. Most wallets leave a transparent trail on the blockchain that surveillance firms track. Mixing mathematically severs those links by combining your inputs with others. You can mix your funds directly within the app to regain your financial privacy."
+    },
+    {
+      "q": "Is Sparrow a hot wallet or a cold wallet?",
+      "a": "It can be either, depending on how you set it up. If you create a software wallet with keys on your computer, it is a hot wallet suitable for small amounts. If you connect a hardware device like a Coldcard, Sparrow becomes a cold storage interface. That flexibility lets you use the same software for daily spending and deep cold storage."
+    },
+    {
+      "q": "Why is coin control important in Sparrow?",
+      "a": "Coin control reveals the individual chunks of bitcoin (UTXOs) that make up your balance. Without it, wallets automatically merge coins, potentially linking private non-KYC funds with public KYC funds. Sparrow lets you label and select specific coins for every spend. That means you maintain the privacy boundaries you have built."
     }
   ],
   "supported_network": "Bitcoin",
@@ -56,10 +64,498 @@
     "text": "No app available"
   },
   "profile": "Craig Raw",
-  "description": "Sparrow Wallet is a desktop Bitcoin wallet designed to give users full control over their bitcoin. It was created by developer Craig Raw and is open-source, privacy-focused, and ideal for both beginners and advanced users. The wallet works on Windows, macOS, and Linux.\\n\\nWhat separates Sparrow from other wallets is its balance between simplicity and advanced features. Beginners can start with a basic hot wallet setup and gradually explore more complex features like hardware wallet integration, multisig vaults, and UTXO control—all within the same interface. It gives users direct visibility into how Bitcoin works, showing transaction details, input and output flows, and allowing for precise control over fees and coin selection. This level of transparency helps users understand and manage their funds more deliberately.\\n\\nUser reviews highlight how Sparrow scales with you as you learn. It is refered to as the most powerful and versatile Bitcoin wallet, and users praise its clean layout, customizable setup, and educational value. Despite its many features, the app's interface is considered clear and organized once users get past the initial learning curve.\\n\\nSparrow's vision is to offer users complete sovereignty over their bitcoin. It avoids mobile compromises and instead focuses on a desktop experience that can integrate with cold storage, your own node, and advanced privacy tools. For beginners who want to grow into more advanced use cases without switching wallets, Sparrow offers a flexible and educational path to full control.",
+  "description": "Sparrow Wallet is a desktop Bitcoin wallet designed to give users full control over their bitcoin. It was created by developer Craig Raw and is open-source, privacy-focused, and ideal for both beginners and advanced users. The wallet works on Windows, macOS, and Linux.\n\nWhat separates Sparrow from other wallets is its balance between simplicity and advanced features. Beginners can start with a basic hot wallet setup and gradually explore more complex features like hardware wallet integration, multisig vaults, and UTXO control—all within the same interface. It gives users direct visibility into how Bitcoin works, showing transaction details, input and output flows, and allowing for precise control over fees and coin selection. This level of transparency helps users understand and manage their funds more deliberately.\n\nUser reviews highlight how Sparrow scales with you as you learn. It is refered to as the most powerful and versatile Bitcoin wallet, and users praise its clean layout, customizable setup, and educational value. Despite its many features, the app's interface is considered clear and organized once users get past the initial learning curve.\n\nSparrow's vision is to offer users complete sovereignty over their bitcoin. It avoids mobile compromises and instead focuses on a desktop experience that can integrate with cold storage, your own node, and advanced privacy tools. For beginners who want to grow into more advanced use cases without switching wallets, Sparrow offers a flexible and educational path to full control.",
   "founded_in": "2020",
   "website": "https://sparrowwallet.com",
   "countries": [
     "WW"
-  ]
+  ],
+  "links": {
+    "web": "https://sparrowwallet.com/docs/"
+  },
+  "trust_chips": [
+    {
+      "text": "Coin control",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "coin-control"
+    },
+    {
+      "text": "Built-in mixing",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "privacy-mixing"
+    },
+    {
+      "text": "Airgapped signing",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "hardware-connect"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "Desktop users who want full control over their UTXOs, privacy, and hardware wallet connections.",
+    "consider_if": "You want to mix your coins with Whirlpool or connect easily to your own node.",
+    "not_ideal_when": "You need a mobile wallet or prefer a simplified interface without technical details."
+  },
+  "howto": {
+    "title": "Set up your Sparrow wallet",
+    "steps": [
+      {
+        "id": "setup-install",
+        "title": "1. Install and verify",
+        "chips": {
+          "time": "~5 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Download Sparrow for your OS (Windows, Mac, Linux) and verify the PGP signature.",
+          "Install the application and open the Welcome wizard.",
+          "Choose your server connection: Public server (easiest) or Private Electrum/Core (private)."
+        ],
+        "gotcha": "Public servers see your transaction history. Connect to your own node for full privacy."
+      },
+      {
+        "id": "setup-wallet",
+        "title": "2. Create your wallet",
+        "chips": {
+          "time": "~10 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Select 'New Wallet' and choose a meaningful name.",
+          "Pick your policy (Single Signature or Multi Signature) and script type (Native Segwit recommended).",
+          "Select 'New or Imported Software Wallet' for a hot wallet, or 'Connected Hardware Wallet' for cold storage."
+        ],
+        "gotcha": "Write down your seed words on paper. Never save them digitally or take a photo."
+      },
+      {
+        "id": "setup-receive",
+        "title": "3. Receive and control",
+        "chips": {
+          "time": "~5 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Click 'Get Next Address' in the Receive tab to generate a clean address.",
+          "Send a small test amount to verify everything works.",
+          "Use the UTXOs tab to see and label your new coins once they arrive."
+        ],
+        "gotcha": "Always verify the address on your hardware device screen if using one."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Do I need a hardware wallet to use Sparrow?",
+        "a": "No. You can create a 'hot' software wallet secured by a password on your computer. However, for large amounts, pairing Sparrow with a hardware wallet keeps keys offline and much safer."
+      },
+      {
+        "q": "What happens if my computer crashes?",
+        "a": "Your funds are on the blockchain, not in the software. As long as you have your 12 or 24-word seed phrase written down, you can restore your wallet on any other computer."
+      },
+      {
+        "q": "Can I connect to my Umbrel/Start9 node?",
+        "a": "Yes. Sparrow connects easily to private nodes via local network or Tor. This gives you the strongest privacy model possible."
+      }
+    ]
+  },
+  "key_features": {
+    "heading": "Who holds your keys & what privacy you get",
+    "features": [
+      {
+        "id": "coin-control",
+        "title": "Coin control",
+        "bullets": [
+          "<strong>Visualize UTXOs:</strong> See every individual coin chunk, freeze the ones you don't want to spend, and prioritize others.",
+          "<strong>Mandatory labeling:</strong> Sparrow encourages labeling every address so you know exactly where funds came from.",
+          "<strong>Privacy barriers:</strong> Prevent accidentally merging KYC coins with non-KYC coins by selecting inputs manually."
+        ],
+        "footer": "<strong>Good for:</strong> Advanced privacy management. <strong>Trade-off:</strong> Requires manual effort for every transaction."
+      },
+      {
+        "id": "privacy-mixing",
+        "title": "Built-in mixing",
+        "bullets": [
+          "<strong>Whirlpool integration:</strong> Mix your coins with others in a decentralized way to break blockchain links.",
+          "<strong>Post-mix tools:</strong> Automatically separates mixed coins into a dedicated account for safe spending.",
+          "<strong>No extra software:</strong> Run the mixing cycle directly within the Sparrow interface."
+        ],
+        "footer": "<strong>Good for:</strong> Regaining fungibility. <strong>Trade-off:</strong> Mixing fees and mining fees apply."
+      },
+      {
+        "id": "hardware-connect",
+        "title": "Airgapped signing",
+        "bullets": [
+          "<strong>No direct connection:</strong> Pass transactions via QR code or SD card so your hardware wallet never touches the computer.",
+          "<strong>Watch-only mode:</strong> Sparrow builds the transaction; your offline device signs it.",
+          "<strong>Broad support:</strong> Works natively with Coldcard, Jade, Passport, and Keystone via QR standards."
+        ],
+        "footer": "<strong>Good for:</strong> Maximum security against malware. <strong>Trade-off:</strong> Slower workflow than USB connection."
+      },
+      {
+        "id": "keystore-policies",
+        "title": "Flexible security policies",
+        "bullets": [
+          "<strong>Single Signature:</strong> Standard wallet type; one seed controls everything.",
+          "<strong>Multi Signature:</strong> Combine keys (e.g., Coldcard + Ledger + Paper) to require M-of-N signatures.",
+          "<strong>Gap limits:</strong> Customizable gap limits for scanning large or complex wallet histories."
+        ],
+        "footer": "<strong>Good for:</strong> Scaling from beginner to expert vaults without switching software."
+      }
+    ]
+  },
+  "dca": "No",
+  "payment_methods": [
+    "Bitcoin on-chain",
+    "PayJoin"
+  ],
+  "recovery_heading": "If this happens, can I still move my Bitcoin?",
+  "recovery_tiles": [
+    {
+      "id": "lose-computer",
+      "title": "Lose computer",
+      "status": "works",
+      "chips": {
+        "time": "~15 min"
+      }
+    },
+    {
+      "id": "lose-seed",
+      "title": "Lose seed words",
+      "status": "works-caveat",
+      "chips": {
+        "time": "Plan ahead"
+      }
+    }
+  ],
+  "recovery_explainers": [
+    {
+      "id": "lose-computer",
+      "why": "Sparrow is just an interface. Your bitcoin lives on the blockchain, secured by your private keys. That means the software or computer can be destroyed without losing funds, as long as you have your backup.",
+      "how": [
+        "Install Sparrow on a new computer.",
+        "Select 'Import Wallet' and choose your keystore type (Mnemonic or Hardware).",
+        "Enter your 12/24 words or connect your hardware device to regain access."
+      ],
+      "gotcha": "You must use the same derivation path and script type (e.g., Native Segwit) to see your history."
+    },
+    {
+      "id": "lose-seed",
+      "why": "If you lose your seed phrase but still have the working wallet file and password, you can move funds immediately. If you lose both the seed and the wallet access, the bitcoin is gone forever.",
+      "how": [
+        "Open Sparrow and use your password to unlock the wallet.",
+        "Immediately create a new wallet with a new seed phrase.",
+        "Transfer all funds from the compromised wallet to the new one."
+      ],
+      "gotcha": "There is no 'forgot password' or customer support reset. You are the bank."
+    }
+  ],
+  "inheritance": {
+    "section_title": "Inheritance: choose your path",
+    "intro": "Sparrow is a self-custody tool with no built-in inheritance service; choose a path below.",
+    "cards": [
+      {
+        "id": "inheritance-diy-singlesig",
+        "title": "1. DIY single-sig",
+        "status": "path-basic",
+        "status_text": "You only",
+        "chips": {
+          "setup": "Document locations"
+        },
+        "why": "When you control a single seed plus passphrase, heirs need both pieces and clear instructions to restore the wallet. This works when you trust one person to find everything and execute carefully.",
+        "requirements": [
+          "Written seed phrase location",
+          "Passphrase location (stored separately)",
+          "Sparrow installation guide",
+          "Wallet label export"
+        ],
+        "risk_note": "Single point of failure: if one piece is lost or the executor makes a mistake, funds can be locked or swept incorrectly. Use for small amounts only.",
+        "action": "Do this: Write a one-page instruction sheet today and store it where your executor can find it when needed."
+      },
+      {
+        "id": "inheritance-diy-multisig",
+        "title": "2. DIY multisig",
+        "status": "path-advanced",
+        "status_text": "Small group",
+        "chips": {
+          "setup": "Requires wallet migration"
+        },
+        "why": "A 2-of-3 or 3-of-5 multisig setup splits control across multiple keys held by you, family members, or trusted contacts. One lost key does not lock the funds, and no single person can move coins alone.",
+        "requirements": [
+          "Create multisig wallet in Sparrow",
+          "Distribute keys to different people or locations",
+          "Document the quorum policy (which keys must co-sign)",
+          "Provide restore instructions for each key holder"
+        ],
+        "risk_note": "Setup complexity: requires understanding multisig wallets, secure key distribution, and coordination among multiple parties.",
+        "action": "Do this: Research multisig wallets, test a small setup, then migrate your main holdings when confident."
+      },
+      {
+        "id": "inheritance-provider-assisted",
+        "title": "3. Provider-assisted",
+        "status": "path-guided",
+        "status_text": "Provider",
+        "chips": {
+          "setup": "Requires wallet migration"
+        },
+        "why": "Services like Unchained or AnchorWatch offer assisted multisig where they hold one key and provide inheritance tooling. Your heirs follow a documented claim process, and the provider co-signs after verifying identity.",
+        "requirements": [
+          "Migrate Sparrow funds to assisted multisig provider",
+          "Complete provider's inheritance setup flow",
+          "Designate beneficiaries within the platform",
+          "Document access credentials"
+        ],
+        "risk_note": "Provider dependency: introduces counterparty risk and KYC, but removes the burden of full technical management from heirs.",
+        "action": "Do this: Compare assisted multisig providers if your heirs are not technical."
+      }
+    ]
+  },
+  "compatibility": {
+    "section_title": "Compatibility: what works with Sparrow",
+    "intro": "Sparrow is a coordinator that connects your keys, your node, and the network.",
+    "hardware_os": [
+      {
+        "id": "os-support",
+        "title": "Operating Systems",
+        "platforms": [
+          {
+            "name": "Windows",
+            "version": "10+",
+            "status": "verified"
+          },
+          {
+            "name": "macOS",
+            "version": "10.13+ (Intel/Silicon)",
+            "status": "verified"
+          },
+          {
+            "name": "Linux",
+            "version": "Debian/RPM/Tar",
+            "status": "verified"
+          }
+        ]
+      },
+      {
+        "id": "hardware-support",
+        "title": "Hardware Wallets",
+        "platforms": [
+          {
+            "name": "Coldcard",
+            "status": "verified",
+            "notes": "Airgapped via SD or USB"
+          },
+          {
+            "name": "Trezor",
+            "status": "verified"
+          },
+          {
+            "name": "Ledger",
+            "status": "verified"
+          },
+          {
+            "name": "BitBox02",
+            "status": "verified"
+          },
+          {
+            "name": "Jade",
+            "status": "verified",
+            "notes": "QR mode supported"
+          },
+          {
+            "name": "Passport",
+            "status": "verified",
+            "notes": "QR airgapped"
+          },
+          {
+            "name": "SeedSigner",
+            "status": "verified",
+            "notes": "QR airgapped"
+          }
+        ]
+      }
+    ],
+    "standards": {
+      "table": [
+        {
+          "standard": "BIP39",
+          "support": "Yes",
+          "notes": "Standard 12/24 word seeds",
+          "status": "verified"
+        },
+        {
+          "standard": "PSBT",
+          "support": "Yes",
+          "notes": "BIP174 for airgapped signing",
+          "status": "verified"
+        },
+        {
+          "standard": "Taproot",
+          "support": "Yes",
+          "notes": "Send and receive to P2TR",
+          "status": "verified"
+        },
+        {
+          "standard": "Whirlpool",
+          "support": "Yes",
+          "notes": "Built-in Chaumian CoinJoin",
+          "status": "verified"
+        },
+        {
+          "standard": "PayJoin",
+          "support": "Yes",
+          "notes": "BIP78 support",
+          "status": "verified"
+        },
+        {
+          "standard": "Tor",
+          "support": "Yes",
+          "notes": "Built-in proxy",
+          "status": "verified"
+        }
+      ],
+      "advanced": {
+        "descriptors": {
+          "support": "Yes",
+          "notes": "Full import/export support"
+        },
+        "psbt": {
+          "support": "Yes",
+          "notes": "Advanced editing and composition"
+        },
+        "derivation_paths": {
+          "support": "Customizable",
+          "notes": "Full control over paths"
+        },
+        "output_descriptors": {
+          "support": "Yes",
+          "notes": "View and export wallet descriptors"
+        }
+      }
+    }
+  },
+  "costs": {
+    "section_title": "Costs & ongoing obligations",
+    "intro": "Sparrow is free open-source software. You pay only the necessary network fees to miners.",
+    "summary_stats": {
+      "upfront": "$0",
+      "monthly": "$0",
+      "per_transaction": "Mining fees"
+    },
+    "upfront": {
+      "title": "What you pay once",
+      "items": [
+        {
+          "name": "Sparrow Wallet software",
+          "amount": "$0",
+          "highlight": "free",
+          "note": "Open source (Apache 2.0)"
+        }
+      ]
+    },
+    "ongoing": {
+      "title": "What you pay ongoing",
+      "items": [
+        {
+          "name": "Network mining fees",
+          "amount": "Varies",
+          "note": "Paid to miners to process transactions"
+        },
+        {
+          "name": "Whirlpool fees (optional)",
+          "amount": "Varies",
+          "note": "If you choose to mix coins (Pool fee + mining fee)"
+        }
+      ]
+    }
+  },
+  "privacy": {
+    "section_title": "Privacy & jurisdiction",
+    "tiles": [
+      {
+        "id": "privacy-data",
+        "title": "What Sparrow collects & where it lives",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> No KYC</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Tor support</span>",
+        "why": "Sparrow is client-side software. It collects no data on its own, but your connection method determines who sees your activity.",
+        "summary": "If you connect to a public server, the operator sees your IP and addresses. If you connect to your own node, no one sees anything. Sparrow stores all labels and wallet data locally on your machine.",
+        "bullets": [
+          "<strong>Public Server:</strong> Shares IP and transaction interest with server operator.",
+          "<strong>Private Node:</strong> Zero leaks; you validate your own transactions.",
+          "<strong>Tor Proxy:</strong> Built-in toggle to route traffic through Tor for anonymity.",
+          "<strong>Local Data:</strong> Wallet files are encrypted on your disk; no cloud sync."
+        ],
+        "explainer_summary": "Does Sparrow track me?",
+        "explainer_text": "<p>No. The software is open source and has no analytics or tracking code. However, the <em>server</em> you connect to can see your requests. Use a private node or Tor to prevent this.</p>"
+      },
+      {
+        "id": "privacy-jurisdiction",
+        "title": "Jurisdiction",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Self-sovereign</span>",
+        "why": "Sparrow is software you run, not a service you log into. There is no company holding your data or funds, so there is no jurisdiction to compel.",
+        "summary": "Because Sparrow is a standalone desktop application, it falls under the jurisdiction of wherever you physically are. There is no central server to subpoena and no user database to breach.",
+        "bullets": [
+          "<strong>No Account:</strong> You don't sign up or provide email.",
+          "<strong>No Custody:</strong> You hold the keys; Sparrow is just the tool.",
+          "<strong>No Servers:</strong> Developers cannot disable your wallet or freeze funds."
+        ],
+        "explainer_summary": "Can Sparrow freeze my funds?",
+        "explainer_text": "<p>No. Sparrow has no control over your keys or the Bitcoin network. Even if the website disappeared, your installed software would keep working, and your seed phrase would work in other wallets.</p>"
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Is Sparrow anonymous?",
+        "a": "The software identifies you in no way. However, on-chain transactions are public. Use Whirlpool and Tor within Sparrow to maximize anonymity."
+      },
+      {
+        "q": "Does Sparrow report to tax authorities?",
+        "a": "No. Sparrow does not know who you are and has no data to report. You are responsible for your own compliance."
+      }
+    ]
+  },
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#methods",
+    "fees": "#fees",
+    "privacy": "#privacy",
+    "compat": "#features",
+    "migration": "#withdrawal",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-19",
+  "trust": {
+    "cards": [
+      {
+        "id": "source",
+        "fact": "Open source code",
+        "link_text": "View on GitHub",
+        "link_url": "https://github.com/sparrowwallet/sparrow"
+      },
+      {
+        "id": "security",
+        "fact": "Signed releases (PGP)",
+        "link_text": "Verify signatures",
+        "link_url": "https://sparrowwallet.com/download/"
+      },
+      {
+        "id": "licenses",
+        "fact": "Apache 2.0 License",
+        "link_text": "View license",
+        "link_url": "https://github.com/sparrowwallet/sparrow/blob/master/LICENSE"
+      },
+      {
+        "id": "activity",
+        "fact": "Active development",
+        "link_text": "Release history",
+        "link_url": "https://github.com/sparrowwallet/sparrow/releases"
+      }
+    ]
+  }
 }
