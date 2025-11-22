@@ -1,0 +1,40 @@
+html {
+  font-size: 1em;
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
+
+
+/* Body: Ensure the content stays horizontally centered */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Ubuntu Mono", monospace;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+p {
+  margin-bottom: 2em; /* or try 2em for more space */
+}
+
+::selection {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+a {
+  color: var(--link);
+}
+
+/* Default form control styling outside the dark menu overlay */
+input, select, textarea, button {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+

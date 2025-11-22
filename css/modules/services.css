@@ -1,0 +1,2642 @@
+/* === Service Section Base === */
+.service-section {
+  margin-bottom: 40px;
+}
+
+.service-section#fees .feature-value {
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+}
+
+.service-section#fees p strong {
+  font-weight: 700;
+}
+
+
+/* pleasant spacing between items when lists are used */
+.service-section .feature-value li + li { margin-top: 6px; }
+
+/* normalize vertical rhythm inside every service card */
+.service-section .feature-value > *:first-child { margin-top: 0 !important; }
+.service-section .feature-value > *:last-child  { margin-bottom: 0; }
+
+/* card headings inside service sections (Fees uses <h3>, Privacy may start with <ul>) */
+.service-section .feature-value h3 {
+ 
+  font-size: 1.1em;
+  line-height: 1.3;
+}
+
+
+
+/* optional: ensure paragraphs inside cards share the same rhythm */
+.service-section .feature-value p { margin: 6px 0; }
+
+
+.service-section:first-of-type { 
+  margin-top: 0;          /* no gap above the first section */
+}
+
+/* === Migration (flows/cards) === */
+
+/* Section intro text */
+.service-section#migration .section-intro {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* Container: mobile-first vertical stack */
+.migration-flows {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Individual flow card */
+.migration-card {
+  padding: 16px;
+}
+
+.migration-card h3 {
+  font-size: 1.1em;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 10px 0;
+  color: var(--text);
+}
+
+/* Badges (Time/Cost/Risk chips) */
+.migration-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.migration-badge {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text-muted);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* Steps list */
+.migration-steps {
+  list-style: decimal;
+  padding-left: 24px;
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+.migration-steps li {
+  margin: 10px 0;
+  color: var(--text);
+}
+
+.migration-steps li:first-child { margin-top: 0; }
+.migration-steps li:last-child { margin-bottom: 0; }
+
+/* Tips: inline text with muted styling */
+.migration-tips {
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 6px;
+  font-size: 0.9em;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-top: 12px;
+}
+
+/* Recommendations list */
+.migration-recommendations {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.migration-recommendations h4 {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: var(--text-muted);
+}
+
+
+.migration-recommendations li {
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+.migration-recommendations li:first-child { margin-top: 0; }
+.migration-recommendations li:last-child { margin-bottom: 0; }
+
+.migration-recommendations a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.migration-recommendations .compare-link {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .migration-flows {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .migration-card { 
+    padding: 20px; 
+  }
+}
+
+/* Legacy migration (to be removed - old services using from/to arrays) */
+.service-section#migration .mig-card {
+  margin-bottom: 32px;
+}
+
+.service-section#migration .mig-card:last-child {
+  margin-bottom: 0;
+}
+
+.service-section#migration .mig-card .feature-value h3 {
+  font-size: 1.1em;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.service-section#migration .mig-card .feature-value ol {
+  list-style: decimal;
+  padding-left: 24px;
+  margin: 0;
+}
+
+.service-section#migration .mig-card .feature-value ol li {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+.service-section#migration .mig-card .feature-value ol li:first-child {
+  margin-top: 0;
+}
+
+.service-section#migration .mig-card .feature-value ol li:last-child {
+  margin-bottom: 0;
+}
+
+
+.label-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+
+.feature-values, .logo-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+
+.feature-value {
+  font-size: 1em;
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 300;
+  padding: 10px;
+  text-align: left;
+  margin-bottom: 0; /* Reset default; specific contexts add their own spacing */
+}
+
+.feature-value p:first-of-type {
+  margin-top: 0;
+}
+
+/* Service pages: add spacing to feature sections */
+.service-section .feature-value {
+  margin-bottom: 2em;
+}
+
+.feature-row.profile .feature-value {
+  text-align: center;
+}
+
+
+/* User Experience Rating Styles */
+.ux-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.ux-rating-wrapper {
+  display: flex;
+  align-items: baseline;
+}
+
+.ux-rating {
+  font-family: "Inter", sans-serif;
+  font-size: 3em;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ux-outof {
+  font-size: 0.8em;
+  vertical-align: super;
+  margin-left: 0.2em;
+}
+
+.feature-row.user_experience .feature-value {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+/* === Mobile Section Accordions === */
+
+/* Wrapper for collapsible sections on mobile */
+.section-accordion {
+  margin-bottom: 16px;
+}
+
+/* Direct child summary only (not nested details) */
+.section-accordion > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 16px;
+  background: var(--panel);
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.section-accordion > summary::-webkit-details-marker {
+  display: none;
+}
+
+.section-accordion > summary::after {
+  content: "\2193"; /* Down arrow */
+  font-size: 1.2em;
+  color: var(--accent);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.section-accordion[open] > summary {
+  background: var(--accent);
+  color: white;
+}
+
+.section-accordion[open] > summary::after {
+  transform: rotate(180deg);
+  color: white;
+}
+
+.section-accordion > summary:hover {
+  background: var(--bg);
+}
+
+.section-accordion[open] > summary:hover {
+  background: var(--accent);
+  opacity: 0.9;
+}
+
+/* Section content inside accordion */
+.section-accordion .service-section {
+  margin-bottom: 0;
+}
+
+.section-accordion .service-section > h2 {
+  display: none; /* Hide h2 since summary shows title */
+}
+
+/* Desktop/tablet: force accordions open and hide accordion UI */
+@media (min-width: 768px) {
+  .section-accordion {
+    margin-bottom: 40px; /* Increase spacing between sections on desktop */
+  }
+  
+  .section-accordion > summary {
+    display: none; /* Hide summary on desktop */
+  }
+  
+  .section-accordion {
+    background: none;
+    padding: 0;
+  }
+  
+  .section-accordion .service-section > h2 {
+    display: block; /* Show original h2 on desktop */
+  }
+}
+
+/* Alternatives block (build-time) */
+.alt-block { 
+  margin-top: 24px;
+  margin-bottom: 48px;
+}
+
+.alt-block h2 {
+  font-size: 1.4em;
+  margin: 0 0 10px;
+}
+
+.alt-block .muted {
+  opacity: .6; font-weight: 400;
+}
+
+.alt-grid {
+  margin: 12px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px; 
+}
+
+.alt-item { background: var(--panel); border-radius: 8px; box-shadow: var(--shadow); padding: 8px; }
+/* Reuses .logo-cell, .service-link, .cta-button from existing styles */
+.alt-item .logo-cell { padding: 8px; }
+
+
+/* === Privacy & Safety Section === */
+
+/* LEGACY: Old privacy structure (Strike, etc.) */
+.privacy-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .privacy-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.privacy-card {
+  padding: 16px;
+}
+
+.privacy-card h3 {
+  margin: 0 0 12px 0;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.privacy-card ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0 0 12px 0;
+}
+
+.privacy-card ul li {
+  margin: 6px 0;
+  line-height: 1.6;
+}
+
+.privacy-card ul li:first-child {
+  margin-top: 0;
+}
+
+.privacy-card ul li:last-child {
+  margin-bottom: 0;
+}
+
+/* NEW: Bitkey uses compat tile structure - custom bullet styling */
+.privacy-card__list {
+  margin: 12px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.privacy-card__list li {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.6;
+  color: var(--text);
+  padding-left: 20px;
+  position: relative;
+}
+
+.privacy-card__list li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 1.5em;
+  line-height: 1;
+  top: -2px;
+}
+
+.dodont-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+
+.dodont-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+.dodont-icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+}
+
+.micro-faqs {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+/* .micro-faqs__title - now using universal .section-subheading utility */
+
+.micro-faqs__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mini-glossary {
+  margin-top: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.mini-glossary summary {
+  font-size: 0.8em; /* Match feature-label sublabel */
+  padding: 8px 0;
+}
+
+.mini-glossary dl {
+  margin: 12px 0 0 0;
+}
+
+.mini-glossary dt {
+  font-weight: 600;
+  margin: 12px 0 4px 0;
+  line-height: 1.4;
+}
+
+.mini-glossary dt:first-child {
+  margin-top: 0;
+}
+
+.mini-glossary dd {
+  margin: 0 0 8px 0;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Glossary term links within cards */
+.glossary-link {
+  color: inherit;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.glossary-link:hover {
+  opacity: 0.7;
+}
+
+/* Glossary term highlight animation */
+.mini-glossary dt.glossary-highlight,
+.key-terms dt.glossary-highlight {
+  animation: glossaryPulse 2s ease-out;
+}
+
+@keyframes glossaryPulse {
+  0%, 100% {
+    background: transparent;
+  }
+  10%, 30% {
+    background: var(--accent);
+    background: rgba(255, 96, 59, 0.15);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  @keyframes glossaryPulse {
+    0%, 100% {
+      background: transparent;
+    }
+    10%, 30% {
+      background: rgba(255, 96, 59, 0.2);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  /* Legacy privacy cards (Strike, etc.) */
+  .privacy-cards {
+    gap: 20px;
+  }
+  
+  .privacy-card {
+    padding: 20px;
+  }
+  
+  /* Do/Don't strips (used by both old and new) */
+  .dodont-strip {
+    flex-direction: row;
+    gap: 20px;
+  }
+  
+  .dodont-item {
+    flex: 1;
+  }
+}
+
+/* === Fees Section (mobile-first, match Compatibility layout) === */
+
+.section-fees {
+  margin-top: 24px;
+  margin-bottom: 40px;
+}
+
+.fees-title {
+  font-family: "Inter", sans-serif;
+  font-size: 1.4em;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: var(--text);
+}
+
+/* Fee scenarios (match Compatibility grid) */
+.fee-scenarios {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 0 0 24px 0;
+}
+
+.fee-card {
+  padding: 16px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  scroll-margin-top: 250px; /* Offset for sticky header + CTA bar */
+  overflow: hidden; /* Clip illustration at top corners */
+}
+
+/* Target highlight (subtle feedback) */
+.fee-card.is-target {
+  border-color: var(--accent);
+  background: rgba(255, 96, 59, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  .fee-card.is-target {
+    background: rgba(255, 96, 59, 0.1);
+  }
+}
+
+/* Native :target fallback for JS-off */
+.fee-card:target {
+  border-color: var(--accent);
+}
+
+/* === Node Fee Card Redesign === */
+.fee-card--node {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--panel);
+}
+
+.fee-card--node .fee-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.fee-card--node .fee-card__title {
+  margin: 0;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.fee-card__badge {
+  background: var(--border);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.7em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.fee-card--node .fee-card__hero {
+  margin-bottom: 16px;
+}
+
+.fee-card__value {
+  display: block;
+  font-size: 1.8em;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+}
+
+.fee-card__context {
+  display: block;
+  font-size: 0.9em;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.fee-card--node .fee-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1; /* Push footer down */
+}
+
+.fee-card__section {
+  font-size: 0.95em;
+}
+
+.fee-card__label {
+  display: block;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.fee-card__section p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.fee-card__section--action {
+  background: var(--bg);
+  padding: 12px;
+  border-radius: 6px;
+  border-left: 3px solid var(--accent);
+}
+
+@media (prefers-color-scheme: dark) {
+  .fee-card__section--action {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* Learn More override for Node cards */
+.fee-card--node .fee-card__learn-more {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+/* .fee-card__title - now using universal .card-title utility above */
+
+/* Fee card body text - base styles from .mono-text utility, only overrides here */
+.fee-card p.fee-card__cost {
+  font-size: 1.2em;
+  margin: 0 0 20px 0;
+  line-height: 1.8; /* Add spacing between lines when using <br> */
+}
+
+.fee-card p.fee-card__what,
+.fee-card p.fee-card__how {
+  margin: 20px 0 0 0;
+}
+
+.fee-card p.fee-card__what:last-child,
+.fee-card p.fee-card__how:last-child {
+  margin-bottom: 0;
+}
+
+/* Learn more disclosure */
+.fee-card__learn-more {
+  margin-top: 20px; /* Increased spacing before Learn more */
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.fee-card__learn-more summary {
+  font-size: 0.8em; /* Match sublabel size */
+}
+
+/* Toggle text between "Learn more" and "Hide details" */
+.fee-card__learn-more summary::after {
+  content: attr(data-closed-text);
+}
+
+.fee-card__learn-more[open] summary::after {
+  content: attr(data-open-text);
+}
+
+/* Hide the default text node when using data attributes */
+.fee-card__learn-more summary {
+  font-size: 0;
+}
+
+.fee-card__learn-more summary::before,
+.fee-card__learn-more summary::after {
+  font-size: 0.8rem;
+}
+
+.fee-card__learn-more > div {
+  margin-top: 0.5rem;
+}
+
+/* Learn more text - inherits from .mono-text utility */
+.fee-card__learn-more p {
+  margin: 12px 0 0 0;
+}
+
+/* Learn more table heading */
+.learn-more-table-heading {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--text);
+  margin: 12px 0 8px 0;
+}
+
+/* Fee tiers table - scannable format for fee tiers */
+.fee-tiers-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  margin-top: 8px;
+}
+
+.fee-tiers-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.fee-tiers-table td:first-child {
+  text-align: left;
+  color: var(--text);
+  font-weight: 400;
+  padding-left: 0;
+}
+
+.fee-tiers-table td:last-child {
+  text-align: right;
+  color: var(--text);
+  font-weight: 600;
+  padding-right: 0;
+}
+
+.fee-tiers-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Quick answers (individually collapsible items, like brand FAQ) */
+.fee-quick-answers {
+  margin: 20px 0 0 0;
+  padding-top: 20px;
+}
+
+/* .fee-quick-answers__title - now using universal .section-subheading utility */
+
+.fee-quick-answers__list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Individual FAQ items (match brand FAQ pattern) */
+.fee-quick-answers .micro-faq-item,
+.micro-faqs .micro-faq-item {
+  margin: 8px 0;
+}
+
+
+.fee-quick-answers .micro-faq-item > div,
+.micro-faqs .micro-faq-item > div {
+  margin-top: 8px;
+}
+
+/* Micro FAQ answers - inherit from .mono-text utility */
+.fee-quick-answers .micro-faq-item p,
+.micro-faqs .micro-faq-item p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Key terms (collapsible glossary) */
+.section-fees .key-terms {
+  margin: 32px 0 0 0;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-fees .key-terms summary {
+  font-size: 0.8em; /* Match feature-label sublabel */
+  padding: 8px 0;
+}
+
+.section-fees .key-terms dl {
+  margin: 12px 0 0 0;
+}
+
+/* Key terms - inherit from .mono-text utility */
+.section-fees .key-terms dt {
+  font-weight: 600;
+  margin: 12px 0 4px 0;
+  line-height: 1.4;
+}
+
+.section-fees .key-terms dt:first-child {
+  margin-top: 0;
+}
+
+.section-fees .key-terms dd {
+  margin: 0 0 8px 0;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Desktop breakpoint (match Compatibility layout) */
+@media (min-width: 768px) {
+  .section-fees .section-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  
+  /* Two-column grid for scenarios (match Compatibility) */
+  .fee-scenarios {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  
+  .fee-card {
+    padding: 20px;
+    scroll-margin-top: 450px; /* Slightly less offset on desktop */
+  }
+}
+
+/* === Hardware BOM & Capacity Planning === */
+.hardware-intro {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.6;
+  margin: 0 0 32px 0;
+  padding: 16px;
+  background: var(--panel);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  color: var(--text);
+}
+
+.hardware-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.hardware-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--panel);
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hardware-card:hover {
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.hardware-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hardware-card__title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hardware-card__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.hardware-card__price {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.hardware-card__tagline {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+.hardware-card__tradeoff {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  line-height: 1.4;
+  color: var(--text);
+  padding: 10px;
+  background: var(--bg);
+  border-radius: 4px;
+  margin: 4px 0;
+}
+
+.hardware-card__specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.hardware-spec {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.spec-label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75em;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.spec-value {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.spec-sub {
+  font-size: 0.8em;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.hardware-card__gotcha {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.85em;
+  color: var(--text-muted);
+  padding-left: 12px;
+  border-left: 2px solid #f44336; /* Red warning line */
+  line-height: 1.4;
+}
+
+.hardware-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto; /* Push to bottom if flex column */
+}
+
+.hardware-badge {
+  font-family: "Inter", sans-serif;
+  font-size: 0.7em;
+  font-weight: 600;
+  padding: 4px 8px;
+  background: var(--bg);
+  color: var(--text-muted);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.hardware-card__parts {
+  margin-top: 8px;
+}
+
+.hardware-card__parts summary {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--link);
+  cursor: pointer;
+  list-style: none;
+}
+
+.hardware-card__parts summary::-webkit-details-marker {
+  display: none;
+}
+
+.hardware-card__parts ul {
+  margin: 8px 0 0 0;
+  padding-left: 20px;
+  list-style: disc;
+  font-size: 0.9em;
+  color: var(--text-muted);
+}
+
+.hardware-micro-faqs {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 768px) {
+  .hardware-cards {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+    gap: 24px;
+  }
+  
+  .hardware-card {
+    padding: 24px;
+  }
+  
+  .hardware-card__specs {
+    grid-template-columns: 1fr; /* Stack specs in column for narrow cards */
+  }
+}
+
+/* === Payment Methods & Limits Section === */
+.payment-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.payment-card {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-card--unavailable {
+  opacity: 0.6;
+}
+
+.payment-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.payment-card__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+  flex: 1;
+}
+
+.payment-card__body {
+  font-size: 1em;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.payment-card__best-for {
+  font-size: 1em;
+  line-height: 1.5;
+  background: var(--bg-subtle);
+}
+
+.payment-card__summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.payment-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.stat-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent);
+  transition: border-bottom-style 0.2s ease;
+}
+
+.stat-link:hover {
+  border-bottom-style: solid;
+}
+
+.payment-details {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.payment-details summary {
+  font-size: 0.8em;
+}
+
+.payment-details > div {
+  margin-top: 12px;
+}
+
+.limits-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+}
+
+.limits-table th {
+  text-align: left;
+  padding: 8px 12px 8px 0;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.limits-table td {
+  text-align: right;
+  padding: 8px 0 8px 12px;
+  font-weight: 400;
+  border-bottom: 1px solid var(--border);
+}
+
+.limits-table tr:last-child th,
+.limits-table tr:last-child td {
+  border-bottom: none;
+}
+
+@media (min-width: 768px) {
+  .payment-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .payment-card {
+    padding: 20px;
+  }
+}
+
+/* === Key Features Section === */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.feature-tile__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--text);
+}
+
+.feature-tile__description {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--text);
+  flex: 1;
+}
+
+.feature-tile__bullets {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text);
+  list-style-type: disc;
+}
+
+.feature-tile__bullets li {
+  margin-bottom: 8px;
+}
+
+.feature-tile__bullets li:last-child {
+  margin-bottom: 0;
+}
+
+.feature-tile__bullets strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.feature-tile__footer {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  line-height: 1.4;
+  margin: 8px 0 0 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.feature-tile__footer strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.feature-badge {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+  align-self: flex-start;
+  line-height: 1.2;
+  background: var(--bg);
+  color: var(--text-muted);
+}
+
+.feature-badge--free {
+  background: #d4edda;
+  color: #155724;
+}
+
+@media (prefers-color-scheme: dark) {
+  .feature-badge--free {
+    background: #1e4620;
+    color: #b7e5ba;
+  }
+}
+
+@media (min-width: 768px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .feature-tile {
+    padding: 20px;
+  }
+}
+
+/* === Compatibility Section (mobile-first) === */
+
+/* Tiles grid section */
+.svc-compat__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.svc-compat__tile,
+.feature-tile {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-margin-top: 250px; /* Account for sticky header when jumping to anchor */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.svc-compat__tile {
+  overflow: hidden; /* Clip illustration at top corners (compat tiles only) */
+}
+
+/* Highlight tile when it's the target of a clicked trust chip */
+.svc-compat__tile:target,
+.feature-tile:target {
+  animation: tile-highlight 2s ease-out;
+}
+
+@keyframes tile-highlight {
+  0% {
+    box-shadow: 0 0 0 4px rgba(255, 96, 59, 0.4), 0 0 20px rgba(255, 96, 59, 0.3);
+    transform: scale(1.02);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(255, 96, 59, 0.3), 0 0 20px rgba(255, 96, 59, 0.2);
+  }
+  100% {
+    box-shadow: none;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  @keyframes tile-highlight {
+    0% {
+      box-shadow: 0 0 0 4px rgba(255, 96, 59, 0.6), 0 0 25px rgba(255, 96, 59, 0.4);
+      transform: scale(1.02);
+    }
+    50% {
+      box-shadow: 0 0 0 4px rgba(255, 96, 59, 0.4), 0 0 20px rgba(255, 96, 59, 0.3);
+    }
+    100% {
+      box-shadow: none;
+      transform: scale(1);
+    }
+  }
+}
+
+/* Illustration wrapper: full-bleed at top with rounded corners 
+   Used by both Compatibility tiles and Fees cards */
+.svc-compat__illustration {
+  margin: -16px -16px 12px -16px; /* Negative margins to offset tile padding */
+  border-radius: 8px 8px 0 0; /* Match tile's top corners only */
+  overflow: hidden;
+  background: #ededed; /* Subtle container background for loading state */
+}
+
+/* Getting Started section: different background for screenshots */
+#setup .svc-compat__illustration {
+  background: #0d0d0d; /* Clean white/dark panel background for screenshots */
+}
+
+.svc-compat__illustration img {
+  display: block;
+  width: 100%;
+  height: 120px; /* Mobile height */
+  object-fit: contain;
+  object-position: center;
+}
+
+.svc-compat__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* .svc-compat__title - using universal utility, with specific overrides */
+.svc-compat__title {
+  margin: 0;
+  flex: 1;
+}
+
+.svc-chip {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75em;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.svc-chip--works {
+  background: #d4edda;
+  color: #155724;
+}
+
+.svc-chip--setup, .svc-chip--works-caveat {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.svc-chip--notyet {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.svc-chip--not-working {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.svc-chip--path-basic {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.svc-chip--path-advanced {
+  background: #e2d9f3;
+  color: #432874;
+}
+
+.svc-chip--path-guided {
+  background: #ffe5d0;
+  color: #7a3f1a;
+}
+
+@media (prefers-color-scheme: dark) {
+  .svc-chip--works {
+    background: #1e4620;
+    color: #b7e5ba;
+  }
+  
+  .svc-chip--setup, .svc-chip--works-caveat {
+    background: #4d3e1a;
+    color: #ffeaa7;
+  }
+  
+  .svc-chip--notyet {
+    background: #4d1f23;
+    color: #f5c6cb;
+  }
+  
+  .svc-chip--not-working {
+    background: #4d1f23;
+    color: #f5c6cb;
+  }
+  
+  .svc-chip--path-basic {
+    background: #0d3b44;
+    color: #9fdeeb;
+  }
+  
+  .svc-chip--path-advanced {
+    background: #3d2863;
+    color: #d4bfff;
+  }
+  
+  .svc-chip--path-guided {
+    background: #5a3015;
+    color: #ffb366;
+  }
+}
+
+.svc-compat__summary {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.8em;
+  color: var(--text-muted);
+  margin: 12px 0 0 0;
+  line-height: 1.5;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 4px;
+}
+
+/* .svc-compat__benefit - inherit from .mono-text utility */
+.svc-compat__benefit {
+  margin: 0;
+}
+
+/* .svc-compat__why - inherit from .mono-text utility */
+.svc-compat__why {
+  margin: 8px 0 0 0;
+}
+
+/* Icon-text pair wrapper for consistent spacing */
+.icon-text-pair {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 16px;
+}
+
+.icon-text-pair:last-child {
+  margin-right: 0;
+}
+
+/* Inline icons for compatibility status indicators */
+.inline-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 6px 0 0;
+  flex-shrink: 0;
+}
+
+.svc-compat__note {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  color: var(--text-muted);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Collapsible explainers inside tiles (reuse FAQ pattern) */
+.svc-compat__tile details {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.svc-compat__tile summary {
+  font-size: 0.8em; /* Match Fees section Learn more */
+}
+
+/* Toggle text between "Show steps" and "Hide steps" */
+.svc-compat__tile details summary::after {
+  content: attr(data-closed-text);
+}
+
+.svc-compat__tile details[open] summary::after {
+  content: attr(data-open-text);
+}
+
+/* Hide the default text node when using data attributes */
+.svc-compat__tile details.compat-details summary {
+  font-size: 0;
+}
+
+.svc-compat__tile details.compat-details summary::before,
+.svc-compat__tile details.compat-details summary::after {
+  font-size: 0.8rem;
+}
+
+.svc-compat__tile details > div {
+  margin-top: 1rem;
+}
+
+/* Compat tile details - inherit from .mono-text utility */
+.svc-compat__tile details p {
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+}
+
+.svc-compat__tile details ol {
+  line-height: 1.6;
+  margin: 8px 0 12px 0;
+  padding-left: 24px;
+}
+
+.svc-compat__tile details ol li {
+  margin: 4px 0;
+}
+
+/* Desktop: two-column grid for tiles */
+/* Migration meta chips (time, cost, risk) inherit from compatibility layout */
+.migration-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.migration-meta-chip {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.8em;
+  color: var(--text-muted);
+}
+
+@media (min-width: 768px) {
+  .svc-compat__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .svc-compat__tile,
+  .feature-tile {
+    padding: 20px;
+  }
+  
+  /* Adjust illustration wrapper for desktop padding */
+  .svc-compat__illustration {
+    margin: -20px -20px 16px -20px; /* Match desktop tile padding */
+  }
+  
+  .svc-compat__illustration img {
+    height: 150px; /* Slightly taller on desktop */
+  }
+  
+  /* Remove margin-top for trust section grid specifically */
+  #trust .svc-compat__grid {
+    margin-top: 0;
+  }
+}
+
+/* Trust section card styling */
+.trust-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.trust-card-icon {
+  width: 50px;
+  height: 50px;
+  opacity: 0.7;
+}
+
+.trust-card-fact {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  margin: 0;
+  color: var(--text);
+}
+
+.trust-card-link {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  color: var(--link);
+  text-decoration: none;
+}
+
+.trust-card-link:hover {
+  opacity: 0.8;
+}
+
+
+/* === Inheritance Section (Enhanced UX for stressful moments) === */
+
+/* Intro paragraph: mechanism explanation in Jeff's voice */
+.inheritance-intro {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.6;
+  margin: 12px 0 24px 0;
+  padding: 16px;
+  background: var(--panel);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+}
+
+/* Inheritance tiles: reuse compat pattern but add visual progression */
+.inheritance-tile {
+  position: relative;
+}
+
+/* Grey out unavailable inheritance paths (service doesn't offer these) */
+#inheritance-diy-singlesig {
+  border: 1px solid var(--accent);
+}
+
+/* Visual status indicators for different card types */
+.inheritance-tile--action {
+  border-left: 4px solid #28a745; /* Green: action required */
+}
+
+.inheritance-tile--process {
+  border-left: 4px solid #ffc107; /* Yellow: waiting/process */
+}
+
+.inheritance-tile--emergency {
+  border-left: 4px solid #dc3545; /* Red: emergency fallback */
+}
+
+@media (prefers-color-scheme: dark) {
+  .inheritance-tile--action {
+    border-left-color: #4caf50;
+  }
+  
+  .inheritance-tile--process {
+    border-left-color: #ffeb3b;
+  }
+  
+  .inheritance-tile--emergency {
+    border-left-color: #f44336;
+  }
+  
+  .inheritance-tile--path-basic {
+    border-left-color: #20c997;
+  }
+  
+  .inheritance-tile--path-advanced {
+    border-left-color: #9370db;
+  }
+  
+  .inheritance-tile--path-guided {
+    border-left-color: #ff8c42;
+  }
+}
+
+/* Requirements list: bullet points for path cards */
+.inheritance-requirements {
+  margin: 12px 0;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 4px;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.inheritance-requirements strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.inheritance-requirements ul {
+  list-style: disc;
+  padding-left: 24px;
+  margin: 0;
+}
+
+.inheritance-requirements li {
+  margin: 6px 0;
+  color: var(--text);
+}
+
+/* Risk note: warning chip + explanation */
+.inheritance-risk-note {
+  margin: 12px 0;
+  padding: 12px;
+  background: rgba(220, 53, 69, 0.1);
+  border-radius: 4px;
+  border-left: 2px solid #dc3545;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.95em;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.risk-chip {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #dc3545;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 0.85em;
+  font-weight: 600;
+  margin-right: 8px;
+  text-transform: uppercase;
+}
+
+@media (prefers-color-scheme: dark) {
+  .inheritance-risk-note {
+    background: rgba(244, 67, 54, 0.15);
+    border-left-color: #f44336;
+  }
+  
+  .risk-chip {
+    background: #f44336;
+  }
+}
+
+/* Steps list: numbered, scannable */
+.inheritance-steps {
+  list-style: decimal;
+  padding-left: 24px;
+  margin: 12px 0;
+  line-height: 1.6;
+  font-family: "Ubuntu Mono", monospace;
+}
+
+.inheritance-steps li {
+  margin: 10px 0;
+  color: var(--text);
+}
+
+.inheritance-steps li:first-child {
+  margin-top: 0;
+}
+
+.inheritance-steps li:last-child {
+  margin-bottom: 0;
+}
+
+/* Prereqs: clear visual separation */
+.inheritance-prereqs {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 12px 0;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 4px;
+}
+
+/* Scenarios (for "If plans break" card): issue → path format */
+.inheritance-scenarios {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.inheritance-scenario {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 4px;
+  border-left: 2px solid var(--border);
+}
+
+.inheritance-scenario strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Outcome/Timeline/Fees: visually distinct from steps */
+.inheritance-outcome,
+.inheritance-timeline,
+.inheritance-fees {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  margin: 12px 0 0 0;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+
+.inheritance-outcome strong,
+.inheritance-timeline strong,
+.inheritance-fees strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Next steps section: clear CTAs at the bottom */
+.inheritance-next-steps {
+  margin-top: 32px;
+  padding: 20px;
+  background: var(--panel);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.inheritance-next-steps h3 {
+  margin: 0 0 16px 0;
+}
+
+.next-step-item {
+  margin: 12px 0;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 4px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.next-step-item:hover {
+  background: var(--panel);
+  border-color: var(--accent);
+}
+
+.next-step-item:first-child {
+  margin-top: 0;
+}
+
+.next-step-item:last-child {
+  margin-bottom: 0;
+}
+
+.next-step-link {
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.next-step-link:hover {
+  opacity: 0.8;
+}
+
+.next-step-desc {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* Mobile: stack tiles vertically with clear visual flow */
+@media (max-width: 767px) {
+  .inheritance-intro {
+    font-size: 1em;
+    padding: 12px;
+  }
+  
+  .inheritance-tile {
+    margin-bottom: 16px;
+  }
+  
+  .inheritance-tile:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Desktop: three-column grid for path tiles, full-width checklist */
+@media (min-width: 768px) {
+  .inheritance-intro {
+    margin: 16px 0 28px 0;
+    padding: 20px;
+  }
+  
+  /* Override inheritance section grid to 3 columns */
+  #inheritance .svc-compat__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .inheritance-next-steps {
+    padding: 24px;
+  }
+  
+  .next-step-item {
+    padding: 16px;
+  }
+}
+
+/* === Costs & Ongoing Obligations Section === */
+
+/* Intro paragraph: Jeff's voice pattern (mechanism first) */
+.costs-intro {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+  padding: 16px;
+  background: var(--panel);
+  border-radius: 4px;
+  color: var(--text);
+}
+
+/* Summary stats: plain tiles without outer container */
+.costs-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 0 0 24px 0;
+}
+
+.costs-summary__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .costs-summary__item--highlight {
+    border-color: #4caf50;
+  }
+}
+
+.costs-summary__label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75em;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.costs-summary__value {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.costs-summary__item--highlight .costs-summary__value {
+  color: #28a745;
+  font-size: 1.3em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .costs-summary__item--highlight .costs-summary__value {
+    color: #4caf50;
+  }
+}
+
+/* Cost cards grid */
+.costs-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin: 0 0 32px 0;
+}
+
+.costs-card {
+  padding: 20px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.costs-card__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 16px 0;
+}
+
+/* Cost items list */
+.costs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.costs-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 6px;
+  border-left: 3px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.costs-item__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.costs-item__name {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+}
+
+.costs-amount {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.costs-note {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.8em;
+  color: var(--text-muted);
+  line-height: 1.4;
+  padding-left: 12px;
+}
+
+/* Highlight styles for free/included items */
+.costs-item--free,
+.costs-item--included {
+  background: #f0f9f4;
+  border-left-color: #28a745;
+}
+
+@media (prefers-color-scheme: dark) {
+  .costs-item--free,
+  .costs-item--included {
+    background: rgba(76, 175, 80, 0.1);
+    border-left-color: #4caf50;
+  }
+}
+
+.costs-item--free .costs-amount,
+.costs-item--included .costs-amount {
+  color: #28a745;
+  font-size: 1.2em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .costs-item--free .costs-amount,
+  .costs-item--included .costs-amount {
+    color: #4caf50;
+  }
+}
+
+/* Add checkmark icon for free items */
+.costs-item--free .costs-amount::before,
+.costs-item--included .costs-amount::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url('/images/checkmark.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+}
+
+/* Scenario cards: structured, scannable */
+.scenario-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.scenario-card {
+  padding: 16px;
+  transition: all 0.2s ease;
+  scroll-margin-top: 250px;
+}
+
+
+.scenario-card__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.scenario-what {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  color: var(--text);
+  margin: 0 0 16px 0;
+}
+
+/* Scenario details: structured grid for quick scanning */
+.scenario-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  padding: 12px 0 0 0;
+  border-top: 1px solid var(--border);
+}
+
+.scenario-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.scenario-detail__label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.scenario-detail__value {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+/* Desktop breakpoints */
+@media (min-width: 768px) {
+  .costs-intro {
+    padding: 20px;
+    margin: 0 0 28px 0;
+  }
+  
+  .costs-summary {
+    margin: 0 0 28px 0;
+  }
+  
+  .costs-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 0 0 36px 0;
+  }
+  
+  .costs-card {
+    padding: 24px;
+  }
+  
+  .scenario-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 12px;
+  }
+  
+  .scenario-card {
+    padding: 20px;
+  }
+  
+  .scenario-details {
+    gap: 16px;
+  }
+}
+
+/* ========================================
+   Compatibility Section (Hardware/OS/Standards/Integrations)
+   ======================================== */
+
+/* Hardware & OS cards: reuse payment-card styling */
+
+.compat-items-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.compat-items-list li:last-child {
+  border-bottom: none;
+}
+
+/* Device list: tighter spacing, notes closer to title */
+.compat-items-list--devices li {
+  padding: 8px 0;
+  display: block;
+}
+
+.compat-items-list--devices li:first-child {
+  padding-top: 10px;
+}
+
+.compat-item-name {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1;
+  margin-bottom: 6px;
+}
+
+.compat-item-note {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.compat-version {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  color: var(--text-muted);
+}
+
+/* Platform icons positioned on the right */
+.compat-items-list--platforms li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.compat-platform-icon {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Standards table */
+.compat-standards {
+  margin: 24px 0;
+}
+
+.compat-subsection-title {
+  font-family: "Inter", sans-serif;
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 16px 0;
+}
+
+.compat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  overflow: hidden;
+}
+
+.compat-table thead {
+  background: var(--panel);
+}
+
+.compat-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 400;
+  color: var(--text-muted);
+  font-size: 0.8em;
+}
+
+.compat-table td {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.compat-table-standard {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.compat-table-support {
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.compat-support--yes {
+  color: #28a745;
+}
+
+.compat-support--partial {
+  color: #ffc107;
+}
+
+.compat-support--no {
+  color: #dc3545;
+}
+
+@media (prefers-color-scheme: dark) {
+  .compat-support--yes {
+    color: #4caf50;
+  }
+  
+  .compat-support--partial {
+    color: #ffeb3b;
+  }
+  
+  .compat-support--no {
+    color: #f44336;
+  }
+}
+
+.compat-table-notes {
+  color: var(--text-muted);
+  max-width: 400px;
+}
+
+/* Mobile: stack table for better readability */
+@media (max-width: 767px) {
+  .compat-table {
+    font-size: 0.9em;
+  }
+  
+  .compat-table thead {
+    display: none;
+  }
+  
+  .compat-table tr {
+    display: block;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .compat-table td {
+    display: block;
+    text-align: left;
+    padding: 10px 12px;
+    border: none;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .compat-table td:last-child {
+    border-bottom: none;
+  }
+  
+  .compat-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+    color: var(--text-muted);
+    font-size: 0.8em;
+    text-transform: uppercase;
+  }
+  
+  .compat-table-standard::before {
+    content: "Standard";
+  }
+  
+  .compat-table-support::before {
+    content: "Support";
+  }
+  
+  .compat-table-notes::before {
+    content: "Notes";
+  }
+}
+
+/* Advanced section: collapsible */
+.compat-advanced {
+  margin: 16px 0 0 0;
+  border: 1px solid var(--border);
+}
+
+.compat-advanced summary {
+  font-family: "Inter", sans-serif !important;
+  font-weight: 600;
+  font-size: 0.8em;
+  color: #f44336;
+  padding: 12px 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease;
+  list-style: none;
+}
+
+.compat-advanced summary::-webkit-details-marker {
+  display: none;
+}
+
+.compat-advanced summary::before {
+  content: "\2193";
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  color: var(--accent);
+  margin-right: 8px;
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.compat-advanced[open] summary::before {
+  transform: rotate(180deg);
+}
+
+.compat-advanced summary:hover {
+  background: var(--bg);
+}
+
+.compat-advanced-list {
+  padding: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.compat-advanced-list dt {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 12px;
+  font-size: 1em;
+}
+
+.compat-advanced-list dt:first-child {
+  margin-top: 0;
+}
+
+.compat-advanced-list dd {
+  font-family: "Ubuntu Mono", monospace;
+  color: var(--text-muted);
+  margin: 4px 0 0 0;
+  line-height: 1.5;
+  font-size: 0.9em;
+}
+
+/* Integrations */
+.compat-integrations {
+  margin: 24px 0;
+}
+
+.compat-integration-mode {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  color: var(--text);
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.compat-integration-caveat {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  color: var(--text-muted);
+  margin: 8px 0 0 0;
+  line-height: 1.5;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+/* Brand FAQ (scoped, minimal impact) */
+.brand-faq { margin-bottom: 48px; }
+
+.brand-faq h2 {
+  font-size: 1.4em; /* match .alt-block h2 */
+  margin: 0 0 10px;
+}
+
+/* Only the list (not the heading) gets the card-like background */
+.brand-faq .faq-list {
+  padding: 10px;
+}
+
+/* Normalize <summary> text styling to match body text */
+.brand-faq summary {
+  font-weight: 400 !important; /* override UA default bold; Ubuntu Mono loaded at 400/700 */
+  font-family: "Ubuntu Mono", monospace;
+}
+
+/* Remove default triangle list marker spacing for cleaner look */
+.brand-faq details { margin: 8px 0; }
+
+.brand-faq details {
+  margin: 0.75rem 0;
+}
+
+
+.brand-faq details > div {
+  margin-top: 0.5rem;
+}
+
+.brand-faq details > div p {
+  font-family: "Ubuntu Mono", monospace;
+  line-height: 1.6;
+}
+
+/* Service page dedicated sticky bar (replaces logo-row-sticky on service pages) */
+.service-sticky-cta {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--bg); /* Match page background like original */
+  padding: 10px 0;
+  transition: padding 0.2s ease;
+}
+
+.service-sticky-cta .svg-icon {
+  transition: width 0.2s ease;
+}
+
+/* Mobile-first: shrunk state active by default */
+.service-sticky-cta.shrunk {
+  padding: 5px 0;
+}
+
+.service-sticky-cta.shrunk .svg-icon {
+  width: 50px;
+}
+
+/* Desktop: disable shrink behavior */
+@media (min-width: 768px) {
+  .service-sticky-cta.shrunk {
+    padding: 10px 0;
+  }
+
+  .service-sticky-cta.shrunk .svg-icon {
+    width: 110px;
+  }
+}
+

@@ -1,0 +1,91 @@
+/* Unified List Resets */
+.menu-section ul,
+.menu ul,
+.dropdown-list,
+.breadcrumbs ol,
+.breadcrumbs ul,
+.footer-column ul,
+.service-section .feature-value ul,
+.service-section .feature-value ol,
+.migration-recommendations ul,
+.privacy-card__list,
+.alt-grid,
+.compat-items-list,
+.costs-list,
+.blog-list,
+.compat-advanced-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Headings (serif for elegance) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Inter", sans-serif;
+  font-weight: 600; /* Bold for emphasis */
+  color: var(--text); /* Strong for emphasis */
+}
+
+h2 {
+  font-size: 1.6em;
+  margin-bottom: 10px;
+  text-align: left; /* Center category titles */
+}
+
+/* Paragraphs and other text */
+/* Scope Ubuntu Mono globally but allow blog overrides */
+p, li, a {
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 400; /* Regular weight */
+  line-height: 1.5; /* Improve readability */
+}
+
+/* Blog context overrides */
+.blog-article p,
+.blog-article li,
+.blog-article a,
+.blog-list a,
+.article-card,
+.article-card * {
+  font-family: "Inter", sans-serif !important;
+}
+
+/* === Universal Typography Utilities === */
+
+/* Card/Section titles - shared by fee-card, compat, migration, etc. */
+.card-title,
+.fee-card__title,
+.svc-compat__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 20px 0;
+  color: var(--text);
+}
+
+/* Monospace body text - used in fee cards, compat tiles, etc. */
+.mono-text,
+.fee-card p,
+.svc-compat__benefit,
+.svc-compat__why,
+.svc-compat__tile details p,
+.svc-compat__tile details ol {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* Small section headings (FAQ titles, key terms, etc.) */
+.section-subheading,
+.micro-faqs__title,
+.fee-quick-answers__title {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  text-align: left;
+}
+

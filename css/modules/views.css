@@ -1,0 +1,1058 @@
+.hero-headline {
+  text-align: center;
+  padding: 60px 24px 40px; /* Tighter padding for mobile */
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-headline h1 {
+  font-size: 2.5em; /* Smaller base size for mobile */
+  font-weight: 500;
+  color: var(--text);
+  margin: 0 0 12px 0; /* Tighter margin for mobile */
+  line-height: 1.15; /* Slightly tighter line height */
+}
+
+.hero-subheadline {
+  font-size: 1.1em; /* Slightly smaller for mobile */
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.4; /* Slightly tighter line height */
+  padding: 0 12px; /* Add some padding to control line length */
+}
+
+/* Larger sizes for desktop */
+@media (min-width: 768px) {
+  .hero-headline {
+    padding: 100px 20px 80px;
+  }
+
+  .hero-headline h1 {
+    font-size: 3.5em;
+    margin: 0 0 20px 0;
+  }
+
+  .hero-subheadline {
+    font-size: 1.2em;
+    padding: 0;
+  }
+
+}
+
+/* Categories */
+.category {
+  margin-bottom: 20px;
+}
+
+/* Utility: visually hide but keep accessible */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 1px 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.space h2 {
+  margin-top: 50px; /* Space above main headings */
+}
+
+
+/* Default link styling for h2 links */
+.category h2 a {
+  font-family: "Inter", sans-serif;
+  font-weight: 600; /* Bold for emphasis */
+  color: var(--text); /* Default text color */
+  transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+/* Hover effect for better interactivity */
+.category h2 a:hover {
+  color: var(--accent); /* Highlight color on hover */
+}
+
+/* Optional: Focus effect for accessibility */
+.category h2 a:focus {
+  outline: 2px solid #f39c12; /* Highlight link when focused */
+  outline-offset: 2px;
+}
+
+/* Default link styling for h2 links */
+.category-header h2 a {
+  font-family: "Inter", sans-serif;
+  font-weight: 600; /* Bold for emphasis */
+  color: var(--text); /* Default text color */
+}
+
+/* Category headers */
+.category-header h2 {
+  font-size: 1.4em; /* Smaller on mobile */
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure h1 in category header matches previous h2 styling to preserve design */
+.category-header h1 {
+  font-size: 1.4em; /* Same as h2 */
+  margin: 0;
+  padding: 0;
+}
+
+/* VS modifier: stack H1 and breadcrumbs vertically and align left */
+.category-header--vs {
+  display: flex; /* ensure flex context remains */
+  flex-direction: column; /* stack vertically */
+  align-items: flex-start; /* left align */
+  justify-content: flex-start; /* neutralize space-between */
+}
+
+.category-header--vs .breadcrumbs { margin-top: 0; }
+
+/* Breadcrumbs (inline, under H1) */
+.breadcrumb-back { 
+  display: block;
+  margin-top: 2px;
+  margin-bottom: 4px; /* tighter to adjacent content */
+  font-size: 0.8em; /* smaller on mobile */
+}
+
+.breadcrumb-back, .breadcrumb-back * {
+  font-family: "Inter", sans-serif;
+}
+
+.breadcrumbs {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em; color: var(--text-muted);
+}
+
+/* Force Inter inside breadcrumbs despite global monospace for anchors/lists */
+.breadcrumbs, .breadcrumbs * {
+  font-family: "Inter", sans-serif;
+}
+
+/* Breadcrumb link styles: orange, no underline in all states; keep focus outline */
+.breadcrumbs a,
+.breadcrumbs a:link,
+.breadcrumbs a:visited,
+.breadcrumbs a:hover,
+.breadcrumbs a:active,
+.breadcrumbs a:focus { color: var(--link); text-decoration: none; }
+
+/* Back link styles: same as breadcrumb links */
+.breadcrumb-back a,
+.breadcrumb-back a:link,
+.breadcrumb-back a:visited,
+.breadcrumb-back a:hover,
+.breadcrumb-back a:active,
+.breadcrumb-back a:focus { color: var(--link); text-decoration: none; }
+
+
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Mobile-first: hide the trail content by default */
+.breadcrumbs ol {
+  display: none;
+}
+
+.breadcrumbs li + li::before {
+  content: ">";
+  font-family: "Inter", sans-serif;
+  display: inline-block;
+  margin: 0 6px 0 0; /* tight spacing before crumb */
+}
+
+/* Screen-reader only utility (alias) */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+/* RTL support: flip separator direction when parent or element is RTL */
+[dir="rtl"] .breadcrumbs li + li::before,
+.breadcrumbs[dir="rtl"] li + li::before { content: "<"; }
+
+@media (min-width: 768px) {
+  .category-header h2 {
+    font-size: 1.6em; /* Larger on desktop */
+  }
+  .category-header h1 {
+    font-size: 1.6em; /* Match h2 size on desktop */
+  }
+}
+
+/* Responsive toggle: show back link on small screens, full trail on >=640px */
+@media (min-width: 640px) {
+  .breadcrumb-back { display: none; }
+  .breadcrumbs ol { display: flex; align-items: center; gap: 8px; }
+  /* Pull breadcrumbs closer to H1 on desktop */
+  .category-header--vs .breadcrumbs { margin-top: -2px; }
+}
+
+/* Desktop: two-column grid: H1 left, freshness right; crumbs on next row */
+@media (min-width: 768px) {
+  .category-header.category-header--vs {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    column-gap: 12px;
+  }
+  .category-header.category-header--vs #page-title { grid-column: 1; }
+  .category-header.category-header--vs .page-updated {
+    grid-column: 2;
+    justify-self: end;
+    white-space: nowrap;
+  }
+  .category-header.category-header--vs .breadcrumb-back,
+  .category-header.category-header--vs .breadcrumbs { grid-column: 1 / -1; }
+}
+
+/* VS verdict paragraph */
+#vs-verdict { width: 100%; margin: 8px 0 12px 0; }
+.feature-label.verdict-title { margin-bottom: 6px; }
+.vs-verdict-p { margin: 0; line-height: 1.6; }
+
+/* Services per company homepage */
+.feature-item {
+    display: block; /* Ensures icon and text align properly */
+    align-items: center; /* Align icon and text vertically */
+    gap: 5px; /* Reduce space between icon and text */
+    font-size: 1em;
+    color: var(--text);
+    margin-top: 3px; /* Reduce space between feature lines */
+}
+
+.feature-item:first-child {
+    margin-top: 0px; /* No margin for the first feature */
+}
+
+.feature-item.negative-group-start {
+  margin-top: 24px;
+}
+
+
+/* Compare button */
+.category-header {
+  display: flex;
+  justify-content: space-between; /* Ensures space between h2 and button */
+  align-items: center; /* Aligns vertically */
+  margin-bottom: 15px; /* Keeps spacing consistent */
+}
+
+/* VS override: ensure vertical stack and left alignment on VS pages */
+@media (max-width: 767.98px) {
+  .category-header.category-header--vs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 2px;
+  }
+}
+
+/* Freshness label */
+.page-updated {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  color: var(--text-muted);
+}
+
+#comparison-container {
+  width: 100%;
+  max-width: 1200px;
+  line-height: 1.3;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+
+#comparison-container .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 1 220px; /* Ensure equal width */
+  max-width: 220px;
+}
+
+/* Remove hover enlarging */
+#comparison-container .card:hover {
+  transform: none;
+}
+
+/* Ensure logos are centered and properly spaced */
+#comparison-container .card .svg-icon {
+  width: 100px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.logo-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+}
+
+.service-link {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.service-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Ensure full left alignment */
+  text-align: left;
+  gap: 6px;
+  min-height: 40px;
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 2em;
+  width: 100%;
+}
+
+.service-info strong {
+  font-weight: 700;
+}
+
+
+/* Fix layout when comparing 3 services */
+#comparison-container.three-cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Ensure the third card follows the same layout */
+#comparison-container.three-cards .card {
+  flex: 0 1 220px;
+  max-width: 220px;
+}
+
+#comparison-container.three-cards .logo-row {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+
+#comparison-container .card .website-name {
+  font-size: 1em;
+  margin-bottom: 8px;
+}
+
+#comparison-container .card .website-name a {
+  color: var(--text);
+  font-weight: bold;
+}
+
+
+.availability-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.country-flag {
+    width: 24px;  /* Adjust flag size */
+    height: auto;
+    margin-bottom: 3px;  /* Space between flag and text */
+}
+
+#country-search {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background-color: #222;
+  color: white;
+  margin-top: 5px;
+}
+
+
+
+.availability-icon {
+    width: 16px;  /* Increase size */
+    height: auto;  /* Maintain aspect ratio */
+    vertical-align: middle;
+    margin-right: 5px;
+	margin-bottom: 3px;  /* Space between icon and text */
+}
+
+.platform-icon {
+    width: 100px;  /* Larger size for platform icons */
+    height: auto;
+    vertical-align: middle;
+    margin-bottom: 8px;
+}
+
+.interface-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.founder-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+
+.founder-name {
+  text-align: center;
+}
+
+
+.fee-structure {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+
+.fee-structure strong {
+  display: block; /* Ensure "Fees" is on its own line */
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.fee-tier + .fee-tier {
+  margin-top: 10px;
+}
+
+.fee-subtext, .fee-range, .fee-note {
+  display: block; /* Forces it onto a new line */
+}
+
+.fee-percentage, .fee-value {
+  font-weight: bold;
+  color: var(--text);
+}
+
+.fee-intro {
+  margin-bottom: 20px;
+}
+
+.platform-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.platform-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.rating-line {
+  margin-bottom: 4px;
+}
+
+.spacer {
+  margin-bottom: 8px; /* extra space between iOS and Android */
+}
+
+
+.comparison-table {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+  margin-top: 50px;
+}
+
+#comparison-table-wrapper {
+  width: 100%;
+}
+
+
+.feature-label { /* titels op compare.html en service.html*/
+  font-family: "Inter", sans-serif;
+  font-weight: 600; /* Bold for emphasis */
+  font-size: 1.4em;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.feature-label.sublabel {
+  font-size: 0.8em; /* Smaller than main labels */
+  color: var(--text-muted); /* Gray color */
+  font-weight: 600; /* Less bold to differentiate */
+}
+
+/* Negative margin only for compare table rows (tight spacing) - scoped to comparison pages only */
+#comparison-container .feature-label.sublabel,
+#comparison-table-wrapper .feature-label.sublabel {
+  margin-top: -30px; /* Decreased top margin to bring it closer to the row above */
+}
+
+/* Comparison pages: add spacing between feature rows */
+#comparison-container .feature-row,
+#comparison-table-wrapper .feature-row {
+  margin-bottom: 50px;
+}
+
+#comparison-container .feature-row:last-child,
+#comparison-table-wrapper .feature-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Comparison pages: prevent double margins on feature-value within rows */
+#comparison-container .feature-value,
+#comparison-table-wrapper .feature-value {
+  margin-bottom: 0; /* spacing handled by row margin */
+}
+
+/* Pull-quote (Jeff Booth) - mobile-first */
+.pull-quote {
+  margin: 24px 0;
+  padding: 16px 16px 12px;
+  background: var(--panel);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+}
+
+.pull-quote p {
+  margin: 0 0 10px 0;
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+.pull-quote cite {
+  display: block;
+  font-style: normal;
+  font-family: "Inter", sans-serif;
+  color: var(--text-muted);
+  font-size: 0.9em;
+}
+
+@media (min-width: 768px) {
+  .pull-quote {
+    padding: 20px 20px 14px;
+    margin: 28px 0;
+  }
+}
+
+/* === BUOY SEO BLOCK — FINAL OVERRIDE === */
+
+/* Outer full-bleed container */
+.seo-copy.space{
+  --seo-bg:#ececec;   /* outer block */
+  --seo-why:#e7e7e7;  /* Why slab */
+  --seo-faq:#dddddd;  /* FAQ slab */
+
+  width:95%;
+  max-width:1200px;
+  margin:clamp(40px,6vw,80px) auto 0;
+  padding:clamp(48px,6vw,100px) 10px 0; /* ⬅ bottom padding = 0 so last slab can touch footer */
+  background:var(--seo-bg);
+  box-shadow:0 0 0 100vmax var(--seo-bg); /* full-bleed bg */
+  clip-path:inset(0 -100vmax);
+  color: var(--text);
+}
+
+/* Headings & base text */
+.seo-copy.space h2{
+  font-family:"Inter",sans-serif;
+  font-weight:600;
+  font-size:clamp(1.25rem,3vw,2rem);
+  line-height:1.2;
+  margin:0 0 12px 0;
+}
+.seo-copy.space p{
+  font-family:"Inter",sans-serif;
+  font-size:.95rem;
+  line-height:1.6;
+  margin:0;                 /* neutralize global paragraph margins */
+}
+.seo-copy.space .seo-intro p + p{ margin-top:18px;} /* ⬅ spacing inside intro */
+.seo-copy.space strong{ font-weight:600; }
+.seo-copy.space em{ font-style:italic; }
+
+.seo-intro{
+  padding-bottom: 60px;
+}
+
+/* ---- Subsections: full-width slabs via ::before (no seams) ---- */
+.seo-copy.space .seo-slab{
+  position:relative;               /* prevents pale strip between slabs */
+  padding:60px 0;           /* vertical breathing room */
+}
+
+
+.seo-copy.space .seo-slab::before{
+  content:"";
+  position:absolute;
+  top:0; left:50%;
+  transform:translateX(-50%);
+  width:100vw;              /* edge-to-edge */
+  height:100%;
+  background:var(--slab-bg, var(--seo-why));
+  z-index:-1;               /* behind content */
+}
+/* tiny overlap so adjacent slabs have no 1px seam */
+.seo-copy.space .seo-slab + .seo-slab::before{ top:-1px; }
+
+/* Assign colors */
+.seo-copy.space .seo-slab.seo-why{ --slab-bg:var(--seo-why); }
+.seo-copy.space .seo-slab.seo-faq{ --slab-bg:var(--seo-faq); }
+
+/* Last slab extends to footer (background touches footer edge) */
+.seo-copy.space .seo-slab:last-child{ padding-bottom:40px; } /* comfortable bottom space */
+.seo-copy.space .seo-slab:last-child::before{
+  height:calc(100% + 1px);  /* hide subpixel seam above footer */
+}
+
+/* Inner content width exactly matches main container */
+.seo-copy.space .seo-slab .inner{
+  width:100%;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 10px;
+}
+
+/* Slab headings */
+.seo-copy.space .seo-slab h3{
+  font-family:"Inter",sans-serif;
+  font-weight:600;
+  font-size:clamp(1.05rem,2.2vw,1.5rem);
+  line-height:1.3;
+  margin:0 0 10px 0;
+}
+
+/* ---- USPs (icon + text) ---- */
+.seo-copy.space .usps{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+}
+.seo-copy.space .usp{
+  display:flex;
+  align-items:flex-start;   /* align tops */
+  gap:12px;
+}
+.seo-copy.space .usp svg{
+  width:20px; height:20px;
+  margin-top:2px;           /* nudge onto first text line */
+  color:var(--accent);            /* ensure visible icon color */
+  flex:0 0 auto;
+}
+.seo-copy.space .usp h4{
+  margin:0 0 6px 0;
+  font-weight:600;
+  font-size:1rem;
+}
+.seo-copy.space .usp p{ margin:0; }
+
+/* FAQ spacing */
+.seo-copy.space .faq-list p + p{ margin-top:10px; }
+
+/* ---- Desktop two-column layout (matches hero/cards grid) ---- */
+@media (min-width:768px){
+  .seo-copy.space{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    column-gap:clamp(2rem,5vw,5rem);
+  }
+  /* H2 left, intro right */
+  .seo-copy.space h2{ grid-column:1; }
+  .seo-copy.space .seo-intro{ grid-column:2; }
+
+  /* Slabs span full width but keep internal two-column grid */
+  .seo-copy.space .seo-slab{ grid-column:1 / -1;
+    padding: 80px 0 80px 0px;
+  }
+  .seo-copy.space .seo-slab .inner{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    column-gap:clamp(2rem,5vw,5rem);
+    align-items:start;
+  }
+  .seo-copy.space .seo-slab h3{ grid-column:1; }
+  .seo-copy.space .seo-slab .usps,
+  .seo-copy.space .seo-slab .faq-list{ grid-column:2; }
+
+  /* Three USP columns on desktop */
+  .seo-copy.space .usps{ grid-template-columns:repeat(3,1fr); gap:24px; }
+
+  .alt-block h2 { font-size: 1.6em; }
+}
+
+/* Dark-mode overrides for SEO block slabs */
+@media (prefers-color-scheme: dark){
+  .seo-copy.space{
+    --seo-bg:#212121;
+    --seo-why:#303030;
+    --seo-faq:#212121;
+  }
+}
+
+
+/* Jump to navigation (minimal inline style) */
+.jump-nav {
+  display: none; /* Hidden on mobile by default */
+}
+
+@media (min-width: 768px) {
+  .jump-nav {
+    display: block;
+    font-family: "Inter", sans-serif !important;
+    font-size: 0.8em;
+    color: var(--text-muted);
+    margin: 8px 0 10px 0;
+    line-height: 1.6;
+  }
+  
+  .jump-nav a {
+    font-family: "Inter", sans-serif !important;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 4px 0;
+    display: inline-block;
+    transition: color 0.2s ease;
+  }
+  
+  .jump-nav a:hover,
+  .jump-nav a:focus {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+}
+
+/* Scroll margin for section anchors to account for sticky header */
+.service-section,
+.brand-faq {
+  scroll-margin-top: 250px;
+}
+
+/* === Single-service baked table normalization === */
+#comparison-table-wrapper table.comparison-table {
+  /* Override flex container on table instances only */
+  display: block;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+#comparison-table-wrapper table.comparison-table tbody {
+  display: block;
+}
+
+#comparison-table-wrapper table.comparison-table tr.feature-row {
+  display: block;
+  margin: 0 0 50px 0; /* consistent spacing between feature rows */
+}
+
+#comparison-table-wrapper table.comparison-table tr.feature-row:last-child {
+  margin-bottom: 0;
+}
+
+#comparison-table-wrapper table.comparison-table td {
+  display: block; /* stack label then value, same as div layout */
+  border: 0;
+  background: transparent;
+  padding: 0; /* spacing handled by inner elements */
+}
+
+/* Ensure header cells behave like label cells for stacked layout */
+#comparison-table-wrapper table.comparison-table th {
+  display: block;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+/* Prevent double margins/fonts when th also has .feature-label; inner label element carries styles */
+#comparison-table-wrapper table.comparison-table th.feature-label {
+  margin: 0;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+/* Ensure baked table inner grid matches compare layout */
+#comparison-table-wrapper table.comparison-table .feature-values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+#comparison-table-wrapper table.comparison-table .feature-value {
+  font-size: 1em;
+  font-family: "Ubuntu Mono", monospace;
+  font-weight: 300;
+  background: var(--panel);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: left;
+  margin-bottom: 0; /* spacing handled by row margin */
+}
+
+/* Blog styles */
+main.container {
+  padding-top: 2rem;
+}
+
+/* Related articles cards */
+.related-articles {
+  margin: 2.5rem 0 0 0;
+}
+
+.related-articles h2 {
+  font-size: 1em;
+  font-weight: 400;
+  margin: 0 0 0.5rem 0;
+}
+
+
+.related-articles hr {
+  margin: 1rem 0;
+}
+
+.article-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.article-card {
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  display: block;
+  transition: box-shadow 0.2s ease;
+}
+
+.article-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.article-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.article-card__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  margin: 0;
+}
+
+.article-card__date {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8em;
+  color: var(--text-muted);
+}
+
+/* Blog index page - push content to top */
+main:has(.blog-list) {
+  padding-top: 3rem;
+  min-height: calc(100vh - 200px); /* Ensure footer stays at bottom */
+}
+
+main:has(.blog-list) h1 {
+  font-size: 2em;
+  margin: 0 0 2rem 0;
+}
+
+.blog-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.blog-list li {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.blog-list li:last-child {
+  border-bottom: none;
+}
+
+.blog-list a {
+  font-size: 1.2em;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  display: inline;
+}
+
+.blog-list a:hover {
+  color: var(--link);
+}
+
+.lang-pill {
+  display: inline-block;
+  background: var(--border);
+  color: var(--text-muted);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75em;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  font-family: "Inter", sans-serif;
+}
+
+/* Blog article */
+.blog-article {
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  overflow-x: hidden;
+  word-wrap: break-word;
+}
+
+.container:has(.blog-article) {
+  max-width: 1200px;
+}
+
+.blog-article h1 {
+  font-size: 2em;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.blog-article .meta {
+  color: var(--text-muted);
+  font-size: 0.9em;
+  margin-bottom: 2rem;
+  font-family: "Inter", sans-serif;
+}
+
+.blog-article .meta span {
+  margin-right: 2em;
+}
+
+.blog-article .meta span:last-child {
+  margin-right: 0;
+}
+
+.blog-article .meta a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: "Inter", sans-serif;
+}
+
+
+.blog-article h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin: 2rem 0 1rem 0;
+}
+
+.blog-article h3 {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem 0;
+}
+
+.blog-article p {
+  font-family: "Inter", sans-serif;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.blog-article ul,
+.blog-article ol {
+  font-family: "Inter", sans-serif;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.blog-article li {
+  margin-bottom: 0.5rem;
+}
+
+.blog-article hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+.blog-article a {
+  color: var(--link);
+}
+
+.blog-article a:hover {
+  opacity: 0.8;
+}
+
+.blog-article img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 2rem 0;
+  display: block;
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  .blog-article {
+    padding: 3rem 2rem;
+  }
+
+  .blog-article h1 {
+    font-size: 2.5em;
+  }
+  
+  /* Blog index - more top padding on desktop */
+  main:has(.blog-list) {
+    padding-top: 5rem;
+  }
+  
+  main:has(.blog-list) h1 {
+    font-size: 2.5em;
+    margin: 0 0 3rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+	 #comparison-container {
+    grid-template-columns: repeat(2, 1fr);
+	 gap: 10px;
+  }
+  
+  #comparison-container .card {
+    flex: 0 0 calc((100% - 20px) / 2); /* 2 cards per row on mobile */
+  }
+}
+
+@media (min-width: 1024px) {
+	 #comparison-container {
+    flex-wrap: wrap; /* Cards wrap on smaller screens */
+	 grid-template-columns: repeat(3, 1fr);
+  }
+}
+
