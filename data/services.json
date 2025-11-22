@@ -10886,11 +10886,11 @@
     "features": {
       "WW": [
         {
-          "text": "One-click installs for Bitcoin Core, Lightning, Electrs, BTCPay, Mempool, Immich, Home Assistant, and more",
+          "text": "One-click installs for 100+ apps",
           "status": "positive"
         },
         {
-          "text": "Built-in Tor routing with optional Tailscale VPN for remote access",
+          "text": "Built-in Tor routing for remote access",
           "status": "positive"
         },
         {
@@ -11035,6 +11035,7 @@
         "cost_value": "5–6 days",
         "cost_context": "on Pi 4 (or ~12h on Mini-PC)",
         "badge": "One-time",
+        "service_factor": "Apps remain locked until 100% sync to ensure dependency integrity.",
         "what_happens": "Bitcoin Core verifies every block from genesis on your hardware (CPU + disk-IO bound).",
         "how_to_minimize": "Leave it on, use wired Ethernet, and prefer SSDs over HDDs.",
         "learn_more": "Pause heavy App Store installs until Bitcoin Core reaches tip; Lightning depends on a fully synced node."
@@ -11045,6 +11046,7 @@
         "cost_value": "550 GB",
         "cost_context": "currently + 5–7 GB/month",
         "badge": "Storage",
+        "service_factor": "Unified storage means media apps (Immich/Nextcloud) compete directly with chain data.",
         "what_happens": "Full-history nodes store the entire blockchain plus Lightning databases, logs, and app containers on your local drive.",
         "how_to_minimize": "Allocate at least a 1 TB SSD for full archival, or enable pruning to fit on smaller drives.",
         "learn_more": "Keep >15% free space in `/home/umbrel/umbrel/bitcoin/blocks` so compaction never stalls."
@@ -11055,6 +11057,7 @@
         "cost_value": "10–30 W",
         "cost_context": "~$1.30–$3.90 / month",
         "badge": "Monthly",
+        "service_factor": "UmbrelOS disables disk spin-down to maintain instant Lightning routing response.",
         "what_happens": "Your node stays online 24/7 to verify blocks and route payments, drawing continuous power.",
         "how_to_minimize": "Use efficient N100 hardware or under-volt your Pi to keep carrying costs low.",
         "learn_more": "Pair the node with a smart plug or UPS that reports load so you can budget uptime."
@@ -11065,6 +11068,7 @@
         "cost_value": "600 GB",
         "cost_context": "initial download + 30GB/mo",
         "badge": "Network",
+        "service_factor": "Background Docker image updates add substantial usage beyond chain gossip.",
         "what_happens": "The node peers with the network to relay blocks and gossip, using significant upstream bandwidth.",
         "how_to_minimize": "Use a wired connection and set upload caps in Bitcoin Core if your ISP limits data.",
         "learn_more": "ISPs with 1 TB caps may throttle after long IBD sessions; consider fiber or business-class plans."
@@ -11322,54 +11326,101 @@
     },
     "hardware_bom": {
       "heading": "Hardware BOM & capacity planning",
+      "intro": "Umbrel runs on hardware you control. That means you choose the trade-offs between noise, cost, and performance. Pick a build that matches your app usage, but prioritize SSD storage and a wired connection to keep the node healthy.",
       "builds": [
         {
           "id": "budget-pi",
           "name": "Budget Pi kit",
+          "tagline": "Low-cost entry, but limited headroom.",
           "use_case": "Learning, personal routing, light app usage",
+          "tradeoff": "You save money upfront → You risk sync stalls on heavy apps like Mempool.",
+          "all_in_price": "$180–$220",
+          "monthly_cost": "~$1.30/mo (10W)",
+          "sync_time": "5–7 days",
+          "assumptions": "Requires wired Ethernet + NVMe SSD (SD cards will fail).",
+          "storage_guidance": "1 TB NVMe (Full history) or 500GB (Pruned).",
+          "noise_footprint": "Low noise (<30dB fan), tiny footprint.",
+          "gotcha": "Pi 4/5 shares bandwidth between USB and Network, which bottlenecks the initial sync.",
+          "compatibility_badges": [
+            "Bitcoin Core",
+            "Lightning",
+            "Basic Apps"
+          ],
           "parts": [
             "Raspberry Pi 5 or 4 (8 GB RAM)",
             "1 TB NVMe SSD in USB 3.2 enclosure",
             "Active cooling case or fan hat",
             "15W USB-C power supply"
-          ],
-          "estimates": {
-            "sync_time": "~5–6 days initial sync",
-            "noise": "Low (fan under 30 dB)",
-            "wattage": "10–12 W idle / 15 W sync"
-          }
+          ]
         },
         {
           "id": "quiet-mini-pc",
           "name": "Quiet mini-PC",
+          "tagline": "The daily driver standard.",
           "use_case": "Daily Lightning use, Electrs, media apps",
+          "tradeoff": "You pay slightly more → You get instant dashboard loads and reliable indexing.",
+          "all_in_price": "$250–$350",
+          "monthly_cost": "~$3.25/mo (25W)",
+          "sync_time": "12–18 hours",
+          "assumptions": "Fast internet (>100Mbps) + SSD over SATA/NVMe.",
+          "storage_guidance": "2 TB NVMe (Allows Electrs index + Media apps).",
+          "noise_footprint": "Silent (Fanless chassis available), router-sized.",
+          "gotcha": "Requires flashing an OS image to internal disk (wipes the drive).",
+          "compatibility_badges": [
+            "Electrs",
+            "Mempool",
+            "Post-Mix Tools",
+            "Media Apps"
+          ],
           "parts": [
             "Intel N100 / N305 mini PC with 16 GB RAM",
             "2 TB NVMe SSD",
             "Silent heatpipe chassis",
             "Battery-backed NVMe enclosure for backups"
-          ],
-          "estimates": {
-            "sync_time": "~12–18 hours initial sync",
-            "noise": "Silent/fanless",
-            "wattage": "20–25 W idle / 30 W sync"
-          }
+          ]
         },
         {
           "id": "power-user",
           "name": "Power user workstation",
+          "tagline": "Commercial-grade throughput.",
           "use_case": "Routing, BTCPay merchants, AI / media workloads",
+          "tradeoff": "High power/cost → You run everything without lag.",
+          "all_in_price": "$500+",
+          "monthly_cost": "~$9.00/mo (70W peak)",
+          "sync_time": "8–10 hours",
+          "assumptions": "Gigabit fiber + high-end NVMe raid.",
+          "storage_guidance": "4 TB NVMe (Mirrored RAID 1 recommended).",
+          "noise_footprint": "Audible fans (35dB+), desktop tower size.",
+          "gotcha": "Overkill for just Bitcoin; only build this if you host AI models or 50+ apps.",
+          "compatibility_badges": [
+            "BTCPay Server",
+            "LLM AI Models",
+            "High-Vol Routing"
+          ],
           "parts": [
             "Ryzen 7 / Intel i7 SFF box with 32 GB RAM",
             "4 TB NVMe or SATA SSD (mirrored)",
             "Managed switch + VLAN-aware router",
             "UPS with network card"
-          ],
-          "estimates": {
-            "sync_time": "~8–10 hours initial sync",
-            "noise": "Depends on fans (aim <35 dB)",
-            "wattage": "45 W idle / 70 W peak"
-          }
+          ]
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Is a Raspberry Pi 5 worth it over a Pi 4?",
+          "a": "Yes. The PCIe bus on the Pi 5 allows much faster NVMe speeds, cutting sync times by ~30% compared to the Pi 4's USB bottleneck."
+        },
+        {
+          "q": "Do I really need an SSD?",
+          "a": "Absolutely. HDDs cannot handle the random I/O required for block verification; your node will stall and never catch up to the tip."
+        },
+        {
+          "q": "Can I start small and upgrade?",
+          "a": "Yes. You can migrate your data directory from a Pi to a Mini-PC later, but start with at least a 1TB drive to avoid painful migrations."
+        },
+        {
+          "q": "How much bandwidth does a node use?",
+          "a": "Expect ~600GB for the initial download, then 20-50GB/month for gossip. Check your ISP data caps."
         }
       ]
     },

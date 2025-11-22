@@ -709,6 +709,12 @@ ${tileItems}
                 if (isNodeCard) {
                   const badge = scenario.badge ? `<span class="fee-card__badge">${escapeHtml(scenario.badge)}</span>` : "";
                   const context = scenario.cost_context ? `<span class="fee-card__context">${escapeHtml(scenario.cost_context)}</span>` : "";
+                  const serviceFactor = scenario.service_factor 
+                    ? `<div class="fee-card__factor">
+                         <span class="fee-card__factor-icon">ℹ</span>
+                         <span class="fee-card__factor-text"><strong>${escapeHtml(svc.name)} factor:</strong> ${escapeHtml(scenario.service_factor)}</span>
+                       </div>` 
+                    : "";
                   
                   return `    <article class="fee-card fee-card--node" id="${id}">
       <div class="fee-card__header">
@@ -719,6 +725,7 @@ ${tileItems}
       <div class="fee-card__hero">
         <span class="fee-card__value">${escapeHtml(scenario.cost_value)}</span>
         ${context}
+        ${serviceFactor}
       </div>
       
       <div class="fee-card__body">
@@ -845,47 +852,94 @@ ${blocks}
         if (!svc.hardware_bom || !Array.isArray(svc.hardware_bom.builds)) return "";
         
         const heading = svc.hardware_bom.heading || "Hardware BOM";
+        const intro = svc.hardware_bom.intro ? `<div class="hardware-intro">${escapeHtml(svc.hardware_bom.intro)}</div>` : "";
         const builds = svc.hardware_bom.builds;
         
         const buildCards = builds.map(build => {
-          const estimates = build.estimates || {};
           const partsList = Array.isArray(build.parts) 
             ? build.parts.map(p => `<li>${escapeHtml(p)}</li>`).join('') 
             : '';
-            
+          
+          const badges = Array.isArray(build.compatibility_badges)
+            ? `<div class="hardware-card__badges">
+                 ${build.compatibility_badges.map(b => `<span class="hardware-badge">${escapeHtml(b)}</span>`).join('')}
+               </div>`
+            : '';
+
           return `
-      <div class="hardware-build-card" id="${build.id}">
-        <div class="hardware-build-header">
-          <h3>${escapeHtml(build.name)}</h3>
-          <p class="hardware-use-case">${escapeHtml(build.use_case)}</p>
+      <div class="hardware-card" id="${build.id}">
+        <div class="hardware-card__header">
+          <div class="hardware-card__title-row">
+            <h3 class="hardware-card__title">${escapeHtml(build.name)}</h3>
+            <span class="hardware-card__price">${escapeHtml(build.all_in_price || 'N/A')}</span>
+          </div>
+          <p class="hardware-card__tagline">${escapeHtml(build.tagline || '')}</p>
         </div>
-        <div class="hardware-parts">
-          <h4>Parts list</h4>
+        
+        <div class="hardware-card__tradeoff">
+          <strong>Trade-off:</strong> ${escapeHtml(build.tradeoff || '')}
+        </div>
+
+        <div class="hardware-card__specs">
+          <div class="hardware-spec">
+            <span class="spec-label">Monthly Cost</span>
+            <span class="spec-value">${escapeHtml(build.monthly_cost || 'N/A')}</span>
+          </div>
+          <div class="hardware-spec">
+            <span class="spec-label">Sync Time</span>
+            <span class="spec-value">${escapeHtml(build.sync_time || 'N/A')}</span>
+            <span class="spec-sub">${escapeHtml(build.assumptions || '')}</span>
+          </div>
+          <div class="hardware-spec">
+            <span class="spec-label">Storage</span>
+            <span class="spec-value">${escapeHtml(build.storage_guidance || 'N/A')}</span>
+          </div>
+           <div class="hardware-spec">
+            <span class="spec-label">Noise / Size</span>
+            <span class="spec-value">${escapeHtml(build.noise_footprint || 'N/A')}</span>
+          </div>
+        </div>
+
+        <div class="hardware-card__gotcha">
+          <strong>Gotcha:</strong> ${escapeHtml(build.gotcha || '')}
+        </div>
+
+        ${badges}
+
+        <details class="hardware-card__parts">
+          <summary>View parts list</summary>
           <ul>${partsList}</ul>
-        </div>
-        <div class="hardware-estimates">
-          <div class="hardware-stat">
-            <span class="stat-label">Sync Time</span>
-            <span class="stat-value">${escapeHtml(estimates.sync_time || 'N/A')}</span>
-          </div>
-          <div class="hardware-stat">
-            <span class="stat-label">Noise</span>
-            <span class="stat-value">${escapeHtml(estimates.noise || 'N/A')}</span>
-          </div>
-          <div class="hardware-stat">
-            <span class="stat-label">Power</span>
-            <span class="stat-value">${escapeHtml(estimates.wattage || 'N/A')}</span>
-          </div>
-        </div>
+        </details>
       </div>`;
         }).join('');
+
+        // Render Micro FAQs if present
+        let microFaqsHtml = "";
+        if (svc.hardware_bom.micro_faqs && Array.isArray(svc.hardware_bom.micro_faqs)) {
+             const faqItems = svc.hardware_bom.micro_faqs.map(faq => `
+            <details class="micro-faq-item">
+              <summary>${escapeHtml(faq.q)}</summary>
+              <div><p class="mono-text">${escapeHtml(faq.a)}</p></div>
+            </details>
+          `).join('');
+          
+          microFaqsHtml = `
+          <div class="hardware-micro-faqs">
+            <h3 class="section-subheading">Hardware & Capacity FAQs</h3>
+            <div class="micro-faqs__list">
+              ${faqItems}
+            </div>
+          </div>`;
+        }
         
         return `
 <section id="hardware" class="service-section">
   <h2 class="feature-label">${heading}</h2>
-  <div class="hardware-grid">
+  ${intro}
+  <div class="hardware-cards">
     ${buildCards}
   </div>
+  ${microFaqsHtml}
 </section>`;
       };
 

@@ -242,6 +242,10 @@
       <div class="fee-card__hero">
         <span class="fee-card__value">5–6 days</span>
         <span class="fee-card__context">on Pi 4 (or ~12h on Mini-PC)</span>
+        <div class="fee-card__factor">
+                         <span class="fee-card__factor-icon">ℹ</span>
+                         <span class="fee-card__factor-text"><strong>Umbrel factor:</strong> Apps remain locked until 100% sync to ensure dependency integrity.</span>
+                       </div>
       </div>
       
       <div class="fee-card__body">
@@ -271,6 +275,10 @@
       <div class="fee-card__hero">
         <span class="fee-card__value">550 GB</span>
         <span class="fee-card__context">currently + 5–7 GB/month</span>
+        <div class="fee-card__factor">
+                         <span class="fee-card__factor-icon">ℹ</span>
+                         <span class="fee-card__factor-text"><strong>Umbrel factor:</strong> Unified storage means media apps (Immich/Nextcloud) compete directly with chain data.</span>
+                       </div>
       </div>
       
       <div class="fee-card__body">
@@ -300,6 +308,10 @@
       <div class="fee-card__hero">
         <span class="fee-card__value">10–30 W</span>
         <span class="fee-card__context">~$1.30–$3.90 / month</span>
+        <div class="fee-card__factor">
+                         <span class="fee-card__factor-icon">ℹ</span>
+                         <span class="fee-card__factor-text"><strong>Umbrel factor:</strong> UmbrelOS disables disk spin-down to maintain instant Lightning routing response.</span>
+                       </div>
       </div>
       
       <div class="fee-card__body">
@@ -329,6 +341,10 @@
       <div class="fee-card__hero">
         <span class="fee-card__value">600 GB</span>
         <span class="fee-card__context">initial download + 30GB/mo</span>
+        <div class="fee-card__factor">
+                         <span class="fee-card__factor-icon">ℹ</span>
+                         <span class="fee-card__factor-text"><strong>Umbrel factor:</strong> Background Docker image updates add substantial usage beyond chain gossip.</span>
+                       </div>
       </div>
       
       <div class="fee-card__body">
@@ -386,81 +402,175 @@
 
 <section id="hardware" class="service-section">
   <h2 class="feature-label">Hardware BOM & capacity planning</h2>
-  <div class="hardware-grid">
+  <div class="hardware-intro">Umbrel runs on hardware you control. That means you choose the trade-offs between noise, cost, and performance. Pick a build that matches your app usage, but prioritize SSD storage and a wired connection to keep the node healthy.</div>
+  <div class="hardware-cards">
     
-      <div class="hardware-build-card" id="budget-pi">
-        <div class="hardware-build-header">
-          <h3>Budget Pi kit</h3>
-          <p class="hardware-use-case">Learning, personal routing, light app usage</p>
+      <div class="hardware-card" id="budget-pi">
+        <div class="hardware-card__header">
+          <div class="hardware-card__title-row">
+            <h3 class="hardware-card__title">Budget Pi kit</h3>
+            <span class="hardware-card__price">$180–$220</span>
+          </div>
+          <p class="hardware-card__tagline">Low-cost entry, but limited headroom.</p>
         </div>
-        <div class="hardware-parts">
-          <h4>Parts list</h4>
+        
+        <div class="hardware-card__tradeoff">
+          <strong>Trade-off:</strong> You save money upfront → You risk sync stalls on heavy apps like Mempool.
+        </div>
+
+        <div class="hardware-card__specs">
+          <div class="hardware-spec">
+            <span class="spec-label">Monthly Cost</span>
+            <span class="spec-value">~$1.30/mo (10W)</span>
+          </div>
+          <div class="hardware-spec">
+            <span class="spec-label">Sync Time</span>
+            <span class="spec-value">5–7 days</span>
+            <span class="spec-sub">Requires wired Ethernet + NVMe SSD (SD cards will fail).</span>
+          </div>
+          <div class="hardware-spec">
+            <span class="spec-label">Storage</span>
+            <span class="spec-value">1 TB NVMe (Full history) or 500GB (Pruned).</span>
+          </div>
+           <div class="hardware-spec">
+            <span class="spec-label">Noise / Size</span>
+            <span class="spec-value">Low noise (&lt;30dB fan), tiny footprint.</span>
+          </div>
+        </div>
+
+        <div class="hardware-card__gotcha">
+          <strong>Gotcha:</strong> Pi 4/5 shares bandwidth between USB and Network, which bottlenecks the initial sync.
+        </div>
+
+        <div class="hardware-card__badges">
+                 <span class="hardware-badge">Bitcoin Core</span><span class="hardware-badge">Lightning</span><span class="hardware-badge">Basic Apps</span>
+               </div>
+
+        <details class="hardware-card__parts">
+          <summary>View parts list</summary>
           <ul><li>Raspberry Pi 5 or 4 (8 GB RAM)</li><li>1 TB NVMe SSD in USB 3.2 enclosure</li><li>Active cooling case or fan hat</li><li>15W USB-C power supply</li></ul>
-        </div>
-        <div class="hardware-estimates">
-          <div class="hardware-stat">
-            <span class="stat-label">Sync Time</span>
-            <span class="stat-value">~5–6 days initial sync</span>
-          </div>
-          <div class="hardware-stat">
-            <span class="stat-label">Noise</span>
-            <span class="stat-value">Low (fan under 30 dB)</span>
-          </div>
-          <div class="hardware-stat">
-            <span class="stat-label">Power</span>
-            <span class="stat-value">10–12 W idle / 15 W sync</span>
-          </div>
-        </div>
+        </details>
       </div>
-      <div class="hardware-build-card" id="quiet-mini-pc">
-        <div class="hardware-build-header">
-          <h3>Quiet mini-PC</h3>
-          <p class="hardware-use-case">Daily Lightning use, Electrs, media apps</p>
+      <div class="hardware-card" id="quiet-mini-pc">
+        <div class="hardware-card__header">
+          <div class="hardware-card__title-row">
+            <h3 class="hardware-card__title">Quiet mini-PC</h3>
+            <span class="hardware-card__price">$250–$350</span>
+          </div>
+          <p class="hardware-card__tagline">The daily driver standard.</p>
         </div>
-        <div class="hardware-parts">
-          <h4>Parts list</h4>
+        
+        <div class="hardware-card__tradeoff">
+          <strong>Trade-off:</strong> You pay slightly more → You get instant dashboard loads and reliable indexing.
+        </div>
+
+        <div class="hardware-card__specs">
+          <div class="hardware-spec">
+            <span class="spec-label">Monthly Cost</span>
+            <span class="spec-value">~$3.25/mo (25W)</span>
+          </div>
+          <div class="hardware-spec">
+            <span class="spec-label">Sync Time</span>
+            <span class="spec-value">12–18 hours</span>
+            <span class="spec-sub">Fast internet (&gt;100Mbps) + SSD over SATA/NVMe.</span>
+          </div>
+          <div class="hardware-spec">
+            <span class="spec-label">Storage</span>
+            <span class="spec-value">2 TB NVMe (Allows Electrs index + Media apps).</span>
+          </div>
+           <div class="hardware-spec">
+            <span class="spec-label">Noise / Size</span>
+            <span class="spec-value">Silent (Fanless chassis available), router-sized.</span>
+          </div>
+        </div>
+
+        <div class="hardware-card__gotcha">
+          <strong>Gotcha:</strong> Requires flashing an OS image to internal disk (wipes the drive).
+        </div>
+
+        <div class="hardware-card__badges">
+                 <span class="hardware-badge">Electrs</span><span class="hardware-badge">Mempool</span><span class="hardware-badge">Post-Mix Tools</span><span class="hardware-badge">Media Apps</span>
+               </div>
+
+        <details class="hardware-card__parts">
+          <summary>View parts list</summary>
           <ul><li>Intel N100 / N305 mini PC with 16 GB RAM</li><li>2 TB NVMe SSD</li><li>Silent heatpipe chassis</li><li>Battery-backed NVMe enclosure for backups</li></ul>
-        </div>
-        <div class="hardware-estimates">
-          <div class="hardware-stat">
-            <span class="stat-label">Sync Time</span>
-            <span class="stat-value">~12–18 hours initial sync</span>
-          </div>
-          <div class="hardware-stat">
-            <span class="stat-label">Noise</span>
-            <span class="stat-value">Silent/fanless</span>
-          </div>
-          <div class="hardware-stat">
-            <span class="stat-label">Power</span>
-            <span class="stat-value">20–25 W idle / 30 W sync</span>
-          </div>
-        </div>
+        </details>
       </div>
-      <div class="hardware-build-card" id="power-user">
-        <div class="hardware-build-header">
-          <h3>Power user workstation</h3>
-          <p class="hardware-use-case">Routing, BTCPay merchants, AI / media workloads</p>
+      <div class="hardware-card" id="power-user">
+        <div class="hardware-card__header">
+          <div class="hardware-card__title-row">
+            <h3 class="hardware-card__title">Power user workstation</h3>
+            <span class="hardware-card__price">$500+</span>
+          </div>
+          <p class="hardware-card__tagline">Commercial-grade throughput.</p>
         </div>
-        <div class="hardware-parts">
-          <h4>Parts list</h4>
+        
+        <div class="hardware-card__tradeoff">
+          <strong>Trade-off:</strong> High power/cost → You run everything without lag.
+        </div>
+
+        <div class="hardware-card__specs">
+          <div class="hardware-spec">
+            <span class="spec-label">Monthly Cost</span>
+            <span class="spec-value">~$9.00/mo (70W peak)</span>
+          </div>
+          <div class="hardware-spec">
+            <span class="spec-label">Sync Time</span>
+            <span class="spec-value">8–10 hours</span>
+            <span class="spec-sub">Gigabit fiber + high-end NVMe raid.</span>
+          </div>
+          <div class="hardware-spec">
+            <span class="spec-label">Storage</span>
+            <span class="spec-value">4 TB NVMe (Mirrored RAID 1 recommended).</span>
+          </div>
+           <div class="hardware-spec">
+            <span class="spec-label">Noise / Size</span>
+            <span class="spec-value">Audible fans (35dB+), desktop tower size.</span>
+          </div>
+        </div>
+
+        <div class="hardware-card__gotcha">
+          <strong>Gotcha:</strong> Overkill for just Bitcoin; only build this if you host AI models or 50+ apps.
+        </div>
+
+        <div class="hardware-card__badges">
+                 <span class="hardware-badge">BTCPay Server</span><span class="hardware-badge">LLM AI Models</span><span class="hardware-badge">High-Vol Routing</span>
+               </div>
+
+        <details class="hardware-card__parts">
+          <summary>View parts list</summary>
           <ul><li>Ryzen 7 / Intel i7 SFF box with 32 GB RAM</li><li>4 TB NVMe or SATA SSD (mirrored)</li><li>Managed switch + VLAN-aware router</li><li>UPS with network card</li></ul>
-        </div>
-        <div class="hardware-estimates">
-          <div class="hardware-stat">
-            <span class="stat-label">Sync Time</span>
-            <span class="stat-value">~8–10 hours initial sync</span>
-          </div>
-          <div class="hardware-stat">
-            <span class="stat-label">Noise</span>
-            <span class="stat-value">Depends on fans (aim &lt;35 dB)</span>
-          </div>
-          <div class="hardware-stat">
-            <span class="stat-label">Power</span>
-            <span class="stat-value">45 W idle / 70 W peak</span>
-          </div>
-        </div>
+        </details>
       </div>
   </div>
+  
+          <div class="hardware-micro-faqs">
+            <h3 class="section-subheading">Hardware & Capacity FAQs</h3>
+            <div class="micro-faqs__list">
+              
+            <details class="micro-faq-item">
+              <summary>Is a Raspberry Pi 5 worth it over a Pi 4?</summary>
+              <div><p class="mono-text">Yes. The PCIe bus on the Pi 5 allows much faster NVMe speeds, cutting sync times by ~30% compared to the Pi 4&#039;s USB bottleneck.</p></div>
+            </details>
+          
+            <details class="micro-faq-item">
+              <summary>Do I really need an SSD?</summary>
+              <div><p class="mono-text">Absolutely. HDDs cannot handle the random I/O required for block verification; your node will stall and never catch up to the tip.</p></div>
+            </details>
+          
+            <details class="micro-faq-item">
+              <summary>Can I start small and upgrade?</summary>
+              <div><p class="mono-text">Yes. You can migrate your data directory from a Pi to a Mini-PC later, but start with at least a 1TB drive to avoid painful migrations.</p></div>
+            </details>
+          
+            <details class="micro-faq-item">
+              <summary>How much bandwidth does a node use?</summary>
+              <div><p class="mono-text">Expect ~600GB for the initial download, then 20-50GB/month for gossip. Check your ISP data caps.</p></div>
+            </details>
+          
+            </div>
+          </div>
 </section>
 </details>
 <details class="section-accordion">

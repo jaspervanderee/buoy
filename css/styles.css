@@ -3916,6 +3916,201 @@ a.trust-chip:active {
   }
 }
 
+/* === Hardware BOM & Capacity Planning === */
+.hardware-intro {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1em;
+  line-height: 1.6;
+  margin: 0 0 32px 0;
+  padding: 16px;
+  background: var(--panel);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  color: var(--text);
+}
+
+.hardware-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.hardware-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--panel);
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hardware-card:hover {
+  border-color: var(--border);
+  box-shadow: var(--shadow);
+}
+
+.hardware-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hardware-card__title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hardware-card__title {
+  font-family: "Inter", sans-serif;
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.hardware-card__price {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.hardware-card__tagline {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+.hardware-card__tradeoff {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  line-height: 1.4;
+  color: var(--text);
+  padding: 10px;
+  background: var(--bg);
+  border-radius: 4px;
+  margin: 4px 0;
+}
+
+.hardware-card__specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.hardware-spec {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.spec-label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75em;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.spec-value {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.spec-sub {
+  font-size: 0.8em;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.hardware-card__gotcha {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.85em;
+  color: var(--text-muted);
+  padding-left: 12px;
+  border-left: 2px solid #f44336; /* Red warning line */
+  line-height: 1.4;
+}
+
+.hardware-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto; /* Push to bottom if flex column */
+}
+
+.hardware-badge {
+  font-family: "Inter", sans-serif;
+  font-size: 0.7em;
+  font-weight: 600;
+  padding: 4px 8px;
+  background: var(--bg);
+  color: var(--text-muted);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.hardware-card__parts {
+  margin-top: 8px;
+}
+
+.hardware-card__parts summary {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--link);
+  cursor: pointer;
+  list-style: none;
+}
+
+.hardware-card__parts summary::-webkit-details-marker {
+  display: none;
+}
+
+.hardware-card__parts ul {
+  margin: 8px 0 0 0;
+  padding-left: 20px;
+  list-style: disc;
+  font-size: 0.9em;
+  color: var(--text-muted);
+}
+
+.hardware-micro-faqs {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+@media (min-width: 768px) {
+  .hardware-cards {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+    gap: 24px;
+  }
+  
+  .hardware-card {
+    padding: 24px;
+  }
+  
+  .hardware-card__specs {
+    grid-template-columns: 1fr; /* Stack specs in column for narrow cards */
+  }
+}
+
 /* === Payment Methods & Limits Section === */
 .payment-cards {
   display: grid;
@@ -5710,3 +5905,4 @@ main:has(.blog-list) h1 {
   padding-top: 8px;
   border-top: 1px solid var(--border);
 }
+
