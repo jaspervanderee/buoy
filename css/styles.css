@@ -67,6 +67,144 @@ input, select, textarea, button {
   border: 1px solid var(--border);
 }
 
+/* === Shared Utilities === */
+
+/* Unified Panel Styles */
+.card,
+.fee-card,
+.payment-card,
+.privacy-card,
+.migration-card,
+.svc-compat__tile,
+.feature-tile,
+.costs-card,
+.scenario-card,
+.article-card,
+.costs-summary__item,
+.compat-table,
+.compat-advanced,
+.feature-value,
+.trust-chip,
+.action-button,
+.brand-faq .faq-list {
+  background: var(--panel);
+  border-radius: 8px;
+}
+
+/* Unified List Resets */
+.menu-section ul,
+.menu ul,
+.dropdown-list,
+.breadcrumbs ol,
+.breadcrumbs ul,
+.footer-column ul,
+.service-section .feature-value ul,
+.service-section .feature-value ol,
+.migration-recommendations ul,
+.privacy-card__list,
+.alt-grid,
+.compat-items-list,
+.costs-list,
+.blog-list,
+.compat-advanced-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Unified Disclosure/Accordion Styles */
+.fee-card__learn-more summary,
+.payment-details summary,
+.micro-faqs .micro-faq-item summary,
+.fee-quick-answers .micro-faq-item summary,
+.section-fees .key-terms summary,
+.svc-compat__tile summary,
+.mini-glossary summary {
+  cursor: pointer;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s ease;
+}
+
+/* Default accent color for summaries (overridden by specific classes if needed) */
+.fee-card__learn-more summary,
+.payment-details summary,
+.svc-compat__tile summary {
+  color: var(--accent);
+}
+
+/* Muted color for glossaries/FAQs */
+.micro-faqs .micro-faq-item summary,
+.fee-quick-answers .micro-faq-item summary,
+.section-fees .key-terms summary,
+.mini-glossary summary {
+  color: var(--text-muted);
+  font-weight: 400; /* Some are lighter */
+  font-family: "Ubuntu Mono", monospace; /* FAQs use Mono? Check original */
+}
+/* Re-override for key-terms/glossary which use Inter/Bold in some places? 
+   Checking original: 
+   .micro-faqs .micro-faq-item summary -> Ubuntu Mono, 400 (Line 3850)
+   .key-terms summary -> Inter, 600, text-muted (Line 3900)
+   .mini-glossary summary -> Inter, 600, text-muted (Line 3441)
+*/
+.section-fees .key-terms summary,
+.mini-glossary summary {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
+
+.micro-faqs .micro-faq-item summary:hover,
+.fee-quick-answers .micro-faq-item summary:hover,
+.section-fees .key-terms summary:hover,
+.mini-glossary summary:hover {
+  color: var(--text);
+}
+
+
+/* Hide Markers */
+.fee-card__learn-more summary::-webkit-details-marker,
+.payment-details summary::-webkit-details-marker,
+.micro-faqs .micro-faq-item summary::-webkit-details-marker,
+.fee-quick-answers .micro-faq-item summary::-webkit-details-marker,
+.section-fees .key-terms summary::-webkit-details-marker,
+.svc-compat__tile summary::-webkit-details-marker,
+.mini-glossary summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Arrow Icon */
+.fee-card__learn-more summary::before,
+.payment-details summary::before,
+.micro-faqs .micro-faq-item summary::before,
+.fee-quick-answers .micro-faq-item summary::before,
+.section-fees .key-terms summary::before,
+.svc-compat__tile summary::before,
+.mini-glossary summary::before {
+  content: "\2193"; /* Down arrow */
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  color: var(--accent);
+}
+
+/* Rotated State */
+.fee-card__learn-more[open] summary::before,
+.payment-details[open] summary::before,
+.micro-faqs .micro-faq-item[open] summary::before,
+.fee-quick-answers .micro-faq-item[open] summary::before,
+.section-fees .key-terms[open] summary::before,
+.svc-compat__tile details[open] > summary::before,
+.mini-glossary[open] summary::before {
+  transform: rotate(180deg);
+}
+
+
 
 
 
@@ -216,13 +354,6 @@ header .container {
 }
 
 
-/* Menu list - consolidated */
-.menu-section ul,
-.menu ul {
-  list-style: none; /* Remove bullets */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margin */
-}
 
 /* Menu list items */
 .menu-section ul li {
@@ -313,9 +444,6 @@ header .container {
   width: 100%;
   background-color: #121212;
   border-radius: 10px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: none;
   z-index: 1000;
 }
@@ -401,10 +529,6 @@ header .container {
 }
 
 
-.menu ul {
-  list-style: none;
-  padding: 0;
-}
 
 .menu li {
   margin: 10px 0;
@@ -431,7 +555,6 @@ header .container {
 
 .hero-headline h1 {
   font-size: 2.5em; /* Smaller base size for mobile */
-  font-family: "Inter", sans-serif;
   font-weight: 500;
   color: var(--text);
   margin: 0 0 12px 0; /* Tighter margin for mobile */
@@ -505,7 +628,7 @@ header .container {
 }
 
 #main-search-btn:hover {
-  color: #ff603b;
+  color: var(--accent);
 }
 
 #main-search-suggestions {
@@ -598,7 +721,7 @@ header .container {
 /* Mobile donate button styling */
 .mobile-donate-btn {
   display: inline-block;
-  background: #ff603b;
+  background: var(--accent);
   color: white;
   padding: 12px 24px;
   border-radius: 8px;
@@ -667,7 +790,7 @@ h2 {
 
 /* Hover effect for better interactivity */
 .category h2 a:hover {
-  color: #ff603b; /* Highlight color on hover */
+  color: var(--accent); /* Highlight color on hover */
 }
 
 /* Optional: Focus effect for accessibility */
@@ -745,12 +868,6 @@ h2 {
 .breadcrumb-back a:active,
 .breadcrumb-back a:focus { color: var(--link); text-decoration: none; }
 
-/* Reset list styles; mobile-first hides the trail (<ol>) by default */
-.breadcrumbs ol, .breadcrumbs ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
 
 .breadcrumbs li {
   display: inline-flex;
@@ -845,16 +962,10 @@ footer h3 {
   }
 
 .footer-column h3 {
-  font-family: "Inter", sans-serif;
   font-size: 1em; 
   margin-bottom: 10px; /* Space below the heading */
 }
 
-.footer-column ul {
-  list-style: none; /* Remove bullets */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Remove margin */
-}
 
 .footer-column ul li a {
   text-decoration: none; /* Remove underline */
@@ -881,7 +992,7 @@ footer h3 {
   margin: 24px 0;
   padding: 16px 16px 12px;
   background: var(--panel);
-  border-left: 4px solid #ff603b;
+  border-left: 4px solid var(--accent);
   border-radius: 6px;
 }
 
@@ -965,8 +1076,6 @@ p, li, a {
 .card {
   flex: 0 0 auto; /* Prevent cards from shrinking */
   aspect-ratio: 1 / 1; /* Maintain a square shape */
-  background: var(--panel);
-  border-radius: 8px;
   padding: 10px;
   text-align: center;
   box-sizing: border-box; /* Include padding in the card size */
@@ -1006,8 +1115,8 @@ p, li, a {
 
 .card.selected .select-circle,
 .select-circle.selected {
-  background: #ff603b;
-  border-color: #ff603b;
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 .select-circle::after {
@@ -1109,8 +1218,8 @@ p, li, a {
 
 .compare-btn.active {
   color: white;
-  background: #ff603b;
-  border-color: #ff603b;
+  background: var(--accent);
+  border-color: var(--accent);
   cursor: pointer;
   box-shadow: 0 1px 2px rgba(255, 96, 59, 0.1); /* Subtle shadow for depth */
 }
@@ -1185,7 +1294,7 @@ p, li, a {
 
 /* Primary CTA: orange brand button */
 .cta-button--primary {
-  background-color: #ff603b;
+  background-color: var(--accent);
   color: white;
   font-weight: 600;
   padding: 8px 20px;
@@ -1491,7 +1600,7 @@ p, li, a {
 
 .rating-modal .star-rating span:hover,
 .rating-modal .star-rating span:hover ~ span {
-  color: #ff603b; /* brand accent */
+  color: var(--accent); /* brand accent */
 }
 
 
@@ -1633,13 +1742,6 @@ p, li, a {
   font-weight: 700;
 }
 
-/* --- Service sections: unified look across Fees, Privacy, Interop, Migration --- */
-.service-section .feature-value ul,
-.service-section .feature-value ol {
-  list-style: none;      /* no browser bullets */
-  padding-left: 0;       /* align text with paragraphs */
-  margin: 0;             /* reset UA margins */
-}
 
 /* pleasant spacing between items when lists are used */
 .service-section .feature-value li + li { margin-top: 6px; }
@@ -1685,13 +1787,10 @@ p, li, a {
 
 /* Individual flow card */
 .migration-card {
-  background: var(--panel);
-  border-radius: 8px;
   padding: 16px;
 }
 
 .migration-card h3 {
-  font-family: "Inter", sans-serif;
   font-size: 1.1em;
   font-weight: 600;
   line-height: 1.4;
@@ -1761,11 +1860,6 @@ p, li, a {
   color: var(--text-muted);
 }
 
-.migration-recommendations ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
 
 .migration-recommendations li {
   margin: 12px 0;
@@ -1850,9 +1944,7 @@ p, li, a {
   font-size: 1em;
   font-family: "Ubuntu Mono", monospace;
   font-weight: 300;
-  background: var(--panel);
   padding: 10px;
-  border-radius: 8px;
   text-align: left;
   margin-bottom: 0; /* Reset default; specific contexts add their own spacing */
 }
@@ -2017,7 +2109,7 @@ p, li, a {
 .expand-btn {
   background: none;
   border: none;
-  color: #ff603b;
+  color: var(--accent);
   cursor: pointer;
   font-family: "Inter", sans-serif;
   font-size: 0.8em;
@@ -2082,8 +2174,6 @@ p, li, a {
 
 /* Only the list (not the heading) gets the card-like background */
 .brand-faq .faq-list {
-  background: var(--panel);
-  border-radius: 8px;
   padding: 10px;
 }
 
@@ -2096,27 +2186,10 @@ p, li, a {
 /* Remove default triangle list marker spacing for cleaner look */
 .brand-faq details { margin: 8px 0; }
 
-/* Hide default disclosure triangle and use the same down-arrow feel as the Read more button */
-.brand-faq summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; }
-.brand-faq summary::-webkit-details-marker { display: none; }
-.brand-faq details > summary::before {
-  content: "\2193"; /* down arrow */
-  font-family: "Inter", sans-serif;
-  font-size: 1em;
-  line-height: 1;
-  transition: transform 0.2s ease;
-  color: #ff603b; /* match Read more arrow */
-}
-.brand-faq details[open] > summary::before { transform: rotate(180deg); }
-
 .brand-faq details {
   margin: 0.75rem 0;
 }
 
-.brand-faq summary {
-  cursor: pointer;
-  font-weight: 600;
-}
 
 .brand-faq details > div {
   margin-top: 0.5rem;
@@ -2313,9 +2386,7 @@ p, li, a {
 }
 
 .action-button {
-  background: var(--panel);
   border: 1.5px solid transparent;
-  border-radius: 8px;
   padding: 28px 32px;
   font-size: 1.15em;
   color: var(--text);
@@ -2342,7 +2413,7 @@ p, li, a {
 }
 
 .action-button:hover {
-  border-color: #ff603b;
+  border-color: var(--accent);
   background: rgba(255, 96, 59, 0.02);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(255, 96, 59, 0.1),
@@ -2422,7 +2493,7 @@ p, li, a {
   right: 20px;
   width: 50px;
   height: 50px;
-  background-color: #ff603b;
+  background-color: var(--accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -2563,9 +2634,9 @@ p, li, a {
 
 /* Override the background when active */
 #main-compare-btn.compare-btn.active {
-  background: #ff603b;
+  background: var(--accent);
   color: white;
-  border-color: #ff603b;
+  border-color: var(--accent);
   cursor: pointer;
 }
 
@@ -2592,8 +2663,8 @@ p, li, a {
 }
 
 .suggestion-item .select-circle.selected circle {
-  fill: #ff603b;
-  stroke: #ff603b;
+  fill: var(--accent);
+  stroke: var(--accent);
   stroke-width: 0;
 }
 
@@ -2617,7 +2688,6 @@ p, li, a {
   font-size: 2em;
   max-width: 600px;
   margin: 0 auto 20px;
-  font-family: "Inter", sans-serif;
   font-weight: 700;
 }
 
@@ -2646,7 +2716,7 @@ p, li, a {
 
 .newsletter-signup button {
   background: transparent;
-  color: #ff603b;
+  color: var(--accent);
   border: none;
   font-size: 1em;
   cursor: pointer;
@@ -2783,7 +2853,7 @@ p, li, a {
 }
 
 .see-more-services a:hover {
-  color: #ff603b;
+  color: var(--accent);
 }
 
 .see-more-services .arrow-down {
@@ -2936,7 +3006,7 @@ p, li, a {
 .seo-copy.space .usp svg{
   width:20px; height:20px;
   margin-top:2px;           /* nudge onto first text line */
-  color:#ff603b;            /* ensure visible icon color */
+  color:var(--accent);            /* ensure visible icon color */
   flex:0 0 auto;
 }
 .seo-copy.space .usp h4{
@@ -3123,9 +3193,7 @@ p, li, a {
 }
 
 .trust-chip {
-  background: var(--panel);
   border: 1.5px solid transparent;
-  border-radius: 8px;
   padding: 16px 20px;
   text-align: center;
   font-size: 1em;
@@ -3153,7 +3221,7 @@ a.trust-chip {
 }
 
 a.trust-chip:hover {
-  border-color: #ff603b;
+  border-color: var(--accent);
   background: rgba(255, 96, 59, 0.02);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(255, 96, 59, 0.1),
@@ -3188,8 +3256,6 @@ a.trust-chip:active {
 }
 
 .alt-grid {
-  list-style: none;
-  padding: 0;
   margin: 12px 0 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -3334,8 +3400,6 @@ a.trust-chip:active {
 }
 
 .privacy-card {
-  background: var(--panel);
-  border-radius: 8px;
   padding: 16px;
 }
 
@@ -3367,8 +3431,6 @@ a.trust-chip:active {
 
 /* NEW: Bitkey uses compat tile structure - custom bullet styling */
 .privacy-card__list {
-  list-style: none;
-  padding: 0;
   margin: 12px 0 0 0;
   display: flex;
   flex-direction: column;
@@ -3439,38 +3501,8 @@ a.trust-chip:active {
 }
 
 .mini-glossary summary {
-  cursor: pointer;
-  font-family: "Inter", sans-serif;
   font-size: 0.8em; /* Match feature-label sublabel */
-  font-weight: 600;
   padding: 8px 0;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-muted); /* Match feature-label sublabel */
-  transition: color 0.2s ease;
-}
-
-.mini-glossary summary:hover {
-  color: var(--text);
-}
-
-.mini-glossary summary::-webkit-details-marker {
-  display: none;
-}
-
-.mini-glossary summary::before {
-  content: "\2193"; /* Standard site-wide down arrow */
-  font-family: "Inter", sans-serif;
-  font-size: 1em;
-  line-height: 1;
-  transition: transform 0.2s ease;
-  color: #ff603b;
-}
-
-.mini-glossary[open] summary::before {
-  transform: rotate(180deg);
 }
 
 .mini-glossary dl {
@@ -3576,8 +3608,6 @@ a.trust-chip:active {
 }
 
 .fee-card {
-  background: var(--panel);
-  border-radius: 8px;
   padding: 16px;
   transition: border-color 0.3s ease, background-color 0.3s ease;
   scroll-margin-top: 250px; /* Offset for sticky header + CTA bar */
@@ -3727,32 +3757,7 @@ a.trust-chip:active {
 }
 
 .fee-card__learn-more summary {
-  cursor: pointer;
-  font-family: "Inter", sans-serif;
   font-size: 0.8em; /* Match sublabel size */
-  font-weight: 600;
-  color: var(--accent);
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.fee-card__learn-more summary::-webkit-details-marker {
-  display: none;
-}
-
-.fee-card__learn-more summary::before {
-  content: "\2193"; /* Standard down arrow (match FAQ) */
-  font-family: "Inter", sans-serif;
-  font-size: 1em;
-  line-height: 1;
-  transition: transform 0.2s ease;
-  color: #ff603b; /* Match FAQ arrow */
-}
-
-.fee-card__learn-more[open] summary::before {
-  transform: rotate(180deg); /* Rotate up when open (match FAQ) */
 }
 
 /* Toggle text between "Learn more" and "Hide details" */
@@ -3844,37 +3849,6 @@ a.trust-chip:active {
   margin: 8px 0;
 }
 
-.fee-quick-answers .micro-faq-item summary,
-.micro-faqs .micro-faq-item summary {
-  cursor: pointer;
-  font-family: "Ubuntu Mono", monospace;
-  font-weight: 400;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: color 0.2s ease;
-}
-
-.fee-quick-answers .micro-faq-item summary::-webkit-details-marker,
-.micro-faqs .micro-faq-item summary::-webkit-details-marker {
-  display: none;
-}
-
-.fee-quick-answers .micro-faq-item summary::before,
-.micro-faqs .micro-faq-item summary::before {
-  content: "\2193"; /* Standard site-wide down arrow */
-  font-family: "Inter", sans-serif;
-  font-size: 1em;
-  line-height: 1;
-  transition: transform 0.2s ease;
-  color: #ff603b;
-}
-
-.fee-quick-answers .micro-faq-item[open] summary::before,
-.micro-faqs .micro-faq-item[open] summary::before {
-  transform: rotate(180deg);
-}
 
 .fee-quick-answers .micro-faq-item > div,
 .micro-faqs .micro-faq-item > div {
@@ -3896,38 +3870,8 @@ a.trust-chip:active {
 }
 
 .section-fees .key-terms summary {
-  cursor: pointer;
-  font-family: "Inter", sans-serif;
   font-size: 0.8em; /* Match feature-label sublabel */
-  font-weight: 600;
   padding: 8px 0;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-muted); /* Match feature-label sublabel */
-  transition: color 0.2s ease;
-}
-
-.section-fees .key-terms summary:hover {
-  color: var(--text);
-}
-
-.section-fees .key-terms summary::-webkit-details-marker {
-  display: none;
-}
-
-.section-fees .key-terms summary::before {
-  content: "\2193"; /* Standard site-wide down arrow */
-  font-family: "Inter", sans-serif;
-  font-size: 1em;
-  line-height: 1;
-  transition: transform 0.2s ease;
-  color: #ff603b;
-}
-
-.section-fees .key-terms[open] summary::before {
-  transform: rotate(180deg);
 }
 
 .section-fees .key-terms dl {
@@ -3981,8 +3925,6 @@ a.trust-chip:active {
 }
 
 .payment-card {
-  background: var(--panel);
-  border-radius: 8px;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -4068,32 +4010,7 @@ a.trust-chip:active {
 }
 
 .payment-details summary {
-  cursor: pointer;
-  font-family: "Inter", sans-serif;
   font-size: 0.8em;
-  font-weight: 600;
-  color: var(--accent);
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.payment-details summary::-webkit-details-marker {
-  display: none;
-}
-
-.payment-details summary::before {
-  content: "\2193";
-  font-family: "Inter", sans-serif;
-  font-size: 1em;
-  line-height: 1;
-  transition: transform 0.2s ease;
-  color: #ff603b;
-}
-
-.payment-details[open] summary::before {
-  transform: rotate(180deg);
 }
 
 .payment-details > div {
@@ -4252,8 +4169,6 @@ a.trust-chip:active {
 
 .svc-compat__tile,
 .feature-tile {
-  background: var(--panel);
-  border-radius: 8px;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -4478,32 +4393,7 @@ a.trust-chip:active {
 }
 
 .svc-compat__tile summary {
-  cursor: pointer;
-  font-family: "Inter", sans-serif;
   font-size: 0.8em; /* Match Fees section Learn more */
-  font-weight: 600;
-  color: var(--accent);
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.svc-compat__tile summary::-webkit-details-marker {
-  display: none;
-}
-
-.svc-compat__tile details > summary::before {
-  content: "\2193";
-  font-family: "Inter", sans-serif;
-  font-size: 1em;
-  line-height: 1;
-  transition: transform 0.2s ease;
-  color: #ff603b;
-}
-
-.svc-compat__tile details[open] > summary::before {
-  transform: rotate(180deg);
 }
 
 /* Toggle text between "Show steps" and "Hide steps" */
@@ -4654,8 +4544,6 @@ main.container {
 }
 
 .article-card {
-  background: var(--panel);
-  border-radius: 8px;
   padding: 0.75rem 1rem;
   text-decoration: none;
   display: block;
@@ -4698,9 +4586,6 @@ main:has(.blog-list) h1 {
 }
 
 .blog-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -4755,7 +4640,6 @@ main:has(.blog-list) h1 {
 
 .blog-article h1 {
   font-size: 2em;
-  font-family: "Inter", sans-serif;
   font-weight: 700;
   margin: 0 0 0.5rem 0;
   line-height: 1.2;
@@ -4785,14 +4669,12 @@ main:has(.blog-list) h1 {
 
 .blog-article h2 {
   font-size: 1.5em;
-  font-family: "Inter", sans-serif;
   font-weight: 600;
   margin: 2rem 0 1rem 0;
 }
 
 .blog-article h3 {
   font-size: 1.2em;
-  font-family: "Inter", sans-serif;
   font-weight: 600;
   margin: 1.5rem 0 0.75rem 0;
 }
@@ -4989,7 +4871,7 @@ main:has(.blog-list) h1 {
 
 /* Grey out unavailable inheritance paths (service doesn't offer these) */
 #inheritance-diy-singlesig {
-  border: 1px solid #ff603b;
+  border: 1px solid var(--accent);
 }
 
 /* Visual status indicators for different card types */
@@ -5296,8 +5178,6 @@ main:has(.blog-list) h1 {
   gap: 4px;
   padding: 12px;
   text-align: center;
-  background: var(--panel);
-  border-radius: 8px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -5342,8 +5222,6 @@ main:has(.blog-list) h1 {
 }
 
 .costs-card {
-  background: var(--panel);
-  border-radius: 8px;
   padding: 20px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -5359,9 +5237,6 @@ main:has(.blog-list) h1 {
 
 /* Cost items list */
 .costs-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -5461,8 +5336,6 @@ main:has(.blog-list) h1 {
 }
 
 .scenario-card {
-  background: var(--panel);
-  border-radius: 8px;
   padding: 16px;
   transition: all 0.2s ease;
   scroll-margin-top: 250px;
@@ -5559,11 +5432,6 @@ main:has(.blog-list) h1 {
    ======================================== */
 
 /* Hardware & OS cards: reuse payment-card styling */
-.compat-items-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
 
 .compat-items-list li {
   padding: 12px 0;
@@ -5639,8 +5507,6 @@ main:has(.blog-list) h1 {
   border-collapse: collapse;
   font-family: "Ubuntu Mono", monospace;
   font-size: 1em;
-  background: var(--panel);
-  border-radius: 8px;
   overflow: hidden;
 }
 
@@ -5761,8 +5627,6 @@ main:has(.blog-list) h1 {
 .compat-advanced {
   margin: 16px 0 0 0;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--panel);
 }
 
 .compat-advanced summary {
@@ -5801,7 +5665,6 @@ main:has(.blog-list) h1 {
 
 .compat-advanced-list {
   padding: 16px;
-  margin: 0;
   border-top: 1px solid var(--border);
 }
 
