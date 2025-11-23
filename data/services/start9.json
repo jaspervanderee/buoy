@@ -4,16 +4,24 @@
   "type_of_platform": "Home server as software and / or hardware",
   "faqs": [
     {
-      "q": "What is Start9?",
-      "a": "Start9 offers StartOS and plug‑and‑play personal servers (Server One/Pure) to self‑host Bitcoin, Lightning and many apps."
+      "q": "How do I reach the StartOS dashboard on day one?",
+      "a": "Connect your Server One, Server Pure, or DIY box to power plus Ethernet, keep your laptop or phone on the same LAN, and visit `http://start.local` to run the Start Fresh wizard. The UI walks you through choosing Start Fresh or Recovery so the device can provision itself."
     },
     {
-      "q": "Is Start9 open source?",
-      "a": "StartOS is source‑available; many bundled apps are open‑source."
+      "q": "How do Start9 backups work?",
+      "a": "Open System → Create Backup, pick a physical drive or SMB network folder, enter your master password, and StartOS writes an encrypted archive while warning you to favor high-endurance storage. You can continue using the server while the job runs and confirm the timestamp under System → Backups."
     },
     {
-      "q": "Which hardware should I choose?",
-      "a": "Use Server One/Pure for turnkey support, or install StartOS on your own x86/Raspberry Pi for DIY control."
+      "q": "How do I trust the StartOS Root CA for HTTPS?",
+      "a": "Download the Root CA during onboarding, from the startos-info file, or later via System → Root CA, then follow the Linux/Mac/Windows/Android/iOS instructions to import it. Once installed, browsers open your `.local` URLs over HTTPS without warnings."
+    },
+    {
+      "q": "What hardware does StartOS support?",
+      "a": "StartOS boots on Raspberry Pi and most x86_64 hardware, but the DIY guide warns Pis struggle with Bitcoin workloads, so plan for at least 8 GB of RAM and a 1 TB SSD on x86 if you need a full node. Lightweight services like password vaults or file shares can still live on Pi kits using high-endurance microSD cards."
+    },
+    {
+      "q": "How do I recover after a disk failure?",
+      "a": "Flash StartOS, choose Recover, then pick Use Existing Drive, Transfer, or Restore from Backup to load your encrypted data onto the new disk. Transfer mode copies everything from the old drive to a larger replacement so your Tor and LAN addresses remain unchanged."
     }
   ],
   "features": {
@@ -36,15 +44,651 @@
       }
     ]
   },
-  "price": "$619: Server One<br>$899: Server Pure",
+  "price": "$699: Server One<br>$899: Server Pure",
   "user_experience": "0.0",
   "interface": "Desktop only",
   "support": "Community forums and Premium support (Free with device)",
   "profile": "Matt Hill",
-  "description": "Start9 (Start9 Labs) is the creator of the Embassy—a turnkey, self-hosted personal server and Bitcoin stack powered by their open-source StartOS. Their mission is to eliminate reliance on centralized third parties, placing privacy, decentralization, and individual autonomy at the forefront. Unlike other DIY solutions, Start9 aims to \"level the playing field,\" offering plug-and-play hardware kits (like Embassy One and Embassy Pro) or a do-it-yourself image for Raspberry Pi or x86, all fully supported by their first-class community and expert support team.\\n\\nStart9's target users are privacy-conscious individuals, Bitcoiners, and anyone seeking digital autonomy without sacrificing usability. They prioritize delivering polished self-sovereign computing with high-quality hardware, intuitive interfaces, and expert support (via Matrix) to onboard less technical users while remaining fully transparent and open-source. Users appreciate its robust foundation, modular update system (allowing single-service patching), backup ease, and strong headless health checking—compared to alternatives like Umbrel.\\n\\nLooking forward, Start9 envisions a world where personal servers become the backbone of a sovereign internet and smart homes, enabling blockchain-native apps, decentralized messaging, password managers, file storage, and more. Their open hardware and software philosophy ensures that even if the company disappears, the ecosystem lives on—fully community-driven and censorship-resistant.",
+  "description": "Start9 (Start9 Labs) is the creator of the Embassy—a turnkey, self-hosted personal server and Bitcoin stack powered by their open-source StartOS. Their mission is to eliminate reliance on centralized third parties, placing privacy, decentralization, and individual autonomy at the forefront. Unlike other DIY solutions, Start9 aims to \"level the playing field,\" offering plug-and-play hardware kits (like Server One and Server Pure) or a do-it-yourself image for Raspberry Pi or x86, all fully supported by their first-class community and expert support team.\\n\\nStart9's target users are privacy-conscious individuals, Bitcoiners, and anyone seeking digital autonomy without sacrificing usability. They prioritize delivering polished self-sovereign computing with high-quality hardware, intuitive interfaces, and expert support (via Matrix) to onboard less technical users while remaining fully transparent and open-source. Users appreciate its robust foundation, modular update system (allowing single-service patching), backup ease, and strong headless health checking—compared to alternatives like Umbrel.\\n\\nLooking forward, Start9 envisions a world where personal servers become the backbone of a sovereign internet and smart homes, enabling blockchain-native apps, decentralized messaging, password managers, file storage, and more. Their open hardware and software philosophy ensures that even if the company disappears, the ecosystem lives on—fully community-driven and censorship-resistant.",
   "founded_in": "2020",
   "website": "https://start9.com",
   "countries": [
     "WW"
-  ]
+  ],
+  "supported_network": "Bitcoin Core, Lightning (LND and Core Lightning), and the StartOS marketplace catalog for Nextcloud, Vaultwarden, Matrix, Jellyfin, and other LAN-native services.",
+  "custody_control": "Self-hosted (you run StartOS and hold all keys on hardware you own).",
+  "kyc_required": "No",
+  "recovery_method": "Encrypted backups to physical drives or SMB folders plus Recover/Transfer wizards to reuse or restore disks.",
+  "open_source": "Source-available (StartOS releases published on GitHub).",
+  "app_ratings": {
+    "ios": null,
+    "android": null
+  },
+  "links": {
+    "download": "https://github.com/Start9Labs/start-os/releases/latest",
+    "docs": "https://docs.start9.com/0.3.5.x/",
+    "hardware": "https://store.start9.com/products"
+  },
+  "trust_chips": [
+    {
+      "text": "StartOS marketplace",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "app-store"
+    },
+    {
+      "text": "Bitcoin Core manager",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "btc-core"
+    },
+    {
+      "text": "Lightning daemons",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "lightning-daemons"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "People who want StartOS to orchestrate Bitcoin, Lightning, and self-hosted apps while everything runs on their own metal.",
+    "consider_if": "You want a curated, signed marketplace and Tor-ready remote access on a dedicated private server (plug-and-play or DIY).",
+    "not_ideal_when": "You expect Raspberry Pi hardware to power a Bitcoin stack despite Start9’s warning, or you require fully permissive open-source licensing."
+  },
+  "howto": {
+    "title": "Set up your StartOS server",
+    "steps": [
+      {
+        "id": "flash-startos",
+        "title": "1. Flash the StartOS image",
+        "chips": {
+          "setup_time": "~20 min",
+          "cost": "Free",
+          "risk": "Medium (erases target media)"
+        },
+        "actions": [
+          "**Skip this step** if you bought a Server One or Server Pure (it comes pre-flashed).",
+          "Download the latest `startos-...img.gz` release from GitHub and optionally verify the SHA256 hash.",
+          "Write the image to a microSD card or USB SSD with balenaEtcher, just as the flashing guide outlines."
+        ],
+        "gotcha": "Start9 reminds you that reflashing an SD card will erase every byte on it, so pull data you need before writing the image."
+      },
+      {
+        "id": "first-boot",
+        "title": "2. Boot and visit start.local",
+        "chips": {
+          "setup_time": "~10 min",
+          "cost": "Existing hardware",
+          "risk": "Low (guided setup)"
+        },
+        "sync_time": "Initial block download can take many hours on SSD-based x86 hardware and is unreliable on Raspberry Pi kits.",
+        "actions": [
+          "Connect the server to power plus Ethernet, keep your laptop/phone on the same LAN, and open `http://start.local`.",
+          "Choose Start Fresh or the Recovery path, then follow the on-screen prompts to provision the OS.",
+          "If you are migrating, pick Use Existing Drive or Transfer to reuse your previous data set."
+        ],
+        "gotcha": "The DIY guide explicitly warns that Raspberry Pi builds stall on Bitcoin workloads, so treat Pi as a light-duty appliance."
+      },
+      {
+        "id": "trust-ca",
+        "title": "3. Trust the Root CA",
+        "chips": {
+          "setup_time": "~5 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Download the server’s Root CA during onboarding, from the startos-info file, or later via System → Root CA.",
+          "Import the certificate using the Linux, Mac, Windows, Android, or iOS guides so browsers accept your `.local` sites.",
+          "Keep a copy handy so you can share it with every device that needs HTTPS access to StartOS."
+        ],
+        "gotcha": "Tor Browser ignores `.local` addresses, so trust the certificate in a standard browser on the LAN first."
+      },
+      {
+        "id": "install-services",
+        "title": "4. Install services from the Marketplace",
+        "chips": {
+          "setup_time": "~15 min per service",
+          "cost": "Depends on the app",
+          "risk": "Low (signed registries)"
+        },
+        "actions": [
+          "Open Marketplace → Change to view Start9 and Community registries or add your own signed registry.",
+          "Install Bitcoin Core, Lightning, Electrs, Nextcloud, Vaultwarden, or other apps, then pin their widgets on the dashboard.",
+          "Use Service Dashboard, Actions, and Logs to monitor each container and keep an eye on shared storage under System."
+        ],
+        "gotcha": "Apps share CPU, RAM, and disk, so watch System → Storage before enabling heavy indexes or photo libraries."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Can I reuse an existing StartOS data drive?",
+        "a": "Yes. During onboarding choose Recover → Use Existing Drive so the wizard mounts your old data disk and recreates the server with new credentials."
+      },
+      {
+        "q": "How do I grab the Root CA again later?",
+        "a": "Go to System → Root CA, download the certificate, and send it to any device that needs trusted HTTPS access."
+      }
+    ]
+  },
+  "hardware_bom": {
+    "heading": "Hardware options",
+    "intro": "Start9 offers plug-and-play servers with lifetime support, or you can build your own using commodity hardware. Official servers guarantee compatibility; DIY builds save money but require you to manage the hardware.",
+    "builds": [
+      {
+        "id": "server-one",
+        "name": "Server One",
+        "tagline": "The standard for sovereign computing.",
+        "use_case": "Running a full Bitcoin stack + AI/Media apps",
+        "tradeoff": "You pay a premium upfront → You get a tested, plug-and-play device with lifetime support.",
+        "all_in_price": "$699",
+        "monthly_cost": "Low (Mobile processor)",
+        "sync_time": "Fast (NVMe pre-synced option available)",
+        "assumptions": "Includes power & cables. Just add Ethernet.",
+        "storage_guidance": "2 TB NVMe included (expandable).",
+        "noise_footprint": "Near silent active cooling.",
+        "gotcha": "Higher entry cost than a DIY mini-PC.",
+        "compatibility_badges": [
+          "Bitcoin Core",
+          "Lightning",
+          "AI Services"
+        ],
+        "parts": [
+          "AMD Ryzen 7 5825U (8-core)",
+          "16 GB DDR4 RAM",
+          "2 TB NVMe SSD",
+          "Custom aluminum chassis"
+        ]
+      },
+      {
+        "id": "server-pure",
+        "name": "Server Pure",
+        "tagline": "Auditable firmware for maximum security.",
+        "use_case": "High-threat models & firmware sovereignty",
+        "tradeoff": "You pay for open hardware → You remove Intel ME and closed-source firmware risks.",
+        "all_in_price": "$899",
+        "monthly_cost": "Moderate (Performance CPU)",
+        "sync_time": "Fastest",
+        "assumptions": "For users who need hardware-level trust.",
+        "storage_guidance": "2 TB NVMe included.",
+        "noise_footprint": "Quiet active cooling.",
+        "gotcha": "Overkill unless you specifically need open firmware.",
+        "compatibility_badges": [
+          "Coreboot / Heads",
+          "Intel ME Disabled",
+          "Tamper evident"
+        ],
+        "parts": [
+          "Intel Core i7 (10th Gen)",
+          "32 GB DDR4 RAM",
+          "2 TB NVMe SSD",
+          "Open-source firmware"
+        ]
+      },
+      {
+        "id": "diy-x86",
+        "name": "DIY x86 Build",
+        "tagline": "Build it yourself to save cost.",
+        "use_case": "Budget builds or repurposing hardware",
+        "tradeoff": "You save money → You handle assembly, flashing, and hardware troubleshooting.",
+        "all_in_price": "$250–$400",
+        "monthly_cost": "Varies by hardware",
+        "sync_time": "12–24 hours",
+        "assumptions": "Requires N100 or better + SSD.",
+        "storage_guidance": "1 TB SSD minimum.",
+        "noise_footprint": "Varies by case.",
+        "gotcha": "Start9 support covers the OS, not your hardware quirks.",
+        "compatibility_badges": [
+          "Custom Hardware",
+          "Budget Friendly",
+          "Flexible"
+        ],
+        "parts": [
+          "Mini PC (N100/Ryzen)",
+          "16 GB RAM recommended",
+          "1 TB+ NVMe SSD",
+          "Ethernet cable"
+        ]
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Can I still use a Raspberry Pi?",
+        "a": "Yes, but Start9 warns that Pis struggle with Bitcoin workloads. Use them for lighter apps or lab testing only."
+      },
+      {
+        "q": "What is the advantage of Server Pure?",
+        "a": "Server Pure runs Coreboot and has Intel Management Engine disabled, minimizing the risk of hardware-level backdoors."
+      }
+    ]
+  },
+  "fees_section_title": "Costs & speed of operation",
+  "fees_scenarios": [
+    {
+      "id": "initial-sync",
+      "title": "Initial sync time",
+      "cost_value": "Hours (x86) / Days (Pi)",
+      "cost_context": "Fast on Server One/Pure or NVMe builds; very slow on Raspberry Pi.",
+      "badge": "One-time",
+      "service_factor": "StartOS runs a full Bitcoin Core node. It must verify the entire chain before you can use Lightning.",
+      "what_happens": "The node downloads and validates ~600GB of history. This is CPU and disk intensive.",
+      "how_to_minimize": "Use an NVMe SSD and wired Ethernet. If migrating, use the 'Recover' option to reuse existing data.",
+      "learn_more": "Server One and Pure come with NVMe drives that handle this workload easily."
+    },
+    {
+      "id": "disk-growth",
+      "title": "Disk growth",
+      "cost_value": "600 GB",
+      "cost_context": "currently + 5–7 GB/month",
+      "badge": "Storage",
+      "service_factor": "Unified storage means media apps (Photos/Files) compete directly with chain data.",
+      "what_happens": "Full-history nodes store the entire blockchain plus Lightning databases, logs, and app containers on your local drive.",
+      "how_to_minimize": "Allocate at least a 1 TB SSD for full archival, or enable pruning to fit on smaller drives.",
+      "learn_more": "You can upgrade storage later using the 'Transfer Data' wizard."
+    },
+    {
+      "id": "power-draw",
+      "title": "Power consumption",
+      "cost_value": "15–25 W",
+      "cost_context": "Server One / Pure (similar to a laptop)",
+      "badge": "Monthly",
+      "service_factor": "StartOS runs 24/7 to route payments and serve apps, but uses efficient mobile processors.",
+      "what_happens": "The device draws continuous power. Server One/Pure are far more efficient than a desktop tower.",
+      "how_to_minimize": "Stick to official hardware or N100 mini-PCs. Old desktops can draw 100W+ idle.",
+      "learn_more": "StartOS manages CPU scaling automatically to save power when idle."
+    },
+    {
+      "id": "bandwidth",
+      "title": "Bandwidth requirements",
+      "cost_value": "600 GB",
+      "cost_context": "Initial download + ~50GB/mo gossip",
+      "badge": "Network",
+      "service_factor": "Bitcoin Core gossip and StartOS system updates consume significant data.",
+      "what_happens": "The node stays in sync with the network. Backups to remote locations also use upload bandwidth.",
+      "how_to_minimize": "Use wired Ethernet. If your ISP has caps, schedule backups for off-peak hours.",
+      "learn_more": "Initial sync is the heaviest load; daily usage is light for most home connections."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "Can I back up to a thumb drive?",
+      "a": "StartOS strongly discourages low-quality flash media; the backup guide says to use high-endurance SSDs or SMB folders so archives stay intact."
+    },
+    {
+      "q": "What if my new disk is larger than the old one?",
+      "a": "Follow the Transfer Data guide, which copies your data from the old drive to the new SSD before recreating the server."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-root-ca",
+      "term": "Root Certificate Authority (Root CA)",
+      "definition": "A certificate you download from StartOS and import on every device so `.local` services open over HTTPS without warnings."
+    },
+    {
+      "id": "term-service-registry",
+      "term": "Service registry",
+      "definition": "A signed catalog (Start9, Community, or custom) that the Marketplace uses to download `.s9pk` service packages."
+    },
+    {
+      "id": "term-onion-url",
+      "term": ".onion URL",
+      "definition": "A Tor-only address for the StartOS dashboard or an installed service so you can connect remotely without port forwarding."
+    }
+  ],
+  "privacy": {
+    "section_title": "Privacy & jurisdiction",
+    "data_flows": [
+      "LAN access uses `.local` URLs secured by your trusted Root CA, so only devices on the same network can reach the dashboard over HTTPS.",
+      "Remote access happens through per-service Tor `.onion` URLs, which stay private as long as you keep the addresses to yourself.",
+      "Native apps either embed Tor or rely on system-wide Tor proxies, so follow the platform guides before exposing credentials."
+    ],
+    "data_flows_do": "Trust the Root CA on every device, keep the server behind your router, and use Tor Browser or Tor-enabled apps for remote sessions.",
+    "data_flows_dont": "Skip the certificate import, open `.local` URLs from Tor Browser, or expose StartOS to the clearnet without a proxy.",
+    "recovery_title": "Hardware failure? How StartOS recovery works",
+    "recovery": [
+      "If the OS drive fails, flash StartOS, choose Recover, and point it at your existing data drive or encrypted backup archive.",
+      "Use Transfer mode to copy data from an old disk to a larger new one without changing your Tor or LAN addresses.",
+      "Store multiple backup targets—physical and network—so you always have a clean copy to restore."
+    ],
+    "recovery_do": "Test a restore path before you need it and keep powered USB enclosures handy for migrations.",
+    "recovery_dont": "Trust a single low-quality flash drive; Start9 explicitly warns backups need SSD-class media.",
+    "region": [
+      "StartOS runs entirely on your hardware, so jurisdictional exposure is limited to where you host the server.",
+      "Tor connectivity means you do not need ISP port forwards or public IPs to reach the services remotely."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Does StartOS support VPN remote access?",
+        "a": "Not yet—the remote access guide says VPN support is coming in a future release, so for now stick to Tor `.onion` URLs."
+      },
+      {
+        "q": "Why do I need Bonjour on Windows?",
+        "a": "Windows lacks `.local` discovery by default, so the LAN guide instructs you to install Bonjour Print Services before opening StartOS over HTTPS."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "Root CA",
+        "def": "A certificate authority file you download from StartOS and import on your devices so `.local` dashboards load over HTTPS without warnings."
+      },
+      {
+        "term": ".onion URL",
+        "def": "A Tor-only address that lets you reach the StartOS dashboard or any installed service from anywhere without exposing your IP."
+      }
+    ],
+    "keywords": [
+      "StartOS privacy",
+      "Root CA",
+      "Tor remote access",
+      "Start9 backups"
+    ]
+  },
+  "compat_heading": "Lightning & service support",
+  "compat_tiles": [
+    {
+      "id": "app-store",
+      "title": "StartOS marketplace",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Signed registries</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Community catalogs</span>",
+      "status": "works"
+    },
+    {
+      "id": "btc-core",
+      "title": "Bitcoin Core manager",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Full node</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Reuse drives</span>",
+      "status": "works"
+    },
+    {
+      "id": "lightning-daemons",
+      "title": "Lightning daemons",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> LND</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Core Lightning</span>",
+      "status": "works"
+    },
+    {
+      "id": "electrum-stack",
+      "title": "Electrum & RPC bridges",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Electrs</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Explorer APIs</span>",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "app-store",
+      "why": "Marketplace ships with Start9 and Community registries and lets you add custom URLs or even host your own `.s9pk` packages.",
+      "try": [
+        "Open Marketplace → Change to swap between Start9 and Community catalogs.",
+        "Click Add custom registry and paste the URL for your signed catalog.",
+        "Host `.s9pk` packages in File Browser or Nextcloud and present them via Start9 Pages if you need a private feed."
+      ],
+      "gotcha": "Start9 can’t support third-party registries; verify packages before installing anything outside the official catalog."
+    },
+    {
+      "id": "btc-core",
+      "why": "Bitcoin Core installs from the Marketplace and the recovery guides show how to reuse an existing chainstate instead of re-downloading.",
+      "try": [
+        "Install Bitcoin Core, then watch the sync percentage from the Services tab.",
+        "If you already have a chainstate, choose Recover → Use Existing Drive to mount it.",
+        "Use the Transfer Data guide to migrate to a bigger SSD without losing addresses."
+      ],
+      "gotcha": "Flashing StartOS wipes the OS disk, so keep backups and verify you selected the right drive before writing."
+    },
+    {
+      "id": "lightning-daemons",
+      "why": "StartOS ships LND by default and the Lightning guides cover CLN, LNbits, AlbyHub, and remote wallets.",
+      "try": [
+        "Install Lightning, then run the built-in migration actions if you’re moving from Umbrel, RaspiBlitz, or myNode.",
+        "Follow the Zeus or AlbyHub guides to connect via REST, Tor, or Lightning Node Connect.",
+        "Use the LNbits action if you prefer to route payments through LNbits frontends."
+      ],
+      "gotcha": "After migrating, never restart the old node or it may broadcast stale channel states and cost you funds."
+    },
+    {
+      "id": "electrum-stack",
+      "why": "Electrs, RPC bridges, and explorer apps live in the Marketplace so you can pair StartOS with Sparrow, Specter, or BTCPay.",
+      "try": [
+        "Install Electrs and wait for the index to complete before pointing wallets at it.",
+        "Copy the LAN SSL endpoint for desktops and the Tor endpoint for mobile wallets.",
+        "Use the Bitcoin Integrations guide to wire Sparrow, Specter, or BTCPay to your node."
+      ],
+      "gotcha": "Electrs needs as much disk as Bitcoin plus its own index, so ensure the SSD has headroom before enabling it."
+    }
+  ],
+  "integrations": {
+    "intro": "Your node replaces the cloud when you wire wallets, remote control apps, and merchant tools straight to StartOS.",
+    "cards": [
+      {
+        "id": "wallet-connection",
+        "title": "Connect your wallet",
+        "status": "works",
+        "status_text": "Private",
+        "description": "Use the Bitcoin Integrations guide to point Sparrow, Specter, or other Electrum-compatible wallets at your own Electrs index.",
+        "steps": [
+          "Install **Electrs** from the Marketplace and wait for the index to complete.",
+          "Open the service details to copy the LAN SSL endpoint or the Tor address.",
+          "Paste the endpoint into your wallet’s server settings after trusting the Root CA."
+        ],
+        "endpoints": [
+          {
+            "label": "LAN SSL",
+            "value": "https://start.local:50001"
+          },
+          {
+            "label": "Tor (example)",
+            "value": "electrsxxxxxxxx.onion:50001"
+          }
+        ],
+        "compatible_tools": [
+          "Sparrow",
+          "Specter Desktop"
+        ],
+        "privacy": "Your wallet now queries your own node, not third-party servers."
+      },
+      {
+        "id": "remote-control",
+        "title": "Remote node control",
+        "status": "works",
+        "status_text": "Private",
+        "description": "Lightning guides show how to pair Zeus, AlbyHub, or LNbits via REST, Tor, or Lightning Node Connect.",
+        "steps": [
+          "Install the **Lightning** service but keep it offline until migration or channel setup is ready.",
+          "Run the migration action for your old node, entering its LAN IP and passwords.",
+          "Scan the LNDconnect string or LNC QR code from StartOS inside Zeus or AlbyHub."
+        ],
+        "endpoints": [
+          {
+            "label": "LNDconnect (example)",
+            "value": "lndconnect://abcd1234.onion:8080?macaroon=...&cert=..."
+          }
+        ],
+        "compatible_tools": [
+          "Zeus",
+          "Alby Hub"
+        ],
+        "privacy": "All traffic routes over Tor so no VPN or port forwarding is required."
+      },
+      {
+        "id": "merchant-tools",
+        "title": "Merchant & tools",
+        "status": "works",
+        "status_text": "Native",
+        "description": "Install BTCPay Server, LNbits, or other Marketplace apps so your storefronts talk directly to Bitcoin Core and Lightning.",
+        "steps": [
+          "Browse the Marketplace for apps like **BTCPay**, **LNbits**, **Nextcloud**, or **Vaultwarden**.",
+          "Install the service, review the Service Dashboard to confirm dependencies, and copy its `.local` or `.onion` URL.",
+          "Pin the widget on the StartOS dashboard so you can monitor resource usage."
+        ],
+        "endpoints": [
+          {
+            "label": "BTCPay (example)",
+            "value": "https://start.local:49392"
+          }
+        ],
+        "compatible_tools": [
+          "BTCPay Server",
+          "LNbits"
+        ],
+        "privacy": "Customer data never leaves your hardware unless you explicitly share it."
+      }
+    ]
+  },
+  "maintenance": {
+    "ops_profile": [
+      {
+        "label": "Update Cadence",
+        "value": "OS + Service Updates (Independent)"
+      },
+      {
+        "label": "Rollback",
+        "value": "Re-flash SD (Data Safe)"
+      },
+      {
+        "label": "Backups",
+        "value": "Full System (Encrypted) to USB/NAS"
+      },
+      {
+        "label": "Data Path",
+        "value": "Encrypted Volume (Managed)"
+      },
+      {
+        "label": "Monitoring",
+        "value": "Dashboard / Service Logs"
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Create System Backup",
+        "intro": "Backups are your safety net; Start9 warns against cheap thumb drives.",
+        "steps": [
+          "Navigate to **System → Create Backup**.",
+          "Pick a physical SSD or pre-configured network folder and select the services you want to protect.",
+          "Enter the master password and let the archive complete before disconnecting the drive."
+        ]
+      },
+      {
+        "title": "Test Restore Procedure",
+        "intro": "A backup is only useful if you know how to restore it.",
+        "steps": [
+          "Flash StartOS on spare hardware or a VM.",
+          "Choose **Recover → Restore from Backup** and point to your encrypted archive.",
+          "Verify the restored services start before wiping the test device."
+        ]
+      },
+      {
+        "title": "Manage Registries",
+        "intro": "Registries are critical infrastructure—track what you trust.",
+        "steps": [
+          "Open **Marketplace → Change** and confirm which registries are enabled.",
+          "Remove registries you no longer need and document any custom URLs.",
+          "Check **System → Updates** before installing new builds, especially on production nodes."
+        ]
+      },
+      {
+        "title": "Distribute Root CA",
+        "intro": "Every device that hits StartOS over HTTPS needs the Root CA.",
+        "steps": [
+          "Go to **System → Root CA** and download the certificate.",
+          "Transfer it securely (AirDrop, USB, encrypted chat) to other devices.",
+          "Follow the OS-specific instructions so browsers trust your `.local` sites."
+        ]
+      }
+    ],
+    "configs": []
+  },
+  "security_model": {
+    "overview": "StartOS assumes a trusted LAN secured by your Root CA for local access and Tor `.onion` URLs for remote sessions.",
+    "quick_wins": [
+      "Import the Root CA on every device so `.local` dashboards load over HTTPS.",
+      "Keep the server on wired Ethernet behind your router and avoid exposing clearnet ports.",
+      "Use Tor Browser or Tor-enabled apps when you are off-network."
+    ],
+    "hardening": [
+      "Favor powered SSD enclosures or high-endurance microSD cards as Start9 recommends, especially on Pi-class hardware.",
+      "Maintain multiple backup targets (physical and SMB) so you have options if a drive dies.",
+      "Treat third-party registries cautiously; verify `.s9pk` signatures before installing."
+    ]
+  },
+  "migration": [
+    {
+      "id": "reuse-existing-drive",
+      "title": "Reuse an existing data drive",
+      "choose": "Use this when you re-flash StartOS but want to keep the previous data disk.",
+      "time": "~10–20 min",
+      "cost": "Free",
+      "risk": "Low",
+      "steps": [
+        "Flash StartOS, choose **Recover**, and select **Use Existing Drive**.",
+        "Pick the correct data disk from the list (refresh if necessary).",
+        "Set a new master password and let StartOS re-initialize with your old data."
+      ],
+      "tips": "Label your drives so you never confuse the old and new disks.",
+      "gotcha": "Selecting the wrong drive will erase it; double-check before confirming."
+    },
+    {
+      "id": "transfer-data",
+      "title": "Transfer data to a new drive",
+      "choose": "Use when you are upgrading to a larger SSD or moving to new hardware.",
+      "time": "~1–24 hours (size dependent)",
+      "cost": "New SSD",
+      "risk": "Medium",
+      "steps": [
+        "Shut down the server, install the new internal drive, and connect the old drive via USB.",
+        "Flash StartOS, choose **Recover → Transfer**, and select the old drive as the source and the new drive as the destination.",
+        "Enter your master password and let the migration finish; StartOS keeps your Tor/LAN addresses intact."
+      ],
+      "tips": "Use the fastest USB enclosure you have to shorten the copy window.",
+      "gotcha": "The guide warns that multi-terabyte copies can take many hours—leave the system powered the whole time."
+    },
+    {
+      "id": "lnd-migration",
+      "title": "Migrate LND to StartOS",
+      "choose": "Use when you are moving LND funds from Umbrel, RaspiBlitz, or myNode without closing channels.",
+      "time": "~15–30 min",
+      "cost": "Free",
+      "risk": "Medium",
+      "steps": [
+        "Install the Lightning service on StartOS but do not start it; the wallet must be untouched.",
+        "Run the migration action for your old node, entering its LAN IP and passwords.",
+        "Once StartOS reports success, power down the old node and then start Lightning on StartOS."
+      ],
+      "tips": "Keep both nodes on the same LAN so the migration script can reach the old REST API.",
+      "gotcha": "Never restart the old node after migrating—broadcasting stale states could cost you funds."
+    }
+  ],
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#hardware",
+    "fees": "#costs",
+    "privacy": "#network",
+    "compat": "#apps",
+    "migration": "#migration",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-23",
+  "trust": {
+    "cards": [
+      {
+        "id": "activity",
+        "fact": "Docs cover StartOS 0.3.5.x with up-to-date user manual links.",
+        "link_text": "Documentation",
+        "link_url": "https://docs.start9.com/0.3.5.x/user-manual/"
+      },
+      {
+        "id": "source",
+        "fact": "Source-available StartOS builds ship via the official GitHub releases.",
+        "link_text": "GitHub releases",
+        "link_url": "https://github.com/Start9Labs/start-os/releases/latest"
+      },
+      {
+        "id": "security",
+        "fact": "Root CA & Tor connection guides help you secure LAN and remote access.",
+        "link_text": "Root CA guide",
+        "link_url": "https://docs.start9.com/0.3.5.x/user-manual/trust-ca.html"
+      }
+    ],
+    "summary": "StartOS keeps everything on hardware you own, documents each step in the 0.3.5.x manual, and publishes source-available builds plus Root CA guidance so you understand the trust model."
+  }
 }

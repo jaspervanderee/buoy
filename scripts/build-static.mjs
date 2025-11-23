@@ -1476,8 +1476,9 @@ ${benefitHtml}${whyHtml}${summaryHtml}${bulletsHtml}${explainerHtml}${dodonts}
                 const dontItem = privacy.recovery_dont ? `<div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> ${fixInternalLinks(linkGlossaryTerms(privacy.recovery_dont))}</span></div>` : "";
                 dodonts = `<div class="dodont-strip">${doItem}${dontItem}</div>`;
               }
+              const recoveryTitle = privacy.recovery_title || `Lost your phone? How ${svc.name} recovery works`;
               cards.push(`    <div class="privacy-card" id="recovery">
-      <h3>Lost your phone? How ${svc.name} recovery works</h3>
+      <h3>${recoveryTitle}</h3>
       <ul>${bullets}</ul>
       ${dodonts}
     </div>`);

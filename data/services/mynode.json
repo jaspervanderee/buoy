@@ -4,18 +4,27 @@
   "type_of_platform": "Home server as software and / or hardware",
   "faqs": [
     {
-      "q": "What is myNode?",
-      "a": "myNode is a turnkey Bitcoin and Lightning node platform with a polished web UI and many integrated apps."
+      "q": "How do MyNode hardware options compare between Model One and Model Two?",
+      "a": "Model One bundles the single-board computer, SSD enclosure, and cabling so you plug it in and let it sync, while Model Two adds internal NVMe storage, a power button, and more CPU headroom for heavy apps. Pick the chassis that matches how much routing, indexing, or marketplace usage you expect to run."
     },
     {
-      "q": "Is myNode free?",
-      "a": "Core software is free; premium features and supported hardware are available for a fee."
+      "q": "Is MyNode free or do I need a Premium license?",
+      "a": "The Community Edition download is free and already runs the Bitcoin, Lightning, and Tor stack, and the $79 Premium key unlocks extra marketplace apps, VPN profiles, and direct support. You can start with the free build and upgrade later without reinstalling."
     },
     {
-      "q": "Which devices does myNode support?",
-      "a": "Raspberry Pi, DIY x86 hardware, and prebuilt myNode devices."
+      "q": "How long does the initial MyNode sync take?",
+      "a": "MyNode verifies every block from genesis on your hardware, so Raspberry Pi builds often need six or more days before Bitcoin Core reaches tip. Leave it wired and powered 24/7 or move to an x86 mini PC if you want that first sync to finish faster."
+    },
+    {
+      "q": "What default credentials and product keys should I expect on first boot?",
+      "a": "The dashboard lives at mynode.local with `admin` / `bolt` as the default login and immediately asks for your product key or the Community Edition option, so anyone on your LAN could log in until you change it. Swap the password, store the key safely, and only then expose Tor or VPN access."
+    },
+    {
+      "q": "How do I reach MyNode remotely once it is online?",
+      "a": "MyNode generates Tor onion links and downloadable VPN profiles so you can reach Ride The Lightning or the main UI without opening clearnet ports. Import the OpenVPN file or use the Tor URL in your wallet when you need to manage channels away from home."
     }
   ],
+  "supported_network": "Bitcoin full node, Lightning, and bundled self-hosted apps",
   "features": {
     "WW": [
       {
@@ -41,14 +50,658 @@
     ]
   },
   "price": "Free software<br>$79 for premium software<br>$399 Model One hardware device<br>$599 Model Two hardware device",
+  "custody_control": "Self-hosted (you verify and hold keys locally)",
+  "kyc_required": "No",
+  "recovery_method": "System backup archive + Lightning static channel backup",
+  "open_source": "Open source core with optional Premium license",
   "user_experience": "0.0",
   "interface": "Desktop only",
+  "app_ratings": {
+    "ios": null,
+    "android": null
+  },
   "support": "Community forums and Premium support",
   "profile": "Taylor Helsper",
   "description": "MyNode is a turnkey Bitcoin and Lightning node platform that combines open‑source software with a polished, full‑featured web interface, making it accessible to both novices and advanced users.\\n\\nWhat sets MyNode apart is its integration of a wide array of Bitcoin tools all in one place—your own full node, Lightning (via LND), Electrum server, block explorers, wallet pairing tools and more—coordinated through an intuitive UI.\\n\\nThe target audience ranges from beginners who can get started with simple, plug‑and‑play hardware builds or prebuilt units, to seasoned users. The Premium+ hardware options (Model One/Two) bundle top‑spec hardware with built‑in support and warranty, while DIYers can start with the free software and chosen hardware.\\n\\nLooking ahead, MyNode continues to expand its ecosystem with new beta apps and features plus consistent rapid updates and community‑driven development. Their vision is clear: empower individuals to run a sovereign, private, and all‑in‑one Bitcoin infrastructure at home, easily and robustly, with ongoing innovation and support.",
   "founded_in": "2019",
   "website": "https://mynodebtc.com",
+  "links": {
+    "download": "https://github.com/mynodebtc/mynode/releases/latest",
+    "docs": "https://mynodebtc.github.io/intro/getting-started.html",
+    "hardware": "https://mynodebtc.com/features"
+  },
   "countries": [
     "WW"
-  ]
+  ],
+  "trust_chips": [
+    {
+      "text": "Bitcoin Core + Tor defaults",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "btc-core"
+    },
+    {
+      "text": "Lightning + RTL dashboard",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "lightning-daemons"
+    },
+    {
+      "text": "Electrum & explorers",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "electrum-stack"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "People who want a turnkey Bitcoin and Lightning stack with official hardware or a DIY image backed by a single dashboard.",
+    "consider_if": "You like Tor-by-default networking and bundled VPN access but still want everything running on hardware you own.",
+    "not_ideal_when": "You need every component to stay 100% free/open source or prefer enterprise-grade support contracts."
+  },
+  "howto": {
+    "title": "Set up your myNode stack",
+    "steps": [
+      {
+        "id": "download-image",
+        "title": "1. Download and flash the image",
+        "chips": {
+          "setup_time": "~20 min",
+          "cost": "Free (Community Edition)",
+          "risk": "Medium (flashing media)"
+        },
+        "actions": [
+          "Grab the <a href=\"https://github.com/mynodebtc/mynode/releases/latest\" target=\"_blank\">latest myNode image</a> for your hardware (Model One, Model Two, Pi, or x86).",
+          "Flash it to a microSD or USB drive with Balena Etcher, then attach the SSD that will hold the blockchain.",
+          "Label the boot media and the SSD so you can keep track of them during future migrations."
+        ],
+        "gotcha": "Slow cards or USB2 enclosures throttle initial sync speeds; use SSDs and USB 3."
+      },
+      {
+        "id": "wire-hardware",
+        "title": "2. Wire up the hardware",
+        "chips": {
+          "setup_time": "~10 min",
+          "cost": "Hardware purchase",
+          "risk": "Low (follow manual)"
+        },
+        "actions": [
+          "Insert the SSD into the enclosure, plug it into the USB 3 port, and verify every connector is fully seated.",
+          "Connect Ethernet between the node and your router or switch; Wi-Fi is not supported.",
+          "Plug the power supply into the outlet and the device; Model Two also needs a tap on the power button."
+        ],
+        "gotcha": "Power cycling without a proper shutdown can corrupt the drive; use the UI to shut down first."
+      },
+      {
+        "id": "onboard-dashboard",
+        "title": "3. Complete onboarding at mynode.local",
+        "chips": {
+          "setup_time": "~10 min",
+          "cost": "Free",
+          "risk": "Low (browser-based)"
+        },
+        "actions": [
+          "Visit `http://mynode.local/` (or the IP address) and log in with `admin` / `bolt`.",
+          "Enter your product key for Premium or choose Community Edition to keep things free.",
+          "Change the default password, record it in a password manager, and decide whether you want Tor or VPN enabled yet."
+        ],
+        "gotcha": "Leaving `admin` / `bolt` in place means anyone on your LAN can control the box."
+      },
+      {
+        "id": "sync-and-secure",
+        "title": "4. Let it sync and secure services",
+        "chips": {
+          "setup_time": "~6 days on Pi hardware",
+          "cost": "Electricity + internet",
+          "risk": "Medium (power/network)"
+        },
+        "actions": [
+          "Watch Bitcoin Core reach 100% before funding Lightning or pairing wallets.",
+          "Install or unlock the bundled apps you need (Ride The Lightning, Mempool, Electrs, VPN).",
+          "Download your Lightning channel backup and a system backup once you're happy with the setup."
+        ],
+        "gotcha": "Do not fund Lightning until Bitcoin Core is fully synced; invoices fail when the base node lags."
+      }
+    ],
+    "totalTime": null,
+    "micro_faqs": [
+      {
+        "q": "Can I skip the product key during setup?",
+        "a": "Yes. Choose Community Edition on the onboarding screen; you can add the Premium key later without reinstalling."
+      },
+      {
+        "q": "Do I need to attach a monitor?",
+        "a": "No. Everything happens over the web dashboard at mynode.local, though Model Two includes a power button if you like front-panel control."
+      }
+    ]
+  },
+  "hardware_bom": {
+    "heading": "Hardware BOM & capacity planning",
+    "intro": "MyNode ships its own hardware, but you can also flash the same software onto any supported Pi or mini PC. Choose the build that matches your budget, cooling, and the number of apps you plan to run.",
+    "builds": [
+      {
+        "id": "model-one",
+        "name": "Model One kit",
+        "tagline": "Plug-and-play Pi-class hardware.",
+        "use_case": "Learning the stack, personal routing, bundled support.",
+        "tradeoff": "You get curated hardware and a ready SSD → You give up PCIe upgrades and raw horsepower.",
+        "all_in_price": "$399",
+        "monthly_cost": "~$1.80/mo (15W)",
+        "sync_time": "~6 days",
+        "assumptions": "Ships with microSD boot media, SSD enclosure, cooling, and Ethernet-ready cabling.",
+        "storage_guidance": "1 TB SSD included; keep at least 15% free for compaction.",
+        "noise_footprint": "Quiet desktop fan, router-sized footprint.",
+        "gotcha": "USB connections handle both power and data; loose cables can drop the drive mid-sync.",
+        "compatibility_badges": [
+          "Bitcoin Core",
+          "Lightning",
+          "RTL"
+        ],
+        "parts": [
+          "Single-board computer with aluminum case",
+          "1 TB SSD + USB 3.0 enclosure",
+          "15W USB-C power supply",
+          "Gigabit Ethernet cable"
+        ]
+      },
+      {
+        "id": "model-two",
+        "name": "Model Two workstation",
+        "tagline": "Higher-end CPU, NVMe, and front-panel power.",
+        "use_case": "Heavier app stacks, Electrs indexing, multiple Lightning tools.",
+        "tradeoff": "You pay more upfront → You get faster syncs and smoother multitasking.",
+        "all_in_price": "$599",
+        "monthly_cost": "~$3.50/mo (25W)",
+        "sync_time": "~48 hours",
+        "assumptions": "Includes internal NVMe SSD plus boot media; still prefers wired Ethernet.",
+        "storage_guidance": "2 TB NVMe keeps Bitcoin Core, Electrs, and Mempool happy.",
+        "noise_footprint": "Desk-friendly with whisper fans.",
+        "gotcha": "Use the UI shutdown before hitting the physical power button to avoid disk checks.",
+        "compatibility_badges": [
+          "Electrs",
+          "Mempool",
+          "BTCPay"
+        ],
+        "parts": [
+          "x86 mini PC with 8–16 GB RAM",
+          "2 TB NVMe SSD",
+          "Preloaded boot media",
+          "UPS or surge protection"
+        ]
+      },
+      {
+        "id": "diy-build",
+        "name": "DIY build",
+        "tagline": "Roll your own Pi 5 or N100 mini PC.",
+        "use_case": "Tinkerers who reuse existing hardware and want full control.",
+        "tradeoff": "You save money by reusing gear → You must source SSDs, cooling, and reliable power yourself.",
+        "all_in_price": "$250–$500 (varies)",
+        "monthly_cost": "~$2–$5/mo",
+        "sync_time": "~12 hours on N100, ~6 days on Pi 4",
+        "assumptions": "Requires SSD storage over USB 3 or NVMe plus wired Ethernet.",
+        "storage_guidance": "1–4 TB SSD depending on whether you index Electrs or run media apps.",
+        "noise_footprint": "Depends on your case; plan for active cooling on Pi 5 builds.",
+        "gotcha": "Skipping a UPS risks corruption if power blips during the initial block download.",
+        "compatibility_badges": [
+          "Bitcoin Core",
+          "Electrum",
+          "Marketplace"
+        ],
+        "parts": [
+          "Raspberry Pi 5 (8 GB) or Intel N100 mini PC",
+          "1–4 TB NVMe or SSD",
+          "Powered USB 3 enclosure",
+          "Fan or heat sink kit"
+        ]
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Can I use Wi-Fi instead of Ethernet?",
+        "a": "No. MyNode expects wired Ethernet so Tor, VPN, and Lightning remain stable."
+      },
+      {
+        "q": "Do I need a UPS?",
+        "a": "Each build benefits from battery backup so you can shut down cleanly if power drops."
+      },
+      {
+        "q": "Can I upgrade storage later?",
+        "a": "Yes. Clone the `/mnt/hdd/mynode` directory to a larger SSD, update mounts, and boot from the new drive."
+      },
+      {
+        "q": "Does Model One support accessory apps like Mempool?",
+        "a": "It can run lighter apps, but heavy dashboards perform better on Model Two or an x86 DIY build."
+      }
+    ]
+  },
+  "fees_section_title": "Costs & speed of operation",
+  "fees_scenarios": [
+    {
+      "id": "initial-sync",
+      "title": "Initial sync time",
+      "cost_value": "6+ days",
+      "cost_context": "on Raspberry Pi hardware (~48h on Model Two)",
+      "badge": "One-time",
+      "service_factor": "MyNode verifies each block locally and keeps apps locked until Bitcoin Core reaches tip.",
+      "what_happens": "Bitcoin Core chews through 800k+ blocks while Tor connections discover peers and download headers.",
+      "how_to_minimize": "Use wired Ethernet, SSD storage, and leave the node powered on 24/7.",
+      "learn_more": "DIY x86 builds or Model Two hardware cut the initial block download to under two days."
+    },
+    {
+      "id": "disk-growth",
+      "title": "Disk growth",
+      "cost_value": "550 GB",
+      "cost_context": "today + 5–7 GB/month",
+      "badge": "Storage",
+      "service_factor": "MyNode keeps two copies of Lightning backups (SD + SSD) alongside the blockchain and optional apps.",
+      "what_happens": "Full-history nodes store blocks, chainstate, Electrs indexes, and docker volumes for marketplace apps.",
+      "how_to_minimize": "Allocate at least a 1 TB SSD or enable pruning if you only need wallet verification.",
+      "learn_more": "Free 15% disk space before enabling heavy apps like Mempool or BTCPay."
+    },
+    {
+      "id": "power-draw",
+      "title": "Power consumption",
+      "cost_value": "15–35 W",
+      "cost_context": "~$1.80–$4.00 / month",
+      "badge": "Monthly",
+      "service_factor": "Dedicated hardware stays online for Tor, VPN, and Lightning channel health.",
+      "what_happens": "The device idles low but ramps during compaction, Electrs indexing, or channel backups.",
+      "how_to_minimize": "Prefer efficient boards (Pi 5 or N100), disable unused apps, and provide adequate cooling.",
+      "learn_more": "Pair the node with a smart plug or UPS to monitor draw and automate safe shutdowns."
+    },
+    {
+      "id": "bandwidth",
+      "title": "Bandwidth requirements",
+      "cost_value": "600 GB",
+      "cost_context": "initial download + 20–40 GB/mo",
+      "badge": "Network",
+      "service_factor": "Tor plus VPN endpoints and Docker updates add overhead beyond Bitcoin gossip.",
+      "what_happens": "The node fetches the blockchain, relays transactions, and downloads container updates for bundled apps.",
+      "how_to_minimize": "Wire the device directly to your router and schedule large updates during off-peak ISP hours.",
+      "learn_more": "If your ISP enforces data caps, throttle upload speeds inside Bitcoin Core once sync completes."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "Does the Premium license change operating costs?",
+      "a": "The license is a one-time $79 upgrade that unlocks extra apps and VPN access, but the ongoing power and bandwidth costs stay the same."
+    },
+    {
+      "q": "Can I power it down between sync sessions?",
+      "a": "Yes, but always use the web UI’s shutdown button so the SSD and SD card unmount cleanly before you unplug it."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-product-key",
+      "term": "Product key",
+      "definition": "A code you enter during onboarding to unlock myNode Premium features like VPN and extra marketplace apps."
+    },
+    {
+      "id": "term-rtl",
+      "term": "Ride The Lightning (RTL)",
+      "definition": "A web UI bundled with myNode that lets you open channels, monitor liquidity, and pay invoices from LND."
+    },
+    {
+      "id": "term-vpn-profile",
+      "term": "VPN profile",
+      "definition": "An OpenVPN configuration file generated by myNode so you can connect remotely without exposing ports."
+    }
+  ],
+  "privacy": {
+    "section_title": "Network & Privacy",
+    "data_flows": [
+      "The dashboard listens on HTTP at `mynode.local` with `admin` / `bolt` defaults until you change them.",
+      "Bitcoin Core and Lightning traffic route over Tor, and you can optionally enable the built-in VPN server for remote control.",
+      "Static channel backups live both on the SSD and the boot media so you have redundancy if one drive fails."
+    ],
+    "data_flows_do": "Keep the node behind your router, rotate passwords immediately, and use Tor or VPN instead of port forwarding.",
+    "data_flows_dont": "Expose port 80 or 8333 directly to the internet or reuse the default credentials across other services.",
+    "recovery_title": "Hardware failure? How MyNode recovery works",
+    "recovery": [
+      "Download system backups and Lightning channel backups from the Settings panel after your initial setup.",
+      "Store the product key, passwords, and backup files offline so you can restore on fresh hardware.",
+      "Re-flash the latest image, upload your backups, and let Bitcoin Core rescan if you ever replace disks."
+    ],
+    "recovery_do": "Test a small restore on spare hardware or a VM so you know the flow before an outage.",
+    "recovery_dont": "Rely on the copy that lives only on the node; keep offsite duplicates.",
+    "region": [
+      "MyNode runs entirely on hardware you own, so jurisdictional limits tie to where devices can be shipped.",
+      "Tor remote access helps when your ISP uses CGNAT or blocks inbound ports."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Does MyNode phone home?",
+        "a": "Core services run locally; Premium-only features call out when you activate licensing or updates."
+      },
+      {
+        "q": "Where are Lightning backups stored?",
+        "a": "MyNode keeps two copies—one on the SD card and one on the SSD—so you can download either copy plus store one offline."
+      },
+      {
+        "q": "Can I delete my data completely?",
+        "a": "Yes. Re-flash the image, wipe the SSD, and the device boots as a fresh install."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "bolt password",
+        "def": "The default `admin` / `bolt` login that ships with every myNode until you change it."
+      },
+      {
+        "term": "onion address",
+        "def": "Tor hidden service URL that lets you reach the dashboard or wallets without exposing clearnet ports."
+      }
+    ],
+    "keywords": [
+      "myNode Tor",
+      "myNode VPN",
+      "myNode backups",
+      "myNode security"
+    ]
+  },
+  "compat_heading": "Lightning & App support",
+  "compat_tiles": [
+    {
+      "id": "btc-core",
+      "title": "Bitcoin Core + Tor defaults",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Full node</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Tor networking</span>",
+      "status": "works"
+    },
+    {
+      "id": "lightning-daemons",
+      "title": "Lightning + RTL dashboard",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> LND default</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Ride The Lightning</span>",
+      "status": "works"
+    },
+    {
+      "id": "electrum-stack",
+      "title": "Electrum & explorers",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Electrum server</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> BTC RPC Explorer</span>",
+      "status": "works"
+    },
+    {
+      "id": "app-store",
+      "title": "App Marketplace",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Bundled apps</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Premium unlocks more</span>",
+      "status": "works-caveat"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "btc-core",
+      "why": "MyNode installs Bitcoin Core with Tor enabled, so your node talks to peers privately while still letting you toggle pruning or full-history mode.",
+      "try": [
+        "Open the Bitcoin page in the dashboard and start the sync before enabling other apps.",
+        "Use the Settings panel to switch between full and pruned modes if storage is tight."
+      ],
+      "gotcha": "Wi-Fi is unsupported; use wired Ethernet or peers will drop during IBD."
+    },
+    {
+      "id": "lightning-daemons",
+      "why": "LND runs out of the box with Ride The Lightning so you can open channels, monitor liquidity, and use QR pairing without extra installs.",
+      "try": [
+        "Enable Lightning once Bitcoin Core reaches 100% and generate your first invoice.",
+        "Scan the RTL QR code with Zeus or another wallet over Tor or VPN."
+      ],
+      "gotcha": "Wait until the base node is synced before funding channels or payments will fail."
+    },
+    {
+      "id": "electrum-stack",
+      "why": "Electrum server and BTC RPC Explorer let you query your own balances and transactions without leaking data to public APIs.",
+      "try": [
+        "Install Electrum Server from the Apps page and let the index fully build.",
+        "Point Sparrow or Specter at `mynode.local:50001` (LAN) or the Tor endpoint once indexing completes."
+      ],
+      "gotcha": "Electrum indexing needs ~150 GB beyond Bitcoin Core; plan SSD space accordingly."
+    },
+    {
+      "id": "app-store",
+      "why": "The marketplace adds tools like Thunderhub, Mempool, BTC Explorer, VPN, and more with one click, and Premium unlocks the larger catalog.",
+      "try": [
+        "Browse Apps → Premium to see what unlocks with your product key.",
+        "Pin the apps you use daily to the dashboard so you can monitor resource usage."
+      ],
+      "gotcha": "Some apps remain Premium-only, so budget the license if you need VPN or advanced monitoring."
+    }
+  ],
+  "integrations": {
+    "intro": "MyNode exposes wallet pairing QR codes, VPN profiles, and Tor endpoints so you can connect wallets, merchants, and monitoring tools without trusting third parties.",
+    "cards": [
+      {
+        "id": "wallet-connection",
+        "title": "Connect your wallet",
+        "status": "works",
+        "status_text": "Private",
+        "description": "Use Electrum server so Sparrow, Specter, or BlueWallet ask your node—not a public server—for balances.",
+        "steps": [
+          "Enable **Electrum Server** and wait for the index to finish.",
+          "Copy the LAN address or Tor URI from the Electrum card.",
+          "Paste it into your wallet’s network settings and disable auto servers."
+        ],
+        "endpoints": [
+          {
+            "label": "Desktop (LAN)",
+            "value": "mynode.local:50001"
+          },
+          {
+            "label": "Mobile (Tor)",
+            "value": "abc...onion:50001"
+          }
+        ],
+        "compatible_tools": [
+          "Sparrow",
+          "Specter Desktop"
+        ],
+        "privacy": "Wallet traffic stays between you and your node over LAN or Tor."
+      },
+      {
+        "id": "remote-control",
+        "title": "Remote Node Control",
+        "status": "works",
+        "status_text": "Private",
+        "description": "Download the VPN profile or use Tor links so you can reach RTL or Thunderhub without opening ports.",
+        "steps": [
+          "Enable **VPN** inside the dashboard and download the `.ovpn` file.",
+          "Import it into OpenVPN or Tunnelblick on your phone or laptop.",
+          "Connect and open `https://mynodevpn.com` or the Tor link to reach RTL."
+        ],
+        "endpoints": [
+          {
+            "label": "VPN profile",
+            "value": "mynode-vpn.ovpn"
+          }
+        ],
+        "compatible_tools": [
+          "Zeus",
+          "Thunderhub"
+        ],
+        "privacy": "Traffic tunnels through your VPN or Tor circuit; nothing sits on a third-party server."
+      },
+      {
+        "id": "merchant-tools",
+        "title": "Merchant & Tools",
+        "status": "works",
+        "status_text": "Native",
+        "description": "Install BTCPay, Mempool, or other marketplace apps that automatically connect to Bitcoin Core and LND.",
+        "steps": [
+          "Open **App Marketplace** and install BTCPay Server or Mempool.",
+          "Complete the in-app wizard; myNode injects the Bitcoin and Lightning connection info automatically.",
+          "Expose services via Tor or VPN instead of public port forwarding."
+        ],
+        "endpoints": [
+          {
+            "label": "BTCPay (LAN)",
+            "value": "http://mynode.local:23000"
+          }
+        ],
+        "compatible_tools": [
+          "BTCPay Server",
+          "Mempool.space",
+          "Thunderhub"
+        ],
+        "privacy": "Customer and payment data stay on your hardware; no exchange sits in the middle."
+      }
+    ]
+  },
+  "maintenance": {
+    "ops_profile": [
+      {
+        "label": "Update Cadence",
+        "value": "Frequent community builds + Premium hotfixes"
+      },
+      {
+        "label": "Rollback",
+        "value": "Re-flash SD (data safe on SSD)"
+      },
+      {
+        "label": "Backups",
+        "value": "Channel backups (auto) + System archive"
+      },
+      {
+        "label": "Data Path",
+        "value": "/mnt/hdd/mynode"
+      },
+      {
+        "label": "Monitoring",
+        "value": "Dashboard / Ride The Lightning"
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Change default credentials",
+        "intro": "Every device ships with `admin` / `bolt`, so change it before exposing Tor or VPN.",
+        "steps": [
+          "Log in to `mynode.local` and open **Settings → Password**.",
+          "Create a long unique password and save it in a manager.",
+          "Reboot to ensure the new password persists before enabling remote access."
+        ]
+      },
+      {
+        "title": "Download Lightning backups",
+        "intro": "MyNode keeps redundant SCB files; you still need an offline copy if the hardware dies.",
+        "steps": [
+          "Open **Lightning** → **Manage backups**.",
+          "Download the `channel.backup` file and store it offline.",
+          "Repeat after every major channel change."
+        ]
+      },
+      {
+        "title": "Run system backups",
+        "intro": "System backups capture app data and configs so you can restore after re-flashing.",
+        "steps": [
+          "Go to **System → Backup**.",
+          "Start a backup and wait for the archive to download.",
+          "Store the archive with your Lightning backups."
+        ]
+      },
+      {
+        "title": "Apply updates safely",
+        "intro": "Updates pull new Docker images and scripts; apply them when the node is idle.",
+        "steps": [
+          "Check **System Status** for available updates.",
+          "Read the changelog linked in the UI to see what changed.",
+          "Apply the update and confirm Bitcoin Core resumes syncing."
+        ]
+      }
+    ],
+    "configs": []
+  },
+  "security_model": {
+    "overview": "MyNode assumes a trusted LAN with Tor and VPN options for remote access, but it still ships with default credentials you must change.",
+    "quick_wins": [
+      "Replace `admin` / `bolt` before you enable Tor or VPN.",
+      "Restrict dashboard access to a dedicated VLAN or subnet.",
+      "Export Lightning backups after each channel change."
+    ],
+    "hardening": [
+      "Disable apps you do not use to shrink the exposed surface.",
+      "Use WireGuard or Tailscale in front of the dashboard if you need clearnet access.",
+      "Put the node and SSD on a UPS so abrupt power loss cannot corrupt data."
+    ]
+  },
+  "migration": [
+    {
+      "id": "reuse-existing-node",
+      "title": "Reuse an existing Bitcoin data directory",
+      "choose": "Use this when migrating from another node so you don’t redownload the blockchain.",
+      "time": "~1–3 hours (copy dependent)",
+      "cost": "Free",
+      "risk": "Medium",
+      "steps": [
+        "Shut down the old node and copy `blocks` + `chainstate` to external storage.",
+        "Place the data inside `/mnt/hdd/mynode/bitcoin` on the new drive and ensure ownership belongs to the `bitcoin` user.",
+        "Boot myNode and let Bitcoin Core verify the copied data before turning Lightning back on."
+      ],
+      "tips": "Match pruning mode between the old and new installs; full-history data cannot satisfy a pruned node.",
+      "gotcha": "Power loss during the copy can corrupt LevelDB; verify with `bitcoin-cli getblockcount` before swapping disks."
+    },
+    {
+      "id": "lightning-migration",
+      "title": "Migrate Lightning channels",
+      "choose": "Use this after hardware failure or when moving from Community Edition to Premium hardware.",
+      "time": "~30–90 min",
+      "cost": "Mining fees for closes",
+      "risk": "Medium",
+      "steps": [
+        "Download the latest `channel.backup` from your old node.",
+        "Install myNode on the replacement hardware, open Lightning, and upload the backup file.",
+        "Wait for on-chain settlements, then re-open channels once balances settle."
+      ],
+      "tips": "Keep backups on multiple media so you are never stuck with the copy on the failed drive.",
+      "gotcha": "Running two LND instances with the same seed will desync channels; only restore once."
+    },
+    {
+      "id": "disk-upgrade",
+      "title": "Upgrade to a larger SSD",
+      "choose": "Use this when you are close to filling the internal SSD or want room for more apps.",
+      "time": "~1–2 hours",
+      "cost": "New SSD",
+      "risk": "Low",
+      "steps": [
+        "Shut down myNode and connect both the old and new SSD to a computer.",
+        "Clone `/mnt/hdd/mynode` to the new drive with `rsync -aHAX` or your favorite disk tool.",
+        "Update mounts or UUIDs, connect the new drive to your node, and boot."
+      ],
+      "tips": "Use powered USB enclosures when cloning NVMe drives so they don’t brown out mid-transfer.",
+      "gotcha": "Forgetting to update fstab leaves myNode writing to the old disk; double-check paths before rebooting."
+    }
+  ],
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#hardware",
+    "fees": "#costs",
+    "privacy": "#network",
+    "compat": "#apps",
+    "migration": "#migration",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-23",
+  "trust": {
+    "cards": [
+      {
+        "id": "activity",
+        "fact": "Latest myNode builds are published on GitHub Releases with changelog notes for each image.",
+        "link_text": "Release notes",
+        "link_url": "https://github.com/mynodebtc/mynode/releases"
+      },
+      {
+        "id": "source",
+        "fact": "Core scripts and Docker definitions live in the open on GitHub under the myNode repository.",
+        "link_text": "GitHub repo",
+        "link_url": "https://github.com/mynodebtc/mynode"
+      },
+      {
+        "id": "publisher",
+        "fact": "Official getting-started documentation is hosted on MyNode’s GitHub Pages site.",
+        "link_text": "Docs",
+        "link_url": "https://mynodebtc.github.io/intro/getting-started.html"
+      }
+    ],
+    "summary": "MyNode stitches together open-source components like Bitcoin Core, LND, and Electrum while adding a Premium license for extra apps and support. Releases, source code, and documentation remain public, so you can audit upgrades before installing them."
+  }
 }

@@ -48,8 +48,8 @@
     "date": "2025-11-21"
   },
   "mynode": {
-    "hash": "f8817761704a4a9dd622da7d35b018cc9fbcd4ba015b92d317f6e5a4cb54184a",
-    "date": "2025-11-07"
+    "hash": "f302ec372fc4e2b36bc77608ea9b46a3b9f999cb5ab7f034be8b89cdca40b0c1",
+    "date": "2025-11-23"
   },
   "opennode": {
     "hash": "e49921efa3514944c02b92402d808408a53a164c3864dfe3a7a9a0e45ca000d4",
@@ -84,8 +84,8 @@
     "date": "2025-11-19"
   },
   "start9": {
-    "hash": "4854fd71f92d8ee075bf961ab866948010be32b519978e56d3a957fdc7e4da47",
-    "date": "2025-11-07"
+    "hash": "02bc547ad80d752ae4b92b937d03df645a72663266ce221ad737550b4ef33821",
+    "date": "2025-11-23"
   },
   "strike": {
     "hash": "246de89f9d26b229baa16004ce323f46d5fa511a9ce6c2527fa22b5da77d9bb8",
@@ -96,7 +96,7 @@
     "date": "2025-11-08"
   },
   "umbrel": {
-    "hash": "d1caee0efc6d09a51036f8736af5ce3e0d316eccfa1d9ba779e10728171f8145",
+    "hash": "988c4853094191f85825b4e9dadd86c7a86e0222f6298fc30aaa28981f16f4db",
     "date": "2025-11-21"
   },
   "unchained": {

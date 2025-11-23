@@ -337,6 +337,7 @@
     ],
     "data_flows_do": "Keep the device behind a router, enable Tor remote access, and rotate credentials that ship with defaults.",
     "data_flows_dont": "Expose `umbrel.local:80` directly to the internet or reuse the same password across Thunderhub, Lightning Terminal, and the base OS.",
+    "recovery_title": "Hardware failure? How Umbrel recovery works",
     "recovery": [
       "System backups live under `Settings → Backup`; store a copy off-device together with your Lightning SCB file.",
       "To restore, flash the latest image, drop your backup archive plus `channel.backup` into `/home/umbrel/umbrel/backups`, and follow the wizard.",
