@@ -457,20 +457,6 @@
       }
     ]
   },
-  "privacy_notes": {
-    "data_flows": [
-      "Bull Bitcoin stores the identity documents and compliance answers you submit during FINTRAC verification.",
-      "Funding instructions, payout addresses, and invoices live in your account history alongside trade records."
-    ],
-    "recovery_drill": [
-      "Enable two-factor authentication and confirm your email before you fund the account.",
-      "If you lose access, contact support through the in-app chat with your ID to reopen the account."
-    ],
-    "country_caveats": [
-      "Interac e-Transfer, bill payments, and credit card payouts require a Canadian recipient.",
-      "International availability depends on the country-specific rails Bull Bitcoin is rolling out, so confirm support before onboarding."
-    ]
-  },
   "privacy": {
     "section_title": "Privacy & Safety",
     "data_flows": [

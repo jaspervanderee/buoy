@@ -494,22 +494,6 @@
       }
     ]
   },
-  "privacy_notes": {
-    "data_flows": [
-      "River and Lead Bank store the identity documents and banking details you provide during onboarding.",
-      "Transaction metadata, including Lightning invoices and on-chain addresses, remains in River logs for compliance."
-    ],
-    "recovery_drill": [
-      "Enable two-factor authentication and store backup codes offline before you fund the account.",
-      "If you lose access, contact support from your verified email and be ready to re-submit ID documents.",
-      "Review Limits and Security settings after recovery to ensure River restored your previous controls."
-    ],
-    "country_caveats": [
-      "River currently serves U.S. residents; availability in other jurisdictions is limited.",
-      "Direct deposit and ACH features require a U.S. bank relationship.",
-      "River may restrict features in unsupported states until it secures local licensing."
-    ]
-  },
   "privacy": {
     "section_title": "Privacy & Safety",
     "data_flows": [

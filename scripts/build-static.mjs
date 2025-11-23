@@ -363,9 +363,9 @@ html = html.replace('</head>', urlShim + '</head>');
       // Render table for service page with mode: "service" to exclude legacy rows (Platform, Supported Networks, Features, Custody & Control block)
       const tableHtml = await renderTableHTML(svc, svc.category, { mode: "service" });
 
-      const defaultOrder = ["tldr", "setup", "fees", "hardware_bom", "power_uptime", "compat", "integrations", "maintenance", "security_model", "payment_methods_limits", "key_features", "recovery", "migration", "privacy", "trust", "profile"];
+      const defaultOrder = ["tldr", "setup", "fees", "hardware_bom", "compat", "integrations", "maintenance", "security_model", "payment_methods_limits", "key_features", "recovery", "migration", "privacy", "trust", "profile"];
       let order = Array.isArray(svc.section_order) && svc.section_order.length
-        ? svc.section_order.filter((key) => defaultOrder.includes(key) || key === "self_custody" || key === "payment_methods_limits" || key === "key_features" || key === "recovery" || key === "hardware_bom" || key === "power_uptime" || key === "maintenance" || key === "security_model" || key === "integrations")
+        ? svc.section_order.filter((key) => defaultOrder.includes(key) || key === "self_custody" || key === "payment_methods_limits" || key === "key_features" || key === "recovery" || key === "hardware_bom" || key === "maintenance" || key === "security_model" || key === "integrations")
         : defaultOrder;
       
       // For Buy Bitcoin services, replace migration with self_custody
@@ -376,6 +376,11 @@ html = html.replace('</head>', urlShim + '</head>');
       // For Store it safely services, use custody-focused order
       if (svc.category === "Store it safely") {
         order = ["tldr", "setup", "fees", "key_features", "recovery", "inheritance", "compat", "costs", "privacy", "trust", "profile"];
+      }
+
+      // For Run my own node services
+      if (svc.category === "Run my own node") {
+        order = ["tldr", "setup", "hardware_bom", "fees", "privacy", "compat", "integrations", "maintenance", "security_model", "migration", "trust", "profile"];
       }
 
       const sectionBlocks = [];
@@ -711,8 +716,7 @@ ${tileItems}
                   const context = scenario.cost_context ? `<span class="fee-card__context">${escapeHtml(scenario.cost_context)}</span>` : "";
                   const serviceFactor = scenario.service_factor 
                     ? `<div class="fee-card__factor">
-                         <span class="fee-card__factor-icon">ℹ</span>
-                         <span class="fee-card__factor-text"><strong>${escapeHtml(svc.name)} factor:</strong> ${escapeHtml(scenario.service_factor)}</span>
+                         <strong class="fee-card__factor-label">${escapeHtml(svc.name)} factor:</strong> <span class="fee-card__factor-text">${escapeHtml(scenario.service_factor)}</span>
                        </div>` 
                     : "";
                   
@@ -924,9 +928,9 @@ ${blocks}
           `).join('');
           
           microFaqsHtml = `
-          <div class="hardware-micro-faqs">
-            <h3 class="section-subheading">Hardware & Capacity FAQs</h3>
-            <div class="micro-faqs__list">
+          <div class="fee-quick-answers">
+            <h3 class="fee-quick-answers__title">Quick answers</h3>
+            <div class="fee-quick-answers__list">
               ${faqItems}
             </div>
           </div>`;
@@ -943,78 +947,67 @@ ${blocks}
 </section>`;
       };
 
-      const renderPowerUptime = () => {
-        if (!svc.power_uptime) return "";
-        const data = svc.power_uptime;
-        
-        // Render metrics table
-        let metricsHtml = "";
-        if (Array.isArray(data.metrics)) {
-          const rows = data.metrics.map(m => `
-            <tr>
-              <td>${escapeHtml(m.label)}</td>
-              <td><strong>${escapeHtml(m.value)}</strong></td>
-              <td>${escapeHtml(m.notes)}</td>
-            </tr>`).join('');
-          metricsHtml = `
-          <div class="power-metrics">
-            <table class="compat-table">
-              <thead><tr><th>Metric</th><th>Value</th><th>Notes</th></tr></thead>
-              <tbody>${rows}</tbody>
-            </table>
-          </div>`;
-        }
-        
-        // UPS Guidance
-        let upsHtml = "";
-        if (Array.isArray(data.ups_guidance)) {
-          upsHtml = `
-          <div class="power-block">
-            <h3>UPS Guidance</h3>
-            <ul>${data.ups_guidance.map(i => `<li>${escapeHtml(i)}</li>`).join('')}</ul>
-          </div>`;
-        }
-        
-        // Safe Shutdown
-        let shutdownHtml = "";
-        if (data.safe_shutdown) {
-          shutdownHtml = `
-          <div class="power-block power-shutdown">
-            <h3>Safe Shutdown</h3>
-            <p>${escapeHtml(data.safe_shutdown)}</p>
-          </div>`;
-        }
-        
-        return `
-<section id="power" class="service-section">
-  <h2 class="feature-label">Power & Uptime</h2>
-  ${metricsHtml}
-  <div class="power-guidance-grid">
-    ${upsHtml}
-    ${shutdownHtml}
-  </div>
-</section>`;
-      };
-
       const renderMaintenance = () => {
         if (!svc.maintenance) return "";
         const data = svc.maintenance;
+
+        // Helper for simple markdown (bold, code, links)
+        const parseMarkdown = (text) => {
+          if (!text) return "";
+          return escapeHtml(text)
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/`(.*?)`/g, '<code>$1</code>')
+            .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+        };
         
-        const cadenceHtml = data.cadence ? `<p class="maintenance-cadence"><strong>Update cadence:</strong> ${escapeHtml(data.cadence)}</p>` : "";
+        // Ops Profile Grid (New Structure)
+        let opsHtml = "";
+        if (Array.isArray(data.ops_profile)) {
+          const items = data.ops_profile.map(item => `
+            <div class="hardware-spec">
+              <span class="spec-label">${escapeHtml(item.label)}</span>
+              <span class="spec-value">${escapeHtml(item.value)}</span>
+            </div>`
+          ).join('');
+          opsHtml = `<div class="maintenance-grid">${items}</div>`;
+        } else if (data.cadence) {
+           // Fallback for legacy string/HTML cadence
+           opsHtml = (data.cadence.trim().startsWith('<')) 
+             ? data.cadence 
+             : `<p class="maintenance-cadence"><strong>Update cadence:</strong> ${escapeHtml(data.cadence)}</p>`;
+        }
         
+        // Tasks Drawers (New Structure)
         let tasksHtml = "";
         if (Array.isArray(data.tasks)) {
-          tasksHtml = `<div class="maintenance-tasks">
-            ${data.tasks.map(t => `
-              <div class="maintenance-task">
-                <h4>${escapeHtml(t.title)}</h4>
-                <p>${escapeHtml(t.details)}</p>
-              </div>`).join('')}
+          tasksHtml = `<div class="maintenance-drawers">
+            ${data.tasks.map(t => {
+              let content = "";
+              
+              // New structured format: intro + steps array
+              if (t.intro || t.steps) {
+                  if (t.intro) content += `<p>${parseMarkdown(t.intro)}</p>`;
+                  if (Array.isArray(t.steps)) {
+                      content += `<ol>${t.steps.map(s => `<li>${parseMarkdown(s)}</li>`).join('')}</ol>`;
+                  }
+              } else if (t.details) {
+                  // Fallback to legacy details string
+                  content = (t.details.trim().startsWith('<')) ? t.details : `<p>${escapeHtml(t.details)}</p>`;
+              }
+
+              return `
+              <details class="maintenance-drawer">
+                <summary>${escapeHtml(t.title)}</summary>
+                <div class="maintenance-drawer__content">
+                  ${content}
+                </div>
+              </details>`;
+            }).join('')}
           </div>`;
         }
         
         let configsHtml = "";
-        if (Array.isArray(data.configs)) {
+        if (Array.isArray(data.configs) && data.configs.length > 0) {
           configsHtml = `<div class="maintenance-configs">
             <h3>Config Locations</h3>
             <ul>${data.configs.map(c => `<li>${escapeHtml(c)}</li>`).join('')}</ul>
@@ -1024,7 +1017,7 @@ ${blocks}
         return `
 <section id="maintenance" class="service-section">
   <h2 class="feature-label">Maintenance</h2>
-  ${cadenceHtml}
+  ${opsHtml}
   ${tasksHtml}
   ${configsHtml}
 </section>`;
@@ -1034,21 +1027,32 @@ ${blocks}
         if (!svc.security_model) return "";
         const data = svc.security_model;
         
-        const overviewHtml = data.overview ? `<p class="security-overview">${escapeHtml(data.overview)}</p>` : "";
+        // Reuse the standard "mechanism box" style for the overview
+        const overviewHtml = data.overview ? `<p class="mechanism-box">${escapeHtml(data.overview)}</p>` : "";
         
         let winsHtml = "";
         if (Array.isArray(data.quick_wins)) {
-          winsHtml = `<div class="security-block">
-            <h3>Quick Wins</h3>
-            <ul>${data.quick_wins.map(w => `<li>${escapeHtml(w)}</li>`).join('')}</ul>
+          // Reuse standard tile structure
+          winsHtml = `<div class="svc-compat__tile">
+            <div class="svc-compat__header">
+              <h3 class="svc-compat__title">
+                <img src="/images/checkmark.svg" class="inline-icon" alt="" aria-hidden="true"/> Quick Wins
+              </h3>
+            </div>
+            <ul class="feature-tile__bullets">${data.quick_wins.map(w => `<li>${escapeHtml(w)}</li>`).join('')}</ul>
           </div>`;
         }
         
         let hardeningHtml = "";
         if (Array.isArray(data.hardening)) {
-          hardeningHtml = `<div class="security-block">
-            <h3>Hardening</h3>
-            <ul>${data.hardening.map(h => `<li>${escapeHtml(h)}</li>`).join('')}</ul>
+          // Reuse standard tile structure
+          hardeningHtml = `<div class="svc-compat__tile">
+            <div class="svc-compat__header">
+              <h3 class="svc-compat__title">
+                <img src="/images/security.svg" class="inline-icon" alt="" aria-hidden="true"/> Hardening
+              </h3>
+            </div>
+            <ul class="feature-tile__bullets">${data.hardening.map(h => `<li>${escapeHtml(h)}</li>`).join('')}</ul>
           </div>`;
         }
         
@@ -1056,7 +1060,7 @@ ${blocks}
 <section id="security" class="service-section">
   <h2 class="feature-label">Security Model</h2>
   ${overviewHtml}
-  <div class="security-grid">
+  <div class="svc-compat__grid">
     ${winsHtml}
     ${hardeningHtml}
   </div>
@@ -1067,6 +1071,107 @@ ${blocks}
         if (!svc.integrations) return "";
         const data = svc.integrations;
         
+        // New Structure Support: Card-based integrations
+        if (data.cards && Array.isArray(data.cards)) {
+          const introHtml = data.intro ? `<div class="feature-label sublabel">${escapeHtml(data.intro)}</div>` : "";
+          
+          const cardsHtml = data.cards.map(card => {
+            // Simple markdown parser for bold text
+            const parseMarkdown = (text) => {
+              if (!text) return "";
+              const escaped = escapeHtml(text);
+              return escaped.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            };
+
+            // Status chip logic
+            const statusClass = card.status === 'works' ? 'svc-chip--works' : 
+                                card.status === 'caveat' ? 'svc-chip--works-caveat' : 
+                                card.status === 'warning' ? 'svc-chip--not-working' : 'svc-chip--setup';
+            const statusLabel = card.status_text || (card.status === 'works' ? 'Verified' : 'Caveat');
+
+            // Steps
+            const stepsHtml = card.steps ? 
+              `<ol class="integration-steps">${card.steps.map(s => `<li>${parseMarkdown(s)}</li>`).join('')}</ol>` : "";
+
+            // Endpoints (handle both array and object for backward compatibility)
+            let endpoints = [];
+            if (Array.isArray(card.endpoints)) {
+                endpoints = card.endpoints;
+            } else if (card.copyable_endpoint) {
+                endpoints = [card.copyable_endpoint];
+            }
+
+            const endpointsHtml = endpoints.length > 0 ? endpoints.map(ep => 
+              `<div class="copy-block">
+                  <span class="copy-label">${escapeHtml(ep.label)}</span>
+                  <div class="copy-row">
+                    <code>${escapeHtml(ep.value)}</code>
+                    <button class="copy-btn-mini" aria-label="Copy" data-copy="${escapeHtml(ep.value)}">
+                      <img src="/images/copy.svg" alt="Copy" class="inline-icon">
+                    </button>
+                  </div>
+               </div>`
+            ).join("") : "";
+            
+            // Compatible Tools Collapsible
+            let compatibleHtml = "";
+            if (card.compatible_tools && Array.isArray(card.compatible_tools) && card.compatible_tools.length > 0) {
+                // Map of featured services for linking
+                const featuredMap = {
+                  "Sparrow": "sparrow",
+                  "BTCPay Server": "btc-pay",
+                  "RoboSats": "robosats",
+                  "Bisq": "bisq",
+                  "Wasabi": "wasabi"
+                };
+
+                const toolsList = card.compatible_tools.map(t => {
+                  const slug = featuredMap[t];
+                  if (slug) {
+                    return `<a href="/services/${slug}.html" class="app-tag app-tag--link">${escapeHtml(t)}</a>`;
+                  }
+                  return `<span class="app-tag">${escapeHtml(t)}</span>`;
+                }).join("");
+
+                  compatibleHtml = `
+                  <details class="compat-details">
+                      <summary data-closed-text="See compatible apps" data-open-text="Hide apps">See compatible apps</summary>
+                      <div class="compatible-apps-list">
+                          ${toolsList}
+                      </div>
+                  </details>`;
+            }
+
+            return `
+            <div class="svc-compat__tile integration-card" id="${card.id}">
+                <div class="svc-compat__header">
+                    <h3 class="svc-compat__title">${escapeHtml(card.title)}</h3>
+                    <span class="svc-chip ${statusClass}">${escapeHtml(statusLabel)}</span>
+                </div>
+                <p class="svc-compat__why">${escapeHtml(card.description)}</p>
+                
+                <div class="integration-details">
+                  ${stepsHtml}
+                  ${endpointsHtml}
+                  ${compatibleHtml}
+                </div>
+
+                ${card.caveat ? `<p class="svc-compat__note warning"><strong>Caveat:</strong> ${escapeHtml(card.caveat)}</p>` : ""}
+                ${card.privacy ? `<p class="svc-compat__note privacy"><strong>Privacy:</strong> ${escapeHtml(card.privacy)}</p>` : ""}
+            </div>`;
+          }).join("");
+
+          return `
+          <section id="integrations" class="service-section">
+              <h2 class="feature-label">Integrations</h2>
+              ${introHtml}
+              <div class="svc-compat__grid">
+                  ${cardsHtml}
+              </div>
+          </section>`;
+        }
+
+        // Legacy List Support
         const renderList = (title, items) => {
           if (!Array.isArray(items) || !items.length) return "";
           return `<div class="integration-group">
@@ -1233,19 +1338,19 @@ ${tiles.join("\n")}
 </section>`;
       };
 
-      const renderPrivacy = () => {
-        // Helper: slugify for anchor IDs
-        const slugifyAnchor = (text) => {
-          return text.toLowerCase()
-            .replace(/[^a-z0-9\s-]/g, '')
-            .replace(/\s+/g, '-')
-            .replace(/-+/g, '-')
-            .trim()
-            .slice(0, 50);
-        };
-        
-        // Check for new privacy object structure first
-        if (svc.privacy && typeof svc.privacy === 'object') {
+        const renderPrivacy = () => {
+          // Helper: slugify for anchor IDs
+          const slugifyAnchor = (text) => {
+            return text.toLowerCase()
+              .replace(/[^a-z0-9\s-]/g, '')
+              .replace(/\s+/g, '-')
+              .replace(/-+/g, '-')
+              .trim()
+              .slice(0, 50);
+          };
+          
+          if (!svc.privacy || typeof svc.privacy !== 'object') return "";
+
           const privacy = svc.privacy;
           
           // Build glossary term map for auto-linking
@@ -1439,97 +1544,7 @@ ${glossaryItems}
 ${cards.join("\n")}
   </div>${microFaqsHtml}${glossaryHtml}
 </section>`;
-        }
-        
-        // LEGACY: Fall back to old privacy_notes format for services not yet migrated
-        const notes = svc.privacy_notes || {};
-        const labels = notes.labels || {};
-        
-        // Default labels
-        const defaultLabels = {
-          data_flows: "Data flows",
-          recovery_drill: "Recovery drill",
-          country: "Country caveats"
         };
-        
-        // Card A: Data flows only
-        const dataFlowsItems = [];
-        if (Array.isArray(notes.data_flows)) {
-          dataFlowsItems.push(...notes.data_flows.filter(item => hasContent(item)));
-        }
-        
-        // Card B: Recovery drill only
-        const recoveryItems = [];
-        if (Array.isArray(notes.recovery_drill)) {
-          recoveryItems.push(...notes.recovery_drill.filter(item => hasContent(item)));
-        }
-        
-        // Card C: Country caveats only
-        const countryItems = [];
-        if (Array.isArray(notes.country_caveats)) {
-          countryItems.push(...notes.country_caveats.filter(item => hasContent(item)));
-        }
-        
-        const cards = [];
-        const renderedCards = [];
-        
-        // Render Data flows card only if it has content
-        if (dataFlowsItems.length > 0) {
-          const label = labels.data_flows || defaultLabels.data_flows;
-          const bullets = dataFlowsItems.map(item => `<li>${item}</li>`).join("");
-          cards.push(`  <div id="privacy-data">
-    <div class="feature-label sublabel">${label}</div>
-    <div class="feature-value">
-      <ul>${bullets}</ul>
-    </div>
-  </div>`);
-          renderedCards.push(`${label} (${dataFlowsItems.length} bullets)`);
-        }
-        
-        // Render Recovery drill card only if it has content
-        if (recoveryItems.length > 0) {
-          const label = labels.recovery_drill || defaultLabels.recovery_drill;
-          const bullets = recoveryItems.map(item => `<li>${item}</li>`).join("");
-          cards.push(`  <div id="privacy-recovery">
-    <div class="feature-label sublabel">${label}</div>
-    <div class="feature-value">
-      <ul>${bullets}</ul>
-    </div>
-  </div>`);
-          renderedCards.push(`${label} (${recoveryItems.length} bullets)`);
-        }
-        
-        // Render Country caveats card only if it has content
-        if (countryItems.length > 0) {
-          const label = labels.country || defaultLabels.country;
-          const bullets = countryItems.map(item => `<li>${item}</li>`).join("");
-          cards.push(`  <div id="privacy-region">
-    <div class="feature-label sublabel">${label}</div>
-    <div class="feature-value">
-      <ul>${bullets}</ul>
-    </div>
-  </div>`);
-          renderedCards.push(`${label} (${countryItems.length} bullets)`);
-        }
-        
-        // Log rendered cards for debugging
-        if (cards.length > 0) {
-          console.log(`  Privacy cards for ${svc.name}: ${renderedCards.join(", ")}`);
-        } else {
-          console.log(`  Privacy cards for ${svc.name}: (none)`);
-        }
-        
-        // Skip entire section only if no cards at all
-        if (cards.length === 0) return "";
-        
-        return `
-<section id="privacy" class="service-section">
-  <h2 class="feature-label">Privacy &amp; Safety</h2>
-  <div class="privacy-cards">
-${cards.join("\n")}
-  </div>
-</section>`;
-      };
 
       const renderPaymentMethods = () => {
         const paymentData = svc.payment_methods_limits;
@@ -2489,7 +2504,6 @@ ${cards.join("\n")}
         setup: renderSetup,
         fees: renderFees,
         hardware_bom: renderHardwareBom,
-        power_uptime: renderPowerUptime,
         maintenance: renderMaintenance,
         security_model: renderSecurityModel,
         integrations: renderIntegrations,
@@ -2515,7 +2529,6 @@ ${cards.join("\n")}
         setup: (svc.category === "Store it safely" && svc.howto?.title) ? svc.howto.title : "Getting started",
         fees: "Fees: what you pay and when",
         hardware_bom: "Hardware BOM",
-        power_uptime: "Power & Uptime",
         maintenance: "Maintenance",
         security_model: "Security Model",
         integrations: "Integrations",
@@ -2558,7 +2571,6 @@ ${block}
         setup: { id: 'setup', label: 'Setup' },
         fees: { id: 'fees', label: 'Fees' },
         hardware_bom: { id: 'hardware', label: 'Hardware' },
-        power_uptime: { id: 'power', label: 'Power' },
         maintenance: { id: 'maintenance', label: 'Updates' },
         security_model: { id: 'security', label: 'Security' },
         integrations: { id: 'integrations', label: 'Integrations' },

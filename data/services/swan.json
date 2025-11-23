@@ -484,21 +484,6 @@
       }
     ]
   },
-  "privacy_notes": {
-    "data_flows": [
-      "Swan stores the identity documents you submit for KYC along with your onboarding questionnaire responses.",
-      "Bank account details are shared with regulated payment processors so ACH and wire transfers can settle.",
-      "Custody partners maintain segregated accounts that keep your bitcoin separate from Swan’s corporate balance sheet."
-    ],
-    "recovery_drill": [
-      "Enable two-factor authentication and record backup codes before your first deposit.",
-      "Review your cookie and privacy settings at swan.com/privacy-policy if you want to limit optional data sharing."
-    ],
-    "country_caveats": [
-      "ACH funding and Swan Safe require a U.S. checking account; international customers typically use Swan Private via BitGo custody.",
-      "Advertising cookie sharing only happens when you opt in via the consent banner."
-    ]
-  },
   "privacy": {
     "section_title": "Privacy & Safety",
     "data_flows": [

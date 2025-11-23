@@ -408,20 +408,6 @@
       }
     ]
   },
-  "privacy_notes": {
-    "data_flows": [
-      "Pocket stores the payout address you provide and the bank payment reference it assigns to your order.",
-      "Bank transfers expose your IBAN and name to Pocket's Swiss banking partner so they can match incoming payments."
-    ],
-    "recovery_drill": [
-      "Keep the order confirmation emails; they contain the reference code Pocket needs to trace payments.",
-      "If a payout seems delayed, share the bank transfer receipt and your address so Pocket support can find the transaction."
-    ],
-    "country_caveats": [
-      "Pocket currently serves EU and Swiss bank corridors; local availability depends on SEPA access.",
-      "Some banks require you to whitelist Pocket's IBAN before a standing order will execute."
-    ]
-  },
   "privacy": {
     "section_title": "Privacy & Safety",
     "data_flows": [

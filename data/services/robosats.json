@@ -421,21 +421,6 @@
       }
     ]
   },
-  "privacy_notes": {
-    "data_flows": [
-      "The coordinator stores order size, currency code, payment tags, and hashed robot tokens until the contract closes.",
-      "Chat messages are encrypted end-to-end with per-contract PGP keys generated in your browser."
-    ],
-    "recovery_drill": [
-      "Export or write down your robot token before you leave the session so you can recover the contract.",
-      "Bookmark the Quick Start page for updated onion links in case the clearnet domain rotates.",
-      "If you lose the token, create a new robot and warn peers; old disputes cannot be reopened without it."
-    ],
-    "country_caveats": [
-      "Payment rails depend on counterparties; Revolut and Wise are common in Europe, while Zelle and Interac appear in North America.",
-      "Some jurisdictions scrutinize large Lightning payouts or cash trades, so check local regulations before trading."
-    ]
-  },
   "privacy": {
     "section_title": "Privacy & Safety",
     "data_flows": [

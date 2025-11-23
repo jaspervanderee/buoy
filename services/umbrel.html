@@ -137,7 +137,7 @@
 </nav>
 
 <nav class="jump-nav" aria-label="Jump to">
-  <a href="/services/umbrel.html#setup">Setup</a> • <a href="/services/umbrel.html#fees">Fees</a> • <a href="/services/umbrel.html#hardware">Hardware</a> • <a href="/services/umbrel.html#power">Power</a> • <a href="/services/umbrel.html#compat">Compatibility</a> • <a href="/services/umbrel.html#integrations">Integrations</a> • <a href="/services/umbrel.html#maintenance">Updates</a> • <a href="/services/umbrel.html#security">Security</a> • <a href="/services/umbrel.html#migration">Migration</a> • <a href="/services/umbrel.html#privacy-safety">Privacy</a> • <a href="/services/umbrel.html#trust">Trust</a> • <a href="/services/umbrel.html#faq-heading">FAQs</a>
+  <a href="/services/umbrel.html#setup">Setup</a> • <a href="/services/umbrel.html#hardware">Hardware</a> • <a href="/services/umbrel.html#fees">Fees</a> • <a href="/services/umbrel.html#privacy-safety">Privacy</a> • <a href="/services/umbrel.html#compat">Compatibility</a> • <a href="/services/umbrel.html#integrations">Integrations</a> • <a href="/services/umbrel.html#maintenance">Updates</a> • <a href="/services/umbrel.html#security">Security</a> • <a href="/services/umbrel.html#migration">Migration</a> • <a href="/services/umbrel.html#trust">Trust</a> • <a href="/services/umbrel.html#faq-heading">FAQs</a>
 </nav>
   <!-- BUILD:START -->
 <div class="service-sticky-cta">
@@ -153,7 +153,7 @@
     </div>
   </div>
 </div>
-<div class="trust-chips"><div class="trust-chip">Source-available</div><div class="trust-chip"><img src="/images/checkmark.svg" alt="positive icon" class="trust-chip-icon"/> Tor remote access</div><div class="trust-chip"><img src="/images/checkmark.svg" alt="positive icon" class="trust-chip-icon"/> No cloud custody</div></div>
+<div class="trust-chips"><a href="/services/umbrel.html#app-store" class="trust-chip trust-chip--differentiator"><img src="/images/checkmark.svg" alt="positive icon" class="trust-chip-icon"/> 100+ one-click apps</a><a href="/services/umbrel.html#privacy" class="trust-chip trust-chip--differentiator"><img src="/images/checkmark.svg" alt="positive icon" class="trust-chip-icon"/> Built-in Tor routing</a><a href="/services/umbrel.html#maintenance" class="trust-chip trust-chip--differentiator"><img src="/images/checkmark.svg" alt="positive icon" class="trust-chip-icon"/> Guided backups</a></div>
 <div class="comparison-table">
 
 <section id="tldr" class="service-section">
@@ -224,176 +224,6 @@
     </details>
     </div>
   </div>
-
-</section>
-</details>
-<details class="section-accordion">
-  <summary>Fees: what you pay and when</summary>
-
-<section id="fees" class="service-section section-fees">
-  <h2 class="fees-title">Costs & speed of operation</h2>
-  <div class="fee-scenarios">
-    <article class="fee-card fee-card--node" id="initial-sync">
-      <div class="fee-card__header">
-        <h3 class="fee-card__title">Initial sync time</h3>
-        <span class="fee-card__badge">One-time</span>
-      </div>
-      
-      <div class="fee-card__hero">
-        <span class="fee-card__value">5–6 days</span>
-        <span class="fee-card__context">on Pi 4 (or ~12h on Mini-PC)</span>
-        <div class="fee-card__factor">
-                         <span class="fee-card__factor-icon">ℹ</span>
-                         <span class="fee-card__factor-text"><strong>Umbrel factor:</strong> Apps remain locked until 100% sync to ensure dependency integrity.</span>
-                       </div>
-      </div>
-      
-      <div class="fee-card__body">
-        <div class="fee-card__section">
-          <span class="fee-card__label">THE MECHANICS</span>
-          <p>Bitcoin Core verifies every block from genesis on your hardware (CPU + disk-IO bound).</p>
-        </div>
-        
-        <div class="fee-card__section fee-card__section--action">
-          <span class="fee-card__label">OPTIMIZATION</span>
-          <p>Leave it on, use wired Ethernet, and prefer SSDs over HDDs.</p>
-        </div>
-      </div>
-      
-      
-        <details class="fee-card__learn-more">
-          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
-          <div><p>Pause heavy App Store installs until Bitcoin Core reaches tip; Lightning depends on a fully synced node.</p></div>
-        </details>
-    </article>
-    <article class="fee-card fee-card--node" id="disk-growth">
-      <div class="fee-card__header">
-        <h3 class="fee-card__title">Disk growth</h3>
-        <span class="fee-card__badge">Storage</span>
-      </div>
-      
-      <div class="fee-card__hero">
-        <span class="fee-card__value">550 GB</span>
-        <span class="fee-card__context">currently + 5–7 GB/month</span>
-        <div class="fee-card__factor">
-                         <span class="fee-card__factor-icon">ℹ</span>
-                         <span class="fee-card__factor-text"><strong>Umbrel factor:</strong> Unified storage means media apps (Immich/Nextcloud) compete directly with chain data.</span>
-                       </div>
-      </div>
-      
-      <div class="fee-card__body">
-        <div class="fee-card__section">
-          <span class="fee-card__label">THE MECHANICS</span>
-          <p>Full-history nodes store the entire blockchain plus Lightning databases, logs, and app containers on your local drive.</p>
-        </div>
-        
-        <div class="fee-card__section fee-card__section--action">
-          <span class="fee-card__label">OPTIMIZATION</span>
-          <p>Allocate at least a 1 TB SSD for full archival, or enable pruning to fit on smaller drives.</p>
-        </div>
-      </div>
-      
-      
-        <details class="fee-card__learn-more">
-          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
-          <div><p>Keep >15% free space in `/home/umbrel/umbrel/bitcoin/blocks` so compaction never stalls.</p></div>
-        </details>
-    </article>
-    <article class="fee-card fee-card--node" id="power-draw">
-      <div class="fee-card__header">
-        <h3 class="fee-card__title">Power consumption</h3>
-        <span class="fee-card__badge">Monthly</span>
-      </div>
-      
-      <div class="fee-card__hero">
-        <span class="fee-card__value">10–30 W</span>
-        <span class="fee-card__context">~$1.30–$3.90 / month</span>
-        <div class="fee-card__factor">
-                         <span class="fee-card__factor-icon">ℹ</span>
-                         <span class="fee-card__factor-text"><strong>Umbrel factor:</strong> UmbrelOS disables disk spin-down to maintain instant Lightning routing response.</span>
-                       </div>
-      </div>
-      
-      <div class="fee-card__body">
-        <div class="fee-card__section">
-          <span class="fee-card__label">THE MECHANICS</span>
-          <p>Your node stays online 24/7 to verify blocks and route payments, drawing continuous power.</p>
-        </div>
-        
-        <div class="fee-card__section fee-card__section--action">
-          <span class="fee-card__label">OPTIMIZATION</span>
-          <p>Use efficient N100 hardware or under-volt your Pi to keep carrying costs low.</p>
-        </div>
-      </div>
-      
-      
-        <details class="fee-card__learn-more">
-          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
-          <div><p>Pair the node with a smart plug or UPS that reports load so you can budget uptime.</p></div>
-        </details>
-    </article>
-    <article class="fee-card fee-card--node" id="bandwidth">
-      <div class="fee-card__header">
-        <h3 class="fee-card__title">Bandwidth requirements</h3>
-        <span class="fee-card__badge">Network</span>
-      </div>
-      
-      <div class="fee-card__hero">
-        <span class="fee-card__value">600 GB</span>
-        <span class="fee-card__context">initial download + 30GB/mo</span>
-        <div class="fee-card__factor">
-                         <span class="fee-card__factor-icon">ℹ</span>
-                         <span class="fee-card__factor-text"><strong>Umbrel factor:</strong> Background Docker image updates add substantial usage beyond chain gossip.</span>
-                       </div>
-      </div>
-      
-      <div class="fee-card__body">
-        <div class="fee-card__section">
-          <span class="fee-card__label">THE MECHANICS</span>
-          <p>The node peers with the network to relay blocks and gossip, using significant upstream bandwidth.</p>
-        </div>
-        
-        <div class="fee-card__section fee-card__section--action">
-          <span class="fee-card__label">OPTIMIZATION</span>
-          <p>Use a wired connection and set upload caps in Bitcoin Core if your ISP limits data.</p>
-        </div>
-      </div>
-      
-      
-        <details class="fee-card__learn-more">
-          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
-          <div><p>ISPs with 1 TB caps may throttle after long IBD sessions; consider fiber or business-class plans.</p></div>
-        </details>
-    </article>
-  </div>
-  <div class="fee-quick-answers">
-    <h3 class="fee-quick-answers__title">Quick answers</h3>
-    <div class="fee-quick-answers__list">
-    <details class="micro-faq-item">
-      <summary>Can I pause the initial block download without corrupting data?</summary>
-      <div>
-        <p>Yes. Shut down from Settings → System before powering off; Bitcoin Core resumes where it left off as long as the SSD stays connected.</p>
-      </div>
-    </details>
-    <details class="micro-faq-item">
-      <summary>What happens when my SSD fills up?</summary>
-      <div>
-        <p>Umbrel warns you at ~85% usage. Add a larger disk and migrate the `/home/umbrel/umbrel` directory before the drive hits 100% or Bitcoin Core will halt.</p>
-      </div>
-    </details>
-    </div>
-  </div>
-  <details class="key-terms" id="fees-key-terms">
-    <summary>Key terms</summary>
-    <dl>
-      <dt id="term-scb">Static channel backup (SCB)</dt>
-      <dd>Encrypted snapshot of your Lightning channels you import if the node fails.</dd>
-      <dt id="term-ibd">Initial block download (IBD)</dt>
-      <dd>The first sync where Bitcoin Core verifies every block since 2009.</dd>
-      <dt id="term-ups">Uninterruptible power supply (UPS)</dt>
-      <dd>Battery pack that keeps the node online long enough for safe shutdowns.</dd>
-    </dl>
-  </details>
 
 </section>
 </details>
@@ -545,9 +375,9 @@
       </div>
   </div>
   
-          <div class="hardware-micro-faqs">
-            <h3 class="section-subheading">Hardware & Capacity FAQs</h3>
-            <div class="micro-faqs__list">
+          <div class="fee-quick-answers">
+            <h3 class="fee-quick-answers__title">Quick answers</h3>
+            <div class="fee-quick-answers__list">
               
             <details class="micro-faq-item">
               <summary>Is a Raspberry Pi 5 worth it over a Pi 4?</summary>
@@ -574,44 +404,224 @@
 </section>
 </details>
 <details class="section-accordion">
-  <summary>Power & Uptime</summary>
+  <summary>Fees: what you pay and when</summary>
 
-<section id="power" class="service-section">
-  <h2 class="feature-label">Power & Uptime</h2>
-  
-          <div class="power-metrics">
-            <table class="compat-table">
-              <thead><tr><th>Metric</th><th>Value</th><th>Notes</th></tr></thead>
-              <tbody>
-            <tr>
-              <td>Idle draw (Pi build)</td>
-              <td><strong>10–12 W</strong></td>
-              <td>~$1.30 per month at $0.18/kWh</td>
-            </tr>
-            <tr>
-              <td>Idle draw (mini PC)</td>
-              <td><strong>20–25 W</strong></td>
-              <td>~$3.25 per month</td>
-            </tr>
-            <tr>
-              <td>Load spikes</td>
-              <td><strong>Up to 70 W on power-user rigs</strong></td>
-              <td>Budget UPS capacity accordingly</td>
-            </tr></tbody>
-            </table>
-          </div>
-  <div class="power-guidance-grid">
-    
-          <div class="power-block">
-            <h3>UPS Guidance</h3>
-            <ul><li>Pi builds can run for ~45 minutes on a 300 VA UPS—long enough for clean shutdowns during outages.</li><li>Mini PCs benefit from 600–1000 VA UPS units so Electrs indexing or Lightning gossip doesn’t crash mid-write.</li><li>Use smart UPS models to trigger automatic shutdowns via USB or network cards.</li></ul>
-          </div>
-    
-          <div class="power-block power-shutdown">
-            <h3>Safe Shutdown</h3>
-            <p>Always shut down from Settings → System or `sudo poweroff` before cutting power; abrupt loss risks database corruption in Bitcoin Core, Electrs, and Lightning.</p>
-          </div>
+<section id="fees" class="service-section section-fees">
+  <h2 class="fees-title">Costs & speed of operation</h2>
+  <div class="fee-scenarios">
+    <article class="fee-card fee-card--node" id="initial-sync">
+      <div class="fee-card__header">
+        <h3 class="fee-card__title">Initial sync time</h3>
+        <span class="fee-card__badge">One-time</span>
+      </div>
+      
+      <div class="fee-card__hero">
+        <span class="fee-card__value">5–6 days</span>
+        <span class="fee-card__context">on Pi 4 (or ~12h on Mini-PC)</span>
+        <div class="fee-card__factor">
+                         <strong class="fee-card__factor-label">Umbrel factor:</strong> <span class="fee-card__factor-text">Apps remain locked until 100% sync to ensure dependency integrity.</span>
+                       </div>
+      </div>
+      
+      <div class="fee-card__body">
+        <div class="fee-card__section">
+          <span class="fee-card__label">THE MECHANICS</span>
+          <p>Bitcoin Core verifies every block from genesis on your hardware (CPU + disk-IO bound).</p>
+        </div>
+        
+        <div class="fee-card__section fee-card__section--action">
+          <span class="fee-card__label">OPTIMIZATION</span>
+          <p>Leave it on, use wired Ethernet, and prefer SSDs over HDDs.</p>
+        </div>
+      </div>
+      
+      
+        <details class="fee-card__learn-more">
+          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
+          <div><p>Pause heavy App Store installs until Bitcoin Core reaches tip; Lightning depends on a fully synced node.</p></div>
+        </details>
+    </article>
+    <article class="fee-card fee-card--node" id="disk-growth">
+      <div class="fee-card__header">
+        <h3 class="fee-card__title">Disk growth</h3>
+        <span class="fee-card__badge">Storage</span>
+      </div>
+      
+      <div class="fee-card__hero">
+        <span class="fee-card__value">550 GB</span>
+        <span class="fee-card__context">currently + 5–7 GB/month</span>
+        <div class="fee-card__factor">
+                         <strong class="fee-card__factor-label">Umbrel factor:</strong> <span class="fee-card__factor-text">Unified storage means media apps (Immich/Nextcloud) compete directly with chain data.</span>
+                       </div>
+      </div>
+      
+      <div class="fee-card__body">
+        <div class="fee-card__section">
+          <span class="fee-card__label">THE MECHANICS</span>
+          <p>Full-history nodes store the entire blockchain plus Lightning databases, logs, and app containers on your local drive.</p>
+        </div>
+        
+        <div class="fee-card__section fee-card__section--action">
+          <span class="fee-card__label">OPTIMIZATION</span>
+          <p>Allocate at least a 1 TB SSD for full archival, or enable pruning to fit on smaller drives.</p>
+        </div>
+      </div>
+      
+      
+        <details class="fee-card__learn-more">
+          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
+          <div><p>Keep >15% free space in `/home/umbrel/umbrel/bitcoin/blocks` so compaction never stalls.</p></div>
+        </details>
+    </article>
+    <article class="fee-card fee-card--node" id="power-draw">
+      <div class="fee-card__header">
+        <h3 class="fee-card__title">Power consumption</h3>
+        <span class="fee-card__badge">Monthly</span>
+      </div>
+      
+      <div class="fee-card__hero">
+        <span class="fee-card__value">10–30 W</span>
+        <span class="fee-card__context">~$1.30–$3.90 / month</span>
+        <div class="fee-card__factor">
+                         <strong class="fee-card__factor-label">Umbrel factor:</strong> <span class="fee-card__factor-text">UmbrelOS disables disk spin-down to maintain instant Lightning routing response.</span>
+                       </div>
+      </div>
+      
+      <div class="fee-card__body">
+        <div class="fee-card__section">
+          <span class="fee-card__label">THE MECHANICS</span>
+          <p>Your node stays online 24/7 to verify blocks and route payments, drawing continuous power.</p>
+        </div>
+        
+        <div class="fee-card__section fee-card__section--action">
+          <span class="fee-card__label">OPTIMIZATION</span>
+          <p>Use efficient N100 hardware or under-volt your Pi to keep carrying costs low.</p>
+        </div>
+      </div>
+      
+      
+        <details class="fee-card__learn-more">
+          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
+          <div><p>Pair the node with a smart plug or UPS that reports load so you can budget uptime.</p></div>
+        </details>
+    </article>
+    <article class="fee-card fee-card--node" id="bandwidth">
+      <div class="fee-card__header">
+        <h3 class="fee-card__title">Bandwidth requirements</h3>
+        <span class="fee-card__badge">Network</span>
+      </div>
+      
+      <div class="fee-card__hero">
+        <span class="fee-card__value">600 GB</span>
+        <span class="fee-card__context">initial download + 30GB/mo</span>
+        <div class="fee-card__factor">
+                         <strong class="fee-card__factor-label">Umbrel factor:</strong> <span class="fee-card__factor-text">Background Docker image updates add substantial usage beyond chain gossip.</span>
+                       </div>
+      </div>
+      
+      <div class="fee-card__body">
+        <div class="fee-card__section">
+          <span class="fee-card__label">THE MECHANICS</span>
+          <p>The node peers with the network to relay blocks and gossip, using significant upstream bandwidth.</p>
+        </div>
+        
+        <div class="fee-card__section fee-card__section--action">
+          <span class="fee-card__label">OPTIMIZATION</span>
+          <p>Use a wired connection and set upload caps in Bitcoin Core if your ISP limits data.</p>
+        </div>
+      </div>
+      
+      
+        <details class="fee-card__learn-more">
+          <summary data-open-text="Hide details" data-closed-text="Learn more">Learn more</summary>
+          <div><p>ISPs with 1 TB caps may throttle after long IBD sessions; consider fiber or business-class plans.</p></div>
+        </details>
+    </article>
   </div>
+  <div class="fee-quick-answers">
+    <h3 class="fee-quick-answers__title">Quick answers</h3>
+    <div class="fee-quick-answers__list">
+    <details class="micro-faq-item">
+      <summary>Can I pause the initial block download without corrupting data?</summary>
+      <div>
+        <p>Yes. Shut down from Settings → System before powering off; Bitcoin Core resumes where it left off as long as the SSD stays connected.</p>
+      </div>
+    </details>
+    <details class="micro-faq-item">
+      <summary>What happens when my SSD fills up?</summary>
+      <div>
+        <p>Umbrel warns you at ~85% usage. Add a larger disk and migrate the `/home/umbrel/umbrel` directory before the drive hits 100% or Bitcoin Core will halt.</p>
+      </div>
+    </details>
+    </div>
+  </div>
+  <details class="key-terms" id="fees-key-terms">
+    <summary>Key terms</summary>
+    <dl>
+      <dt id="term-scb">Static channel backup (SCB)</dt>
+      <dd>Encrypted snapshot of your Lightning channels you import if the node fails.</dd>
+      <dt id="term-ibd">Initial block download (IBD)</dt>
+      <dd>The first sync where Bitcoin Core verifies every block since 2009.</dd>
+      <dt id="term-ups">Uninterruptible power supply (UPS)</dt>
+      <dd>Battery pack that keeps the node online long enough for safe shutdowns.</dd>
+    </dl>
+  </details>
+
+</section>
+</details>
+<details class="section-accordion">
+  <summary>Network & Privacy</summary>
+
+<section id="privacy" class="service-section" aria-labelledby="privacy-label">
+  <h2 id="privacy-label" class="feature-label">Network & Privacy</h2>
+  <div class="privacy-cards">
+    <div class="privacy-card" id="data-flows">
+      <h3>Who can see what when you use Umbrel</h3>
+      <ul><li>The dashboard listens on HTTP inside your LAN; remote access should route over Tor or a VPN tunnel to avoid exposing logins.</li><li>Each App Store container may open additional ports—review them before forwarding anything past your firewall.</li><li>Umbrel’s optional telemetry is opt-in; leave it disabled if you want the node completely local.</li></ul>
+      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> Keep the device behind a router, enable Tor remote access, and rotate credentials that ship with defaults.</span></div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> Expose `umbrel.local:80` directly to the internet or reuse the same password across Thunderhub, Lightning Terminal, and the base OS.</span></div></div>
+    </div>
+    <div class="privacy-card" id="recovery">
+      <h3>Lost your phone? How Umbrel recovery works</h3>
+      <ul><li>System backups live under `Settings → Backup`; store a copy off-device together with your Lightning <a href="/services/umbrel.html#scb" class="glossary-link" data-term="SCB">SCB</a> file.</li><li>To restore, flash the latest image, drop your backup archive plus `channel.backup` into `/home/umbrel/umbrel/backups`, and follow the wizard.</li><li>If the hardware dies without a recent <a href="/services/umbrel.html#scb" class="glossary-link" data-term="SCB">SCB</a>, force-close channels from peers or use watchtower data where available.</li></ul>
+      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> Test restores on spare hardware or a VM so you understand the flow before an outage.</span></div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> Rely solely on Umbrel’s cloud-encrypted <a href="/services/umbrel.html#scb" class="glossary-link" data-term="SCB">SCB</a>—keep your own copy.</span></div></div>
+    </div>
+    <div class="privacy-card" id="availability">
+      <h3>Availability &amp; safe installs</h3>
+      <ul><li>Umbrel runs entirely on your hardware, so jurisdictional limits tie to hardware import rules rather than app access.</li><li>Tor helps when your ISP uses <a href="/services/umbrel.html#cgnat" class="glossary-link" data-term="CGNAT">CGNAT</a>; you can still reach the node remotely without opening ports.</li></ul>
+    </div>
+  </div>
+    <div class="micro-faqs">
+      <h3 class="micro-faqs__title">Quick answers</h3>
+      <div class="micro-faqs__list">
+      <details class="micro-faq-item" id="does-umbrel-support-https">
+        <summary>Does Umbrel support HTTPS?</summary>
+        <div>
+          <p>Not out of the box; front it with Caddy, Traefik, or Tailscale funnel if you need TLS and granular access control.</p>
+        </div>
+      </details>
+      <details class="micro-faq-item" id="can-isps-see-what-im-hosting">
+        <summary>Can ISPs see what I'm hosting?</summary>
+        <div>
+          <p>They see encrypted Bitcoin traffic and Tor circuits, but not the app data itself—still, avoid exposing clearnet ports.</p>
+        </div>
+      </details>
+      <details class="micro-faq-item" id="where-are-ssh-keys-stored">
+        <summary>Where are SSH keys stored?</summary>
+        <div>
+          <p>Umbrel disables SSH by default; when enabled, keys live under `/home/umbrel/.ssh` so you can rotate them like any Linux host.</p>
+        </div>
+      </details>
+      </div>
+    </div>
+    <details class="mini-glossary">
+      <summary>Key terms</summary>
+      <dl>
+      <dt id="cgnat">CGNAT</dt>
+      <dd>Carrier-grade NAT that prevents inbound port forwards; Tor or VPN tunnels bypass it.</dd>
+      <dt id="scb">SCB</dt>
+      <dd>Static Channel Backup—an encrypted snapshot of your Lightning channels you need after catastrophic loss.</dd>
+      </dl>
+    </details>
 </section>
 </details>
 <details class="section-accordion">
@@ -687,50 +697,160 @@
 <details class="section-accordion">
   <summary>Integrations</summary>
 
-<section id="integrations" class="service-section">
-  <h2 class="feature-label">Integrations</h2>
-  <div class="integrations-grid">
-    <div class="integration-group">
-            <h3>Connect Wallets</h3>
-            <ul><li>Sparrow / Specter via Electrs or EPS</li><li>Zeus, Thunderhub, Lightning Terminal over Tor</li><li>BlueWallet watch-only via Electrum server</li></ul>
-          </div>
-    <div class="integration-group">
-            <h3>Merchant Stack</h3>
-            <ul><li>BTCPay Server with LND backend</li><li>LNBits or Cashu mints for custodial wallets</li><li>Ride the Lightning for POS-style flows</li></ul>
-          </div>
-    <div class="integration-group">
-            <h3>Explorers & Tools</h3>
-            <ul><li>Mempool.space instance for fee monitoring</li><li>Samourai Whirlpool CLI (community app)</li><li>Home Assistant, Nextcloud, Immich for day-one household value</li></ul>
-          </div>
-  </div>
-  <p class="integration-notes">Most integrations are one-click App Store installs; others require pointing external clients at your node’s Tor hidden services.</p>
-</section>
+          <section id="integrations" class="service-section">
+              <h2 class="feature-label">Integrations</h2>
+              <div class="feature-label sublabel">Your node replaces the cloud. Learn how to verify your own transactions, route payments, and monitor the network privately.</div>
+              <div class="svc-compat__grid">
+                  
+            <div class="svc-compat__tile integration-card" id="wallet-connection">
+                <div class="svc-compat__header">
+                    <h3 class="svc-compat__title">Connect your wallet</h3>
+                    <span class="svc-chip svc-chip--works">Private</span>
+                </div>
+                <p class="svc-compat__why">Don&#039;t trust your wallet provider with your balance. Connect any Electrum-compatible wallet to your node to verify transactions yourself.</p>
+                
+                <div class="integration-details">
+                  <ol class="integration-steps"><li>Install <strong>Electrs</strong> from the App Store and wait for the index to complete.</li><li>Copy the <strong>Local IP</strong> (desktop) or <strong>Tor Address</strong> (mobile) from the Electrs app.</li><li>Paste it into your wallet’s &#039;Server&#039; or &#039;Network&#039; settings.</li></ol>
+                  <div class="copy-block">
+                  <span class="copy-label">Desktop (LAN)</span>
+                  <div class="copy-row">
+                    <code>umbrel.local:50001</code>
+                    <button class="copy-btn-mini" aria-label="Copy" data-copy="umbrel.local:50001">
+                      <img src="/images/copy.svg" alt="Copy" class="inline-icon">
+                    </button>
+                  </div>
+               </div><div class="copy-block">
+                  <span class="copy-label">Mobile (Tor)</span>
+                  <div class="copy-row">
+                    <code>v2...onion:50001</code>
+                    <button class="copy-btn-mini" aria-label="Copy" data-copy="v2...onion:50001">
+                      <img src="/images/copy.svg" alt="Copy" class="inline-icon">
+                    </button>
+                  </div>
+               </div>
+                  
+                  <details class="compat-details">
+                      <summary data-closed-text="See compatible apps" data-open-text="Hide apps">See compatible apps</summary>
+                      <div class="compatible-apps-list">
+                          <a href="/services/sparrow.html" class="app-tag app-tag--link">Sparrow</a>
+                      </div>
+                  </details>
+                </div>
+
+                
+                <p class="svc-compat__note privacy"><strong>Privacy:</strong> Your wallet queries your node, not a public server.</p>
+            </div>
+            <div class="svc-compat__tile integration-card" id="remote-control">
+                <div class="svc-compat__header">
+                    <h3 class="svc-compat__title">Remote Node Control</h3>
+                    <span class="svc-chip svc-chip--works">Private</span>
+                </div>
+                <p class="svc-compat__why">Manage channels and route payments from your phone. Connect via Tor so you can sign transactions from anywhere without a VPN.</p>
+                
+                <div class="integration-details">
+                  <ol class="integration-steps"><li>Open <strong>Lightning Node</strong> app and click &#039;Connect&#039;.</li><li>Select <strong>Tor</strong> to generate a private connection string.</li><li>Scan the QR code with your mobile app or paste the LNDconnect string.</li></ol>
+                  <div class="copy-block">
+                  <span class="copy-label">Tor LND String (Example)</span>
+                  <div class="copy-row">
+                    <code>lndconnect://v2...onion:8080?macaroon=...</code>
+                    <button class="copy-btn-mini" aria-label="Copy" data-copy="lndconnect://v2...onion:8080?macaroon=...">
+                      <img src="/images/copy.svg" alt="Copy" class="inline-icon">
+                    </button>
+                  </div>
+               </div>
+                  
+                </div>
+
+                
+                <p class="svc-compat__note privacy"><strong>Privacy:</strong> Traffic is onion-routed; no central server sits in the middle.</p>
+            </div>
+            <div class="svc-compat__tile integration-card" id="merchant-tools">
+                <div class="svc-compat__header">
+                    <h3 class="svc-compat__title">Merchant &amp; Tools</h3>
+                    <span class="svc-chip svc-chip--works">Native</span>
+                </div>
+                <p class="svc-compat__why">Run self-hosted apps that connect directly to your node. Process payments, explore blocks, or mix coins without third parties.</p>
+                
+                <div class="integration-details">
+                  <ol class="integration-steps"><li>Browse the <strong>App Store</strong> and install tools like BTCPay, Mempool, or Whirlpool.</li><li>Launch the app—it auto-connects to Bitcoin Core and LND internally.</li><li>Access the dashboard via `umbrel.local` or configure external clients using the app&#039;s Tor hidden service.</li></ol>
+                  <div class="copy-block">
+                  <span class="copy-label">Mempool (Example)</span>
+                  <div class="copy-row">
+                    <code>http://umbrel.local:3006</code>
+                    <button class="copy-btn-mini" aria-label="Copy" data-copy="http://umbrel.local:3006">
+                      <img src="/images/copy.svg" alt="Copy" class="inline-icon">
+                    </button>
+                  </div>
+               </div>
+                  
+                  <details class="compat-details">
+                      <summary data-closed-text="See compatible apps" data-open-text="Hide apps">See compatible apps</summary>
+                      <div class="compatible-apps-list">
+                          <a href="/services/btc-pay.html" class="app-tag app-tag--link">BTCPay Server</a><a href="/services/robosats.html" class="app-tag app-tag--link">RoboSats</a>
+                      </div>
+                  </details>
+                </div>
+
+                
+                <p class="svc-compat__note privacy"><strong>Privacy:</strong> You control all customer data; no third-party processor involved.</p>
+            </div>
+              </div>
+          </section>
 </details>
 <details class="section-accordion">
   <summary>Maintenance</summary>
 
 <section id="maintenance" class="service-section">
   <h2 class="feature-label">Maintenance</h2>
-  <p class="maintenance-cadence"><strong>Update cadence:</strong> Umbrel ships OS and App Store updates roughly monthly, with security fixes pushed as needed.</p>
-  <div class="maintenance-tasks">
+  <div class="maintenance-grid">
+            <div class="hardware-spec">
+              <span class="spec-label">Update Cadence</span>
+              <span class="spec-value">Monthly + Hotfixes</span>
+            </div>
+            <div class="hardware-spec">
+              <span class="spec-label">Rollback</span>
+              <span class="spec-value">Re-flash SD (Data Safe)</span>
+            </div>
+            <div class="hardware-spec">
+              <span class="spec-label">Backups</span>
+              <span class="spec-value">LND (Auto) + System</span>
+            </div>
+            <div class="hardware-spec">
+              <span class="spec-label">Data Path</span>
+              <span class="spec-value">/home/umbrel/umbrel</span>
+            </div>
+            <div class="hardware-spec">
+              <span class="spec-label">Monitoring</span>
+              <span class="spec-value">Dashboard / Apps</span>
+            </div></div>
+  <div class="maintenance-drawers">
             
-              <div class="maintenance-task">
-                <h4>Apply updates</h4>
-                <p>Watch for the orange badge in the dashboard; click Update, wait for reboot, and confirm Bitcoin Core resumes sync.</p>
-              </div>
-              <div class="maintenance-task">
-                <h4>Back up configs</h4>
-                <p>Export system backup archives plus the `channel.backup` file whenever you add channels or apps.</p>
-              </div>
-              <div class="maintenance-task">
-                <h4>Check disk health</h4>
-                <p>Run SMART checks quarterly and replace SSDs before write endurance fails.</p>
-              </div>
+              <details class="maintenance-drawer">
+                <summary>Export LND channel backup</summary>
+                <div class="maintenance-drawer__content">
+                  <p>Channels are live smart contracts. If your node fails without the latest state, you lose funds.</p><ol><li>Go to <strong>Settings</strong> → <strong>Lightning</strong>.</li><li>Click the three dots icon and select <strong>Backup channels</strong>.</li><li>Save the <code>channel.backup</code> file to a separate device.</li></ol>
+                </div>
+              </details>
+              <details class="maintenance-drawer">
+                <summary>Run a system backup</summary>
+                <div class="maintenance-drawer__content">
+                  <p>System backups capture your app data and configs (excluding the blockchain). That means you can restore your entire dashboard state after a re-flash without re-configuring every app manually.</p><ol><li>Go to <strong>Settings</strong> → <strong>Backup</strong>.</li><li>Click <strong>Create Backup</strong> and wait for the archive to download.</li><li>Store it offline or on encrypted cloud storage.</li></ol>
+                </div>
+              </details>
+              <details class="maintenance-drawer">
+                <summary>Safe update checks</summary>
+                <div class="maintenance-drawer__content">
+                  <p>Updates can break apps. Verify safety before you click to avoid downtime.</p><ol><li>Check the dashboard for the orange update badge.</li><li>Read the <a href="https://github.com/getumbrel/umbrel/releases" target="_blank" rel="noopener">Changelog</a> for breaking changes.</li><li>Click <strong>Update</strong> and confirm Bitcoin Core resumes syncing.</li></ol>
+                </div>
+              </details>
+              <details class="maintenance-drawer">
+                <summary>Check storage health</summary>
+                <div class="maintenance-drawer__content">
+                  <p>SSDs wear out over time. Catching failures early prevents blockchain corruption.</p><ol><li>Go to <strong>Settings</strong> → <strong>Storage</strong> to view usage.</li><li>Ensure you have &gt;15% free space for database compaction.</li><li>If usage is high, prune Bitcoin Core or migrate to a larger disk.</li></ol>
+                </div>
+              </details>
           </div>
-  <div class="maintenance-configs">
-            <h3>Config Locations</h3>
-            <ul><li>Umbrel keeps Docker data under `/home/umbrel/umbrel`; rsync that directory to offline storage for full snapshots.</li><li>Per-app settings live inside their volumes—note locations before pruning apps.</li></ul>
-          </div>
+  
 </section>
 </details>
 <details class="section-accordion">
@@ -738,15 +858,23 @@
 
 <section id="security" class="service-section">
   <h2 class="feature-label">Security Model</h2>
-  <p class="security-overview">Umbrel assumes a trusted LAN with password-protected web UI, optional Tor remote access, and disabled-by-default SSH.</p>
-  <div class="security-grid">
-    <div class="security-block">
-            <h3>Quick Wins</h3>
-            <ul><li>Change the default `moneyprintergobrrr` password immediately and store it in a password manager.</li><li>Enable two-factor auth on Tor gateways like Tailscale or Cloudflare Tunnel if you expose the dashboard remotely.</li><li>Segment the node onto its own VLAN or dedicated Wi-Fi SSID so IoT devices never reach it directly.</li></ul>
+  <p class="mechanism-box">Umbrel assumes a trusted LAN with password-protected web UI, optional Tor remote access, and disabled-by-default SSH.</p>
+  <div class="svc-compat__grid">
+    <div class="svc-compat__tile">
+            <div class="svc-compat__header">
+              <h3 class="svc-compat__title">
+                <img src="/images/checkmark.svg" class="inline-icon" alt="" aria-hidden="true"/> Quick Wins
+              </h3>
+            </div>
+            <ul class="feature-tile__bullets"><li>Change the default `moneyprintergobrrr` password immediately and store it in a password manager.</li><li>Enable two-factor auth on Tor gateways like Tailscale or Cloudflare Tunnel if you expose the dashboard remotely.</li><li>Segment the node onto its own VLAN or dedicated Wi-Fi SSID so IoT devices never reach it directly.</li></ul>
           </div>
-    <div class="security-block">
-            <h3>Hardening</h3>
-            <ul><li>Enable SSH only when needed and restrict it to key-based logins.</li><li>Mount disks with LUKS or hardware encryption if the device lives outside your home.</li><li>Audit installed apps; remove anything you no longer run to reduce attack surface.</li></ul>
+    <div class="svc-compat__tile">
+            <div class="svc-compat__header">
+              <h3 class="svc-compat__title">
+                <img src="/images/security.svg" class="inline-icon" alt="" aria-hidden="true"/> Hardening
+              </h3>
+            </div>
+            <ul class="feature-tile__bullets"><li>Enable SSH only when needed and restrict it to key-based logins.</li><li>Mount disks with LUKS or hardware encryption if the device lives outside your home.</li><li>Audit installed apps; remove anything you no longer run to reduce attack surface.</li></ul>
           </div>
   </div>
 </section>
@@ -798,71 +926,16 @@
 </section>
 </details>
 <details class="section-accordion">
-  <summary>Network & Privacy</summary>
-
-<section id="privacy" class="service-section" aria-labelledby="privacy-label">
-  <h2 id="privacy-label" class="feature-label">Network & Privacy</h2>
-  <div class="privacy-cards">
-    <div class="privacy-card" id="data-flows">
-      <h3>Who can see what when you use Umbrel</h3>
-      <ul><li>The dashboard listens on HTTP inside your LAN; remote access should route over Tor or a VPN tunnel to avoid exposing logins.</li><li>Each App Store container may open additional ports—review them before forwarding anything past your firewall.</li><li>Umbrel’s optional telemetry is opt-in; leave it disabled if you want the node completely local.</li></ul>
-      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> Keep the device behind a router, enable Tor remote access, and rotate credentials that ship with defaults.</span></div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> Expose `umbrel.local:80` directly to the internet or reuse the same password across Thunderhub, Lightning Terminal, and the base OS.</span></div></div>
-    </div>
-    <div class="privacy-card" id="recovery">
-      <h3>Lost your phone? How Umbrel recovery works</h3>
-      <ul><li>System backups live under `Settings → Backup`; store a copy off-device together with your Lightning <a href="/services/umbrel.html#scb" class="glossary-link" data-term="SCB">SCB</a> file.</li><li>To restore, flash the latest image, drop your backup archive plus `channel.backup` into `/home/umbrel/umbrel/backups`, and follow the wizard.</li><li>If the hardware dies without a recent <a href="/services/umbrel.html#scb" class="glossary-link" data-term="SCB">SCB</a>, force-close channels from peers or use watchtower data where available.</li></ul>
-      <div class="dodont-strip"><div class="dodont-item dodont-do"><img src="/images/checkmark.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Do:</strong> Test restores on spare hardware or a VM so you understand the flow before an outage.</span></div><div class="dodont-item dodont-dont"><img src="/images/cross.svg" alt="" class="dodont-icon" aria-hidden="true" /><span><strong>Don't:</strong> Rely solely on Umbrel’s cloud-encrypted <a href="/services/umbrel.html#scb" class="glossary-link" data-term="SCB">SCB</a>—keep your own copy.</span></div></div>
-    </div>
-    <div class="privacy-card" id="availability">
-      <h3>Availability &amp; safe installs</h3>
-      <ul><li>Umbrel runs entirely on your hardware, so jurisdictional limits tie to hardware import rules rather than app access.</li><li>Tor helps when your ISP uses <a href="/services/umbrel.html#cgnat" class="glossary-link" data-term="CGNAT">CGNAT</a>; you can still reach the node remotely without opening ports.</li></ul>
-    </div>
-  </div>
-    <div class="micro-faqs">
-      <h3 class="micro-faqs__title">Quick answers</h3>
-      <div class="micro-faqs__list">
-      <details class="micro-faq-item" id="does-umbrel-support-https">
-        <summary>Does Umbrel support HTTPS?</summary>
-        <div>
-          <p>Not out of the box; front it with Caddy, Traefik, or Tailscale funnel if you need TLS and granular access control.</p>
-        </div>
-      </details>
-      <details class="micro-faq-item" id="can-isps-see-what-im-hosting">
-        <summary>Can ISPs see what I'm hosting?</summary>
-        <div>
-          <p>They see encrypted Bitcoin traffic and Tor circuits, but not the app data itself—still, avoid exposing clearnet ports.</p>
-        </div>
-      </details>
-      <details class="micro-faq-item" id="where-are-ssh-keys-stored">
-        <summary>Where are SSH keys stored?</summary>
-        <div>
-          <p>Umbrel disables SSH by default; when enabled, keys live under `/home/umbrel/.ssh` so you can rotate them like any Linux host.</p>
-        </div>
-      </details>
-      </div>
-    </div>
-    <details class="mini-glossary">
-      <summary>Key terms</summary>
-      <dl>
-      <dt id="cgnat">CGNAT</dt>
-      <dd>Carrier-grade NAT that prevents inbound port forwards; Tor or VPN tunnels bypass it.</dd>
-      <dt id="scb">SCB</dt>
-      <dd>Static Channel Backup—an encrypted snapshot of your Lightning channels you need after catastrophic loss.</dd>
-      </dl>
-    </details>
-</section>
-</details>
-<details class="section-accordion">
   <summary>Release & Trust</summary>
 
 <section id="trust" class="service-section">
   <h2 class="feature-label">Release &amp; Trust</h2>
   <div class="svc-compat__grid">
     <div>
-      <div class="feature-label sublabel"></div>
-      <div class="svc-compat__tile" id="trust-release">
+      <div class="feature-label sublabel">Development activity</div>
+      <div class="svc-compat__tile" id="trust-activity">
         <div class="trust-card-body">
-          
+          <img src="/images/activity.svg" alt="" class="trust-card-icon" aria-hidden="true" />
           <p class="trust-card-fact">Latest umbrelOS build: November 2025</p>
           <a href="https://github.com/getumbrel/umbrel/releases" target="_blank" class="trust-card-link">Changelog</a>
         </div>
@@ -879,22 +952,12 @@
       </div>
     </div>
     <div>
-      <div class="feature-label sublabel"></div>
-      <div class="svc-compat__tile" id="trust-docs">
+      <div class="feature-label sublabel">Publisher</div>
+      <div class="svc-compat__tile" id="trust-publisher">
         <div class="trust-card-body">
-          
+          <img src="/images/publisher.svg" alt="" class="trust-card-icon" aria-hidden="true" />
           <p class="trust-card-fact">DIY vs Umbrel Home feature matrix</p>
           <a href="https://github.com/getumbrel/umbrel/wiki/umbrelOS-on-Umbrel-Home-vs.-DIY" target="_blank" class="trust-card-link">Wiki</a>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div class="feature-label sublabel"></div>
-      <div class="svc-compat__tile" id="trust-community">
-        <div class="trust-card-body">
-          
-          <p class="trust-card-fact">Active help threads on Umbrel Community forum</p>
-          <a href="https://community.umbrel.com/t/getting-started-with-your-umbrel/3555" target="_blank" class="trust-card-link">Forum</a>
         </div>
       </div>
     </div>

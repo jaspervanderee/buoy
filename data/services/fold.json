@@ -215,23 +215,6 @@
       "definition": "Fold's paid subscription that unlocks 0% bitcoin buy/sell fees, 0.5% base card rewards, rotating Boosts, ACH Bill Pay rewards, and higher instant transfer limits."
     }
   ],
-  "privacy_notes": {
-    "data_flows": [
-      "Fold collects personal identity data (name, SSN, address, knowledge-based answers) during KYC verification for the Fold Card.",
-      "USD balances sit with Sutton Bank, Member FDIC, and bitcoin balances are held by custodial partners such as BitGo until you withdraw.",
-      "ACH reward eligibility emails summarize your prior month's qualified spend and current reward tier."
-    ],
-    "recovery_drill": [
-      "If identity verification fails, correct any typos, avoid PO boxes, and allow 3-4 business days for manual review before retrying.",
-      "For stalled Push to Card conversions, Fold asks you to wait up to 24 hours before contacting support.",
-      "When withdrawing bitcoin, keep the app open until the transaction appears in your history and use a block explorer if you need extra confirmation."
-    ],
-    "country_caveats": [
-      "The Fold Prepaid Debit Card is currently available only in the United States.",
-      "ACH Bill Pay rewards depend on your previous month's qualified spend calculated in UTC time, which can differ from your local timezone.",
-      "Instant debit transfer limits are lower for new Fold+ members (e.g., $125 per withdrawal in the first six months)."
-    ]
-  },
   "privacy": {
     "section_title": "Privacy & Safety",
     "data_flows": [

@@ -493,23 +493,6 @@
       }
     ]
   },
-  "privacy_notes": {
-    "data_flows": [
-      "Hodl Hodl stores your email, IP address, and optional verification documents for compliance requests.",
-      "Contract chat logs, attached payment proofs, and dispute notes stay on their servers so staff can arbitrate issues.",
-      "Every multisig escrow address lives on the public Bitcoin blockchain, so observers can see funding and release transactions."
-    ],
-    "recovery_drill": [
-      "Enable Two-Factor Authentication and save backup codes after you register.",
-      "Record the Trusted Device secret so you can approve new browsers quickly.",
-      "If locked out, email support from your registered address with contract IDs so they can reset access."
-    ],
-    "country_caveats": [
-      "Some payment methods only appear in specific countries or currencies; filter offers accordingly.",
-      "Local regulations may block certain rails or require you to confirm banking details with counterparties.",
-      "Hodl Hodl avoids holding fiat, so you must comply with your jurisdiction's tax reporting on peer-to-peer trades."
-    ]
-  },
   "privacy": {
     "section_title": "Privacy & Safety",
     "data_flows": [

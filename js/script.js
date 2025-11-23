@@ -1329,3 +1329,41 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+// Global copy button handler (delegated)
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.copy-btn-mini');
+  if (!btn) return;
+
+  const textToCopy = btn.dataset.copy;
+  if (!textToCopy) return;
+
+  navigator.clipboard.writeText(textToCopy).then(() => {
+    // Visual feedback: switch icon to checkmark
+    const img = btn.querySelector('img');
+    const originalSrc = img.src;
+    
+    // Assuming checkmark exists in images/checkmark.svg
+    img.src = '/images/checkmark.svg';
+    btn.classList.add('copied');
+    
+    // Reset after 2s
+    setTimeout(() => {
+      img.src = originalSrc;
+      btn.classList.remove('copied');
+    }, 2000);
+
+    // Optional: Analytics
+    if (window.umami) {
+      // Using existing analytics if available
+      if (typeof window.buoyTrack === 'function') {
+          window.buoyTrack('copy_endpoint', { value: textToCopy });
+      } else {
+          // fallback direct call
+          window.umami.track('copy_endpoint', { value: textToCopy });
+      }
+    }
+  }).catch(err => {
+    console.error('Failed to copy text: ', err);
+  });
+});

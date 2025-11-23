@@ -392,7 +392,7 @@
     },
     {
       "id": "bitcoin-loans",
-      "why": "Access cash without selling your bitcoin. You retain ownership and future upside while Strike holds your bitcoin as collateral.",
+      "why": "Access cash without selling your bitcoin. You retain ownership and future upside while Strike holds your bitcoin as collateral. Be careful with leverage and use a small amount of your own money to cover the loan.",
       "try": [
         "Ensure your Strike account is fully verified and you're in a supported U.S. state",
         "Tap Cash > Bitcoin-backed loans",

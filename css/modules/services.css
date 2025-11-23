@@ -23,7 +23,7 @@
 /* card headings inside service sections (Fees uses <h3>, Privacy may start with <ul>) */
 .service-section .feature-value h3 {
  
-  font-size: 1.1em;
+  font-size: 1.2em;
   line-height: 1.3;
 }
 
@@ -61,7 +61,7 @@
 }
 
 .migration-card h3 {
-  font-size: 1.1em;
+  font-size: 1.2em;
   font-weight: 600;
   line-height: 1.4;
   margin: 0 0 10px 0;
@@ -171,7 +171,7 @@
 }
 
 .service-section#migration .mig-card .feature-value h3 {
-  font-size: 1.1em;
+  font-size: 1em;
   margin: 0 0 12px 0;
   line-height: 1.3;
 }
@@ -607,7 +607,6 @@
 .fee-card {
   padding: 16px;
   transition: border-color 0.3s ease, background-color 0.3s ease;
-  scroll-margin-top: 250px; /* Offset for sticky header + CTA bar */
   overflow: hidden; /* Clip illustration at top corners */
 }
 
@@ -645,7 +644,7 @@
 
 .fee-card--node .fee-card__title {
   margin: 0;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 600;
 }
 
@@ -653,7 +652,7 @@
   background: var(--border);
   padding: 4px 10px;
   border-radius: 12px;
-  font-size: 0.7em;
+  font-size: 0.8em;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -675,9 +674,31 @@
 
 .fee-card__context {
   display: block;
-  font-size: 0.9em;
+  font-size: 1em;
   color: var(--text-muted);
   margin-top: 6px;
+}
+
+.fee-card__factor {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 16px 0;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-size: 1em;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.fee-card__factor-label {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.fee-card__factor-text {
+  color: var(--text); /* Ensure body text is neutral */
 }
 
 .fee-card--node .fee-card__body {
@@ -693,7 +714,7 @@
 
 .fee-card__label {
   display: block;
-  font-size: 0.7em;
+  font-size: 0.8em;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--text-muted);
@@ -914,17 +935,33 @@
 }
 
 /* === Hardware BOM & Capacity Planning === */
-.hardware-intro {
+
+/* === Shared Mechanism/Intro Box === */
+.mechanism-box,
+.inheritance-intro,
+.hardware-intro,
+.costs-intro {
   font-family: "Ubuntu Mono", monospace;
   font-size: 1em;
   line-height: 1.6;
-  margin: 0 0 32px 0;
+  margin: 0 0 24px 0;
   padding: 16px;
   background: var(--panel);
-  border-left: 3px solid var(--accent);
   border-radius: 4px;
   color: var(--text);
+  border-left: 3px solid var(--accent);
 }
+
+@media (min-width: 768px) {
+  .mechanism-box,
+  .inheritance-intro,
+  .hardware-intro,
+  .costs-intro {
+    padding: 20px;
+    margin: 0 0 28px 0;
+  }
+}
+
 
 .hardware-cards {
   display: grid;
@@ -942,11 +979,6 @@
   border-radius: 8px;
   border: 1px solid transparent;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.hardware-card:hover {
-  border-color: var(--border);
-  box-shadow: var(--shadow);
 }
 
 .hardware-card__header {
@@ -973,7 +1005,7 @@
 
 .hardware-card__price {
   font-family: "Ubuntu Mono", monospace;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 700;
   color: var(--accent);
 }
@@ -1015,7 +1047,7 @@
 
 .spec-label {
   font-family: "Inter", sans-serif;
-  font-size: 0.75em;
+  font-size: 0.8em;
   font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -1365,7 +1397,6 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  scroll-margin-top: 250px; /* Account for sticky header when jumping to anchor */
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
@@ -1373,9 +1404,10 @@
   overflow: hidden; /* Clip illustration at top corners (compat tiles only) */
 }
 
-/* Highlight tile when it's the target of a clicked trust chip */
+/* Highlight tile or section when it's the target of a clicked trust chip */
 .svc-compat__tile:target,
-.feature-tile:target {
+.feature-tile:target,
+.service-section:target {
   animation: tile-highlight 2s ease-out;
 }
 
@@ -1711,16 +1743,8 @@
 /* === Inheritance Section (Enhanced UX for stressful moments) === */
 
 /* Intro paragraph: mechanism explanation in Jeff's voice */
-.inheritance-intro {
-  font-family: "Ubuntu Mono", monospace;
-  font-size: 1em;
-  line-height: 1.6;
-  margin: 12px 0 24px 0;
-  padding: 16px;
-  background: var(--panel);
-  border-left: 3px solid var(--accent);
-  border-radius: 4px;
-}
+/* Styles handled by shared .mechanism-box rule above */
+
 
 /* Inheritance tiles: reuse compat pattern but add visual progression */
 .inheritance-tile {
@@ -2011,16 +2035,8 @@
 /* === Costs & Ongoing Obligations Section === */
 
 /* Intro paragraph: Jeff's voice pattern (mechanism first) */
-.costs-intro {
-  font-family: "Ubuntu Mono", monospace;
-  font-size: 1em;
-  line-height: 1.6;
-  margin: 0 0 24px 0;
-  padding: 16px;
-  background: var(--panel);
-  border-radius: 4px;
-  color: var(--text);
-}
+/* Styles handled by shared .mechanism-box rule above */
+
 
 /* Summary stats: plain tiles without outer container */
 .costs-summary {
@@ -2055,7 +2071,7 @@
 
 .costs-summary__value {
   font-family: "Ubuntu Mono", monospace;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 600;
   color: var(--text);
 }
@@ -2196,7 +2212,6 @@
 .scenario-card {
   padding: 16px;
   transition: all 0.2s ease;
-  scroll-margin-top: 250px;
 }
 
 
@@ -2354,7 +2369,7 @@
 
 .compat-subsection-title {
   font-family: "Inter", sans-serif;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 600;
   color: var(--text);
   margin: 0 0 16px 0;
@@ -2605,6 +2620,161 @@
   line-height: 1.6;
 }
 
+/* === Integration Cards (Enhanced) === */
+.integration-card .integration-details {
+  margin: 12px 0;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 4px;
+  font-family: "Ubuntu Mono", monospace;
+}
+
+.integration-steps {
+  list-style: decimal;
+  padding-left: 24px;
+  margin: 0 0 12px 0;
+  line-height: 1.6;
+}
+
+.integration-steps li {
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.integration-steps li:last-child {
+  margin-bottom: 0;
+}
+
+/* Copy Block */
+.copy-block {
+  background: var(--panel); /* Nested panel depth */
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin-top: 12px;
+}
+
+.copy-label {
+  display: block;
+  font-family: "Inter", sans-serif;
+  font-size: 0.75em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.copy-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.copy-row code {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  color: var(--accent);
+  word-break: break-all;
+}
+
+.copy-btn-mini {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.copy-btn-mini:hover {
+  opacity: 1;
+}
+
+.copy-btn-mini img {
+  width: 16px;
+  height: 16px;
+}
+
+/* Compatible Apps List */
+.compatible-apps-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.app-tag {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75em;
+  background: var(--bg);
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1.2;
+}
+
+.app-tag--link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--panel);
+}
+
+/* Compatibility details summary override */
+.svc-compat__tile details.compat-details summary {
+  font-size: 0; /* Hide original text node to avoid duplication */
+  color: transparent; 
+}
+
+.svc-compat__tile details.compat-details summary::before {
+  content: "\2193";
+  font-size: 1rem; /* Ensure arrow is visible */
+  color: var(--accent); /* Restore color */
+  margin-right: 4px;
+}
+
+.svc-compat__tile details.compat-details summary::after {
+  content: attr(data-closed-text);
+  font-size: 0.8rem; /* Restore text size */
+  color: var(--accent); /* Restore text color */
+  margin-left: 4px; 
+}
+
+.svc-compat__tile details.compat-details[open] summary::after {
+  content: attr(data-open-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .app-tag {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
+  }
+  
+  .app-tag--link:hover {
+    background: rgba(255, 96, 59, 0.1);
+  }
+}
+
+/* Integration specific note coloring */
+.svc-compat__note.warning {
+  color: #f44336;
+  margin-top: 8px;
+}
+
+.svc-compat__note.privacy {
+  color: #28a745;
+  margin-top: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .svc-compat__note.warning { color: #ff8a80; }
+  .svc-compat__note.privacy { color: #81c784; }
+  .copy-block { background: rgba(255,255,255,0.05); }
+}
+
 /* Service page dedicated sticky bar (replaces logo-row-sticky on service pages) */
 .service-sticky-cta {
   width: 100%;
@@ -2639,4 +2809,433 @@
     width: 110px;
   }
 }
+
+
+/* === Maintenance Section === */
+
+.maintenance-drawers {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.maintenance-drawer {
+  background: var(--panel);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.maintenance-drawer:hover {
+  border-color: var(--accent);
+}
+
+.maintenance-drawer summary {
+  padding: 16px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.maintenance-drawer summary::-webkit-details-marker {
+  display: none;
+}
+
+.maintenance-drawer summary::after {
+  content: "+";
+  font-size: 1.4em;
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.maintenance-drawer[open] summary::after {
+  content: "−";
+}
+
+.maintenance-drawer__content {
+  padding: 0 16px 20px 16px;
+  border-top: 1px solid var(--border);
+  font-family: "Ubuntu Mono", monospace;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* Content styling inside drawer */
+.maintenance-drawer__content p {
+  margin-top: 16px;
+  margin-bottom: 12px;
+}
+
+.maintenance-drawer__content ol {
+  margin: 0;
+  padding-left: 24px;
+}
+
+.maintenance-drawer__content li {
+  margin-bottom: 8px;
+}
+
+.maintenance-drawer__content code {
+  background: var(--bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--accent);
+}
+
+/* Reuse hardware specs grid for Ops Profile */
+#maintenance .hardware-card__specs {
+  background: var(--panel);
+ 
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  #maintenance .hardware-card__specs {
+    padding: 20px;
+    gap: 24px;
+  }
+  
+  .maintenance-drawer summary {
+    padding: 20px;
+  }
+  
+  .maintenance-drawer__content {
+    padding: 0 20px 24px 20px;
+  }
+}
+
+/* === Maintenance Section === */
+
+.maintenance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  border: none;
+  padding: 0;
+}
+
+.maintenance-drawers {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.maintenance-drawer {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.maintenance-drawer:hover {
+  border-color: var(--accent);
+}
+
+.maintenance-drawer summary {
+  padding: 16px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.maintenance-drawer summary::-webkit-details-marker {
+  display: none;
+}
+
+.maintenance-drawer summary::after {
+  content: "+";
+  font-size: 1.4em;
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.maintenance-drawer[open] summary::after {
+  content: "−";
+}
+
+.maintenance-drawer__content {
+  padding: 0 16px 20px 16px;
+  border-top: 1px solid var(--border);
+  font-family: "Ubuntu Mono", monospace;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.maintenance-drawer__content p {
+  margin-top: 16px;
+  margin-bottom: 12px;
+}
+
+.maintenance-drawer__content ol {
+  margin: 0;
+  padding-left: 24px;
+  list-style: decimal;
+}
+
+.maintenance-drawer__content li {
+  margin-bottom: 8px;
+}
+
+.maintenance-drawer__content code {
+  background: var(--bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--accent);
+}
+
+/* Ensure Ops Profile items align nicely */
+.maintenance-grid .hardware-spec {
+  background: var(--bg);
+  padding: 12px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+@media (min-width: 768px) {
+  .maintenance-drawer summary {
+    padding: 20px;
+  }
+  
+  .maintenance-drawer__content {
+    padding: 0 20px 24px 20px;
+  }
+}
+
+/* === Refined Maintenance Section (Mission Control Look) === */
+
+/* Container for the whole section to give it a "dashboard" feel */
+#maintenance {
+  background: var(--bg); /* Ensure contrast against panel elements */
+}
+
+/* 1. Ops Profile: The "Head-up Display" */
+.maintenance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1px; /* Creates internal borders if we use background spacing, or just gap */
+  background: var(--panel);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.maintenance-grid .hardware-spec {
+  background: var(--panel); /* Match grid background */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.maintenance-grid .hardware-spec:hover {
+  background: var(--bg-subtle);
+}
+
+/* Vertical separator lines using pseudo-elements or box-shadow */
+.maintenance-grid .hardware-spec:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 1px;
+  background: var(--border);
+  opacity: 0.5;
+}
+
+@media (max-width: 767px) {
+  .maintenance-grid .hardware-spec::after {
+    display: none; /* Remove separators on mobile/wrapping */
+  }
+  .maintenance-grid .hardware-spec {
+    border-bottom: 1px solid var(--border);
+  }
+  .maintenance-grid .hardware-spec:last-child {
+    border-bottom: none;
+  }
+}
+
+.maintenance-grid .spec-label {
+  font-family: "Inter", sans-serif;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.maintenance-grid .spec-value {
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.95em;
+  color: var(--text);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Add a status dot to values for visual interest */
+.maintenance-grid .spec-value::before {
+  content: "●";
+  color: var(--accent);
+  font-size: 0.8em;
+  margin-right: 6px;
+  vertical-align: 1px;
+}
+
+/* 2. Tasks: The "Action Deck" */
+.maintenance-drawers {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.maintenance-drawer {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.maintenance-drawer summary {
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 1.05em;
+  color: var(--text);
+}
+
+/* Custom "Action" Icon in Summary */
+.maintenance-drawer summary::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url('/images/activity.svg'); /* Generic maintenance/activity icon */
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 12px;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.maintenance-drawer:hover summary::before {
+  opacity: 1;
+}
+
+/* Expand/Collapse Icon */
+.maintenance-drawer summary::after {
+  font-weight: 300;
+  color: var(--text-muted);
+  font-size: 1.5em;
+}
+
+.maintenance-drawer[open] {
+  border-color: var(--accent);
+}
+
+.maintenance-drawer[open] summary {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-subtle); /* Slight highlight when open */
+}
+
+.maintenance-drawer__content {
+  padding: 24px;
+  background: var(--panel);
+}
+
+/* 3. Step-by-step styling (The "Micro-How-To") */
+.maintenance-drawer__content ol {
+  list-style: none; /* Remove default numbers */
+  counter-reset: maintenance-step;
+  padding-left: 0;
+  margin-top: 20px;
+}
+
+.maintenance-drawer__content li {
+  counter-increment: maintenance-step;
+  position: relative;
+  padding-left: 36px;
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.maintenance-drawer__content li::before {
+  content: counter(maintenance-step);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 24px;
+  height: 24px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--accent);
+  font-family: "Ubuntu Mono", monospace;
+  font-size: 0.85em;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.maintenance-drawer__content p:first-child {
+  font-size: 1em;
+  color: var(--text-muted);
+  margin-top: 0;
+  font-style: italic; /* Voice distinction for the "Mechanism/Context" intro */
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--border);
+}
+
+/* Dark Mode Adjustments */
+@media (prefers-color-scheme: dark) {
+  .maintenance-grid {
+    box-shadow: none;
+  }
+  
+  .maintenance-grid .hardware-spec:hover {
+    background: rgba(255,255,255,0.03);
+  }
+  
+  .maintenance-drawer[open] summary {
+    background: rgba(255,255,255,0.03);
+  }
+  
+  .maintenance-drawer__content li::before {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.1);
+  }
+}
+
+
+/* === Security Model Section === */
+/* Note: Uses standard .svc-compat__tile structure */
+
 

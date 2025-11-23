@@ -460,20 +460,6 @@
       }
     ]
   },
-  "privacy_notes": {
-    "data_flows": [
-      "Bisq stores your payment account data locally and encrypts it before sharing only with your counterparty and mediator.",
-      "All Bisq traffic routes over Tor, hiding your IP address from peers and network observers."
-    ],
-    "recovery_drill": [
-      "Use Account > Backup to export an encrypted archive of your data directory.",
-      "Store the backup and your seed words separately so you can restore Bisq on a new computer."
-    ],
-    "country_caveats": [
-      "Payment method availability depends on your region and the banks that support those rails.",
-      "Some fiat rails require longer trade windows to allow weekends and bank holidays."
-    ]
-  },
   "privacy": {
     "section_title": "Privacy & Safety",
     "data_flows": [

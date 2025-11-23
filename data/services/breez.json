@@ -193,22 +193,6 @@
       "definition": "Breez saves your encrypted channel data to your cloud account so you can restore everything if you lose your device."
     }
   ],
-  "privacy_notes": {
-    "data_flows": [
-      "Breez uses efficient data filtering and connects to Breez's service to route payments, so the operator can see payment timing and amounts needed for channel management.",
-      "Your channel data is encrypted before leaving your device and stored with the cloud provider you selected for backups."
-    ],
-    "recovery_drill": [
-      "Open Breez periodically so cloud backups stay current after each payment.",
-      "Verify you can sign in to your linked cloud account before relying on it for larger amounts.",
-      "Store the Breez recovery key offline; this key decrypts your channel data during wallet restore.",
-      "If Breez's service disappears, use Close channels to move funds to on-chain after network confirmations."
-    ],
-    "country_caveats": [
-      "App-store availability varies; check your regional store before planning to deploy POS mode.",
-      "Some cloud providers (e.g., Google Drive) may be restricted in specific jurisdictions—choose an alternative like WebDAV if needed."
-    ]
-  },
   "privacy": {
     "section_title": "Privacy & Safety",
     "data_flows": [

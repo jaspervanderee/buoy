@@ -837,23 +837,6 @@
         "definition": "An Aqua feature that converts on-chain BTC straight into your L-BTC balance without extra manual steps."
       }
     ],
-    "privacy_notes": {
-      "data_flows": [
-        "Aqua does not send analytics by default; optional JAN3 services only store the email you provide.",
-        "Lightning, USDt swaps, and support requests can expose metadata to providers such as Boltz, SideShift, Changelly, or Zendesk.",
-        "Seeds stay on your phone (Keychain on iOS, EncryptedSharedPreferences on Android)."
-      ],
-      "recovery_drill": [
-        "Back up the 12-word seed offline right after setup.",
-        "Test a small restore on another device before deleting the original installation.",
-        "If JAN3 ever shutters a service, you can still export funds using the seed in compatible wallets like Blockstream Green."
-      ],
-      "country_caveats": [
-        "Dolphin Card availability depends on your country and compliance checks.",
-        "Swap liquidity varies by region; Boltz or SideShift may refuse large amounts in restricted jurisdictions.",
-        "Always download the app from the official app stores to avoid tampered APKs."
-      ]
-    },
     "privacy": {
       "section_title": "Privacy & Safety",
       "data_flows": [
@@ -1544,20 +1527,6 @@
           "q": "What if I need to export my Bisq wallet?",
           "a": "Use Account > Backup to save an encrypted backup alongside your seed words before you move the funds."
         }
-      ]
-    },
-    "privacy_notes": {
-      "data_flows": [
-        "Bisq stores your payment account data locally and encrypts it before sharing only with your counterparty and mediator.",
-        "All Bisq traffic routes over Tor, hiding your IP address from peers and network observers."
-      ],
-      "recovery_drill": [
-        "Use Account > Backup to export an encrypted archive of your data directory.",
-        "Store the backup and your seed words separately so you can restore Bisq on a new computer."
-      ],
-      "country_caveats": [
-        "Payment method availability depends on your region and the banks that support those rails.",
-        "Some fiat rails require longer trade windows to allow weekends and bank holidays."
       ]
     },
     "privacy": {
@@ -3130,22 +3099,6 @@
         "definition": "Breez saves your encrypted channel data to your cloud account so you can restore everything if you lose your device."
       }
     ],
-    "privacy_notes": {
-      "data_flows": [
-        "Breez uses efficient data filtering and connects to Breez's service to route payments, so the operator can see payment timing and amounts needed for channel management.",
-        "Your channel data is encrypted before leaving your device and stored with the cloud provider you selected for backups."
-      ],
-      "recovery_drill": [
-        "Open Breez periodically so cloud backups stay current after each payment.",
-        "Verify you can sign in to your linked cloud account before relying on it for larger amounts.",
-        "Store the Breez recovery key offline; this key decrypts your channel data during wallet restore.",
-        "If Breez's service disappears, use Close channels to move funds to on-chain after network confirmations."
-      ],
-      "country_caveats": [
-        "App-store availability varies; check your regional store before planning to deploy POS mode.",
-        "Some cloud providers (e.g., Google Drive) may be restricted in specific jurisdictions—choose an alternative like WebDAV if needed."
-      ]
-    },
     "privacy": {
       "section_title": "Privacy & Safety",
       "data_flows": [
@@ -3908,20 +3861,6 @@
         }
       ]
     },
-    "privacy_notes": {
-      "data_flows": [
-        "Bull Bitcoin stores the identity documents and compliance answers you submit during FINTRAC verification.",
-        "Funding instructions, payout addresses, and invoices live in your account history alongside trade records."
-      ],
-      "recovery_drill": [
-        "Enable two-factor authentication and confirm your email before you fund the account.",
-        "If you lose access, contact support through the in-app chat with your ID to reopen the account."
-      ],
-      "country_caveats": [
-        "Interac e-Transfer, bill payments, and credit card payouts require a Canadian recipient.",
-        "International availability depends on the country-specific rails Bull Bitcoin is rolling out, so confirm support before onboarding."
-      ]
-    },
     "privacy": {
       "section_title": "Privacy & Safety",
       "data_flows": [
@@ -4237,23 +4176,6 @@
         "definition": "Fold's paid subscription that unlocks 0% bitcoin buy/sell fees, 0.5% base card rewards, rotating Boosts, ACH Bill Pay rewards, and higher instant transfer limits."
       }
     ],
-    "privacy_notes": {
-      "data_flows": [
-        "Fold collects personal identity data (name, SSN, address, knowledge-based answers) during KYC verification for the Fold Card.",
-        "USD balances sit with Sutton Bank, Member FDIC, and bitcoin balances are held by custodial partners such as BitGo until you withdraw.",
-        "ACH reward eligibility emails summarize your prior month's qualified spend and current reward tier."
-      ],
-      "recovery_drill": [
-        "If identity verification fails, correct any typos, avoid PO boxes, and allow 3-4 business days for manual review before retrying.",
-        "For stalled Push to Card conversions, Fold asks you to wait up to 24 hours before contacting support.",
-        "When withdrawing bitcoin, keep the app open until the transaction appears in your history and use a block explorer if you need extra confirmation."
-      ],
-      "country_caveats": [
-        "The Fold Prepaid Debit Card is currently available only in the United States.",
-        "ACH Bill Pay rewards depend on your previous month's qualified spend calculated in UTC time, which can differ from your local timezone.",
-        "Instant debit transfer limits are lower for new Fold+ members (e.g., $125 per withdrawal in the first six months)."
-      ]
-    },
     "privacy": {
       "section_title": "Privacy & Safety",
       "data_flows": [
@@ -4978,23 +4900,6 @@
           "q": "What's the safest way to store my seed phrase?",
           "a": "Write it on paper or metal and store copies in separate secure locations like a fireproof safe and safety deposit box. Never store it digitally."
         }
-      ]
-    },
-    "privacy_notes": {
-      "data_flows": [
-        "Hodl Hodl stores your email, IP address, and optional verification documents for compliance requests.",
-        "Contract chat logs, attached payment proofs, and dispute notes stay on their servers so staff can arbitrate issues.",
-        "Every multisig escrow address lives on the public Bitcoin blockchain, so observers can see funding and release transactions."
-      ],
-      "recovery_drill": [
-        "Enable Two-Factor Authentication and save backup codes after you register.",
-        "Record the Trusted Device secret so you can approve new browsers quickly.",
-        "If locked out, email support from your registered address with contract IDs so they can reset access."
-      ],
-      "country_caveats": [
-        "Some payment methods only appear in specific countries or currencies; filter offers accordingly.",
-        "Local regulations may block certain rails or require you to confirm banking details with counterparties.",
-        "Hodl Hodl avoids holding fiat, so you must comply with your jurisdiction's tax reporting on peer-to-peer trades."
       ]
     },
     "privacy": {
@@ -6516,22 +6421,6 @@
         "definition": "On-chain fee paid when opening/resizing; varies with network demand."
       }
     ],
-    "privacy_notes": {
-      "data_flows": [
-        "Phoenix connects to ACINQ’s server to run Lightning for you. Today, ACINQ can see who you pay and how much.",
-        "You can connect Phoenix to your own Electrum server to reduce what third parties can learn about your activity."
-      ],
-      "recovery_drill": [
-        "Your channel states are encrypted and saved with ACINQ so you can restore using your 12-word seed.",
-        "The seed lives only on your phone—ACINQ can’t recover it for you if you lose it. ",
-        "If ACINQ ever disappears, go to Settings → Danger zone → Force close channels; funds return on-chain after ~720 blocks.",
-        "Keep Phoenix installed until the forced-closed coins show in the Final wallet view, then sweep them."
-      ],
-      "country_caveats": [
-        "Availability and funding options vary by country—check your app store or on-ramp.",
-        "Install only from the official publisher in your app store; verify the developer name."
-      ]
-    },
     "privacy": {
       "section_title": "Privacy & Safety",
       "data_flows": [
@@ -7173,20 +7062,6 @@
         }
       ]
     },
-    "privacy_notes": {
-      "data_flows": [
-        "Pocket stores the payout address you provide and the bank payment reference it assigns to your order.",
-        "Bank transfers expose your IBAN and name to Pocket's Swiss banking partner so they can match incoming payments."
-      ],
-      "recovery_drill": [
-        "Keep the order confirmation emails; they contain the reference code Pocket needs to trace payments.",
-        "If a payout seems delayed, share the bank transfer receipt and your address so Pocket support can find the transaction."
-      ],
-      "country_caveats": [
-        "Pocket currently serves EU and Swiss bank corridors; local availability depends on SEPA access.",
-        "Some banks require you to whitelist Pocket's IBAN before a standing order will execute."
-      ]
-    },
     "privacy": {
       "section_title": "Privacy & Safety",
       "data_flows": [
@@ -7696,22 +7571,6 @@
           "q": "How often should I rotate receiving addresses in Relai?",
           "a": "Relai issues a fresh address for every order; keep using new addresses to limit on-chain linking."
         }
-      ]
-    },
-    "privacy_notes": {
-      "data_flows": [
-        "Relai stores the personal data you provide for verification to meet Swiss and EU AML rules.",
-        "SEPA funding uses your bank account details, so your bank can see you are buying bitcoin with Relai."
-      ],
-      "recovery_drill": [
-        "Write down your seed, restore it on a spare device, and verify the balance before deleting the test install.",
-        "Review the hardware wallet connection flow once a year so you remember how to sign messages.",
-        "Export transaction history quarterly to maintain your own audit trail."
-      ],
-      "country_caveats": [
-        "Relai focuses on the EEA and Switzerland; card and Apple Pay support may vary by country.",
-        "Bank payouts require a matching IBAN name, and some banks block bitcoin transfers.",
-        "Check the Relai help center for the latest list of supported countries and payment options."
       ]
     },
     "privacy": {
@@ -8356,22 +8215,6 @@
         }
       ]
     },
-    "privacy_notes": {
-      "data_flows": [
-        "River and Lead Bank store the identity documents and banking details you provide during onboarding.",
-        "Transaction metadata, including Lightning invoices and on-chain addresses, remains in River logs for compliance."
-      ],
-      "recovery_drill": [
-        "Enable two-factor authentication and store backup codes offline before you fund the account.",
-        "If you lose access, contact support from your verified email and be ready to re-submit ID documents.",
-        "Review Limits and Security settings after recovery to ensure River restored your previous controls."
-      ],
-      "country_caveats": [
-        "River currently serves U.S. residents; availability in other jurisdictions is limited.",
-        "Direct deposit and ACH features require a U.S. bank relationship.",
-        "River may restrict features in unsupported states until it secures local licensing."
-      ]
-    },
     "privacy": {
       "section_title": "Privacy & Safety",
       "data_flows": [
@@ -8902,21 +8745,6 @@
           "q": "How do I confirm the sats arrived safely?",
           "a": "Check your wallet balance and verify the payment hash matches the contract details; you can also watch it settle on your node or Lightning explorer."
         }
-      ]
-    },
-    "privacy_notes": {
-      "data_flows": [
-        "The coordinator stores order size, currency code, payment tags, and hashed robot tokens until the contract closes.",
-        "Chat messages are encrypted end-to-end with per-contract PGP keys generated in your browser."
-      ],
-      "recovery_drill": [
-        "Export or write down your robot token before you leave the session so you can recover the contract.",
-        "Bookmark the Quick Start page for updated onion links in case the clearnet domain rotates.",
-        "If you lose the token, create a new robot and warn peers; old disputes cannot be reopened without it."
-      ],
-      "country_caveats": [
-        "Payment rails depend on counterparties; Revolut and Wise are common in Europe, while Zelle and Interac appear in North America.",
-        "Some jurisdictions scrutinize large Lightning payouts or cash trades, so check local regulations before trading."
       ]
     },
     "privacy": {
@@ -10026,7 +9854,7 @@
       },
       {
         "id": "bitcoin-loans",
-        "why": "Access cash without selling your bitcoin. You retain ownership and future upside while Strike holds your bitcoin as collateral.",
+        "why": "Access cash without selling your bitcoin. You retain ownership and future upside while Strike holds your bitcoin as collateral. Be careful with leverage and use a small amount of your own money to cover the loan.",
         "try": [
           "Ensure your Strike account is fully verified and you're in a supported U.S. state",
           "Tap Cash > Bitcoin-backed loans",
@@ -10743,21 +10571,6 @@
         }
       ]
     },
-    "privacy_notes": {
-      "data_flows": [
-        "Swan stores the identity documents you submit for KYC along with your onboarding questionnaire responses.",
-        "Bank account details are shared with regulated payment processors so ACH and wire transfers can settle.",
-        "Custody partners maintain segregated accounts that keep your bitcoin separate from Swan’s corporate balance sheet."
-      ],
-      "recovery_drill": [
-        "Enable two-factor authentication and record backup codes before your first deposit.",
-        "Review your cookie and privacy settings at swan.com/privacy-policy if you want to limit optional data sharing."
-      ],
-      "country_caveats": [
-        "ACH funding and Swan Safe require a U.S. checking account; international customers typically use Swan Private via BitGo custody.",
-        "Advertising cookie sharing only happens when you opt in via the consent banner."
-      ]
-    },
     "privacy": {
       "section_title": "Privacy & Safety",
       "data_flows": [
@@ -10931,16 +10744,22 @@
     ],
     "trust_chips": [
       {
-        "text": "Source-available",
-        "status": "informational"
+        "text": "100+ one-click apps",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "app-store"
       },
       {
-        "text": "Tor remote access",
-        "status": "positive"
+        "text": "Built-in Tor routing",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "privacy"
       },
       {
-        "text": "No cloud custody",
-        "status": "positive"
+        "text": "Guided backups",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "maintenance"
       }
     ],
     "tl_dr": {
@@ -11027,6 +10846,106 @@
         }
       ]
     },
+    "hardware_bom": {
+      "heading": "Hardware BOM & capacity planning",
+      "intro": "Umbrel runs on hardware you control. That means you choose the trade-offs between noise, cost, and performance. Pick a build that matches your app usage, but prioritize SSD storage and a wired connection to keep the node healthy.",
+      "builds": [
+        {
+          "id": "budget-pi",
+          "name": "Budget Pi kit",
+          "tagline": "Low-cost entry, but limited headroom.",
+          "use_case": "Learning, personal routing, light app usage",
+          "tradeoff": "You save money upfront → You risk sync stalls on heavy apps like Mempool.",
+          "all_in_price": "$180–$220",
+          "monthly_cost": "~$1.30/mo (10W)",
+          "sync_time": "5–7 days",
+          "assumptions": "Requires wired Ethernet + NVMe SSD (SD cards will fail).",
+          "storage_guidance": "1 TB NVMe (Full history) or 500GB (Pruned).",
+          "noise_footprint": "Low noise (<30dB fan), tiny footprint.",
+          "gotcha": "Pi 4/5 shares bandwidth between USB and Network, which bottlenecks the initial sync.",
+          "compatibility_badges": [
+            "Bitcoin Core",
+            "Lightning",
+            "Basic Apps"
+          ],
+          "parts": [
+            "Raspberry Pi 5 or 4 (8 GB RAM)",
+            "1 TB NVMe SSD in USB 3.2 enclosure",
+            "Active cooling case or fan hat",
+            "15W USB-C power supply"
+          ]
+        },
+        {
+          "id": "quiet-mini-pc",
+          "name": "Quiet mini-PC",
+          "tagline": "The daily driver standard.",
+          "use_case": "Daily Lightning use, Electrs, media apps",
+          "tradeoff": "You pay slightly more → You get instant dashboard loads and reliable indexing.",
+          "all_in_price": "$250–$350",
+          "monthly_cost": "~$3.25/mo (25W)",
+          "sync_time": "12–18 hours",
+          "assumptions": "Fast internet (>100Mbps) + SSD over SATA/NVMe.",
+          "storage_guidance": "2 TB NVMe (Allows Electrs index + Media apps).",
+          "noise_footprint": "Silent (Fanless chassis available), router-sized.",
+          "gotcha": "Requires flashing an OS image to internal disk (wipes the drive).",
+          "compatibility_badges": [
+            "Electrs",
+            "Mempool",
+            "Post-Mix Tools",
+            "Media Apps"
+          ],
+          "parts": [
+            "Intel N100 / N305 mini PC with 16 GB RAM",
+            "2 TB NVMe SSD",
+            "Silent heatpipe chassis",
+            "Battery-backed NVMe enclosure for backups"
+          ]
+        },
+        {
+          "id": "power-user",
+          "name": "Power user workstation",
+          "tagline": "Commercial-grade throughput.",
+          "use_case": "Routing, BTCPay merchants, AI / media workloads",
+          "tradeoff": "High power/cost → You run everything without lag.",
+          "all_in_price": "$500+",
+          "monthly_cost": "~$9.00/mo (70W peak)",
+          "sync_time": "8–10 hours",
+          "assumptions": "Gigabit fiber + high-end NVMe raid.",
+          "storage_guidance": "4 TB NVMe (Mirrored RAID 1 recommended).",
+          "noise_footprint": "Audible fans (35dB+), desktop tower size.",
+          "gotcha": "Overkill for just Bitcoin; only build this if you host AI models or 50+ apps.",
+          "compatibility_badges": [
+            "BTCPay Server",
+            "LLM AI Models",
+            "High-Vol Routing"
+          ],
+          "parts": [
+            "Ryzen 7 / Intel i7 SFF box with 32 GB RAM",
+            "4 TB NVMe or SATA SSD (mirrored)",
+            "Managed switch + VLAN-aware router",
+            "UPS with network card"
+          ]
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Is a Raspberry Pi 5 worth it over a Pi 4?",
+          "a": "Yes. The PCIe bus on the Pi 5 allows much faster NVMe speeds, cutting sync times by ~30% compared to the Pi 4's USB bottleneck."
+        },
+        {
+          "q": "Do I really need an SSD?",
+          "a": "Absolutely. HDDs cannot handle the random I/O required for block verification; your node will stall and never catch up to the tip."
+        },
+        {
+          "q": "Can I start small and upgrade?",
+          "a": "Yes. You can migrate your data directory from a Pi to a Mini-PC later, but start with at least a 1TB drive to avoid painful migrations."
+        },
+        {
+          "q": "How much bandwidth does a node use?",
+          "a": "Expect ~600GB for the initial download, then 20-50GB/month for gossip. Check your ISP data caps."
+        }
+      ]
+    },
     "fees_section_title": "Costs & speed of operation",
     "fees_scenarios": [
       {
@@ -11101,21 +11020,6 @@
         "definition": "Battery pack that keeps the node online long enough for safe shutdowns."
       }
     ],
-    "privacy_notes": {
-      "data_flows": [
-        "Umbrel’s dashboard communicates over HTTP on your LAN; Tor remote access tunnels traffic through `.onion` addresses instead.",
-        "App Store containers may expose additional ports—review each app’s notes before forwarding anything.",
-        "Optional telemetry is off by default; leave it disabled if you want zero data leaving home."
-      ],
-      "recovery_drill": [
-        "Download the system backup plus `channel.backup` whenever you add channels or apps.",
-        "Test restores on spare hardware or a VM so you’re confident the archive works before you need it."
-      ],
-      "country_caveats": [
-        "Hardware availability varies by region; DIY installs work anywhere you can source a Pi or mini PC.",
-        "ISPs running CGNAT block inbound ports—lean on Tor or VPN tunnels for remote access."
-      ]
-    },
     "privacy": {
       "section_title": "Network & Privacy",
       "data_flows": [
@@ -11233,6 +11137,156 @@
         "gotcha": "Apps share the same SSD; monitor disk space before syncing photo libraries or AI models."
       }
     ],
+    "integrations": {
+      "intro": "Your node replaces the cloud. Learn how to verify your own transactions, route payments, and monitor the network privately.",
+      "cards": [
+        {
+          "id": "wallet-connection",
+          "title": "Connect your wallet",
+          "status": "works",
+          "status_text": "Private",
+          "description": "Don't trust your wallet provider with your balance. Connect any Electrum-compatible wallet to your node to verify transactions yourself.",
+          "steps": [
+            "Install **Electrs** from the App Store and wait for the index to complete.",
+            "Copy the **Local IP** (desktop) or **Tor Address** (mobile) from the Electrs app.",
+            "Paste it into your wallet’s 'Server' or 'Network' settings."
+          ],
+          "endpoints": [
+            {
+              "label": "Desktop (LAN)",
+              "value": "umbrel.local:50001"
+            },
+            {
+              "label": "Mobile (Tor)",
+              "value": "v2...onion:50001"
+            }
+          ],
+          "compatible_tools": [
+            "Sparrow"
+          ],
+          "privacy": "Your wallet queries your node, not a public server."
+        },
+        {
+          "id": "remote-control",
+          "title": "Remote Node Control",
+          "status": "works",
+          "status_text": "Private",
+          "description": "Manage channels and route payments from your phone. Connect via Tor so you can sign transactions from anywhere without a VPN.",
+          "steps": [
+            "Open **Lightning Node** app and click 'Connect'.",
+            "Select **Tor** to generate a private connection string.",
+            "Scan the QR code with your mobile app or paste the LNDconnect string."
+          ],
+          "endpoints": [
+            {
+              "label": "Tor LND String (Example)",
+              "value": "lndconnect://v2...onion:8080?macaroon=..."
+            }
+          ],
+          "compatible_tools": [],
+          "privacy": "Traffic is onion-routed; no central server sits in the middle."
+        },
+        {
+          "id": "merchant-tools",
+          "title": "Merchant & Tools",
+          "status": "works",
+          "status_text": "Native",
+          "description": "Run self-hosted apps that connect directly to your node. Process payments, explore blocks, or mix coins without third parties.",
+          "steps": [
+            "Browse the **App Store** and install tools like BTCPay, Mempool, or Whirlpool.",
+            "Launch the app—it auto-connects to Bitcoin Core and LND internally.",
+            "Access the dashboard via `umbrel.local` or configure external clients using the app's Tor hidden service."
+          ],
+          "endpoints": [
+            {
+              "label": "Mempool (Example)",
+              "value": "http://umbrel.local:3006"
+            }
+          ],
+          "compatible_tools": [
+            "BTCPay Server",
+            "RoboSats"
+          ],
+          "privacy": "You control all customer data; no third-party processor involved."
+        }
+      ]
+    },
+    "maintenance": {
+      "ops_profile": [
+        {
+          "label": "Update Cadence",
+          "value": "Monthly + Hotfixes"
+        },
+        {
+          "label": "Rollback",
+          "value": "Re-flash SD (Data Safe)"
+        },
+        {
+          "label": "Backups",
+          "value": "LND (Auto) + System"
+        },
+        {
+          "label": "Data Path",
+          "value": "/home/umbrel/umbrel"
+        },
+        {
+          "label": "Monitoring",
+          "value": "Dashboard / Apps"
+        }
+      ],
+      "tasks": [
+        {
+          "title": "Export LND channel backup",
+          "intro": "Channels are live smart contracts. If your node fails without the latest state, you lose funds.",
+          "steps": [
+            "Go to **Settings** → **Lightning**.",
+            "Click the three dots icon and select **Backup channels**.",
+            "Save the `channel.backup` file to a separate device."
+          ]
+        },
+        {
+          "title": "Run a system backup",
+          "intro": "System backups capture your app data and configs (excluding the blockchain). That means you can restore your entire dashboard state after a re-flash without re-configuring every app manually.",
+          "steps": [
+            "Go to **Settings** → **Backup**.",
+            "Click **Create Backup** and wait for the archive to download.",
+            "Store it offline or on encrypted cloud storage."
+          ]
+        },
+        {
+          "title": "Safe update checks",
+          "intro": "Updates can break apps. Verify safety before you click to avoid downtime.",
+          "steps": [
+            "Check the dashboard for the orange update badge.",
+            "Read the [Changelog](https://github.com/getumbrel/umbrel/releases) for breaking changes.",
+            "Click **Update** and confirm Bitcoin Core resumes syncing."
+          ]
+        },
+        {
+          "title": "Check storage health",
+          "intro": "SSDs wear out over time. Catching failures early prevents blockchain corruption.",
+          "steps": [
+            "Go to **Settings** → **Storage** to view usage.",
+            "Ensure you have >15% free space for database compaction.",
+            "If usage is high, prune Bitcoin Core or migrate to a larger disk."
+          ]
+        }
+      ],
+      "configs": []
+    },
+    "security_model": {
+      "overview": "Umbrel assumes a trusted LAN with password-protected web UI, optional Tor remote access, and disabled-by-default SSH.",
+      "quick_wins": [
+        "Change the default `moneyprintergobrrr` password immediately and store it in a password manager.",
+        "Enable two-factor auth on Tor gateways like Tailscale or Cloudflare Tunnel if you expose the dashboard remotely.",
+        "Segment the node onto its own VLAN or dedicated Wi-Fi SSID so IoT devices never reach it directly."
+      ],
+      "hardening": [
+        "Enable SSH only when needed and restrict it to key-based logins.",
+        "Mount disks with LUKS or hardware encryption if the device lives outside your home.",
+        "Audit installed apps; remove anything you no longer run to reduce attack surface."
+      ]
+    },
     "migration": [
       {
         "id": "reuse-existing-node",
@@ -11298,7 +11352,7 @@
     "trust": {
       "cards": [
         {
-          "id": "release",
+          "id": "activity",
           "fact": "Latest umbrelOS build: November 2025",
           "link_text": "Changelog",
           "link_url": "https://github.com/getumbrel/umbrel/releases"
@@ -11310,196 +11364,13 @@
           "link_url": "https://github.com/getumbrel/umbrel"
         },
         {
-          "id": "docs",
+          "id": "publisher",
           "fact": "DIY vs Umbrel Home feature matrix",
           "link_text": "Wiki",
           "link_url": "https://github.com/getumbrel/umbrel/wiki/umbrelOS-on-Umbrel-Home-vs.-DIY"
-        },
-        {
-          "id": "community",
-          "fact": "Active help threads on Umbrel Community forum",
-          "link_text": "Forum",
-          "link_url": "https://community.umbrel.com/t/getting-started-with-your-umbrel/3555"
         }
       ],
       "summary": "Umbrel makes Bitcoin node management accessible but relies on a source-available license for its dashboard. While the underlying Bitcoin Core and LND binaries are open source, the orchestration layer is not fully FOSS, which some purists avoid. However, for home users, it removes significant technical barriers while keeping data local."
-    },
-    "hardware_bom": {
-      "heading": "Hardware BOM & capacity planning",
-      "intro": "Umbrel runs on hardware you control. That means you choose the trade-offs between noise, cost, and performance. Pick a build that matches your app usage, but prioritize SSD storage and a wired connection to keep the node healthy.",
-      "builds": [
-        {
-          "id": "budget-pi",
-          "name": "Budget Pi kit",
-          "tagline": "Low-cost entry, but limited headroom.",
-          "use_case": "Learning, personal routing, light app usage",
-          "tradeoff": "You save money upfront → You risk sync stalls on heavy apps like Mempool.",
-          "all_in_price": "$180–$220",
-          "monthly_cost": "~$1.30/mo (10W)",
-          "sync_time": "5–7 days",
-          "assumptions": "Requires wired Ethernet + NVMe SSD (SD cards will fail).",
-          "storage_guidance": "1 TB NVMe (Full history) or 500GB (Pruned).",
-          "noise_footprint": "Low noise (<30dB fan), tiny footprint.",
-          "gotcha": "Pi 4/5 shares bandwidth between USB and Network, which bottlenecks the initial sync.",
-          "compatibility_badges": [
-            "Bitcoin Core",
-            "Lightning",
-            "Basic Apps"
-          ],
-          "parts": [
-            "Raspberry Pi 5 or 4 (8 GB RAM)",
-            "1 TB NVMe SSD in USB 3.2 enclosure",
-            "Active cooling case or fan hat",
-            "15W USB-C power supply"
-          ]
-        },
-        {
-          "id": "quiet-mini-pc",
-          "name": "Quiet mini-PC",
-          "tagline": "The daily driver standard.",
-          "use_case": "Daily Lightning use, Electrs, media apps",
-          "tradeoff": "You pay slightly more → You get instant dashboard loads and reliable indexing.",
-          "all_in_price": "$250–$350",
-          "monthly_cost": "~$3.25/mo (25W)",
-          "sync_time": "12–18 hours",
-          "assumptions": "Fast internet (>100Mbps) + SSD over SATA/NVMe.",
-          "storage_guidance": "2 TB NVMe (Allows Electrs index + Media apps).",
-          "noise_footprint": "Silent (Fanless chassis available), router-sized.",
-          "gotcha": "Requires flashing an OS image to internal disk (wipes the drive).",
-          "compatibility_badges": [
-            "Electrs",
-            "Mempool",
-            "Post-Mix Tools",
-            "Media Apps"
-          ],
-          "parts": [
-            "Intel N100 / N305 mini PC with 16 GB RAM",
-            "2 TB NVMe SSD",
-            "Silent heatpipe chassis",
-            "Battery-backed NVMe enclosure for backups"
-          ]
-        },
-        {
-          "id": "power-user",
-          "name": "Power user workstation",
-          "tagline": "Commercial-grade throughput.",
-          "use_case": "Routing, BTCPay merchants, AI / media workloads",
-          "tradeoff": "High power/cost → You run everything without lag.",
-          "all_in_price": "$500+",
-          "monthly_cost": "~$9.00/mo (70W peak)",
-          "sync_time": "8–10 hours",
-          "assumptions": "Gigabit fiber + high-end NVMe raid.",
-          "storage_guidance": "4 TB NVMe (Mirrored RAID 1 recommended).",
-          "noise_footprint": "Audible fans (35dB+), desktop tower size.",
-          "gotcha": "Overkill for just Bitcoin; only build this if you host AI models or 50+ apps.",
-          "compatibility_badges": [
-            "BTCPay Server",
-            "LLM AI Models",
-            "High-Vol Routing"
-          ],
-          "parts": [
-            "Ryzen 7 / Intel i7 SFF box with 32 GB RAM",
-            "4 TB NVMe or SATA SSD (mirrored)",
-            "Managed switch + VLAN-aware router",
-            "UPS with network card"
-          ]
-        }
-      ],
-      "micro_faqs": [
-        {
-          "q": "Is a Raspberry Pi 5 worth it over a Pi 4?",
-          "a": "Yes. The PCIe bus on the Pi 5 allows much faster NVMe speeds, cutting sync times by ~30% compared to the Pi 4's USB bottleneck."
-        },
-        {
-          "q": "Do I really need an SSD?",
-          "a": "Absolutely. HDDs cannot handle the random I/O required for block verification; your node will stall and never catch up to the tip."
-        },
-        {
-          "q": "Can I start small and upgrade?",
-          "a": "Yes. You can migrate your data directory from a Pi to a Mini-PC later, but start with at least a 1TB drive to avoid painful migrations."
-        },
-        {
-          "q": "How much bandwidth does a node use?",
-          "a": "Expect ~600GB for the initial download, then 20-50GB/month for gossip. Check your ISP data caps."
-        }
-      ]
-    },
-    "power_uptime": {
-      "metrics": [
-        {
-          "label": "Idle draw (Pi build)",
-          "value": "10–12 W",
-          "notes": "~$1.30 per month at $0.18/kWh"
-        },
-        {
-          "label": "Idle draw (mini PC)",
-          "value": "20–25 W",
-          "notes": "~$3.25 per month"
-        },
-        {
-          "label": "Load spikes",
-          "value": "Up to 70 W on power-user rigs",
-          "notes": "Budget UPS capacity accordingly"
-        }
-      ],
-      "ups_guidance": [
-        "Pi builds can run for ~45 minutes on a 300 VA UPS—long enough for clean shutdowns during outages.",
-        "Mini PCs benefit from 600–1000 VA UPS units so Electrs indexing or Lightning gossip doesn’t crash mid-write.",
-        "Use smart UPS models to trigger automatic shutdowns via USB or network cards."
-      ],
-      "safe_shutdown": "Always shut down from Settings → System or `sudo poweroff` before cutting power; abrupt loss risks database corruption in Bitcoin Core, Electrs, and Lightning."
-    },
-    "maintenance": {
-      "cadence": "Umbrel ships OS and App Store updates roughly monthly, with security fixes pushed as needed.",
-      "tasks": [
-        {
-          "title": "Apply updates",
-          "details": "Watch for the orange badge in the dashboard; click Update, wait for reboot, and confirm Bitcoin Core resumes sync."
-        },
-        {
-          "title": "Back up configs",
-          "details": "Export system backup archives plus the `channel.backup` file whenever you add channels or apps."
-        },
-        {
-          "title": "Check disk health",
-          "details": "Run SMART checks quarterly and replace SSDs before write endurance fails."
-        }
-      ],
-      "configs": [
-        "Umbrel keeps Docker data under `/home/umbrel/umbrel`; rsync that directory to offline storage for full snapshots.",
-        "Per-app settings live inside their volumes—note locations before pruning apps."
-      ]
-    },
-    "security_model": {
-      "overview": "Umbrel assumes a trusted LAN with password-protected web UI, optional Tor remote access, and disabled-by-default SSH.",
-      "quick_wins": [
-        "Change the default `moneyprintergobrrr` password immediately and store it in a password manager.",
-        "Enable two-factor auth on Tor gateways like Tailscale or Cloudflare Tunnel if you expose the dashboard remotely.",
-        "Segment the node onto its own VLAN or dedicated Wi-Fi SSID so IoT devices never reach it directly."
-      ],
-      "hardening": [
-        "Enable SSH only when needed and restrict it to key-based logins.",
-        "Mount disks with LUKS or hardware encryption if the device lives outside your home.",
-        "Audit installed apps; remove anything you no longer run to reduce attack surface."
-      ]
-    },
-    "integrations": {
-      "wallets": [
-        "Sparrow / Specter via Electrs or EPS",
-        "Zeus, Thunderhub, Lightning Terminal over Tor",
-        "BlueWallet watch-only via Electrum server"
-      ],
-      "merchant_stack": [
-        "BTCPay Server with LND backend",
-        "LNBits or Cashu mints for custodial wallets",
-        "Ride the Lightning for POS-style flows"
-      ],
-      "explorers_and_tools": [
-        "Mempool.space instance for fee monitoring",
-        "Samourai Whirlpool CLI (community app)",
-        "Home Assistant, Nextcloud, Immich for day-one household value"
-      ],
-      "notes": "Most integrations are one-click App Store installs; others require pointing external clients at your node’s Tor hidden services."
     }
   },
   {

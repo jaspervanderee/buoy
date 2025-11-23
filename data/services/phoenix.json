@@ -193,22 +193,6 @@
       "definition": "On-chain fee paid when opening/resizing; varies with network demand."
     }
   ],
-  "privacy_notes": {
-    "data_flows": [
-      "Phoenix connects to ACINQ’s server to run Lightning for you. Today, ACINQ can see who you pay and how much.",
-      "You can connect Phoenix to your own Electrum server to reduce what third parties can learn about your activity."
-    ],
-    "recovery_drill": [
-      "Your channel states are encrypted and saved with ACINQ so you can restore using your 12-word seed.",
-      "The seed lives only on your phone—ACINQ can’t recover it for you if you lose it. ",
-      "If ACINQ ever disappears, go to Settings → Danger zone → Force close channels; funds return on-chain after ~720 blocks.",
-      "Keep Phoenix installed until the forced-closed coins show in the Final wallet view, then sweep them."
-    ],
-    "country_caveats": [
-      "Availability and funding options vary by country—check your app store or on-ramp.",
-      "Install only from the official publisher in your app store; verify the developer name."
-    ]
-  },
   "privacy": {
     "section_title": "Privacy & Safety",
     "data_flows": [

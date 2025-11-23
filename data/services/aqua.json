@@ -189,23 +189,6 @@
             "definition": "An Aqua feature that converts on-chain BTC straight into your L-BTC balance without extra manual steps."
         }
     ],
-    "privacy_notes": {
-        "data_flows": [
-            "Aqua does not send analytics by default; optional JAN3 services only store the email you provide.",
-            "Lightning, USDt swaps, and support requests can expose metadata to providers such as Boltz, SideShift, Changelly, or Zendesk.",
-            "Seeds stay on your phone (Keychain on iOS, EncryptedSharedPreferences on Android)."
-        ],
-        "recovery_drill": [
-            "Back up the 12-word seed offline right after setup.",
-            "Test a small restore on another device before deleting the original installation.",
-            "If JAN3 ever shutters a service, you can still export funds using the seed in compatible wallets like Blockstream Green."
-        ],
-        "country_caveats": [
-            "Dolphin Card availability depends on your country and compliance checks.",
-            "Swap liquidity varies by region; Boltz or SideShift may refuse large amounts in restricted jurisdictions.",
-            "Always download the app from the official app stores to avoid tampered APKs."
-        ]
-    },
     "privacy": {
         "section_title": "Privacy & Safety",
         "data_flows": [

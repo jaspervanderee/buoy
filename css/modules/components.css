@@ -30,7 +30,8 @@
 .fee-quick-answers .micro-faq-item summary,
 .section-fees .key-terms summary,
 .svc-compat__tile summary,
-.mini-glossary summary {
+.mini-glossary summary,
+.brand-faq summary {
   cursor: pointer;
   font-family: "Inter", sans-serif;
   font-weight: 600;
@@ -52,7 +53,8 @@
 .micro-faqs .micro-faq-item summary,
 .fee-quick-answers .micro-faq-item summary,
 .section-fees .key-terms summary,
-.mini-glossary summary {
+.mini-glossary summary,
+.brand-faq summary {
   color: var(--text-muted);
   font-weight: 400; /* Some are lighter */
   font-family: "Ubuntu Mono", monospace; /* FAQs use Mono? Check original */
@@ -67,7 +69,8 @@
 .micro-faqs .micro-faq-item summary:hover,
 .fee-quick-answers .micro-faq-item summary:hover,
 .section-fees .key-terms summary:hover,
-.mini-glossary summary:hover {
+.mini-glossary summary:hover,
+.brand-faq summary:hover {
   color: var(--text);
 }
 
@@ -79,7 +82,8 @@
 .fee-quick-answers .micro-faq-item summary::-webkit-details-marker,
 .section-fees .key-terms summary::-webkit-details-marker,
 .svc-compat__tile summary::-webkit-details-marker,
-.mini-glossary summary::-webkit-details-marker {
+.mini-glossary summary::-webkit-details-marker,
+.brand-faq summary::-webkit-details-marker {
   display: none;
 }
 
@@ -90,7 +94,8 @@
 .fee-quick-answers .micro-faq-item summary::before,
 .section-fees .key-terms summary::before,
 .svc-compat__tile summary::before,
-.mini-glossary summary::before {
+.mini-glossary summary::before,
+.brand-faq summary::before {
   content: "\2193"; /* Down arrow */
   font-family: "Inter", sans-serif;
   font-size: 1em;
@@ -106,7 +111,8 @@
 .fee-quick-answers .micro-faq-item[open] summary::before,
 .section-fees .key-terms[open] summary::before,
 .svc-compat__tile details[open] > summary::before,
-.mini-glossary[open] summary::before {
+.mini-glossary[open] summary::before,
+.brand-faq details[open] summary::before {
   transform: rotate(180deg);
 }
 

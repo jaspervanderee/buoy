@@ -446,22 +446,6 @@
       }
     ]
   },
-  "privacy_notes": {
-    "data_flows": [
-      "Relai stores the personal data you provide for verification to meet Swiss and EU AML rules.",
-      "SEPA funding uses your bank account details, so your bank can see you are buying bitcoin with Relai."
-    ],
-    "recovery_drill": [
-      "Write down your seed, restore it on a spare device, and verify the balance before deleting the test install.",
-      "Review the hardware wallet connection flow once a year so you remember how to sign messages.",
-      "Export transaction history quarterly to maintain your own audit trail."
-    ],
-    "country_caveats": [
-      "Relai focuses on the EEA and Switzerland; card and Apple Pay support may vary by country.",
-      "Bank payouts require a matching IBAN name, and some banks block bitcoin transfers.",
-      "Check the Relai help center for the latest list of supported countries and payment options."
-    ]
-  },
   "privacy": {
     "section_title": "Privacy & Safety",
     "data_flows": [
