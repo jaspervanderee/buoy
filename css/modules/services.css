@@ -3239,3 +3239,77 @@
 /* Note: Uses standard .svc-compat__tile structure */
 
 
+
+/* === Redesigned Custody Section (Custom Override) === */
+
+/* Custody Model: The "Green" (Sovereignty) Card */
+#custody-model.svc-compat__tile {
+  border-top: 4px solid #28a745; /* Sovereignty green */
+  background: var(--panel);
+}
+
+#custody-model .svc-compat__title {
+  color: #28a745;
+}
+
+/* Compliance: The "Blue" (Privacy) Card */
+#compliance-data.svc-compat__tile {
+  border-top: 4px solid #17a2b8; /* Privacy blue */
+  background: var(--panel);
+}
+
+#compliance-data .svc-compat__title {
+  color: #17a2b8;
+}
+
+/* Risk: The "Orange/Red" (Warning) Card */
+#operational-risk.svc-compat__tile {
+  border-top: 4px solid #ffc107; /* Warning orange */
+  background: var(--panel);
+}
+
+#operational-risk .svc-compat__title {
+  color: #fd7e14; /* Darker orange for text readability */
+}
+
+/* Dark mode adjustments for the new custody section */
+@media (prefers-color-scheme: dark) {
+  #custody-model.svc-compat__tile {
+    border-top-color: #4caf50;
+  }
+  #custody-model .svc-compat__title {
+    color: #4caf50;
+  }
+
+  #compliance-data.svc-compat__tile {
+    border-top-color: #20c997;
+  }
+  #compliance-data .svc-compat__title {
+    color: #20c997;
+  }
+
+  #operational-risk.svc-compat__tile {
+    border-top-color: #ffb300;
+  }
+  #operational-risk .svc-compat__title {
+    color: #ffb300;
+  }
+}
+
+/* Make the bullet points in custody cards more distinct */
+#custody .feature-tile__bullets li {
+  position: relative;
+  padding-left: 4px;
+}
+
+#custody .feature-tile__bullets li::marker {
+  color: var(--text-muted); /* Reset marker color */
+}
+
+/* Desktop: Ensure equal height for custody cards */
+@media (min-width: 768px) {
+  #custody .svc-compat__grid {
+    grid-template-columns: repeat(3, 1fr); /* Force 3 columns for these specific 3 cards */
+    align-items: stretch;
+  }
+}

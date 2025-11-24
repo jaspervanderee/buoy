@@ -24,8 +24,8 @@
     "date": "2025-11-01"
   },
   "btc-pay": {
-    "hash": "8048d34d6a6a6801568dea97f70f6cf0e27e454dc761e1434d76ad582c2e663c",
-    "date": "2025-11-07"
+    "hash": "2fa78b2fcd28ec5bb26de369aaba69ee45806f477113716035cbe6d205b37315",
+    "date": "2025-11-24"
   },
   "bull-bitcoin": {
     "hash": "bda4b026decdc83333025d8d9d1c30cb71ab8f7d52c20b64f8fd464e39caad78",
@@ -41,11 +41,11 @@
   },
   "lightspark": {
     "hash": "c57fe17144418fde2eee7f82203cb6da837fd72945b50aba4cdd3ab50635c4b7",
-    "date": "2025-11-07"
+    "date": "2025-11-24"
   },
   "muun": {
     "hash": "e4b3f023c26148f01091ecc155317028b16c61ddf9b6090a37dbae45c995f3a1",
-    "date": "2025-11-21"
+    "date": "2025-11-24"
   },
   "mynode": {
     "hash": "f302ec372fc4e2b36bc77608ea9b46a3b9f999cb5ab7f034be8b89cdca40b0c1",
@@ -53,7 +53,7 @@
   },
   "opennode": {
     "hash": "e49921efa3514944c02b92402d808408a53a164c3864dfe3a7a9a0e45ca000d4",
-    "date": "2025-11-07"
+    "date": "2025-11-24"
   },
   "peach": {
     "hash": "a37923bbe1c76d500a44c34db4e6a7c1737247ce8e193510918380cd4893a1b9",
@@ -65,7 +65,7 @@
   },
   "pocket": {
     "hash": "253da7d27b8aa5af4f6f65b796986c6c51a843ef680ca0bd2990a31e65acab5c",
-    "date": "2025-11-21"
+    "date": "2025-11-24"
   },
   "relai": {
     "hash": "25726b60fe62ec8272f55fac2746c6fe8e5c2c19a6d66dcccd72642e54f8f148",
@@ -101,7 +101,7 @@
   },
   "unchained": {
     "hash": "afbb375c26c9a9ab6525bc61c1e46935272885435868fab823d7f4dc260cf30c",
-    "date": "2025-11-21"
+    "date": "2025-11-24"
   },
   "wasabi": {
     "hash": "50957ea553ff29cce4299793037024165ebcc61800716e5aeb0d78d0d62fcb98",

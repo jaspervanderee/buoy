@@ -383,6 +383,11 @@ html = html.replace('</head>', urlShim + '</head>');
         order = ["tldr", "setup", "hardware_bom", "fees", "privacy", "compat", "integrations", "maintenance", "security_model", "migration", "trust", "profile"];
       }
 
+      // For Accept Bitcoin as a merchant services
+      if (svc.category === "Accept Bitcoin as a merchant") {
+        order = ["tldr", "setup", "fees", "custody_risk", "hardware_bom", "payment_methods_limits", "integrations", "compat", "maintenance", "security_model", "migration", "trust", "profile"];
+      }
+
       const sectionBlocks = [];
 
       const renderTrustChips = () => {
@@ -2415,6 +2420,66 @@ ${tileItems}
 </section>`;
       };
 
+      const renderCustodyRisk = () => {
+        const data = svc.custody_risk;
+        if (!data || !Array.isArray(data.cards)) return "";
+
+        const heading = data.heading || "Custody, compliance & risk";
+        
+        const cards = data.cards.map(card => {
+          if (!card || !card.title) return "";
+          
+          const iconHtml = card.icon 
+            ? `<div class="svc-compat__header"><h3 class="svc-compat__title"><img src="${card.icon}" class="inline-icon" alt="" aria-hidden="true"/> ${escapeHtml(card.title)}</h3></div>`
+            : `<div class="svc-compat__header"><h3 class="svc-compat__title">${escapeHtml(card.title)}</h3></div>`;
+
+          const explanationHtml = card.explanation 
+            ? `<p class="svc-compat__why">${escapeHtml(card.explanation)}</p>` 
+            : "";
+            
+          let pointsHtml = "";
+          if (Array.isArray(card.key_points) && card.key_points.length > 0) {
+            pointsHtml = `<ul class="feature-tile__bullets">${card.key_points.map(p => `<li>${escapeHtml(p)}</li>`).join("")}</ul>`;
+          }
+
+          return `
+      <div class="svc-compat__tile" id="${card.id || ''}">
+        ${iconHtml}
+        ${explanationHtml}
+        ${pointsHtml}
+      </div>`;
+        }).join("");
+
+        // Render micro-FAQs if present
+        let microFaqsHtml = "";
+        if (Array.isArray(data.micro_faqs) && data.micro_faqs.length > 0) {
+          const faqItems = data.micro_faqs.map(faq => {
+            const anchor = slugify(faq.q);
+            return `      <details class="micro-faq-item" id="${anchor}">
+        <summary>${escapeHtml(faq.q)}</summary>
+        <div>
+          <p>${escapeHtml(faq.a)}</p>
+        </div>
+      </details>`;
+          }).join("\n");
+          microFaqsHtml = `
+    <div class="micro-faqs">
+      <h3 class="micro-faqs__title">Quick answers</h3>
+      <div class="micro-faqs__list">
+${faqItems}
+      </div>
+    </div>`;
+        }
+
+        return `
+<section id="custody" class="service-section">
+  <h2 class="feature-label">${heading}</h2>
+  <div class="svc-compat__grid">
+    ${cards}
+  </div>${microFaqsHtml}
+</section>`;
+      };
+
       const renderProfileSection = () => {
         const profile = svc.profile;
         const description = svc.description;
@@ -2518,6 +2583,7 @@ ${cards.join("\n")}
         migration: renderMigration,
         self_custody: renderSelfCustody,
         trust: renderTrustSection,
+        custody_risk: renderCustodyRisk,
         profile: renderProfileSection,
       };
 
@@ -2538,6 +2604,7 @@ ${cards.join("\n")}
         costs: svc.costs?.section_title || "Costs & ongoing obligations",
         compat: (svc.compatibility && svc.compatibility.section_title) ? svc.compatibility.section_title : (svc.compat_heading || "Features"),
         recovery: svc.recovery_heading || "Recovery",
+        custody_risk: svc.custody_risk?.heading || "Custody, compliance & risk",
         self_custody: svc.self_custody?.heading || "Self-custody: withdraw safely",
         migration: `Move your ${svc.name} wallet or funds`,
         privacy: svc.privacy?.section_title || "Privacy & Safety",
@@ -2571,6 +2638,7 @@ ${block}
       const jumpToMap = {
         setup: { id: 'setup', label: 'Setup' },
         fees: { id: 'fees', label: 'Fees' },
+        custody_risk: { id: 'custody', label: 'Custody' },
         hardware_bom: { id: 'hardware', label: 'Hardware' },
         maintenance: { id: 'maintenance', label: 'Updates' },
         security_model: { id: 'security', label: 'Security' },
@@ -2780,6 +2848,51 @@ ${sectionsHtml}`;
     // Add datePublished if we have founded_in
     if (svc.founded_in) {
       serviceJson.datePublished = `${svc.founded_in}-01-01`;
+    }
+
+    // Add Review with Pros/Cons for Schema (Review Snippet)
+    if (svc.tl_dr && (svc.tl_dr.best_for || svc.tl_dr.not_ideal_when)) {
+      const reviewSchema = {
+        "@type": "Review",
+        "author": {
+          "@type": "Organization",
+          "name": "Buoy Bitcoin"
+        },
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      };
+
+      if (svc.tl_dr.best_for) {
+        reviewSchema.positiveNotes = {
+          "@type": "ItemList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": svc.tl_dr.best_for
+            }
+          ]
+        };
+      }
+
+      if (svc.tl_dr.not_ideal_when) {
+        reviewSchema.negativeNotes = {
+          "@type": "ItemList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": svc.tl_dr.not_ideal_when
+            }
+          ]
+        };
+      }
+      
+      serviceJson.review = reviewSchema;
     }
     
     html = html.replace("</head>", `<script type=\"application/ld+json\">${JSON.stringify(serviceJson)}</script></head>`);

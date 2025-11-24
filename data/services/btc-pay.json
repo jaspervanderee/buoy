@@ -4,24 +4,24 @@
   "type_of_platform": "Hosted payment gateway",
   "faqs": [
     {
-      "q": "What is BTCPay Server?",
-      "a": "BTCPay Server is a free, open‑source, self‑hosted Bitcoin and Lightning payment processor that sends payments directly to your wallet."
+      "q": "How does BTCPay Server keep invoices self-hosted?",
+      "a": "BTCPay runs on hardware you control, so invoices, stores, and payment history live on your own server rather than a processor's database."
     },
     {
-      "q": "Does BTCPay charge fees?",
-      "a": "No platform fees are charged by BTCPay; you only pay standard Bitcoin/Lightning network fees and your hosting costs."
+      "q": "What are the hosting options for BTCPay Server?",
+      "a": "You can deploy on a $10–$70 per month VPS, use a one-click host like LunaNode or Voltage, or install it on dedicated hardware at home."
     },
     {
-      "q": "Is BTCPay custodial?",
-      "a": "No. It's non‑custodial—private keys stay under your control."
+      "q": "Do I pay any platform fees when customers pay invoices?",
+      "a": "No platform fees apply - only the Bitcoin network fees you select for on-chain payouts or the liquidity costs of your Lightning channels."
     },
     {
-      "q": "Is BTCPay difficult to set up?",
-      "a": "Setup can be technical, but guides and one‑click deployments make it manageable for motivated beginners."
+      "q": "How do I register and secure admin access?",
+      "a": "The first account on a new instance becomes the admin, so create it yourself, enable 2FA, and configure SMTP so you can recover passwords later."
     },
     {
-      "q": "Which plugins does BTCPay support?",
-      "a": "BTCPay integrates with WooCommerce, Shopify (via bridge), Magento, and many more ecommerce platforms."
+      "q": "Can BTCPay connect to my existing e-commerce stack?",
+      "a": "Yes. Official plugins cover WooCommerce, Shopify via a bridge, Magento, Zapier, and dozens more, and you can run the point-of-sale or crowdfunding apps directly from BTCPay."
     }
   ],
   "supported_network": "Bitcoin + Lightning",
@@ -62,10 +62,533 @@
   "open_source": "Yes",
   "user_experience": "0.0",
   "profile": "Nicolas Dorier",
-  "description": "BTC Pay Server, developed by a community-driven open-source project, is a self-hosted Bitcoin payment processor designed to empower merchants and individuals to accept Bitcoin payments securely and privately without intermediaries. All payments go directly to the user's own wallet—private keys stay under user control, greatly enhancing privacy and censorship resistance.\\n\\nUnlike other payment solutions, users can create online stores, point‑of‑sale systems, tipping buttons, crowdfunding campaigns, or invoice links—all within a single interface. It avoids KYC, middleman fees, and personal data collection, appealing to anyone seeking financial sovereignty with seamless integration to hardware wallets or custodial services.\\n\\nUsers highlight its open‑source, self‑hosted nature and flexibility, commenting on how easy it is to connect a cloud‑hosted or home server, link a Bitcoin wallet, and enable Lightning payments—empowering them to accept Bitcoin anywhere, anytime, though some note the initial setup complexity for beginners.\\n\\nBTCPay Server's mission is to democratize Bitcoin payments—removing fees, intermediaries, and technical barriers. Their vision for the future includes releasing a mobile app to enable non‑custodial Lightning payments for merchants, refining multisig and fee‑acceleration tools, and expanding e‑commerce integrations.",
+  "description": "Most payment processors hold your funds and act as a gatekeeper between you and your customers. BTC Pay Server solves this by running on your own hardware, connecting directly to your Bitcoin wallet without any middleman. That means you receive 100% of every payment instantly, with no risk of frozen accounts or leaked customer data. You can host it yourself for complete independence or use a managed cloud provider to get started quickly.",
   "founded_in": "2017",
   "website": "https://btcpayserver.org",
   "countries": [
     "WW"
-  ]
+  ],
+  "recovery_method": "Server backups plus wallet keys you control",
+  "interface": "Web dashboard",
+  "app_ratings": {
+    "ios": null,
+    "android": null
+  },
+  "links": {
+    "docs": "https://docs.btcpayserver.org/Guide/",
+    "deployment": "https://docs.btcpayserver.org/Deployment/",
+    "directory": "https://directory.btcpayserver.org/filter/hosts",
+    "demo": "https://mainnet.demo.btcpayserver.org/login"
+  },
+  "trust_chips": [
+    {
+      "text": "Self-hosted invoices",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "self-hosted-invoices"
+    },
+    {
+      "text": "Merchant apps & POS",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "merchant-apps"
+    },
+    {
+      "text": "Multiple Lightning daemons",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "lightning-daemons"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "Merchants who want a sovereign checkout stack with no processor fees.",
+    "consider_if": "You already run a node or want to consolidate Lightning, on-chain, and fiat settlement in one dashboard.",
+    "not_ideal_when": "You prefer a hosted PSP that abstracts server maintenance and upgrades."
+  },
+  "howto": {
+    "title": "Go live with Bitcoin payments in 4 steps:",
+    "steps": [
+      {
+        "id": "deploy-stack",
+        "title": "1. Deploy your server",
+        "chips": {
+          "setup_time": "~30–60 min",
+          "cost": "$10–$30/mo hosting",
+          "risk": "Medium"
+        },
+        "sync_time": "Depends on your Bitcoin node backend",
+        "actions": [
+          "Pick a deployment path from <a href=\"https://docs.btcpayserver.org/Deployment/\">Docker, managed host, or hardware builds</a> and provision the VM or device.",
+          "Run the configurator, point DNS at your server, and confirm HTTPS is working before exposing the dashboard.",
+          "Create the first account yourself - the docs note it becomes the admin - and store the credentials in a password manager."
+        ],
+        "gotcha": "The first registered user gains admin rights, so finish setup before inviting teammates."
+      },
+      {
+        "id": "connect-store",
+        "title": "2. Connect your store or POS",
+        "chips": {
+          "setup_time": "~15–30 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Create your first store, choose the default currency, and name the point of sale profile.",
+          "Install plugins such as WooCommerce, Shopify bridge, or the built-in Point of Sale app to link your checkout surface.",
+          "Enable Server Settings → Policies if you need to allow staff accounts on the instance."
+        ],
+        "gotcha": "Stores stay inactive until at least one payment method is configured, so finish the wallet hookup next."
+      },
+      {
+        "id": "configure-settlement",
+        "title": "3. Configure Bitcoin settlement",
+        "chips": {
+          "setup_time": "~10–20 min",
+          "cost": "Mining fee for wallet link",
+          "risk": "Medium"
+        },
+        "actions": [
+          "Visit Wallet Setup and either connect an existing hardware wallet via BTCPay Vault or generate a new hot wallet for testing.",
+          "Assign Lightning by pointing BTCPay to LND, Core Lightning, or Eclair depending on your routing needs.",
+          "Set payout preferences so invoices settle straight to keys you control."
+        ],
+        "gotcha": "Never paste hardware wallet seeds on the server - use BTCPay Vault or PSBT workflows instead."
+      },
+      {
+        "id": "test-invoice",
+        "title": "4. Test and monitor invoices",
+        "chips": {
+          "setup_time": "~5 min",
+          "cost": "Test payment only",
+          "risk": "Low"
+        },
+        "actions": [
+          "Create a small invoice and pay it from your phone to confirm invoice status flows from Pending to Settled.",
+          "Exercise both Lightning and on-chain paths so you can document refund flows for customers.",
+          "Add a webhook or Zapier action so your store marks orders paid automatically."
+        ],
+        "gotcha": "Leave the invoice screen open until payment settles - closing the tab too soon can hide status updates."
+      }
+    ],
+    "totalTime": null,
+    "micro_faqs": [
+      {
+        "q": "Can I deploy without Docker?",
+        "a": "Yes. Manual installs exist, but the docs recommend Docker or a managed host for production uptime."
+      },
+      {
+        "q": "How many stores can I attach?",
+        "a": "An instance can host unlimited stores and even process payments for others, so long as your hardware meets the load."
+      }
+    ]
+  },
+  "fees_section_title": "Costs & speed: what you pay and when",
+  "fees_scenarios": [
+    {
+      "id": "fees-hosting",
+      "title": "Host the stack",
+      "cost_today": "$10–$70/mo depending on VPS size",
+      "what_happens": "You run the software on your own virtual private server (VPS). That means you pay a flat monthly hosting fee for the hardware, regardless of how many payments you process.",
+      "how_to_minimize": "Start on a $10 LunaNode or DigitalOcean droplet and scale up only when invoice volume spikes.",
+      "learn_more": "The deployment matrix lists LunaNode, Voltage, and other hosts with their expected monthly bills."
+    },
+    {
+      "id": "fees-channel-liquidity",
+      "title": "Open Lightning channels",
+      "cost_today": "≈1% of the receive amount + on-chain mining fee",
+      "what_happens": "To receive Lightning payments, your node needs inbound capacity. That means you pay standard mining fees to open channels initially, but subsequent payments are nearly free.",
+      "how_to_minimize": "Batch liquidity top-ups during low-fee windows or use third-party LSPs that quote capped fees.",
+      "learn_more": "Lightning support covers LND, Core Lightning, and Eclair so you can pick the tool with the fee policy you prefer."
+    },
+    {
+      "id": "fees-onchain-payout",
+      "title": "Settle on-chain",
+      "cost_today": "Mining fee you select for each payout",
+      "what_happens": "Every on-chain payment goes straight to your wallet. That means the only cost is the mining fee you choose to attach when you move the funds later.",
+      "how_to_minimize": "Consolidate payouts during quiet mempool periods or route small refunds over Lightning instead.",
+      "learn_more": "BTCPay charges no spread - the only cost is the network fee you attach to the transaction."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "Does BTCPay charge processing fees?",
+      "a": "No. The docs emphasize that there are zero platform fees - only the Bitcoin or Lightning network costs you choose."
+    },
+    {
+      "q": "What do managed BTCPay hosts bill for?",
+      "a": "Managed providers bill you for compute, storage, and support while you still hold the keys and collect 100% of every payment."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-store",
+      "term": "Store",
+      "definition": "A merchant profile within BTCPay that holds branding, pricing, and payment method settings for a specific business."
+    },
+    {
+      "id": "term-nbxplorer",
+      "term": "NBXplorer",
+      "definition": "The indexing service BTCPay uses to monitor addresses and derive invoices from your connected wallet."
+    },
+    {
+      "id": "term-third-party-host",
+      "term": "Third-party host",
+      "definition": "A company that runs BTCPay Server for you while leaving key custody and settlement under your control."
+    }
+  ],
+  "custody_risk": {
+    "heading": "Custody, compliance & risk",
+    "cards": [
+      {
+        "id": "custody-model",
+        "title": "Custody",
+        "icon": "/images/security.svg",
+        "explanation": "BTC Pay generates new addresses from your wallet's public key for every order. That means funds go straight to your cold storage without ever touching a company's ledger. You verify the receipt on your own node, so you never have to trust a dashboard.",
+        "key_points": [
+          "Payments settle to your wallet",
+          "No middleman ledger",
+          "Uncensorable funds"
+        ]
+      },
+      {
+        "id": "data-privacy",
+        "title": "Data Privacy",
+        "icon": "/images/privacy.svg",
+        "explanation": "You host the database, so customer names and order details never leave your server. That means no third party can mine your sales data or track your customers. You can wipe the logs whenever you want.",
+        "key_points": [
+          "Self-hosted data",
+          "Tor support",
+          "Retention control"
+        ]
+      },
+      {
+        "id": "jurisdiction",
+        "title": "Jurisdiction & Availability",
+        "icon": "/images/global.svg",
+        "explanation": "BTCPay is open-source code, not a company, so it exists everywhere the internet does. Your 'jurisdiction' is simply where you put the server—your home, a VPS in Switzerland, or a cloud in New York. You choose the legal environment that fits your business by selecting the physical location of your hardware.",
+        "key_points": [
+          "Global availability",
+          "Server location = Jurisdiction",
+          "Portability"
+        ]
+      },
+      {
+        "id": "compliance-kyc",
+        "title": "Compliance",
+        "icon": "/images/checkmark.svg",
+        "explanation": "Because you are the payment processor, there is no onboarding department to demand a passport or business license. You can accept payments instantly from anywhere in the world without waiting for approval. You decide which compliance tools (like travel rule reports) to enable based on your local laws.",
+        "key_points": [
+          "No KYC/ID required",
+          "Instant approval",
+          "Optional reporting tools"
+        ]
+      },
+      {
+        "id": "operational-risk",
+        "title": "Operational Risk",
+        "icon": "/images/warning.svg",
+        "explanation": "Sovereignty means the buck stops with you. There is no support desk to reverse a transaction or reset a lost seed phrase. You must secure your backups (wallet seeds + channel states) and admin credentials like a bank vault, because in this model, you are the bank.",
+        "key_points": [
+          "No password resets",
+          "You manage backups",
+          "Staff access controls"
+        ]
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Can BTCPay see my customers' private data?",
+        "a": "Only the data you store on your server is available, so limit invoice metadata to what you truly need."
+      },
+      {
+        "q": "Is Tor supported?",
+        "a": "Yes. Deployment guides cover Tor exposure so you can reach the dashboard without opening ports on clearnet."
+      }
+    ]
+  },
+  "hardware_bom": {
+    "heading": "Deployment Options",
+    "intro": "BTC Pay runs on the hardware you provide. That means you can choose a low-cost cloud server for convenience or a physical device at home for maximum privacy.",
+    "builds": [
+      {
+        "id": "one-click-host",
+        "name": "One-click host",
+        "tagline": "Fastest path with managed updates.",
+        "use_case": "Merchants who want BTCPay live in minutes on LunaNode, Voltage Cloud, or Clovyr.",
+        "tradeoff": "You get a setup in minutes → You give up control over server updates and uptime. (Your funds remain safe in your wallet).",
+        "all_in_price": "$0 setup",
+        "monthly_cost": "$10–$30",
+        "sync_time": "Provider handles",
+        "assumptions": "Hosted plans ship BTCPay + Bitcoin Core pre-imaged.",
+        "storage_guidance": "Shared SSD quotas (20–80 GB) unless you add block storage.",
+        "noise_footprint": "None - cloud service.",
+        "gotcha": "Hosts cannot access your wallet, but they control when the VM reboots, so keep offsite backups too.",
+        "compatibility_badges": [
+          "Docker stack",
+          "Managed SSL"
+        ],
+        "parts": [
+          "BTCPay third-party host subscription",
+          "Domain or subdomain pointing to the host",
+          "Wallet endpoint (hardware wallet, Specter, or Sparrow)"
+        ]
+      },
+      {
+        "id": "vps-stack",
+        "name": "DIY VPS",
+        "tagline": "Full control on cloud infrastructure.",
+        "use_case": "Teams that want root access on DigitalOcean, Azure, Google Cloud, or similar.",
+        "tradeoff": "You get full root access and scalability → You give up the convenience of managed updates and must handle maintenance yourself.",
+        "all_in_price": "$10–$70",
+        "monthly_cost": "$10–$70",
+        "sync_time": "~1 day for a fresh node (faster with FastSync)",
+        "assumptions": "Deploy btcpayserver-docker on 2 vCPU / 4 GB RAM or better.",
+        "storage_guidance": "At least 500 GB SSD for full Bitcoin + NBXplorer.",
+        "noise_footprint": "Data center only.",
+        "gotcha": "OpenVZ VPS hosts are unsupported, so confirm the hypervisor before you commit.",
+        "compatibility_badges": [
+          "Self-hosted",
+          "Lightning ready"
+        ],
+        "parts": [
+          "Ubuntu 22.04 LTS VPS",
+          "Docker + docker compose",
+          "Monitoring stack (Prometheus, Uptime Kuma, etc.)"
+        ]
+      },
+      {
+        "id": "onprem-node",
+        "name": "On-prem appliance",
+        "tagline": "Host BTCPay beside your point of sale.",
+        "use_case": "Shops that prefer offline ownership on Raspberry Pi 4, NUC, or rack hardware.",
+        "tradeoff": "You get physical control of your data → You give up cloud reliability and must manage power and backups yourself.",
+        "all_in_price": "$300–$800",
+        "monthly_cost": "~$3–$8 electricity",
+        "sync_time": "2–6 days depending on CPU and SSD",
+        "assumptions": "Requires wired Ethernet and reliable UPS.",
+        "storage_guidance": "1–2 TB NVMe or SATA SSD to house blockchain plus logs.",
+        "noise_footprint": "Depends on chassis; fanless builds keep it silent.",
+        "gotcha": "Manual deployments demand Linux expertise; not recommended for your first production setup per docs.",
+        "compatibility_badges": [
+          "Self-sovereign",
+          "Offline capable"
+        ],
+        "parts": [
+          "Raspberry Pi 4/5 or Intel NUC",
+          "1–2 TB SSD",
+          "UPS and surge protection"
+        ]
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Do third-party hosts control my funds?",
+        "a": "No. BTCPay is non-custodial even on hosted plans - payments still settle into wallets you control."
+      },
+      {
+        "q": "Can one instance power multiple stores?",
+        "a": "Yes. The docs highlight that you can attach unlimited stores and even process payments for others."
+      }
+    ]
+  },
+  "compat_heading": "BTCPay merchant stack coverage",
+  "compat_tiles": [
+    {
+      "id": "self-hosted-invoices",
+      "title": "Self-hosted invoices",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Unlimited stores</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> BitPay API compatible</span>",
+      "status": "works"
+    },
+    {
+      "id": "merchant-apps",
+      "title": "Merchant apps & POS",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Point of Sale</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Crowdfunding</span>",
+      "status": "works"
+    },
+    {
+      "id": "lightning-daemons",
+      "title": "Multiple Lightning daemons",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> LND / CLN / Eclair</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Tor ready</span>",
+      "status": "works"
+    }
+  ],
+  "integrations": {
+    "intro": "Once invoices are live, you can wire BTCPay into storefronts, payment buttons, and accounting tools.",
+    "cards": [
+      {
+        "id": "ecommerce",
+        "title": "Ecommerce plugins",
+        "status": "works",
+        "status_text": "WooCommerce, Shopify bridge, Magento",
+        "description": "Use the official plugins to route cart checkouts through your BTCPay instance without sharing API keys with a processor.",
+        "steps": [
+          "Install the plugin (WooCommerce, Shopify bridge, Magento) and paste your store's API key.",
+          "Set callback URLs so BTCPay can mark orders paid when invoices settle.",
+          "Sync price sources by matching fiat currencies in BTCPay and your storefront."
+        ],
+        "compatible_tools": [
+          "WooCommerce",
+          "Shopify",
+          "Magento"
+        ],
+        "privacy": "Checkout data stays between your store and your server - no third-party PSP sees it."
+      },
+      {
+        "id": "pos",
+        "title": "Point of Sale app",
+        "status": "works",
+        "status_text": "Native",
+        "description": "Turn any tablet into a Bitcoin register with custom item catalogs and instant invoice generation.",
+        "steps": [
+          "Enable the POS app under Apps and assign it to your store.",
+          "Customize product buttons, tips, and receipt messaging.",
+          "Pin the POS URL to a kiosk or share the QR code for remote use."
+        ],
+        "endpoints": [
+          {
+            "label": "POS URL",
+            "value": "https://your-domain.com/apps/pos/{appId}"
+          }
+        ],
+        "compatible_tools": [
+          "BTCPay POS"
+        ],
+        "privacy": "Invoices come from your domain, so customers never leave your environment."
+      },
+      {
+        "id": "payment-requests",
+        "title": "Payment Requests & Pull Payments",
+        "status": "works",
+        "status_text": "Native",
+        "description": "Schedule recurring invoices or automated payouts without spreadsheets.",
+        "steps": [
+          "Create a Payment Request for a client, set the recurrence, and let BTCPay email them the invoice link.",
+          "Use Pull Payments to invite contractors to withdraw against a capped budget.",
+          "Export payout history for accounting from the Reporting section."
+        ],
+        "compatible_tools": [
+          "Payment Requests",
+          "Pull Payments"
+        ],
+        "privacy": "Only the recipients you invite can see their payout link."
+      }
+    ]
+  },
+  "compat_explainers": [
+    {
+      "id": "self-hosted-invoices",
+      "why": "When you host the invoices, the payment logic lives on your server, not a third party's. That means funds settle directly to your wallet, and you can switch from legacy processors like BitPay without rewriting your checkout code.",
+      "try": [
+        "Create a store, enable the Greenfield API, and generate API keys for your ecommerce plugin.",
+        "Map product SKUs in WooCommerce or Shopify to BTCPay invoices via their connectors.",
+        "Monitor invoice status in BTCPay or through webhooks so fulfillment triggers automatically."
+      ],
+      "gotcha": "If you delete a store, its API keys and invoice history vanish - export data before cleaning up."
+    },
+    {
+      "id": "merchant-apps",
+      "why": "BTC Pay includes apps for Point of Sale, Crowdfunding, and recurring billing built right in. That means you can run your entire storefront from one dashboard without paying for multiple subscriptions.",
+      "try": [
+        "Install the POS app, customize item tiles, and pin it to a tablet at checkout.",
+        "Launch the Crowdfunding app to host donation goals with progress bars and auto-generated invoices.",
+        "Use Payment Requests for recurring invoices tied to specific customers."
+      ],
+      "gotcha": "Apps share the same server resources, so keep an eye on RAM and SSD usage if you enable many at once."
+    },
+    {
+      "id": "lightning-daemons",
+      "why": "You connect your own Lightning node directly to the payment server. That means you control your channel management and liquidity strategy instead of relying on a custodial wrapper.",
+      "try": [
+        "Run your Lightning node on the same host or point BTCPay at a remote node over Tor.",
+        "Set channel policies in your node software, then let BTCPay expose invoices to customers.",
+        "Test fallback to on-chain invoices in case liquidity dries up."
+      ],
+      "gotcha": "BTCPay does not manage your Lightning backups - export channel states from the node itself."
+    }
+  ],
+  "migration": [
+    {
+      "id": "migrate-managed-host",
+      "title": "Third-party host → self-hosted VPS",
+      "choose": "Use this when you outgrow a managed plan and want root access.",
+      "time": "~2–4 hours",
+      "cost": "New VPS",
+      "risk": "Medium",
+      "steps": [
+        "Export backups plus wallet connection data from the managed host.",
+        "Deploy btcpayserver-docker on your VPS and import the archive.",
+        "Update DNS records and SSL certificates, then point plugins at the new URL."
+      ],
+      "tips": "Plan a maintenance window so invoices are paused while DNS propagates.",
+      "gotcha": "Remember to move BTCPay Vault connections to the new domain or hardware signatures will fail."
+    },
+    {
+      "id": "migrate-store",
+      "title": "Clone a store to another instance",
+      "choose": "Use when franchised locations need their own BTCPay servers.",
+      "time": "~1 hour",
+      "cost": "Free",
+      "risk": "Low",
+      "steps": [
+        "Export the store via Server Settings → Stores → Export JSON.",
+        "Import it on the new instance, then update rate sources and wallet connections.",
+        "Test invoices before going live."
+      ],
+      "tips": "Rotate API keys after migration so old plugins cannot reach the new host.",
+      "gotcha": "Store exports do not include Lightning node credentials - configure them manually."
+    },
+    {
+      "id": "swap-lightning",
+      "title": "Swap Lightning backends",
+      "choose": "Use this when moving from LND to Core Lightning or vice versa.",
+      "time": "~30–90 min",
+      "cost": "Mining fees for closing/opening channels",
+      "risk": "Medium",
+      "steps": [
+        "Back up your existing Lightning node and close or migrate channels as needed.",
+        "Configure the new node (LND, CLN, or Eclair) and expose its connection details to BTCPay.",
+        "Point BTCPay at the new node under Server Settings → Lightning and test invoices."
+      ],
+      "tips": "Announce the change to your staff so they know which node to monitor.",
+      "gotcha": "BTCPay will not back up your Lightning channels - keep the official backup files safe before switching."
+    }
+  ],
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#hardware",
+    "fees": "#costs",
+    "privacy": "#custody",
+    "compat": "#features",
+    "migration": "#migration",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-24",
+  "trust": {
+    "cards": [
+      {
+        "id": "security",
+        "fact": "Security policy, responsible disclosure, and hardening guide",
+        "link_text": "Security policy",
+        "link_url": "https://github.com/btcpayserver/btcpayserver/blob/master/SECURITY.md"
+      },
+      {
+        "id": "financials",
+        "fact": "BTCPay Server Foundation lists supporters and grants",
+        "link_text": "Foundation site",
+        "link_url": "https://foundation.btcpayserver.org/"
+      },
+      {
+        "id": "terms",
+        "fact": "MIT-licensed open-source project",
+        "link_text": "License",
+        "link_url": "https://github.com/btcpayserver/btcpayserver/blob/master/LICENSE"
+      }
+    ],
+    "summary": "BTCPay Server is maintained in the open, funded by community grants, and invites anyone to audit the code before deploying it in production."
+  }
 }
