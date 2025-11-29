@@ -3515,8 +3515,132 @@
         }
       ]
     },
+    "fees_section_title": "Costs & speed: what you pay and when",
+    "fees_scenarios": [
+      {
+        "id": "fees-hosting",
+        "title": "Host the stack",
+        "cost_today": "$10–$70/mo depending on VPS size",
+        "what_happens": "You run the software on your own virtual private server (VPS). That means you pay a flat monthly hosting fee for the hardware, regardless of how many payments you process.",
+        "how_to_minimize": "Start on a $10 LunaNode or DigitalOcean droplet and scale up only when invoice volume spikes.",
+        "learn_more": "The deployment matrix lists LunaNode, Voltage, and other hosts with their expected monthly bills."
+      },
+      {
+        "id": "fees-channel-liquidity",
+        "title": "Open Lightning channels",
+        "cost_today": "≈1% of the receive amount + on-chain mining fee",
+        "what_happens": "To receive Lightning payments, your node needs inbound capacity. That means you pay standard mining fees to open channels initially, but subsequent payments are nearly free.",
+        "how_to_minimize": "Batch liquidity top-ups during low-fee windows or use third-party LSPs that quote capped fees.",
+        "learn_more": "Lightning support covers LND, Core Lightning, and Eclair so you can pick the tool with the fee policy you prefer."
+      },
+      {
+        "id": "fees-onchain-payout",
+        "title": "Settle on-chain",
+        "cost_today": "Mining fee you select for each payout",
+        "what_happens": "Every on-chain payment goes straight to your wallet. That means the only cost is the mining fee you choose to attach when you move the funds later.",
+        "how_to_minimize": "Consolidate payouts during quiet mempool periods or route small refunds over Lightning instead.",
+        "learn_more": "BTCPay charges no spread - the only cost is the network fee you attach to the transaction."
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "Does BTCPay charge processing fees?",
+        "a": "No. The docs emphasize that there are zero platform fees - only the Bitcoin or Lightning network costs you choose."
+      },
+      {
+        "q": "What do managed BTCPay hosts bill for?",
+        "a": "Managed providers bill you for compute, storage, and support while you still hold the keys and collect 100% of every payment."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "term-store",
+        "term": "Store",
+        "definition": "A merchant profile within BTCPay that holds branding, pricing, and payment method settings for a specific business."
+      },
+      {
+        "id": "term-nbxplorer",
+        "term": "NBXplorer",
+        "definition": "The indexing service BTCPay uses to monitor addresses and derive invoices from your connected wallet."
+      },
+      {
+        "id": "term-third-party-host",
+        "term": "Third-party host",
+        "definition": "A company that runs BTCPay Server for you while leaving key custody and settlement under your control."
+      }
+    ],
+    "custody_risk": {
+      "heading": "Custody, compliance & risk",
+      "cards": [
+        {
+          "id": "custody-model",
+          "title": "Custody",
+          "icon": "/images/security.svg",
+          "explanation": "BTC Pay generates new addresses from your wallet's public key for every order. That means funds go straight to your cold storage without ever touching a company's ledger. You verify the receipt on your own node, so you never have to trust a dashboard.",
+          "key_points": [
+            "Payments settle to your wallet",
+            "No middleman ledger",
+            "Uncensorable funds"
+          ]
+        },
+        {
+          "id": "data-privacy",
+          "title": "Data Privacy",
+          "icon": "/images/privacy.svg",
+          "explanation": "You host the database, so customer names and order details never leave your server. That means no third party can mine your sales data or track your customers. You can wipe the logs whenever you want.",
+          "key_points": [
+            "Self-hosted data",
+            "Tor support",
+            "Retention control"
+          ]
+        },
+        {
+          "id": "jurisdiction",
+          "title": "Jurisdiction & Availability",
+          "icon": "/images/global.svg",
+          "explanation": "BTCPay is open-source code, not a company, so it exists everywhere the internet does. Your 'jurisdiction' is simply where you put the server—your home, a VPS in Switzerland, or a cloud in New York. You choose the legal environment that fits your business by selecting the physical location of your hardware.",
+          "key_points": [
+            "Global availability",
+            "Server location = Jurisdiction",
+            "Portability"
+          ]
+        },
+        {
+          "id": "compliance-kyc",
+          "title": "Compliance",
+          "icon": "/images/checkmark.svg",
+          "explanation": "Because you are the payment processor, there is no onboarding department to demand a passport or business license. You can accept payments instantly from anywhere in the world without waiting for approval. You decide which compliance tools (like travel rule reports) to enable based on your local laws.",
+          "key_points": [
+            "No KYC/ID required",
+            "Instant approval",
+            "Optional reporting tools"
+          ]
+        },
+        {
+          "id": "operational-risk",
+          "title": "Operational Risk",
+          "icon": "/images/warning.svg",
+          "explanation": "Sovereignty means the buck stops with you. There is no support desk to reverse a transaction or reset a lost seed phrase. You must secure your backups (wallet seeds + channel states) and admin credentials like a bank vault, because in this model, you are the bank.",
+          "key_points": [
+            "No password resets",
+            "You manage backups",
+            "Staff access controls"
+          ]
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Can BTCPay see my customers' private data?",
+          "a": "Only the data you store on your server is available, so limit invoice metadata to what you truly need."
+        },
+        {
+          "q": "Is Tor supported?",
+          "a": "Yes. Deployment guides cover Tor exposure so you can reach the dashboard without opening ports on clearnet."
+        }
+      ]
+    },
     "hardware_bom": {
-      "heading": "Deployment Options.",
+      "heading": "Deployment Options",
       "intro": "BTC Pay runs on the hardware you provide. That means you can choose a low-cost cloud server for convenience or a physical device at home for maximum privacy.",
       "builds": [
         {
@@ -3600,130 +3724,6 @@
         }
       ]
     },
-    "fees_section_title": "Costs & speed: what you pay and when",
-    "fees_scenarios": [
-      {
-        "id": "fees-hosting",
-        "title": "Host the stack",
-        "cost_today": "$10–$70/mo depending on VPS size",
-        "what_happens": "You run the software on your own virtual private server (VPS). That means you pay a flat monthly hosting fee for the hardware, regardless of how many payments you process.",
-        "how_to_minimize": "Start on a $10 LunaNode or DigitalOcean droplet and scale up only when invoice volume spikes.",
-        "learn_more": "The deployment matrix lists LunaNode, Voltage, and other hosts with their expected monthly bills."
-      },
-      {
-        "id": "fees-channel-liquidity",
-        "title": "Open Lightning channels",
-        "cost_today": "≈1% of the receive amount + on-chain mining fee",
-        "what_happens": "To receive Lightning payments, your node needs inbound capacity. That means you pay standard mining fees to open channels initially, but subsequent payments are nearly free.",
-        "how_to_minimize": "Batch liquidity top-ups during low-fee windows or use third-party LSPs that quote capped fees.",
-        "learn_more": "Lightning support covers LND, Core Lightning, and Eclair so you can pick the tool with the fee policy you prefer."
-      },
-      {
-        "id": "fees-onchain-payout",
-        "title": "Settle on-chain",
-        "cost_today": "Mining fee you select for each payout",
-        "what_happens": "Every on-chain payment goes straight to your wallet. That means the only cost is the mining fee you choose to attach when you move the funds later.",
-        "how_to_minimize": "Consolidate payouts during quiet mempool periods or route small refunds over Lightning instead.",
-        "learn_more": "BTCPay charges no spread - the only cost is the network fee you attach to the transaction."
-      }
-    ],
-    "fees_faq": [
-      {
-        "q": "Does BTCPay charge processing fees?",
-        "a": "No. The docs emphasize that there are zero platform fees - only the Bitcoin or Lightning network costs you choose."
-      },
-      {
-        "q": "What do managed BTCPay hosts bill for?",
-        "a": "Managed providers bill you for compute, storage, and support while you still hold the keys and collect 100% of every payment."
-      }
-    ],
-    "custody_risk": {
-      "heading": "Custody, compliance & risk",
-      "cards": [
-        {
-          "id": "custody-model",
-          "title": "Custody",
-          "icon": "/images/security.svg",
-          "explanation": "BTC Pay generates new addresses from your wallet's public key for every order. That means funds go straight to your cold storage without ever touching a company's ledger. You verify the receipt on your own node, so you never have to trust a dashboard.",
-          "key_points": [
-            "Payments settle to your wallet",
-            "No middleman ledger",
-            "Uncensorable funds"
-          ]
-        },
-        {
-          "id": "data-privacy",
-          "title": "Data Privacy",
-          "icon": "/images/privacy.svg",
-          "explanation": "You host the database, so customer names and order details never leave your server. That means no third party can mine your sales data or track your customers. You can wipe the logs whenever you want.",
-          "key_points": [
-            "Self-hosted data",
-            "Tor support",
-            "Retention control"
-          ]
-        },
-        {
-          "id": "jurisdiction",
-          "title": "Jurisdiction & Availability",
-          "icon": "/images/global.svg",
-          "explanation": "BTCPay is open-source code, not a company, so it exists everywhere the internet does. Your 'jurisdiction' is simply where you put the server—your home, a VPS in Switzerland, or a cloud in New York. You choose the legal environment that fits your business by selecting the physical location of your hardware.",
-          "key_points": [
-            "Global availability",
-            "Server location = Jurisdiction",
-            "Portability"
-          ]
-        },
-        {
-          "id": "compliance-kyc",
-          "title": "Compliance",
-          "icon": "/images/checkmark.svg",
-          "explanation": "Because you are the payment processor, there is no onboarding department to demand a passport or business license. You can accept payments instantly from anywhere in the world without waiting for approval. You decide which compliance tools (like travel rule reports) to enable based on your local laws.",
-          "key_points": [
-            "No KYC/ID required",
-            "Instant approval",
-            "Optional reporting tools"
-          ]
-        },
-        {
-          "id": "operational-risk",
-          "title": "Operational Risk",
-          "icon": "/images/warning.svg",
-          "explanation": "Sovereignty means the buck stops with you. There is no support desk to reverse a transaction or reset a lost seed phrase. You must secure your backups (wallet seeds + channel states) and admin credentials like a bank vault, because in this model, you are the bank.",
-          "key_points": [
-            "No password resets",
-            "You manage backups",
-            "Staff access controls"
-          ]
-        }
-      ],
-      "micro_faqs": [
-        {
-          "q": "Can BTCPay see my customers' private data?",
-          "a": "Only the data you store on your server is available, so limit invoice metadata to what you truly need."
-        },
-        {
-          "q": "Is Tor supported?",
-          "a": "Yes. Deployment guides cover Tor exposure so you can reach the dashboard without opening ports on clearnet."
-        }
-      ]
-    },
-    "key_terms": [
-      {
-        "id": "term-store",
-        "term": "Store",
-        "definition": "A merchant profile within BTCPay that holds branding, pricing, and payment method settings for a specific business."
-      },
-      {
-        "id": "term-nbxplorer",
-        "term": "NBXplorer",
-        "definition": "The indexing service BTCPay uses to monitor addresses and derive invoices from your connected wallet."
-      },
-      {
-        "id": "term-third-party-host",
-        "term": "Third-party host",
-        "definition": "A company that runs BTCPay Server for you while leaving key custody and settlement under your control."
-      }
-    ],
     "compat_heading": "BTCPay merchant stack coverage",
     "compat_tiles": [
       {
@@ -3743,38 +3743,6 @@
         "title": "Multiple Lightning daemons",
         "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> LND / CLN / Eclair</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Tor ready</span>",
         "status": "works"
-      }
-    ],
-    "compat_explainers": [
-      {
-        "id": "self-hosted-invoices",
-        "why": "When you host the invoices, the payment logic lives on your server, not a third party's. That means funds settle directly to your wallet, and you can switch from legacy processors like BitPay without rewriting your checkout code.",
-        "try": [
-          "Create a store, enable the Greenfield API, and generate API keys for your ecommerce plugin.",
-          "Map product SKUs in WooCommerce or Shopify to BTCPay invoices via their connectors.",
-          "Monitor invoice status in BTCPay or through webhooks so fulfillment triggers automatically."
-        ],
-        "gotcha": "If you delete a store, its API keys and invoice history vanish - export data before cleaning up."
-      },
-      {
-        "id": "merchant-apps",
-        "why": "BTC Pay includes apps for Point of Sale, Crowdfunding, and recurring billing built right in. That means you can run your entire storefront from one dashboard without paying for multiple subscriptions.",
-        "try": [
-          "Install the POS app, customize item tiles, and pin it to a tablet at checkout.",
-          "Launch the Crowdfunding app to host donation goals with progress bars and auto-generated invoices.",
-          "Use Payment Requests for recurring invoices tied to specific customers."
-        ],
-        "gotcha": "Apps share the same server resources, so keep an eye on RAM and SSD usage if you enable many at once."
-      },
-      {
-        "id": "lightning-daemons",
-        "why": "You connect your own Lightning node directly to the payment server. That means you control your channel management and liquidity strategy instead of relying on a custodial wrapper.",
-        "try": [
-          "Run your Lightning node on the same host or point BTCPay at a remote node over Tor.",
-          "Set channel policies in your node software, then let BTCPay expose invoices to customers.",
-          "Test fallback to on-chain invoices in case liquidity dries up."
-        ],
-        "gotcha": "BTCPay does not manage your Lightning backups - export channel states from the node itself."
       }
     ],
     "integrations": {
@@ -3839,6 +3807,38 @@
         }
       ]
     },
+    "compat_explainers": [
+      {
+        "id": "self-hosted-invoices",
+        "why": "When you host the invoices, the payment logic lives on your server, not a third party's. That means funds settle directly to your wallet, and you can switch from legacy processors like BitPay without rewriting your checkout code.",
+        "try": [
+          "Create a store, enable the Greenfield API, and generate API keys for your ecommerce plugin.",
+          "Map product SKUs in WooCommerce or Shopify to BTCPay invoices via their connectors.",
+          "Monitor invoice status in BTCPay or through webhooks so fulfillment triggers automatically."
+        ],
+        "gotcha": "If you delete a store, its API keys and invoice history vanish - export data before cleaning up."
+      },
+      {
+        "id": "merchant-apps",
+        "why": "BTC Pay includes apps for Point of Sale, Crowdfunding, and recurring billing built right in. That means you can run your entire storefront from one dashboard without paying for multiple subscriptions.",
+        "try": [
+          "Install the POS app, customize item tiles, and pin it to a tablet at checkout.",
+          "Launch the Crowdfunding app to host donation goals with progress bars and auto-generated invoices.",
+          "Use Payment Requests for recurring invoices tied to specific customers."
+        ],
+        "gotcha": "Apps share the same server resources, so keep an eye on RAM and SSD usage if you enable many at once."
+      },
+      {
+        "id": "lightning-daemons",
+        "why": "You connect your own Lightning node directly to the payment server. That means you control your channel management and liquidity strategy instead of relying on a custodial wrapper.",
+        "try": [
+          "Run your Lightning node on the same host or point BTCPay at a remote node over Tor.",
+          "Set channel policies in your node software, then let BTCPay expose invoices to customers.",
+          "Test fallback to on-chain invoices in case liquidity dries up."
+        ],
+        "gotcha": "BTCPay does not manage your Lightning backups - export channel states from the node itself."
+      }
+    ],
     "migration": [
       {
         "id": "migrate-managed-host",
@@ -5540,16 +5540,24 @@
     "type_of_platform": "Payment Infrastructure",
     "faqs": [
       {
-        "q": "What is Lightspark?",
-        "a": "Lightspark provides enterprise Lightning infrastructure and APIs to send and receive global payments with low latency and cost."
+        "q": "How do Lightspark Connect fees work across Starter and Enterprise tiers?",
+        "a": "Connect Starter routes every Lightning payment through Lightspark's managed nodes for 0.50% up to $300,000 in monthly volume. Enterprise plans add a $9,000-$15,000 platform retainer so you can drop per-transaction costs to roughly 0.30%-0.15% across $3-$15 million in monthly flow. You can start on Starter's free first 30 days and upgrade inside the dashboard once usage grows."
       },
       {
-        "q": "Is Lightspark self‑custodial?",
-        "a": "Lightspark supports self‑custodial wallets via Spark and also offers managed nodes for enterprises that need it."
+        "q": "When does Lightspark bill me for platform and overage fees?",
+        "a": "Billing kicks in after the 30-day trial, when Lightspark invoices the platform fee for your tier at the beginning of each month. That same invoice lists any usage that exceeded your volume limits in the prior period so finance teams see one predictable charge. You can downgrade or pause before the next cycle if your run rate changes."
       },
       {
-        "q": "Who is Lightspark for?",
-        "a": "Digital banks, wallets, exchanges and fintechs needing scalable Bitcoin/Lightning payments and fiat interoperability."
+        "q": "How can I pay my Lightspark invoice?",
+        "a": "Lightspark charges the card you keep on file five days after issuing the invoice, which removes manual payment work. Each invoice also includes a Lightning or on-chain Bitcoin link that locks the fiat amount in sats for 24 hours so you can settle with bitcoin instead. You can regenerate the payment quote from the invoice link whenever the price window expires."
+      },
+      {
+        "q": "How do I make payments from Lightspark?",
+        "a": "Lightning payouts run through the Send flow or API/SDK while on-chain settlements use the Withdraw flow, so you choose the rail per transfer. That separation keeps instant Lightning transfers distinct from Bitcoin Layer 1 withdrawals that wait on block confirmations. You can set custom fee limits in the Send flow when you need to allow higher routing budgets."
+      },
+      {
+        "q": "What protects my funds if Lightspark goes offline?",
+        "a": "Passwords are recoverable through the Forgot your password link, but custody resilience comes from Lightspark's Funds Recovery Kit that generates pre-signed transactions. Once you configure the kit you can publish those transactions on Bitcoin Layer 1 to reclaim funds without waiting on Lightspark support. Treat the hosted stack as a bridge and store the recovery file offline so you always have an exit."
       }
     ],
     "supported_network": "Lightning only",
@@ -5605,7 +5613,525 @@
     "website": "https://www.lightspark.com",
     "countries": [
       "WW"
-    ]
+    ],
+    "links": {
+      "docs": "https://docs.lightspark.com/",
+      "api_reference": "https://grid.lightspark.com/api-reference/environments",
+      "status": "https://status.lightspark.com/",
+      "help_center": "https://support.lightspark.com/",
+      "pricing": "https://www.lightspark.com/products/connect#pricing"
+    },
+    "recovery_method": "Reset passwords through the dashboard and keep the Funds Recovery Kit offline so you can broadcast pre-signed transactions on Bitcoin Layer 1 if Lightspark is ever unavailable.",
+    "interface": "Web dashboard, GraphQL API, SDKs, UMA directory",
+    "app_ratings": {
+      "ios": null,
+      "android": null
+    },
+    "trust_chips": [
+      {
+        "text": "Remote Key custody options",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "remote-keys"
+      },
+      {
+        "text": "Lightspark Predict routing",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "predict-routing"
+      },
+      {
+        "text": "Universal Money Address (UMA)",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "uma"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "Banks, wallets, and payout platforms that want managed Lightning infrastructure with flexible custody.",
+      "consider_if": "You need a single API for Lightning, UMA aliases, and fiat ramps plus automated liquidity management.",
+      "not_ideal_when": "You require a no-KYC self-hosted stack or cannot meet Lightspark's enterprise billing minimums."
+    },
+    "howto": {
+      "title": "Set up your Lightspark payment stack",
+      "steps": [
+        {
+          "id": "create-account",
+          "title": "1. Choose your plan and verify your organization",
+          "chips": {
+            "setup_time": "~15 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "sync_time": "Depends on compliance review queue",
+          "actions": [
+            "Create a Starter or Enterprise workspace at app.lightspark.com and invite teammates with SSO.",
+            "Use the first 30 days of free Starter billing to test throughput without invoices.",
+            "Submit the requested KYC/KYB documents so Lightspark can unlock bank, Lightning, and UMA corridors."
+          ],
+          "gotcha": "Platform fees hit on the next monthly cycle, so pause unused workspaces before the trial ends."
+        },
+        {
+          "id": "configure-custody",
+          "title": "2. Pick Remote Key or managed signing",
+          "chips": {
+            "setup_time": "~20 min",
+            "cost": "Free",
+            "risk": "Medium"
+          },
+          "actions": [
+            "Open Connect → Custody and decide whether to keep keys on your own servers (Remote Key) or use Operation Signing Key for managed custody.",
+            "Generate and upload the public keys or HSM endpoints Lightspark will request signatures from.",
+            "Download the Funds Recovery Kit file and store it offline so you can reclaim funds independently."
+          ],
+          "gotcha": "Remote Key mode requires your infrastructure to stay online for signing and to keep secure backups."
+        },
+        {
+          "id": "connect-apis",
+          "title": "3. Wire up SDKs, UMA, and webhooks",
+          "chips": {
+            "setup_time": "~30 min",
+            "cost": "Free",
+            "risk": "Medium"
+          },
+          "actions": [
+            "Generate GraphQL API keys, install the Lightspark SDK (Python, Go, Kotlin, Java, Rust, or TypeScript), and authenticate from your server.",
+            "Create UMA aliases or Grid customers so you can resolve payees with human-readable addresses.",
+            "Subscribe to webhooks for payment status, liquidity events, and transaction reports so downstream systems stay in sync."
+          ],
+          "gotcha": "Do not embed GraphQL credentials in client apps; keep them in your server or secrets manager."
+        },
+        {
+          "id": "sandbox-test",
+          "title": "4. Simulate payments in sandbox",
+          "chips": {
+            "setup_time": "~30 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Use the sandbox or regtest faucet to fund internal accounts and Lightning channels without touching production capital.",
+            "Create quotes and send sample payouts across UMA or Lightning to confirm routing policies and fee limits.",
+            "Review the dashboard's transaction reports so finance teams know what to expect before you move to production."
+          ],
+          "gotcha": "Sandbox webhooks mirror production payloads, so clean up test data before reusing identifiers in live flows."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Does Lightspark host my private keys?",
+          "a": "Remote Key mode keeps the keys on your infrastructure while Lightspark merely orchestrates node operations, and Operation Signing Key keeps them encrypted in Lightspark's cloud if you need a turnkey option."
+        },
+        {
+          "q": "How do I recover funds if I'm locked out?",
+          "a": "Use the Forgot your password flow for account access and keep the Funds Recovery Kit offline so you can broadcast the pre-signed transactions to Bitcoin Layer 1 if Lightspark is unavailable."
+        }
+      ]
+    },
+    "fees_section_title": "Costs & speed: what you pay and when",
+    "fees_scenarios": [
+      {
+        "id": "fees-processing",
+        "title": "Process payments",
+        "cost_today": "Starter: 0.50% per transaction (up to $300k/mo)<br>Enterprise: 0.30%-0.15% per transaction (includes $3M-$15M/mo volume)",
+        "what_happens": "Lightspark manages routing, liquidity, and settlement for each Lightning or UMA payment and charges this percentage when the transfer settles.",
+        "how_to_minimize": "Upgrade to the enterprise tier once you consistently exceed Starter's $300,000 cap so high-volume flows pay the lower rate.",
+        "learn_more": "https://www.lightspark.com/products/connect#pricing"
+      },
+      {
+        "id": "fees-platform",
+        "title": "Platform fees & billing",
+        "cost_today": "Starter: $0 monthly (first 30 days free)<br>Enterprise: $9,000-$15,000 monthly",
+        "what_happens": "Platform fees are invoiced at the beginning of each month along with any prior-period overages, per Lightspark's billing FAQ.",
+        "how_to_minimize": "Stay on Starter while you're testing or spin down unused workspaces before the next billing cycle to avoid charges.",
+        "learn_more": "https://www.lightspark.com/faq/payments/how-and-when-will-i-be-billed"
+      },
+      {
+        "id": "fees-funding",
+        "title": "Fund payouts and FX",
+        "cost_today": "Quote-based FX spread shown before execution",
+        "what_happens": "Grid quotes return corridor availability, min/max amounts, and FX rates before you fund a payout, so you lock pricing before submitting the transfer.",
+        "how_to_minimize": "Prefund your internal account or pick the cheapest rail listed in the quote to avoid urgent just-in-time wires.",
+        "learn_more": "https://grid.lightspark.com/payouts-and-b2b/payment-flow/send-payment"
+      },
+      {
+        "id": "fees-billing-bitcoin",
+        "title": "Pay Lightspark invoices",
+        "cost_today": "Card: Auto-charge 5 days after invoice<br>Lightning or Bitcoin: Spot rate valid for 24 hours",
+        "what_happens": "Lightspark invoices can auto-charge the stored card or generate a Lightning/BTC payment link that locks the fiat amount in sats for a full day.",
+        "how_to_minimize": "Use bitcoin settlement when you already hold sats or leave the card on autopay to avoid late fees.",
+        "learn_more": "https://www.lightspark.com/faq/payments/how-can-i-pay-my-bill"
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "Does Lightspark prorate the first month?",
+        "a": "Yes. The first 30 days are free and the first partial month after signup is prorated, then standard monthly billing begins at the start of each cycle."
+      },
+      {
+        "q": "Can I pay Lightspark invoices with Bitcoin?",
+        "a": "Invoices include a Lightning/on-chain payment link that converts the amount due to sats for 24 hours, so you can settle with bitcoin instead of a card whenever you prefer."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "term-remote-keys",
+        "term": "Remote Key setup",
+        "definition": "A custody mode where you host the Lightning node's private keys on your own infrastructure while Lightspark manages the rest of the stack."
+      },
+      {
+        "id": "term-operation-signing",
+        "term": "Operation Signing Key",
+        "definition": "Lightspark's managed custody option where signing keys stay encrypted at rest inside Lightspark's Lightning wallet software."
+      },
+      {
+        "id": "term-uma",
+        "term": "Universal Money Address (UMA)",
+        "definition": "A human-readable identifier that lets Grid resolve recipients and route payments across fiat and Bitcoin rails through one API."
+      },
+      {
+        "id": "term-recovery-kit",
+        "term": "Funds Recovery Kit",
+        "definition": "An export of pre-signed Bitcoin transactions you can broadcast to reclaim funds if Lightspark services are disrupted."
+      }
+    ],
+    "custody_risk": {
+      "heading": "Custody, compliance & risk",
+      "cards": [
+        {
+          "id": "custody-model",
+          "title": "Custody",
+          "icon": "/images/security.svg",
+          "explanation": "Pick Remote Key to hold your own signing material or Operation Signing Key for managed custody while Lightspark monitors nodes.",
+          "key_points": [
+            "Remote Key keeps private keys on your servers",
+            "Operation Signing Key encrypts keys within Lightspark",
+            "Funds Recovery Kit offers an offline exit ramp"
+          ]
+        },
+        {
+          "id": "data-privacy",
+          "title": "Data Privacy",
+          "icon": "/images/privacy.svg",
+          "explanation": "The dashboard stores only the payment metadata you submit plus audit-ready transaction reports for compliance teams.",
+          "key_points": [
+            "Granular roles and SSO limit who can view data",
+            "Audit logs track routing, balances, and invoices",
+            "No customer PII is required for Lightning-only flows"
+          ]
+        },
+        {
+          "id": "jurisdiction",
+          "title": "Jurisdiction & Availability",
+          "icon": "/images/global.svg",
+          "explanation": "Lightspark operates globally but unlocks UMA corridors and fiat ramps per jurisdiction once KYC/KYB is complete.",
+          "key_points": [
+            "Starter tier available worldwide",
+            "Enterprise corridors require compliance approval",
+            "UMA aliases respect the receiver's local rules"
+          ]
+        },
+        {
+          "id": "compliance-kyc",
+          "title": "Compliance",
+          "icon": "/images/checkmark.svg",
+          "explanation": "Lightspark can run KYC/KYB for your customers through Grid or consume your existing approvals if you are the regulated entity.",
+          "key_points": [
+            "Supports Lightspark-led or merchant-led onboarding",
+            "Transaction reports available for audits",
+            "Webhooks help reconcile payments in real time"
+          ]
+        },
+        {
+          "id": "operational-risk",
+          "title": "Operational Risk",
+          "icon": "/images/warning.svg",
+          "explanation": "You still manage API keys, Remote Key uptime, and webhook endpoints, so treat Lightspark credentials like production secrets.",
+          "key_points": [
+            "Rotate API keys after staging or teammate changes",
+            "Monitor status.lightspark.com for incidents",
+            "Keep Remote Key HSMs backed up and patched"
+          ]
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Why can't I spend every sat instantly?",
+          "a": "Lightspark reserves some balance for pending Lightning operations, channel closes, or funds not yet allocated to Lightning, so the available amount can be lower than your total balance."
+        },
+        {
+          "q": "What causes a Lightning payment to fail?",
+          "a": "Most failures come from setting a fee limit that's too low; Lightspark Predict can try higher-cost routes if your fee budget allows it."
+        }
+      ]
+    },
+    "payment_methods_limits": {
+      "heading": "Payment & payout rails",
+      "methods": [
+        {
+          "id": "lightning",
+          "name": "Lightning Network",
+          "available": true,
+          "icon": "lightning",
+          "summary": {
+            "fee": "Starter: 0.50% processing",
+            "fee_link": "fees-processing",
+            "speed": "Instant",
+            "withdraw": "24/7"
+          },
+          "best_for": "Instant merchant payouts, API-driven disbursements, and cross-border sends that stay within your fee limit.",
+          "limits": {
+            "min_per_tx": "1 satoshi",
+            "max_per_tx": "Quote-dependent",
+            "max_per_day": "Volume tier limited",
+            "max_per_week": "Volume tier limited",
+            "withdraw_eligibility": "Immediate once funded"
+          }
+        },
+        {
+          "id": "onchain",
+          "name": "On-chain Bitcoin",
+          "available": true,
+          "icon": "bitcoin",
+          "summary": {
+            "fee": "Quote-based network fee",
+            "fee_link": "fees-funding",
+            "speed": "~10-60 min",
+            "withdraw": "1 block conf"
+          },
+          "best_for": "Large settlements or withdrawals that need Bitcoin Layer 1 finality.",
+          "limits": {
+            "min_per_tx": "Network dust limit",
+            "max_per_tx": "Unlimited",
+            "max_per_day": "Unlimited",
+            "max_per_week": "Unlimited",
+            "withdraw_eligibility": "After 1 confirmation"
+          }
+        },
+        {
+          "id": "uma",
+          "name": "Universal Money Address",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "FX spread shown in quote",
+            "fee_link": "fees-funding",
+            "speed": "Real-time once funded",
+            "withdraw": "Same-day per corridor"
+          },
+          "best_for": "Global payouts that need to resolve bank accounts, UMA aliases, or fiat rails through a single API.",
+          "limits": {
+            "min_per_tx": "Corridor dependent",
+            "max_per_tx": "Corridor dependent",
+            "max_per_day": "Compliance-dependent",
+            "max_per_week": "Compliance-dependent",
+            "withdraw_eligibility": "Immediate after quote execution"
+          }
+        }
+      ]
+    },
+    "compat_heading": "Lightspark platform coverage",
+    "compat_tiles": [
+      {
+        "id": "remote-keys",
+        "title": "Remote Key custody options",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Hold signing keys on your servers</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Lightspark manages node uptime</span>",
+        "status": "works"
+      },
+      {
+        "id": "predict-routing",
+        "title": "Lightspark Predict routing",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> AI-balanced channel liquidity</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Fee limits you control</span>",
+        "status": "works"
+      },
+      {
+        "id": "uma",
+        "title": "Universal Money Address (UMA)",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Resolve payees with UMA aliases</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Quote FX before funding</span>",
+        "status": "works"
+      }
+    ],
+    "integrations": {
+      "intro": "Plug Lightspark into your stack with GraphQL SDKs, Grid payout APIs, and UMA directory tooling.",
+      "cards": [
+        {
+          "id": "connect-graphql",
+          "title": "Connect GraphQL & SDKs",
+          "status": "works",
+          "status_text": "Official",
+          "description": "Use Lightspark's GraphQL API or SDKs (Python, Go, Kotlin, Java, Rust, TypeScript) to automate node management, routing, and payout workflows.",
+          "steps": [
+            "Generate API keys inside the Lightspark dashboard and scope them per environment.",
+            "Install the SDK for your preferred language or call the GraphQL endpoint directly.",
+            "Implement webhooks for payment status, balance updates, and webhook retries."
+          ],
+          "compatible_tools": [
+            "GraphQL API",
+            "SDKs (Python, Go, Kotlin, Java, Rust, TypeScript)"
+          ],
+          "privacy": "Keys remain in your own vault; Lightspark only sees the metadata you send with each request."
+        },
+        {
+          "id": "grid-api",
+          "title": "Grid payouts & B2B",
+          "status": "works",
+          "status_text": "Official",
+          "description": "Grid's single API handles UMA addresses, FX quotes, and bank off-ramps for payouts, rewards, and treasury moves.",
+          "steps": [
+            "Create internal and external accounts via the Grid API.",
+            "Generate quotes to lock min/max amounts, corridors, and FX spreads.",
+            "Fund the quote and monitor webhook callbacks until delivery is confirmed."
+          ],
+          "compatible_tools": [
+            "Grid API",
+            "UMA aliases",
+            "Webhooks"
+          ],
+          "privacy": "Customer KYC/KYB data can stay with Lightspark or your own compliance stack depending on the onboarding mode."
+        },
+        {
+          "id": "uma-directory",
+          "title": "Universal Money Address",
+          "status": "works",
+          "status_text": "Official",
+          "description": "Issue UMA handles so partners and users can send value using a human-readable address that routes across Bitcoin and fiat rails.",
+          "steps": [
+            "Create UMA aliases through the dashboard or API.",
+            "Associate aliases with wallet IDs, bank accounts, or payout endpoints.",
+            "Share the alias or embed UMA search so payers can resolve your recipients instantly."
+          ],
+          "compatible_tools": [
+            "UMA SDK",
+            "Grid dashboard",
+            "Directory search"
+          ],
+          "privacy": "Aliases map to the metadata you choose to share, so limit attached data when privacy matters."
+        }
+      ]
+    },
+    "compat_explainers": [
+      {
+        "id": "remote-keys",
+        "why": "Remote Key mode keeps private keys on your infrastructure while Lightspark runs the nodes, giving you managed uptime without surrendering custody.",
+        "try": [
+          "Create a Remote Key configuration under Connect → Custody.",
+          "Upload the public key or HSM endpoint Lightspark should request signatures from.",
+          "Download and store the Funds Recovery Kit in cold storage."
+        ],
+        "gotcha": "Remote Key setups must stay online to sign transactions, so monitor HSM health and backups."
+      },
+      {
+        "id": "predict-routing",
+        "why": "Lightspark Predict monitors liquidity and automatically rebalances channels so your payments take the fastest, cheapest route that fits your fee budget.",
+        "try": [
+          "Enable Predict or Predict+ in the plan selector.",
+          "Set default and per-payment fee limits inside the Send flow or API.",
+          "Watch channel adjustments in the dashboard analytics tab."
+        ],
+        "gotcha": "If you cap fees too low, Predict cannot access higher-cost routes and payments may fail."
+      },
+      {
+        "id": "uma",
+        "why": "Universal Money Address lets you attach a human-readable alias to any customer so payouts resolve automatically across Grid's global corridors.",
+        "try": [
+          "Create or import customers, then assign UMA aliases via the API.",
+          "Share the alias with counterparties or embed UMA search in your product.",
+          "Subscribe to webhook notifications so you credit recipients as soon as settlement clears."
+        ],
+        "gotcha": "Some jurisdictions require KYC/KYB before you can issue UMA aliases, so finish compliance onboarding first."
+      }
+    ],
+    "migration": [
+      {
+        "id": "migrate-remote-keys",
+        "title": "Bring your keys into Lightspark",
+        "choose": "Use this when you want Lightspark to run the node while you retain Remote Key custody.",
+        "time": "~30 min",
+        "cost": "Free",
+        "risk": "Medium",
+        "steps": [
+          "Export or generate the key material you plan to keep in your HSM or secure server.",
+          "Create a Remote Key configuration in the dashboard and upload the public key or signing endpoint.",
+          "Test a low-value payment and verify signatures succeed before migrating production flows."
+        ],
+        "tips": "Document how you rotate keys so Lightspark's API always points to the active signer.",
+        "gotcha": "If your Remote Key infrastructure goes offline, Lightning routing will pause until signing comes back."
+      },
+      {
+        "id": "migrate-sandbox-live",
+        "title": "Sandbox → production",
+        "choose": "Use this when your test flows pass and you're ready for live corridors.",
+        "time": "~20 min",
+        "cost": "Free",
+        "risk": "Medium",
+        "steps": [
+          "Swap sandbox API keys and webhooks for production credentials in your secrets manager.",
+          "Refactor any test UMA aliases or customer IDs to production identifiers.",
+          "Run a small payment through each corridor to confirm quotes, FX, and webhooks match expectations."
+        ],
+        "tips": "Keep sandbox keys for regression tests so you can reproduce issues without touching live funds.",
+        "gotcha": "Production corridors enforce jurisdictional limits, so be sure compliance approvals are complete before switching."
+      },
+      {
+        "id": "rotate-api-keys",
+        "title": "Rotate API keys safely",
+        "choose": "Use this whenever teammates change or you migrate secrets to a new vault.",
+        "time": "~5 min",
+        "cost": "Free",
+        "risk": "Low",
+        "steps": [
+          "Create a new API key in the Lightspark dashboard while leaving the old one active.",
+          "Deploy the new key to your backend services or gateway and verify traffic succeeds.",
+          "Delete the previous key once monitoring shows the new credentials are in use."
+        ],
+        "tips": "Schedule key rotations quarterly so stale credentials never linger.",
+        "gotcha": "Deleting a key early will break SDKs or workflows still referencing it, so update infrastructure first."
+      }
+    ],
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#hardware",
+      "fees": "#costs",
+      "privacy": "#custody",
+      "compat": "#features",
+      "migration": "#migration",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-26",
+    "trust": {
+      "cards": [
+        {
+          "id": "security",
+          "fact": "Connect details enterprise security controls like SSO, granular permissions, and audit-ready reporting.",
+          "link_text": "Security overview",
+          "link_url": "https://www.lightspark.com/products/connect"
+        },
+        {
+          "id": "privacy",
+          "fact": "Lightspark publishes a privacy policy outlining how onboarding and payment data are stored, processed, and retained.",
+          "link_text": "Privacy policy",
+          "link_url": "https://www.lightspark.com/privacy-policy"
+        },
+        {
+          "id": "terms",
+          "fact": "Terms of use explain service eligibility, acceptable behavior, and liability limits for Connect and Grid.",
+          "link_text": "Terms of use",
+          "link_url": "https://www.lightspark.com/terms-of-use"
+        },
+        {
+          "id": "licenses",
+          "fact": "The licenses page lists regulatory registrations and money service licenses that govern Lightspark's operations.",
+          "link_text": "Licenses",
+          "link_url": "https://www.lightspark.com/licenses"
+        }
+      ],
+      "summary": "Lightspark documents its security posture, privacy practices, legal terms, and licensing so enterprise teams can complete due diligence before integrating."
+    }
   },
   {
     "name": "Muun",
@@ -6753,16 +7279,24 @@
     "type_of_platform": "Payment Processor",
     "faqs": [
       {
-        "q": "What is OpenNode?",
-        "a": "OpenNode is a Bitcoin payment processor for businesses with hosted checkouts, plugins and APIs."
+        "q": "How does OpenNode's hosted checkout work?",
+        "a": "When you create a charge, OpenNode returns a checkout URL that bundles the Lightning invoice and on-chain address so customers can choose their rail. That means you can simply redirect to checkout.opennode.com/{id} and append ln or hf query switches to shape the experience."
       },
       {
-        "q": "Is OpenNode custodial?",
-        "a": "Funds are custodial until withdrawal or automatic settlement to your bank or wallet."
+        "q": "What fees does OpenNode charge for processing and withdrawals?",
+        "a": "OpenNode charges around 1% for processing plus on-demand on-chain withdrawals, while scheduled weekly transfers stay free and Lightning withdrawals are free. You can choose instant payouts when speed matters or lean on scheduled moves if you want to avoid the extra fee."
       },
       {
-        "q": "What are OpenNode fees?",
-        "a": "Fees are typically around 1% depending on product and volume; see pricing for details."
+        "q": "How does OpenNode handle underpaid invoices?",
+        "a": "You can set an underpayment tolerance so slightly short on-chain payments move forward automatically, and anything below the threshold is flagged as underpaid. Buyers can send the remaining sats or request a refund that returns their funds minus the 200 sat network fee, so you stay in control of the customer experience."
+      },
+      {
+        "q": "Can OpenNode pay Lightning invoices from my fiat balance?",
+        "a": "Yes. Wire fiat into your OpenNode local currency wallet and initiate Lightning or on-chain payouts directly from that balance. The platform quotes the BTC amount and handles conversion so you can fund global payouts without ever holding bitcoin on your books."
+      },
+      {
+        "q": "What verification does OpenNode require?",
+        "a": "Individual accounts submit government ID plus a fresh selfie, while businesses provide formation docs, ownership records, and proof of address so OpenNode can meet KYB obligations. That onboarding is what unlocks higher limits, fiat rails, and access to payout APIs."
       }
     ],
     "supported_network": "Bitcoin + Lightning",
@@ -6806,9 +7340,515 @@
     "description": "OpenNode is a Bitcoin-first payment processor that empowers businesses to accept and send Bitcoin—either on-chain or via Lightning—using simple plugins, hosted checkouts, or its developer-friendly API. Organisations that want a turnkey, compliant solution—especially mid-sized to large enterprises—can onboard easily with KYC and achieve global scale without building complex node infrastructure.\\n\\nIt offers instant, low-cost microtransactions with a focus on liquidity management, channel operations, and protocol support. For merchants, this means accessing Bitcoin payments both instantly and economically, alongside automatic settlement options in fiat or BTC. By abstracting away technical complexities like node handling, liquidity, and channel balance, OpenNode allows businesses to plug-and-play and scale efficiently.\\n\\nIt holds US regulatory licenses, manages KYC requirements, and maintains automated fiat conversions and payouts. This makes it ideal for businesses—especially blue-chip and enterprise-level—that require solid legal and financial backstops.\\n\\nTheir long-term vision is to see global businesses and platforms integrate Bitcoin payments as seamlessly as credit cards—secure, censorship-resistant, and frictionless—while pushing forward broader adoption of Bitcoin as a unit of exchange across borders and cultures.",
     "founded_in": "2018",
     "website": "https://opennode.com",
+    "recovery_method": "2FA-protected dashboard with support-verified resets for account admins.",
+    "interface": "Web dashboard, REST API, plugins",
+    "app_ratings": {
+      "ios": null,
+      "android": null
+    },
+    "links": {
+      "docs": "https://developers.opennode.com/docs",
+      "api_reference": "https://developers.opennode.com/reference",
+      "status": "https://status.opennode.com/",
+      "help_center": "https://help.opennode.com/en/",
+      "pricing": "https://help.opennode.com/en/articles/3176293-pricing-and-fees"
+    },
     "countries": [
       "WW"
-    ]
+    ],
+    "trust_chips": [
+      {
+        "text": "Hosted checkout",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "hosted-checkout"
+      },
+      {
+        "text": "Fiat-funded Bitcoin payouts",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "fiat-payouts"
+      },
+      {
+        "text": "LNURL withdrawals",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "lnurl-withdrawals"
+      }
+    ],
+    "tl_dr": {
+      "best_for": "Merchants who want compliant, turnkey Bitcoin acceptance without running their own nodes.",
+      "consider_if": "You need to settle to fiat, Lightning, or on-chain from the same dashboard and API.",
+      "not_ideal_when": "You must keep keys in-house or require zero processor fees."
+    },
+    "howto": {
+      "title": "Set up your OpenNode payment stack",
+      "steps": [
+        {
+          "id": "create-account",
+          "title": "1. Create and verify your account",
+          "chips": {
+            "setup_time": "~10 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "sync_time": "Depends on KYC review queue",
+          "actions": [
+            "Register on the dev or production dashboard and pick individual or business onboarding.",
+            "Upload the requested ID, selfie, and proof-of-address documents so compliance can unlock payouts.",
+            "Enable two-factor authentication before inviting teammates or generating live API keys."
+          ],
+          "gotcha": "Higher processing limits stay capped until KYB completes, so have incorporation and ownership docs ready."
+        },
+        {
+          "id": "configure-checkout",
+          "title": "2. Configure charges and hosted checkout",
+          "chips": {
+            "setup_time": "~15 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Create a test charge to see the hosted checkout render both the Lightning invoice and on-chain address.",
+            "Redirect shoppers to checkout.opennode.com/{id} and append ?ln=1 or ?hf=1 to default Lightning or hide fiat values.",
+            "Choose how each charge settles (BTC, fiat, split) inside Settings → Payments."
+          ],
+          "gotcha": "Lightning invoices above 500000000 sats will not generate, so split very large orders or route them on-chain."
+        },
+        {
+          "id": "connect-webhooks",
+          "title": "3. Wire your webhooks and callbacks",
+          "chips": {
+            "setup_time": "~20 min",
+            "cost": "Free",
+            "risk": "Medium"
+          },
+          "actions": [
+            "Pass a callback_url when creating charges so status changes post back to your app.",
+            "Subscribe to withdrawal webhooks because Lightning payouts can outlive a normal HTTP request cycle.",
+            "Test underpaid, paid, and refunded flows to confirm your order system reacts correctly."
+          ],
+          "gotcha": "Expose a public endpoint (or tunnel) for dev environments so OpenNode can reach your webhook URL."
+        },
+        {
+          "id": "fund-and-payout",
+          "title": "4. Fund the fiat wallet and send payouts",
+          "chips": {
+            "setup_time": "~20 min",
+            "cost": "Wire fee",
+            "risk": "Medium"
+          },
+          "actions": [
+            "Contact support or use the live chat to wire fiat into your local currency wallet for payouts.",
+            "POST to /v2/withdrawals with auto_confirm set to false to preview the BTC quote before committing.",
+            "Confirm Lightning or on-chain payouts and monitor their status from the dashboard or webhook logs."
+          ],
+          "gotcha": "Preview quotes expire quickly, so confirm before the expiry timestamp if you want the same FX rate."
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Does the developer environment use real bitcoin?",
+          "a": "No. Dev API keys hit OpenNode's testnet stack so you can experiment with fake sats before you flip to production."
+        },
+        {
+          "q": "Do I need to run a Lightning node to use OpenNode?",
+          "a": "OpenNode runs the channels for you, so you only manage API keys, webhooks, and payout destinations."
+        }
+      ]
+    },
+    "fees_section_title": "Costs & speed: what you pay and when",
+    "fees_scenarios": [
+      {
+        "id": "fees-processing",
+        "title": "Accept payments",
+        "cost_today": "1% processing fee",
+        "what_happens": "OpenNode charges a flat 1% fee on all incoming payments (both Lightning and on-chain). There are no setup, monthly, or minimum fees.",
+        "how_to_minimize": "Since the fee is percentage-based, you pay less when you process less volume.",
+        "learn_more": "https://help.opennode.com/en/articles/3176293-pricing-and-fees"
+      },
+      {
+        "id": "fees-withdraw-bitcoin",
+        "title": "Withdraw Bitcoin",
+        "cost_today": "Lightning: Free<br>On-chain (Instant): 1%<br>On-chain (Scheduled): Free",
+        "what_happens": "Moving bitcoin to your own wallet is free if you use Lightning or scheduled weekly transfers. Instant on-chain withdrawals incur a 1% surcharge plus mining fees.",
+        "how_to_minimize": "Enable scheduled weekly transfers to sweep your balance on-chain for free, or use Lightning for instant, free withdrawals.",
+        "learn_more": "https://help.opennode.com/en/articles/3133789-bitcoin-transfers"
+      },
+      {
+        "id": "fees-withdraw-bank",
+        "title": "Withdraw to Bank",
+        "cost_today": "Varies by bank partner",
+        "what_happens": "You can schedule daily transfers or initiate one-time wires to your bank account. OpenNode does not charge a conversion fee, but bank transfer fees apply.",
+        "how_to_minimize": "Check the specific bank transfer fees in your dashboard; scheduled daily transfers may offer better rates or convenience.",
+        "learn_more": "https://help.opennode.com/en/articles/3193957-usd-bank-transfers"
+      },
+      {
+        "id": "fees-settlement",
+        "title": "Conversion & Settlement",
+        "cost_today": "No conversion fee",
+        "what_happens": "OpenNode allows you to convert between Bitcoin and local currency (like USD, EUR, GBP) instantly or at the time of transaction without any added spread or conversion fee.",
+        "how_to_minimize": "Use Split Settlement to automatically hedge a portion of your revenue while keeping the rest in Bitcoin.",
+        "learn_more": "https://help.opennode.com/en/collections/1858250-currency-conversion-and-funds-transfers"
+      }
+    ],
+    "fees_faq": [
+      {
+        "q": "Are Lightning withdrawals free on OpenNode?",
+        "a": "Yes. Instant Lightning withdrawals carry no extra fee, while on-demand on-chain withdrawals take the standard 1% plus the mining fee you select."
+      },
+      {
+        "q": "Do scheduled transfers cost anything?",
+        "a": "Weekly scheduled Bitcoin transfers are free, so you can let OpenNode sweep balances without paying the instant withdrawal fee."
+      }
+    ],
+    "key_terms": [
+      {
+        "id": "term-charge",
+        "term": "Charge",
+        "definition": "An API object that contains both a BOLT11 invoice and an on-chain address so your customer can choose how to pay."
+      },
+      {
+        "id": "term-hosted-checkout",
+        "term": "Hosted checkout",
+        "definition": "OpenNode's ready-made payment page at checkout.opennode.com/{id} that renders totals, QR codes, and status updates for you."
+      },
+      {
+        "id": "term-lnurl",
+        "term": "LNURL-Withdrawal",
+        "definition": "A Lightning withdrawal flow where OpenNode issues a QR-encoded link so wallets can pull a fixed or ranged amount of sats."
+      }
+    ],
+    "custody_risk": {
+      "heading": "Custody, compliance & risk",
+      "cards": [
+        {
+          "id": "custody-model",
+          "title": "Custody",
+          "icon": "/images/security.svg",
+          "explanation": "OpenNode holds funds until you withdraw or auto-settle to your wallet or bank, so their ledger is the source of truth until you sweep.",
+          "key_points": [
+            "Funds stay custodial until withdrawn",
+            "Auto-settlement to BTC or fiat",
+            "Set withdrawal limits per role"
+          ]
+        },
+        {
+          "id": "data-privacy",
+          "title": "Data Privacy",
+          "icon": "/images/privacy.svg",
+          "explanation": "Hosted checkout does not ask for personal payer data unless you collect it, which reduces the blast radius of a breach.",
+          "key_points": [
+            "Payment pages need only invoice info",
+            "No card numbers stored",
+            "Webhook payloads limited to order data"
+          ]
+        },
+        {
+          "id": "jurisdiction",
+          "title": "Jurisdiction & Availability",
+          "icon": "/images/global.svg",
+          "explanation": "OpenNode serves global merchants but unlocks features per jurisdiction once the right regulatory checks are complete.",
+          "key_points": [
+            "Dev stack available worldwide",
+            "Production access depends on KYC/KYB",
+            "Fiat rails limited to supported regions"
+          ]
+        },
+        {
+          "id": "compliance-kyc",
+          "title": "Compliance",
+          "icon": "/images/checkmark.svg",
+          "explanation": "Individual accounts submit ID and a selfie, while businesses provide ownership, address, and formation records before payouts go live.",
+          "key_points": [
+            "Supports individual and business flows",
+            "Control person data required above 25%",
+            "Support reviews leadership attestations"
+          ]
+        },
+        {
+          "id": "operational-risk",
+          "title": "Operational Risk",
+          "icon": "/images/warning.svg",
+          "explanation": "You still manage API keys, callback URLs, and team permissions, so secure your credentials like production secrets.",
+          "key_points": [
+            "Rotate API keys after testing",
+            "Whitelist payout IPs where possible",
+            "Monitor status.opennode.com for incidents"
+          ]
+        }
+      ],
+      "micro_faqs": [
+        {
+          "q": "Can OpenNode see my customers' data?",
+          "a": "They only see the metadata you pass into charges, so keep invoice fields minimal if privacy matters."
+        },
+        {
+          "q": "What happens if I lose dashboard access?",
+          "a": "Support can re-verify your identity and restore access once you provide the same KYC/KYB data used during onboarding."
+        }
+      ]
+    },
+    "payment_methods_limits": {
+      "heading": "Payment & payout rails",
+      "methods": [
+        {
+          "id": "lightning",
+          "name": "Lightning Network",
+          "available": true,
+          "icon": "lightning",
+          "summary": {
+            "fee": "1% processing",
+            "fee_link": "fees-processing",
+            "speed": "Instant",
+            "withdraw": "Immediate"
+          },
+          "best_for": "Instant microtransactions and high-volume payments under 5 BTC",
+          "limits": {
+            "min_per_tx": "1 satoshi",
+            "max_per_tx": "500,000,000 sats (5 BTC)",
+            "max_per_day": "Unlimited",
+            "max_per_week": "Unlimited",
+            "withdraw_eligibility": "Immediate"
+          }
+        },
+        {
+          "id": "onchain",
+          "name": "On-chain Bitcoin",
+          "available": true,
+          "icon": "bitcoin",
+          "summary": {
+            "fee": "1% processing",
+            "fee_link": "fees-processing",
+            "speed": "~10-60 min",
+            "withdraw": "1 block conf"
+          },
+          "best_for": "Large settlements exceeding Lightning channel capacity",
+          "limits": {
+            "min_per_tx": "Variable (dust limit)",
+            "max_per_tx": "Unlimited",
+            "max_per_day": "Unlimited",
+            "max_per_week": "Unlimited",
+            "withdraw_eligibility": "After 1 confirmation"
+          }
+        },
+        {
+          "id": "fiat-payouts",
+          "name": "Fiat-funded Payouts",
+          "available": true,
+          "icon": "bank",
+          "summary": {
+            "fee": "No conversion fee",
+            "fee_link": "fees-settlement",
+            "speed": "Instant conversion",
+            "withdraw": "Daily/Weekly"
+          },
+          "best_for": "Merchants who need to pay global contractors in BTC without holding exposure",
+          "limits": {
+            "min_per_tx": "Varies by region",
+            "max_per_tx": "KYB tier dependent",
+            "max_per_day": "Unlimited",
+            "max_per_week": "Unlimited",
+            "withdraw_eligibility": "Immediate conversion"
+          }
+        }
+      ]
+    },
+    "compat_heading": "OpenNode merchant stack coverage",
+    "compat_tiles": [
+      {
+        "id": "hosted-checkout",
+        "title": "Hosted checkout",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Lightning + on-chain in one link</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Optional fiat toggle</span>",
+        "status": "works"
+      },
+      {
+        "id": "fiat-payouts",
+        "title": "Fiat-funded Bitcoin payouts",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Wire USD/EUR/GBP</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Lightning or on-chain</span>",
+        "status": "works"
+      },
+      {
+        "id": "lnurl-withdrawals",
+        "title": "LNURL withdrawals",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> QR-triggered payouts</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Fixed or ranged amounts</span>",
+        "status": "works"
+      }
+    ],
+    "integrations": {
+      "intro": "Drop OpenNode into your stack with plugins for stores, webhooks for automation, and APIs for payouts.",
+      "cards": [
+        {
+          "id": "ecommerce",
+          "title": "Ecommerce plugins",
+          "status": "works",
+          "status_text": "Official",
+          "description": "Install official plugins so customers see OpenNode checkout after they confirm the cart, without exposing API keys client-side.",
+          "steps": [
+            "Install the plugin from your platform's marketplace.",
+            "Paste the API key generated in the OpenNode dashboard.",
+            "Set the success_url so orders mark paid once OpenNode posts the callback."
+          ],
+          "compatible_tools": [
+            "Shopify",
+            "WooCommerce",
+            "BigCommerce"
+          ],
+          "privacy": "Order data stays with your store; OpenNode only receives invoice metadata."
+        },
+        {
+          "id": "api-payouts",
+          "title": "API payouts",
+          "status": "works",
+          "status_text": "Official",
+          "description": "Use /v2/withdrawals to send on-chain or Lightning payouts from your fiat or BTC balance.",
+          "steps": [
+            "Wire fiat or deposit BTC into the wallet you want to draw down.",
+            "Call /v2/withdrawals with auto_confirm false to receive a quote.",
+            "Confirm the quote via the chain or Lightning endpoint before expiry."
+          ],
+          "compatible_tools": [
+            "REST API",
+            "Server-to-server webhooks"
+          ],
+          "privacy": "Only the payout address or invoice plus the amount leaves your environment."
+        },
+        {
+          "id": "webhooks",
+          "title": "Webhooks & callbacks",
+          "status": "works",
+          "status_text": "Official",
+          "description": "Subscribe to charge, underpayment, refund, and withdrawal events so your ERP, CRM, or fulfillment stack updates in real time.",
+          "steps": [
+            "Provide a callback_url on every charge you create.",
+            "Subscribe to withdrawals webhooks so you see Lightning status changes.",
+            "Replay webhook payloads in staging to test refund logic before production."
+          ],
+          "compatible_tools": [
+            "Zapier",
+            "Custom HTTPS endpoints"
+          ],
+          "privacy": "Webhooks include only the metadata you send, so do not log unnecessary customer data."
+        }
+      ]
+    },
+    "compat_explainers": [
+      {
+        "id": "hosted-checkout",
+        "why": "OpenNode renders Lightning and on-chain payment options in a single checkout page, which keeps your app simple while giving customers real-time totals.",
+        "try": [
+          "Create a charge in the dev environment and copy the hosted_checkout_url.",
+          "Append ?ln=1 to default to Lightning or ?hf=1 to hide fiat values.",
+          "Let OpenNode's callbacks update your order status before redirecting to your success_url."
+        ],
+        "gotcha": "If you exceed the Lightning amount cap, the page will fall back to on-chain only."
+      },
+      {
+        "id": "fiat-payouts",
+        "why": "You can wire fiat into OpenNode and have them convert each payout into sats on demand, so your treasury team never has to hold bitcoin.",
+        "try": [
+          "Contact support to enable the fiat wallet for your jurisdiction.",
+          "Use /v2/withdrawals with wallet set to fiat to preview the FX quote.",
+          "Confirm the withdrawal and monitor the webhook for completion."
+        ],
+        "gotcha": "Quotes expire quickly during volatile markets, so confirm before the expiry timestamp."
+      },
+      {
+        "id": "lnurl-withdrawals",
+        "why": "LNURL-Withdrawal lets you hand contractors or users a QR code they can scan to pull sats instantly, anchored by OpenNode's liquidity.",
+        "try": [
+          "Call createLnUrlWithdrawal with matching min_amt and max_amt for fixed-value pulls.",
+          "Display the LNURL in QR form or as a link in your app.",
+          "Watch the callback_url for the lnurl_withdrawal payload to confirm success."
+        ],
+        "gotcha": "If the wallet does not support LNURL, provide a standard Lightning invoice fallback."
+      }
+    ],
+    "migration": [
+      {
+        "id": "migrate-sandbox-live",
+        "title": "Developer sandbox → production",
+        "choose": "Use this when your testnet flow is stable and you are ready for mainnet.",
+        "time": "~30 min",
+        "cost": "Free",
+        "risk": "Medium",
+        "steps": [
+          "Swap your dev API key for a production key inside the dashboard.",
+          "Update webhook URLs so production callbacks reach your live endpoints.",
+          "Run a $0.01 equivalent test payment to confirm charge and fulfillment flows."
+        ],
+        "tips": "Keep sandbox keys around for regression testing.",
+        "gotcha": "Production Lightning invoices enforce the 500000000 sat cap even if your sandbox tests exceeded it."
+      },
+      {
+        "id": "migrate-settlement",
+        "title": "BTC settlement → split or fiat",
+        "choose": "Use this when you want to auto-convert a percentage of every payment.",
+        "time": "~10 min",
+        "cost": "Free",
+        "risk": "Low",
+        "steps": [
+          "Open Settings → Payments and choose split settlement.",
+          "Set the BTC percentage you want to keep versus the fiat share you want to convert.",
+          "Save and run a small charge to confirm the split posts to both wallets."
+        ],
+        "tips": "Document the new accounting flow so finance knows where to look for each portion.",
+        "gotcha": "Changes only affect new charges; historical payments keep their original settlement path."
+      },
+      {
+        "id": "rotate-api-keys",
+        "title": "Rotate API keys safely",
+        "choose": "Use this when teammates leave or you are moving secrets to a new vault.",
+        "time": "~5 min",
+        "cost": "Free",
+        "risk": "Low",
+        "steps": [
+          "Generate a new API key in the dashboard without deleting the old one yet.",
+          "Deploy the new key to your serverless secrets or vault.",
+          "Delete the previous key once traffic confirms the swap."
+        ],
+        "tips": "Schedule rotations quarterly so stale keys do not linger.",
+        "gotcha": "Deleting a key immediately will break plugins tied to it, so update integrations first."
+      }
+    ],
+    "anchors": {
+      "tldr": "#howto",
+      "setup": "#hardware",
+      "fees": "#costs",
+      "privacy": "#custody",
+      "compat": "#features",
+      "migration": "#migration",
+      "trust": "#trust",
+      "profile": "#faq"
+    },
+    "schema_flags": {
+      "hasHowTo": true,
+      "hasFAQ": true
+    },
+    "updated": "2025-11-26",
+    "trust": {
+      "cards": [
+        {
+          "id": "security",
+          "fact": "Security & Protection page outlines fraud monitoring, multisig storage, and IP whitelisting options.",
+          "link_text": "Security posture",
+          "link_url": "https://www.opennode.com/security-and-protection/"
+        },
+        {
+          "id": "privacy",
+          "fact": "OpenNode publishes a privacy policy covering how onboarding and transaction data are stored and processed.",
+          "link_text": "Privacy policy",
+          "link_url": "https://www.opennode.com/privacy-policy/"
+        },
+        {
+          "id": "terms",
+          "fact": "Terms & conditions detail service eligibility, settlement rules, and liability limits.",
+          "link_text": "Terms & conditions",
+          "link_url": "https://www.opennode.com/terms-and-conditions/"
+        }
+      ],
+      "summary": "OpenNode documents its security posture, legal policies, and operational commitments so you can evaluate how custodial funds are handled before you integrate."
+    }
   },
   {
     "name": "Peach",

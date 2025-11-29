@@ -4,16 +4,24 @@
   "type_of_platform": "Payment Infrastructure",
   "faqs": [
     {
-      "q": "What is Lightspark?",
-      "a": "Lightspark provides enterprise Lightning infrastructure and APIs to send and receive global payments with low latency and cost."
+      "q": "How do Lightspark Connect fees work across Starter and Enterprise tiers?",
+      "a": "Connect Starter routes every Lightning payment through Lightspark's managed nodes for 0.50% up to $300,000 in monthly volume. Enterprise plans add a $9,000-$15,000 platform retainer so you can drop per-transaction costs to roughly 0.30%-0.15% across $3-$15 million in monthly flow. You can start on Starter's free first 30 days and upgrade inside the dashboard once usage grows."
     },
     {
-      "q": "Is Lightspark self‑custodial?",
-      "a": "Lightspark supports self‑custodial wallets via Spark and also offers managed nodes for enterprises that need it."
+      "q": "When does Lightspark bill me for platform and overage fees?",
+      "a": "Billing kicks in after the 30-day trial, when Lightspark invoices the platform fee for your tier at the beginning of each month. That same invoice lists any usage that exceeded your volume limits in the prior period so finance teams see one predictable charge. You can downgrade or pause before the next cycle if your run rate changes."
     },
     {
-      "q": "Who is Lightspark for?",
-      "a": "Digital banks, wallets, exchanges and fintechs needing scalable Bitcoin/Lightning payments and fiat interoperability."
+      "q": "How can I pay my Lightspark invoice?",
+      "a": "Lightspark charges the card you keep on file five days after issuing the invoice, which removes manual payment work. Each invoice also includes a Lightning or on-chain Bitcoin link that locks the fiat amount in sats for 24 hours so you can settle with bitcoin instead. You can regenerate the payment quote from the invoice link whenever the price window expires."
+    },
+    {
+      "q": "How do I make payments from Lightspark?",
+      "a": "Lightning payouts run through the Send flow or API/SDK while on-chain settlements use the Withdraw flow, so you choose the rail per transfer. That separation keeps instant Lightning transfers distinct from Bitcoin Layer 1 withdrawals that wait on block confirmations. You can set custom fee limits in the Send flow when you need to allow higher routing budgets."
+    },
+    {
+      "q": "What protects my funds if Lightspark goes offline?",
+      "a": "Passwords are recoverable through the Forgot your password link, but custody resilience comes from Lightspark's Funds Recovery Kit that generates pre-signed transactions. Once you configure the kit you can publish those transactions on Bitcoin Layer 1 to reclaim funds without waiting on Lightspark support. Treat the hosted stack as a bridge and store the recovery file offline so you always have an exit."
     }
   ],
   "supported_network": "Lightning only",
@@ -69,5 +77,523 @@
   "website": "https://www.lightspark.com",
   "countries": [
     "WW"
-  ]
+  ],
+  "links": {
+    "docs": "https://docs.lightspark.com/",
+    "api_reference": "https://grid.lightspark.com/api-reference/environments",
+    "status": "https://status.lightspark.com/",
+    "help_center": "https://support.lightspark.com/",
+    "pricing": "https://www.lightspark.com/products/connect#pricing"
+  },
+  "recovery_method": "Reset passwords through the dashboard and keep the Funds Recovery Kit offline so you can broadcast pre-signed transactions on Bitcoin Layer 1 if Lightspark is ever unavailable.",
+  "interface": "Web dashboard, GraphQL API, SDKs, UMA directory",
+  "app_ratings": {
+    "ios": null,
+    "android": null
+  },
+  "trust_chips": [
+    {
+      "text": "Remote Key custody options",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "remote-keys"
+    },
+    {
+      "text": "Lightspark Predict routing",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "predict-routing"
+    },
+    {
+      "text": "Universal Money Address (UMA)",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "uma"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "Banks, wallets, and payout platforms that want managed Lightning infrastructure with flexible custody.",
+    "consider_if": "You need a single API for Lightning, UMA aliases, and fiat ramps plus automated liquidity management.",
+    "not_ideal_when": "You require a no-KYC self-hosted stack or cannot meet Lightspark's enterprise billing minimums."
+  },
+  "howto": {
+    "title": "Set up your Lightspark payment stack",
+    "steps": [
+      {
+        "id": "create-account",
+        "title": "1. Choose your plan and verify your organization",
+        "chips": {
+          "setup_time": "~15 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "sync_time": "Depends on compliance review queue",
+        "actions": [
+          "Create a Starter or Enterprise workspace at app.lightspark.com and invite teammates with SSO.",
+          "Use the first 30 days of free Starter billing to test throughput without invoices.",
+          "Submit the requested KYC/KYB documents so Lightspark can unlock bank, Lightning, and UMA corridors."
+        ],
+        "gotcha": "Platform fees hit on the next monthly cycle, so pause unused workspaces before the trial ends."
+      },
+      {
+        "id": "configure-custody",
+        "title": "2. Pick Remote Key or managed signing",
+        "chips": {
+          "setup_time": "~20 min",
+          "cost": "Free",
+          "risk": "Medium"
+        },
+        "actions": [
+          "Open Connect → Custody and decide whether to keep keys on your own servers (Remote Key) or use Operation Signing Key for managed custody.",
+          "Generate and upload the public keys or HSM endpoints Lightspark will request signatures from.",
+          "Download the Funds Recovery Kit file and store it offline so you can reclaim funds independently."
+        ],
+        "gotcha": "Remote Key mode requires your infrastructure to stay online for signing and to keep secure backups."
+      },
+      {
+        "id": "connect-apis",
+        "title": "3. Wire up SDKs, UMA, and webhooks",
+        "chips": {
+          "setup_time": "~30 min",
+          "cost": "Free",
+          "risk": "Medium"
+        },
+        "actions": [
+          "Generate GraphQL API keys, install the Lightspark SDK (Python, Go, Kotlin, Java, Rust, or TypeScript), and authenticate from your server.",
+          "Create UMA aliases or Grid customers so you can resolve payees with human-readable addresses.",
+          "Subscribe to webhooks for payment status, liquidity events, and transaction reports so downstream systems stay in sync."
+        ],
+        "gotcha": "Do not embed GraphQL credentials in client apps; keep them in your server or secrets manager."
+      },
+      {
+        "id": "sandbox-test",
+        "title": "4. Simulate payments in sandbox",
+        "chips": {
+          "setup_time": "~30 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Use the sandbox or regtest faucet to fund internal accounts and Lightning channels without touching production capital.",
+          "Create quotes and send sample payouts across UMA or Lightning to confirm routing policies and fee limits.",
+          "Review the dashboard's transaction reports so finance teams know what to expect before you move to production."
+        ],
+        "gotcha": "Sandbox webhooks mirror production payloads, so clean up test data before reusing identifiers in live flows."
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Does Lightspark host my private keys?",
+        "a": "Remote Key mode keeps the keys on your infrastructure while Lightspark merely orchestrates node operations, and Operation Signing Key keeps them encrypted in Lightspark's cloud if you need a turnkey option."
+      },
+      {
+        "q": "How do I recover funds if I'm locked out?",
+        "a": "Use the Forgot your password flow for account access and keep the Funds Recovery Kit offline so you can broadcast the pre-signed transactions to Bitcoin Layer 1 if Lightspark is unavailable."
+      }
+    ]
+  },
+  "fees_section_title": "Costs & speed: what you pay and when",
+  "fees_scenarios": [
+    {
+      "id": "fees-processing",
+      "title": "Process payments",
+      "cost_today": "Starter: 0.50% per transaction (up to $300k/mo)<br>Enterprise: 0.30%-0.15% per transaction (includes $3M-$15M/mo volume)",
+      "what_happens": "Lightspark manages routing, liquidity, and settlement for each Lightning or UMA payment and charges this percentage when the transfer settles.",
+      "how_to_minimize": "Upgrade to the enterprise tier once you consistently exceed Starter's $300,000 cap so high-volume flows pay the lower rate.",
+      "learn_more": "https://www.lightspark.com/products/connect#pricing"
+    },
+    {
+      "id": "fees-platform",
+      "title": "Platform fees & billing",
+      "cost_today": "Starter: $0 monthly (first 30 days free)<br>Enterprise: $9,000-$15,000 monthly",
+      "what_happens": "Platform fees are invoiced at the beginning of each month along with any prior-period overages, per Lightspark's billing FAQ.",
+      "how_to_minimize": "Stay on Starter while you're testing or spin down unused workspaces before the next billing cycle to avoid charges.",
+      "learn_more": "https://www.lightspark.com/faq/payments/how-and-when-will-i-be-billed"
+    },
+    {
+      "id": "fees-funding",
+      "title": "Fund payouts and FX",
+      "cost_today": "Quote-based FX spread shown before execution",
+      "what_happens": "Grid quotes return corridor availability, min/max amounts, and FX rates before you fund a payout, so you lock pricing before submitting the transfer.",
+      "how_to_minimize": "Prefund your internal account or pick the cheapest rail listed in the quote to avoid urgent just-in-time wires.",
+      "learn_more": "https://grid.lightspark.com/payouts-and-b2b/payment-flow/send-payment"
+    },
+    {
+      "id": "fees-billing-bitcoin",
+      "title": "Pay Lightspark invoices",
+      "cost_today": "Card: Auto-charge 5 days after invoice<br>Lightning or Bitcoin: Spot rate valid for 24 hours",
+      "what_happens": "Lightspark invoices can auto-charge the stored card or generate a Lightning/BTC payment link that locks the fiat amount in sats for a full day.",
+      "how_to_minimize": "Use bitcoin settlement when you already hold sats or leave the card on autopay to avoid late fees.",
+      "learn_more": "https://www.lightspark.com/faq/payments/how-can-i-pay-my-bill"
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "Does Lightspark prorate the first month?",
+      "a": "Yes. The first 30 days are free and the first partial month after signup is prorated, then standard monthly billing begins at the start of each cycle."
+    },
+    {
+      "q": "Can I pay Lightspark invoices with Bitcoin?",
+      "a": "Invoices include a Lightning/on-chain payment link that converts the amount due to sats for 24 hours, so you can settle with bitcoin instead of a card whenever you prefer."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-remote-keys",
+      "term": "Remote Key setup",
+      "definition": "A custody mode where you host the Lightning node's private keys on your own infrastructure while Lightspark manages the rest of the stack."
+    },
+    {
+      "id": "term-operation-signing",
+      "term": "Operation Signing Key",
+      "definition": "Lightspark's managed custody option where signing keys stay encrypted at rest inside Lightspark's Lightning wallet software."
+    },
+    {
+      "id": "term-uma",
+      "term": "Universal Money Address (UMA)",
+      "definition": "A human-readable identifier that lets Grid resolve recipients and route payments across fiat and Bitcoin rails through one API."
+    },
+    {
+      "id": "term-recovery-kit",
+      "term": "Funds Recovery Kit",
+      "definition": "An export of pre-signed Bitcoin transactions you can broadcast to reclaim funds if Lightspark services are disrupted."
+    }
+  ],
+  "custody_risk": {
+    "heading": "Custody, compliance & risk",
+    "cards": [
+      {
+        "id": "custody-model",
+        "title": "Custody",
+        "icon": "/images/security.svg",
+        "explanation": "Pick Remote Key to hold your own signing material or Operation Signing Key for managed custody while Lightspark monitors nodes.",
+        "key_points": [
+          "Remote Key keeps private keys on your servers",
+          "Operation Signing Key encrypts keys within Lightspark",
+          "Funds Recovery Kit offers an offline exit ramp"
+        ]
+      },
+      {
+        "id": "data-privacy",
+        "title": "Data Privacy",
+        "icon": "/images/privacy.svg",
+        "explanation": "The dashboard stores only the payment metadata you submit plus audit-ready transaction reports for compliance teams.",
+        "key_points": [
+          "Granular roles and SSO limit who can view data",
+          "Audit logs track routing, balances, and invoices",
+          "No customer PII is required for Lightning-only flows"
+        ]
+      },
+      {
+        "id": "jurisdiction",
+        "title": "Jurisdiction & Availability",
+        "icon": "/images/global.svg",
+        "explanation": "Lightspark operates globally but unlocks UMA corridors and fiat ramps per jurisdiction once KYC/KYB is complete.",
+        "key_points": [
+          "Starter tier available worldwide",
+          "Enterprise corridors require compliance approval",
+          "UMA aliases respect the receiver's local rules"
+        ]
+      },
+      {
+        "id": "compliance-kyc",
+        "title": "Compliance",
+        "icon": "/images/checkmark.svg",
+        "explanation": "Lightspark can run KYC/KYB for your customers through Grid or consume your existing approvals if you are the regulated entity.",
+        "key_points": [
+          "Supports Lightspark-led or merchant-led onboarding",
+          "Transaction reports available for audits",
+          "Webhooks help reconcile payments in real time"
+        ]
+      },
+      {
+        "id": "operational-risk",
+        "title": "Operational Risk",
+        "icon": "/images/warning.svg",
+        "explanation": "You still manage API keys, Remote Key uptime, and webhook endpoints, so treat Lightspark credentials like production secrets.",
+        "key_points": [
+          "Rotate API keys after staging or teammate changes",
+          "Monitor status.lightspark.com for incidents",
+          "Keep Remote Key HSMs backed up and patched"
+        ]
+      }
+    ],
+    "micro_faqs": [
+      {
+        "q": "Why can't I spend every sat instantly?",
+        "a": "Lightspark reserves some balance for pending Lightning operations, channel closes, or funds not yet allocated to Lightning, so the available amount can be lower than your total balance."
+      },
+      {
+        "q": "What causes a Lightning payment to fail?",
+        "a": "Most failures come from setting a fee limit that's too low; Lightspark Predict can try higher-cost routes if your fee budget allows it."
+      }
+    ]
+  },
+  "payment_methods_limits": {
+    "heading": "Payment & payout rails",
+    "methods": [
+      {
+        "id": "lightning",
+        "name": "Lightning Network",
+        "available": true,
+        "icon": "lightning",
+        "summary": {
+          "fee": "Starter: 0.50% processing",
+          "fee_link": "fees-processing",
+          "speed": "Instant",
+          "withdraw": "24/7"
+        },
+        "best_for": "Instant merchant payouts, API-driven disbursements, and cross-border sends that stay within your fee limit.",
+        "limits": {
+          "min_per_tx": "1 satoshi",
+          "max_per_tx": "Quote-dependent",
+          "max_per_day": "Volume tier limited",
+          "max_per_week": "Volume tier limited",
+          "withdraw_eligibility": "Immediate once funded"
+        }
+      },
+      {
+        "id": "onchain",
+        "name": "On-chain Bitcoin",
+        "available": true,
+        "icon": "bitcoin",
+        "summary": {
+          "fee": "Quote-based network fee",
+          "fee_link": "fees-funding",
+          "speed": "~10-60 min",
+          "withdraw": "1 block conf"
+        },
+        "best_for": "Large settlements or withdrawals that need Bitcoin Layer 1 finality.",
+        "limits": {
+          "min_per_tx": "Network dust limit",
+          "max_per_tx": "Unlimited",
+          "max_per_day": "Unlimited",
+          "max_per_week": "Unlimited",
+          "withdraw_eligibility": "After 1 confirmation"
+        }
+      },
+      {
+        "id": "uma",
+        "name": "Universal Money Address",
+        "available": true,
+        "icon": "bank",
+        "summary": {
+          "fee": "FX spread shown in quote",
+          "fee_link": "fees-funding",
+          "speed": "Real-time once funded",
+          "withdraw": "Same-day per corridor"
+        },
+        "best_for": "Global payouts that need to resolve bank accounts, UMA aliases, or fiat rails through a single API.",
+        "limits": {
+          "min_per_tx": "Corridor dependent",
+          "max_per_tx": "Corridor dependent",
+          "max_per_day": "Compliance-dependent",
+          "max_per_week": "Compliance-dependent",
+          "withdraw_eligibility": "Immediate after quote execution"
+        }
+      }
+    ]
+  },
+  "compat_heading": "Lightspark platform coverage",
+  "compat_tiles": [
+    {
+      "id": "remote-keys",
+      "title": "Remote Key custody options",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Hold signing keys on your servers</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Lightspark manages node uptime</span>",
+      "status": "works"
+    },
+    {
+      "id": "predict-routing",
+      "title": "Lightspark Predict routing",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> AI-balanced channel liquidity</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Fee limits you control</span>",
+      "status": "works"
+    },
+    {
+      "id": "uma",
+      "title": "Universal Money Address (UMA)",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Resolve payees with UMA aliases</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Quote FX before funding</span>",
+      "status": "works"
+    }
+  ],
+  "integrations": {
+    "intro": "Plug Lightspark into your stack with GraphQL SDKs, Grid payout APIs, and UMA directory tooling.",
+    "cards": [
+      {
+        "id": "connect-graphql",
+        "title": "Connect GraphQL & SDKs",
+        "status": "works",
+        "status_text": "Official",
+        "description": "Use Lightspark's GraphQL API or SDKs (Python, Go, Kotlin, Java, Rust, TypeScript) to automate node management, routing, and payout workflows.",
+        "steps": [
+          "Generate API keys inside the Lightspark dashboard and scope them per environment.",
+          "Install the SDK for your preferred language or call the GraphQL endpoint directly.",
+          "Implement webhooks for payment status, balance updates, and webhook retries."
+        ],
+        "compatible_tools": [
+          "GraphQL API",
+          "SDKs (Python, Go, Kotlin, Java, Rust, TypeScript)"
+        ],
+        "privacy": "Keys remain in your own vault; Lightspark only sees the metadata you send with each request."
+      },
+      {
+        "id": "grid-api",
+        "title": "Grid payouts & B2B",
+        "status": "works",
+        "status_text": "Official",
+        "description": "Grid's single API handles UMA addresses, FX quotes, and bank off-ramps for payouts, rewards, and treasury moves.",
+        "steps": [
+          "Create internal and external accounts via the Grid API.",
+          "Generate quotes to lock min/max amounts, corridors, and FX spreads.",
+          "Fund the quote and monitor webhook callbacks until delivery is confirmed."
+        ],
+        "compatible_tools": [
+          "Grid API",
+          "UMA aliases",
+          "Webhooks"
+        ],
+        "privacy": "Customer KYC/KYB data can stay with Lightspark or your own compliance stack depending on the onboarding mode."
+      },
+      {
+        "id": "uma-directory",
+        "title": "Universal Money Address",
+        "status": "works",
+        "status_text": "Official",
+        "description": "Issue UMA handles so partners and users can send value using a human-readable address that routes across Bitcoin and fiat rails.",
+        "steps": [
+          "Create UMA aliases through the dashboard or API.",
+          "Associate aliases with wallet IDs, bank accounts, or payout endpoints.",
+          "Share the alias or embed UMA search so payers can resolve your recipients instantly."
+        ],
+        "compatible_tools": [
+          "UMA SDK",
+          "Grid dashboard",
+          "Directory search"
+        ],
+        "privacy": "Aliases map to the metadata you choose to share, so limit attached data when privacy matters."
+      }
+    ]
+  },
+  "compat_explainers": [
+    {
+      "id": "remote-keys",
+      "why": "Remote Key mode keeps private keys on your infrastructure while Lightspark runs the nodes, giving you managed uptime without surrendering custody.",
+      "try": [
+        "Create a Remote Key configuration under Connect → Custody.",
+        "Upload the public key or HSM endpoint Lightspark should request signatures from.",
+        "Download and store the Funds Recovery Kit in cold storage."
+      ],
+      "gotcha": "Remote Key setups must stay online to sign transactions, so monitor HSM health and backups."
+    },
+    {
+      "id": "predict-routing",
+      "why": "Lightspark Predict monitors liquidity and automatically rebalances channels so your payments take the fastest, cheapest route that fits your fee budget.",
+      "try": [
+        "Enable Predict or Predict+ in the plan selector.",
+        "Set default and per-payment fee limits inside the Send flow or API.",
+        "Watch channel adjustments in the dashboard analytics tab."
+      ],
+      "gotcha": "If you cap fees too low, Predict cannot access higher-cost routes and payments may fail."
+    },
+    {
+      "id": "uma",
+      "why": "Universal Money Address lets you attach a human-readable alias to any customer so payouts resolve automatically across Grid's global corridors.",
+      "try": [
+        "Create or import customers, then assign UMA aliases via the API.",
+        "Share the alias with counterparties or embed UMA search in your product.",
+        "Subscribe to webhook notifications so you credit recipients as soon as settlement clears."
+      ],
+      "gotcha": "Some jurisdictions require KYC/KYB before you can issue UMA aliases, so finish compliance onboarding first."
+    }
+  ],
+  "migration": [
+    {
+      "id": "migrate-remote-keys",
+      "title": "Bring your keys into Lightspark",
+      "choose": "Use this when you want Lightspark to run the node while you retain Remote Key custody.",
+      "time": "~30 min",
+      "cost": "Free",
+      "risk": "Medium",
+      "steps": [
+        "Export or generate the key material you plan to keep in your HSM or secure server.",
+        "Create a Remote Key configuration in the dashboard and upload the public key or signing endpoint.",
+        "Test a low-value payment and verify signatures succeed before migrating production flows."
+      ],
+      "tips": "Document how you rotate keys so Lightspark's API always points to the active signer.",
+      "gotcha": "If your Remote Key infrastructure goes offline, Lightning routing will pause until signing comes back."
+    },
+    {
+      "id": "migrate-sandbox-live",
+      "title": "Sandbox → production",
+      "choose": "Use this when your test flows pass and you're ready for live corridors.",
+      "time": "~20 min",
+      "cost": "Free",
+      "risk": "Medium",
+      "steps": [
+        "Swap sandbox API keys and webhooks for production credentials in your secrets manager.",
+        "Refactor any test UMA aliases or customer IDs to production identifiers.",
+        "Run a small payment through each corridor to confirm quotes, FX, and webhooks match expectations."
+      ],
+      "tips": "Keep sandbox keys for regression tests so you can reproduce issues without touching live funds.",
+      "gotcha": "Production corridors enforce jurisdictional limits, so be sure compliance approvals are complete before switching."
+    },
+    {
+      "id": "rotate-api-keys",
+      "title": "Rotate API keys safely",
+      "choose": "Use this whenever teammates change or you migrate secrets to a new vault.",
+      "time": "~5 min",
+      "cost": "Free",
+      "risk": "Low",
+      "steps": [
+        "Create a new API key in the Lightspark dashboard while leaving the old one active.",
+        "Deploy the new key to your backend services or gateway and verify traffic succeeds.",
+        "Delete the previous key once monitoring shows the new credentials are in use."
+      ],
+      "tips": "Schedule key rotations quarterly so stale credentials never linger.",
+      "gotcha": "Deleting a key early will break SDKs or workflows still referencing it, so update infrastructure first."
+    }
+  ],
+  "anchors": {
+    "tldr": "#howto",
+    "setup": "#hardware",
+    "fees": "#costs",
+    "privacy": "#custody",
+    "compat": "#features",
+    "migration": "#migration",
+    "trust": "#trust",
+    "profile": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-26",
+  "trust": {
+    "cards": [
+      {
+        "id": "security",
+        "fact": "Connect details enterprise security controls like SSO, granular permissions, and audit-ready reporting.",
+        "link_text": "Security overview",
+        "link_url": "https://www.lightspark.com/products/connect"
+      },
+      {
+        "id": "privacy",
+        "fact": "Lightspark publishes a privacy policy outlining how onboarding and payment data are stored, processed, and retained.",
+        "link_text": "Privacy policy",
+        "link_url": "https://www.lightspark.com/privacy-policy"
+      },
+      {
+        "id": "terms",
+        "fact": "Terms of use explain service eligibility, acceptable behavior, and liability limits for Connect and Grid.",
+        "link_text": "Terms of use",
+        "link_url": "https://www.lightspark.com/terms-of-use"
+      },
+      {
+        "id": "licenses",
+        "fact": "The licenses page lists regulatory registrations and money service licenses that govern Lightspark's operations.",
+        "link_text": "Licenses",
+        "link_url": "https://www.lightspark.com/licenses"
+      }
+    ],
+    "summary": "Lightspark documents its security posture, privacy practices, legal terms, and licensing so enterprise teams can complete due diligence before integrating."
+  }
 }
