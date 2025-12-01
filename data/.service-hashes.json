@@ -8,7 +8,7 @@
     "date": "2025-11-01"
   },
   "bisq": {
-    "hash": "d2721bc1fa00fd474e6642e1283b5e3b379c1422683822d11f629f57750ac66f",
+    "hash": "03132386715d5d92ac6cc73376be076a7b030b43202e9e00a87f3f88b4f3005a",
     "date": "2025-11-12"
   },
   "bitkey": {
@@ -28,7 +28,7 @@
     "date": "2025-11-24"
   },
   "bull-bitcoin": {
-    "hash": "bda4b026decdc83333025d8d9d1c30cb71ab8f7d52c20b64f8fd464e39caad78",
+    "hash": "d8a42202c2908f1e2ceec0f31ea3b2d3069b0b5d5a90c55c71eab25c6cfac8a9",
     "date": "2025-11-12"
   },
   "fold": {
@@ -36,7 +36,7 @@
     "date": "2025-11-01"
   },
   "hodlhodl": {
-    "hash": "381e0e72e1bb05f0a5a2c5c35f24dba24b497982906449dacf8b7c03108c1d55",
+    "hash": "9c99f8b7e77e99a276be1fb7c88748dd54949c9e6bbf7e02a63d6b6a0b3e44fc",
     "date": "2025-11-09"
   },
   "lightspark": {
@@ -64,11 +64,11 @@
     "date": "2025-10-03"
   },
   "pocket": {
-    "hash": "253da7d27b8aa5af4f6f65b796986c6c51a843ef680ca0bd2990a31e65acab5c",
-    "date": "2025-11-24"
+    "hash": "a707cd23d60266408c9fa9bad1b3216e224e235a6b71ab3fabaa844ccc5b45f0",
+    "date": "2025-11-30"
   },
   "relai": {
-    "hash": "25726b60fe62ec8272f55fac2746c6fe8e5c2c19a6d66dcccd72642e54f8f148",
+    "hash": "78696256e11fcec2f99de0836853e89a9df04349c816bdfc9ce66776b45df272",
     "date": "2025-11-08"
   },
   "river": {
@@ -76,7 +76,7 @@
     "date": "2025-11-08"
   },
   "robosats": {
-    "hash": "3a56cc20d7b29523720ae7727fbcb1ed3becb1ac825af2e6bf3f42b40cee3f73",
+    "hash": "0a3ff191a191e2695deef9745d50e2dbd374dd1aa9b13c6d5980f4ea88c739d9",
     "date": "2025-11-12"
   },
   "sparrow": {

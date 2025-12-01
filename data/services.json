@@ -4070,9 +4070,9 @@
             "risk": "Low"
           },
           "actions": [
-            "Head to bullbitcoin.com and create an account with your email and a strong password.",
-            "Complete the FINTRAC verification flow by submitting your government ID and answering the compliance questions.",
-            "Wait for the approval email; message the live chat if you do not hear back within a few hours."
+            "Create an account at bullbitcoin.com and complete the FINTRAC verification.",
+            "Download the Bull Bitcoin Mobile app to create your self-custodial wallet (Instant & Secure).",
+            "Log in to the 'Exchange' tab in the app to link your verified account."
           ],
           "gotcha": "Bull Bitcoin cannot accept funds until your verification clears."
         },
@@ -4085,9 +4085,9 @@
             "risk": "Low"
           },
           "actions": [
-            "From the dashboard, click Buy Bitcoin and paste a fresh on-chain address, Lightning invoice, or Liquid destination.",
-            "Send an Interac e-Transfer or request the wire instructions that match your order size.",
-            "Watch the Funding tab for confirmation that your payment arrived."
+            "From the dashboard (web or mobile redirect), click Buy Bitcoin. The app can auto-fill your wallet address.",
+            "Send an Interac e-Transfer or wire following the on-screen instructions.",
+            "Wait for the funding to appear in the dashboard (usually minutes for Interac)."
           ],
           "gotcha": "Interac transfers above 10,000 CAD require a wire, so plan large orders ahead."
         },
@@ -4101,8 +4101,8 @@
             "risk": "Low"
           },
           "actions": [
-            "Review the quoted rate and confirm the buy once your funding shows as pending.",
-            "Open your wallet or node to watch the incoming transaction Bull Bitcoin broadcasts.",
+            "Review the quote and confirm. Bull Bitcoin sends funds directly to your mobile wallet (Liquid or On-chain).",
+            "Verify the transaction in your 'Wallet' tab—no manual withdrawal needed.",
             "Enable Recurring Buy if you want the same amount to repeat automatically."
           ],
           "gotcha": "Lightning invoices expire quickly; generate a fresh invoice if the order times out."
@@ -4265,6 +4265,12 @@
         "title": "Dollar-cost averaging (DCA)",
         "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Schedule recurring buys</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Send straight to your wallet</span>",
         "status": "works"
+      },
+      {
+        "id": "mobile-wallet",
+        "title": "Mobile Wallet",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Liquid & On-chain</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Non-custodial</span>",
+        "status": "works"
       }
     ],
     "compat_explainers": [
@@ -4299,6 +4305,16 @@
           "Keep your bank limits open so each scheduled transfer clears."
         ],
         "gotcha": "Recurring buys trigger after each funding clears, so Interac caps can delay the schedule if you hit daily limits."
+      },
+      {
+        "id": "mobile-wallet",
+        "why": "The Bull Bitcoin Mobile app acts as your non-custodial wallet, letting you hold your own keys for both Liquid (Instant) and On-chain (Secure) bitcoin.",
+        "try": [
+          "Download the app and create a new wallet.",
+          "Back up your recovery phrase or use the cloud backup feature.",
+          "Use the app to generate receiving addresses for your buys."
+        ],
+        "gotcha": "The exchange features in the app currently redirect to the web interface for funding."
       }
     ],
     "self_custody": {
@@ -4314,8 +4330,8 @@
           },
           "why": "Bull Bitcoin sends every buy straight to your address, so you need a self-custodial wallet ready before you fund an order.",
           "actions": [
-            "Choose a mobile or hardware wallet you control and write down the seed phrase.",
-            "Test a receive request inside the wallet so you know where to find new addresses.",
+            "Download the Bull Bitcoin Mobile app or choose another wallet you control.",
+            "Write down the seed phrase or back up your wallet immediately.",
             "Enable biometric or PIN locks so your phone or device stays secure."
           ],
           "gotcha": "Bull Bitcoin cannot pause a payout while you set up a wallet."
@@ -4330,7 +4346,7 @@
           },
           "why": "Each Bull Bitcoin buy broadcasts immediately, so paste a new address or Lightning invoice every time.",
           "actions": [
-            "Open your wallet and copy a fresh on-chain address, Lightning invoice, or Liquid destination.",
+            "Open your wallet (or the Bull Bitcoin app) and copy a fresh on-chain or Liquid address.",
             "Check the expiry time on Lightning invoices before you confirm the order.",
             "Label the address in your wallet so you remember which buy it matches."
           ],
@@ -8984,7 +9000,7 @@
           "gotcha": "Use a new address for each long-term purchase so you do not expose your full balance."
         },
         {
-          "id": "setup-transfer",
+          "id": "setup-pay",
           "title": "2. Send your bank transfer",
           "chips": {
             "time": "~2 min",

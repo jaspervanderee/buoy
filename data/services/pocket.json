@@ -114,7 +114,7 @@
         "gotcha": "Use a new address for each long-term purchase so you do not expose your full balance."
       },
       {
-        "id": "setup-transfer",
+        "id": "setup-pay",
         "title": "2. Send your bank transfer",
         "chips": {
           "time": "~2 min",
