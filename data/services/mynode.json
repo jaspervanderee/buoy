@@ -102,7 +102,7 @@
     "title": "Set up your myNode stack",
     "steps": [
       {
-        "id": "download-image",
+        "id": "setup-install",
         "title": "1. Download and flash the image",
         "chips": {
           "setup_time": "~20 min",
@@ -117,7 +117,7 @@
         "gotcha": "Slow cards or USB2 enclosures throttle initial sync speeds; use SSDs and USB 3."
       },
       {
-        "id": "wire-hardware",
+        "id": "setup-pay",
         "title": "2. Wire up the hardware",
         "chips": {
           "setup_time": "~10 min",
@@ -132,7 +132,7 @@
         "gotcha": "Power cycling without a proper shutdown can corrupt the drive; use the UI to shut down first."
       },
       {
-        "id": "onboard-dashboard",
+        "id": "setup-receive",
         "title": "3. Complete onboarding at mynode.local",
         "chips": {
           "setup_time": "~10 min",
@@ -147,7 +147,7 @@
         "gotcha": "Leaving `admin` / `bolt` in place means anyone on your LAN can control the box."
       },
       {
-        "id": "sync-and-secure",
+        "id": "setup-final",
         "title": "4. Let it sync and secure services",
         "chips": {
           "setup_time": "~6 days on Pi hardware",

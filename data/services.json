@@ -1777,7 +1777,7 @@
       "title": "Set up your Bitkey vault",
       "steps": [
         {
-          "id": "vault-policy",
+          "id": "setup-install",
           "title": "1. Choose policy & secure keys/backups",
           "chips": {
             "time": "~15 min",
@@ -1792,7 +1792,7 @@
           "gotcha": "The hardware key has no screen; always confirm addresses on your phone or connected node."
         },
         {
-          "id": "vault-proof",
+          "id": "setup-pay",
           "title": "2. Prove the setup",
           "chips": {
             "time": "~20 min",
@@ -1807,7 +1807,7 @@
           "gotcha": "Skipping the drill leaves recovery timing a mystery; practice now so you trust it under pressure."
         },
         {
-          "id": "vault-ops",
+          "id": "setup-receive",
           "title": "3. Operationalize safety",
           "chips": {
             "time": "~20 min",
@@ -6686,7 +6686,7 @@
       "title": "Set up your myNode stack",
       "steps": [
         {
-          "id": "download-image",
+          "id": "setup-install",
           "title": "1. Download and flash the image",
           "chips": {
             "setup_time": "~20 min",
@@ -6701,7 +6701,7 @@
           "gotcha": "Slow cards or USB2 enclosures throttle initial sync speeds; use SSDs and USB 3."
         },
         {
-          "id": "wire-hardware",
+          "id": "setup-pay",
           "title": "2. Wire up the hardware",
           "chips": {
             "setup_time": "~10 min",
@@ -6716,7 +6716,7 @@
           "gotcha": "Power cycling without a proper shutdown can corrupt the drive; use the UI to shut down first."
         },
         {
-          "id": "onboard-dashboard",
+          "id": "setup-receive",
           "title": "3. Complete onboarding at mynode.local",
           "chips": {
             "setup_time": "~10 min",
@@ -6731,7 +6731,7 @@
           "gotcha": "Leaving `admin` / `bolt` in place means anyone on your LAN can control the box."
         },
         {
-          "id": "sync-and-secure",
+          "id": "setup-final",
           "title": "4. Let it sync and secure services",
           "chips": {
             "setup_time": "~6 days on Pi hardware",
@@ -11200,7 +11200,7 @@
           "gotcha": "Public servers see your transaction history. Connect to your own node for full privacy."
         },
         {
-          "id": "setup-wallet",
+          "id": "setup-pay",
           "title": "2. Create your wallet",
           "chips": {
             "time": "~10 min",
@@ -11742,7 +11742,7 @@
       "title": "Set up your StartOS server",
       "steps": [
         {
-          "id": "flash-startos",
+          "id": "setup-install",
           "title": "1. Flash the StartOS image",
           "chips": {
             "setup_time": "~20 min",
@@ -11757,7 +11757,7 @@
           "gotcha": "Start9 reminds you that reflashing an SD card will erase every byte on it, so pull data you need before writing the image."
         },
         {
-          "id": "first-boot",
+          "id": "setup-pay",
           "title": "2. Boot and visit start.local",
           "chips": {
             "setup_time": "~10 min",
@@ -11773,7 +11773,7 @@
           "gotcha": "The DIY guide explicitly warns that Raspberry Pi builds stall on Bitcoin workloads, so treat Pi as a light-duty appliance."
         },
         {
-          "id": "trust-ca",
+          "id": "setup-receive",
           "title": "3. Trust the Root CA",
           "chips": {
             "setup_time": "~5 min",
@@ -11788,7 +11788,7 @@
           "gotcha": "Tor Browser ignores `.local` addresses, so trust the certificate in a standard browser on the LAN first."
         },
         {
-          "id": "install-services",
+          "id": "setup-final",
           "title": "4. Install services from the Marketplace",
           "chips": {
             "setup_time": "~15 min per service",
@@ -13644,70 +13644,68 @@
       "not_ideal_when": "You require fully open-source licensing, HTTPS-by-default, or granular control over every dependency."
     },
     "howto": {
-      "title": "Installation matrix",
+      "title": "Getting Started",
       "steps": [
         {
-          "id": "flash-pi-image",
-          "title": "1. Flash umbrelOS for Raspberry Pi",
-          "chips": {
-            "setup_time": "~30 min",
-            "cost": "Existing Pi + SSD",
-            "risk": "Medium (hardware prep)"
-          },
-          "sync_time": "~5–6 days on Pi 4, leave device on.",
-          "actions": [
-            "Download the <a href=\"https://github.com/getumbrel/umbrel/releases/latest\" target=\"_blank\">latest umbrelOS</a> `.img.xz` from GitHub Releases",
-            "Flash it to a fast microSD using Balena Etcher and plug in your USB 3.0 SSD for blockchain data",
-            "Attach Ethernet before first boot so the node can reach peers immediately"
-          ],
-          "gotcha": "Slow microSD cards throttle sync speed; favor A2-rated or better."
-        },
-        {
-          "id": "first-boot-sync",
-          "title": "2. First boot & start syncing",
-          "chips": {
-            "setup_time": "~15 min setup",
-            "cost": "Free",
-            "risk": "Low (follow prompts)"
-          },
-          "actions": [
-            "Visit `umbrel.local` or the IP, accept onboarding, and replace the default password",
-            "Install Bitcoin Core and Lightning from the App Store and start the sync",
-            "Leave the device on; initial sync on Pi can take 4–6 days depending on peers"
-          ],
-          "gotcha": "Do not send funds until Bitcoin Core shows 100% synchronization."
-        },
-        {
-          "id": "install-x86",
-          "title": "3. Install on an x86 mini PC",
-          "chips": {
-            "setup_time": "~25 min",
-            "cost": "Mini PC + SSD",
-            "risk": "Medium (full disk install)"
-          },
-          "sync_time": "~12–18 hours on N100, leave device on.",
-          "actions": [
-            "Write the umbrelOS ISO to a USB stick, boot your Intel/AMD mini PC, and follow the guided installer",
-            "Select the SSD as the target disk; the installer partitions and provisions services automatically",
-            "Keep Ethernet connected for the first sync—expect 12–18 hour initial block download"
-          ],
-          "gotcha": "The installer wipes the entire target disk; back up any existing data first."
-        },
-        {
-          "id": "docker-vm",
-          "title": "4. Run inside a Linux VM or Docker host",
+          "id": "setup-install",
+          "title": "1. Download & Flash",
           "chips": {
             "setup_time": "~20 min",
-            "cost": "Existing server",
-            "risk": "High (manual tuning)"
+            "cost": "Free (Software)",
+            "risk": "Medium (Wipes drive)"
           },
-          "sync_time": "Varies by host CPU/Disk.",
           "actions": [
-            "Provision a Debian/Ubuntu host with Docker and compose, then run the official curl installer with `--install-path` pointing to your storage volume",
-            "Expose port 3000 only inside your LAN; route remote access through Tor or a VPN instead of opening it on the internet",
-            "Snapshot the VM before major upgrades so you can roll back quickly"
+            "Download the correct **umbrelOS** image for your device (Raspberry Pi, x86, or Linux) from the GitHub releases page.",
+            "Connect your storage drive to your computer and use **Balena Etcher** to flash the OS image.",
+            "Insert the drive into your node hardware and connect it to your router via Ethernet."
           ],
-          "gotcha": "Umbrel expects direct disk access; thin-provisioned volumes can bottleneck IBD."
+          "gotcha": "Flashing completely wipes the target drive. Back up any existing data before you proceed."
+        },
+        {
+          "id": "setup-pay",
+          "title": "2. First boot & account setup",
+          "chips": {
+            "setup_time": "~10 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Power on your device and visit `http://umbrel.local` on a computer connected to the same network.",
+            "Follow the setup wizard to choose your node name and create a password.",
+            "Write down your 24-word recovery phrase on paper—this is your only backup if the hardware fails."
+          ],
+          "gotcha": "Never save your seed phrase digitally or share it. Anyone with these words can steal your funds."
+        },
+        {
+          "id": "setup-receive",
+          "title": "3. Install the essentials",
+          "chips": {
+            "setup_time": "~5 min active",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "sync_time": "3–7 days (Hardware dependent)",
+          "actions": [
+            "Open the App Store from the dashboard—Umbrel starts empty so you can choose your own stack.",
+            "Install the **Bitcoin Node** app first to begin the initial block download.",
+            "Install **Lightning Node** once the Bitcoin sync starts to prepare for payments."
+          ],
+          "gotcha": "The initial sync can take 3–7 days on a Raspberry Pi. Your node is not broken; it is verifying history."
+        },
+        {
+          "id": "setup-final",
+          "title": "4. Connect your wallet",
+          "chips": {
+            "setup_time": "~15 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Open the **Bitcoin Node** app settings to find your RPC credentials or Tor address.",
+            "In your phone or desktop wallet (like Sparrow or Bitkey), update the server settings to point to your new node.",
+            "Verify the connection to ensure your transactions are broadcast and verified by your own hardware."
+          ],
+          "gotcha": "Your RPC credentials provide full access to your node. Keep them private and never share them."
         }
       ],
       "totalTime": null,

@@ -117,7 +117,7 @@
         "gotcha": "Public servers see your transaction history. Connect to your own node for full privacy."
       },
       {
-        "id": "setup-wallet",
+        "id": "setup-pay",
         "title": "2. Create your wallet",
         "chips": {
           "time": "~10 min",

@@ -12,7 +12,7 @@
     "date": "2025-11-12"
   },
   "bitkey": {
-    "hash": "030bd7d05f6699e61900283fbc8c1a7285003ac483be6392732483313a814404",
+    "hash": "7168ac5bfb2ed8dcf83d8cea26cabf24f087088b1fa71cd25cad50b192f75e45",
     "date": "2025-11-14"
   },
   "bitonic": {
@@ -48,7 +48,7 @@
     "date": "2025-11-24"
   },
   "mynode": {
-    "hash": "f302ec372fc4e2b36bc77608ea9b46a3b9f999cb5ab7f034be8b89cdca40b0c1",
+    "hash": "8d75145646031cc2f465343f84a9e761477aeab24934809623159c84fe12a28c",
     "date": "2025-11-23"
   },
   "opennode": {
@@ -80,11 +80,11 @@
     "date": "2025-11-12"
   },
   "sparrow": {
-    "hash": "bbcd3f53390e74c8968f5dfcaf34e1a7270c118d6bf4a7ad0aad1f1c6072c47b",
+    "hash": "5849df93be5aabd30c87ec6c3eaf797dc01aaa3fa57de824985eb0ff4c31877c",
     "date": "2025-11-19"
   },
   "start9": {
-    "hash": "02bc547ad80d752ae4b92b937d03df645a72663266ce221ad737550b4ef33821",
+    "hash": "c0a34e7eadc363020433b5d46e998d546f2c425783e935f3ba77a37d2856ca33",
     "date": "2025-11-23"
   },
   "strike": {
@@ -96,7 +96,7 @@
     "date": "2025-11-08"
   },
   "umbrel": {
-    "hash": "988c4853094191f85825b4e9dadd86c7a86e0222f6298fc30aaa28981f16f4db",
+    "hash": "3982fde12a132599cad9dbbd49e141c25c4fd1c9b5405d84cfb9909c43718a64",
     "date": "2025-11-21"
   },
   "unchained": {
@@ -104,7 +104,7 @@
     "date": "2025-11-24"
   },
   "wasabi": {
-    "hash": "50957ea553ff29cce4299793037024165ebcc61800716e5aeb0d78d0d62fcb98",
+    "hash": "7a77cac8c244c8fa81c6fc0a5034eb0e509b04b85ca027c164e0cf1ff33f367c",
     "date": "2025-11-17"
   }
 }

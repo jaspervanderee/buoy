@@ -448,24 +448,39 @@ html = html.replace('</head>', urlShim + '</head>');
           ? howto.title 
           : howto.title || "Getting started";
         
-        const tileItems = howto.steps.map((step) => {
+        const tileItems = howto.steps.map((step, idx) => {
           const tileId = step.id || slugify(step.title || "");
           
           // Resolve illustration: per-slug screenshot takes precedence
           let illustrationHtml = "";
           
-          // Extract step name for per-service screenshots (e.g., "setup-install" → "install")
-          const stepName = tileId.replace(/^setup-/, '');
-          const bannerPath = `/images/screenshots/${slug}-${stepName}.webp`;
-          const fullPath = `/images/screenshots/${slug}-${stepName}-full.webp`;
+          // 1. Try ID-based name first (e.g. "setup-install" -> "install")
+          let stepName = tileId.replace(/^setup-/, '');
+          let bannerPath = `/images/screenshots/${slug}-${stepName}.webp`;
+          let fullPath = `/images/screenshots/${slug}-${stepName}-full.webp`;
           
           // Check if per-service screenshot exists at build time
-          const bannerExists = (() => {
-            try {
-              fsSync.accessSync(path.join(ROOT, bannerPath));
-              return true;
-            } catch { return false; }
-          })();
+          let bannerExists = false;
+          try {
+            fsSync.accessSync(path.join(ROOT, bannerPath));
+            bannerExists = true;
+          } catch {}
+
+          // 2. Fallback: Try positional naming (install, pay, receive, final) if ID-based not found
+          // This supports services like Umbrel where IDs changed but screenshots follow standard naming
+          if (!bannerExists) {
+            const positionalNames = ["install", "pay", "receive", "final"];
+            if (idx < positionalNames.length) {
+              const posName = positionalNames[idx];
+              const posBannerPath = `/images/screenshots/${slug}-${posName}.webp`;
+              try {
+                fsSync.accessSync(path.join(ROOT, posBannerPath));
+                bannerExists = true;
+                bannerPath = posBannerPath;
+                fullPath = `/images/screenshots/${slug}-${posName}-full.webp`;
+              } catch {}
+            }
+          }
           
           const fullExists = bannerExists && (() => {
             try {

@@ -96,7 +96,7 @@
     "title": "Set up your Bitkey vault",
     "steps": [
       {
-        "id": "vault-policy",
+        "id": "setup-install",
         "title": "1. Choose policy & secure keys/backups",
         "chips": {
           "time": "~15 min",
@@ -111,7 +111,7 @@
         "gotcha": "The hardware key has no screen; always confirm addresses on your phone or connected node."
       },
       {
-        "id": "vault-proof",
+        "id": "setup-pay",
         "title": "2. Prove the setup",
         "chips": {
           "time": "~20 min",
@@ -126,7 +126,7 @@
         "gotcha": "Skipping the drill leaves recovery timing a mystery; practice now so you trust it under pressure."
       },
       {
-        "id": "vault-ops",
+        "id": "setup-receive",
         "title": "3. Operationalize safety",
         "chips": {
           "time": "~20 min",

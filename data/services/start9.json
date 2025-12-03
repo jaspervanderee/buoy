@@ -98,7 +98,7 @@
     "title": "Set up your StartOS server",
     "steps": [
       {
-        "id": "flash-startos",
+        "id": "setup-install",
         "title": "1. Flash the StartOS image",
         "chips": {
           "setup_time": "~20 min",
@@ -113,7 +113,7 @@
         "gotcha": "Start9 reminds you that reflashing an SD card will erase every byte on it, so pull data you need before writing the image."
       },
       {
-        "id": "first-boot",
+        "id": "setup-pay",
         "title": "2. Boot and visit start.local",
         "chips": {
           "setup_time": "~10 min",
@@ -129,7 +129,7 @@
         "gotcha": "The DIY guide explicitly warns that Raspberry Pi builds stall on Bitcoin workloads, so treat Pi as a light-duty appliance."
       },
       {
-        "id": "trust-ca",
+        "id": "setup-receive",
         "title": "3. Trust the Root CA",
         "chips": {
           "setup_time": "~5 min",
@@ -144,7 +144,7 @@
         "gotcha": "Tor Browser ignores `.local` addresses, so trust the certificate in a standard browser on the LAN first."
       },
       {
-        "id": "install-services",
+        "id": "setup-final",
         "title": "4. Install services from the Marketplace",
         "chips": {
           "setup_time": "~15 min per service",
