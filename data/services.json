@@ -86,7 +86,6 @@
     "recovery_method": "Time-locked multisig recovery",
     "open_source": "No",
     "node_connect": "No",
-    "user_experience": "0.0",
     "interface": "Desktop only",
     "app_ratings": {
       "text": "No app available"
@@ -649,7 +648,7 @@
   {
     "name": "Aqua",
     "category": "Spend Bitcoin",
-    "type_of_platform": "Hot Wallet",
+    "type_of_platform": "Mobile Wallet (Layer 2)",
     "faqs": [
       {
         "q": "What networks does Aqua support?",
@@ -701,7 +700,6 @@
     "kyc_required": "No",
     "recovery_method": "12-word seed created in-app (optional passphrase)",
     "open_source": "Core wallet is open source; marketplace modules are closed",
-    "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
       "ios": 4.2,
@@ -720,16 +718,22 @@
     ],
     "trust_chips": [
       {
-        "text": "Non-custodial",
-        "status": "positive"
+        "text": "No channel management",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "setup"
       },
       {
-        "text": "Open source",
-        "status": "positive"
+        "text": "Liquid Sidechain",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "pay-onchain"
       },
       {
-        "text": "No KYC",
-        "status": "positive"
+        "text": "Swap-based Lightning",
+        "status": "neutral",
+        "variant": "differentiator",
+        "link_to": "pay-lightning"
       }
     ],
     "tl_dr": {
@@ -895,7 +899,7 @@
         "Aqua USDt swap"
       ]
     },
-    "compat_heading": "What this Aqua wallet can or can't do",
+    "compat_heading": "Compatibility: what works with Aqua",
     "compat_tiles": [
       {
         "id": "pay-lightning",
@@ -1070,7 +1074,7 @@
   {
     "name": "Bisq",
     "category": "Buy Bitcoin",
-    "type_of_platform": "P2P",
+    "type_of_platform": "Decentralized Exchange (DEX)",
     "faqs": [
       {
         "q": "How do Bisq trading fees and BSQ discounts work?",
@@ -1140,7 +1144,6 @@
     "custody_control": "Non-custodial",
     "kyc_required": "No",
     "open_source": "Yes",
-    "user_experience": "0.0",
     "interface": "Desktop only",
     "app_ratings": {
       "text": "No app available"
@@ -1172,15 +1175,15 @@
         "link_to": "bsq-fee-discounts"
       },
       {
-        "text": "Many fiat payment methods",
+        "text": "No initial BTC needed",
         "status": "positive",
         "variant": "differentiator",
-        "link_to": "payment-methods"
+        "link_to": "tl_dr"
       }
     ],
     "tl_dr": {
       "best_for": "People who want to buy or sell bitcoin peer-to-peer with refundable deposits instead of trusting an exchange.",
-      "consider_if": "You are ready to learn the deposit workflow and keep a small BTC balance on hand for fees and collateral.",
+      "consider_if": "You are ready to run desktop software. (Note: Bisq Easy now allows buying without a security deposit).",
       "not_ideal_when": "You need instant liquidity, mobile access, or trades without any on-chain confirmations."
     },
     "howto": {
@@ -1265,7 +1268,7 @@
         "learn_more": "The Bisq DAO votes on fee parameters and the client updates the schedule automatically."
       },
       {
-        "id": "fees-security-deposit",
+        "id": "fees-pay",
         "title": "Post the security deposit",
         "cost_today": "Refundable collateral: typically 15%-50% of trade size",
         "what_happens": "Bisq locks both parties' deposits in the 2-of-2 escrow to incentivize delivery of the fiat payment.",
@@ -1446,6 +1449,44 @@
         "gotcha": "If you withdraw with a low fee during congestion the confirmation can take longer, so plan ahead."
       }
     ],
+    "compatibility": {
+      "section_title": "Compatibility: Where Bisq runs",
+      "intro": "Bisq is a heavy client that runs a local Bitcoin node and Tor hidden service. It requires a desktop computer.",
+      "hardware_os": [
+        {
+          "id": "desktop-os",
+          "title": "Desktop OS",
+          "platforms": [
+            {
+              "name": "Windows",
+              "version": "10+",
+              "status": "verified"
+            },
+            {
+              "name": "macOS",
+              "version": "Apple Silicon/Intel",
+              "status": "verified"
+            },
+            {
+              "name": "Linux",
+              "version": "Debian/RPM",
+              "status": "verified"
+            }
+          ]
+        },
+        {
+          "id": "mobile-support",
+          "title": "Mobile App",
+          "items": [
+            {
+              "name": "Bisq Mobile",
+              "status": "verified",
+              "notes": "Notifications only (cannot trade)"
+            }
+          ]
+        }
+      ]
+    },
     "self_custody": {
       "heading": "Self-custody: finish the trade safely",
       "tiles": [
@@ -1682,7 +1723,7 @@
   {
     "name": "Bitkey",
     "category": "Store it safely",
-    "type_of_platform": "Physical device (hardware wallet) + mobile app",
+    "type_of_platform": "Hardware wallet & app",
     "faqs": [
       {
         "q": "How does Bitkey's 2-of-3 key system keep my bitcoin safe?",
@@ -1732,7 +1773,6 @@
     "recovery_method": "Cloud + device pairing",
     "open_source": "No",
     "node_connect": "Yes",
-    "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
       "ios": 4.6,
@@ -2316,7 +2356,7 @@
   {
     "name": "Bitonic",
     "category": "Buy Bitcoin",
-    "type_of_platform": "Exchange",
+    "type_of_platform": "Bitcoin Brokerage",
     "faqs": [
       {
         "q": "How do Bitonic's Auto Invest fees work?",
@@ -2390,7 +2430,6 @@
     "custody_control": "Custodial",
     "kyc_required": "Yes",
     "open_source": "No",
-    "user_experience": "0.0",
     "interface": "Mobile & Desktop",
     "app_ratings": {
       "ios": 4.5,
@@ -2622,7 +2661,7 @@
         },
         {
           "id": "bitcoin",
-          "name": "Bitcoin deposit",
+          "name": "Bitcoin deposit (selling your bitcoin)",
           "available": true,
           "icon": "bitcoin",
           "summary": {
@@ -2631,7 +2670,7 @@
             "speed": "1+ confirmations",
             "withdraw": "N/A"
           },
-          "best_for": "Funding from another wallet or exchange",
+          "best_for": "Depositing funds when you want to <strong>sell</strong> bitcoin for euros.",
           "limits": {
             "min_per_tx": "No minimum",
             "max_per_tx": "No maximum",
@@ -2907,7 +2946,7 @@
   {
     "name": "Breez",
     "category": "Spend Bitcoin",
-    "type_of_platform": "Hot Wallet",
+    "type_of_platform": "Lightning Node (Mobile)",
     "faqs": [
       {
         "q": "What fees apply when I pay over Lightning?",
@@ -2951,11 +2990,10 @@
         }
       ]
     },
-    "custody_control": "Non-custodial (Lightning node on device; you hold the recovery key)",
+    "custody_control": "Non-custodial (LSP-backed)",
     "kyc_required": "No",
     "recovery_method": "Encrypted cloud backup + Breez recovery key",
     "open_source": "Yes",
-    "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
       "ios": 3.6,
@@ -2974,16 +3012,22 @@
     ],
     "trust_chips": [
       {
-        "text": "Non-custodial",
-        "status": "positive"
+        "text": "Point of Sale mode",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "pay-lightning"
       },
       {
-        "text": "Open source",
-        "status": "positive"
+        "text": "Podcast player",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "podcasting"
       },
       {
-        "text": "No KYC",
-        "status": "positive"
+        "text": "Auto-channel management",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "receive-lightning"
       }
     ],
     "tl_dr": {
@@ -3053,9 +3097,9 @@
       },
       {
         "id": "fees-first-receive",
-        "title": "First time you receive",
+        "title": "Channel Creation (LSP)",
         "cost_today": "0.4% of the amount + small base fee + current network mining fee",
-        "what_happens": "Breez sets up a new channel automatically so you have capacity to receive that payment.",
+        "what_happens": "Breez uses an LSP to open a channel on-the-fly. This incurs a ~0.4% setup fee (min ~2,000 sats) deducted from the incoming amount.",
         "how_to_minimize": "Receive a meaningful amount on your first payment and wait for quieter network periods to reduce the mining fee portion.",
         "learn_more": "The fee covers Breez funding a new channel on the Bitcoin network. It only applies when your wallet needs more receiving capacity."
       },
@@ -3159,12 +3203,12 @@
         "Bitcoin cash register"
       ]
     },
-    "compat_heading": "What this Breez wallet can or can't do",
+    "compat_heading": "Compatibility: what works with Breez",
     "compat_tiles": [
       {
         "id": "pay-lightning",
         "title": "Pay with Lightning",
-        "benefit": "Invoices | Pay links | Lightning Address",
+        "benefit": "Invoices | Lightning Address | POS Mode",
         "status": "works"
       },
       {
@@ -3180,9 +3224,9 @@
         "status": "works"
       },
       {
-        "id": "receive-onchain",
-        "title": "Receive on-chain",
-        "benefit": "Converts to Lightning | 3 confirmations",
+        "id": "podcasting",
+        "title": "Stream Sats to Creators",
+        "benefit": "Podcast Player | V4V | Boostagrams",
         "status": "works"
       }
     ],
@@ -3218,14 +3262,14 @@
         "gotcha": "Channel setup fees apply when you need more capacity; you'll see the fee before confirming."
       },
       {
-        "id": "receive-onchain",
-        "why": "Breez gives you on-chain addresses and automatically swaps confirmed funds into your Lightning balance.",
+        "id": "podcasting",
+        "why": "Breez includes a full podcast player that lets you support creators directly with Value for Value streaming.",
         "try": [
-          "Tap Receive → Bitcoin address",
-          "Share the address and track network confirmations",
-          "Funds move to Lightning after three confirmations if fees are reasonable"
+          "Built-in podcast player supports 'Value for Value' streaming.",
+          "Send sats per minute automatically while you listen.",
+          "Boostagrams let you send messages with payments to hosts."
         ],
-        "gotcha": "Set a reasonable fee limit to avoid delays; high network fees can pause the automatic conversion."
+        "gotcha": "Good for: Supporting the circular economy directly."
       }
     ],
     "migration": [
@@ -3332,9 +3376,9 @@
     }
   },
   {
-    "name": "BTC Pay",
+    "name": "BTCPay Server",
     "category": "Accept Bitcoin as a merchant",
-    "type_of_platform": "Hosted payment gateway",
+    "type_of_platform": "Payment processor",
     "faqs": [
       {
         "q": "How does BTCPay Server keep invoices self-hosted?",
@@ -3393,7 +3437,6 @@
     "custody_control": "Non-custodial",
     "kyc_required": "No",
     "open_source": "Yes",
-    "user_experience": "0.0",
     "profile": "Nicolas Dorier",
     "description": "Most payment processors hold your funds and act as a gatekeeper between you and your customers. BTC Pay Server solves this by running on your own hardware, connecting directly to your Bitcoin wallet without any middleman. That means you receive 100% of every payment instantly, with no risk of frozen accounts or leaked customer data. You can host it yourself for complete independence or use a managed cloud provider to get started quickly.",
     "founded_in": "2017",
@@ -3442,7 +3485,7 @@
       "title": "Go live with Bitcoin payments in 4 steps:",
       "steps": [
         {
-          "id": "deploy-stack",
+          "id": "setup-install",
           "title": "1. Deploy your server",
           "chips": {
             "setup_time": "~30–60 min",
@@ -3458,7 +3501,7 @@
           "gotcha": "The first registered user gains admin rights, so finish setup before inviting teammates."
         },
         {
-          "id": "connect-store",
+          "id": "setup-pay",
           "title": "2. Connect your store or POS",
           "chips": {
             "setup_time": "~15–30 min",
@@ -3473,7 +3516,7 @@
           "gotcha": "Stores stay inactive until at least one payment method is configured, so finish the wallet hookup next."
         },
         {
-          "id": "configure-settlement",
+          "id": "setup-receive",
           "title": "3. Configure Bitcoin settlement",
           "chips": {
             "setup_time": "~10–20 min",
@@ -3488,7 +3531,7 @@
           "gotcha": "Never paste hardware wallet seeds on the server - use BTCPay Vault or PSBT workflows instead."
         },
         {
-          "id": "test-invoice",
+          "id": "setup-final",
           "title": "4. Test and monitor invoices",
           "chips": {
             "setup_time": "~5 min",
@@ -4007,13 +4050,13 @@
     "payment_methods": [
       "Interac e-Transfer",
       "Wire Transfer",
-      "Bill Payment, SEPA bank transfer"
+      "Bill Payment, SEPA bank transfer",
+      "Cash (Canada Post)"
     ],
     "custody_control": "Non-custodial",
-    "kyc_required": "No",
+    "kyc_required": "No (under $1,000 | 0.01 BTC)",
     "recovery_method": "Email login with optional 2FA and support-assisted resets",
     "open_source": "Yes",
-    "user_experience": "0.0",
     "interface": "Mobile & Desktop",
     "app_ratings": {
       "ios": "No app available",
@@ -4035,6 +4078,12 @@
     ],
     "trust_chips": [
       {
+        "text": "No-KYC under $1k",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "privacy"
+      },
+      {
         "text": "Direct-to-wallet delivery",
         "status": "positive",
         "variant": "differentiator",
@@ -4045,12 +4094,6 @@
         "status": "positive",
         "variant": "differentiator",
         "link_to": "bill-pay"
-      },
-      {
-        "text": "Dollar-cost averaging (DCA)",
-        "status": "positive",
-        "variant": "differentiator",
-        "link_to": "dca"
       }
     ],
     "tl_dr": {
@@ -4142,7 +4185,7 @@
         "learn_more": "Prime discounts unlock once your cumulative trades cross $100,000 CAD."
       },
       {
-        "id": "fees-sell",
+        "id": "fees-pay",
         "title": "Sell bitcoin",
         "cost_today": "Interac e-Transfer: no fee<br>Bill payment: no fee<br>Wire transfer: no Bull Bitcoin fee (your bank may charge)",
         "what_happens": "Bull Bitcoin locks the sell rate as soon as it sees your bitcoin, then delivers Canadian dollars to the payout option you chose.",
@@ -4243,11 +4286,37 @@
             "max_per_week": "Contact support for higher limits",
             "withdraw_eligibility": "CAD payout starts after your Lightning payment settles."
           }
+        },
+        {
+          "id": "cash",
+          "name": "Cash (Canada Post)",
+          "available": true,
+          "icon": "cash",
+          "summary": {
+            "fee": "~2% (No KYC)",
+            "fee_link": "fees-buy",
+            "speed": "Minutes",
+            "withdraw": "Bitcoin sends immediately"
+          },
+          "best_for": "Buying bitcoin privately with cash at any Canada Post location.",
+          "limits": {
+            "min_per_tx": "No minimum",
+            "max_per_tx": "$999.99 CAD",
+            "max_per_day": "No maximum",
+            "max_per_week": "No maximum",
+            "withdraw_eligibility": "Orders broadcast immediately."
+          }
         }
       ]
     },
     "compat_heading": "Bull Bitcoin features & limits",
     "compat_tiles": [
+      {
+        "id": "no-kyc-buys",
+        "title": "No-KYC Buys",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Under $1,000 CAD</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> No ID required</span>",
+        "status": "works"
+      },
       {
         "id": "direct-to-wallet",
         "title": "Direct-to-wallet delivery",
@@ -4264,12 +4333,6 @@
         "id": "dca",
         "title": "Dollar-cost averaging (DCA)",
         "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Schedule recurring buys</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Send straight to your wallet</span>",
-        "status": "works"
-      },
-      {
-        "id": "mobile-wallet",
-        "title": "Mobile Wallet",
-        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Liquid & On-chain</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Non-custodial</span>",
         "status": "works"
       }
     ],
@@ -4307,14 +4370,14 @@
         "gotcha": "Recurring buys trigger after each funding clears, so Interac caps can delay the schedule if you hit daily limits."
       },
       {
-        "id": "mobile-wallet",
-        "why": "The Bull Bitcoin Mobile app acts as your non-custodial wallet, letting you hold your own keys for both Liquid (Instant) and On-chain (Secure) bitcoin.",
+        "id": "no-kyc-buys",
+        "why": "Bull Bitcoin allows you to buy (via Cash at Canada Post), sell, or pay bills without identity verification for amounts under $1,000 CAD per transaction.",
         "try": [
-          "Download the app and create a new wallet.",
-          "Back up your recovery phrase or use the cloud backup feature.",
-          "Use the app to generate receiving addresses for your buys."
+          "Create an account with just an email.",
+          "Select 'Cash (Canada Post)' to buy, or any sell method.",
+          "Keep transactions under $999.99 CAD."
         ],
-        "gotcha": "The exchange features in the app currently redirect to the web interface for funding."
+        "gotcha": "Cumulative limits may apply; larger amounts require ID verification."
       }
     ],
     "self_custody": {
@@ -4403,8 +4466,8 @@
     "privacy": {
       "section_title": "Privacy & Safety",
       "data_flows": [
-        "Bull Bitcoin keeps your legal name, address, and ID scans to satisfy Canadian AML requirements.",
-        "Payment instructions, addresses, and invoices you enter are retained for order history and compliance."
+        "<strong>Under $1,000 | 0.01 BTC CAD:</strong> No ID required for cash buys, selling bitcoin, or paying bills. Bull Bitcoin requires only an email/phone number.",
+        "<strong>Over $1,000 | 0.01 BTC CAD:</strong> FINTRAC regulations apply; you must verify your ID and address."
       ],
       "data_flows_do": "Use strong passwords, enable 2FA, and remove saved payout details you no longer need.",
       "data_flows_dont": "Reuse Lightning invoices or on-chain addresses; generate fresh details so your activity stays compartmentalized.",
@@ -4435,7 +4498,7 @@
         },
         {
           "q": "Can I trade without uploading ID?",
-          "a": "No. FINTRAC rules require verified identification before you can send funds or request CAD payouts."
+          "a": "Yes, for amounts under $1,000 | 0.01 BTC CAD. You can buy (via Cash/Canada Post), sell, or pay bills without ID. Larger amounts require full verification."
         }
       ],
       "glossary": [
@@ -4571,7 +4634,6 @@
     "kyc_required": "Yes",
     "recovery_method": "Custodial account with KYC; withdraw bitcoin to your own wallet",
     "open_source": "No",
-    "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
       "ios": 4.2,
@@ -4949,7 +5011,7 @@
   {
     "name": "Hodlhodl",
     "category": "Buy Bitcoin",
-    "type_of_platform": "P2P",
+    "type_of_platform": "Non-custodial P2P Marketplace",
     "faqs": [
       {
         "q": "How do Hodl Hodl trading fees work?",
@@ -5005,7 +5067,6 @@
     "kyc_required": "No",
     "recovery_method": "Email login with optional 2FA, Trusted Devices, and support mediated account recovery",
     "open_source": "No",
-    "user_experience": "0.0",
     "interface": "Desktop only",
     "app_ratings": {
       "text": "No app available"
@@ -5145,7 +5206,7 @@
       {
         "id": "fees-buy",
         "title": "Buy bitcoin",
-        "cost_today": "Trading fee: 0.5% split equally between both parties",
+        "cost_today": "Trading fee: 0.6% split equally (0.3% per side)",
         "what_happens": "Hodl Hodl deducts the fee from the release transaction once both sides confirm payment, so no custodial account ever holds your bitcoin.",
         "how_to_minimize": "Build reputation and negotiate premiums with trusted traders to keep your all-in price close to spot.",
         "learn_more": "Premiums vary by offer; review the contract summary before you lock in a trade."
@@ -5165,7 +5226,7 @@
         "a": "The seller covers the on-chain fee to fund escrow and can choose the release fee, while the buyer only pays their own wallet fee if they move coins again."
       },
       {
-        "q": "When does Hodl Hodl charge the 0.5% fee?",
+        "q": "When does Hodl Hodl charge the 0.6% fee?",
         "a": "The fee is withheld from the escrow release once both parties confirm payment, so no extra invoice or deposit is needed."
       },
       {
@@ -5466,7 +5527,7 @@
       "withdrawal_policy_dont": "Send fiat before the escrow funding transaction has at least one confirmation.",
       "region": [
         "Hodl Hodl operates globally, but certain fiat rails or currencies depend on local traders.",
-        "U.S. residents can trade but should review their state regulations on peer-to-peer bitcoin sales.",
+        "Hodl Hodl <strong>does NOT accept U.S. residents</strong> (Prohibited Jurisdiction). US users should use <a href=\"/services/bisq.html\">Bisq</a> or <a href=\"/services/robosats.html\">RoboSats</a> instead.",
         "Some countries may require additional verification for high volume trades; check the limit tier policy."
       ],
       "micro_faqs": [
@@ -5619,10 +5680,9 @@
     "settlement_time": "Instant via Lightning",
     "compatibility": "SDKs and APIs for wallets, exchanges, digital banks; Integrates with fiat rails (e.g., RTP) and Lightning Network",
     "pos_compatibility": "Yes",
-    "custody_control": "Flexible: Supports self-custodial wallets via Spark; Managed nodes for enterprises",
+    "custody_control": "Flexible: Self-custody via Spark or managed enterprise nodes.",
     "kyc_required": "Yes",
     "open_source": "Yes (Spark protocol and SDKs)",
-    "user_experience": "0.0",
     "profile": "David Marcus",
     "description": "Lightspark is a payments infrastructure company founded by David Marcus (formerly of PayPal, Meta, and Diem) in 2022. They aim to build what they call the \"Money Grid,\" a global, open payment network using Bitcoin as a neutral settlement layer and leveraging Lightning for high-speed transfers.\n\nTheir target audience includes enterprises—digital banks, fintechs, wallets, exchanges—that need to move money across currencies and jurisdictions instantly and cheaply, as well as developers building Bitcoin-native payment applications or self-custodial wallets that need scalable infrastructure.\n\nWhat sets Lightspark apart is their end-to-end product integration, combining seamless liquidity management, intelligent routing, compliance-ready infrastructure, and human-friendly Universal Money Address (UMA) tech. This abstraction lets banks, wallets, exchanges, and businesses effortlessly send and receive fiat or crypto globally without having to manage Lightning channels, cross-border FX, or complex on-chain details. These tools have already seen traction with big regulated partners and typically involves KYC via the partner.\n\nLooking forward, Lightspark's vision is to scale the Money Grid globally—connecting all real-time payment systems and making Bitcoin native rails for everything from everyday consumer transfers to B2B fiat-fiat flows. Spark aims to resolve key Lightning limitations like self-custody economic scalability and lacks native token support. By building Spark open-source and fully backward compatible with Lightning, they hope to decentralize stablecoin issuance on Bitcoin and finally realize high-velocity, global Bitcoin-based payment settlement.",
     "founded_in": "2022",
@@ -6152,7 +6212,7 @@
   {
     "name": "Muun",
     "category": "Spend Bitcoin",
-    "type_of_platform": "Hot Wallet",
+    "type_of_platform": "Hybrid Bitcoin Wallet",
     "faqs": [
       {
         "q": "What is Muun Wallet?",
@@ -6208,7 +6268,6 @@
     "kyc_required": "No",
     "recovery_method": "Emergency kit with email and recovery code",
     "open_source": "Yes",
-    "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
       "ios": 4.3,
@@ -6227,16 +6286,22 @@
     ],
     "trust_chips": [
       {
-        "text": "Non-custodial",
-        "status": "positive"
+        "text": "Unified Balance",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "receive-onchain"
       },
       {
-        "text": "Open source",
-        "status": "positive"
+        "text": "2-of-2 Multisig",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "recovery"
       },
       {
-        "text": "No KYC",
-        "status": "positive"
+        "text": "Submarine Swaps",
+        "status": "neutral",
+        "variant": "differentiator",
+        "link_to": "fees"
       }
     ],
     "tl_dr": {
@@ -6310,7 +6375,7 @@
       {
         "id": "fees-first-receive",
         "title": "Receive Lightning (submarine swap)",
-        "cost_today": "On-chain mining fee + swap service fee (varies $2-$50+)",
+        "cost_today": "Muun manages no channels. Every Lightning transaction occurs on-chain via swap, so fees rise significantly when the Bitcoin mempool is busy.",
         "what_happens": "Muun uses an on-chain transaction to enable your Lightning receive—you pay the fee, not the sender.",
         "how_to_minimize": "Check mempool.space before requesting large Lightning payments; avoid receiving when on-chain fees are high.",
         "learn_more": "When you receive Lightning but Muun needs to establish payment capacity, it uses a submarine swap—an on-chain transaction that enables the Lightning payment. Unlike most Lightning wallets, YOU (the receiver) pay this fee. This is the main cost tradeoff of Muun's automatic channel management."
@@ -6411,7 +6476,7 @@
         "submarine swaps"
       ]
     },
-    "compat_heading": "What this Muun wallet can or can't do",
+    "compat_heading": "Compatibility: what works with Muun",
     "compat_tiles": [
       {
         "id": "pay-lightning",
@@ -6585,7 +6650,7 @@
   {
     "name": "myNode",
     "category": "Run my own node",
-    "type_of_platform": "Home server as software and / or hardware",
+    "type_of_platform": "Node software & hardware",
     "faqs": [
       {
         "q": "How do MyNode hardware options compare between Model One and Model Two?",
@@ -6638,7 +6703,6 @@
     "kyc_required": "No",
     "recovery_method": "System backup archive + Lightning static channel backup",
     "open_source": "Open source core with optional Premium license",
-    "user_experience": "0.0",
     "interface": "Desktop only",
     "app_ratings": {
       "ios": null,
@@ -7348,10 +7412,9 @@
     "settlement_time": "1-2 days",
     "compatibility": "text",
     "pos_compatibility": "text",
-    "custody_control": "Custodial (until withdrawal or automatic settlement)",
+    "custody_control": "Custodial (auto-settlement available)",
     "kyc_required": "Yes",
     "open_source": "No",
-    "user_experience": "0.0",
     "profile": "Joao Almeida & Afnan Rahman",
     "description": "OpenNode is a Bitcoin-first payment processor that empowers businesses to accept and send Bitcoin—either on-chain or via Lightning—using simple plugins, hosted checkouts, or its developer-friendly API. Organisations that want a turnkey, compliant solution—especially mid-sized to large enterprises—can onboard easily with KYC and achieve global scale without building complex node infrastructure.\\n\\nIt offers instant, low-cost microtransactions with a focus on liquidity management, channel operations, and protocol support. For merchants, this means accessing Bitcoin payments both instantly and economically, alongside automatic settlement options in fiat or BTC. By abstracting away technical complexities like node handling, liquidity, and channel balance, OpenNode allows businesses to plug-and-play and scale efficiently.\\n\\nIt holds US regulatory licenses, manages KYC requirements, and maintains automated fiat conversions and payouts. This makes it ideal for businesses—especially blue-chip and enterprise-level—that require solid legal and financial backstops.\\n\\nTheir long-term vision is to see global businesses and platforms integrate Bitcoin payments as seamlessly as credit cards—secure, censorship-resistant, and frictionless—while pushing forward broader adoption of Bitcoin as a unit of exchange across borders and cultures.",
     "founded_in": "2018",
@@ -7401,7 +7464,7 @@
       "title": "Set up your OpenNode payment stack",
       "steps": [
         {
-          "id": "create-account",
+          "id": "setup-install",
           "title": "1. Create and verify your account",
           "chips": {
             "setup_time": "~10 min",
@@ -7417,37 +7480,37 @@
           "gotcha": "Higher processing limits stay capped until KYB completes, so have incorporation and ownership docs ready."
         },
         {
-          "id": "configure-checkout",
-          "title": "2. Configure charges and hosted checkout",
+          "id": "setup-pay",
+          "title": "2. Configure settlement & checkout",
+          "chips": {
+            "setup_time": "~10 min",
+            "cost": "Free",
+            "risk": "Low"
+          },
+          "actions": [
+            "Navigate to Settings > Payments to decide if you want to keep Bitcoin or auto-convert to local currency (USD, EUR, GBP).",
+            "Upload your store logo and cover image so the payment window matches your brand.",
+            "Create a Payment Button or Pos Link if you need a simple way to collect money without a full website."
+          ],
+          "gotcha": "Auto-conversion protects you from volatility but usually incurs a slightly higher fee (e.g., 1%) than keeping Bitcoin."
+        },
+        {
+          "id": "setup-receive",
+          "title": "3. Connect your e-commerce store",
           "chips": {
             "setup_time": "~15 min",
             "cost": "Free",
             "risk": "Low"
           },
           "actions": [
-            "Create a test charge to see the hosted checkout render both the Lightning invoice and on-chain address.",
-            "Redirect shoppers to checkout.opennode.com/{id} and append ?ln=1 or ?hf=1 to default Lightning or hide fiat values.",
-            "Choose how each charge settles (BTC, fiat, split) inside Settings → Payments."
+            "Click on Integrations to find the official plugin for your platform (WooCommerce, Shopify, Magento, etc.).",
+            "Generate an API Key in the dashboard and paste it into the plugin settings on your own website.",
+            "Run a test order on your shop to confirm the status updates from Pending to Paid automatically."
           ],
-          "gotcha": "Lightning invoices above 500000000 sats will not generate, so split very large orders or route them on-chain."
+          "gotcha": "Ensure your website uses HTTPS (SSL); the secure connection is required for OpenNode to mark orders as paid."
         },
         {
-          "id": "connect-webhooks",
-          "title": "3. Wire your webhooks and callbacks",
-          "chips": {
-            "setup_time": "~20 min",
-            "cost": "Free",
-            "risk": "Medium"
-          },
-          "actions": [
-            "Pass a callback_url when creating charges so status changes post back to your app.",
-            "Subscribe to withdrawal webhooks because Lightning payouts can outlive a normal HTTP request cycle.",
-            "Test underpaid, paid, and refunded flows to confirm your order system reacts correctly."
-          ],
-          "gotcha": "Expose a public endpoint (or tunnel) for dev environments so OpenNode can reach your webhook URL."
-        },
-        {
-          "id": "fund-and-payout",
+          "id": "setup-final",
           "title": "4. Fund the fiat wallet and send payouts",
           "chips": {
             "setup_time": "~20 min",
@@ -7869,7 +7932,7 @@
   {
     "name": "Peach",
     "category": "Buy Bitcoin",
-    "type_of_platform": "P2P",
+    "type_of_platform": "P2P Marketplace",
     "faqs": [
       {
         "q": "How does Peach multisig escrow protect peer-to-peer trades?",
@@ -7937,7 +8000,6 @@
     "custody_control": "Non-custodial",
     "kyc_required": "No",
     "open_source": "Yes",
-    "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
       "ios": "In development",
@@ -7961,7 +8023,7 @@
         "link_to": "device-account-file"
       },
       {
-        "text": "Multisig trade escrow",
+        "text": "2-of-2 Multisig Escrow",
         "status": "positive",
         "variant": "differentiator",
         "link_to": "multisig-trade-escrow"
@@ -8056,8 +8118,8 @@
       {
         "id": "fees-buy",
         "title": "Buy bitcoin",
-        "cost_today": "Buyer fee: ~2% per trade (seller free)",
-        "what_happens": "Peach deducts its marketplace fee from the release once both sides confirm fiat payment.",
+        "cost_today": "2% platform fee + Seller Premium",
+        "what_happens": "Peach charges ~2%, but sellers often add their own premium (1–5%) above the Bitcoin spot price.",
         "how_to_minimize": "Build reputation, compare premiums, and apply Peach Point rewards from referrals to offset part of the fee.",
         "learn_more": "Referral rewards pay 42 sats per point. Request a payout ticket when you want to convert points to sats."
       },
@@ -8368,7 +8430,8 @@
       "withdrawal_policy": [
         "Escrow releases need both the seller and Peach to co-sign before bitcoin leaves to the buyer.",
         "If the seller disappears, Peach can release funds after roughly 4,320 blocks once evidence shows payment cleared.",
-        "Instant payment rails still wait on on-chain confirmation before escrow opens."
+        "Instant payment rails still wait on on-chain confirmation before escrow opens.",
+        "Optional: You can reveal and write down your 12-word seed phrase in Settings for a standard non-digital backup."
       ],
       "withdrawal_policy_do": "Hold on to receipts and screenshots until the release confirms on-chain.",
       "withdrawal_policy_dont": "Expect Peach to shorten the dispute timer once the automatic release countdown starts.",
@@ -8461,7 +8524,7 @@
   {
     "name": "Phoenix",
     "category": "Spend Bitcoin",
-    "type_of_platform": "Hot Wallet",
+    "type_of_platform": "Self-custodial Lightning Wallet",
     "faqs": [
       {
         "q": "What fees apply when I pay over Lightning?",
@@ -8509,7 +8572,6 @@
     "kyc_required": "No",
     "recovery_method": "Seed phrase + static channel backup",
     "open_source": "Yes",
-    "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
       "ios": 4.2,
@@ -8528,16 +8590,22 @@
     ],
     "trust_chips": [
       {
-        "text": "Non-custodial",
-        "status": "positive"
+        "text": "Native Lightning Node",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "pay-lightning"
       },
       {
-        "text": "Open source",
-        "status": "positive"
+        "text": "Automated Splicing",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "fees-splice"
       },
       {
-        "text": "No KYC",
-        "status": "positive"
+        "text": "Trustless Liquidity",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "privacy"
       }
     ],
     "tl_dr": {
@@ -8615,7 +8683,7 @@
       },
       {
         "id": "fees-splice",
-        "title": "Big receive",
+        "title": "Inbound Liquidity (Splicing)",
         "cost_today": "1% of the amount + mining fee (splice-in)",
         "what_happens": "Phoenix resizes your channel to accept more sats than current capacity allows.",
         "how_to_minimize": "Consolidate into fewer, larger receives; spend down balance before receiving large amounts.",
@@ -8713,7 +8781,7 @@
         "Phoenix availability"
       ]
     },
-    "compat_heading": "What this Phoenix wallet can or can't do",
+    "compat_heading": "Compatibility: what works with Phoenix",
     "compat_tiles": [
       {
         "id": "pay-lightning",
@@ -8887,7 +8955,7 @@
   {
     "name": "Pocket",
     "category": "Buy Bitcoin",
-    "type_of_platform": "P2P",
+    "type_of_platform": "Non-custodial Bitcoin Broker",
     "supported_network": "Bitcoin (on-chain)",
     "faqs": [
       {
@@ -8968,7 +9036,6 @@
     "custody_control": "Non-custodial",
     "kyc_required": "Yes, but only for purchases over €1.000",
     "open_source": "No",
-    "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
       "ios": "4.2",
@@ -8978,7 +9045,7 @@
     "description": "Pocket Bitcoin stands out with its non-custodial model, sending Bitcoin directly to your wallet without holding funds, and a no-account, KYC-light approach for daily buys up to €1,000 | 0.01 BTC | 0.01 BTC, prioritizing privacy. It offers one-off or recurring buys via bank transfer, with a 1.5% fee and no withdrawal fees, supporting select hardware wallets like Trezor and Ledger with message signing.\\n\\nPocket's mission is to make Bitcoin ownership frictionless and private, promoting self-custody without complexity and with a vision to expand to a dozen more European countries and enhance wallet integrations.\\n\\nThe mobile app, and the web portal for managing orders and wallet settings, are praised for their simple interface and fast transactions, but some find the fees slightly high.",
     "tl_dr": {
       "best_for": "Buyers across the EU who want bank transfers to drop bitcoin straight into a wallet they control.",
-      "consider_if": "You value transparent fees and Kraken execution more than instant card funding.",
+      "consider_if": "You value transparent pricing but are okay with your trades executing on a crypto exchange (Kraken).",
       "not_ideal_when": "You need Lightning payouts or non-EU payment rails today."
     },
     "howto": {
@@ -9041,7 +9108,7 @@
         "learn_more": "The payout screen shows the Kraken price and timestamp so you can verify the execution."
       },
       {
-        "id": "fees-network",
+        "id": "pay-onchain",
         "title": "Bitcoin network fee",
         "cost_today": "Typically 500–1000 sats per payout",
         "what_happens": "Pocket batches many customer payouts into one transaction so everyone shares the mining fee.",
@@ -9109,10 +9176,10 @@
           "icon": "bank",
           "summary": {
             "fee": "Usually free inside Switzerland",
-            "speed": "~1 business day",
+            "speed": "Instant (SEPA Instant) or 1 banking day",
             "withdraw": "Not applicable"
           },
-          "best_for": "Swiss customers wiring francs to Pocket's Swiss account.",
+          "best_for": "Eurozone customers wanting instant settlement via SEPA Instant.",
           "limits": {
             "min_per_tx": "Set by your bank",
             "max_per_tx": "Set by your bank",
@@ -9140,7 +9207,7 @@
       {
         "id": "kraken-price-pass-through",
         "title": "Kraken price pass-through",
-        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Live exchange rate</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Kraken dependency</span>",
+        "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Live exchange rate</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> <strong>Caveat:</strong> Crypto exchange backend</span>",
         "status": "works-caveat"
       },
       {
@@ -9179,7 +9246,7 @@
           "Download the CSV export from the dashboard for your accountant or tax software.",
           "Spot-check a past order to confirm that the fiat amount minus 1.5% matches the sats you received."
         ],
-        "gotcha": "Kraken execution happens after your transfer reaches Pocket, so bank delays push the timestamp accordingly. If Kraken pauses trading, your payout waits until the venue comes back online."
+        "gotcha": "Pocket is a broker, not a marketplace. Trades rely on Kraken's uptime and liquidity."
       },
       {
         "id": "dca",
@@ -9200,15 +9267,16 @@
         "link_to": "direct-to-wallet-payouts"
       },
       {
-        "text": "Batched network fees",
-        "status": "positive",
+        "text": "Executes on Kraken",
+        "status": "neutral",
         "variant": "differentiator",
-        "link_to": "batched-network-fees"
+        "link_to": "kraken-price-pass-through"
       },
       {
-        "text": "Dollar-cost averaging (DCA)",
+        "text": "xPub Address Rotation",
         "status": "positive",
-        "link_to": "dca"
+        "variant": "differentiator",
+        "link_to": "setup-install"
       }
     ],
     "self_custody": {
@@ -9360,7 +9428,7 @@
   {
     "name": "Relai",
     "category": "Buy Bitcoin",
-    "type_of_platform": "Exchange",
+    "type_of_platform": "Non-custodial Bitcoin App",
     "faqs": [
       {
         "q": "How do Relai's bitcoin buying fees work?",
@@ -9449,7 +9517,6 @@
     "custody_control": "Custodial",
     "kyc_required": "Yes",
     "open_source": "No",
-    "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
       "ios": 4.6,
@@ -9474,7 +9541,7 @@
         "link_to": "direct-to-wallet"
       },
       {
-        "text": "Hardware wallet signing",
+        "text": "External Wallet Stacking",
         "status": "positive",
         "variant": "differentiator",
         "link_to": "hardware-wallet-connect"
@@ -9562,7 +9629,7 @@
         "id": "fees-deposit",
         "title": "Deposit cash",
         "cost_today": "SEPA bank transfer: Free (Relai)<br>Credit/debit card, Apple Pay, Google Pay: ~3.0% processor fee",
-        "what_happens": "SEPA transfers settle in one to two business days before Relai executes the buy, while cards and mobile pay fund immediately.",
+        "what_happens": "Standard SEPA takes 1-2 days, but SEPA Instant transfers settle in minutes 24/7.",
         "how_to_minimize": "Use SEPA for larger orders, match the transfer currency to your quote, and avoid card funding unless you need the speed.",
         "learn_more": "Only send funds from the bank account you registered in Relai so the transfer auto-matches to your pending order."
       },
@@ -9625,10 +9692,10 @@
           "summary": {
             "fee": "Free (Relai)",
             "fee_link": "fees-deposit",
-            "speed": "1-2 business days",
+            "speed": "Instant (SEPA Instant) or 1-2 days",
             "withdraw": "Bitcoin releases on-chain"
           },
-          "best_for": "Larger buys with minimal fees when you can wait for settlement",
+          "best_for": "Fee-free funding that settles instantly with SEPA Instant banks.",
           "limits": {
             "min_per_tx": "€50 / 50 CHF",
             "max_per_tx": "Up to €100,000 per order",
@@ -9830,7 +9897,7 @@
       "withdrawal_policy_do": "Plan sells during lower fee windows and keep a cushion of sats to cover the mining fee.",
       "withdrawal_policy_dont": "Assume card refunds or bank payouts settle instantly; track the transfer until it lands.",
       "region": [
-        "Relai targets Switzerland and the broader EEA; confirm app availability in your local store.",
+        "Relai holds a MiCA license (Oct 2025), guaranteeing service across all 30 EEA countries and Switzerland.",
         "Apple Pay, Google Pay, and card processing depend on the country where your bank issued the card.",
         "Tax reporting still varies by jurisdiction, so export your records and consult local guidance."
       ],
@@ -10024,7 +10091,6 @@
     "kyc_required": "Yes",
     "recovery_method": "Email login with optional 2FA. Support can reset access after you reverify your ID.",
     "open_source": "No",
-    "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
       "ios": 4.9,
@@ -10559,7 +10625,7 @@
   {
     "name": "RoboSats",
     "category": "Buy Bitcoin",
-    "type_of_platform": "P2P",
+    "type_of_platform": "P2P Lightning Exchange",
     "supported_network": "Bitcoin (Lightning with optional swaps)",
     "faqs": [
       {
@@ -10630,7 +10696,6 @@
     "kyc_required": "No",
     "recovery_method": "Secret robot token you generate per session; keep it offline to reopen contracts or settle disputes",
     "open_source": "Yes",
-    "user_experience": "0.0",
     "interface": "Mobile & Desktop",
     "app_ratings": {
       "text": "N/A"
@@ -10657,7 +10722,7 @@
         "link_to": "lightning-escrow"
       },
       {
-        "text": "Robot token identities",
+        "text": "No Account / No KYC",
         "status": "positive",
         "variant": "differentiator",
         "link_to": "robot-identities"
@@ -10686,7 +10751,7 @@
             "risk": "Low"
           },
           "actions": [
-            "Install Tor Browser (desktop) or run Orbot with a privacy browser on mobile, then open https://robosats.com or the onion listed in Quick Start.",
+            "<strong>Android:</strong> Install the official RoboSats app (no separate Tor setup needed).<br><strong>Desktop:</strong> Install Tor Browser or run Orbot with a privacy browser on mobile, then open https://robosats.com or the onion listed in Quick Start.",
             "Click Start to generate a robot avatar and let the coordinator hand you the secret token.",
             "Copy the token into an offline password manager or notebook before you close the welcome dialog."
           ],
@@ -10910,7 +10975,7 @@
             "Enable push notifications so you do not miss contract updates.",
             "Write down your recovery seed or backup key before you trade."
           ],
-          "gotcha": "Custodial wallets can cancel hold invoices unexpectedly; prefer non-custodial or hybrid wallets for larger trades."
+          "gotcha": "<strong>Critical:</strong> Do NOT use custodial wallets like Wallet of Satoshi. They cannot handle Hold Invoices, and you may lose your bond."
         },
         {
           "id": "make-receive-code",
@@ -11141,7 +11206,6 @@
     "recovery_method": "Manual seed backup",
     "open_source": "Yes",
     "node_connect": "Yes – Bitcoin Core or Electrum server (Tor supported)",
-    "user_experience": "0.0",
     "interface": "Desktop only",
     "app_ratings": {
       "text": "No app available"
@@ -11164,21 +11228,21 @@
         "link_to": "coin-control"
       },
       {
-        "text": "Built-in mixing",
-        "status": "positive",
-        "variant": "differentiator",
-        "link_to": "privacy-mixing"
-      },
-      {
         "text": "Airgapped signing",
         "status": "positive",
         "variant": "differentiator",
         "link_to": "hardware-connect"
+      },
+      {
+        "text": "Built-in Tor",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "tor-integration"
       }
     ],
     "tl_dr": {
-      "best_for": "Desktop users who want full control over their UTXOs, privacy, and hardware wallet connections.",
-      "consider_if": "You want to mix your coins with Whirlpool or connect easily to your own node.",
+      "best_for": "Desktop users who want full control over their UTXOs, connection to their own node, and hardware wallet integrations.",
+      "consider_if": "You want to connect easily to your own node.",
       "not_ideal_when": "You need a mobile wallet or prefer a simplified interface without technical details."
     },
     "howto": {
@@ -11259,14 +11323,14 @@
           "footer": "<strong>Good for:</strong> Advanced privacy management. <strong>Trade-off:</strong> Requires manual effort for every transaction."
         },
         {
-          "id": "privacy-mixing",
-          "title": "Built-in mixing",
+          "id": "tor-integration",
+          "title": "Built-in Tor",
           "bullets": [
-            "<strong>Whirlpool integration:</strong> Mix your coins with others in a decentralized way to break blockchain links.",
-            "<strong>Post-mix tools:</strong> Automatically separates mixed coins into a dedicated account for safe spending.",
-            "<strong>No extra software:</strong> Run the mixing cycle directly within the Sparrow interface."
+            "<strong>One-click privacy:</strong> Toggle the built-in Tor proxy to mask your IP address immediately.",
+            "<strong>No extra setup:</strong> No need to install Tor browser or command line tools separately.",
+            "<strong>Onion support:</strong> Connect to .onion servers for maximum privacy."
           ],
-          "footer": "<strong>Good for:</strong> Regaining fungibility. <strong>Trade-off:</strong> Mixing fees and mining fees apply."
+          "footer": "<strong>Good for:</strong> Network privacy. <strong>Trade-off:</strong> Slower connection speeds."
         },
         {
           "id": "hardware-connect",
@@ -11458,6 +11522,27 @@
               "notes": "QR airgapped"
             }
           ]
+        },
+        {
+          "id": "node-support",
+          "title": "Node Connections",
+          "platforms": [
+            {
+              "name": "Bitcoin Core",
+              "version": "RPC",
+              "status": "verified"
+            },
+            {
+              "name": "Electrum Server",
+              "version": "Public/Private",
+              "status": "verified"
+            },
+            {
+              "name": "Node OS",
+              "version": "Umbrel/Start9/Citadel",
+              "status": "verified"
+            }
+          ]
         }
       ],
       "standards": {
@@ -11478,12 +11563,6 @@
             "standard": "Taproot",
             "support": "Yes",
             "notes": "Send and receive to P2TR",
-            "status": "verified"
-          },
-          {
-            "standard": "Whirlpool",
-            "support": "Yes",
-            "notes": "Built-in Chaumian CoinJoin",
             "status": "verified"
           },
           {
@@ -11545,11 +11624,6 @@
             "name": "Network mining fees",
             "amount": "Varies",
             "note": "Paid to miners to process transactions"
-          },
-          {
-            "name": "Whirlpool fees (optional)",
-            "amount": "Varies",
-            "note": "If you choose to mix coins (Pool fee + mining fee)"
           }
         ]
       }
@@ -11645,7 +11719,7 @@
   {
     "name": "Start9",
     "category": "Run my own node",
-    "type_of_platform": "Home server as software and / or hardware",
+    "type_of_platform": "Server OS & Hardware",
     "faqs": [
       {
         "q": "How do I reach the StartOS dashboard on day one?",
@@ -11689,7 +11763,6 @@
       ]
     },
     "price": "$699: Server One<br>$899: Server Pure",
-    "user_experience": "0.0",
     "interface": "Desktop only",
     "support": "Community forums and Premium support (Free with device)",
     "profile": "Matt Hill",
@@ -11700,7 +11773,7 @@
       "WW"
     ],
     "supported_network": "Bitcoin Core, Lightning (LND and Core Lightning), and the StartOS marketplace catalog for Nextcloud, Vaultwarden, Matrix, Jellyfin, and other LAN-native services.",
-    "custody_control": "Self-hosted (you run StartOS and hold all keys on hardware you own).",
+    "custody_control": "Self-hosted (you run StartOS and hold all keys on hardware you own)",
     "kyc_required": "No",
     "recovery_method": "Encrypted backups to physical drives or SMB folders plus Recover/Transfer wizards to reuse or restore disks.",
     "open_source": "Source-available (StartOS releases published on GitHub).",
@@ -12339,7 +12412,7 @@
   {
     "name": "Strike",
     "category": "Buy Bitcoin",
-    "type_of_platform": "Exchange",
+    "type_of_platform": "Bitcoin App",
     "faqs": [
       {
         "q": "How do Strike's bitcoin trading fees work?",
@@ -12405,7 +12478,6 @@
     "kyc_required": "Yes (government ID required)",
     "recovery_method": "Email login with optional 2FA and support assisted resets",
     "open_source": "No",
-    "user_experience": "0.0",
     "interface": "Mobile only",
     "app_ratings": {
       "ios": 4.8,
@@ -12425,6 +12497,12 @@
     ],
     "trust_chips": [
       {
+        "text": "Free on-chain withdrawals",
+        "status": "positive",
+        "variant": "differentiator",
+        "link_to": "fees-withdraw"
+      },
+      {
         "text": "Bill Pay",
         "status": "positive",
         "variant": "differentiator",
@@ -12435,11 +12513,6 @@
         "status": "positive",
         "variant": "differentiator",
         "link_to": "bitcoin-loans"
-      },
-      {
-        "text": "Automatic withdrawals",
-        "status": "positive",
-        "link_to": "auto-withdraw"
       }
     ],
     "tl_dr": {
@@ -13056,7 +13129,6 @@
     "custody_control": "Custodial",
     "kyc_required": "Yes",
     "open_source": "No",
-    "user_experience": "0.0",
     "interface": "Mobile & Desktop",
     "app_ratings": {
       "ios": 4.8,
@@ -13600,7 +13672,6 @@
     "kyc_required": "No",
     "recovery_method": "System backup archive + Lightning static channel backup",
     "open_source": "Source-available (PolyForm Noncommercial 1.0.0)",
-    "user_experience": "0.0",
     "interface": "Web dashboard",
     "app_ratings": {
       "ios": null,
@@ -14329,7 +14400,6 @@
     "recovery_method": "Unchained can co-sign if a key is lost",
     "open_source": "Partial (Caravan OSS)",
     "node_connect": "No",
-    "user_experience": "0.0",
     "interface": "Mobile & Desktop",
     "app_ratings": {
       "ios": 4.9,
@@ -14883,7 +14953,7 @@
     "features": {
       "WW": [
         {
-          "text": "Enhanced privacy with CoinJoin",
+          "text": "Tor & coin control privacy",
           "status": "positive"
         },
         {
@@ -14899,7 +14969,7 @@
           "status": "negative"
         },
         {
-          "text": "Coinjoin fees apply",
+          "text": "Coordinator fees (if used)",
           "status": "negative"
         }
       ]
@@ -14909,13 +14979,12 @@
     "recovery_method": "12-word seed + optional passphrase",
     "open_source": "Yes",
     "node_connect": "Yes (via hardware wallets)",
-    "user_experience": "0.0",
     "interface": "Desktop only",
     "app_ratings": {
       "text": "No app available"
     },
     "profile": "Balint Harmat, Adam Ficsor & Gergely Hajdu",
-    "description": "Wasabi Wallet is a privacy-focused, open-source, non‑custodial Bitcoin desktop wallet launched by zkSNACKs. It routes all traffic through Tor and uses compact blockchain filters, keeping your IP and balance private. Its standout feature is built-in CoinJoin, a process that mixes your Bitcoin with others' to make it harder for anyone to trace your transactions, enhancing privacy without relying on third parties.\\n\\nThe user interface is straightforward but functional, with a dashboard showing your balance, privacy progress, and transaction history, though it may feel technical for complete beginners. Setup involves writing down a 12-word seed phrase and an optional passphrase, which adds security but requires careful storage.\\n\\nWhat sets Wasabi apart is its strong focus on privacy through CoinJoin, which is seamlessly integrated and doesn't require manual setup, making it accessible for newcomers. It also allows advanced users to connect to custom coordinators via platforms like Nostr, ensuring privacy even if default services are unavailable.\\n\\nWasabi is for people who want to own their Bitcoin without having to trust big companies. It hides your transactions by mixing them with others, runs silently in the background over Tor, and gives you full control—all on your own computer. Its goal is to make privacy easy and powerful, while building toward a future where you don't rely on any single server.",
+    "description": "Wasabi Wallet is a privacy-focused, open-source, non‑custodial Bitcoin desktop wallet launched by zkSNACKs. It routes all traffic through Tor and uses compact blockchain filters, keeping your IP and balance private. With the 2024 sunset of the zkSNACKs CoinJoin coordinator, Wasabi now focuses on powerful manual coin control, PayJoin, and hardware wallet integration for privacy management.\n\nThe user interface is straightforward but functional, with a dashboard showing your balance, privacy progress, and transaction history, though it may feel technical for complete beginners. Setup involves writing down a 12-word seed phrase and an optional passphrase, which adds security but requires careful storage.\n\nWasabi is for people who want to own their Bitcoin without having to trust big companies. It runs silently in the background over Tor and gives you full control—all on your own computer. Its goal is to make privacy easy and powerful, while building toward a future where you don't rely on any single server.",
     "founded_in": "2018",
     "website": "https://wasabiwallet.io",
     "countries": [
@@ -14935,14 +15004,14 @@
         "link_to": "coin-labels"
       },
       {
-        "text": "CoinJoin (availability varies)",
-        "status": "neutral",
+        "text": "Hardware Interface",
+        "status": "positive",
         "variant": "differentiator",
-        "link_to": "coinjoin-availability"
+        "link_to": "hardware"
       }
     ],
     "tl_dr": {
-      "best_for": "Privacy-focused bitcoiners who want a self-custodial desktop wallet with Tor routing, coin control, and PayJoin support.",
+      "best_for": "Privacy-focused bitcoiners who want a self-custodial desktop wallet with default Tor routing, coin control, and hardware wallet support.",
       "consider_if": "You value mandatory labeling, open-source code, hardware wallet integration, and the option to connect your own node.",
       "not_ideal_when": "You need a mobile app, built-in CoinJoin (zkSNACKs coordinator shut down June 2024), or Lightning support."
     },
@@ -15018,7 +15087,7 @@
           "title": "Self-custody (you hold the keys)",
           "bullets": [
             "<strong>Non-custodial:</strong> Private keys stay on your device, encrypted with your passphrase.",
-            "<strong>12-word seed:</strong> Standard BIP39 recovery words plus optional passphrase let you restore on any machine.",
+            "<strong>Recovery:</strong> Standard BIP39 recovery words plus optional passphrase (Nip-46) let you restore on any compatible wallet.",
             "<strong>Hardware option:</strong> Pair Coldcard, Trezor, Ledger via Hardware Wallet Interface so signing stays offline."
           ],
           "footer": "<strong>Good for:</strong> Full control without third-party risk. <strong>Trade-off:</strong> You alone manage backups and passphrases."
@@ -15034,16 +15103,6 @@
           "footer": "<strong>Good for:</strong> Users who want privacy without extra VPN layers. <strong>Trade-off:</strong> Tor adds latency when the network is busy."
         },
         {
-          "id": "coinjoin-availability",
-          "title": "CoinJoin (availability varies)",
-          "bullets": [
-            "<strong>zkSNACKs coordinator shutdown:</strong> The default coordinator closed June 1, 2024. Wasabi continues as a regular wallet with coin control and PayJoin.",
-            "<strong>Community coordinators:</strong> Third-party coordinators may operate; check forums and GitHub for current options.",
-            "<strong>Open-source protocol:</strong> WabiSabi is public, so anyone can run a coordinator if demand returns."
-          ],
-          "footer": "<strong>Good for:</strong> Understanding current privacy options. <strong>Trade-off:</strong> CoinJoin requires an active coordinator."
-        },
-        {
           "id": "coin-labels",
           "title": "Coin control and PayJoin",
           "bullets": [
@@ -15052,6 +15111,16 @@
             "<strong>PayJoin support:</strong> Send interactive PayJoin transactions (BIP78) to break common-input-ownership heuristics when the recipient supports it."
           ],
           "footer": "<strong>Good for:</strong> Advanced spend policies and privacy-conscious transactions. <strong>Trade-off:</strong> Requires discipline; sloppy labels break the model."
+        },
+        {
+          "id": "coinjoin-availability",
+          "title": "CoinJoin (availability varies)",
+          "bullets": [
+            "<strong>zkSNACKs coordinator shutdown:</strong> The default coordinator closed June 1, 2024. Wasabi continues as a regular wallet with coin control and PayJoin.",
+            "<strong>Community coordinators:</strong> Third-party coordinators may operate; check forums and GitHub for current options.",
+            "<strong>Open-source protocol:</strong> WabiSabi is public, so anyone can run a coordinator if demand returns."
+          ],
+          "footer": "<strong>Good for:</strong> Understanding current privacy options. <strong>Trade-off:</strong> CoinJoin requires an active coordinator."
         }
       ]
     },
@@ -15456,11 +15525,11 @@
         }
       ],
       "keywords": [
-        "Wasabi Wallet CoinJoin",
-        "Wasabi Tor routing",
+        "Wasabi Wallet Tor",
+        "Wasabi coin control",
         "Wasabi hardware wallet",
         "Wasabi privacy labels",
-        "WabiSabi coordinator"
+        "Bitcoin privacy wallet"
       ]
     },
     "anchors": {
@@ -15478,7 +15547,7 @@
       "hasHowTo": true,
       "hasFAQ": true
     },
-    "updated": "2025-11-17",
+    "updated": "2025-12-05",
     "trust": {
       "cards": [
         {

@@ -1,7 +1,7 @@
 {
   "name": "Relai",
   "category": "Buy Bitcoin",
-  "type_of_platform": "Exchange",
+  "type_of_platform": "Non-custodial Bitcoin App",
   "faqs": [
     {
       "q": "How do Relai's bitcoin buying fees work?",
@@ -90,7 +90,6 @@
   "custody_control": "Custodial",
   "kyc_required": "Yes",
   "open_source": "No",
-  "user_experience": "0.0",
   "interface": "Mobile only",
   "app_ratings": {
     "ios": 4.6,
@@ -115,7 +114,7 @@
       "link_to": "direct-to-wallet"
     },
     {
-      "text": "Hardware wallet signing",
+      "text": "External Wallet Stacking",
       "status": "positive",
       "variant": "differentiator",
       "link_to": "hardware-wallet-connect"
@@ -203,7 +202,7 @@
       "id": "fees-deposit",
       "title": "Deposit cash",
       "cost_today": "SEPA bank transfer: Free (Relai)<br>Credit/debit card, Apple Pay, Google Pay: ~3.0% processor fee",
-      "what_happens": "SEPA transfers settle in one to two business days before Relai executes the buy, while cards and mobile pay fund immediately.",
+      "what_happens": "Standard SEPA takes 1-2 days, but SEPA Instant transfers settle in minutes 24/7.",
       "how_to_minimize": "Use SEPA for larger orders, match the transfer currency to your quote, and avoid card funding unless you need the speed.",
       "learn_more": "Only send funds from the bank account you registered in Relai so the transfer auto-matches to your pending order."
     },
@@ -266,10 +265,10 @@
         "summary": {
           "fee": "Free (Relai)",
           "fee_link": "fees-deposit",
-          "speed": "1-2 business days",
+          "speed": "Instant (SEPA Instant) or 1-2 days",
           "withdraw": "Bitcoin releases on-chain"
         },
-        "best_for": "Larger buys with minimal fees when you can wait for settlement",
+        "best_for": "Fee-free funding that settles instantly with SEPA Instant banks.",
         "limits": {
           "min_per_tx": "€50 / 50 CHF",
           "max_per_tx": "Up to €100,000 per order",
@@ -471,7 +470,7 @@
     "withdrawal_policy_do": "Plan sells during lower fee windows and keep a cushion of sats to cover the mining fee.",
     "withdrawal_policy_dont": "Assume card refunds or bank payouts settle instantly; track the transfer until it lands.",
     "region": [
-      "Relai targets Switzerland and the broader EEA; confirm app availability in your local store.",
+      "Relai holds a MiCA license (Oct 2025), guaranteeing service across all 30 EEA countries and Switzerland.",
       "Apple Pay, Google Pay, and card processing depend on the country where your bank issued the card.",
       "Tax reporting still varies by jurisdiction, so export your records and consult local guidance."
     ],

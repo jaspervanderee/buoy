@@ -1,7 +1,7 @@
 {
   "name": "Peach",
   "category": "Buy Bitcoin",
-  "type_of_platform": "P2P",
+  "type_of_platform": "P2P Marketplace",
   "faqs": [
     {
       "q": "How does Peach multisig escrow protect peer-to-peer trades?",
@@ -69,7 +69,6 @@
   "custody_control": "Non-custodial",
   "kyc_required": "No",
   "open_source": "Yes",
-  "user_experience": "0.0",
   "interface": "Mobile only",
   "app_ratings": {
     "ios": "In development",
@@ -93,7 +92,7 @@
       "link_to": "device-account-file"
     },
     {
-      "text": "Multisig trade escrow",
+      "text": "2-of-2 Multisig Escrow",
       "status": "positive",
       "variant": "differentiator",
       "link_to": "multisig-trade-escrow"
@@ -188,8 +187,8 @@
     {
       "id": "fees-buy",
       "title": "Buy bitcoin",
-      "cost_today": "Buyer fee: ~2% per trade (seller free)",
-      "what_happens": "Peach deducts its marketplace fee from the release once both sides confirm fiat payment.",
+      "cost_today": "2% platform fee + Seller Premium",
+      "what_happens": "Peach charges ~2%, but sellers often add their own premium (1–5%) above the Bitcoin spot price.",
       "how_to_minimize": "Build reputation, compare premiums, and apply Peach Point rewards from referrals to offset part of the fee.",
       "learn_more": "Referral rewards pay 42 sats per point. Request a payout ticket when you want to convert points to sats."
     },
@@ -500,7 +499,8 @@
     "withdrawal_policy": [
       "Escrow releases need both the seller and Peach to co-sign before bitcoin leaves to the buyer.",
       "If the seller disappears, Peach can release funds after roughly 4,320 blocks once evidence shows payment cleared.",
-      "Instant payment rails still wait on on-chain confirmation before escrow opens."
+      "Instant payment rails still wait on on-chain confirmation before escrow opens.",
+      "Optional: You can reveal and write down your 12-word seed phrase in Settings for a standard non-digital backup."
     ],
     "withdrawal_policy_do": "Hold on to receipts and screenshots until the release confirms on-chain.",
     "withdrawal_policy_dont": "Expect Peach to shorten the dispute timer once the automatic release countdown starts.",

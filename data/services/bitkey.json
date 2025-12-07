@@ -1,7 +1,7 @@
 {
   "name": "Bitkey",
   "category": "Store it safely",
-  "type_of_platform": "Physical device (hardware wallet) + mobile app",
+  "type_of_platform": "Hardware wallet & app",
   "faqs": [
     {
       "q": "How does Bitkey's 2-of-3 key system keep my bitcoin safe?",
@@ -51,7 +51,6 @@
   "recovery_method": "Cloud + device pairing",
   "open_source": "No",
   "node_connect": "Yes",
-  "user_experience": "0.0",
   "interface": "Mobile only",
   "app_ratings": {
     "ios": 4.6,
@@ -632,4 +631,3 @@
     ]
   }
 }
-

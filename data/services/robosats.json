@@ -1,7 +1,7 @@
 {
   "name": "RoboSats",
   "category": "Buy Bitcoin",
-  "type_of_platform": "P2P",
+  "type_of_platform": "P2P Lightning Exchange",
   "supported_network": "Bitcoin (Lightning with optional swaps)",
   "faqs": [
     {
@@ -72,7 +72,6 @@
   "kyc_required": "No",
   "recovery_method": "Secret robot token you generate per session; keep it offline to reopen contracts or settle disputes",
   "open_source": "Yes",
-  "user_experience": "0.0",
   "interface": "Mobile & Desktop",
   "app_ratings": {
     "text": "N/A"
@@ -99,7 +98,7 @@
       "link_to": "lightning-escrow"
     },
     {
-      "text": "Robot token identities",
+      "text": "No Account / No KYC",
       "status": "positive",
       "variant": "differentiator",
       "link_to": "robot-identities"
@@ -128,7 +127,7 @@
           "risk": "Low"
         },
         "actions": [
-          "Install Tor Browser (desktop) or run Orbot with a privacy browser on mobile, then open https://robosats.com or the onion listed in Quick Start.",
+          "<strong>Android:</strong> Install the official RoboSats app (no separate Tor setup needed).<br><strong>Desktop:</strong> Install Tor Browser or run Orbot with a privacy browser on mobile, then open https://robosats.com or the onion listed in Quick Start.",
           "Click Start to generate a robot avatar and let the coordinator hand you the secret token.",
           "Copy the token into an offline password manager or notebook before you close the welcome dialog."
         ],
@@ -352,7 +351,7 @@
           "Enable push notifications so you do not miss contract updates.",
           "Write down your recovery seed or backup key before you trade."
         ],
-        "gotcha": "Custodial wallets can cancel hold invoices unexpectedly; prefer non-custodial or hybrid wallets for larger trades."
+        "gotcha": "<strong>Critical:</strong> Do NOT use custodial wallets like Wallet of Satoshi. They cannot handle Hold Invoices, and you may lose your bond."
       },
       {
         "id": "make-receive-code",

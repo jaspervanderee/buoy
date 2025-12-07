@@ -1,7 +1,7 @@
 {
   "name": "Muun",
   "category": "Spend Bitcoin",
-  "type_of_platform": "Hot Wallet",
+  "type_of_platform": "Hybrid Bitcoin Wallet",
   "faqs": [
     {
       "q": "What is Muun Wallet?",
@@ -57,7 +57,6 @@
   "kyc_required": "No",
   "recovery_method": "Emergency kit with email and recovery code",
   "open_source": "Yes",
-  "user_experience": "0.0",
   "interface": "Mobile only",
   "app_ratings": {
     "ios": 4.3,
@@ -76,16 +75,22 @@
   ],
   "trust_chips": [
     {
-      "text": "Non-custodial",
-      "status": "positive"
+      "text": "Unified Balance",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "receive-onchain"
     },
     {
-      "text": "Open source",
-      "status": "positive"
+      "text": "2-of-2 Multisig",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "recovery"
     },
     {
-      "text": "No KYC",
-      "status": "positive"
+      "text": "Submarine Swaps",
+      "status": "neutral",
+      "variant": "differentiator",
+      "link_to": "fees"
     }
   ],
   "tl_dr": {
@@ -159,10 +164,10 @@
     {
       "id": "fees-first-receive",
       "title": "Receive Lightning (submarine swap)",
-      "cost_today": "On-chain mining fee + swap service fee (varies $2-$50+)",
+      "cost_today": "Muun manages no channels. Every Lightning transaction occurs on-chain via swap, so fees rise significantly when the Bitcoin mempool is busy.",
       "what_happens": "Muun uses an on-chain transaction to enable your Lightning receive—you pay the fee, not the sender.",
       "how_to_minimize": "Check mempool.space before requesting large Lightning payments; avoid receiving when on-chain fees are high.",
-        "learn_more": "When you receive Lightning but Muun needs to establish payment capacity, it uses a submarine swap—an on-chain transaction that enables the Lightning payment. Unlike most Lightning wallets, YOU (the receiver) pay this fee. This is the main cost tradeoff of Muun's automatic channel management."
+      "learn_more": "When you receive Lightning but Muun needs to establish payment capacity, it uses a submarine swap—an on-chain transaction that enables the Lightning payment. Unlike most Lightning wallets, YOU (the receiver) pay this fee. This is the main cost tradeoff of Muun's automatic channel management."
     },
     {
       "id": "fees-onchain-send",
@@ -260,33 +265,33 @@
       "submarine swaps"
     ]
   },
-  "compat_heading": "What this Muun wallet can or can't do",
-    "compat_tiles": [
-      {
-        "id": "pay-lightning",
-        "title": "Pay with Lightning",
-        "benefit": "✓ Invoices · ✓ Pay links · ✗ Lightning Address",
-        "status": "works"
-      },
-      {
-        "id": "pay-onchain",
-        "title": "Pay on-chain",
-        "benefit": "✓ Native on-chain · ✓ Auto-selects network",
-        "status": "works"
-      },
-      {
-        "id": "receive-lightning",
-        "title": "Receive on Lightning",
-        "benefit": "⚠ Uses swaps · ⚠ You pay swap fee",
-        "status": "setup"
-      },
-      {
-        "id": "receive-onchain",
-        "title": "Receive on-chain",
-        "benefit": "✓ Native · ✓ Unified balance",
-        "status": "works"
-      }
-    ],
+  "compat_heading": "Compatibility: what works with Muun",
+  "compat_tiles": [
+    {
+      "id": "pay-lightning",
+      "title": "Pay with Lightning",
+      "benefit": "✓ Invoices · ✓ Pay links · ✗ Lightning Address",
+      "status": "works"
+    },
+    {
+      "id": "pay-onchain",
+      "title": "Pay on-chain",
+      "benefit": "✓ Native on-chain · ✓ Auto-selects network",
+      "status": "works"
+    },
+    {
+      "id": "receive-lightning",
+      "title": "Receive on Lightning",
+      "benefit": "⚠ Uses swaps · ⚠ You pay swap fee",
+      "status": "setup"
+    },
+    {
+      "id": "receive-onchain",
+      "title": "Receive on-chain",
+      "benefit": "✓ Native · ✓ Unified balance",
+      "status": "works"
+    }
+  ],
   "compat_explainers": [
     {
       "id": "pay-lightning",

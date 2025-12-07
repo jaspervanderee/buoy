@@ -1,7 +1,7 @@
 {
   "name": "Start9",
   "category": "Run my own node",
-  "type_of_platform": "Home server as software and / or hardware",
+  "type_of_platform": "Server OS & Hardware",
   "faqs": [
     {
       "q": "How do I reach the StartOS dashboard on day one?",
@@ -45,7 +45,6 @@
     ]
   },
   "price": "$699: Server One<br>$899: Server Pure",
-  "user_experience": "0.0",
   "interface": "Desktop only",
   "support": "Community forums and Premium support (Free with device)",
   "profile": "Matt Hill",
@@ -56,7 +55,7 @@
     "WW"
   ],
   "supported_network": "Bitcoin Core, Lightning (LND and Core Lightning), and the StartOS marketplace catalog for Nextcloud, Vaultwarden, Matrix, Jellyfin, and other LAN-native services.",
-  "custody_control": "Self-hosted (you run StartOS and hold all keys on hardware you own).",
+  "custody_control": "Self-hosted (you run StartOS and hold all keys on hardware you own)",
   "kyc_required": "No",
   "recovery_method": "Encrypted backups to physical drives or SMB folders plus Recover/Transfer wizards to reuse or restore disks.",
   "open_source": "Source-available (StartOS releases published on GitHub).",

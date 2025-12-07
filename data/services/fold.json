@@ -71,7 +71,6 @@
   "kyc_required": "Yes",
   "recovery_method": "Custodial account with KYC; withdraw bitcoin to your own wallet",
   "open_source": "No",
-  "user_experience": "0.0",
   "interface": "Mobile only",
   "app_ratings": {
     "ios": 4.2,

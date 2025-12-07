@@ -1,7 +1,7 @@
 {
   "name": "Breez",
   "category": "Spend Bitcoin",
-  "type_of_platform": "Hot Wallet",
+  "type_of_platform": "Lightning Node (Mobile)",
   "faqs": [
     {
       "q": "What fees apply when I pay over Lightning?",
@@ -45,11 +45,10 @@
       }
     ]
   },
-  "custody_control": "Non-custodial (Lightning node on device; you hold the recovery key)",
+  "custody_control": "Non-custodial (LSP-backed)",
   "kyc_required": "No",
   "recovery_method": "Encrypted cloud backup + Breez recovery key",
   "open_source": "Yes",
-  "user_experience": "0.0",
   "interface": "Mobile only",
   "app_ratings": {
     "ios": 3.6,
@@ -68,16 +67,22 @@
   ],
   "trust_chips": [
     {
-      "text": "Non-custodial",
-      "status": "positive"
+      "text": "Point of Sale mode",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "pay-lightning"
     },
     {
-      "text": "Open source",
-      "status": "positive"
+      "text": "Podcast player",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "podcasting"
     },
     {
-      "text": "No KYC",
-      "status": "positive"
+      "text": "Auto-channel management",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "receive-lightning"
     }
   ],
   "tl_dr": {
@@ -147,9 +152,9 @@
     },
     {
       "id": "fees-first-receive",
-      "title": "First time you receive",
+      "title": "Channel Creation (LSP)",
       "cost_today": "0.4% of the amount + small base fee + current network mining fee",
-      "what_happens": "Breez sets up a new channel automatically so you have capacity to receive that payment.",
+      "what_happens": "Breez uses an LSP to open a channel on-the-fly. This incurs a ~0.4% setup fee (min ~2,000 sats) deducted from the incoming amount.",
       "how_to_minimize": "Receive a meaningful amount on your first payment and wait for quieter network periods to reduce the mining fee portion.",
       "learn_more": "The fee covers Breez funding a new channel on the Bitcoin network. It only applies when your wallet needs more receiving capacity."
     },
@@ -253,12 +258,12 @@
       "Bitcoin cash register"
     ]
   },
-  "compat_heading": "What this Breez wallet can or can't do",
+  "compat_heading": "Compatibility: what works with Breez",
   "compat_tiles": [
     {
       "id": "pay-lightning",
       "title": "Pay with Lightning",
-      "benefit": "Invoices | Pay links | Lightning Address",
+      "benefit": "Invoices | Lightning Address | POS Mode",
       "status": "works"
     },
     {
@@ -274,9 +279,9 @@
       "status": "works"
     },
     {
-      "id": "receive-onchain",
-      "title": "Receive on-chain",
-      "benefit": "Converts to Lightning | 3 confirmations",
+      "id": "podcasting",
+      "title": "Stream Sats to Creators",
+      "benefit": "Podcast Player | V4V | Boostagrams",
       "status": "works"
     }
   ],
@@ -312,14 +317,14 @@
       "gotcha": "Channel setup fees apply when you need more capacity; you'll see the fee before confirming."
     },
     {
-      "id": "receive-onchain",
-      "why": "Breez gives you on-chain addresses and automatically swaps confirmed funds into your Lightning balance.",
+      "id": "podcasting",
+      "why": "Breez includes a full podcast player that lets you support creators directly with Value for Value streaming.",
       "try": [
-        "Tap Receive → Bitcoin address",
-        "Share the address and track network confirmations",
-        "Funds move to Lightning after three confirmations if fees are reasonable"
+        "Built-in podcast player supports 'Value for Value' streaming.",
+        "Send sats per minute automatically while you listen.",
+        "Boostagrams let you send messages with payments to hosts."
       ],
-      "gotcha": "Set a reasonable fee limit to avoid delays; high network fees can pause the automatic conversion."
+      "gotcha": "Good for: Supporting the circular economy directly."
     }
   ],
   "migration": [
@@ -351,7 +356,7 @@
         "Pay the invoice from your old wallet, starting with a small test before larger transfers."
       ],
       "tips": "Leave both wallets open during the transfer so routes stay active and invoice timers do not expire.",
-        "gotcha": "Expect Breez to charge the 0.4% setup fee if the transfer needs fresh receiving capacity."
+      "gotcha": "Expect Breez to charge the 0.4% setup fee if the transfer needs fresh receiving capacity."
     },
     {
       "id": "move-to-onchain",

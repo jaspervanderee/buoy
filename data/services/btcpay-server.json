@@ -1,7 +1,7 @@
 {
-  "name": "BTC Pay",
+  "name": "BTCPay Server",
   "category": "Accept Bitcoin as a merchant",
-  "type_of_platform": "Hosted payment gateway",
+  "type_of_platform": "Payment processor",
   "faqs": [
     {
       "q": "How does BTCPay Server keep invoices self-hosted?",
@@ -60,7 +60,6 @@
   "custody_control": "Non-custodial",
   "kyc_required": "No",
   "open_source": "Yes",
-  "user_experience": "0.0",
   "profile": "Nicolas Dorier",
   "description": "Most payment processors hold your funds and act as a gatekeeper between you and your customers. BTC Pay Server solves this by running on your own hardware, connecting directly to your Bitcoin wallet without any middleman. That means you receive 100% of every payment instantly, with no risk of frozen accounts or leaked customer data. You can host it yourself for complete independence or use a managed cloud provider to get started quickly.",
   "founded_in": "2017",
@@ -109,7 +108,7 @@
     "title": "Go live with Bitcoin payments in 4 steps:",
     "steps": [
       {
-        "id": "deploy-stack",
+        "id": "setup-install",
         "title": "1. Deploy your server",
         "chips": {
           "setup_time": "~30–60 min",
@@ -125,7 +124,7 @@
         "gotcha": "The first registered user gains admin rights, so finish setup before inviting teammates."
       },
       {
-        "id": "connect-store",
+        "id": "setup-pay",
         "title": "2. Connect your store or POS",
         "chips": {
           "setup_time": "~15–30 min",
@@ -140,7 +139,7 @@
         "gotcha": "Stores stay inactive until at least one payment method is configured, so finish the wallet hookup next."
       },
       {
-        "id": "configure-settlement",
+        "id": "setup-receive",
         "title": "3. Configure Bitcoin settlement",
         "chips": {
           "setup_time": "~10–20 min",
@@ -155,7 +154,7 @@
         "gotcha": "Never paste hardware wallet seeds on the server - use BTCPay Vault or PSBT workflows instead."
       },
       {
-        "id": "test-invoice",
+        "id": "setup-final",
         "title": "4. Test and monitor invoices",
         "chips": {
           "setup_time": "~5 min",

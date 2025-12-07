@@ -1,7 +1,7 @@
 {
   "name": "Strike",
   "category": "Buy Bitcoin",
-  "type_of_platform": "Exchange",
+  "type_of_platform": "Bitcoin App",
   "faqs": [
     {
       "q": "How do Strike's bitcoin trading fees work?",
@@ -67,7 +67,6 @@
   "kyc_required": "Yes (government ID required)",
   "recovery_method": "Email login with optional 2FA and support assisted resets",
   "open_source": "No",
-  "user_experience": "0.0",
   "interface": "Mobile only",
   "app_ratings": {
     "ios": 4.8,
@@ -87,6 +86,12 @@
   ],
   "trust_chips": [
     {
+      "text": "Free on-chain withdrawals",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "fees-withdraw"
+    },
+    {
       "text": "Bill Pay",
       "status": "positive",
       "variant": "differentiator",
@@ -97,11 +102,6 @@
       "status": "positive",
       "variant": "differentiator",
       "link_to": "bitcoin-loans"
-    },
-    {
-      "text": "Automatic withdrawals",
-      "status": "positive",
-      "link_to": "auto-withdraw"
     }
   ],
   "tl_dr": {

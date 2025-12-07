@@ -58,7 +58,6 @@
   "recovery_method": "Manual seed backup",
   "open_source": "Yes",
   "node_connect": "Yes – Bitcoin Core or Electrum server (Tor supported)",
-  "user_experience": "0.0",
   "interface": "Desktop only",
   "app_ratings": {
     "text": "No app available"
@@ -81,21 +80,21 @@
       "link_to": "coin-control"
     },
     {
-      "text": "Built-in mixing",
-      "status": "positive",
-      "variant": "differentiator",
-      "link_to": "privacy-mixing"
-    },
-    {
       "text": "Airgapped signing",
       "status": "positive",
       "variant": "differentiator",
       "link_to": "hardware-connect"
+    },
+    {
+      "text": "Built-in Tor",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "tor-integration"
     }
   ],
   "tl_dr": {
-    "best_for": "Desktop users who want full control over their UTXOs, privacy, and hardware wallet connections.",
-    "consider_if": "You want to mix your coins with Whirlpool or connect easily to your own node.",
+    "best_for": "Desktop users who want full control over their UTXOs, connection to their own node, and hardware wallet integrations.",
+    "consider_if": "You want to connect easily to your own node.",
     "not_ideal_when": "You need a mobile wallet or prefer a simplified interface without technical details."
   },
   "howto": {
@@ -176,14 +175,14 @@
         "footer": "<strong>Good for:</strong> Advanced privacy management. <strong>Trade-off:</strong> Requires manual effort for every transaction."
       },
       {
-        "id": "privacy-mixing",
-        "title": "Built-in mixing",
+        "id": "tor-integration",
+        "title": "Built-in Tor",
         "bullets": [
-          "<strong>Whirlpool integration:</strong> Mix your coins with others in a decentralized way to break blockchain links.",
-          "<strong>Post-mix tools:</strong> Automatically separates mixed coins into a dedicated account for safe spending.",
-          "<strong>No extra software:</strong> Run the mixing cycle directly within the Sparrow interface."
+          "<strong>One-click privacy:</strong> Toggle the built-in Tor proxy to mask your IP address immediately.",
+          "<strong>No extra setup:</strong> No need to install Tor browser or command line tools separately.",
+          "<strong>Onion support:</strong> Connect to .onion servers for maximum privacy."
         ],
-        "footer": "<strong>Good for:</strong> Regaining fungibility. <strong>Trade-off:</strong> Mixing fees and mining fees apply."
+        "footer": "<strong>Good for:</strong> Network privacy. <strong>Trade-off:</strong> Slower connection speeds."
       },
       {
         "id": "hardware-connect",
@@ -375,6 +374,27 @@
             "notes": "QR airgapped"
           }
         ]
+      },
+      {
+        "id": "node-support",
+        "title": "Node Connections",
+        "platforms": [
+          {
+            "name": "Bitcoin Core",
+            "version": "RPC",
+            "status": "verified"
+          },
+          {
+            "name": "Electrum Server",
+            "version": "Public/Private",
+            "status": "verified"
+          },
+          {
+            "name": "Node OS",
+            "version": "Umbrel/Start9/Citadel",
+            "status": "verified"
+          }
+        ]
       }
     ],
     "standards": {
@@ -395,12 +415,6 @@
           "standard": "Taproot",
           "support": "Yes",
           "notes": "Send and receive to P2TR",
-          "status": "verified"
-        },
-        {
-          "standard": "Whirlpool",
-          "support": "Yes",
-          "notes": "Built-in Chaumian CoinJoin",
           "status": "verified"
         },
         {
@@ -462,11 +476,6 @@
           "name": "Network mining fees",
           "amount": "Varies",
           "note": "Paid to miners to process transactions"
-        },
-        {
-          "name": "Whirlpool fees (optional)",
-          "amount": "Varies",
-          "note": "If you choose to mix coins (Pool fee + mining fee)"
         }
       ]
     }

@@ -57,10 +57,9 @@
   "settlement_time": "1-2 days",
   "compatibility": "text",
   "pos_compatibility": "text",
-  "custody_control": "Custodial (until withdrawal or automatic settlement)",
+  "custody_control": "Custodial (auto-settlement available)",
   "kyc_required": "Yes",
   "open_source": "No",
-  "user_experience": "0.0",
   "profile": "Joao Almeida & Afnan Rahman",
   "description": "OpenNode is a Bitcoin-first payment processor that empowers businesses to accept and send Bitcoin—either on-chain or via Lightning—using simple plugins, hosted checkouts, or its developer-friendly API. Organisations that want a turnkey, compliant solution—especially mid-sized to large enterprises—can onboard easily with KYC and achieve global scale without building complex node infrastructure.\\n\\nIt offers instant, low-cost microtransactions with a focus on liquidity management, channel operations, and protocol support. For merchants, this means accessing Bitcoin payments both instantly and economically, alongside automatic settlement options in fiat or BTC. By abstracting away technical complexities like node handling, liquidity, and channel balance, OpenNode allows businesses to plug-and-play and scale efficiently.\\n\\nIt holds US regulatory licenses, manages KYC requirements, and maintains automated fiat conversions and payouts. This makes it ideal for businesses—especially blue-chip and enterprise-level—that require solid legal and financial backstops.\\n\\nTheir long-term vision is to see global businesses and platforms integrate Bitcoin payments as seamlessly as credit cards—secure, censorship-resistant, and frictionless—while pushing forward broader adoption of Bitcoin as a unit of exchange across borders and cultures.",
   "founded_in": "2018",
@@ -110,7 +109,7 @@
     "title": "Set up your OpenNode payment stack",
     "steps": [
       {
-        "id": "create-account",
+        "id": "setup-install",
         "title": "1. Create and verify your account",
         "chips": {
           "setup_time": "~10 min",
@@ -126,37 +125,37 @@
         "gotcha": "Higher processing limits stay capped until KYB completes, so have incorporation and ownership docs ready."
       },
       {
-        "id": "configure-checkout",
-        "title": "2. Configure charges and hosted checkout",
+        "id": "setup-pay",
+        "title": "2. Configure settlement & checkout",
+        "chips": {
+          "setup_time": "~10 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Navigate to Settings > Payments to decide if you want to keep Bitcoin or auto-convert to local currency (USD, EUR, GBP).",
+          "Upload your store logo and cover image so the payment window matches your brand.",
+          "Create a Payment Button or Pos Link if you need a simple way to collect money without a full website."
+        ],
+        "gotcha": "Auto-conversion protects you from volatility but usually incurs a slightly higher fee (e.g., 1%) than keeping Bitcoin."
+      },
+      {
+        "id": "setup-receive",
+        "title": "3. Connect your e-commerce store",
         "chips": {
           "setup_time": "~15 min",
           "cost": "Free",
           "risk": "Low"
         },
         "actions": [
-          "Create a test charge to see the hosted checkout render both the Lightning invoice and on-chain address.",
-          "Redirect shoppers to checkout.opennode.com/{id} and append ?ln=1 or ?hf=1 to default Lightning or hide fiat values.",
-          "Choose how each charge settles (BTC, fiat, split) inside Settings → Payments."
+          "Click on Integrations to find the official plugin for your platform (WooCommerce, Shopify, Magento, etc.).",
+          "Generate an API Key in the dashboard and paste it into the plugin settings on your own website.",
+          "Run a test order on your shop to confirm the status updates from Pending to Paid automatically."
         ],
-        "gotcha": "Lightning invoices above 500000000 sats will not generate, so split very large orders or route them on-chain."
+        "gotcha": "Ensure your website uses HTTPS (SSL); the secure connection is required for OpenNode to mark orders as paid."
       },
       {
-        "id": "connect-webhooks",
-        "title": "3. Wire your webhooks and callbacks",
-        "chips": {
-          "setup_time": "~20 min",
-          "cost": "Free",
-          "risk": "Medium"
-        },
-        "actions": [
-          "Pass a callback_url when creating charges so status changes post back to your app.",
-          "Subscribe to withdrawal webhooks because Lightning payouts can outlive a normal HTTP request cycle.",
-          "Test underpaid, paid, and refunded flows to confirm your order system reacts correctly."
-        ],
-        "gotcha": "Expose a public endpoint (or tunnel) for dev environments so OpenNode can reach your webhook URL."
-      },
-      {
-        "id": "fund-and-payout",
+        "id": "setup-final",
         "title": "4. Fund the fiat wallet and send payouts",
         "chips": {
           "setup_time": "~20 min",

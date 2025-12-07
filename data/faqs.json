@@ -1082,7 +1082,7 @@
       }
     ],
     "_ACCEPT_BITCOIN_AS_A_MERCHANT": "── Accept Bitcoin as a merchant ──",
-    "btc-pay-vs-lightspark": [
+    "btcpay-server-vs-lightspark": [
       {
         "q": "Does BTCPay require KYC or hold funds?",
         "a": "No. BTCPay is self-hosted and non-custodial, so you keep your keys and there’s no platform KYC."
@@ -1096,7 +1096,7 @@
         "a": "Yes. BTCPay supports Bitcoin + Lightning that you manage; Lightspark abstracts node operations and routing for you."
       }
     ],
-      "btc-pay-vs-opennode": [
+      "btcpay-server-vs-opennode": [
         {
           "q": "Is OpenNode custodial and does it require KYC?",
           "a": "Yes. OpenNode is custodial until you withdraw or auto-settle, and onboarding requires KYC. "

@@ -1,7 +1,7 @@
 {
   "name": "Pocket",
   "category": "Buy Bitcoin",
-  "type_of_platform": "P2P",
+  "type_of_platform": "Non-custodial Bitcoin Broker",
   "supported_network": "Bitcoin (on-chain)",
   "faqs": [
     {
@@ -82,7 +82,6 @@
   "custody_control": "Non-custodial",
   "kyc_required": "Yes, but only for purchases over €1.000",
   "open_source": "No",
-  "user_experience": "0.0",
   "interface": "Mobile only",
   "app_ratings": {
     "ios": "4.2",
@@ -92,7 +91,7 @@
   "description": "Pocket Bitcoin stands out with its non-custodial model, sending Bitcoin directly to your wallet without holding funds, and a no-account, KYC-light approach for daily buys up to €1,000 | 0.01 BTC | 0.01 BTC, prioritizing privacy. It offers one-off or recurring buys via bank transfer, with a 1.5% fee and no withdrawal fees, supporting select hardware wallets like Trezor and Ledger with message signing.\\n\\nPocket's mission is to make Bitcoin ownership frictionless and private, promoting self-custody without complexity and with a vision to expand to a dozen more European countries and enhance wallet integrations.\\n\\nThe mobile app, and the web portal for managing orders and wallet settings, are praised for their simple interface and fast transactions, but some find the fees slightly high.",
   "tl_dr": {
     "best_for": "Buyers across the EU who want bank transfers to drop bitcoin straight into a wallet they control.",
-    "consider_if": "You value transparent fees and Kraken execution more than instant card funding.",
+    "consider_if": "You value transparent pricing but are okay with your trades executing on a crypto exchange (Kraken).",
     "not_ideal_when": "You need Lightning payouts or non-EU payment rails today."
   },
   "howto": {
@@ -155,7 +154,7 @@
       "learn_more": "The payout screen shows the Kraken price and timestamp so you can verify the execution."
     },
     {
-      "id": "fees-network",
+      "id": "pay-onchain",
       "title": "Bitcoin network fee",
       "cost_today": "Typically 500–1000 sats per payout",
       "what_happens": "Pocket batches many customer payouts into one transaction so everyone shares the mining fee.",
@@ -223,10 +222,10 @@
         "icon": "bank",
         "summary": {
           "fee": "Usually free inside Switzerland",
-          "speed": "~1 business day",
+          "speed": "Instant (SEPA Instant) or 1 banking day",
           "withdraw": "Not applicable"
         },
-        "best_for": "Swiss customers wiring francs to Pocket's Swiss account.",
+        "best_for": "Eurozone customers wanting instant settlement via SEPA Instant.",
         "limits": {
           "min_per_tx": "Set by your bank",
           "max_per_tx": "Set by your bank",
@@ -254,7 +253,7 @@
     {
       "id": "kraken-price-pass-through",
       "title": "Kraken price pass-through",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Live exchange rate</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Kraken dependency</span>",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Live exchange rate</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> <strong>Caveat:</strong> Crypto exchange backend</span>",
       "status": "works-caveat"
     },
     {
@@ -293,7 +292,7 @@
         "Download the CSV export from the dashboard for your accountant or tax software.",
         "Spot-check a past order to confirm that the fiat amount minus 1.5% matches the sats you received."
       ],
-      "gotcha": "Kraken execution happens after your transfer reaches Pocket, so bank delays push the timestamp accordingly. If Kraken pauses trading, your payout waits until the venue comes back online."
+      "gotcha": "Pocket is a broker, not a marketplace. Trades rely on Kraken's uptime and liquidity."
     },
     {
       "id": "dca",
@@ -314,15 +313,16 @@
       "link_to": "direct-to-wallet-payouts"
     },
     {
-      "text": "Batched network fees",
-      "status": "positive",
+      "text": "Executes on Kraken",
+      "status": "neutral",
       "variant": "differentiator",
-      "link_to": "batched-network-fees"
+      "link_to": "kraken-price-pass-through"
     },
     {
-      "text": "Dollar-cost averaging (DCA)",
-      "status": "positive",
-      "link_to": "dca"
+     "text": "xPub Address Rotation",
+       "status": "positive",
+       "variant": "differentiator",
+       "link_to": "setup-install"
     }
   ],
   "self_custody": {

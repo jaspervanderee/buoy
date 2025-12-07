@@ -363,7 +363,7 @@ html = html.replace('</head>', urlShim + '</head>');
       // Render table for service page with mode: "service" to exclude legacy rows (Platform, Supported Networks, Features, Custody & Control block)
       const tableHtml = await renderTableHTML(svc, svc.category, { mode: "service" });
 
-      const defaultOrder = ["tldr", "setup", "fees", "hardware_bom", "compat", "integrations", "maintenance", "security_model", "payment_methods_limits", "key_features", "recovery", "migration", "privacy", "trust", "profile"];
+      const defaultOrder = ["tldr", "setup", "fees", "payment_methods_limits", "hardware_bom", "compat", "integrations", "maintenance", "security_model", "key_features", "recovery", "migration", "privacy", "trust", "profile"];
       let order = Array.isArray(svc.section_order) && svc.section_order.length
         ? svc.section_order.filter((key) => defaultOrder.includes(key) || key === "self_custody" || key === "payment_methods_limits" || key === "key_features" || key === "recovery" || key === "hardware_bom" || key === "maintenance" || key === "security_model" || key === "integrations")
         : defaultOrder;
@@ -2023,6 +2023,7 @@ ${tileItems}
 
       // Generic tile-based section renderer (used for compat, recovery, etc.)
       const renderTileSection = (config) => {
+        const showIllustrations = config.showIllustrations !== false;
         const tiles = Array.isArray(config.tiles) ? config.tiles : [];
         const explainers = Array.isArray(config.explainers) ? config.explainers : [];
         
@@ -2067,7 +2068,7 @@ ${tileItems}
           // Resolve illustration: per-tile override takes precedence over registry
           let illustrationHtml = "";
           const imagePath = tile.image || COMPAT_ILLUSTRATIONS[tile.id];
-          if (imagePath) {
+          if (imagePath && showIllustrations) {
             const altText = tile.image_alt || COMPAT_ILLUSTRATION_ALTS[tile.id] || tile.title;
             illustrationHtml = `
         <div class="svc-compat__illustration">
@@ -2286,7 +2287,8 @@ ${hardwareOsHtml}${standardsHtml}
           explainers: svc.compat_explainers,
           heading: svc.compat_heading,
           learnLabel: svc.compat_learn_label,
-          sectionId: "compat"
+          sectionId: "compat",
+          showIllustrations: svc.category !== "Spend Bitcoin"
         });
       };
 

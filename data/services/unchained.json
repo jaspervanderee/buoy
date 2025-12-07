@@ -79,7 +79,6 @@
   "recovery_method": "Unchained can co-sign if a key is lost",
   "open_source": "Partial (Caravan OSS)",
   "node_connect": "No",
-  "user_experience": "0.0",
   "interface": "Mobile & Desktop",
   "app_ratings": {
     "ios": 4.9,

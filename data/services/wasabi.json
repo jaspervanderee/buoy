@@ -28,7 +28,7 @@
   "features": {
     "WW": [
       {
-        "text": "Enhanced privacy with CoinJoin",
+        "text": "Tor & coin control privacy",
         "status": "positive"
       },
       {
@@ -44,7 +44,7 @@
         "status": "negative"
       },
       {
-        "text": "Coinjoin fees apply",
+        "text": "Coordinator fees (if used)",
         "status": "negative"
       }
     ]
@@ -54,13 +54,12 @@
   "recovery_method": "12-word seed + optional passphrase",
   "open_source": "Yes",
   "node_connect": "Yes (via hardware wallets)",
-  "user_experience": "0.0",
   "interface": "Desktop only",
   "app_ratings": {
     "text": "No app available"
   },
   "profile": "Balint Harmat, Adam Ficsor & Gergely Hajdu",
-  "description": "Wasabi Wallet is a privacy-focused, open-source, non‑custodial Bitcoin desktop wallet launched by zkSNACKs. It routes all traffic through Tor and uses compact blockchain filters, keeping your IP and balance private. Its standout feature is built-in CoinJoin, a process that mixes your Bitcoin with others' to make it harder for anyone to trace your transactions, enhancing privacy without relying on third parties.\\n\\nThe user interface is straightforward but functional, with a dashboard showing your balance, privacy progress, and transaction history, though it may feel technical for complete beginners. Setup involves writing down a 12-word seed phrase and an optional passphrase, which adds security but requires careful storage.\\n\\nWhat sets Wasabi apart is its strong focus on privacy through CoinJoin, which is seamlessly integrated and doesn't require manual setup, making it accessible for newcomers. It also allows advanced users to connect to custom coordinators via platforms like Nostr, ensuring privacy even if default services are unavailable.\\n\\nWasabi is for people who want to own their Bitcoin without having to trust big companies. It hides your transactions by mixing them with others, runs silently in the background over Tor, and gives you full control—all on your own computer. Its goal is to make privacy easy and powerful, while building toward a future where you don't rely on any single server.",
+  "description": "Wasabi Wallet is a privacy-focused, open-source, non‑custodial Bitcoin desktop wallet launched by zkSNACKs. It routes all traffic through Tor and uses compact blockchain filters, keeping your IP and balance private. With the 2024 sunset of the zkSNACKs CoinJoin coordinator, Wasabi now focuses on powerful manual coin control, PayJoin, and hardware wallet integration for privacy management.\n\nThe user interface is straightforward but functional, with a dashboard showing your balance, privacy progress, and transaction history, though it may feel technical for complete beginners. Setup involves writing down a 12-word seed phrase and an optional passphrase, which adds security but requires careful storage.\n\nWasabi is for people who want to own their Bitcoin without having to trust big companies. It runs silently in the background over Tor and gives you full control—all on your own computer. Its goal is to make privacy easy and powerful, while building toward a future where you don't rely on any single server.",
   "founded_in": "2018",
   "website": "https://wasabiwallet.io",
   "countries": [
@@ -80,14 +79,14 @@
       "link_to": "coin-labels"
     },
     {
-      "text": "CoinJoin (availability varies)",
-      "status": "neutral",
+      "text": "Hardware Interface",
+      "status": "positive",
       "variant": "differentiator",
-      "link_to": "coinjoin-availability"
+      "link_to": "hardware"
     }
   ],
   "tl_dr": {
-    "best_for": "Privacy-focused bitcoiners who want a self-custodial desktop wallet with Tor routing, coin control, and PayJoin support.",
+    "best_for": "Privacy-focused bitcoiners who want a self-custodial desktop wallet with default Tor routing, coin control, and hardware wallet support.",
     "consider_if": "You value mandatory labeling, open-source code, hardware wallet integration, and the option to connect your own node.",
     "not_ideal_when": "You need a mobile app, built-in CoinJoin (zkSNACKs coordinator shut down June 2024), or Lightning support."
   },
@@ -163,7 +162,7 @@
         "title": "Self-custody (you hold the keys)",
         "bullets": [
           "<strong>Non-custodial:</strong> Private keys stay on your device, encrypted with your passphrase.",
-          "<strong>12-word seed:</strong> Standard BIP39 recovery words plus optional passphrase let you restore on any machine.",
+          "<strong>Recovery:</strong> Standard BIP39 recovery words plus optional passphrase (Nip-46) let you restore on any compatible wallet.",
           "<strong>Hardware option:</strong> Pair Coldcard, Trezor, Ledger via Hardware Wallet Interface so signing stays offline."
         ],
         "footer": "<strong>Good for:</strong> Full control without third-party risk. <strong>Trade-off:</strong> You alone manage backups and passphrases."
@@ -179,16 +178,6 @@
         "footer": "<strong>Good for:</strong> Users who want privacy without extra VPN layers. <strong>Trade-off:</strong> Tor adds latency when the network is busy."
       },
       {
-        "id": "coinjoin-availability",
-        "title": "CoinJoin (availability varies)",
-        "bullets": [
-          "<strong>zkSNACKs coordinator shutdown:</strong> The default coordinator closed June 1, 2024. Wasabi continues as a regular wallet with coin control and PayJoin.",
-          "<strong>Community coordinators:</strong> Third-party coordinators may operate; check forums and GitHub for current options.",
-          "<strong>Open-source protocol:</strong> WabiSabi is public, so anyone can run a coordinator if demand returns."
-        ],
-        "footer": "<strong>Good for:</strong> Understanding current privacy options. <strong>Trade-off:</strong> CoinJoin requires an active coordinator."
-      },
-      {
         "id": "coin-labels",
         "title": "Coin control and PayJoin",
         "bullets": [
@@ -197,6 +186,16 @@
           "<strong>PayJoin support:</strong> Send interactive PayJoin transactions (BIP78) to break common-input-ownership heuristics when the recipient supports it."
         ],
         "footer": "<strong>Good for:</strong> Advanced spend policies and privacy-conscious transactions. <strong>Trade-off:</strong> Requires discipline; sloppy labels break the model."
+      },
+      {
+        "id": "coinjoin-availability",
+        "title": "CoinJoin (availability varies)",
+        "bullets": [
+          "<strong>zkSNACKs coordinator shutdown:</strong> The default coordinator closed June 1, 2024. Wasabi continues as a regular wallet with coin control and PayJoin.",
+          "<strong>Community coordinators:</strong> Third-party coordinators may operate; check forums and GitHub for current options.",
+          "<strong>Open-source protocol:</strong> WabiSabi is public, so anyone can run a coordinator if demand returns."
+        ],
+        "footer": "<strong>Good for:</strong> Understanding current privacy options. <strong>Trade-off:</strong> CoinJoin requires an active coordinator."
       }
     ]
   },
@@ -601,11 +600,11 @@
       }
     ],
     "keywords": [
-      "Wasabi Wallet CoinJoin",
-      "Wasabi Tor routing",
+      "Wasabi Wallet Tor",
+      "Wasabi coin control",
       "Wasabi hardware wallet",
       "Wasabi privacy labels",
-      "WabiSabi coordinator"
+      "Bitcoin privacy wallet"
     ]
   },
   "anchors": {
@@ -623,7 +622,7 @@
     "hasHowTo": true,
     "hasFAQ": true
   },
-  "updated": "2025-11-17",
+  "updated": "2025-12-05",
   "trust": {
     "cards": [
       {

@@ -85,7 +85,6 @@
   "recovery_method": "Time-locked multisig recovery",
   "open_source": "No",
   "node_connect": "No",
-  "user_experience": "0.0",
   "interface": "Desktop only",
   "app_ratings": {
     "text": "No app available"
@@ -260,7 +259,8 @@
       "how": [
         "Notify AnchorWatch support and document when the device was lost or destroyed.",
         "Schedule a replacement call so they can ship a new sealed signer and walk you through key generation.",
-        "Update the vault records and insurance schedule so the new key is reflected."],
+        "Update the vault records and insurance schedule so the new key is reflected."
+      ],
       "gotcha": "AnchorWatch needs evidence that the lost key cannot be recovered before issuing new hardware."
     },
     {
@@ -269,7 +269,8 @@
       "how": [
         "Load the recovery script into Bitcoin Core or another compatible wallet.",
         "Wait for the policy's timelock window, then use your remaining keys plus the emergency partner to co-sign.",
-        "Sweep funds to a destination you control and notify AnchorWatch once channels reopen."],
+        "Sweep funds to a destination you control and notify AnchorWatch once channels reopen."
+      ],
       "gotcha": "Bypassing AnchorWatch during an outage may impact insurance, so log every step and inform them once possible."
     },
     {
@@ -278,7 +279,8 @@
       "how": [
         "Refuse to sign the outgoing transaction and alert AnchorWatch via their emergency contact.",
         "Provide incident evidence (police report, affidavits) so they can freeze signatures.",
-        "Work with them to either rebuild access via the recovery partner or initiate a claim if keys were compromised."],
+        "Work with them to either rebuild access via the recovery partner or initiate a claim if keys were compromised."
+      ],
       "gotcha": "Policies require timely reporting of coercion events; delays can affect coverage."
     },
     {
@@ -287,7 +289,8 @@
       "how": [
         "Report the loss immediately and provide documentation proving the keys are unrecoverable.",
         "AnchorWatch and the emergency partner wait out the preset timelock, then co-sign a recovery spend.",
-        "If recovery fails, AnchorWatch files the Lloyd's-backed claim on your behalf using your evidence packet."],
+        "If recovery fails, AnchorWatch files the Lloyd's-backed claim on your behalf using your evidence packet."
+      ],
       "gotcha": "Claims include a 10% or 25% deductible, so full reimbursement depends on the policy option you selected."
     }
   ],

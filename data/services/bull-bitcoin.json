@@ -80,13 +80,13 @@
   "payment_methods": [
     "Interac e-Transfer",
     "Wire Transfer",
-    "Bill Payment, SEPA bank transfer"
+    "Bill Payment, SEPA bank transfer",
+    "Cash (Canada Post)"
   ],
   "custody_control": "Non-custodial",
-  "kyc_required": "No",
+  "kyc_required": "No (under $1,000 | 0.01 BTC)",
   "recovery_method": "Email login with optional 2FA and support-assisted resets",
   "open_source": "Yes",
-  "user_experience": "0.0",
   "interface": "Mobile & Desktop",
   "app_ratings": {
     "ios": "No app available",
@@ -108,6 +108,12 @@
   ],
   "trust_chips": [
     {
+      "text": "No-KYC under $1k",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "privacy"
+    },
+    {
       "text": "Direct-to-wallet delivery",
       "status": "positive",
       "variant": "differentiator",
@@ -118,12 +124,6 @@
       "status": "positive",
       "variant": "differentiator",
       "link_to": "bill-pay"
-    },
-    {
-      "text": "Dollar-cost averaging (DCA)",
-      "status": "positive",
-      "variant": "differentiator",
-      "link_to": "dca"
     }
   ],
   "tl_dr": {
@@ -215,7 +215,7 @@
       "learn_more": "Prime discounts unlock once your cumulative trades cross $100,000 CAD."
     },
     {
-      "id": "fees-sell",
+      "id": "fees-pay",
       "title": "Sell bitcoin",
       "cost_today": "Interac e-Transfer: no fee<br>Bill payment: no fee<br>Wire transfer: no Bull Bitcoin fee (your bank may charge)",
       "what_happens": "Bull Bitcoin locks the sell rate as soon as it sees your bitcoin, then delivers Canadian dollars to the payout option you chose.",
@@ -316,11 +316,37 @@
           "max_per_week": "Contact support for higher limits",
           "withdraw_eligibility": "CAD payout starts after your Lightning payment settles."
         }
+      },
+      {
+        "id": "cash",
+        "name": "Cash (Canada Post)",
+        "available": true,
+        "icon": "cash",
+        "summary": {
+          "fee": "~2% (No KYC)",
+          "fee_link": "fees-buy",
+          "speed": "Minutes",
+          "withdraw": "Bitcoin sends immediately"
+        },
+        "best_for": "Buying bitcoin privately with cash at any Canada Post location.",
+        "limits": {
+          "min_per_tx": "No minimum",
+          "max_per_tx": "$999.99 CAD",
+          "max_per_day": "No maximum",
+          "max_per_week": "No maximum",
+          "withdraw_eligibility": "Orders broadcast immediately."
+        }
       }
     ]
   },
   "compat_heading": "Bull Bitcoin features & limits",
   "compat_tiles": [
+    {
+      "id": "no-kyc-buys",
+      "title": "No-KYC Buys",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Under $1,000 CAD</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> No ID required</span>",
+      "status": "works"
+    },
     {
       "id": "direct-to-wallet",
       "title": "Direct-to-wallet delivery",
@@ -337,12 +363,6 @@
       "id": "dca",
       "title": "Dollar-cost averaging (DCA)",
       "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Schedule recurring buys</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Send straight to your wallet</span>",
-      "status": "works"
-    },
-    {
-      "id": "mobile-wallet",
-      "title": "Mobile Wallet",
-      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Liquid & On-chain</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Non-custodial</span>",
       "status": "works"
     }
   ],
@@ -380,14 +400,14 @@
       "gotcha": "Recurring buys trigger after each funding clears, so Interac caps can delay the schedule if you hit daily limits."
     },
     {
-      "id": "mobile-wallet",
-      "why": "The Bull Bitcoin Mobile app acts as your non-custodial wallet, letting you hold your own keys for both Liquid (Instant) and On-chain (Secure) bitcoin.",
+      "id": "no-kyc-buys",
+      "why": "Bull Bitcoin allows you to buy (via Cash at Canada Post), sell, or pay bills without identity verification for amounts under $1,000 CAD per transaction.",
       "try": [
-        "Download the app and create a new wallet.",
-        "Back up your recovery phrase or use the cloud backup feature.",
-        "Use the app to generate receiving addresses for your buys."
+        "Create an account with just an email.",
+        "Select 'Cash (Canada Post)' to buy, or any sell method.",
+        "Keep transactions under $999.99 CAD."
       ],
-      "gotcha": "The exchange features in the app currently redirect to the web interface for funding."
+      "gotcha": "Cumulative limits may apply; larger amounts require ID verification."
     }
   ],
   "self_custody": {
@@ -476,8 +496,8 @@
   "privacy": {
     "section_title": "Privacy & Safety",
     "data_flows": [
-      "Bull Bitcoin keeps your legal name, address, and ID scans to satisfy Canadian AML requirements.",
-      "Payment instructions, addresses, and invoices you enter are retained for order history and compliance."
+      "<strong>Under $1,000 | 0.01 BTC CAD:</strong> No ID required for cash buys, selling bitcoin, or paying bills. Bull Bitcoin requires only an email/phone number.",
+      "<strong>Over $1,000 | 0.01 BTC CAD:</strong> FINTRAC regulations apply; you must verify your ID and address."
     ],
     "data_flows_do": "Use strong passwords, enable 2FA, and remove saved payout details you no longer need.",
     "data_flows_dont": "Reuse Lightning invoices or on-chain addresses; generate fresh details so your activity stays compartmentalized.",
@@ -508,7 +528,7 @@
       },
       {
         "q": "Can I trade without uploading ID?",
-        "a": "No. FINTRAC rules require verified identification before you can send funds or request CAD payouts."
+        "a": "Yes, for amounts under $1,000 | 0.01 BTC CAD. You can buy (via Cash/Canada Post), sell, or pay bills without ID. Larger amounts require full verification."
       }
     ],
     "glossary": [

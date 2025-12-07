@@ -1,7 +1,7 @@
 {
   "name": "myNode",
   "category": "Run my own node",
-  "type_of_platform": "Home server as software and / or hardware",
+  "type_of_platform": "Node software & hardware",
   "faqs": [
     {
       "q": "How do MyNode hardware options compare between Model One and Model Two?",
@@ -54,7 +54,6 @@
   "kyc_required": "No",
   "recovery_method": "System backup archive + Lightning static channel backup",
   "open_source": "Open source core with optional Premium license",
-  "user_experience": "0.0",
   "interface": "Desktop only",
   "app_ratings": {
     "ios": null,

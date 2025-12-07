@@ -1,7 +1,7 @@
 {
   "name": "Bisq",
   "category": "Buy Bitcoin",
-  "type_of_platform": "P2P",
+  "type_of_platform": "Decentralized Exchange (DEX)",
   "faqs": [
     {
       "q": "How do Bisq trading fees and BSQ discounts work?",
@@ -71,7 +71,6 @@
   "custody_control": "Non-custodial",
   "kyc_required": "No",
   "open_source": "Yes",
-  "user_experience": "0.0",
   "interface": "Desktop only",
   "app_ratings": {
     "text": "No app available"
@@ -103,15 +102,15 @@
       "link_to": "bsq-fee-discounts"
     },
     {
-      "text": "Many fiat payment methods",
+      "text": "No initial BTC needed",
       "status": "positive",
       "variant": "differentiator",
-      "link_to": "payment-methods"
+      "link_to": "tl_dr"
     }
   ],
   "tl_dr": {
     "best_for": "People who want to buy or sell bitcoin peer-to-peer with refundable deposits instead of trusting an exchange.",
-    "consider_if": "You are ready to learn the deposit workflow and keep a small BTC balance on hand for fees and collateral.",
+    "consider_if": "You are ready to run desktop software. (Note: Bisq Easy now allows buying without a security deposit).",
     "not_ideal_when": "You need instant liquidity, mobile access, or trades without any on-chain confirmations."
   },
   "howto": {
@@ -196,7 +195,7 @@
       "learn_more": "The Bisq DAO votes on fee parameters and the client updates the schedule automatically."
     },
     {
-      "id": "fees-security-deposit",
+      "id": "fees-pay",
       "title": "Post the security deposit",
       "cost_today": "Refundable collateral: typically 15%-50% of trade size",
       "what_happens": "Bisq locks both parties' deposits in the 2-of-2 escrow to incentivize delivery of the fiat payment.",
@@ -377,6 +376,28 @@
       "gotcha": "If you withdraw with a low fee during congestion the confirmation can take longer, so plan ahead."
     }
   ],
+  "compatibility": {
+     "section_title": "Compatibility: Where Bisq runs",
+     "intro": "Bisq is a heavy client that runs a local Bitcoin node and Tor hidden service. It requires a desktop computer.",
+     "hardware_os": [
+       {
+         "id": "desktop-os",
+         "title": "Desktop OS",
+         "platforms": [
+           { "name": "Windows", "version": "10+", "status": "verified" },
+           { "name": "macOS", "version": "Apple Silicon/Intel", "status": "verified" },
+           { "name": "Linux", "version": "Debian/RPM", "status": "verified" }
+         ]
+       },
+       {
+         "id": "mobile-support",
+         "title": "Mobile App",
+         "items": [
+           { "name": "Bisq Mobile", "status": "verified", "notes": "Notifications only (cannot trade)" }
+         ]
+       }
+     ]
+   },
   "self_custody": {
     "heading": "Self-custody: finish the trade safely",
     "tiles": [

@@ -1,421 +1,426 @@
 {
-    "name": "Aqua",
-    "category": "Spend Bitcoin",
-    "type_of_platform": "Hot Wallet",
-    "faqs": [
-        {
-            "q": "What networks does Aqua support?",
-            "a": "Aqua keeps one balance spanning Bitcoin on-chain, the Liquid sidechain, and Lightning. You can also swap USDt to other chains through partners when needed."
-        },
-        {
-            "q": "Does Aqua require KYC?",
-            "a": "No. The wallet is self-custodial. You only share an email if you opt into JAN3 services such as the Dolphin Card."
-        },
-        {
-            "q": "How do Lightning payments work in Aqua?",
-            "a": "Aqua sends and receives Lightning through Boltz submarine swaps. You pay in L-BTC, Boltz settles over Lightning, and any refunds return to your Liquid balance."
-        },
-        {
-            "q": "Can I import an existing seed phrase into Aqua?",
-            "a": "Aqua only restores wallets that were originally created inside the app. It generates a 12-word seed that you should store offline as your only backup."
-        },
-        {
-            "q": "How does Aqua handle USDt on other blockchains?",
-            "a": "USDt on Liquid is native. When you send or receive USDt on networks like Ethereum or Tron, Aqua routes the transaction through swap providers such as SideShift or Changelly and their fees apply."
-        }
-    ],
-    "supported_network": "Bitcoin, Lightning, and Liquid with USDt swaps via partners",
-    "features": {
-        "WW": [
-            {
-                "text": "Bitcoin, Lightning, and Liquid in one balance",
-                "status": "positive"
-            },
-            {
-                "text": "Confidential Liquid transactions for added privacy",
-                "status": "positive"
-            },
-            {
-                "text": "Direct peg-in turns on-chain BTC into L-BTC without extra steps",
-                "status": "positive"
-            },
-            {
-                "text": "Lightning depends on Boltz swaps",
-                "status": "negative"
-            },
-            {
-                "text": "Swaps can cost more than native Lightning wallets",
-                "status": "negative"
-            }
-        ]
+  "name": "Aqua",
+  "category": "Spend Bitcoin",
+  "type_of_platform": "Mobile Wallet (Layer 2)",
+  "faqs": [
+    {
+      "q": "What networks does Aqua support?",
+      "a": "Aqua keeps one balance spanning Bitcoin on-chain, the Liquid sidechain, and Lightning. You can also swap USDt to other chains through partners when needed."
     },
-    "custody_control": "Non-custodial (keys stored on your device)",
-    "kyc_required": "No",
-    "recovery_method": "12-word seed created in-app (optional passphrase)",
-    "open_source": "Core wallet is open source; marketplace modules are closed",
-    "user_experience": "0.0",
-    "interface": "Mobile only",
-    "app_ratings": {
-        "ios": 4.2,
-        "android": 4.5
+    {
+      "q": "Does Aqua require KYC?",
+      "a": "No. The wallet is self-custodial. You only share an email if you opt into JAN3 services such as the Dolphin Card."
     },
-    "profile": "Samson Mow",
-    "description": "Aqua is JAN3's mobile wallet that keeps Bitcoin, Liquid, and Lightning funds in one place. The app is self-custodial, so you write down a 12-word seed and control every transaction.\n\nAqua leans on Liquid for privacy and low fees, while Boltz swaps unlock Lightning spending without running your own channels. You can peg-in on-chain BTC, hold USDt on Liquid, and bridge to other networks when required.\n\nOptional extras such as the Dolphin Card and future marketplace services build on the same wallet, so newcomers can start with simple payments and grow into more advanced features as they get comfortable.",
-    "founded_in": "2024",
-    "website": "https://aquawallet.io",
-    "links": {
-        "ios": "https://apps.apple.com/us/app/aqua-wallet/id6468594241",
-        "android": "https://play.google.com/store/apps/details?id=io.aquawallet.android"
+    {
+      "q": "How do Lightning payments work in Aqua?",
+      "a": "Aqua sends and receives Lightning through Boltz submarine swaps. You pay in L-BTC, Boltz settles over Lightning, and any refunds return to your Liquid balance."
     },
-    "countries": [
-        "WW"
-    ],
-    "trust_chips": [
-        {
-            "text": "Non-custodial",
-            "status": "positive"
-        },
-        {
-            "text": "Open source",
-            "status": "positive"
-        },
-        {
-            "text": "No KYC",
-            "status": "positive"
-        }
-    ],
-    "tl_dr": {
-        "best_for": "Mobile Bitcoiners who want Liquid privacy and the option to spend over Lightning without running channels.",
-        "consider_if": "You plan to hold USDt on Liquid or need the Dolphin Card for day-to-day expenses.",
-        "not_ideal_when": "You need rock-bottom Lightning fees or rely on desktop wallets."
+    {
+      "q": "Can I import an existing seed phrase into Aqua?",
+      "a": "Aqua only restores wallets that were originally created inside the app. It generates a 12-word seed that you should store offline as your only backup."
     },
-    "howto": {
-        "title": "Getting started with Aqua",
-        "steps": [
-            {
-                "id": "setup-install",
-                "title": "1. Install and create your wallet",
-                "chips": {
-                    "time": "~5 min",
-                    "cost": "Free",
-                    "risk": "Low"
-                },
-                "actions": [
-                    "Download Aqua from the App Store or Google Play",
-                    "Create a new wallet and write the 12-word seed on paper",
-                    "Add an optional passphrase if you want an extra layer"
-                ],
-                "gotcha": "Aqua cannot import seeds from other wallets, so keep this new phrase safe."
-            },
-            {
-                "id": "setup-receive",
-                "title": "2. Add funds",
-                "chips": {
-                    "time": "~10 min",
-                    "cost": "Mining fee",
-                    "risk": "Medium"
-                },
-                "actions": [
-                    "Choose Receive and pick Bitcoin, Liquid, or Lightning",
-                    "For large on-chain deposits, use Direct Peg-in to land funds directly as L-BTC",
-                    "Wait for confirmations before spending"
-                ],
-                "gotcha": "Lightning receives run through Boltz, so expect a short delay and a swap fee when capacity is low."
-            },
-            {
-                "id": "setup-pay",
-                "title": "3. Pay or swap",
-                "chips": {
-                    "time": "~1-3 min",
-                    "cost": "0.1%+ for Lightning swaps",
-                    "risk": "Medium"
-                },
-                "actions": [
-                    "Tap Send and pick Lightning, Bitcoin, or USDt",
-                    "Review the quoted fee before confirming",
-                    "Use the swap screen to bridge USDt to other chains if required"
-                ],
-                "gotcha": "Boltz and third-party providers charge extra for swaps; wait for low-fee periods if you're cost sensitive."
-            }
-        ],
-        "totalTime": null
-    },
-    "fees_scenarios": [
-        {
-            "id": "fees-send-lightning",
-            "title": "Pay someone",
-            "cost_today": "0.1% of the amount + Liquid network fee",
-            "what_happens": "Aqua swaps L-BTC through Boltz to settle the Lightning invoice.",
-            "how_to_minimize": "Batch payments when possible and send during low Liquid fee periods.",
-            "learn_more": "Boltz charges 0.1% plus the underlying Liquid mining fee when you send over Lightning."
-        },
-        {
-            "id": "fees-receive-lightning",
-            "title": "Receive on Lightning",
-            "cost_today": "0.25% + Liquid fee",
-            "what_happens": "Boltz receives the payment and credits your Liquid or Bitcoin balance.",
-            "how_to_minimize": "Use Lightning sparingly for small payments and rely on on-chain or Liquid for bigger transfers.",
-            "learn_more": "Receiving Lightning through Aqua triggers a Boltz swap that currently costs 0.25% plus the Liquid mining fee."
-        }
-    ],
-    "fees_faq": [
-        {
-            "q": "Why are Lightning fees higher than in other wallets?",
-            "a": "Aqua relies on Boltz swaps instead of native channels, so the service charges percentage-based fees on top of the Liquid mining cost."
-        },
-        {
-            "q": "Can I choose which swap provider Aqua uses?",
-            "a": "Not yet. The app automatically selects a partner today, but JAN3 plans to let you pick providers in a future release."
-        },
-        {
-            "q": "How do I keep swap fees predictable?",
-            "a": "Check the quoted fee before confirming and prefer Liquid or on-chain payments when you do not need an instant Lightning settlement."
-        }
-    ],
-    "key_terms": [
-        {
-            "id": "term-boltz",
-            "term": "Boltz swap",
-            "definition": "A trust-minimized service that turns your Liquid funds into Lightning payments and back."
-        },
-        {
-            "id": "term-liquid",
-            "term": "Liquid Network",
-            "definition": "A Bitcoin sidechain that adds faster settlement, confidential transactions, and native USDt support."
-        },
-        {
-            "id": "term-direct-pegin",
-            "term": "Direct peg-in",
-            "definition": "An Aqua feature that converts on-chain BTC straight into your L-BTC balance without extra manual steps."
-        }
-    ],
-    "privacy": {
-        "section_title": "Privacy & Safety",
-        "data_flows": [
-            "Aqua does not log payments on JAN3 servers, but third-party swaps (Boltz, SideShift, Changelly) see the amounts they process.",
-            "Optional JAN3 accounts (for services like Dolphin) store your email only; no password is kept.",
-            "App store billing and crash reports still follow Apple and Google policies."
-        ],
-        "data_flows_do": "Audit swap quotes and only share support details with providers you trust.",
-        "data_flows_dont": "Assume swaps or Lightning transactions are invisible. Providers learn the amounts they route.",
-        "recovery": [
-            "Seed lives solely on your device; JAN3 cannot recover it if you lose it.",
-            "To restore, install Aqua on a new phone, choose Restore Wallet, and enter the 12 words (plus passphrase if set).",
-            "If Boltz fails to settle, Aqua shows a Refund button so you can reclaim the funds."
-        ],
-        "recovery_do": "Store the seed somewhere dry and offline; consider adding the optional passphrase if you share the device.",
-        "recovery_dont": "Never screenshot or cloud-sync the seed.",
-        "region": [
-            "Dolphin Card roll-out is phased; some regions cannot apply yet.",
-            "Swap partners may block certain countries based on compliance rules.",
-            "Install updates promptly. New builds often address security and fee issues."
-        ],
-        "micro_faqs": [
-            {
-                "q": "Does Aqua collect analytics?",
-                "a": "No. The wallet ships without analytics. Only optional services gather the email you volunteer."
-            },
-            {
-                "q": "Can JAN3 recover my wallet if I lose the seed?",
-                "a": "No. The seed stays local, so recovery is entirely your responsibility."
-            },
-            {
-                "q": "What happens if a Lightning swap fails?",
-                "a": "Boltz automatically refunds your Liquid balance. If it stalls, use the Refund button or contact the provider with the swap ID."
-            }
-        ],
-        "glossary": [
-            {
-                "term": "JAN3 account",
-                "def": "An optional email login for services like the Dolphin Card; not required for basic wallet use."
-            },
-            {
-                "term": "Confidential transaction",
-                "def": "A Liquid feature that hides amounts while keeping addresses auditable."
-            },
-            {
-                "term": "Swap provider",
-                "def": "A third party (Boltz, SideShift, Changelly) that converts between networks for you."
-            }
-        ],
-        "keywords": [
-            "Aqua wallet privacy",
-            "Aqua Boltz fees",
-            "Liquid confidential",
-            "Aqua Dolphin Card",
-            "Aqua seed recovery",
-            "Aqua USDt swap"
-        ]
-    },
-    "compat_heading": "What this Aqua wallet can or can't do",
-    "compat_tiles": [
-        {
-            "id": "pay-lightning",
-            "title": "Pay with Lightning",
-            "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Via Boltz</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Swap fee applies</span>",
-            "status": "works-caveat"
-        },
-        {
-            "id": "pay-onchain",
-            "title": "Pay on-chain",
-            "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Bitcoin</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Liquid</span>",
-            "status": "works"
-        },
-        {
-            "id": "receive-lightning",
-            "title": "Receive on Lightning",
-            "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> 0.25% swap fee</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Auto refunds if it fails</span>",
-            "status": "works-caveat"
-        },
-        {
-            "id": "receive-onchain",
-            "title": "Receive on-chain",
-            "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> BTC & L-BTC addresses</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Direct peg-in</span>",
-            "status": "works"
-        }
-    ],
-    "compat_explainers": [
-        {
-            "id": "pay-lightning",
-            "why": "Aqua routes Lightning payments through Boltz, so you can spend instantly without running a channel yourself.",
-            "try": [
-                "Tap Send \u2192 Lightning",
-                "Paste or scan the invoice and review the swap quote",
-                "Confirm and watch for the success banner"
-            ],
-            "gotcha": "Boltz adds a fee and uses your Liquid balance. Heavy use can be more expensive than native Lightning wallets."
-        },
-        {
-            "id": "pay-onchain",
-            "why": "Pay exchanges or merchants with either on-chain BTC or the faster Liquid network.",
-            "try": [
-                "Pick Bitcoin or Liquid in the Send screen",
-                "Paste the address and set your fee",
-                "Confirm and wait for blockchain confirmations"
-            ],
-            "gotcha": "Direct peg-out to mainnet still depends on third-party liquidity, so large withdrawals may take longer."
-        },
-        {
-            "id": "receive-lightning",
-            "why": "Aqua lets you accept Lightning tips and swaps them into Liquid or Bitcoin automatically.",
-            "try": [
-                "Open Receive \u2192 Lightning",
-                "Set an amount and share the invoice",
-                "Keep the app open until Boltz confirms"
-            ],
-            "gotcha": "Each Lightning receive costs 0.25% plus the Liquid fee, so small tips can get eaten by the charge."
-        },
-        {
-            "id": "receive-onchain",
-            "why": "You can receive BTC or L-BTC with confidential amounts when using Liquid.",
-            "try": [
-                "Choose Receive and pick Bitcoin or Liquid",
-                "Share the generated address",
-                "Watch the transaction settle. Liquid confirms in 1 to 2 minutes"
-            ],
-            "gotcha": "Liquid senders must also support Liquid. For mainnet BTC, direct peg-in avoids paying two separate transaction fees."
-        }
-    ],
-    "migration": [
-        {
-            "id": "restore-same-wallet",
-            "title": "Restore Aqua on a new phone",
-            "choose": "When you lose or upgrade your device and need the same wallet.",
-            "time": "~10 min",
-            "cost": "Free",
-            "risk": "Low",
-            "steps": [
-                "Install Aqua from the official app store",
-                "Pick Restore Wallet and enter the 12-word seed (and passphrase if you set one)",
-                "Let the app rescan balances before deleting the old install"
-            ],
-            "tips": "Keep the old phone offline until the new one finishes syncing to avoid confusion.",
-            "gotcha": "You cannot run the same seed on two phones at once."
-        },
-        {
-            "id": "move-from-another-wallet",
-            "title": "Another wallet \u2192 Aqua",
-            "choose": "When you want Liquid privacy or the Dolphin Card but currently use a different wallet.",
-            "time": "~5\u201315 min",
-            "cost": "Network fee",
-            "risk": "Medium",
-            "steps": [
-                "Create your Aqua wallet and back up the seed",
-                "Send a small test payment from your existing wallet to Aqua",
-                "Move the remainder once the test settles"
-            ],
-            "tips": "Use Liquid or on-chain BTC for the transfer; Lightning swaps from other wallets will still incur fees.",
-            "gotcha": "You cannot import an old seed, so funds must physically move."
-        },
-        {
-            "id": "move-to-onchain",
-            "title": "Aqua \u2192 Long-term storage",
-            "choose": "When you want to vault BTC or USDt elsewhere.",
-            "time": "~1\u20136 hours",
-            "cost": "Mining fee",
-            "risk": "Low",
-            "steps": [
-                "Send on-chain BTC or Liquid to your cold storage address",
-                "If moving BTC, consider peg-out timing when fees are low",
-                "Wait for confirmations before deleting Aqua"
-            ],
-            "tips": "Liquid peg-outs rely on SideSwap liquidity; plan ahead for large amounts.",
-            "gotcha": "Peg-outs can take hours if SideSwap's hot wallet is empty."
-        },
-        {
-            "id": "switch-to-another-wallet",
-            "title": "Aqua \u2192 Another wallet",
-            "choose": "When you need native Lightning or desktop support instead.",
-            "time": "~15\u201345 min",
-            "cost": "Swap or routing fees",
-            "risk": "Medium",
-            "steps": [
-                "Install the new wallet and complete its backup",
-                "Send a small test from Aqua using the network your new wallet prefers",
-                "Drain remaining balances once confirmed"
-            ],
-            "tips": "Use on-chain transfers for large amounts to avoid repeated Boltz fees.",
-            "gotcha": "Deleting Aqua without moving funds loses access permanently."
-        }
-    ],
-    "anchors": {
-        "setup": "#setup",
-        "fees": "#fees",
-        "privacy": "#privacy",
-        "migration": "#migration",
-        "faq": "#faq"
-    },
-    "schema_flags": {
-        "hasHowTo": true,
-        "hasFAQ": true
-    },
-    "updated": "2025-11-01",
-    "trust": {
-        "cards": [
-            {
-                "id": "update",
-                "fact": "November 2025",
-                "link_text": "App Store",
-                "link_url": "https://apps.apple.com/us/app/aqua-wallet/id6468594241"
-            },
-            {
-                "id": "publisher",
-                "fact": "JAN3 LLC",
-                "link_text": "Developer",
-                "link_url": "https://play.google.com/store/apps/developer?id=JAN3"
-            },
-            {
-                "id": "source",
-                "fact": "Core wallet on GitHub",
-                "link_text": "Repo",
-                "link_url": "https://github.com/AquaWallet/aqua-wallet"
-            },
-            {
-                "id": "activity",
-                "fact": "Commits in Oct 2025",
-                "link_text": "Commits",
-                "link_url": "https://github.com/AquaWallet/aqua-wallet/commits/main"
-            }
-        ]
+    {
+      "q": "How does Aqua handle USDt on other blockchains?",
+      "a": "USDt on Liquid is native. When you send or receive USDt on networks like Ethereum or Tron, Aqua routes the transaction through swap providers such as SideShift or Changelly and their fees apply."
     }
+  ],
+  "supported_network": "Bitcoin, Lightning, and Liquid with USDt swaps via partners",
+  "features": {
+    "WW": [
+      {
+        "text": "Bitcoin, Lightning, and Liquid in one balance",
+        "status": "positive"
+      },
+      {
+        "text": "Confidential Liquid transactions for added privacy",
+        "status": "positive"
+      },
+      {
+        "text": "Direct peg-in turns on-chain BTC into L-BTC without extra steps",
+        "status": "positive"
+      },
+      {
+        "text": "Lightning depends on Boltz swaps",
+        "status": "negative"
+      },
+      {
+        "text": "Swaps can cost more than native Lightning wallets",
+        "status": "negative"
+      }
+    ]
+  },
+  "custody_control": "Non-custodial (keys stored on your device)",
+  "kyc_required": "No",
+  "recovery_method": "12-word seed created in-app (optional passphrase)",
+  "open_source": "Core wallet is open source; marketplace modules are closed",
+  "interface": "Mobile only",
+  "app_ratings": {
+    "ios": 4.2,
+    "android": 4.5
+  },
+  "profile": "Samson Mow",
+  "description": "Aqua is JAN3's mobile wallet that keeps Bitcoin, Liquid, and Lightning funds in one place. The app is self-custodial, so you write down a 12-word seed and control every transaction.\n\nAqua leans on Liquid for privacy and low fees, while Boltz swaps unlock Lightning spending without running your own channels. You can peg-in on-chain BTC, hold USDt on Liquid, and bridge to other networks when required.\n\nOptional extras such as the Dolphin Card and future marketplace services build on the same wallet, so newcomers can start with simple payments and grow into more advanced features as they get comfortable.",
+  "founded_in": "2024",
+  "website": "https://aquawallet.io",
+  "links": {
+    "ios": "https://apps.apple.com/us/app/aqua-wallet/id6468594241",
+    "android": "https://play.google.com/store/apps/details?id=io.aquawallet.android"
+  },
+  "countries": [
+    "WW"
+  ],
+  "trust_chips": [
+    {
+      "text": "No channel management",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "setup"
+    },
+    {
+      "text": "Liquid Sidechain",
+      "status": "positive",
+      "variant": "differentiator",
+      "link_to": "pay-onchain"
+    },
+    {
+      "text": "Swap-based Lightning",
+      "status": "neutral",
+      "variant": "differentiator",
+      "link_to": "pay-lightning"
+    }
+  ],
+  "tl_dr": {
+    "best_for": "Mobile Bitcoiners who want Liquid privacy and the option to spend over Lightning without running channels.",
+    "consider_if": "You plan to hold USDt on Liquid or need the Dolphin Card for day-to-day expenses.",
+    "not_ideal_when": "You need rock-bottom Lightning fees or rely on desktop wallets."
+  },
+  "howto": {
+    "title": "Getting started with Aqua",
+    "steps": [
+      {
+        "id": "setup-install",
+        "title": "1. Install and create your wallet",
+        "chips": {
+          "time": "~5 min",
+          "cost": "Free",
+          "risk": "Low"
+        },
+        "actions": [
+          "Download Aqua from the App Store or Google Play",
+          "Create a new wallet and write the 12-word seed on paper",
+          "Add an optional passphrase if you want an extra layer"
+        ],
+        "gotcha": "Aqua cannot import seeds from other wallets, so keep this new phrase safe."
+      },
+      {
+        "id": "setup-receive",
+        "title": "2. Add funds",
+        "chips": {
+          "time": "~10 min",
+          "cost": "Mining fee",
+          "risk": "Medium"
+        },
+        "actions": [
+          "Choose Receive and pick Bitcoin, Liquid, or Lightning",
+          "For large on-chain deposits, use Direct Peg-in to land funds directly as L-BTC",
+          "Wait for confirmations before spending"
+        ],
+        "gotcha": "Lightning receives run through Boltz, so expect a short delay and a swap fee when capacity is low."
+      },
+      {
+        "id": "setup-pay",
+        "title": "3. Pay or swap",
+        "chips": {
+          "time": "~1-3 min",
+          "cost": "0.1%+ for Lightning swaps",
+          "risk": "Medium"
+        },
+        "actions": [
+          "Tap Send and pick Lightning, Bitcoin, or USDt",
+          "Review the quoted fee before confirming",
+          "Use the swap screen to bridge USDt to other chains if required"
+        ],
+        "gotcha": "Boltz and third-party providers charge extra for swaps; wait for low-fee periods if you're cost sensitive."
+      }
+    ],
+    "totalTime": null
+  },
+  "fees_scenarios": [
+    {
+      "id": "fees-send-lightning",
+      "title": "Pay someone",
+      "cost_today": "0.1% of the amount + Liquid network fee",
+      "what_happens": "Aqua swaps L-BTC through Boltz to settle the Lightning invoice.",
+      "how_to_minimize": "Batch payments when possible and send during low Liquid fee periods.",
+      "learn_more": "Boltz charges 0.1% plus the underlying Liquid mining fee when you send over Lightning."
+    },
+    {
+      "id": "fees-receive-lightning",
+      "title": "Receive on Lightning",
+      "cost_today": "0.25% + Liquid fee",
+      "what_happens": "Boltz receives the payment and credits your Liquid or Bitcoin balance.",
+      "how_to_minimize": "Use Lightning sparingly for small payments and rely on on-chain or Liquid for bigger transfers.",
+      "learn_more": "Receiving Lightning through Aqua triggers a Boltz swap that currently costs 0.25% plus the Liquid mining fee."
+    }
+  ],
+  "fees_faq": [
+    {
+      "q": "Why are Lightning fees higher than in other wallets?",
+      "a": "Aqua relies on Boltz swaps instead of native channels, so the service charges percentage-based fees on top of the Liquid mining cost."
+    },
+    {
+      "q": "Can I choose which swap provider Aqua uses?",
+      "a": "Not yet. The app automatically selects a partner today, but JAN3 plans to let you pick providers in a future release."
+    },
+    {
+      "q": "How do I keep swap fees predictable?",
+      "a": "Check the quoted fee before confirming and prefer Liquid or on-chain payments when you do not need an instant Lightning settlement."
+    }
+  ],
+  "key_terms": [
+    {
+      "id": "term-boltz",
+      "term": "Boltz swap",
+      "definition": "A trust-minimized service that turns your Liquid funds into Lightning payments and back."
+    },
+    {
+      "id": "term-liquid",
+      "term": "Liquid Network",
+      "definition": "A Bitcoin sidechain that adds faster settlement, confidential transactions, and native USDt support."
+    },
+    {
+      "id": "term-direct-pegin",
+      "term": "Direct peg-in",
+      "definition": "An Aqua feature that converts on-chain BTC straight into your L-BTC balance without extra manual steps."
+    }
+  ],
+  "privacy": {
+    "section_title": "Privacy & Safety",
+    "data_flows": [
+      "Aqua does not log payments on JAN3 servers, but third-party swaps (Boltz, SideShift, Changelly) see the amounts they process.",
+      "Optional JAN3 accounts (for services like Dolphin) store your email only; no password is kept.",
+      "App store billing and crash reports still follow Apple and Google policies."
+    ],
+    "data_flows_do": "Audit swap quotes and only share support details with providers you trust.",
+    "data_flows_dont": "Assume swaps or Lightning transactions are invisible. Providers learn the amounts they route.",
+    "recovery": [
+      "Seed lives solely on your device; JAN3 cannot recover it if you lose it.",
+      "To restore, install Aqua on a new phone, choose Restore Wallet, and enter the 12 words (plus passphrase if set).",
+      "If Boltz fails to settle, Aqua shows a Refund button so you can reclaim the funds."
+    ],
+    "recovery_do": "Store the seed somewhere dry and offline; consider adding the optional passphrase if you share the device.",
+    "recovery_dont": "Never screenshot or cloud-sync the seed.",
+    "region": [
+      "Dolphin Card roll-out is phased; some regions cannot apply yet.",
+      "Swap partners may block certain countries based on compliance rules.",
+      "Install updates promptly. New builds often address security and fee issues."
+    ],
+    "micro_faqs": [
+      {
+        "q": "Does Aqua collect analytics?",
+        "a": "No. The wallet ships without analytics. Only optional services gather the email you volunteer."
+      },
+      {
+        "q": "Can JAN3 recover my wallet if I lose the seed?",
+        "a": "No. The seed stays local, so recovery is entirely your responsibility."
+      },
+      {
+        "q": "What happens if a Lightning swap fails?",
+        "a": "Boltz automatically refunds your Liquid balance. If it stalls, use the Refund button or contact the provider with the swap ID."
+      }
+    ],
+    "glossary": [
+      {
+        "term": "JAN3 account",
+        "def": "An optional email login for services like the Dolphin Card; not required for basic wallet use."
+      },
+      {
+        "term": "Confidential transaction",
+        "def": "A Liquid feature that hides amounts while keeping addresses auditable."
+      },
+      {
+        "term": "Swap provider",
+        "def": "A third party (Boltz, SideShift, Changelly) that converts between networks for you."
+      }
+    ],
+    "keywords": [
+      "Aqua wallet privacy",
+      "Aqua Boltz fees",
+      "Liquid confidential",
+      "Aqua Dolphin Card",
+      "Aqua seed recovery",
+      "Aqua USDt swap"
+    ]
+  },
+  "compat_heading": "Compatibility: what works with Aqua",
+  "compat_tiles": [
+    {
+      "id": "pay-lightning",
+      "title": "Pay with Lightning",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Via Boltz</span> <span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> Swap fee applies</span>",
+      "status": "works-caveat"
+    },
+    {
+      "id": "pay-onchain",
+      "title": "Pay on-chain",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Bitcoin</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Liquid</span>",
+      "status": "works"
+    },
+    {
+      "id": "receive-lightning",
+      "title": "Receive on Lightning",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/warning.svg\" class=\"inline-icon\" alt=\"\"> 0.25% swap fee</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Auto refunds if it fails</span>",
+      "status": "works-caveat"
+    },
+    {
+      "id": "receive-onchain",
+      "title": "Receive on-chain",
+      "benefit": "<span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> BTC & L-BTC addresses</span> <span class=\"icon-text-pair\"><img src=\"/images/checkmark.svg\" class=\"inline-icon\" alt=\"\"> Direct peg-in</span>",
+      "status": "works"
+    }
+  ],
+  "compat_explainers": [
+    {
+      "id": "pay-lightning",
+      "why": "Aqua routes Lightning payments through Boltz, so you can spend instantly without running a channel yourself.",
+      "try": [
+        "Tap Send → Lightning",
+        "Paste or scan the invoice and review the swap quote",
+        "Confirm and watch for the success banner"
+      ],
+      "gotcha": "Boltz adds a fee and uses your Liquid balance. Heavy use can be more expensive than native Lightning wallets."
+    },
+    {
+      "id": "pay-onchain",
+      "why": "Pay exchanges or merchants with either on-chain BTC or the faster Liquid network.",
+      "try": [
+        "Pick Bitcoin or Liquid in the Send screen",
+        "Paste the address and set your fee",
+        "Confirm and wait for blockchain confirmations"
+      ],
+      "gotcha": "Direct peg-out to mainnet still depends on third-party liquidity, so large withdrawals may take longer."
+    },
+    {
+      "id": "receive-lightning",
+      "why": "Aqua lets you accept Lightning tips and swaps them into Liquid or Bitcoin automatically.",
+      "try": [
+        "Open Receive → Lightning",
+        "Set an amount and share the invoice",
+        "Keep the app open until Boltz confirms"
+      ],
+      "gotcha": "Each Lightning receive costs 0.25% plus the Liquid fee, so small tips can get eaten by the charge."
+    },
+    {
+      "id": "receive-onchain",
+      "why": "You can receive BTC or L-BTC with confidential amounts when using Liquid.",
+      "try": [
+        "Choose Receive and pick Bitcoin or Liquid",
+        "Share the generated address",
+        "Watch the transaction settle. Liquid confirms in 1 to 2 minutes"
+      ],
+      "gotcha": "Liquid senders must also support Liquid. For mainnet BTC, direct peg-in avoids paying two separate transaction fees."
+    }
+  ],
+  "migration": [
+    {
+      "id": "restore-same-wallet",
+      "title": "Restore Aqua on a new phone",
+      "choose": "When you lose or upgrade your device and need the same wallet.",
+      "time": "~10 min",
+      "cost": "Free",
+      "risk": "Low",
+      "steps": [
+        "Install Aqua from the official app store",
+        "Pick Restore Wallet and enter the 12-word seed (and passphrase if you set one)",
+        "Let the app rescan balances before deleting the old install"
+      ],
+      "tips": "Keep the old phone offline until the new one finishes syncing to avoid confusion.",
+      "gotcha": "You cannot run the same seed on two phones at once."
+    },
+    {
+      "id": "move-from-another-wallet",
+      "title": "Another wallet → Aqua",
+      "choose": "When you want Liquid privacy or the Dolphin Card but currently use a different wallet.",
+      "time": "~5–15 min",
+      "cost": "Network fee",
+      "risk": "Medium",
+      "steps": [
+        "Create your Aqua wallet and back up the seed",
+        "Send a small test payment from your existing wallet to Aqua",
+        "Move the remainder once the test settles"
+      ],
+      "tips": "Use Liquid or on-chain BTC for the transfer; Lightning swaps from other wallets will still incur fees.",
+      "gotcha": "You cannot import an old seed, so funds must physically move."
+    },
+    {
+      "id": "move-to-onchain",
+      "title": "Aqua → Long-term storage",
+      "choose": "When you want to vault BTC or USDt elsewhere.",
+      "time": "~1–6 hours",
+      "cost": "Mining fee",
+      "risk": "Low",
+      "steps": [
+        "Send on-chain BTC or Liquid to your cold storage address",
+        "If moving BTC, consider peg-out timing when fees are low",
+        "Wait for confirmations before deleting Aqua"
+      ],
+      "tips": "Liquid peg-outs rely on SideSwap liquidity; plan ahead for large amounts.",
+      "gotcha": "Peg-outs can take hours if SideSwap's hot wallet is empty."
+    },
+    {
+      "id": "switch-to-another-wallet",
+      "title": "Aqua → Another wallet",
+      "choose": "When you need native Lightning or desktop support instead.",
+      "time": "~15–45 min",
+      "cost": "Swap or routing fees",
+      "risk": "Medium",
+      "steps": [
+        "Install the new wallet and complete its backup",
+        "Send a small test from Aqua using the network your new wallet prefers",
+        "Drain remaining balances once confirmed"
+      ],
+      "tips": "Use on-chain transfers for large amounts to avoid repeated Boltz fees.",
+      "gotcha": "Deleting Aqua without moving funds loses access permanently."
+    }
+  ],
+  "anchors": {
+    "setup": "#setup",
+    "fees": "#fees",
+    "privacy": "#privacy",
+    "migration": "#migration",
+    "faq": "#faq"
+  },
+  "schema_flags": {
+    "hasHowTo": true,
+    "hasFAQ": true
+  },
+  "updated": "2025-11-01",
+  "trust": {
+    "cards": [
+      {
+        "id": "update",
+        "fact": "November 2025",
+        "link_text": "App Store",
+        "link_url": "https://apps.apple.com/us/app/aqua-wallet/id6468594241"
+      },
+      {
+        "id": "publisher",
+        "fact": "JAN3 LLC",
+        "link_text": "Developer",
+        "link_url": "https://play.google.com/store/apps/developer?id=JAN3"
+      },
+      {
+        "id": "source",
+        "fact": "Core wallet on GitHub",
+        "link_text": "Repo",
+        "link_url": "https://github.com/AquaWallet/aqua-wallet"
+      },
+      {
+        "id": "activity",
+        "fact": "Commits in Oct 2025",
+        "link_text": "Commits",
+        "link_url": "https://github.com/AquaWallet/aqua-wallet/commits/main"
+      }
+    ]
+  }
 }

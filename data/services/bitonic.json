@@ -1,7 +1,7 @@
 {
   "name": "Bitonic",
   "category": "Buy Bitcoin",
-  "type_of_platform": "Exchange",
+  "type_of_platform": "Bitcoin Brokerage",
   "faqs": [
     {
       "q": "How do Bitonic's Auto Invest fees work?",
@@ -75,7 +75,6 @@
   "custody_control": "Custodial",
   "kyc_required": "Yes",
   "open_source": "No",
-  "user_experience": "0.0",
   "interface": "Mobile & Desktop",
   "app_ratings": {
     "ios": 4.5,
@@ -307,7 +306,7 @@
       },
       {
         "id": "bitcoin",
-        "name": "Bitcoin deposit",
+        "name": "Bitcoin deposit (selling your bitcoin)",
         "available": true,
         "icon": "bitcoin",
         "summary": {
@@ -316,7 +315,7 @@
           "speed": "1+ confirmations",
           "withdraw": "N/A"
         },
-        "best_for": "Funding from another wallet or exchange",
+        "best_for": "Depositing funds when you want to <strong>sell</strong> bitcoin for euros.",
         "limits": {
           "min_per_tx": "No minimum",
           "max_per_tx": "No maximum",

@@ -71,7 +71,6 @@
   "kyc_required": "Yes",
   "recovery_method": "Email login with optional 2FA. Support can reset access after you reverify your ID.",
   "open_source": "No",
-  "user_experience": "0.0",
   "interface": "Mobile only",
   "app_ratings": {
     "ios": 4.9,

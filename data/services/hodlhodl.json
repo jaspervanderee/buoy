@@ -1,7 +1,7 @@
 {
   "name": "Hodlhodl",
   "category": "Buy Bitcoin",
-  "type_of_platform": "P2P",
+  "type_of_platform": "Non-custodial P2P Marketplace",
   "faqs": [
     {
       "q": "How do Hodl Hodl trading fees work?",
@@ -57,7 +57,6 @@
   "kyc_required": "No",
   "recovery_method": "Email login with optional 2FA, Trusted Devices, and support mediated account recovery",
   "open_source": "No",
-  "user_experience": "0.0",
   "interface": "Desktop only",
   "app_ratings": {
     "text": "No app available"
@@ -197,7 +196,7 @@
     {
       "id": "fees-buy",
       "title": "Buy bitcoin",
-      "cost_today": "Trading fee: 0.5% split equally between both parties",
+      "cost_today": "Trading fee: 0.6% split equally (0.3% per side)",
       "what_happens": "Hodl Hodl deducts the fee from the release transaction once both sides confirm payment, so no custodial account ever holds your bitcoin.",
       "how_to_minimize": "Build reputation and negotiate premiums with trusted traders to keep your all-in price close to spot.",
       "learn_more": "Premiums vary by offer; review the contract summary before you lock in a trade."
@@ -217,7 +216,7 @@
       "a": "The seller covers the on-chain fee to fund escrow and can choose the release fee, while the buyer only pays their own wallet fee if they move coins again."
     },
     {
-      "q": "When does Hodl Hodl charge the 0.5% fee?",
+      "q": "When does Hodl Hodl charge the 0.6% fee?",
       "a": "The fee is withheld from the escrow release once both parties confirm payment, so no extra invoice or deposit is needed."
     },
     {
@@ -518,7 +517,7 @@
     "withdrawal_policy_dont": "Send fiat before the escrow funding transaction has at least one confirmation.",
     "region": [
       "Hodl Hodl operates globally, but certain fiat rails or currencies depend on local traders.",
-      "U.S. residents can trade but should review their state regulations on peer-to-peer bitcoin sales.",
+      "Hodl Hodl <strong>does NOT accept U.S. residents</strong> (Prohibited Jurisdiction). US users should use <a href=\"/services/bisq.html\">Bisq</a> or <a href=\"/services/robosats.html\">RoboSats</a> instead.",
       "Some countries may require additional verification for high volume trades; check the limit tier policy."
     ],
     "micro_faqs": [

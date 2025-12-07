@@ -238,10 +238,10 @@
     "p": "{A} provides plug‑and‑play personal servers focused on self‑hosting sovereignty with a curated marketplace. {B} offers an elegant UI and a large one‑click App Store for Bitcoin and beyond. Compare setup paths, app ecosystems, hardware choices, and support experiences."
   },
   "_ACCEPT_BITCOIN_AS_A_MERCHANT": "── Accept Bitcoin as a merchant ──",
-  "btc-pay-vs-lightspark": {
+  "btcpay-server-vs-lightspark": {
     "p": "{A} suits merchants who want self-hosted, non-custodial Bitcoin/Lightning acceptance with no processor fees or KYC, but requires setup and no native fiat settlement. {B} targets platforms needing managed Lightning rails, routing, and liquidity with enterprise compliance. More comparisons below."
   },
-  "btc-pay-vs-opennode": {
+  "btcpay-server-vs-opennode": {
     "p": "{A} supports self‑hosted payments that settle to your own wallet without platform intermediaries. {B} suits teams preferring custodial, turnkey checkouts, plugins, and managed payouts. Compare custody expectations, KYC posture, supported networks, settlement behavior, and ecommerce integrations."
   },
   "lightspark-vs-opennode": {

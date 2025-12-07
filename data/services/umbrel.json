@@ -45,7 +45,6 @@
   "kyc_required": "No",
   "recovery_method": "System backup archive + Lightning static channel backup",
   "open_source": "Source-available (PolyForm Noncommercial 1.0.0)",
-  "user_experience": "0.0",
   "interface": "Web dashboard",
   "app_ratings": {
     "ios": null,
@@ -182,7 +181,11 @@
         "storage_guidance": "1 TB NVMe (Full history) or 500GB (Pruned).",
         "noise_footprint": "Low noise (<30dB fan), tiny footprint.",
         "gotcha": "Pi 4/5 shares bandwidth between USB and Network, which bottlenecks the initial sync.",
-        "compatibility_badges": ["Bitcoin Core", "Lightning", "Basic Apps"],
+        "compatibility_badges": [
+          "Bitcoin Core",
+          "Lightning",
+          "Basic Apps"
+        ],
         "parts": [
           "Raspberry Pi 5 or 4 (8 GB RAM)",
           "1 TB NVMe SSD in USB 3.2 enclosure",
@@ -203,7 +206,12 @@
         "storage_guidance": "2 TB NVMe (Allows Electrs index + Media apps).",
         "noise_footprint": "Silent (Fanless chassis available), router-sized.",
         "gotcha": "Requires flashing an OS image to internal disk (wipes the drive).",
-        "compatibility_badges": ["Electrs", "Mempool", "Post-Mix Tools", "Media Apps"],
+        "compatibility_badges": [
+          "Electrs",
+          "Mempool",
+          "Post-Mix Tools",
+          "Media Apps"
+        ],
         "parts": [
           "Intel N100 / N305 mini PC with 16 GB RAM",
           "2 TB NVMe SSD",
@@ -224,7 +232,11 @@
         "storage_guidance": "4 TB NVMe (Mirrored RAID 1 recommended).",
         "noise_footprint": "Audible fans (35dB+), desktop tower size.",
         "gotcha": "Overkill for just Bitcoin; only build this if you host AI models or 50+ apps.",
-        "compatibility_badges": ["BTCPay Server", "LLM AI Models", "High-Vol Routing"],
+        "compatibility_badges": [
+          "BTCPay Server",
+          "LLM AI Models",
+          "High-Vol Routing"
+        ],
         "parts": [
           "Ryzen 7 / Intel i7 SFF box with 32 GB RAM",
           "4 TB NVMe or SATA SSD (mirrored)",
@@ -520,11 +532,26 @@
   },
   "maintenance": {
     "ops_profile": [
-      { "label": "Update Cadence", "value": "Monthly + Hotfixes" },
-      { "label": "Rollback", "value": "Re-flash SD (Data Safe)" },
-      { "label": "Backups", "value": "LND (Auto) + System" },
-      { "label": "Data Path", "value": "/home/umbrel/umbrel" },
-      { "label": "Monitoring", "value": "Dashboard / Apps" }
+      {
+        "label": "Update Cadence",
+        "value": "Monthly + Hotfixes"
+      },
+      {
+        "label": "Rollback",
+        "value": "Re-flash SD (Data Safe)"
+      },
+      {
+        "label": "Backups",
+        "value": "LND (Auto) + System"
+      },
+      {
+        "label": "Data Path",
+        "value": "/home/umbrel/umbrel"
+      },
+      {
+        "label": "Monitoring",
+        "value": "Dashboard / Apps"
+      }
     ],
     "tasks": [
       {
