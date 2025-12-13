@@ -328,6 +328,58 @@ footer h3 {
   gap: 10px; /* Space between columns */
 }
 
+/* Footer Personal Note */
+.footer-personal-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 24px 24px;
+  background: transparent;
+  max-width: 600px;
+  margin: 0 auto 40px; /* Spacing below to separate from columns */
+  color: white;
+  text-align: center;
+  flex-direction: column; /* Mobile first */
+}
+
+.footer-personal-note .footer-profile-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-personal-note p {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 1em;
+  line-height: 1.5;
+  color: #cccccc; /* Slightly muted white for better readability */
+}
+
+.footer-personal-note a {
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 2px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.footer-personal-note a:hover {
+  color: var(--accent);
+}
+
+@media (min-width: 768px) {
+  .footer-personal-note {
+    flex-direction: row;
+    text-align: left;
+    padding: 0 32px 32px;
+  }
+}
 
 /* Scrollable container */
 .scrollable-container {

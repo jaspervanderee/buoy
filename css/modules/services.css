@@ -930,7 +930,6 @@
   
   .fee-card {
     padding: 20px;
-    scroll-margin-top: 450px; /* Slightly less offset on desktop */
   }
 }
 

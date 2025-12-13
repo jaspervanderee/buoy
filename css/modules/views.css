@@ -744,12 +744,6 @@
   }
 }
 
-/* Scroll margin for section anchors to account for sticky header */
-.service-section,
-.brand-faq {
-  scroll-margin-top: 250px;
-}
-
 /* === Single-service baked table normalization === */
 #comparison-table-wrapper table.comparison-table {
   /* Override flex container on table instances only */
