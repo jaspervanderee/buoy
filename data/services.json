@@ -6788,7 +6788,7 @@
             "risk": "Low (browser-based)"
           },
           "actions": [
-            "Visit `http://mynode.local/` (or the IP address) and log in with `admin` / `bolt`.",
+            "Visit `https://mynode.local/` (or the IP address) and log in with `admin` / `bolt`.",
             "Enter your product key for Premium or choose Community Edition to keep things free.",
             "Change the default password, record it in a password manager, and decide whether you want Tor or VPN enabled yet."
           ],
@@ -7179,7 +7179,7 @@
           "endpoints": [
             {
               "label": "BTCPay (LAN)",
-              "value": "http://mynode.local:23000"
+              "value": "https://mynode.local:23000"
             }
           ],
           "compatible_tools": [
@@ -11723,7 +11723,7 @@
     "faqs": [
       {
         "q": "How do I reach the StartOS dashboard on day one?",
-        "a": "Connect your Server One, Server Pure, or DIY box to power plus Ethernet, keep your laptop or phone on the same LAN, and visit `http://start.local` to run the Start Fresh wizard. The UI walks you through choosing Start Fresh or Recovery so the device can provision itself."
+        "a": "Connect your Server One, Server Pure, or DIY box to power plus Ethernet, keep your laptop or phone on the same LAN, and visit `https://start.local` to run the Start Fresh wizard. The UI walks you through choosing Start Fresh or Recovery so the device can provision itself."
       },
       {
         "q": "How do Start9 backups work?",
@@ -11839,7 +11839,7 @@
           },
           "sync_time": "Initial block download can take many hours on SSD-based x86 hardware and is unreliable on Raspberry Pi kits.",
           "actions": [
-            "Connect the server to power plus Ethernet, keep your laptop/phone on the same LAN, and open `http://start.local`.",
+            "Connect the server to power plus Ethernet, keep your laptop/phone on the same LAN, and open `https://start.local`.",
             "Choose Start Fresh or the Recovery path, then follow the on-screen prompts to provision the OS.",
             "If you are migrating, pick Use Existing Drive or Transfer to reuse your previous data set."
           ],
@@ -13741,7 +13741,7 @@
             "risk": "Low"
           },
           "actions": [
-            "Power on your device and visit `http://umbrel.local` on a computer connected to the same network.",
+            "Power on your device and visit `https://umbrel.local` on a computer connected to the same network.",
             "Follow the setup wizard to choose your node name and create a password.",
             "Write down your 24-word recovery phrase on paper—this is your only backup if the hardware fails."
           ],
@@ -14146,7 +14146,7 @@
           "endpoints": [
             {
               "label": "Mempool (Example)",
-              "value": "http://umbrel.local:3006"
+              "value": "https://umbrel.local:3006"
             }
           ],
           "compatible_tools": [

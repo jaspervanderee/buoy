@@ -139,7 +139,7 @@
           "risk": "Low (browser-based)"
         },
         "actions": [
-          "Visit `http://mynode.local/` (or the IP address) and log in with `admin` / `bolt`.",
+          "Visit `https://mynode.local/` (or the IP address) and log in with `admin` / `bolt`.",
           "Enter your product key for Premium or choose Community Edition to keep things free.",
           "Change the default password, record it in a password manager, and decide whether you want Tor or VPN enabled yet."
         ],
@@ -530,7 +530,7 @@
         "endpoints": [
           {
             "label": "BTCPay (LAN)",
-            "value": "http://mynode.local:23000"
+            "value": "https://mynode.local:23000"
           }
         ],
         "compatible_tools": [

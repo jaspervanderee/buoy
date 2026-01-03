@@ -753,7 +753,7 @@ let currentService = null;
 let selectedRating = 0;
 
 // Backend URL (root-absolute). In production use the API domain; in dev use a local placeholder and skip network.
-const isProd = window.location.origin === 'https://buoybitcoin.com';
+const isProd = window.location.origin === 'https://buoybitcoin.com/';
 const backendUrl = isProd ? 'https://api.buoybitcoin.com' : '/api';
 
 // Add click event to all "Review" links

@@ -114,7 +114,7 @@
           "risk": "Low"
         },
         "actions": [
-          "Power on your device and visit `http://umbrel.local` on a computer connected to the same network.",
+          "Power on your device and visit `https://umbrel.local` on a computer connected to the same network.",
           "Follow the setup wizard to choose your node name and create a password.",
           "Write down your 24-word recovery phrase on paper—this is your only backup if the hardware fails."
         ],
@@ -519,7 +519,7 @@
         "endpoints": [
           {
             "label": "Mempool (Example)",
-            "value": "http://umbrel.local:3006"
+            "value": "https://umbrel.local:3006"
           }
         ],
         "compatible_tools": [

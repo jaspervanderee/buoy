@@ -5,7 +5,7 @@
   "faqs": [
     {
       "q": "How do I reach the StartOS dashboard on day one?",
-      "a": "Connect your Server One, Server Pure, or DIY box to power plus Ethernet, keep your laptop or phone on the same LAN, and visit `http://start.local` to run the Start Fresh wizard. The UI walks you through choosing Start Fresh or Recovery so the device can provision itself."
+      "a": "Connect your Server One, Server Pure, or DIY box to power plus Ethernet, keep your laptop or phone on the same LAN, and visit `https://start.local` to run the Start Fresh wizard. The UI walks you through choosing Start Fresh or Recovery so the device can provision itself."
     },
     {
       "q": "How do Start9 backups work?",
@@ -121,7 +121,7 @@
         },
         "sync_time": "Initial block download can take many hours on SSD-based x86 hardware and is unreliable on Raspberry Pi kits.",
         "actions": [
-          "Connect the server to power plus Ethernet, keep your laptop/phone on the same LAN, and open `http://start.local`.",
+          "Connect the server to power plus Ethernet, keep your laptop/phone on the same LAN, and open `https://start.local`.",
           "Choose Start Fresh or the Recovery path, then follow the on-screen prompts to provision the OS.",
           "If you are migrating, pick Use Existing Drive or Transfer to reuse your previous data set."
         ],

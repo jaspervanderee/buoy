@@ -27,7 +27,7 @@ const CATEGORY_HUBS = {
 };
 
 // Absolute origin for building canonical asset URLs
-const SITE_ORIGIN = "https://buoybitcoin.com";
+const SITE_ORIGIN = "https://buoybitcoin.com/";
 
 function toAbsoluteUrl(input) {
   const url = String(input || "").trim();
