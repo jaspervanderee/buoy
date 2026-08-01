@@ -550,19 +550,15 @@ function renderFeatures(service) {
   { key: "node_connect", label: "Does it connect to your own node?" },
   { key: "open_source", label: "Open Source" },
   { key: "user_experience", label: "User Experience", render: (service) => {
-    const localRating = localStorage.getItem(`rating_${service.name.toLowerCase()}`);
-    let rating = localRating ? parseFloat(localRating) : parseFloat(service.user_experience);
+    const rating = parseFloat(service.user_experience);
     if (isNaN(rating)) return "N/A";
     return `
       <div class="ux-container">
         <div class="ux-rating-wrapper">
           <span class="ux-rating">${rating.toFixed(1)}</span><span class="ux-outof"> out of 5</span>
         </div>
-        <a href="#" class="review-link" data-service="${service.name.toLowerCase()}">
-          rate <span class="rating-count">(0)</span>
-        </a>
       </div>
-    `; 
+    `;
   } },
   { key: "interface",
     label: "Interface",
@@ -631,7 +627,7 @@ if (!isSingleServiceView) {
 
 
 const allowedKeys = categoryFeaturesMap[categoryTitle] ?? features.map(f => f.key);
-// If table is baked, skip dynamic table generation entirely (still hydrate ratings below)
+// If table is baked, skip dynamic table generation entirely
 if (!hasBaked) {
   // Stable id generator for dynamic fallback rows
   const usedRowIds = new Set();
@@ -736,156 +732,6 @@ if (!hasBaked) {
 
 // Initialize collapsible descriptions
 initializeCollapsibleDescriptions();
-
-
-// Rating modal logic (improved version)
-// Rating modal logic (updated for backend)
-const modal = document.getElementById("rating-modal");
-
-// Gracefully exit if modal doesn't exist (e.g., on service pages)
-if (!modal) {
-    return;
-}
-
-const stars = modal.querySelectorAll(".star-rating span");
-const closeBtn = modal.querySelector(".close-btn");
-let currentService = null;
-let selectedRating = 0;
-
-// Backend URL (root-absolute). In production use the API domain; in dev use a local placeholder and skip network.
-const isProd = window.location.origin === 'https://buoybitcoin.com/';
-const backendUrl = isProd ? 'https://api.buoybitcoin.com' : '/api';
-
-// Add click event to all "Review" links
-document.querySelectorAll(".review-link").forEach(link => {
-    link.addEventListener("click", (e) => {
-        e.preventDefault();
-        currentService = link.dataset.service;
-        const currentRating = parseInt(localStorage.getItem(`rating_${currentService}`)) || 0;
-        selectedRating = currentRating;
-        highlightStars(currentRating); // Prefill stars
-        modal.style.display = "flex";
-        modal.classList.add("show");
-    });
-});
-
-// Star rating logic (simplified)
-stars.forEach((star, index) => {
-    star.addEventListener("mouseover", () => highlightStars(index + 1)); // Hover highlight
-    star.addEventListener("mouseout", () => highlightStars(selectedRating)); // Reset on mouse out
-    star.addEventListener("click", async () => {
-        selectedRating = index + 1; // Save rating (1-5)
-        highlightStars(selectedRating);
-        await submitRating(currentService, selectedRating); // Send to backend
-        modal.classList.remove("show"); // Close modal
-        setTimeout(() => { modal.style.display = "none"; }, 300); // Fade out
-    });
-});
-
-// Function to highlight stars up to a certain number
-function highlightStars(rating) {
-    stars.forEach((star, i) => {
-        star.style.color = (i < rating) ? "gold" : "lightgray";
-    });
-}
-
-// Function to submit rating to backend
-async function submitRating(service, rating) {
-  try {
-      if (!isProd) {
-          // Dev fallback: no network, persist locally
-          localStorage.setItem(`rating_${service}`, rating);
-          document.querySelectorAll(`.feature-value[data-service="${service}"] .ux-rating`).forEach(el => {
-              el.textContent = rating.toFixed(1);
-          });
-          return;
-      }
-      const response = await fetch(`${backendUrl}/rate.php`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ service, rating })
-      });
-      if (response.status === 409) { // Duplicate rating
-          const data = await response.json();
-          alert(`Error: ${data.error}`); // Shows "You have already rated this service"
-          return; // Don't refresh or fallback
-      }
-      if (!response.ok) {
-          throw new Error('Submission failed');
-      }
-      const data = await response.json();
-      alert(data.message); // "Rating saved!"
-
-      await loadRatings([service]);
-  } catch (error) {
-      alert(`Error submitting rating: ${error.message}. Using local fallback.`);
-      localStorage.setItem(`rating_${service}`, rating);
-      document.querySelectorAll(`.feature-value[data-service="${service}"] .ux-rating`).forEach(el => {
-          el.textContent = rating.toFixed(1);
-      });
-  }
-}
-
-// Function to load and display averages from backend
-async function loadRatings(services) {
-    for (const service of services) {
-        try {
-            if (!isProd) {
-                const local = localStorage.getItem(`rating_${service}`);
-                const fallback = local ? parseFloat(local).toFixed(1) : '0.0';
-                document.querySelectorAll(`.feature-value[data-service="${service}"] .ux-rating`).forEach(el => {
-                    el.textContent = fallback;
-                });
-                document.querySelectorAll(`.feature-value[data-service="${service}"] .rating-count`).forEach(el => {
-                    el.textContent = '(0)';
-                });
-                continue;
-            }
-            const response = await fetch(`${backendUrl}/rating.php?service=${service}`);
-            if (!response.ok) throw new Error('Fetch failed');
-            const data = await response.json();
-            const avg = data.average || 0;
-            const count = data.count || 0;
-            document.querySelectorAll(`.feature-value[data-service="${service}"] .ux-rating`).forEach(el => {
-                el.textContent = parseFloat(avg).toFixed(1);
-            });
-            document.querySelectorAll(`.feature-value[data-service="${service}"] .rating-count`).forEach(el => {
-                el.textContent = `(${count})`;
-            });
-        } catch (error) {
-            console.error(`Error loading rating for ${service}: ${error}`);
-            // Fallback to localStorage or services.json
-            const local = localStorage.getItem(`rating_${service}`);
-            const fallback = local ? parseFloat(local).toFixed(1) : '0.0';
-            document.querySelectorAll(`.feature-value[data-service="${service}"] .ux-rating`).forEach(el => {
-                el.textContent = fallback;
-            });
-            document.querySelectorAll(`.feature-value[data-service="${service}"] .rating-count`).forEach(el => {
-                el.textContent = '(0)';
-            });
-        }
-    }
-}
-
-// Load initial averages after table render (add this line right after document.getElementById("comparison-table-wrapper").innerHTML = ... in your code)
-const allServices = servicesToCompare.map(s => s.name.toLowerCase());
-loadRatings(allServices);
-
-// Close button
-closeBtn.addEventListener("click", () => {
-    modal.classList.remove("show");
-    setTimeout(() => { modal.style.display = "none"; }, 300);
-});
-
-// Close if clicking outside modal
-modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-        modal.classList.remove("show");
-        setTimeout(() => { modal.style.display = "none"; }, 300);
-    }
-});
-
-
 
 // Card visibility logic only runs on compare pages (not single-service pages)
 if (!isSingleServiceView) {

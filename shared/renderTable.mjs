@@ -176,13 +176,11 @@ function userExperienceHtml(service) {
   const parsed = parseFloat(raw);
   const rating = isNaN(parsed) ? null : parsed;
   if (rating === null) return "N/A";
-  const svcName = String(service.name || '').toLowerCase();
   return `
     <div class="ux-container">
       <div class="ux-rating-wrapper">
         <span class="ux-rating">${rating.toFixed(1)}</span><span class="ux-outof"> out of 5</span>
       </div>
-      <a href="#" class="review-link" data-service="${svcName}">rate <span class="rating-count">(0)</span></a>
     </div>
   `;
 }

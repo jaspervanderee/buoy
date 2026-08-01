@@ -421,13 +421,11 @@ function userExperienceCell(service) {
   const parsed = parseFloat(raw);
   const rating = isNaN(parsed) ? null : parsed;
   if (rating === null) return "N/A";
-  const svcName = String(service.name || '').toLowerCase();
   return `
     <div class="ux-container">
       <div class="ux-rating-wrapper">
         <span class="ux-rating">${rating.toFixed(1)}</span><span class="ux-outof"> out of 5</span>
       </div>
-      <a href="#" class="review-link" data-service="${svcName}">rate <span class="rating-count">(0)</span></a>
     </div>
   `;
 }
@@ -838,21 +836,6 @@ ${articleBeyondFeatures}
 ${articleWhoShouldUse}
 ${articleHowEvaluated}
 ${articleSources}
-
-<!-- Rating Modal -->
-<div id="rating-modal" class="rating-modal">
-  <div class="rating-content">
-    <span class="close-btn">&times;</span>
-    <p>Rate this service</p>
-    <div class="star-rating">
-      <span data-value="1">&#9733;</span>
-      <span data-value="2">&#9733;</span>
-      <span data-value="3">&#9733;</span>
-      <span data-value="4">&#9733;</span>
-      <span data-value="5">&#9733;</span>
-    </div>
-  </div>
-</div>
 
 </main>
 
