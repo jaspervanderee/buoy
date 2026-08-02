@@ -48,7 +48,17 @@ function normalizeServiceSlug(input) {
 
 function deriveCanonicalPairFromPath() {
   try {
-    const match = window.location.pathname.match(/\/compare\/([^/]+)\.html$/);
+    const normalize = typeof window.buoyNormalizePathname === 'function'
+      ? window.buoyNormalizePathname
+      : (pathname) => {
+          if (!pathname) return '';
+          let p = String(pathname);
+          if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
+          if (p.endsWith('.html')) p = p.slice(0, -5);
+          return p;
+        };
+    const path = normalize(window.location.pathname);
+    const match = path.match(/^\/compare\/([^/]+)$/);
     if (match && match[1]) {
       const parts = match[1].split('-vs-');
       if (parts.length === 2) {
@@ -254,11 +264,19 @@ let selectedServices = urlParams.get("services")
   : (window.__BUOY_SERVICE__ ? [window.__BUOY_SERVICE__] : []);
 
 
+const __buoyPath = typeof window.buoyNormalizePathname === 'function'
+  ? window.buoyNormalizePathname(window.location.pathname)
+  : String(window.location.pathname || '').replace(/\/$/, '').replace(/\.html$/, '');
+const __buoyIsCompare = typeof window.buoyIsComparePath === 'function'
+  ? window.buoyIsComparePath(window.location.pathname)
+  : (__buoyPath === '/compare' || /^\/compare\/[^/]+$/.test(__buoyPath));
+
 const isSingleServiceView =
+  __buoyPath === '/service' ||
   window.location.pathname.includes("service.html") ||
-  (!!window.__BUOY_SERVICE__ && !window.location.pathname.includes("compare.html")) ||
   (typeof window.__BUOY_SINGLE__ !== 'undefined' && window.__BUOY_SINGLE__ === true) ||
-  (typeof window.location.pathname === 'string' && window.location.pathname.startsWith("/services/"));
+  (typeof window.location.pathname === 'string' && window.location.pathname.startsWith("/services/")) ||
+  (!!window.__BUOY_SERVICE__ && !__buoyIsCompare);
 
 // Detect baked content (static HTML injected at build time)
 // Compare pages: #comparison-table-wrapper contains <table class="comparison-table">

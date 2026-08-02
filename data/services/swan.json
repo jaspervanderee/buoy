@@ -413,7 +413,7 @@
         },
         "why": "Cold storage keeps your bitcoin offline and resistant to hacks.",
         "actions": [
-          "Choose a <a href=\"/store-it-safely.html\">hardware or multisig wallet</a> that fits your experience level.",
+          "Choose a <a href=\"/store-it-safely\">hardware or multisig wallet</a> that fits your experience level.",
           "Initialize the device, write down the seed phrase, and store it in two secure places.",
           "Add your wallet software to a trusted computer so you can verify addresses later."
         ],

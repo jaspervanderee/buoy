@@ -411,7 +411,7 @@
         },
         "why": "Bisq delivers bitcoin to you after the trade, so line up a wallet you control before taking larger offers.",
         "actions": [
-          "Choose a hardware wallet or another cold storage option from our <a href=\"/store-it-safely.html\">wallet guide</a>.",
+          "Choose a hardware wallet or another cold storage option from our <a href=\"/store-it-safely\">wallet guide</a>.",
           "Initialize it, write down the seed words, and test the device before you fund it.",
           "Store backups in separate safe locations away from your computer."
         ],

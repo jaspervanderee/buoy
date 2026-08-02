@@ -109,11 +109,11 @@ function renderArticleSection(sectionName, html, cssClass) {
 
 // Known category hubs used for breadcrumb linking (if present)
 const CATEGORY_HUBS = {
-  "Buy Bitcoin": "/buy-bitcoin.html",
-  "Spend Bitcoin": "/spend-bitcoin.html",
-  "Store it safely": "/store-it-safely.html",
-  "Run my own node": "/run-my-own-node.html",
-  "Accept Bitcoin as a merchant": "/accept-bitcoin-as-a-merchant.html"
+  "Buy Bitcoin": "/buy-bitcoin",
+  "Spend Bitcoin": "/spend-bitcoin",
+  "Store it safely": "/store-it-safely",
+  "Run my own node": "/run-my-own-node",
+  "Accept Bitcoin as a merchant": "/accept-bitcoin-as-a-merchant"
 };
 
 // Absolute origin for building canonical asset URLs
@@ -583,7 +583,7 @@ async function htmlForPair(a, b, categoryLabel, updated) {
   const bName = b.name;
   const title = `${aName} vs ${bName} — Which is better? | Buoy Bitcoin`;
   const desc = `Compare ${aName} and ${bName} (${categoryLabel}): fees, custody, features, and more.`;
-  const canonicalPath = `/compare/${canonicalPairSlug(aName, bName)}.html`;
+  const canonicalPath = `/compare/${canonicalPairSlug(aName, bName)}`;
   const canonical = `https://buoybitcoin.com${canonicalPath}`;
   const categoryUrl = CATEGORY_HUBS[categoryLabel];
   const pairSlug = canonicalPairSlug(aName, bName);
@@ -772,13 +772,13 @@ async function htmlForPair(a, b, categoryLabel, updated) {
         </div>
 
         <li>
-          <a href="/about.html">
+          <a href="/about">
             <img src="/images/about.svg" alt="About Icon" />
             About
           </a>
         </li>
         <li>
-  <a href="/faq.html">
+  <a href="/faq">
     <img src="/images/faq.svg" alt="FAQ Icon" />
     FAQ
   </a>
@@ -853,17 +853,17 @@ ${articleSources}
     <div class="footer-column">
       <h3>Learn</h3>
       <ul>
-        <li><a href="/what-is-bitcoin.html">Bitcoin</a></li>
-        <li><a href="/what-is-lightning.html">Lightning</a></li>
+        <li><a href="/what-is-bitcoin">Bitcoin</a></li>
+        <li><a href="/what-is-lightning">Lightning</a></li>
       </ul>
     </div>
     <div class="footer-column">
       <h3>Support</h3>
       <ul>
         <li><a href="mailto:support&#64;buoybitcoin.com">Contact</a></li>
-        <li><a href="/faq.html">FAQ</a></li>
-        <li><a href="/privacy.html">Privacy</a></li>
-        <li><a href="/terms.html">Terms of Service</a></li>
+        <li><a href="/faq">FAQ</a></li>
+        <li><a href="/privacy">Privacy</a></li>
+        <li><a href="/terms">Terms of Service</a></li>
       </ul>
     </div>
     <div class="footer-column">

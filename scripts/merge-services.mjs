@@ -39,10 +39,21 @@ export function mergeServices() {
     }
   });
 
-  // Write the merged array to services.json
-  writeFileSync(outputPath, JSON.stringify(services, null, 2) + '\n', 'utf8');
-  
-  console.log(`✓ Merged ${services.length} services into data/services.json`);
+  // Write the merged array to services.json only when contents change
+  const next = JSON.stringify(services, null, 2) + '\n';
+  let prev = null;
+  try {
+    prev = readFileSync(outputPath, 'utf8');
+  } catch (_err) {
+    // File may not exist yet
+  }
+
+  if (prev === next) {
+    console.log('✓ data/services.json unchanged');
+  } else {
+    writeFileSync(outputPath, next, 'utf8');
+    console.log(`✓ Merged ${services.length} services into data/services.json`);
+  }
   return services;
 }
 

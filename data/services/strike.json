@@ -438,7 +438,7 @@
         },
         "why": "Cold storage keeps your bitcoin offline and secure from hackers.",
         "actions": [
-          "Choose a <a href=\"/store-it-safely.html\">cold storage wallet</a>",
+          "Choose a <a href=\"/store-it-safely\">cold storage wallet</a>",
           "Buy and initialize your hardware wallet or install cold storage software",
           "Generate a new seed phrase and write it down on paper",
           "Store your seed phrase in a fireproof safe or safety deposit box"

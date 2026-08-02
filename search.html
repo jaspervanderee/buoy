@@ -37,7 +37,7 @@
       container.innerHTML = '';
       if (q) {
         const a = document.createElement('a');
-        a.href = `/compare.html?services=${encodeURIComponent(q)}`;
+        a.href = `/compare?services=${encodeURIComponent(q)}`;
         a.textContent = `Compare services matching “${q}”`;
         container.appendChild(a);
       }

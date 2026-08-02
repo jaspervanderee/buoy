@@ -408,7 +408,7 @@
         },
         "why": "Cold storage keeps bitcoin offline so exchange failures cannot touch it.",
         "actions": [
-          "Pick a <a href=\"/store-it-safely.html\">hardware or multisig wallet</a> that matches your experience.",
+          "Pick a <a href=\"/store-it-safely\">hardware or multisig wallet</a> that matches your experience.",
           "Initialize it offline and record the seed on paper or steel.",
           "Store backups in separate safe locations."
         ],

@@ -375,7 +375,7 @@
         },
         "why": "Cold storage keeps long-term savings offline and away from phone risks.",
         "actions": [
-          "Choose a <a href=\"/store-it-safely.html\">cold storage wallet</a> that fits your budget and skill level.",
+          "Choose a <a href=\"/store-it-safely\">cold storage wallet</a> that fits your budget and skill level.",
           "Initialize the hardware wallet or cold storage software and generate a new seed phrase.",
           "Record the seed on paper or metal and store backups in separate secure locations."
         ],

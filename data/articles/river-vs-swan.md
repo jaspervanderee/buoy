@@ -48,7 +48,7 @@ If you're outside the United States, neither platform serves you. Check our comp
 <!-- how-we-evaluated -->
 ## How We Evaluated
 
-We evaluated Swan and River based on their founders' public statements, product architecture, and how their incentive structures align with the transition to sound money. [Read the full framework →](/about.html)
+We evaluated Swan and River based on their founders' public statements, product architecture, and how their incentive structures align with the transition to sound money. [Read the full framework →](/about)
 
 <!-- sources -->
 ## Sources

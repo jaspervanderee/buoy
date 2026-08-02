@@ -39,7 +39,7 @@ const linkForPair = (a, b) => {
   const slugB = slugify(b);
   // Sort alphabetically for canonical order
   const [first, second] = [slugA, slugB].sort();
-  return `/compare/${first}-vs-${second}.html`;
+  return `/compare/${first}-vs-${second}`;
 };
 
 const clamp = (s, n=160) => {
@@ -256,7 +256,7 @@ const saveHashCache = async (cache) => {
 
   for (const svc of services) {
     const slug = slugify(svc.name);
-    const url = `https://buoybitcoin.com/services/${slug}.html`;
+    const url = `https://buoybitcoin.com/services/${slug}`;
     
     // SEO-optimized title: Add year for freshness and front-load keywords
     const currentYear = new Date().getFullYear();
@@ -335,11 +335,11 @@ html = html.replace('</head>', urlShim + '</head>');
     // Inject Breadcrumb (back link + full trail) under the category header
     try {
       const categoryUrlMap = new Map([
-        ["Buy Bitcoin", "/buy-bitcoin.html"],
-        ["Spend Bitcoin", "/spend-bitcoin.html"],
-        ["Store it safely", "/store-it-safely.html"],
-        ["Run my own node", "/run-my-own-node.html"],
-        ["Accept Bitcoin as a merchant", "/accept-bitcoin-as-a-merchant.html"],
+        ["Buy Bitcoin", "/buy-bitcoin"],
+        ["Spend Bitcoin", "/spend-bitcoin"],
+        ["Store it safely", "/store-it-safely"],
+        ["Run my own node", "/run-my-own-node"],
+        ["Accept Bitcoin as a merchant", "/accept-bitcoin-as-a-merchant"],
       ]);
       const categoryName = svc.category || "Services";
       const categoryPath = categoryUrlMap.get(categoryName) || "/";
@@ -408,7 +408,7 @@ html = html.replace('</head>', urlShim + '</head>');
           const variantClass = chip.variant === "differentiator" ? " trust-chip--differentiator" : "";
           // If chip has link_to, make it clickable with full path (due to <base href="/" /> in service pages)
           if (chip.link_to) {
-            return `<a href="/services/${slug}.html#${chip.link_to}" class="trust-chip${variantClass}">${icon}${chip.text}</a>`;
+            return `<a href="/services/${slug}#${chip.link_to}" class="trust-chip${variantClass}">${icon}${chip.text}</a>`;
           }
           return `<div class="trust-chip${variantClass}">${icon}${chip.text}</div>`;
         }).filter(Boolean).join("");
@@ -1139,7 +1139,7 @@ ${blocks}
                 // Map of featured services for linking
                 const featuredMap = {
                   "Sparrow": "sparrow",
-                  "BTCPay Server": "btc-pay",
+                  "BTCPay Server": "btcpay-server",
                   "RoboSats": "robosats",
                   "Bisq": "bisq",
                   "Wasabi": "wasabi"
@@ -1148,7 +1148,7 @@ ${blocks}
                 const toolsList = card.compatible_tools.map(t => {
                   const slug = featuredMap[t];
                   if (slug) {
-                    return `<a href="/services/${slug}.html" class="app-tag app-tag--link">${escapeHtml(t)}</a>`;
+                    return `<a href="/services/${slug}" class="app-tag app-tag--link">${escapeHtml(t)}</a>`;
                   }
                   return `<span class="app-tag">${escapeHtml(t)}</span>`;
                 }).join("");
@@ -1399,7 +1399,7 @@ ${tiles.join("\n")}
                 // Only link the first occurrence in each text block
                 if (!matched) {
                   matched = true;
-                  return `<a href="/services/${slug}.html#${anchor}" class="glossary-link" data-term="${escapeHtml(term)}">${match}</a>`;
+                  return `<a href="/services/${slug}#${anchor}" class="glossary-link" data-term="${escapeHtml(term)}">${match}</a>`;
                 }
                 return match;
               });
@@ -1411,8 +1411,8 @@ ${tiles.join("\n")}
           // Helper to fix internal anchor links to use full paths (for <base href="/" />)
           const fixInternalLinks = (html) => {
             if (!html) return html;
-            // Convert href="#anchor" to href="/services/slug.html#anchor"
-            return html.replace(/href=["']#([^"']+)["']/g, `href="/services/${slug}.html#$1"`);
+            // Convert href="#anchor" to href="/services/slug#anchor"
+            return html.replace(/href=["']#([^"']+)["']/g, `href="/services/${slug}#$1"`);
           };
           
           const cards = [];
@@ -1597,7 +1597,7 @@ ${cards.join("\n")}
           // Use full path to avoid base href issues
           const feeValue = summary.fee || "N/A";
           const feeHtml = summary.fee_link 
-            ? `<a href="/services/${slug}.html#${summary.fee_link}" class="stat-link">${escapeHtml(feeValue)}</a>`
+            ? `<a href="/services/${slug}#${summary.fee_link}" class="stat-link">${escapeHtml(feeValue)}</a>`
             : escapeHtml(feeValue);
           
           const summaryStats = `
@@ -2673,7 +2673,7 @@ ${block}
       };
       
       // Build full path for hash links to avoid <base href> issues
-      const pagePath = `/services/${slug}.html`;
+      const pagePath = `/services/${slug}`;
       
       const jumpToPills = renderedSections
         .filter(key => jumpToMap[key])
@@ -2936,7 +2936,7 @@ ${sectionsHtml}`;
       "inLanguage": "en",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://buoybitcoin.com/search.html?q={search_term_string}",
+        "target": "https://buoybitcoin.com/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     };
@@ -2944,11 +2944,11 @@ ${sectionsHtml}`;
 
     // Add BreadcrumbList JSON-LD
     const categoryUrlMap = new Map([
-      ["Buy Bitcoin", "https://buoybitcoin.com/buy-bitcoin.html"],
-      ["Spend Bitcoin", "https://buoybitcoin.com/spend-bitcoin.html"],
-      ["Store it safely", "https://buoybitcoin.com/store-it-safely.html"],
-      ["Run my own node", "https://buoybitcoin.com/run-my-own-node.html"],
-      ["Accept Bitcoin as a merchant", "https://buoybitcoin.com/accept-bitcoin-as-a-merchant.html"]
+      ["Buy Bitcoin", "https://buoybitcoin.com/buy-bitcoin"],
+      ["Spend Bitcoin", "https://buoybitcoin.com/spend-bitcoin"],
+      ["Store it safely", "https://buoybitcoin.com/store-it-safely"],
+      ["Run my own node", "https://buoybitcoin.com/run-my-own-node"],
+      ["Accept Bitcoin as a merchant", "https://buoybitcoin.com/accept-bitcoin-as-a-merchant"]
     ]);
     const categoryName = svc.category || "Services";
     const categoryUrl = categoryUrlMap.get(categoryName) || "https://buoybitcoin.com/";

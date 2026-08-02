@@ -309,7 +309,7 @@
         "chips": {
           "setup": "Requires wallet migration"
         },
-        "why": "A 2-of-3 or 3-of-5 multisig setup (<a href=\"/services/bitkey.html\">Bitkey</a>, <a href=\"/services/sparrow.html\">Sparrow</a>) splits control across multiple keys held by you, family members, or trusted contacts. One lost key does not lock the funds, and no single person can move coins alone.",
+        "why": "A 2-of-3 or 3-of-5 multisig setup (<a href=\"/services/bitkey\">Bitkey</a>, <a href=\"/services/sparrow\">Sparrow</a>) splits control across multiple keys held by you, family members, or trusted contacts. One lost key does not lock the funds, and no single person can move coins alone.",
         "requirements": [
           "Migrate Wasabi funds to multisig wallet",
           "Distribute keys to different people or locations",
@@ -327,7 +327,7 @@
         "chips": {
           "setup": "Requires wallet migration"
         },
-        "why": "Services like <a href=\"/services/unchained.html\">Unchained</a> or <a href=\"/services/anchorwatch.html\">AnchorWatch</a> offer assisted multisig where they hold one key and provide inheritance tooling. Your heirs follow a documented claim process, and the provider co-signs after verifying identity and waiting period.",
+        "why": "Services like <a href=\"/services/unchained\">Unchained</a> or <a href=\"/services/anchorwatch\">AnchorWatch</a> offer assisted multisig where they hold one key and provide inheritance tooling. Your heirs follow a documented claim process, and the provider co-signs after verifying identity and waiting period.",
         "requirements": [
           "Migrate Wasabi funds to assisted multisig provider",
           "Complete provider's inheritance setup flow",

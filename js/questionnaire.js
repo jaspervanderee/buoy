@@ -261,7 +261,7 @@ if (seoCopy && seoCopy.parentNode) {
       resetQuestionnaire();
       
       // Scroll to the Buy Bitcoin category header to position it at the top
-      const buyBitcoinHeader = document.querySelector('.category-header h2 a[href="buy-bitcoin.html"]');
+      const buyBitcoinHeader = document.querySelector('.category-header h2 a[href="/buy-bitcoin"]');
       if (buyBitcoinHeader) {
         buyBitcoinHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }

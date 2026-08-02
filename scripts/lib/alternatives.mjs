@@ -19,12 +19,12 @@ function renderHTML(current, alts) {
   const list = alts.map(alt => {
     const altSlug = slugify(alt.name);
     const logo = `/images/${altSlug}.svg`;
-    const brandUrl = `/services/${altSlug}.html`;
+    const brandUrl = `/services/${altSlug}`;
     // Generate canonical compare URL
     const a = slugify(current.name);
     const b = slugify(alt.name);
     const [first, second] = [a, b].sort();
-    const compareUrl = `/compare/${first}-vs-${second}.html`;
+    const compareUrl = `/compare/${first}-vs-${second}`;
     return `
       <li class="alt-item">
         <div class="logo-cell">
@@ -46,9 +46,9 @@ function renderHTML(current, alts) {
       "position": i + 1,
       "item": {
         "@type": "Service",
-        "@id": `https://buoybitcoin.com/services/${slugify(alt.name)}.html#service`,
+        "@id": `https://buoybitcoin.com/services/${slugify(alt.name)}#service`,
         "name": alt.name,
-        "url": `https://buoybitcoin.com/services/${slugify(alt.name)}.html`
+        "url": `https://buoybitcoin.com/services/${slugify(alt.name)}`
       }
     }))
   };

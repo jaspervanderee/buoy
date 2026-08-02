@@ -1500,7 +1500,7 @@
           },
           "why": "Bisq delivers bitcoin to you after the trade, so line up a wallet you control before taking larger offers.",
           "actions": [
-            "Choose a hardware wallet or another cold storage option from our <a href=\"/store-it-safely.html\">wallet guide</a>.",
+            "Choose a hardware wallet or another cold storage option from our <a href=\"/store-it-safely\">wallet guide</a>.",
             "Initialize it, write down the seed words, and test the device before you fund it.",
             "Store backups in separate safe locations away from your computer."
           ],
@@ -2763,7 +2763,7 @@
           },
           "why": "Cold storage keeps bitcoin offline so exchange failures cannot touch it.",
           "actions": [
-            "Pick a <a href=\"/store-it-safely.html\">hardware or multisig wallet</a> that matches your experience.",
+            "Pick a <a href=\"/store-it-safely\">hardware or multisig wallet</a> that matches your experience.",
             "Initialize it offline and record the seed on paper or steel.",
             "Store backups in separate safe locations."
           ],
@@ -5428,7 +5428,7 @@
           },
           "why": "When you buy through Hodl Hodl, the bitcoin releases directly to an address you control.",
           "actions": [
-            "Choose a <a href=\"/store-it-safely.html\">cold storage wallet</a> that fits your budget and skill level.",
+            "Choose a <a href=\"/store-it-safely\">cold storage wallet</a> that fits your budget and skill level.",
             "Buy and initialize your hardware wallet or install cold storage software.",
             "Generate a new seed phrase and write it down on paper.",
             "Store your seed phrase in a fireproof safe or safety deposit box."
@@ -5527,7 +5527,7 @@
       "withdrawal_policy_dont": "Send fiat before the escrow funding transaction has at least one confirmation.",
       "region": [
         "Hodl Hodl operates globally, but certain fiat rails or currencies depend on local traders.",
-        "Hodl Hodl <strong>does NOT accept U.S. residents</strong> (Prohibited Jurisdiction). US users should use <a href=\"/services/bisq.html\">Bisq</a> or <a href=\"/services/robosats.html\">RoboSats</a> instead.",
+        "Hodl Hodl <strong>does NOT accept U.S. residents</strong> (Prohibited Jurisdiction). US users should use <a href=\"/services/bisq\">Bisq</a> or <a href=\"/services/robosats\">RoboSats</a> instead.",
         "Some countries may require additional verification for high volume trades; check the limit tier policy."
       ],
       "micro_faqs": [
@@ -8340,7 +8340,7 @@
           },
           "why": "Cold storage keeps your sats offline once trades settle.",
           "actions": [
-            "Choose a <a href=\"/store-it-safely.html\">hardware or multi-signature wallet</a> you trust.",
+            "Choose a <a href=\"/store-it-safely\">hardware or multi-signature wallet</a> you trust.",
             "Initialize the wallet and record the seed phrase on paper or metal.",
             "Store the seed phrase in a secure, offline location."
           ],
@@ -9802,7 +9802,7 @@
           },
           "why": "Cold storage keeps long-term savings offline and away from phone risks.",
           "actions": [
-            "Choose a <a href=\"/store-it-safely.html\">cold storage wallet</a> that fits your budget and skill level.",
+            "Choose a <a href=\"/store-it-safely\">cold storage wallet</a> that fits your budget and skill level.",
             "Initialize the hardware wallet or cold storage software and generate a new seed phrase.",
             "Record the seed on paper or metal and store backups in separate secure locations."
           ],
@@ -12849,7 +12849,7 @@
           },
           "why": "Cold storage keeps your bitcoin offline and secure from hackers.",
           "actions": [
-            "Choose a <a href=\"/store-it-safely.html\">cold storage wallet</a>",
+            "Choose a <a href=\"/store-it-safely\">cold storage wallet</a>",
             "Buy and initialize your hardware wallet or install cold storage software",
             "Generate a new seed phrase and write it down on paper",
             "Store your seed phrase in a fireproof safe or safety deposit box"
@@ -13449,7 +13449,7 @@
           },
           "why": "Cold storage keeps your bitcoin offline and resistant to hacks.",
           "actions": [
-            "Choose a <a href=\"/store-it-safely.html\">hardware or multisig wallet</a> that fits your experience level.",
+            "Choose a <a href=\"/store-it-safely\">hardware or multisig wallet</a> that fits your experience level.",
             "Initialize the device, write down the seed phrase, and store it in two secure places.",
             "Add your wallet software to a trusted computer so you can verify addresses later."
           ],
@@ -15234,7 +15234,7 @@
           "chips": {
             "setup": "Requires wallet migration"
           },
-          "why": "A 2-of-3 or 3-of-5 multisig setup (<a href=\"/services/bitkey.html\">Bitkey</a>, <a href=\"/services/sparrow.html\">Sparrow</a>) splits control across multiple keys held by you, family members, or trusted contacts. One lost key does not lock the funds, and no single person can move coins alone.",
+          "why": "A 2-of-3 or 3-of-5 multisig setup (<a href=\"/services/bitkey\">Bitkey</a>, <a href=\"/services/sparrow\">Sparrow</a>) splits control across multiple keys held by you, family members, or trusted contacts. One lost key does not lock the funds, and no single person can move coins alone.",
           "requirements": [
             "Migrate Wasabi funds to multisig wallet",
             "Distribute keys to different people or locations",
@@ -15252,7 +15252,7 @@
           "chips": {
             "setup": "Requires wallet migration"
           },
-          "why": "Services like <a href=\"/services/unchained.html\">Unchained</a> or <a href=\"/services/anchorwatch.html\">AnchorWatch</a> offer assisted multisig where they hold one key and provide inheritance tooling. Your heirs follow a documented claim process, and the provider co-signs after verifying identity and waiting period.",
+          "why": "Services like <a href=\"/services/unchained\">Unchained</a> or <a href=\"/services/anchorwatch\">AnchorWatch</a> offer assisted multisig where they hold one key and provide inheritance tooling. Your heirs follow a documented claim process, and the provider co-signs after verifying identity and waiting period.",
           "requirements": [
             "Migrate Wasabi funds to assisted multisig provider",
             "Complete provider's inheritance setup flow",

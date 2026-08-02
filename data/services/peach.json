@@ -409,7 +409,7 @@
         },
         "why": "Cold storage keeps your sats offline once trades settle.",
         "actions": [
-          "Choose a <a href=\"/store-it-safely.html\">hardware or multi-signature wallet</a> you trust.",
+          "Choose a <a href=\"/store-it-safely\">hardware or multi-signature wallet</a> you trust.",
           "Initialize the wallet and record the seed phrase on paper or metal.",
           "Store the seed phrase in a secure, offline location."
         ],

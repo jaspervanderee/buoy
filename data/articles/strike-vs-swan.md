@@ -40,7 +40,7 @@ If you're a US user torn between the two, ask yourself which problem you're solv
 <!-- how-we-evaluated -->
 ## How We Evaluated
 
-This comparison evaluates Strike and Swan beyond features and fees, examining each company's architectural direction, custody model, founder philosophy, and alignment with Bitcoin's long-term development as sound money. For a full explanation of our evaluation framework, see [How We Evaluate Bitcoin Services](/about.html)
+This comparison evaluates Strike and Swan beyond features and fees, examining each company's architectural direction, custody model, founder philosophy, and alignment with Bitcoin's long-term development as sound money. For a full explanation of our evaluation framework, see [How We Evaluate Bitcoin Services](/about)
 
 
 <!-- sources -->

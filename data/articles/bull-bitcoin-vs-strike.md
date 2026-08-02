@@ -31,7 +31,7 @@ If neither service fits your situation, Buoy's comparison tool covers dozens of 
 <!-- how-we-evaluated -->
 ## How We Evaluated
 
-This comparison applies Buoy's sound money alignment framework — eight criteria evaluating whether a service's architecture and incentive structure point toward financial sovereignty or toward continued dependency on the existing system. [Read the full framework →](/about.html)
+This comparison applies Buoy's sound money alignment framework — eight criteria evaluating whether a service's architecture and incentive structure point toward financial sovereignty or toward continued dependency on the existing system. [Read the full framework →](/about)
 
 <!-- sources -->
 ## Sources

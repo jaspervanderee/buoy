@@ -418,7 +418,7 @@
         },
         "why": "When you buy through Hodl Hodl, the bitcoin releases directly to an address you control.",
         "actions": [
-          "Choose a <a href=\"/store-it-safely.html\">cold storage wallet</a> that fits your budget and skill level.",
+          "Choose a <a href=\"/store-it-safely\">cold storage wallet</a> that fits your budget and skill level.",
           "Buy and initialize your hardware wallet or install cold storage software.",
           "Generate a new seed phrase and write it down on paper.",
           "Store your seed phrase in a fireproof safe or safety deposit box."
@@ -517,7 +517,7 @@
     "withdrawal_policy_dont": "Send fiat before the escrow funding transaction has at least one confirmation.",
     "region": [
       "Hodl Hodl operates globally, but certain fiat rails or currencies depend on local traders.",
-      "Hodl Hodl <strong>does NOT accept U.S. residents</strong> (Prohibited Jurisdiction). US users should use <a href=\"/services/bisq.html\">Bisq</a> or <a href=\"/services/robosats.html\">RoboSats</a> instead.",
+      "Hodl Hodl <strong>does NOT accept U.S. residents</strong> (Prohibited Jurisdiction). US users should use <a href=\"/services/bisq\">Bisq</a> or <a href=\"/services/robosats\">RoboSats</a> instead.",
       "Some countries may require additional verification for high volume trades; check the limit tier policy."
     ],
     "micro_faqs": [

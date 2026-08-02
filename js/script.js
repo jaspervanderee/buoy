@@ -1,3 +1,24 @@
+// Pathname helpers for extensionless Cloudflare Pages URLs
+(function (global) {
+  function normalizePathname(pathname) {
+    if (!pathname) return '';
+    let p = String(pathname);
+    if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
+    if (p.endsWith('.html')) p = p.slice(0, -5);
+    return p;
+  }
+  function isComparePath(pathname) {
+    const p = normalizePathname(pathname);
+    return p === '/compare' || /^\/compare\/[^/]+$/.test(p);
+  }
+  function isCompareHubPath(pathname) {
+    return normalizePathname(pathname) === '/compare';
+  }
+  global.buoyNormalizePathname = normalizePathname;
+  global.buoyIsComparePath = isComparePath;
+  global.buoyIsCompareHubPath = isCompareHubPath;
+})(window);
+
 // SERVICE PAGE URL NORMALIZATION (strip query params on service pages)
 (function() {
   try {
@@ -121,7 +142,7 @@
     // Compare pageview
     document.addEventListener('DOMContentLoaded', function() {
       try {
-        if (location.pathname.endsWith('compare.html')) {
+        if (typeof window.buoyIsComparePath === 'function' && window.buoyIsComparePath(location.pathname)) {
           if (typeof window.buoyTrack === 'function') window.buoyTrack('view_compare');
         }
         // Pageview + mirrored by channel (once per load)
@@ -695,14 +716,14 @@ document.querySelectorAll(".category").forEach(category => {
       const left = selectedCards[0];
       const right = selectedCards[1];
       const canonical = canonicalVsSlug(left, right);
-      const url = `/compare/${canonical}.html?services=${encodeURIComponent(left)},${encodeURIComponent(right)}&category=${encodeURIComponent(getCategory(selectedCards))}`;
+      const url = `/compare/${canonical}?services=${encodeURIComponent(left)},${encodeURIComponent(right)}&category=${encodeURIComponent(getCategory(selectedCards))}`;
       sessionStorage.setItem("clearSelectedAfterCompare", "true");
       window.location.href = url; // static 2-up
       return;
     }
   
     // 3 selected → keep dynamic
-const compareURL = `compare.html?services=${selectedCards.join(",")}&category=${encodeURIComponent(categoryTitle)}`;
+const compareURL = `/compare?services=${selectedCards.join(",")}&category=${encodeURIComponent(categoryTitle)}`;
 sessionStorage.setItem("clearSelectedAfterCompare", "true");
 window.location.href = compareURL; 
   });  
@@ -716,7 +737,7 @@ document.querySelectorAll(".card").forEach(card => {
 
     const serviceName = card.querySelector("img").alt;
     const slug = slugify(serviceName);
-    window.location.href = `${SERVICE_BASE}/${slug}.html`;    
+    window.location.href = `${SERVICE_BASE}/${slug}`;    
   });
 });
 
@@ -782,7 +803,7 @@ suggestionsBox.addEventListener("click", (e) => {
       const qLen = (searchInput && searchInput.value ? searchInput.value.length : 0);
       window.buoyTrack('search_used', { q_len: qLen, place: 'menu' });
     }
-window.location.href = `${SERVICE_BASE}/${slug}.html`;
+window.location.href = `${SERVICE_BASE}/${slug}`;
   }
 });
 
@@ -809,7 +830,7 @@ window.location.href = `${SERVICE_BASE}/${slug}.html`;
         window.buoyTrack('search_used', { q_len: query.length, place: 'menu' });
       }
       const slug = slugify(match.name);
-window.location.href = `${SERVICE_BASE}/${slug}.html`;
+window.location.href = `${SERVICE_BASE}/${slug}`;
     } else {
       alert("Service not found. Please try another name.");
     }
@@ -1044,7 +1065,7 @@ if (mainSearchInput && mainSearchBtn && mainSearchSuggestions) {
               const qLen = (mainSearchInput && mainSearchInput.value ? mainSearchInput.value.length : 0);
               window.buoyTrack('search_used', { q_len: qLen, place: 'main' });
             }
-            window.location.href = `${SERVICE_BASE}/${slug}.html`;
+            window.location.href = `${SERVICE_BASE}/${slug}`;
           }
         });
         mainSearchSuggestions.appendChild(div);
@@ -1071,7 +1092,7 @@ if (mainSearchInput && mainSearchBtn && mainSearchSuggestions) {
         window.buoyTrack('search_used', { q_len: query.length, place: 'main' });
       }
       const slug = slugify(match.name);
-      window.location.href = `${SERVICE_BASE}/${slug}.html`;
+      window.location.href = `${SERVICE_BASE}/${slug}`;
     } else {
       alert("Service not found.");
     }
@@ -1106,13 +1127,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const left = selectedServicesMain[0];
         const right = selectedServicesMain[1];
         const canonical = canonicalVsSlug(left, right);
-        const url = `/compare/${canonical}.html?services=${encodeURIComponent(left)},${encodeURIComponent(right)}&category=${encodeURIComponent(category)}`;
+        const url = `/compare/${canonical}?services=${encodeURIComponent(left)},${encodeURIComponent(right)}&category=${encodeURIComponent(category)}`;
         sessionStorage.setItem("clearSelectedAfterCompare", "true");
         window.location.href = url; // static 2-up
         return;
       }
 
-      const url = `compare.html?services=${selectedServicesMain.join(",")}&category=${encodeURIComponent(category)}`;
+      const url = `/compare?services=${selectedServicesMain.join(",")}&category=${encodeURIComponent(category)}`;
       sessionStorage.setItem("clearSelectedAfterCompare", "true");
       window.location.href = url; // dynamic compare (3)
     });
@@ -1129,13 +1150,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const left = selectedServicesMenu[0];
         const right = selectedServicesMenu[1];
         const canonical = canonicalVsSlug(left, right);
-        const url = `/compare/${canonical}.html?services=${encodeURIComponent(left)},${encodeURIComponent(right)}&category=${encodeURIComponent(category)}`;
+        const url = `/compare/${canonical}?services=${encodeURIComponent(left)},${encodeURIComponent(right)}&category=${encodeURIComponent(category)}`;
         sessionStorage.setItem("clearSelectedAfterCompare", "true");
         window.location.href = url; // static 2-up
         return;
       }
 
-      const url = `compare.html?services=${selectedServicesMenu.join(",")}&category=${encodeURIComponent(category)}`;
+      const url = `/compare?services=${selectedServicesMenu.join(",")}&category=${encodeURIComponent(category)}`;
       sessionStorage.setItem("clearSelectedAfterCompare", "true");
       window.location.href = url; // dynamic compare (3)
     });    
