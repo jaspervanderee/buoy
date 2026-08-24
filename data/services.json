@@ -6653,12 +6653,12 @@
     "type_of_platform": "Node software & hardware",
     "faqs": [
       {
-        "q": "How do MyNode hardware options compare between Model One and Model Two?",
-        "a": "Model One bundles the single-board computer, SSD enclosure, and cabling so you plug it in and let it sync, while Model Two adds internal NVMe storage, a power button, and more CPU headroom for heavy apps. Pick the chassis that matches how much routing, indexing, or marketplace usage you expect to run."
+        "q": "What hardware is included with the MyNode Model Two?",
+        "a": "The Model Two includes a fast, internal 2 TB NVMe drive for storage, plenty of CPU headroom for heavy apps, and 16 GB of RAM to handle running many apps at once."
       },
       {
         "q": "Is MyNode free or do I need a Premium license?",
-        "a": "The Community Edition download is free and already runs the Bitcoin, Lightning, and Tor stack, and the $79 Premium key unlocks extra marketplace apps, VPN profiles, and direct support. You can start with the free build and upgrade later without reinstalling."
+        "a": "The Community Edition download is free and already runs the Bitcoin, Lightning, and Tor stack, and the $99 Premium key unlocks extra marketplace apps, VPN profiles, and direct support. You can start with the free build and upgrade later without reinstalling."
       },
       {
         "q": "How long does the initial MyNode sync take?",
@@ -6698,7 +6698,7 @@
         }
       ]
     },
-    "price": "Free software<br>$79 for premium software<br>$399 Model One hardware device<br>$599 Model Two hardware device",
+    "price": "Free software<br>$99 for premium software<br>$549 Model Two hardware device",
     "custody_control": "Self-hosted (you verify and hold keys locally)",
     "kyc_required": "No",
     "recovery_method": "System backup archive + Lightning static channel backup",
@@ -6710,13 +6710,13 @@
     },
     "support": "Community forums and Premium support",
     "profile": "MyNode Team",
-    "description": "MyNode is a turnkey Bitcoin and Lightning node platform that combines open‑source software with a polished, full‑featured web interface, making it accessible to both novices and advanced users.\\n\\nWhat sets MyNode apart is its integration of a wide array of Bitcoin tools all in one place—your own full node, Lightning (via LND), Electrum server, block explorers, wallet pairing tools and more—coordinated through an intuitive UI.\\n\\nThe target audience ranges from beginners who can get started with simple, plug‑and‑play hardware builds or prebuilt units, to seasoned users. The Premium+ hardware options (Model One/Two) bundle top‑spec hardware with built‑in support and warranty, while DIYers can start with the free software and chosen hardware.\\n\\nLooking ahead, MyNode continues to expand its ecosystem with new beta apps and features plus consistent rapid updates and community‑driven development. Their vision is clear: empower individuals to run a sovereign, private, and all‑in‑one Bitcoin infrastructure at home, easily and robustly, with ongoing innovation and support.",
+    "description": "MyNode is a turnkey Bitcoin and Lightning node platform that combines open‑source software with a polished, full‑featured web interface, making it accessible to both novices and advanced users.\\n\\nWhat sets MyNode apart is its integration of a wide array of Bitcoin tools all in one place—your own full node, Lightning (via LND), Electrum server, block explorers, wallet pairing tools and more—coordinated through an intuitive UI.\\n\\nThe target audience ranges from beginners who can get started with simple, plug‑and‑play hardware builds or prebuilt units, to seasoned users. The Model Two bundles top‑spec hardware with built‑in support and warranty, while DIYers can start with the free software and chosen hardware.\\n\\nLooking ahead, MyNode continues to expand its ecosystem with new beta apps and features plus consistent rapid updates and community‑driven development. Their vision is clear: empower individuals to run a sovereign, private, and all‑in‑one Bitcoin infrastructure at home, easily and robustly, with ongoing innovation and support.",
     "founded_in": "2019",
     "website": "https://mynodebtc.com",
     "links": {
-      "download": "https://github.com/mynodebtc/mynode/releases/latest",
-      "docs": "https://mynodebtc.github.io/intro/getting-started.html",
-      "hardware": "https://mynodebtc.com/features"
+      "download": "https://mynodebtc.com/download",
+      "docs": "https://docs.mynodebtc.com/intro/getting-started.html",
+      "hardware": "https://mynodebtc.com/products/"
     },
     "countries": [
       "WW"
@@ -6758,7 +6758,7 @@
             "risk": "Medium (flashing media)"
           },
           "actions": [
-            "Grab the <a href=\"https://github.com/mynodebtc/mynode/releases/latest\" target=\"_blank\">latest MyNode image</a> for your hardware (Model One, Model Two, Pi, or x86).",
+            "Grab the <a href=\"https://github.com/mynodebtc/mynode/releases/latest\" target=\"_blank\">latest MyNode image</a> for your hardware (Model Two, Pi, or x86).",
             "Flash it to a microSD or USB drive with Balena Etcher, then attach the SSD that will hold the blockchain.",
             "Label the boot media and the SSD so you can keep track of them during future migrations."
           ],
@@ -6773,7 +6773,7 @@
             "risk": "Low (follow manual)"
           },
           "actions": [
-            "Insert the SSD into the enclosure, plug it into the USB 3 port, and verify every connector is fully seated.",
+            "Insert the SSD into the device or the enclosure. If using an enclosure, plug it into the USB 3 port, and verify every connector is fully seated.",
             "Connect Ethernet between the node and your router or switch; Wi-Fi is not supported.",
             "Plug the power supply into the outlet and the device; Model Two also needs a tap on the power button."
           ],
@@ -6827,37 +6827,12 @@
       "intro": "MyNode ships its own hardware, but you can also flash the same software onto any supported Pi or mini PC. Choose the build that matches your budget, cooling, and the number of apps you plan to run.",
       "builds": [
         {
-          "id": "model-one",
-          "name": "Model One kit",
-          "tagline": "Plug-and-play Pi-class hardware.",
-          "use_case": "Learning the stack, personal routing, bundled support.",
-          "tradeoff": "You get curated hardware and a ready SSD → You give up PCIe upgrades and raw horsepower.",
-          "all_in_price": "$399",
-          "monthly_cost": "~$1.80/mo (15W)",
-          "sync_time": "~6 days",
-          "assumptions": "Ships with microSD boot media, SSD enclosure, cooling, and Ethernet-ready cabling.",
-          "storage_guidance": "1 TB SSD included; keep at least 15% free for compaction.",
-          "noise_footprint": "Quiet desktop fan, router-sized footprint.",
-          "gotcha": "USB connections handle both power and data; loose cables can drop the drive mid-sync.",
-          "compatibility_badges": [
-            "Bitcoin Core",
-            "Lightning",
-            "RTL"
-          ],
-          "parts": [
-            "Single-board computer with aluminum case",
-            "1 TB SSD + USB 3.0 enclosure",
-            "15W USB-C power supply",
-            "Gigabit Ethernet cable"
-          ]
-        },
-        {
           "id": "model-two",
           "name": "Model Two workstation",
           "tagline": "Higher-end CPU, NVMe, and front-panel power.",
           "use_case": "Heavier app stacks, Electrs indexing, multiple Lightning tools.",
           "tradeoff": "You pay more upfront → You get faster syncs and smoother multitasking.",
-          "all_in_price": "$599",
+          "all_in_price": "$549",
           "monthly_cost": "~$3.50/mo (25W)",
           "sync_time": "~48 hours",
           "assumptions": "Includes internal NVMe SSD plus boot media; still prefers wired Ethernet.",
@@ -6870,7 +6845,7 @@
             "BTCPay"
           ],
           "parts": [
-            "x86 mini PC with 8–16 GB RAM",
+            "x86 mini PC with 16 GB RAM",
             "2 TB NVMe SSD",
             "Preloaded boot media",
             "UPS or surge protection"
@@ -6886,7 +6861,7 @@
           "monthly_cost": "~$2–$5/mo",
           "sync_time": "~12 hours on N100, ~6 days on Pi 4",
           "assumptions": "Requires SSD storage over USB 3 or NVMe plus wired Ethernet.",
-          "storage_guidance": "1–4 TB SSD depending on whether you index Electrs or run media apps.",
+          "storage_guidance": "2–4 TB SSD depending on whether you index Electrs or run media apps.",
           "noise_footprint": "Depends on your case; plan for active cooling on Pi 5 builds.",
           "gotcha": "Skipping a UPS risks corruption if power blips during the initial block download.",
           "compatibility_badges": [
@@ -6895,8 +6870,8 @@
             "Marketplace"
           ],
           "parts": [
-            "Raspberry Pi 5 (8 GB) or Intel N100 mini PC",
-            "1–4 TB NVMe or SSD",
+            "Raspberry Pi 5 (8-16 GB) or Intel N100 mini PC",
+            "2–4 TB NVMe or SSD",
             "Powered USB 3 enclosure",
             "Fan or heat sink kit"
           ]
@@ -6916,8 +6891,8 @@
           "a": "Yes. Clone the `/mnt/hdd/mynode` directory to a larger SSD, update mounts, and boot from the new drive."
         },
         {
-          "q": "Does Model One support accessory apps like Mempool?",
-          "a": "It can run lighter apps, but heavy dashboards perform better on Model Two or an x86 DIY build."
+          "q": "Does Model Two support accessory apps like Mempool?",
+          "a": "Yes! The Model Two includes powerful hardware to run a number of apps simultaneously."
         }
       ]
     },
@@ -6942,7 +6917,7 @@
         "badge": "Storage",
         "service_factor": "MyNode keeps two copies of Lightning backups (SD + SSD) alongside the blockchain and optional apps.",
         "what_happens": "Full-history nodes store blocks, chainstate, Electrs indexes, and docker volumes for marketplace apps.",
-        "how_to_minimize": "Allocate at least a 1 TB SSD or enable pruning if you only need wallet verification.",
+        "how_to_minimize": "Allocate at least a 2 TB SSD or enable pruning if you only need wallet verification.",
         "learn_more": "Free 15% disk space before enabling heavy apps like Mempool or BTCPay."
       },
       {
@@ -6971,7 +6946,7 @@
     "fees_faq": [
       {
         "q": "Does the Premium license change operating costs?",
-        "a": "The license is a one-time $79 upgrade that unlocks extra apps and VPN access, but the ongoing power and bandwidth costs stay the same."
+        "a": "The license is a one-time $99 upgrade that unlocks extra apps and VPN access, but the ongoing power and bandwidth costs stay the same."
       },
       {
         "q": "Can I power it down between sync sessions?",
@@ -7347,7 +7322,7 @@
           "id": "publisher",
           "fact": "Official getting-started documentation is hosted on MyNode’s GitHub Pages site.",
           "link_text": "Docs",
-          "link_url": "https://mynodebtc.github.io/intro/getting-started.html"
+          "link_url": "https://docs.mynodebtc.com/intro/getting-started.html"
         }
       ],
       "summary": "MyNode stitches together open-source components like Bitcoin Core, LND, and Electrum while adding a Premium license for extra apps and support. Releases, source code, and documentation remain public, so you can audit upgrades before installing them."
