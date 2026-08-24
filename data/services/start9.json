@@ -434,7 +434,7 @@
       "id": "lightning-daemons",
       "why": "StartOS ships LND by default and the Lightning guides cover CLN, LNbits, AlbyHub, and remote wallets.",
       "try": [
-        "Install Lightning, then run the built-in migration actions if you’re moving from Umbrel, RaspiBlitz, or myNode.",
+        "Install Lightning, then run the built-in migration actions if you’re moving from Umbrel, RaspiBlitz, or MyNode.",
         "Follow the Zeus or AlbyHub guides to connect via REST, Tor, or Lightning Node Connect.",
         "Use the LNbits action if you prefer to route payments through LNbits frontends."
       ],
@@ -639,7 +639,7 @@
     {
       "id": "lnd-migration",
       "title": "Migrate LND to StartOS",
-      "choose": "Use when you are moving LND funds from Umbrel, RaspiBlitz, or myNode without closing channels.",
+      "choose": "Use when you are moving LND funds from Umbrel, RaspiBlitz, or MyNode without closing channels.",
       "time": "~15–30 min",
       "cost": "Free",
       "risk": "Medium",
