@@ -120,12 +120,12 @@ document.addEventListener("DOMContentLoaded", () => {
       filter: (service, answers) => {
         if (answers.approach !== undefined && answers.approach !== "3") {
           // Umbrel: Ease of use - polished interface, app store, user-friendly
-          // myNode: Full control - open-source, many apps, technical features
+          // MyNode: Full control - open-source, many apps, technical features
           // Start9: Privacy & security - open-source, privacy-focused, community-driven
           
           if (answers.approach === "0" && service.name !== "Umbrel") return false; // Ease of use: Umbrel
           if (answers.approach === "1" && service.name !== "Start9") return false; // Privacy & security: Start9
-          if (answers.approach === "2" && service.name !== "myNode") return false; // Full control: myNode
+          if (answers.approach === "2" && service.name !== "MyNode") return false; // Full control: MyNode
         }
         return true;
       }

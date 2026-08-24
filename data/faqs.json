@@ -1081,17 +1081,17 @@
       "a": "Through the App Store—Umbrel lets you one-click install Bitcoin/Lightning and other apps from a curated store."
     },
     {
-      "q": "What Lightning implementation does myNode use?",
-      "a": "myNode uses LND and bundles many node tools behind a polished web UI."
+      "q": "What Lightning implementation does MyNode use?",
+      "a": "MyNode uses LND and bundles many node tools behind a polished web UI."
     },
     {
-      "q": "Can I run Umbrel and myNode on Raspberry Pi or x86?",
-      "a": "Yes—both support Raspberry Pi and x86; Umbrel also offers Umbrel Home, and myNode sells prebuilt devices."
+      "q": "Can I run Umbrel and MyNode on Raspberry Pi or x86?",
+      "a": "Yes—both support Raspberry Pi and x86; Umbrel also offers Umbrel Home, and MyNode sells prebuilt devices."
     }
   ],
   "mynode-vs-start9": [
     {
-      "q": "Is myNode free or do I need a license?",
+      "q": "Is MyNode free or do I need a license?",
       "a": "Core software is free; premium features and official hardware are paid."
     },
     {
@@ -1100,13 +1100,13 @@
     },
     {
       "q": "Which has the bigger app marketplace?",
-      "a": "Start9 emphasizes an excellent app marketplace; myNode notes its store isn’t as expansive."
+      "a": "Start9 emphasizes an excellent app marketplace; MyNode notes its store isn’t as expansive."
     }
   ],
   "start9-vs-umbrel": [
     {
       "q": "What is the alternative to Umbrel?",
-      "a": "Start9 (StartOS) and myNode—both let you run a self-hosted Bitcoin and Lightning node on Raspberry Pi or x86; Start9 offers an extensive app marketplace and optional servers, while myNode focuses on LND with bundled tools and optional premium features."
+      "a": "Start9 (StartOS) and MyNode—both let you run a self-hosted Bitcoin and Lightning node on Raspberry Pi or x86; Start9 offers an extensive app marketplace and optional servers, while MyNode focuses on LND with bundled tools and optional premium features."
     },
     {
       "q": "Is StartOS open source?",
